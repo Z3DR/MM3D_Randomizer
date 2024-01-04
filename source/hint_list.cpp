@@ -343,3 +343,19 @@ void HintTable_Init() {
 	hintTable[GYORGS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
 	hintTable[TWINMOLDS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
 }
+
+const HintText& Hint(const HintKey hintKey) {
+    return hintTable[hintKey];
+}
+
+std::vector<HintText> GetHintCategory(HintCategory category) {
+
+    std::vector<HintText> hintsInCategory = {};
+
+    for (const auto& hint : hintTable) {
+        if (hint.GetType() == category) {
+            hintsInCategory.push_back(hint);
+        }
+    }
+    return hintsInCategory;
+}
