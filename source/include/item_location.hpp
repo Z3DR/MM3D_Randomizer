@@ -156,6 +156,10 @@ public:
       return scene;
     }
 
+    u8 GetTextID() const {
+      return textID;
+    }
+
     u8 GetFlag() const {
       return flag;
     }
