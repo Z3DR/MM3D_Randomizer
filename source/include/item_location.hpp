@@ -156,7 +156,7 @@ public:
       return scene;
     }
 
-    u8 GetTextID() const {
+    u16 GetTextID() const {
       return textID;
     }
 
