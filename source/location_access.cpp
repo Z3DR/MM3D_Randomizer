@@ -630,7 +630,12 @@ void AreaTable_Init() {
 		LocationAccess(TERMINA_FIELD_UNDERWATER_CHEST, {[] {return ZoraMask;}}),
 		LocationAccess(TERMINA_FIELD_GRASS_CHEST, {[] {return true;}}),
 		LocationAccess(TERMINA_FIELD_STUMP_CHEST, {[] {return Hookshot || (MagicBean && WaterForBeans);}}),
-
+		LocationAccess(TF_TOP_SNOWHEAD_GOSSIP, { [] { return true; } }),
+		LocationAccess(TF_MILK_ROAD_TREE_GOSSIP, { [] { return true; } }),
+		LocationAccess(TF_IKANA_SNOWHEAD_GOSSIP, { [] { return true; } }),
+		LocationAccess(TF_OBSERVATORY_GOSSIP, { [] { return true; } }),
+		LocationAccess(TF_LOWER_SNOWHEAD_GOSSIP, { [] { return true; } }),
+		LocationAccess(TF_NEAR_GRASS_CHEST_GOSSIP, { [] { return true; } }),
 	},
 	{
 		//Exits

@@ -158,11 +158,12 @@ static std::vector<LocationKey> GetAccessibleGossipStones(const LocationKey hint
 
 static void AddHint(Text hint, const LocationKey gossipStone, const std::vector<colType>& colors = {}) {
   //save hints as dummy items for writing to the spoiler log
-  //NewItem(gossipStone, Item{hint, ITEMTYPE_EVENT, GI_RUPEE_BLUE_LOSE, false, &noVariable, NONE});
+  // NewItem(gossipStone, Item{hint, ITEMTYPE_EVENT, GI_RUPEE_BLUE_LOSE, false, &noVariable, NONE});
   Location(gossipStone)->SetPlacedItem(gossipStone);
 
   //create the in game message
-  u32 messageId = Location(gossipStone)->GetTextID();
+  u16 messageId = Location(gossipStone)->GetTextID();
+  CitraPrint("Got text ID!");
   //u32 sariaMessageId = 0xA00 + Location(gossipStone)->GetFlag();
   /*CreateMessage(0x6133, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "You got a #small key# for the #Woodfall Temple#! Use it to open a locked door in that temple.",
@@ -372,6 +373,7 @@ static void CreateGoodItemHint() {
 static void CreateJunkHint() {
   //duplicate junk hints are possible for now
   const HintText junkHint = RandomElement(GetHintCategory(HintCategory::Junk));
+
   LogicReset();
   const std::vector<LocationKey> gossipStones = GetAccessibleLocations(gossipStoneLocations);
   if (gossipStones.empty()) {
@@ -518,9 +520,9 @@ void CreateAllHints() {
       std::vector<LocationKey> dungeonHintLocations = FilterFromPool(allLocations, [](const LocationKey loc){return Location(loc)->IsDungeon() && Location(loc)->IsHintable() && !(Location(loc)->IsHintedAt());});
       CreateLocationHint(dungeonHintLocations);
 
-    } else if (type == HintType::Junk) {
+    } /*else if (type == HintType::Junk) {
       CreateJunkHint();
-    }
+    }*/
   }
 
   //If any gossip stones failed to have a hint placed on them for some reason, place a junk hint as a failsafe.
