@@ -189,67 +189,67 @@ void HintTable_Init() {
 	|  SOMETIMES HINT TEXT  |
 	-----------------------*/
 	// Clock Tower
-    hintTable[CLOCK_TOWER_OCARINA_OF_TIME] = HintText::Sometimes({ "Your Ocarina"});
-  HMS_DEKU_MASK,
-  HMS_SONG_OF_HEALING,
-  HMS_BOMBERS_NOTEBOOK,
-  HMS_STARTING_SWORD,
-  HMS_STARTING_SHIELD,
+    hintTable[CLOCK_TOWER_OCARINA_OF_TIME] = HintText::Sometimes({ "A Musical Instrument"});
+    hintTable[HMS_DEKU_MASK] = HintText::Sometimes({"a cursed removed"});
+    hintTable[HMS_SONG_OF_HEALING] = HintText::Sometimes({"a masked man's melody"});
+    hintTable[HMS_BOMBERS_NOTEBOOK] = HintText::Sometimes({"a masked man's gift"});
+    hintTable[HMS_STARTING_SWORD] = HintText::Sometimes({"a new file"});
+    hintTable[HMS_STARTING_SHIELD] = HintText::Sometimes({"a new file"});
   //PRE_CLOCK_TOWN_CHEST,
 //Deku Palace
-  DEKU_PALACE_BEAN_SELLER,
-  DEKU_PALACE_WEST_GARDEN,
-  DEKU_PALACE_BUTLER_RACE,
-  DEKU_PALACE_BEAN_GROTTO_CHEST,
-  DEKU_PALACE_IMPRISONED_MONKEY,
+    hintTable[DEKU_PALACE_BEAN_SELLER] = HintText::Sometimes({"a gorging merchant"});
+    hintTable[DEKU_PALACE_WEST_GARDEN] = HintText::Sometimes({"the home of scrubs"});
+    hintTable[DEKU_PALACE_BUTLER_RACE] = HintText::Sometimes({"the royal servant"});
+    hintTable[DEKU_PALACE_BEAN_GROTTO_CHEST] = HintText::Sometimes({"a merchant's cave"});
+    hintTable[DEKU_PALACE_IMPRISONED_MONKEY] = HintText::Sometimes({"a false imprisonment"});
 //East Clock Town
-  E_CLOCK_TOWN_AROMA_IN_BAR,
-  E_CLOCK_TOWN_ARCHERY_1,
-  E_CLOCK_TOWN_ARCHERY_2,
-  E_CLOCK_TOWN_MAYOR,
-  E_CLOCK_TOWN_HONEY_DARLING_3DAYS,
-  E_CLOCK_TOWN_TREASURE_CHEST_GAME_GORON,
-  E_CLOCK_TOWN_POSTMAN_FREEDOM,
-  E_CLOCK_TOWN_GORMAN,
-  E_CLOCK_TOWN_AROMA_IN_OFFICE,
-  BOMBERS_HIDEOUT_CHEST,
-  E_CLOCK_TOWN_CHEST,
-  E_CLOCK_TOWN_POSTBOX,
+    hintTable[E_CLOCK_TOWN_AROMA_IN_BAR] = HintText::Sometimes({"an important lady"});
+    hintTable[E_CLOCK_TOWN_ARCHERY_1] = HintText::Sometimes({"a town activity"});
+    hintTable[E_CLOCK_TOWN_ARCHERY_2] = HintText::Sometimes({"a town activity"});
+    hintTable[E_CLOCK_TOWN_MAYOR] = HintText::Sometimes({"a town leader"});
+    hintTable[E_CLOCK_TOWN_HONEY_DARLING_3DAYS] = HintText::Sometimes({"a lovers game"});
+    hintTable[E_CLOCK_TOWN_TREASURE_CHEST_GAME_GORON] = HintText::Sometimes({"a treasure game"});
+    hintTable[E_CLOCK_TOWN_POSTMAN_FREEDOM] = HintText::Sometimes({"a delivery person"});
+    hintTable[E_CLOCK_TOWN_GORMAN] = HintText::Sometimes({"a miserable leader"});
+    hintTable[E_CLOCK_TOWN_AROMA_IN_OFFICE] = HintText::Sometimes({"an important lady"});
+    hintTable[BOMBERS_HIDEOUT_CHEST] = HintText::Sometimes({"a secret hideout"});
+    hintTable[E_CLOCK_TOWN_CHEST] = HintText::Sometimes({"a shop roof"});
+    hintTable[E_CLOCK_TOWN_POSTBOX] = HintText::Sometimes({"a correspondence box"});
   //E_CLOCK_TOWN_MILK_BAR_CHATEAU,
   //E_CLOCK_TOWN_MILK_BAR_MILK,
-  GORMAN_TRACK_MYSTERY_MILK_QUEST,
+    hintTable[GORMAN_TRACK_MYSTERY_MILK_QUEST] = HintText::Sometimes({"an upset stomach cure"});
   //E_CLOCK_TOWN_HONEY_DARLING_ANY_DAY,
   //E_CLOCK_TOWN_TREASURE_CHEST_GAME_HUMAN,
   //E_CLOCK_TOWN_TREASURE_CHEST_GAME_ZORA,
   //E_CLOCK_TOWN_TREASURE_CHEST_GAME_DEKU,
 //Goron Village
-  GORON_VILLAGE_POWDER_KEG_CHALLENGE,
-  GORON_VILLAGE_SCRUB_PURCHASE,
-  GORON_VILLAGE_LENS_OF_TRUTH_CHEST,
-  GORON_VILLAGE_SCRUB_TRADE,
-  GORON_VILLAGE_LEDGE,
-  GORON_VILLAGE_GORON_LULLABY,
-  LENS_CAVE_RED_RUPEE,
-  LENS_CAVE_PURPLE_RUPEE,
-  GORON_SHOP_ITEM_1,
-  GORON_SHOP_ITEM_2,
-  GORON_SHOP_ITEM_3,
+    hintTable[GORON_VILLAGE_POWDER_KEG_CHALLENGE] = HintText::Sometimes({"a large goron"});
+    hintTable[GORON_VILLAGE_SCRUB_PURCHASE] = HintText::Sometimes({"a northern merchant"});
+    hintTable[GORON_VILLAGE_LENS_OF_TRUTH_CHEST] = HintText::Sometimes({"a lonely peak"});
+    hintTable[GORON_VILLAGE_SCRUB_TRADE] = HintText::Sometimes({"a northern merchant"});
+    hintTable[GORON_VILLAGE_LEDGE] = HintText::Sometimes({"a cold ledge"});
+    hintTable[GORON_VILLAGE_GORON_LULLABY] = HintText::Sometimes({"a lonely child"});
+    hintTable[LENS_CAVE_RED_RUPEE] = HintText::Sometimes({"a lonely peak"});
+    hintTable[LENS_CAVE_PURPLE_RUPEE] = HintText::Sometimes({"a lonely peak"});
+  //GORON_SHOP_ITEM_1, //To-Do?
+  //GORON_SHOP_ITEM_2,
+  //GORON_SHOP_ITEM_3,
 //Great Bay Coast
-  //GBC_OCEAN_SPIDER_DAY1,--Handled in Dungeon.cpp
+    hintTable[GBC_OCEAN_SPIDER_DAY1] = HintText::Sometimes({"an ocean spider reward"});
   //GBC_OCEAN_SPIDER_DAY2,
   //GBC_OCEAN_SPIDER_DAY3,
-  GBC_FISHERMAN_GAME,
-  //GBC_OCEAN_SPIDER_CHEST,--Handled in Dungeon.cpp
-  GBC_LAB_FISH,
-  GBC_LEDGE,
-  GBC_MIKAU,
-  GBC_BABY_ZORAS,
-  GBC_GROTTO_CHEST,
-  GBC_GROTTO_COW1,
-  GBC_GROTTO_COW2,
-  GBC_FISHERMAN_PHOTO,
-  TINGLE_GBC_GB,
-  TINGLE_GBC_ST,
+    hintTable[GBC_FISHERMAN_GAME] = HintText::Sometimes({"an ocean game"});
+    hintTable[GBC_OCEAN_SPIDER_CHEST] = HintText::Sometimes({"the colored masks"});
+    hintTable[GBC_LAB_FISH] = HintText::Sometimes({"feeding the fish"});
+    hintTable[GBC_LEDGE] = HintText::Sometimes({"an ocean ledge"});
+    hintTable[GBC_MIKAU] = HintText::Sometimes({"a healed spirit"});
+    hintTable[GBC_BABY_ZORAS]  = HintText::Sometimes({"the pirates' loot"});
+    hintTable[GBC_GROTTO_CHEST] = HintText::Sometimes({"an ocean cave"});
+    hintTable[GBC_GROTTO_COW1] = HintText::Sometimes({"a lost creature"});
+    hintTable[GBC_GROTTO_COW2] = HintText::Sometimes({"a lost creature"});
+    hintTable[GBC_FISHERMAN_PHOTO] = HintText::Sometimes({"a fisherman"});
+    hintTable[TINGLE_GBC_GB] = HintText::Sometimes({"a map maker"});
+    hintTable[TINGLE_GBC_ST] = HintText::Sometimes({"a map maker"});
 //Ikana Canyon
   IKANA_CANYON_GREAT_FAIRY,
   IKANA_CANYON_POE_HUT_HP,
@@ -645,7 +645,7 @@ void HintTable_Init() {
   |   DUNGEON HINT TEXT    |
   ------------------------*/
 
-  hintTable[WOODFALL_TEMPLE] = HintText::DungeonName({Text{"the sleeping temple", "the sleeping temple", "the sleeping temple"}}),
+    hintTable[WOODFALL_TEMPLE] = HintText::DungeonName({Text{"the sleeping temple", "the sleeping temple", "the sleeping temple"}}),
   hintTable[SNOWHEAD_TEMPLE] = HintText::DungeonName({Text{"an icy temple", "an icy temple", "an icy temple"}});
   hintTable[GREAT_BAY_TEMPLE] = HintText::DungeonName({Text{"the murky watered temple", "the murky watered temple", "the murky watered temple"}});
   hintTable[STONE_TOWER_TEMPLE] = HintText::DungeonName({Text{"a rocky temple", "a rocky temple", "a rocky temple"}});
