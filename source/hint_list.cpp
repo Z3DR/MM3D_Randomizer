@@ -244,28 +244,28 @@ void HintTable_Init() {
     hintTable[TINGLE_GBC_GB] = HintText::Sometimes({ Text{"a map maker"}});
     hintTable[TINGLE_GBC_ST] = HintText::Sometimes({ Text{"a map maker"}});
 //Ikana Canyon
-    hintTable[IKANA_CANYON_GREAT_FAIRY] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_CANYON_POE_HUT_HP] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_CANYON_LEDGE] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_CANYON_PAMELAS_FATHER] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_CANYON_SECRET_SHRINE_GROTTO_CHEST] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_CANYON_SCRUB_TRADE] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_CANYON_SCRUB_PURCHASE] = HintText::Sometimes({Text{""}});
-    hintTable[TINGLE_IKANA_CANYON_ST] = HintText::Sometimes({Text{""}});
-    hintTable[TINGLE_IKANA_CANYON_CT] = HintText::Sometimes({Text{""}});
+    hintTable[IKANA_CANYON_GREAT_FAIRY] = HintText::Sometimes({Text{"the fairy of kindness "}});
+    hintTable[IKANA_CANYON_POE_HUT_HP] = HintText::Sometimes({Text{"a game of ghosts"}});
+    hintTable[IKANA_CANYON_LEDGE] = HintText::Sometimes({Text{"a canyon ledge"}});
+    hintTable[IKANA_CANYON_PAMELAS_FATHER] = HintText::Sometimes({Text{"a lost father"}});
+    hintTable[IKANA_CANYON_SECRET_SHRINE_GROTTO_CHEST] = HintText::Sometimes({Text{"a waterfall cave"}});
+    hintTable[IKANA_CANYON_SCRUB_TRADE] = HintText::Sometimes({Text{"an eastern merchant"}});
+    hintTable[IKANA_CANYON_SCRUB_PURCHASE] = HintText::Sometimes({Text{"an eastern merchant"}});
+    hintTable[TINGLE_IKANA_CANYON_ST] = HintText::Sometimes({Text{"a map maker"}});
+    hintTable[TINGLE_IKANA_CANYON_CT] = HintText::Sometimes({Text{"a map maker"}});
 //Ikana Graveyard
-    hintTable[IKANA_GRAVEYARD_DAMPE_DIGGING] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_GRAVEYARD_IRON_KNUCKLE_CHEST] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_GRAVEYARD_CAPTAIN_KEETA_CHEST] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_GRAVEYARD_DAY_ONE_GRAVE_TABLET] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_GRAVEYARD_DAY_ONE_GRAVE_BATS] = HintText::Sometimes({Text{""}});
-    hintTable[IKANA_GRAVEYARD_GROTTO_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[IKANA_GRAVEYARD_DAMPE_DIGGING] = HintText::Sometimes({Text{"a fearful basement"}});
+    hintTable[IKANA_GRAVEYARD_IRON_KNUCKLE_CHEST] = HintText::Sometimes({Text{"a hollow ground"}});
+    hintTable[IKANA_GRAVEYARD_CAPTAIN_KEETA_CHEST] = HintText::Sometimes({Text{"a skeletal leader"}});
+    hintTable[IKANA_GRAVEYARD_DAY_ONE_GRAVE_TABLET] = HintText::Sometimes({Text{"a hollow ground"}});
+    hintTable[IKANA_GRAVEYARD_DAY_ONE_GRAVE_BATS] = HintText::Sometimes({Text{"a cloud of bats"}});
+    hintTable[IKANA_GRAVEYARD_GROTTO_CHEST] = HintText::Sometimes({Text{"a circled cave"}});
 //Laundry Pool
-    hintTable[LAUNDRY_POOL_KAFEI] = HintText::Sometimes({Text{""}});
-    hintTable[LAUNDRY_POOL_CURIOSITY_SHOP_MAN_ONE] = HintText::Sometimes({Text{""}});
-    hintTable[LAUNDRY_POOL_CURIOSITY_SHOP_MAN_TWO] = HintText::Sometimes({Text{""}});
-    hintTable[LAUNDRY_POOL_GURU_GURU] = HintText::Sometimes({Text{""}});
-    hintTable[LAUNDRY_POOL_SF] = HintText::Sometimes({Text{""}});
+    hintTable[LAUNDRY_POOL_KAFEI] = HintText::Sometimes({Text{"a posted letter"}});
+    hintTable[LAUNDRY_POOL_CURIOSITY_SHOP_MAN_ONE] = HintText::Sometimes({Text{"a shady dealer"}});
+    hintTable[LAUNDRY_POOL_CURIOSITY_SHOP_MAN_TWO] = HintText::Sometimes({Text{"a shady dealer"}});
+    hintTable[LAUNDRY_POOL_GURU_GURU] = HintText::Sometimes({Text{"a musician"}});
+    hintTable[LAUNDRY_POOL_SF] = HintText::Sometimes({Text{"a lost fairy"}});
 //Milk Road
     hintTable[MILK_ROAD_GORMAN_RACE] = HintText::Sometimes({Text{""}});
     hintTable[MILK_ROAD_GORMAN_MILK_BUY] = HintText::Sometimes({Text{""}});
@@ -281,13 +281,13 @@ void HintTable_Init() {
     hintTable[MOUNTAIN_WATERFALL_CHEST] = HintText::Sometimes({Text{""}});
     hintTable[MOUNTAIN_VILLAGE_SPRING_WATER_GROTTO_CHEST] = HintText::Sometimes({Text{""}});
 //N Clock Town
-    hintTable[N_CLOCK_TOWN_GREAT_FAIRY_DEKU] = HintText::Sometimes({Text{""}});
+    hintTable[N_CLOCK_TOWN_GREAT_FAIRY_DEKU] = HintText::Sometimes({Text{"the fairy of magic"}});
   //hintTable[N_CLOCK_TOWN_BOMBERS_HIDE_SEEK] = HintText::Sometimes({Text{""}}); doesn't give an item in 3d
     hintTable[N_CLOCK_TOWN_KEATON_QUIZ] = HintText::Sometimes({Text{""}});
     hintTable[N_CLOCK_TOWN_DEKU_PLAYGROUND_3DAYS] = HintText::Sometimes({Text{""}});
     hintTable[N_CLOCK_TOWN_TREE] = HintText::Sometimes({Text{""}});
     hintTable[N_CLOCK_TOWN_OLD_LADY] = HintText::Sometimes({Text{""}});
-    hintTable[N_CLOCK_TOWN_GREAT_FAIRY_HUMAN] = HintText::Sometimes({Text{""}});
+    hintTable[N_CLOCK_TOWN_GREAT_FAIRY_HUMAN] = HintText::Sometimes({Text{"the fairy of magic"}});
     hintTable[TINGLE_N_CLOCK_TOWN_CT] = HintText::Sometimes({Text{""}});
     hintTable[TINGLE_N_CLOCK_TOWN_WF] = HintText::Sometimes({Text{""}});
     hintTable[N_CLOCK_TOWN_POSTBOX] = HintText::Sometimes({Text{""}});
@@ -332,7 +332,7 @@ void HintTable_Init() {
     hintTable[S_CLOCK_TOWN_BANK_REWARD_2] = HintText::Sometimes({Text{""}});
     hintTable[S_CLOCK_TOWN_BANK_REWARD_3] = HintText::Sometimes({Text{""}});
 //Snowhead
-    hintTable[SNOWHEAD_GREAT_FAIRY] = HintText::Sometimes({Text{""}});
+    hintTable[SNOWHEAD_GREAT_FAIRY] = HintText::Sometimes({Text{"the fairy of power"}});
 //Southern Swamp
     hintTable[SOUTHERN_SWAMP_KOUME] = HintText::Sometimes({Text{""}});
     hintTable[SOUTHERN_SWAMP_KOTAKE] = HintText::Sometimes({Text{""}});
@@ -414,9 +414,9 @@ void HintTable_Init() {
     hintTable[WOODFALL_BRIDGE_CHEST] = HintText::Sometimes({Text{""}});
     hintTable[WOODFALL_BEHIND_OWL_CHEST] = HintText::Sometimes({Text{""}});
     hintTable[ENTRANCE_TO_WOODFALL_CHEST] = HintText::Sometimes({Text{""}});
-    hintTable[WOODFALL_GREAT_FAIRY] = HintText::Sometimes({Text{""}});
+    hintTable[WOODFALL_GREAT_FAIRY] = HintText::Sometimes({Text{"the fairy of wisdom"}});
 //Zora Cape
-    hintTable[ZORA_CAPE_GREAT_FAIRY] = HintText::Sometimes({Text{""}});
+    hintTable[ZORA_CAPE_GREAT_FAIRY] = HintText::Sometimes({Text{"the fairy of courage"}});
     hintTable[ZORA_CAPE_BEAVER_RACE_1] = HintText::Sometimes({Text{""}});
     hintTable[ZORA_CAPE_BEAVER_RACE_2] = HintText::Sometimes({Text{""}});
     hintTable[ZORA_CAPE_LIKE_LIKE] = HintText::Sometimes({Text{""}});
@@ -435,6 +435,208 @@ void HintTable_Init() {
     hintTable[ZORA_SHOP_ITEM_1] = HintText::Sometimes({Text{""}});
     hintTable[ZORA_SHOP_ITEM_2] = HintText::Sometimes({Text{""}});
     hintTable[ZORA_SHOP_ITEM_3] = HintText::Sometimes({Text{""}});
+  
+  /*-------------------------
+  |  DUNGEON LOCATION TEXT  |
+  -------------------------*/
+
+    hintTable[WOODFALL_TEMPLE_HEROS_BOW_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[WOODFALL_TEMPLE_MAP_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[WOODFALL_TEMPLE_COMPASS_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[WOODFALL_TEMPLE_BOSS_KEY_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[WOODFALL_TEMPLE_SMALL_KEY_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[WOODFALL_TEMPLE_DEKU_PRINCESS] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_ENTRANCE_FAIRY] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_ENTRANCE_PLATFORM] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_MAIN_ROOM_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_MAIN_ROOM_SWITCH] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_PRE_BOSS_LOWER_RIGHT_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_PRE_BOSS_UPPER_RIGHT_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_PRE_BOSS_UPPER_LEFT_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_PRE_BOSS_PILLAR_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_DEKU_BABA] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_DRAGONFLY_ROOM_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_SKULLTULA] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_DARK_ROOM] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_JAR_FAIRY] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_BRIDGE_ROOM_BEEHIVE] = HintText::Sometimes({Text{""}});
+    hintTable[WF_SF_PLATFORM_ROOM_BEEHIVE] = HintText::Sometimes({Text{""}});
+    hintTable[ODOLWA_HEART_CONTAINER] = HintText::Sometimes({Text{""}});	
+//Snowhead Temple
+    hintTable[SNOWHEAD_TEMPLE_FIRE_ARROW_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SNOWHEAD_TEMPLE_MAP_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SNOWHEAD_TEMPLE_COMPASS_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SNOWHEAD_TEMPLE_BOSS_KEY_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SNOWHEAD_TEMPLE_BLOCK_ROOM_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SNOWHEAD_TEMPLE_ICICLE_ROOM_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SNOWHEAD_TEMPLE_BRIDGE_ROOM_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_SNOW_ROOM_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_CEILING_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_DINOLFOS_1] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_DINOLFOS_2] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_BRIDGE_ROOM_LEDGE_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_BRIDGE_ROOM_PILLAR_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_MAP_ROOM_FAIRY] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_MAP_ROOM_LEDGE] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_BASEMENT] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_TWIN_BLOCK] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_ICICLE_ROOM_WALL] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_MAIN_ROOM_WALL] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_PILLAR_FREEZARDS] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_ICE_PUZZLE] = HintText::Sometimes({Text{""}});
+    hintTable[SH_SF_CRATE] = HintText::Sometimes({Text{""}});
+    hintTable[GOHT_HEART_CONTAINER] = HintText::Sometimes({Text{""}});
+//Great bay Temple
+    hintTable[GBT_ICE_ARROW_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_MAP_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_COMPASS_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_BOSS_KEY_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SMALL_KEY_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_SKULLTULA] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_WATER_CONTROL_UNDERWATER_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_WATERWHEEL_ROOM_LOWER] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_WATERWHEEL_ROOM_UPPER] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_GREEN_VALVE] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_SEESAW_ROOM] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_ENTRANCE_TORCHES] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_BIO_BABAS] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_UNDERWATER_BARREL] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_WHIRLPOOL_BARREL] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_WHIRLPOOL_JAR] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_DEXIHANDS_JAR] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_LEDGE_JAR] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_PRE_BOSS_ROOM_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[GBT_SF_PRE_BOSS_ROOM_UNDERWATER_BUBBLE] = HintText::Sometimes({Text{""}});
+    hintTable[GYORG_HEART_CONTAINER] = HintText::Sometimes({Text{""}});
+//Stone Tower Temple
+    hintTable[STONE_TOWER_TEMPLE_MAP_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[STONE_TOWER_TEMPLE_COMPASS_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[STONE_TOWER_TEMPLE_BOSS_KEY_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[STONE_TOWER_TEMPLE_ARMOS_ROOM_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[STONE_TOWER_TEMPLE_BRIDGE_SWITCH_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[STONE_TOWER_TEMPLE_UPDRAFT_ROOM_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[STONE_TOWER_TEMPLE_DEATH_ARMOS_ROOM_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[STONE_TOWER_TEMPLE_LIGHT_ARROW_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_MIRROR_SUN_BLOCK] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_LAVA_ROOM_LEDGE] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_LAVA_ROOM_FIRE_RING] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_EYEGORE] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_UPDRAFT_FIRE_RING] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_MIRROR_SUN_SWITCH] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_BOSS_WARP] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_WIZZROBE] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_DEATH_ARMOS] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_UPDRAFT_FROZEN_EYE] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_THIN_BRIDGE] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_BASEMENT_LEDGE] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_STATUE_EYE] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_UNDERWATER] = HintText::Sometimes({Text{""}});
+    hintTable[ST_SF_BRIDGE_CRYSTAL] = HintText::Sometimes({Text{""}});
+    hintTable[TWINMOLD_HEART_CONTAINER] = HintText::Sometimes({Text{""}});
+//Pirate Fortress
+    hintTable[PF_INTERIOR_HOOKSHOT_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_INT_LOWER_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_INT_UPPER_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_INT_TANK_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_INT_GUARD_ROOM_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_CAGE_ROOM_SHALLOW_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_CAGE_ROOM_DEEP_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_MAZE_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_SEWER_CAGE] = HintText::Sometimes({Text{""}});
+    hintTable[PF_EXTERIOR_LOG_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_EXTERIOR_SAND_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_EXTERIOR_CORNER_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[PF_INT_INVISIBLE_SOLDIER] = HintText::Sometimes({Text{""}});
+    hintTable[PF_INT_HOOKSHOT_ROOM_ZORA_EGG] = HintText::Sometimes({Text{""}});
+    hintTable[PF_INT_GUARD_ROOM_ZORA_EGG] = HintText::Sometimes({Text{""}});
+    hintTable[PF_INT_BARREL_MAZE_ZORA_EGG] = HintText::Sometimes({Text{""}});
+    hintTable[PF_INT_LAVA_ROOM_ZORA_EGG] = HintText::Sometimes({Text{""}});
+//Beneath the Well
+    hintTable[BENEATH_THE_WELL_MIRROR_SHIELD_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[WELL_LEFT_PATH_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[WELL_RIGHT_PATH_CHEST] = HintText::Sometimes({Text{""}});  
+    hintTable[BENEATH_THE_WELL_COW] = HintText::Sometimes({Text{""}});
+//Ikana Castle
+    hintTable[IKANA_CASTLE_PILLAR] = HintText::Sometimes({Text{""}});
+    hintTable[IKANA_CASTLE_IKANA_KING] = HintText::Sometimes({Text{""}});
+//Secret Shrine 
+    hintTable[SECRET_SHRINE_DINOLFOS_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SECRET_SHRINE_WIZZROBE_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SECRET_SHRINE_WART_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SECRET_SHRINE_GARO_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[SECRET_SHRINE_FINAL_CHEST] = HintText::Sometimes({Text{""}});
+//The Moon
+    hintTable[THE_MOON_DEKU_TRIAL_BONUS] = HintText::Sometimes({Text{""}});
+    hintTable[THE_MOON_GORON_TRIAL_BONUS] = HintText::Sometimes({Text{""}});
+    hintTable[THE_MOON_ZORA_TRIAL_BONUS] = HintText::Sometimes({Text{""}});
+    hintTable[THE_MOON_LINK_TRIAL_BONUS] = HintText::Sometimes({Text{""}});
+    hintTable[THE_MOON_GARO_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[THE_MOON_IRON_KNUCKLE_CHEST] = HintText::Sometimes({Text{""}});
+    hintTable[THE_MOON_MAJORA_CHILD] = HintText::Sometimes({Text{""}});
+//Southern Swamp Skulltula House
+    hintTable[SSH_MAIN_ROOM_NEAR_CEILING] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MAIN_ROOM_WATER] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MAIN_ROOM_LOWER_LEFT_SOIL] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MAIN_ROOM_LOWER_RIGHT_SOIL] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MAIN_ROOM_UPPER_SOIL] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MAIN_ROOM_PILLAR] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MAIN_ROOM_UPPER_PILLAR] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MAIN_ROOM_JAR] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MONUMENT_ROOM_CRATE_1] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MONUMENT_ROOM_CRATE_2] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MONUMENT_ROOM_TORCH] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MONUMENT_ROOM_ON_MONUMENT] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_MONUMENT_ROOM_LOWER_WALL] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_GOLD_ROOM_NEAR_CEILING] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_GOLD_ROOM_PILLAR] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_GOLD_ROOM_BEEHIVE] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_GOLD_ROOM_WALL] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_POT_ROOM_JAR] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_POT_ROOM_POT_1] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_POT_ROOM_POT_2] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_POT_ROOM_BEHIND_VINES] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_POT_ROOM_WALL] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_POT_ROOM_BEEHIVE_1] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_POT_ROOM_BEEHIVE_2] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_TREE_ROOM_TREE_1] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_TREE_ROOM_TREE_2] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_TREE_ROOM_TREE_3] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_TREE_ROOM_GRASS_1] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_TREE_ROOM_GRASS_2] = HintText::Sometimes({Text{""}});
+    hintTable[SSH_TREE_ROOM_BEEHIVE] = HintText::Sometimes({Text{""}});
+//Oceanside Spider House
+    hintTable[OSH_ENTRANCE_LEFT_WALL] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_ENTRANCE_RIGHT_WALL] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_ENTRANCE_WEB] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_LIBRARY_HOLE_BEHIND_PICTURE] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_LIBRARY_HOLE_BEHIND_CABINET] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_LIBRARY_ON_CORNER_BOOKSHELF] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_LIBRARY_CEILING_EDGE] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_LIBRARY_BEHIND_BOOKCASE_1] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_LIBRARY_BEHIND_BOOKCASE_2] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_LIBRARY_BEHIND_PICTURE] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_SECOND_ROOM_CEILING_EDGE] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_SECOND_ROOM_CEILING_PLANK] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_SECOND_ROOM_JAR] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_SECOND_ROOM_WEBBED_HOLE] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_SECOND_ROOM_WEBBED_POT] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_SECOND_ROOM_UPPER_POT] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_SECOND_ROOM_BEHIND_SKULL_1] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_SECOND_ROOM_BEHIND_SKULL_2] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_SECOND_ROOM_LOWER_POT] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_STORAGE_ROOM_CEILING_WEB] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_STORAGE_ROOM_BEHIND_CRATE] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_STORAGE_ROOM_WALL] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_STORAGE_ROOM_CRATE] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_STORAGE_ROOM_BARREL] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_COLORED_SKULLS_CEILING_EDGE] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_COLORED_SKULLS_CHANDELIER_1] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_COLORED_SKULLS_CHANDELIER_2] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_COLORED_SKULLS_CHANDELIER_3] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_COLORED_SKULLS_BEHIND_PICTURE] = HintText::Sometimes({Text{""}});
+    hintTable[OSH_COLORED_SKULLS_POT] = HintText::Sometimes({Text{""}});
+
 
   /*----------------------
   |   REGTION HINT TEXT  |
