@@ -20,7 +20,7 @@ namespace Playthrough {
       Random_Init(seed);
 
       overrides.clear();
-      CustomMessages::ClearMessages();
+      //CustomMessages::ClearMessages();
       ItemReset();
       HintReset();
       Areas::AccessReset();
