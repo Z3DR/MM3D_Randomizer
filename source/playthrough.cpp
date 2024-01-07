@@ -19,10 +19,10 @@ namespace Playthrough {
       //resolved to something random
       Random_Init(seed);
 
-      //overrides.clear();
-      //CustomMessages::ClearMessages();
+      overrides.clear();
+      CustomMessages::ClearMessages();
       ItemReset();
-      //HintReset();
+      HintReset();
       Areas::AccessReset();
 
       Settings::UpdateSettings();
@@ -116,7 +116,7 @@ namespace Playthrough {
           printf("Failed");
         }
         #ifdef ENABLE_DEBUG
-          printf("\x1b[11;10HWriting Placement Log...");
+          printf("\x1b[12;10HWriting Placement Log...");
           if (PlacementLog_Write()) {
             printf("Done\n");
           } else {
