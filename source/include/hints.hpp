@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include "keys.hpp"
 #include "text.hpp"
 #include "random.hpp"
 #include "settings.hpp"

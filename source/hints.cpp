@@ -158,7 +158,7 @@ static std::vector<LocationKey> GetAccessibleGossipStones(const LocationKey hint
 
 static void AddHint(Text hint, const LocationKey gossipStone, const std::vector<colType>& colors = {}) {
   //save hints as dummy items for writing to the spoiler log
-  // NewItem(gossipStone, Item{hint, ITEMTYPE_EVENT, GI_RUPEE_BLUE_LOSE, false, &noVariable, NONE});
+  NewItem(gossipStone, Item{ false, true, &noVariable, hint, NONE, (u32)GetItemID::GI_RUPEE_BLUE, ITEMTYPE_EVENT, (u16)0});
   Location(gossipStone)->SetPlacedItem(gossipStone);
 
   //create the in game message
@@ -169,6 +169,7 @@ static void AddHint(Text hint, const LocationKey gossipStone, const std::vector<
     "You got a #small key# for the #Woodfall Temple#! Use it to open a locked door in that temple.",
     {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);*/
   CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0000, hint.GetEnglish().c_str(), colors, {}, {}, 0x0, false, false);
+  CitraPrint("Created custom message!");
   //CreateMessageFromTextObject(messageId, 0, 2, 3, AddColorsAndFormat(hint, colors));
   //CreateMessageFromTextObject(sariaMessageId, 0, 2, 3, AddColorsAndFormat(hint + EVENT_TRIGGER(), colors));
 }
@@ -197,6 +198,7 @@ static void CreateLocationHint(const std::vector<LocationKey>& possibleHintLocat
   }
 
   LocationKey gossipStone = RandomElement(accessibleGossipStones);
+  CitraPrint("Setting " + Location(hintedLocation)->GetName() + " as hinted\n");
   Location(hintedLocation)->SetAsHinted();
 
   //make hint text
@@ -206,7 +208,7 @@ static void CreateLocationHint(const std::vector<LocationKey>& possibleHintLocat
 
   Text finalHint = prefix + locationHintText + " #"+itemHintText+"#.";
   PlacementLog_Msg("\tMessage: ");
-  PlacementLog_Msg(finalHint.english);
+ // PlacementLog_Msg(finalHint.english);
   PlacementLog_Msg("\n\n");
 
   AddHint(finalHint, gossipStone, {QM_GREEN, QM_RED});
@@ -520,16 +522,16 @@ void CreateAllHints() {
       std::vector<LocationKey> dungeonHintLocations = FilterFromPool(allLocations, [](const LocationKey loc){return Location(loc)->IsDungeon() && Location(loc)->IsHintable() && !(Location(loc)->IsHintedAt());});
       CreateLocationHint(dungeonHintLocations);
 
-    } /*else if (type == HintType::Junk) {
+    } else if (type == HintType::Junk) {
       CreateJunkHint();
-    }*/
+    }
   }
 
   //If any gossip stones failed to have a hint placed on them for some reason, place a junk hint as a failsafe.
-  /*for (LocationKey gossipStone : FilterFromPool(gossipStoneLocations, [](const LocationKey loc){return Location(loc)->GetPlacedItemKey() == NONE;})) {
+  for (LocationKey gossipStone : FilterFromPool(gossipStoneLocations, [](const LocationKey loc){return Location(loc)->GetPlacedItemKey() == NONE;})) {
     const HintText junkHint = RandomElement(GetHintCategory(HintCategory::Junk));
-    //AddHint(junkHint.GetText(), gossipStone, {QM_RED});
-  }*/
+    AddHint(junkHint.GetText(), gossipStone, {QM_RED});
+  }
 
   //Getting gossip stone locations temporarily sets one location to not be reachable.
   //Call the function one last time to get rid of false positives on locations not

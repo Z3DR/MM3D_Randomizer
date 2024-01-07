@@ -22,7 +22,10 @@ void HintTable_Init() {
 
 
     //hintTable[ITEM] = HintText::Item({ Text{"English","French","Spanish"} });
-    //Item Hint Text 
+    /*-------------------------
+	|        ITEM HINTS       |
+	--------------------------*/
+
     hintTable[KOKIRI_SWORD] = HintText::Item({ Text{"a forest blade", "a forest blade", "a forest blade"} });
 	hintTable[RAZOR_SWORD]  = HintText::Item({ Text{"a sharp blade", "a sharp blade", "a sharp blade"} });
 	hintTable[GILDED_SWORD] = HintText::Item({ Text{"a very sharp blade", "a very sharp blade", "a very sharp blade"} });
@@ -76,155 +79,26 @@ void HintTable_Init() {
 	hintTable[GIANTS_MASK] = HintText::Item({ Text{"a growth spurt", "a growth spurt", "a growth spurt"}});
 	hintTable[FIERCE_DIETY_MASK] = HintText::Item({ Text{"the wrath of a god", "the wrath of a god", "the wrath of a god"}});
 	hintTable[MASK_OF_TRUTH] = HintText::Item({ Text{"a piercing gaze", "a piercing gaze", "a piercing gaze"}});
-		//SKULLTULA TOKENS
+	
+	//SKULLTULA TOKENS
 	hintTable[SWAMP_SKULLTULA_TOKEN] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	/*
-	hintTable[SWAMP_SKULLTULA_TOKEN1] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN2] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN3] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN4] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN5] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN6] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN7] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN8] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN9] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN10] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN12] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN13] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN14] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN15] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN16] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN17] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN18] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN19] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN20] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN21] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN22] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN23] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN24] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN25] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN26] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN27] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN28] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN29] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[SWAMP_SKULLTULA_TOKEN30] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	*/
 	hintTable[OCEANSIDE_SKULLTULA_TOKEN] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	/*
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN1] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN2] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN3] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN4] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN5] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN6] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN7] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN8] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN9] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN10] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN11] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN12] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN13] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN14] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN15] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN16] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN17] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN18] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN19] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN20] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN21] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN22] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN23] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN24] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN25] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN26] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN27] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN28] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN29] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	hintTable[OCEANSIDE_SKULLTULA_TOKEN30] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
-	*/
+	
 	//Stray Fairies
 	hintTable[CT_STRAY_FAIRY] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
 	hintTable[WF_STRAY_FAIRY] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	/*
-	hintTable[WF_STRAY_FAIRY1] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY2] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY3] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY4] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY5] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY6] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY7] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY8] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY9] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY10] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY11] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY12] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY13] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY14] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	hintTable[WF_STRAY_FAIRY15] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost faiy"} });
-	*/
 	hintTable[SH_STRAY_FAIRY] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	/*
-	hintTable[SH_STRAY_FAIRY1] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY2] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY3] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY4] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY5] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY6] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY7] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY8] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY9] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY10] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY11] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY12] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY13] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY14] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[SH_STRAY_FAIRY15] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	*/
 	hintTable[GBT_STRAY_FAIRY] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	/*
-	hintTable[GBT_STRAY_FAIRY1] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY2] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY3] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY4] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY5] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY6] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY7] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY8] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY9] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY10] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY11] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY12] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY13] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY14] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[GBT_STRAY_FAIRY15] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	*/
 	hintTable[ST_STRAY_FAIRY] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	/*
-	hintTable[ST_STRAY_FAIRY1] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY2] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY3] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY4] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY5] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY6] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY7] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY8] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY9] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY10] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY11] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY12] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY13] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY14] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	hintTable[ST_STRAY_FAIRY15] = HintText::Item({ Text{"a lost fairy", "a lost fairy", "a lost fairy"} });
-	*/
 	//PROGRESSIVE ITEMS (unused currently)
-	//	PROGRESSIVE_SWORD,
-	//	PROGRESSIVE_BOMB_BAG,
-	//	PROGRESSIVE_BOW,
-	//	PROGRESSIVE_WALLET,
-	//	PROGRESSIVE_MAGIC_METER,
+	hintTable[PROGRESSIVE_SWORD] = HintText::Item({ Text{"a progressive sword", "", ""} });
+	hintTable[PROGRESSIVE_BOMB_BAG] = HintText::Item({ Text{"a progressive bomb bag", "", ""} });
+	hintTable[PROGRESSIVE_BOW] = HintText::Item({ Text{"a progressive bow", "", ""} });
+	hintTable[PROGRESSIVE_WALLET] = HintText::Item({ Text{"a progressive wallet", "", ""} });
+	hintTable[PROGRESSIVE_MAGIC_METER] = HintText::Item({ Text{"progressive magic meter", "", ""} });
 	//	PROGRESSIVE_BOMBCHUS,
 
-		//BOTTLE ITEMS
+	//BOTTLE ITEMS
 	hintTable[EMPTY_BOTTLE1] = HintText::Item({ Text{"a glass container", "a glass container", "a glass container"} });
 	hintTable[EMPTY_BOTTLE2] = HintText::Item({ Text{"a glass container", "a glass container", "a glass container"} });
 	hintTable[BOTTLE_WITH_MILK] = HintText::Item({ Text{"a dairy product", "a dairy product", "a dairy product"}});
@@ -269,39 +143,7 @@ void HintTable_Init() {
 	hintTable[OATH_TO_ORDER] = HintText::Item({ Text{"a song of giants", "a song of giants", "a song of giants"}});
 		//PIECES OF HEART
 	hintTable[PIECE_OF_HEART] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	/*
-	hintTable[PIECE_OF_HEART1] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART2] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART3] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART4] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART5] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART6] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART7] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART8] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART9] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART10] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART11] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART12] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART13] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART14] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART15] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART16] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART17] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART18] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART19] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART20] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART21] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART22] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART23] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART24] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART25] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART26] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART27] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART28] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART29] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART30] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	hintTable[PIECE_OF_HEART31] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	*/
+	
 	//MAPS
 	hintTable[MAP] = HintText::Item({ Text{"a paper guide", "a paper guide", "a paper guide"}});
 	hintTable[WOODFALL_TEMPLE_MAP] = HintText::Item({ Text{"a paper guide", "a paper guide", "a paper guide"} });
@@ -342,6 +184,487 @@ void HintTable_Init() {
 	hintTable[GOHTS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
 	hintTable[GYORGS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
 	hintTable[TWINMOLDS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
+
+	/*-----------------------
+	|  SOMETIMES HINT TEXT  |
+	-----------------------*/
+	// Clock Tower
+    hintTable[CLOCK_TOWER_OCARINA_OF_TIME] = HintText::Sometimes({ "Your Ocarina"});
+  HMS_DEKU_MASK,
+  HMS_SONG_OF_HEALING,
+  HMS_BOMBERS_NOTEBOOK,
+  HMS_STARTING_SWORD,
+  HMS_STARTING_SHIELD,
+  //PRE_CLOCK_TOWN_CHEST,
+//Deku Palace
+  DEKU_PALACE_BEAN_SELLER,
+  DEKU_PALACE_WEST_GARDEN,
+  DEKU_PALACE_BUTLER_RACE,
+  DEKU_PALACE_BEAN_GROTTO_CHEST,
+  DEKU_PALACE_IMPRISONED_MONKEY,
+//East Clock Town
+  E_CLOCK_TOWN_AROMA_IN_BAR,
+  E_CLOCK_TOWN_ARCHERY_1,
+  E_CLOCK_TOWN_ARCHERY_2,
+  E_CLOCK_TOWN_MAYOR,
+  E_CLOCK_TOWN_HONEY_DARLING_3DAYS,
+  E_CLOCK_TOWN_TREASURE_CHEST_GAME_GORON,
+  E_CLOCK_TOWN_POSTMAN_FREEDOM,
+  E_CLOCK_TOWN_GORMAN,
+  E_CLOCK_TOWN_AROMA_IN_OFFICE,
+  BOMBERS_HIDEOUT_CHEST,
+  E_CLOCK_TOWN_CHEST,
+  E_CLOCK_TOWN_POSTBOX,
+  //E_CLOCK_TOWN_MILK_BAR_CHATEAU,
+  //E_CLOCK_TOWN_MILK_BAR_MILK,
+  GORMAN_TRACK_MYSTERY_MILK_QUEST,
+  //E_CLOCK_TOWN_HONEY_DARLING_ANY_DAY,
+  //E_CLOCK_TOWN_TREASURE_CHEST_GAME_HUMAN,
+  //E_CLOCK_TOWN_TREASURE_CHEST_GAME_ZORA,
+  //E_CLOCK_TOWN_TREASURE_CHEST_GAME_DEKU,
+//Goron Village
+  GORON_VILLAGE_POWDER_KEG_CHALLENGE,
+  GORON_VILLAGE_SCRUB_PURCHASE,
+  GORON_VILLAGE_LENS_OF_TRUTH_CHEST,
+  GORON_VILLAGE_SCRUB_TRADE,
+  GORON_VILLAGE_LEDGE,
+  GORON_VILLAGE_GORON_LULLABY,
+  LENS_CAVE_RED_RUPEE,
+  LENS_CAVE_PURPLE_RUPEE,
+  GORON_SHOP_ITEM_1,
+  GORON_SHOP_ITEM_2,
+  GORON_SHOP_ITEM_3,
+//Great Bay Coast
+  //GBC_OCEAN_SPIDER_DAY1,--Handled in Dungeon.cpp
+  //GBC_OCEAN_SPIDER_DAY2,
+  //GBC_OCEAN_SPIDER_DAY3,
+  GBC_FISHERMAN_GAME,
+  //GBC_OCEAN_SPIDER_CHEST,--Handled in Dungeon.cpp
+  GBC_LAB_FISH,
+  GBC_LEDGE,
+  GBC_MIKAU,
+  GBC_BABY_ZORAS,
+  GBC_GROTTO_CHEST,
+  GBC_GROTTO_COW1,
+  GBC_GROTTO_COW2,
+  GBC_FISHERMAN_PHOTO,
+  TINGLE_GBC_GB,
+  TINGLE_GBC_ST,
+//Ikana Canyon
+  IKANA_CANYON_GREAT_FAIRY,
+  IKANA_CANYON_POE_HUT_HP,
+  IKANA_CANYON_LEDGE,
+  IKANA_CANYON_PAMELAS_FATHER,
+  IKANA_CANYON_SECRET_SHRINE_GROTTO_CHEST,
+  IKANA_CANYON_SCRUB_TRADE,
+  IKANA_CANYON_SCRUB_PURCHASE,
+  TINGLE_IKANA_CANYON_ST,
+  TINGLE_IKANA_CANYON_CT,
+//Ikana Graveyard
+  IKANA_GRAVEYARD_DAMPE_DIGGING,
+  IKANA_GRAVEYARD_IRON_KNUCKLE_CHEST,
+  IKANA_GRAVEYARD_CAPTAIN_KEETA_CHEST,
+  IKANA_GRAVEYARD_DAY_ONE_GRAVE_TABLET,
+  IKANA_GRAVEYARD_DAY_ONE_GRAVE_BATS,
+  IKANA_GRAVEYARD_GROTTO_CHEST,
+//Laundry Pool
+  LAUNDRY_POOL_KAFEI,
+  LAUNDRY_POOL_CURIOSITY_SHOP_MAN_ONE,
+  LAUNDRY_POOL_CURIOSITY_SHOP_MAN_TWO,
+  LAUNDRY_POOL_GURU_GURU,
+  LAUNDRY_POOL_SF,
+//Milk Road
+  MILK_ROAD_GORMAN_RACE,
+  MILK_ROAD_GORMAN_MILK_BUY,
+  MILK_ROAD_KEATON_QUIZ,
+  TINGLE_MILK_ROAD_RR,
+  TINGLE_MILK_ROAD_GB,
+//Mountain Village
+  MOUNTAIN_VILLAGE_SMITH_DAY_ONE,
+  MOUNTAIN_VILLAGE_SMITH_DAY_TWO,
+  MOUNTAIN_VILLAGE_FROG_CHOIR,
+  MOUNTAIN_VILLAGE_DARMANI,
+  MOUNTAIN_VILLAGE_HUNGRY_GORON,
+  MOUNTAIN_WATERFALL_CHEST,
+  MOUNTAIN_VILLAGE_SPRING_WATER_GROTTO_CHEST,
+//N Clock Town
+  N_CLOCK_TOWN_GREAT_FAIRY_DEKU,
+  //N_CLOCK_TOWN_BOMBERS_HIDE_SEEK, doesn't give an item in 3d
+  N_CLOCK_TOWN_KEATON_QUIZ,
+  N_CLOCK_TOWN_DEKU_PLAYGROUND_3DAYS,
+  N_CLOCK_TOWN_TREE,
+  N_CLOCK_TOWN_OLD_LADY,
+  N_CLOCK_TOWN_GREAT_FAIRY_HUMAN,
+  TINGLE_N_CLOCK_TOWN_CT,
+  TINGLE_N_CLOCK_TOWN_WF,
+  N_CLOCK_TOWN_POSTBOX,
+  //N_CLOCK_TOWN_DEKU_PLAYGROUND_ADAY,
+//Road to Snowhead
+  ROAD_TO_SNOWHEAD_PILLAR,
+  ROAD_TO_SNOWHEAD_GROTTO_CHEST,
+//Pinnacle Rock
+  PINNACLE_ROCK_SEAHORSES,
+  PINNACLE_ROCK_UPPER_CHEST,
+  PINNACLE_ROCK_LOWER_CHEST,
+  PINNACLE_ROCK_ZORA_EGG1,
+  PINNACLE_ROCK_ZORA_EGG2,
+  PINNACLE_ROCK_ZORA_EGG3,
+//Road to Ikana
+  ROAD_TO_IKANA_PILLAR_CHEST,
+  ROAD_TO_IKANA_GROTTO_CHEST,
+//Road to Southern Swamp
+  ROAD_TO_SS_ARCHERY_1,
+  ROAD_TO_SS_ARCHERY_2,
+  ROAD_TO_SS_TREE,
+  ROAD_TO_SWAMP_GROTTO_CHEST,
+  TINGLE_ROAD_TO_SS_WF,
+  TINGLE_ROAD_TO_SS_SH,
+//Romani Ranch
+  ROMANI_RANCH_ALIEN_DEFENSE,
+  ROMANI_RANCH_DOG_RACE,
+  ROMANI_RANCH_GROG,
+  ROMANI_RANCH_CREMIA_ESCORT,
+  ROMANI_RANCH_ROMANIS_GAME,
+  ROMANI_RANCH_COW_1,
+  ROMANI_RANCH_COW_2,
+  ROMANI_RANCH_COW_3,
+  DOGGY_RACETRACK_ROOF_CHEST,
+//S Clock Town
+  S_CLOCK_TOWN_SCRUB_TRADE,
+  S_CLOCK_TOWN_POSTBOX,
+  S_CLOCK_TOWN_CLOCK_TOWER_ENTRANCE,
+  S_CLOCK_TOWN_STRAW_ROOF_CHEST,
+  S_CLOCK_TOWN_FINAL_DAY_CHEST,
+  S_CLOCK_TOWN_BANK_REWARD_1,
+  S_CLOCK_TOWN_BANK_REWARD_2,
+  S_CLOCK_TOWN_BANK_REWARD_3,
+//Snowhead
+  SNOWHEAD_GREAT_FAIRY,
+//Southern Swamp
+  SOUTHERN_SWAMP_KOUME,
+  SOUTHERN_SWAMP_KOTAKE,
+  SOUTHERN_SWAMP_KOTAKE_IN_WOODS,
+  SOUTHERN_SWAMP_SCRUB_TRADE,
+  SOUTHERN_SWAMP_PICTOGRAPH_WINNER,
+  SOUTHERN_SWAMP_BOAT_ARCHERY,
+  SWAMP_TOURIST_CENTER_ROOF,
+  SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO_CHEST,
+  //SOUTHERN_SWAMP_SPIDER_HOUSE_REWARD,--Handled in Dungeon.cpp
+  SOUTHERN_SWAMP_MYSTERY_WOODS_GROTTO_CHEST,
+  SOUTHERN_SWAMP_KOTAKE_MUSHROOM_SALE,
+  //SOUTHERN_SWAMP_PICTOGRAPH_STANDARD,
+  //SOUTHERN_SWAMP_PICTOGRAPH_GOOD,
+  SOUTHERN_SWAMP_SCRUB_PURCHASE,
+  POTION_SHOP_ITEM_1,
+  POTION_SHOP_ITEM_2,
+  POTION_SHOP_ITEM_3,
+//StockPotInn
+  STOCKPOTINN_RESERVATION,
+  STOCKPOTINN_MIDNIGHT_MEETING,
+  STOCKPOTINN_TOILET_HAND,
+  STOCKPOTINN_GRANDMA_SHORT_STORY,
+  STOCKPOTINN_GRANDMA_LONG_STORY,
+  STOCKPOTINN_ANJU_AND_KAFEI,
+  STOCKPOTINN_STAFF_ROOM_CHEST,
+  STOCKPOTINN_GUEST_ROOM_CHEST,
+//Stone Tower
+  STONE_TOWER_INVERTED_RIGHT_CHEST,
+  STONE_TOWER_INVERTED_CENTER_CHEST,
+  STONE_TOWER_INVERTED_LEFT_CHEST,
+//Termina Field
+  TERMINA_FIELD_MOONS_TEAR,
+  TERMINA_FIELD_GOSSIP_STONES,
+  TERMINA_FIELD_BUSINESS_SCRUB,
+  TERMINA_FIELD_PEAHAT_GROTTO_CHEST,
+  TERMINA_FIELD_DODONGO_GROTTO_CHEST,
+  TERMINA_FIELD_BIO_BABA_GROTTO_BEEHIVE,
+  TERMINA_FIELD_KAMARO,
+  TERMINA_FIELD_PILLAR_GROTTO_CHEST,
+  TERMINA_FIELD_GRASS_GROTTO_CHEST,
+  TERMINA_FIELD_UNDERWATER_CHEST,
+  TERMINA_FIELD_GRASS_CHEST,
+  TERMINA_FIELD_STUMP_CHEST,
+  TERMINA_FIELD_GROTTO_COW1,
+  TERMINA_FIELD_GROTTO_COW2,
+//Twin Islands
+  HOT_SPRING_WATER_GROTTO_CHEST,
+  TWIN_ISLANDS_GORON_RACE,
+  TWIN_ISLANDS_GORON_RACETRACK_GROTTO_CHEST,
+  TWIN_ISLANDS_UNDERWATER_RAMP_CHEST,
+  TWIN_ISLANDS_CAVE_CHEST,
+  TINGLE_TWIN_ISLANDS_SH,
+  TINGLE_TWIN_ISLANDS_RR,
+  TINGLE_TWIN_ISLANDS_SH_SPRING,
+  TINGLE_TWIN_ISLANDS_RR_SPRING,
+//W Clock Town
+  W_CLOCK_TOWN_BOMB_BAG_BUY,
+  W_CLOCK_TOWN_BIG_BOMB_BAG_BUY,
+  W_CLOCK_TOWN_POSTMANS_GAME,
+  W_CLOCK_TOWN_ROSA_SISTERS,
+  W_CLOCK_TOWN_SWORDSMANS_SCHOOL,
+  W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY,
+  W_CLOCK_TOWN_BOMB_SHOP_GORON,
+  W_CLOCK_TOWN_POSTBOX,
+  //W_CLOCK_TOWN_LOTTERY,
+  TRADING_POST_ITEM_1,
+  TRADING_POST_ITEM_2,
+  TRADING_POST_ITEM_3,
+  TRADING_POST_ITEM_4,
+  TRADING_POST_ITEM_5,
+  TRADING_POST_ITEM_6,
+  TRADING_POST_ITEM_7,
+  TRADING_POST_ITEM_8,
+  BOMB_SHOP_ITEM_1,
+  BOMB_SHOP_ITEM_2,
+  //BOMB_SHOP_ITEM_3,
+//Woodfall
+  WOODFALL_BRIDGE_CHEST,
+  WOODFALL_BEHIND_OWL_CHEST,
+  ENTRANCE_TO_WOODFALL_CHEST,
+  WOODFALL_GREAT_FAIRY,
+//Zora Cape
+  ZORA_CAPE_GREAT_FAIRY,
+  ZORA_CAPE_BEAVER_RACE_1,
+  ZORA_CAPE_BEAVER_RACE_2,
+  ZORA_CAPE_LIKE_LIKE,
+  ZORA_CAPE_LEDGE_NO_TREE,
+  ZORA_CAPE_LEDGE_WITH_TREE,
+  ZORA_CAPE_GROTTO_CHEST,
+  ZORA_CAPE_UNDERWATER_CHEST,
+//Zora Hall
+  ZORA_HALL_SCRUB_TRADE,
+  ZORA_HALL_EVAN,
+  ZORA_HALL_LULU_ROOM_LEDGE,
+  ZORA_HALL_SCRUB_PURCHASE,
+  //ZORA_HALL_STAGE_LIGHTS,
+  //ZORA_HALL_BAD_PHOTO_LULU,
+  //ZORA_HALL_GOOD_PHOTO_LULU,
+  ZORA_SHOP_ITEM_1,
+  ZORA_SHOP_ITEM_2,
+  ZORA_SHOP_ITEM_3,
+
+  /*----------------------
+  |   REGTION HINT TEXT  |
+  ----------------------*/
+    HintTable[N_CLOCK_TOWN] = HintText::Region({ Text{"N Clock Town"}});
+  CLOCK_TOWN_FAIRY_FOUNTAIN,
+  CLOCK_TOWN_DEKU_PLAYGROUND,
+  E_CLOCK_TOWN,
+  STOCKPOTINN,
+  STOCKPOTINN_GUEST_ROOM,
+  STOCKPOTINN_STAFF_ROOM,
+  STOCKPOTINN_GRANDMA_ROOM,
+  CLOCK_TOWN_OBSERVATORY,
+  CLOCK_TOWN_BAR,
+  CLOCK_TOWN_HONEY_DARLING,
+  CLOCK_TOWN_TREASURE_CHEST_GAME,
+  CLOCK_TOWN_ARCHERY,
+  CLOCK_TOWN_MAYOR_HOUSE,
+  W_CLOCK_TOWN,
+  CLOCK_TOWN_SWORDSMANS_SCHOOL,
+  CLOCK_TOWN_POSTMAN_HOUSE,
+  CLOCK_TOWN_LOTTERY,
+  CLOCK_TOWN_BOMB_SHOP,
+  CLOCK_TOWN_TRADING_POST,
+  CLOCK_TOWN_CURIOSITY_SHOP,
+  S_CLOCK_TOWN,
+  CLOCK_TOWER,
+  CLOCK_TOWER_ROOF,
+  LAUNDRY_POOL,
+  LAUNDRY_POOL_KAFEI_HIDEOUT,
+  TERMINA_FIELD,
+  TERMINA_FIELD_PEAHAT_GROTTO,
+  TERMINA_FIELD_DODONGO_GROTTO,
+  TERMINA_FIELD_BIO_BABA_GROTTO,
+  TERMINA_FIELD_PILLAR_GROTTO,
+  TERMINA_FIELD_GRASS_GROTTO,
+  TERMINA_FIELD_BUSINESS_SCRUB_GROTTO,
+  TERMINA_FIELD_COW_GROTTO,
+  TERMINA_FIELD_GOSSIP_STONES_GROTTO,
+  ROAD_TO_SOUTHERN_SWAMP,
+  ROAD_TO_SOUTHERN_SWAMP_ARCHERY,
+  ROAD_TO_SWAMP_GROTTO,
+  SOUTHERN_SWAMP,
+  SWAMP_TOURIST_CENTER,
+  SOUTHERN_SWAMP_HAGS_POTION_SHOP,
+  MYSTERY_WOODS,
+  SOUTHERN_SWAMP_MYSTERY_WOODS_GROTTO,
+  SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO,
+  SOUTHERN_SWAMP_TOP,
+  DEKU_PALACE,
+  DEKU_PALACE_INTERIOR,
+  DEKU_PALACE_BEAN_GROTTO,
+  DEKU_SHRINE,
+  WOODFALL,
+  WOODFALL_FAIRY_FOUNTAIN,
+  PATH_TO_MOUNTAIN_VILLAGE,
+  MOUNTAIN_VILLAGE,
+  GORON_GRAVEYARD,
+  MOUNTAIN_SMITHY,
+  MOUNTAIN_VILLAGE_SPRING_WATER_GROTTO,
+  TWIN_ISLANDS,
+  GORON_RACETRACK,
+  TWIN_ISLANDS_GORON_RACETRACK_GROTTO,
+  TWIN_ISLANDS_SPRING_WATER_GROTTO,
+  GORON_VILLAGE,
+  GORON_VILLAGE_LENS_CAVE,
+  GORON_VILLAGE_INTERIOR,
+  GORON_VILLAGE_SHOP,
+  ROAD_TO_SNOWHEAD,
+  ROAD_TO_SNOWHEAD_GROTTO,
+  SNOWHEAD,
+  SNOWHEAD_FAIRY_FOUNTAIN,
+  MILK_ROAD,
+  GORMAN_TRACK,
+  ROMANI_RANCH,
+  DOGGY_RACETRACK,
+  CUCCO_SHACK,
+  ROMANI_RANCH_HOUSE,
+  ROMANI_RANCH_BARN,
+  GREAT_BAY_COAST,
+  GREAT_BAY_COAST_MARINE_LAB,
+  GREAT_BAY_COAST_GROTTO,
+  GREAT_BAY_COAST_COW_GROTTO,
+  FISHERMAN_HUT,
+  PINNACLE_ROCK,
+  ZORA_CAPE,
+  WATERFALL_RAPIDS,
+  GREAT_BAY_FAIRY_FOUNTAIN,
+  ZORA_CAPE_GROTTO,
+  ZORA_HALL,
+  ZORA_HALL_EVANS_ROOM,
+  ZORA_HALL_LULUS_ROOM,
+  ZORA_HALL_JAPAS_ROOM,
+  ZORA_HALL_TIJOS_ROOM,
+  ZORA_HALL_SHOP,
+  ZORA_HALL_BACK_ENTRANCE,
+  ROAD_TO_IKANA,
+  ROAD_TO_IKANA_GROTTO,
+  IKANA_GRAVEYARD,
+  IKANA_GRAVEYARD_GROTTO,
+  IKANA_GRAVEYARD_BELOW_GRAVE1,
+  IKANA_GRAVEYARD_BATS_ROOM,
+  IKANA_GRAVEYARD_TABLET_ROOM,
+  IKANA_GRAVEYARD_BELOW_GRAVE2,
+  IKANA_GRAVEYARD_IRON_KNUCKLE_ROOM,
+  IKANA_GRAVEYARD_BELOW_GRAVE3,
+  DAMPES_HUT,
+  IKANA_CANYON,
+  IKANA_CANYON_UPPER,
+  IKANA_CANYON_CAVE,
+  SAKONS_HIDEOUT,
+  MUSIC_BOX_HOUSE,
+  IKANA_CANYON_POE_HUT,
+  IKANA_CANYON_GREAT_FAIRY_FOUNTAIN,
+  IKANA_CANYON_SECRET_SHRINE_GROTTO,
+  STONE_TOWER,
+  INVERTED_STONE_TOWER,
+
+  /*---------------------
+  |   JUNK HINT TEXT    |
+  ---------------------*/
+    HintTable[JUNK01] = HintText::Junk({Text{"junk hint here"}});
+  JUNK02,
+  JUNK03,
+  JUNK04,
+  JUNK05,
+  JUNK06,
+  JUNK07,
+  JUNK08,
+  JUNK09,
+  JUNK10,
+  JUNK11,
+  JUNK12,
+  JUNK13,
+  JUNK14,
+  JUNK15,
+  JUNK16,
+  JUNK17,
+  JUNK18,
+  JUNK19,
+  JUNK20,
+  JUNK21,
+  JUNK22,
+  JUNK23,
+  JUNK24,
+  JUNK25,
+  JUNK26,
+  JUNK27,
+  JUNK28,
+  JUNK29,
+  JUNK30,
+  JUNK31,
+  JUNK32,
+  JUNK33,
+  JUNK34,
+  JUNK35,
+  JUNK36,
+  JUNK37,
+  JUNK38,
+  JUNK39,
+  JUNK40,
+  JUNK41,
+  JUNK42,
+  JUNK43,
+  JUNK44,
+  JUNK45,
+  JUNK46,
+  JUNK47,
+  JUNK48,
+  JUNK49,
+  JUNK50,
+  JUNK51,
+  JUNK52,
+  JUNK53,
+  JUNK54,
+  JUNK55,
+  JUNK56,
+  JUNK57,
+  JUNK58,
+  JUNK59,
+  JUNK60,
+  JUNK61,
+  JUNK62,
+  JUNK63,
+  JUNK64,
+  JUNK65,
+  JUNK66,
+  JUNK67,
+  JUNK68,
+  JUNK69,
+  JUNK70,
+  JUMK71,
+  JUNK72,
+  JUNK73,
+  JUNK74,
+  JUNK75,
+  JUNK76,
+  JUNK77,
+
+  /*------------------------
+  |   DUNGEON HINT TEXT    |
+  ------------------------*/
+
+    hintTable[WOODFALL_TEMPLE] = HintText::DungeonName({Text{"A Swampy Dungeon"}}),
+  SNOWHEAD_TEMPLE,
+  GREAT_BAY_TEMPLE,
+  STONE_TOWER_TEMPLE,
+  PIRATE_FORTRESS,
+  BENEATH_THE_WELL,
+  IKANA_CASTLE,
+  SECRET_SHRINE,
+  SSH,
+  OSH,
+  THE_MOON,
+
+  /*-----------------------
+  |    BOSS HINT TEXT     |
+  -----------------------*/
+    hintTable[ODOLWA] = HintText::Boss({Text{"A Forest Guy"}}),
+  GOHT,
+  GYORG,
+  TWINMOLD,
+  MAJORA,
 }
 
 const HintText& Hint(const HintKey hintKey) {
