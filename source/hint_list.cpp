@@ -645,26 +645,26 @@ void HintTable_Init() {
   |   DUNGEON HINT TEXT    |
   ------------------------*/
 
-    hintTable[WOODFALL_TEMPLE] = HintText::DungeonName({Text{"A Swampy Dungeon"}}),
-  SNOWHEAD_TEMPLE,
-  GREAT_BAY_TEMPLE,
-  STONE_TOWER_TEMPLE,
-  PIRATE_FORTRESS,
-  BENEATH_THE_WELL,
-  IKANA_CASTLE,
-  SECRET_SHRINE,
-  SSH,
-  OSH,
-  THE_MOON,
+  hintTable[WOODFALL_TEMPLE] = HintText::DungeonName({Text{"the sleeping temple", "the sleeping temple", "the sleeping temple"}}),
+  hintTable[SNOWHEAD_TEMPLE] = HintText::DungeonName({Text{"an icy temple", "an icy temple", "an icy temple"}});
+  hintTable[GREAT_BAY_TEMPLE] = HintText::DungeonName({Text{"the murky watered temple", "the murky watered temple", "the murky watered temple"}});
+  hintTable[STONE_TOWER_TEMPLE] = HintText::DungeonName({Text{"a rocky temple", "a rocky temple", "a rocky temple"}});
+  hintTable[PIRATE_FORTRESS] = HintText::DungeonName({Text{"the home of pirates", "the home of pirates", "the home of pirates"}});
+  hintTable[BENEATH_THE_WELL] = HintText::DungeonName({Text{"an empty watering hole", "an empty watering hole", "an empty watering hole"}});
+  hintTable[IKANA_CASTLE]  = HintText::DungeonName({Text{"a fallen castle", "a fallen castle", "a fallen castle"}});
+  hintTable[SECRET_SHRINE] = HintText::DungeonName({Text{"a mini boss run area", "a mini boss run area", "a mini boss run area"}});
+  hintTable[SSH] = HintText::DungeonName({Text{"a home to muddy spiders", "a home to muddy spiders", "a home to muddy spiders"}});
+  hintTable[OSH] = HintText::DungeonName({Text{"a home To swimming spiders", "a home To swimming spiders", "a home To swimming spiders"}});
+  hintTable[THE_MOON] = HintText::DungeonName({Text{"a dungeon out of this world", "a dungeon out of this world", "a dungeon out of this world"}});
 
   /*-----------------------
   |    BOSS HINT TEXT     |
   -----------------------*/
-    hintTable[ODOLWA] = HintText::Boss({Text{"A Forest Guy"}}),
-  GOHT,
-  GYORG,
-  TWINMOLD,
-  MAJORA,
+  hintTable[ODOLWA] = HintText::Boss({Text{"A Tattooed Warrior", "A Tattooed Warrior", "A Tattooed Warrior"}});
+  hintTable[GOHT] = HintText::Boss({Text{"A Mechanical Bull","A Mechanical Bull", "A Mechanical Bull"}});
+  hintTable[GYORG] = HintText::Boss({Text{"A Poisonous Fish", "A Poisonous Fish", "A Poisonous Fish"}});
+  hintTable[TWINMOLD] = HintText::Boss({Text{"A Giant Centipede Duo", "A Giant Centipede Duo", "A Giant Centipede Duo"}}),
+  hintTable[MAJORA] = HintText::Boss({Text{"A Cursed Mask", "A Cursed Mask", "A Cursed Mask"}});
 }
 
 const HintText& Hint(const HintKey hintKey) {
