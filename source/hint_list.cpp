@@ -171,9 +171,11 @@ void HintTable_Init() {
 	hintTable[STONE_TOWER_TEMPLE_BOSS_KEY] = HintText::Item({ Text{"an important key", "an important key", "an important key"} });
 		//SMALLKEYS
 	hintTable[SMALL_KEY] = HintText::Item({ Text{"a useful key", "a useful key", "a useful key"} });
-	hintTable[WOODFALL_TEMPLE_SMALL_KEY] = HintText::Item({ Text{"a useful key", "a useful key", "a useful key"} });
-	hintTable[GBT_SMALL_KEY] = HintText::Item({ Text{"a useful key", "a useful key", "a useful key"} });
-		//DUNGEON REWARDS
+	hintTable[WOODFALL_TEMPLE_SMALL_KEY] = HintText::Item({Text{"swampy small key", "", ""}});
+    hintTable[SNOWHEAD_TEMPLE_SMALL_KEY] = HintText::Item({Text{"icy small key", "", ""}});
+    hintTable[GBT_SMALL_KEY] = HintText::Item({Text{"ocean small key", "", ""}});
+    hintTable[STONE_TOWER_TEMPLE_SMALL_KEY] = HintText::Item({Text{"rocky small key", "", ""}});
+        //DUNGEON REWARDS
 	hintTable[ODOLWAS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
 	hintTable[GOHTS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
 	hintTable[GYORGS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
