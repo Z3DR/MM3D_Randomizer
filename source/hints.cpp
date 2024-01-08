@@ -138,7 +138,6 @@ static Area* GetHintRegion(const AreaKey area) {
       }
     }*/
   }
-
   return AreaTable(NONE);
 }
 
@@ -163,13 +162,11 @@ static void AddHint(Text hint, const LocationKey gossipStone, const std::vector<
 
   //create the in game message
   u16 messageId = Location(gossipStone)->GetTextID();
-  CitraPrint("Got text ID!");
   //u32 sariaMessageId = 0xA00 + Location(gossipStone)->GetFlag();
   /*CreateMessage(0x6133, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "You got a #small key# for the #Woodfall Temple#! Use it to open a locked door in that temple.",
     {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);*/
   CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0000, hint.GetEnglish().c_str(), colors, {}, {}, 0x0, false, false);
-  CitraPrint("Created custom message!");
   //CreateMessageFromTextObject(messageId, 0, 2, 3, AddColorsAndFormat(hint, colors));
   //CreateMessageFromTextObject(sariaMessageId, 0, 2, 3, AddColorsAndFormat(hint + EVENT_TRIGGER(), colors));
 }
@@ -198,7 +195,6 @@ static void CreateLocationHint(const std::vector<LocationKey>& possibleHintLocat
   }
 
   LocationKey gossipStone = RandomElement(accessibleGossipStones);
-  CitraPrint("Setting " + Location(hintedLocation)->GetName() + " as hinted\n");
   Location(hintedLocation)->SetAsHinted();
 
   //make hint text
@@ -349,6 +345,7 @@ static void CreateRandomLocationHint(const bool goodItem = false) {
   LocationKey gossipStone = RandomElement(gossipStoneLocations);
 
   //form hint text
+  CitraPrint("Checking location " + Location(hintedLocation)->GetName() + "'s item which is " + Location(hintedLocation)->GetPlacedItemName().GetEnglish() + "\n");
   Text itemText = Location(hintedLocation)->GetPlacedItem().GetHint().GetText();
   if (Location(hintedLocation)->IsDungeon()) {
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
@@ -488,7 +485,6 @@ void CreateAllHints() {
 
     //get a random hint type from the remaining hints
     HintType type = RandomElement(remainingHintTypes, true);
-
     PlacementLog_Msg("Attempting to make hint of type: ");
     PlacementLog_Msg(std::to_string(static_cast<int>(type)));
     PlacementLog_Msg("\n");

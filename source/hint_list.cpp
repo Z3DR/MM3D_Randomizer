@@ -118,6 +118,7 @@ void HintTable_Init() {
 	hintTable[BOTTLE_WITH_ZORA_EGG] = HintText::Item({ Text{"a lost child", "a lost child", "a lost child"}});
 	hintTable[SEAHORSE] = HintText::Item({ Text{"a sea creature", "a sea creatre", "a sea creature"}});
 	hintTable[BOTTLE_WITH_MUSHROOM] = HintText::Item({ Text{"a strange fungus", "a strange fungus", "a strange fungus"}});
+	hintTable[BOTTLE_WITH_MYSTERY_MILK] = HintText::Item({ Text{"a strange drink", "a strange drink", "a strange drink"}});
 		//UPGRADABLE ITEMS
 	hintTable[LARGE_QUIVER] = HintText::Item({ Text{"a ranged weapon", "a ranged weapon", "a ranged weapon"}});
 	hintTable[LARGEST_QUIVER] = HintText::Item({ Text{"a ranged weapon", "a ranged weapon", "a ranged weapon"}});
@@ -860,6 +861,22 @@ void HintTable_Init() {
     hintTable[GYORG] = HintText::Boss({Text{"A Poisonous Fish", "A Poisonous Fish", "A Poisonous Fish"}});
     hintTable[TWINMOLD] = HintText::Boss({Text{"A Giant Centipede Duo", "A Giant Centipede Duo", "A Giant Centipede Duo"}}),
     hintTable[MAJORA] = HintText::Boss({Text{"A Cursed Mask", "A Cursed Mask", "A Cursed Mask"}});
+
+  /*-----------------------
+  |    REFILL ITEMS       |
+  -----------------------*/
+    hintTable[RED_RUPEE] = HintText::Item({Text{"Red rupee", "", ""}});
+    hintTable[PURPLE_RUPEE] = HintText::Item({Text{"Purple rupee", "", ""}});
+    hintTable[SILVER_RUPEE] = HintText::Item({Text{"Silver rupee", "", ""}});
+    hintTable[HUGE_RUPEE] = HintText::Item({Text{"Huge rupee", "", ""}});
+    hintTable[DEKU_NUTS_5] = HintText::Item({Text{"5 nuts", "", ""}});
+    hintTable[DEKU_NUTS_10] = HintText::Item({Text{"10 nuts", "", ""}});
+    hintTable[BOMBCHU_5] = HintText::Item({Text{"5 explosive mice", "", ""}});
+    hintTable[BOMBCHU_10] = HintText::Item({Text{"10 explosive mice", "", ""}});
+    hintTable[ARROWS_10] = HintText::Item({Text{"10 projectile sticks", "", ""}});
+    hintTable[ARROWS_30] = HintText::Item({Text{"30 projectile sticks", "", ""}});
+    hintTable[ARROWS_40] = HintText::Item({Text{"40 projectile sticks", "", ""}});
+    hintTable[ARROWS_50] = HintText::Item({Text{"50 projectile sticks", "", ""}});
 }
 
 const HintText& Hint(const HintKey hintKey) {
