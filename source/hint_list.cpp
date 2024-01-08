@@ -871,6 +871,9 @@ void HintTable_Init() {
     hintTable[HUGE_RUPEE] = HintText::Item({Text{"Huge rupee", "", ""}});
     hintTable[DEKU_NUTS_5] = HintText::Item({Text{"5 nuts", "", ""}});
     hintTable[DEKU_NUTS_10] = HintText::Item({Text{"10 nuts", "", ""}});
+    hintTable[BOMBS_5] = HintText::Item({Text{"5 explosive orbs", "", ""}});
+    hintTable[BOMBS_10] = HintText::Item({Text{"10 explosive orbs", "", ""}});
+    hintTable[BOMBS_20] = HintText::Item({Text{"20 explosive orbs", "", ""}});
     hintTable[BOMBCHU_5] = HintText::Item({Text{"5 explosive mice", "", ""}});
     hintTable[BOMBCHU_10] = HintText::Item({Text{"10 explosive mice", "", ""}});
     hintTable[ARROWS_10] = HintText::Item({Text{"10 projectile sticks", "", ""}});
