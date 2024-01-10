@@ -45,12 +45,13 @@ void HintTable_Init() {
 	hintTable[MOONS_TEAR] = HintText::Item({ Text{"a lunar teardrop", "a lunar teardrop", "a lunar teardrop"} });
 	hintTable[SPIN_ATTACK] = HintText::Item({ Text{"a magic attack", "a magic attack", "a magic attack"} });
 	hintTable[LENS_OF_TRUTH] = HintText::Item({ Text{"a lie detector","a lie detector", "a lie detector"} });
-	hintTable[FIRE_ARROWS] = HintText::Item({ Text{"the power of fire", "the power of fire", "the power of fire"} });
+	hintTable[HEROS_BOW] = HintText::Item({Text{"a bow", "a bow", "a bow"}});
+    hintTable[FIRE_ARROWS] = HintText::Item({ Text{"the power of fire", "the power of fire", "the power of fire"} });
 	hintTable[ICE_ARROWS] = HintText::Item({ Text{"the power of ice", "the power of ice", "the power of ice"} });
 	hintTable[LIGHT_ARROWS] = HintText::Item({ Text{"the power of light", "the power of light", "the power of light"} });
 	hintTable[HOOKSHOT] = HintText::Item({ Text{"a chain and grapple", "a chain and grapple", "a chain and grapple"} });
 	hintTable[MAGIC_BEAN] = HintText::Item({ Text{"a plant seed", "a plant seed", "a plant seed"} });
-	//	MAGIC_BEAN_PACK,
+	hintTable[MAGIC_BEAN_PACK] = HintText::Item({ Text{"multiple plant seeds", "multiple plant seeds", "multiple plant seeds"} });
 	hintTable[DOUBLE_DEFENSE] = HintText::Item({ Text{"magical defence", "magical defence", "magical defence"} });
 	//	OCARINA_OF_TIME,
 	hintTable[PICTOGRAPH_BOX] = HintText::Item({ Text{"a capture device", "a capture device", "a capture device"} });
@@ -79,8 +80,10 @@ void HintTable_Init() {
 	hintTable[GIANTS_MASK] = HintText::Item({ Text{"a growth spurt", "a growth spurt", "a growth spurt"}});
 	hintTable[FIERCE_DIETY_MASK] = HintText::Item({ Text{"the wrath of a god", "the wrath of a god", "the wrath of a god"}});
 	hintTable[MASK_OF_TRUTH] = HintText::Item({ Text{"a piercing gaze", "a piercing gaze", "a piercing gaze"}});
-	
-	//SKULLTULA TOKENS
+	hintTable[FISHING_PASS] = HintText::Item({Text{"a fishing pass", "a fishing passs", "a fishing pass"}});
+	hintTable[ICE_TRAP] = HintText::Item({Text{"a frosty surprise", "a frosty surprise", "a frosty surprise"}});
+    hintTable[ZORA_EGG] = HintText::Item({Text{"a zora egg", "a zora egg", "a zora egg"}});
+    //SKULLTULA TOKENS
 	hintTable[SWAMP_SKULLTULA_TOKEN] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
 	hintTable[OCEANSIDE_SKULLTULA_TOKEN] = HintText::Item({ Text{"a golden token", "a golden token", "a golden token"} });
 	
@@ -99,6 +102,7 @@ void HintTable_Init() {
 	//	PROGRESSIVE_BOMBCHUS,
 
 	//BOTTLE ITEMS
+	hintTable[EMPTY_BOTTLE] = HintText::Item({ Text{"a glass container", "a glass container", "a glass container"} });
 	hintTable[EMPTY_BOTTLE1] = HintText::Item({ Text{"a glass container", "a glass container", "a glass container"} });
 	hintTable[EMPTY_BOTTLE2] = HintText::Item({ Text{"a glass container", "a glass container", "a glass container"} });
 	hintTable[BOTTLE_WITH_MILK] = HintText::Item({ Text{"a dairy product", "a dairy product", "a dairy product"}});
@@ -144,7 +148,7 @@ void HintTable_Init() {
 	hintTable[OATH_TO_ORDER] = HintText::Item({ Text{"a song of giants", "a song of giants", "a song of giants"}});
 		//PIECES OF HEART
 	hintTable[PIECE_OF_HEART] = HintText::Item({ Text{"a segment of health", "a segment of health", "a segment of health"} });
-	
+	hintTable[HEART_CONTAINER] = HintText::Item({Text{"a new heart","a new heart", "a new heart"}});
 	//MAPS
 	hintTable[MAP] = HintText::Item({ Text{"a paper guide", "a paper guide", "a paper guide"}});
 	hintTable[WOODFALL_TEMPLE_MAP] = HintText::Item({ Text{"a paper guide", "a paper guide", "a paper guide"} });
@@ -180,8 +184,52 @@ void HintTable_Init() {
 	hintTable[GOHTS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
 	hintTable[GYORGS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
 	hintTable[TWINMOLDS_REMAINS] = HintText::Item({ Text{"a boss's remains", "a boss's remains", "a boss's remains"} });
+    
+    /*-----------------------
+    |    REFILL ITEMS       |
+    -----------------------*/
+    hintTable[RECOVERY_HEART] = HintText::Item({Text{"Recovery Heart","",""}});
+    hintTable[GREEN_RUPEE] = HintText::Item({Text{"Green rupee", "", ""}});
+    hintTable[BLUE_RUPEE] = HintText::Item({Text{"Blue rupee", "", ""}});
+    hintTable[RED_RUPEE] = HintText::Item({Text{"Red rupee", "", ""}});
+    hintTable[PURPLE_RUPEE] = HintText::Item({Text{"Purple rupee", "", ""}});
+    hintTable[SILVER_RUPEE] = HintText::Item({Text{"Silver rupee", "", ""}});
+    hintTable[HUGE_RUPEE] = HintText::Item({Text{"Huge rupee", "", ""}});
+    hintTable[DEKU_NUTS_5] = HintText::Item({Text{"5 nuts", "", ""}});
+    hintTable[DEKU_NUTS_10] = HintText::Item({Text{"10 nuts", "", ""}});
+    hintTable[BOMBS_5] = HintText::Item({Text{"5 explosive orbs", "", ""}});
+    hintTable[BOMBS_10] = HintText::Item({Text{"10 explosive orbs", "", ""}});
+    hintTable[BOMBS_20] = HintText::Item({Text{"20 explosive orbs", "", ""}});
+    hintTable[BOMBCHU_5] = HintText::Item({Text{"5 explosive mice", "", ""}});
+    hintTable[BOMBCHU_10] = HintText::Item({Text{"10 explosive mice", "", ""}});
+    hintTable[BOMBCHU_20] = HintText::Item({Text{"20 explosive mice", "", ""}});
+    hintTable[ARROWS_10] = HintText::Item({Text{"10 projectile sticks", "", ""}});
+    hintTable[ARROWS_30] = HintText::Item({Text{"30 projectile sticks", "", ""}});
+    hintTable[ARROWS_40] = HintText::Item({Text{"40 projectile sticks", "", ""}});
+    hintTable[ARROWS_50] = HintText::Item({Text{"50 projectile sticks", "", ""}});
+    hintTable[BLUE_POTION_REFILL] = HintText::Item({Text{"Blue Potion Refill", "", ""}});
+    hintTable[GREEN_POTION_REFILL] = HintText::Item({Text{"Green Potion Refill", "", ""}});
+    hintTable[RED_POTION_REFILL] = HintText::Item({Text{"Red Potion Refill", "", ""}});
+    hintTable[BOMBCHU_DROP] = HintText::Item({Text{"explosive mice", "", ""}});
+    hintTable[DEKU_STICK_1] = HintText::Item({Text{"1 stick", "",""}});
+	
+    /*----------------
+    |   SHOP ITEMS   |
+    ----------------*/
+    hintTable[BUY_ARROWS_10] = HintText::Item({Text{"Buy 10 Arrows","",""}});
+    hintTable[BUY_ARROWS_30] = HintText::Item({Text{"Buy 30 Arrows","",""}});
+    hintTable[BUY_BLUE_POTION] = HintText::Item({Text{"Buy Blue Potion","",""}});
+    hintTable[BUY_BOMBCHU_10] = HintText::Item({Text{"Buy 10 Bombchu","",""}});
+    hintTable[BUY_BOMBS_10] = HintText::Item({Text{"Buy 10 Bombs","",""}});
+    hintTable[BUY_DEKU_NUT_10] = HintText::Item({Text{"Buy 10 Deku Nuts","",""}});
+    hintTable[BUY_DEKU_STICK_1] = HintText::Item({Text{"Buy 1 Deku Stick","",""}});
+    hintTable[BUY_FAIRYS_SPIRIT] = HintText::Item({Text{"Buy Fairy","",""}});
+    hintTable[BUY_GREEN_POTION] = HintText::Item({Text{"Buy Green Potion","",""}});
+    hintTable[BUY_HEROS_SHIELD] = HintText::Item({Text{"Buy Hero Shield","",""}});
+    hintTable[BUY_MAGIC_BEAN] = HintText::Item({Text{"Buy Magic Bean","",""}});
+    hintTable[BUY_RED_POTION] = HintText::Item({Text{"Buy Red Potion","",""}});
 
-	/*-----------------------
+    /*-----------------------
 	|  SOMETIMES HINT TEXT  |
 	-----------------------*/
 	// Clock Tower
@@ -443,202 +491,202 @@ void HintTable_Init() {
   |  DUNGEON LOCATION TEXT  |
   -------------------------*/
 
-    hintTable[WOODFALL_TEMPLE_HEROS_BOW_CHEST] = HintText::Sometimes({Text{"the sleeping temple", "", ""}});
-    hintTable[WOODFALL_TEMPLE_MAP_CHEST] = HintText::Sometimes({Text{"the sleeping temple", "", ""}});
-    hintTable[WOODFALL_TEMPLE_COMPASS_CHEST] = HintText::Sometimes({Text{"the sleeping temple", "", ""}});
-    hintTable[WOODFALL_TEMPLE_BOSS_KEY_CHEST] = HintText::Sometimes({Text{"the sleeping temple", "", ""}});
-    hintTable[WOODFALL_TEMPLE_SMALL_KEY_CHEST] = HintText::Sometimes({Text{"the sleeping temple", "", ""}});
-    hintTable[WOODFALL_TEMPLE_DEKU_PRINCESS] = HintText::Sometimes({Text{"the sleeping temple", "", ""}});
-    hintTable[WF_SF_ENTRANCE_FAIRY] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_ENTRANCE_PLATFORM] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_MAIN_ROOM_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_MAIN_ROOM_SWITCH] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_PRE_BOSS_LOWER_RIGHT_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_PRE_BOSS_UPPER_RIGHT_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_PRE_BOSS_UPPER_LEFT_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_PRE_BOSS_PILLAR_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_DEKU_BABA] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_DRAGONFLY_ROOM_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_SKULLTULA] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_DARK_ROOM] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_JAR_FAIRY] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_BRIDGE_ROOM_BEEHIVE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[WF_SF_PLATFORM_ROOM_BEEHIVE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ODOLWA_HEART_CONTAINER] = HintText::Sometimes({Text{"a masked evil", "", ""}});	
+    hintTable[WOODFALL_TEMPLE_HEROS_BOW_CHEST] = HintText::Exclude({Text{"the sleeping temple", "", ""}});
+    hintTable[WOODFALL_TEMPLE_MAP_CHEST] = HintText::Exclude({Text{"the sleeping temple", "", ""}});
+    hintTable[WOODFALL_TEMPLE_COMPASS_CHEST] = HintText::Exclude({Text{"the sleeping temple", "", ""}});
+    hintTable[WOODFALL_TEMPLE_BOSS_KEY_CHEST] = HintText::Exclude({Text{"the sleeping temple", "", ""}});
+    hintTable[WOODFALL_TEMPLE_SMALL_KEY_CHEST] = HintText::Exclude({Text{"the sleeping temple", "", ""}});
+    hintTable[WOODFALL_TEMPLE_DEKU_PRINCESS] = HintText::Exclude({Text{"the sleeping temple", "", ""}});
+    hintTable[WF_SF_ENTRANCE_FAIRY] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_ENTRANCE_PLATFORM] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_MAIN_ROOM_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_MAIN_ROOM_SWITCH] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_PRE_BOSS_LOWER_RIGHT_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_PRE_BOSS_UPPER_RIGHT_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_PRE_BOSS_UPPER_LEFT_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_PRE_BOSS_PILLAR_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_DEKU_BABA] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_DRAGONFLY_ROOM_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_SKULLTULA] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_DARK_ROOM] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_JAR_FAIRY] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_BRIDGE_ROOM_BEEHIVE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[WF_SF_PLATFORM_ROOM_BEEHIVE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ODOLWA_HEART_CONTAINER] = HintText::Exclude({Text{"a masked evil", "", ""}});	
 //Snowhead Temple
-    hintTable[SNOWHEAD_TEMPLE_FIRE_ARROW_CHEST] = HintText::Sometimes({Text{"an icy temple", "", ""}});
-    hintTable[SNOWHEAD_TEMPLE_MAP_CHEST] = HintText::Sometimes({Text{"an icy temple", "", ""}});
-    hintTable[SNOWHEAD_TEMPLE_COMPASS_CHEST] = HintText::Sometimes({Text{"an icy temple", "", ""}});
-    hintTable[SNOWHEAD_TEMPLE_BOSS_KEY_CHEST] = HintText::Sometimes({Text{"an icy temple", "", ""}});
-    hintTable[SNOWHEAD_TEMPLE_BLOCK_ROOM_CHEST] = HintText::Sometimes({Text{"an icy temple", "", ""}});
-    hintTable[SNOWHEAD_TEMPLE_ICICLE_ROOM_CHEST] = HintText::Sometimes({Text{"an icy temple", "", ""}});
-    hintTable[SNOWHEAD_TEMPLE_BRIDGE_ROOM_CHEST] = HintText::Sometimes({Text{"an icy temple", "", ""}});
-    hintTable[SH_SF_SNOW_ROOM_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_CEILING_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_DINOLFOS_1] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_DINOLFOS_2] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_BRIDGE_ROOM_LEDGE_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_BRIDGE_ROOM_PILLAR_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_MAP_ROOM_FAIRY] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_MAP_ROOM_LEDGE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_BASEMENT] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_TWIN_BLOCK] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_ICICLE_ROOM_WALL] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_MAIN_ROOM_WALL] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_PILLAR_FREEZARDS] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_ICE_PUZZLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[SH_SF_CRATE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GOHT_HEART_CONTAINER] = HintText::Sometimes({Text{"a masked evil", "", ""}});
+    hintTable[SNOWHEAD_TEMPLE_FIRE_ARROW_CHEST] = HintText::Exclude({Text{"an icy temple", "", ""}});
+    hintTable[SNOWHEAD_TEMPLE_MAP_CHEST] = HintText::Exclude({Text{"an icy temple", "", ""}});
+    hintTable[SNOWHEAD_TEMPLE_COMPASS_CHEST] = HintText::Exclude({Text{"an icy temple", "", ""}});
+    hintTable[SNOWHEAD_TEMPLE_BOSS_KEY_CHEST] = HintText::Exclude({Text{"an icy temple", "", ""}});
+    hintTable[SNOWHEAD_TEMPLE_BLOCK_ROOM_CHEST] = HintText::Exclude({Text{"an icy temple", "", ""}});
+    hintTable[SNOWHEAD_TEMPLE_ICICLE_ROOM_CHEST] = HintText::Exclude({Text{"an icy temple", "", ""}});
+    hintTable[SNOWHEAD_TEMPLE_BRIDGE_ROOM_CHEST] = HintText::Exclude({Text{"an icy temple", "", ""}});
+    hintTable[SH_SF_SNOW_ROOM_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_CEILING_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_DINOLFOS_1] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_DINOLFOS_2] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_BRIDGE_ROOM_LEDGE_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_BRIDGE_ROOM_PILLAR_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_MAP_ROOM_FAIRY] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_MAP_ROOM_LEDGE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_BASEMENT] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_TWIN_BLOCK] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_ICICLE_ROOM_WALL] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_MAIN_ROOM_WALL] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_PILLAR_FREEZARDS] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_ICE_PUZZLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[SH_SF_CRATE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GOHT_HEART_CONTAINER] = HintText::Exclude({Text{"a masked evil", "", ""}});
 //Great bay Temple
-    hintTable[GBT_ICE_ARROW_CHEST] = HintText::Sometimes({Text{"the murky watered temple", "", ""}});
-    hintTable[GBT_MAP_CHEST] = HintText::Sometimes({Text{"the murky watered temple", "", ""}});
-    hintTable[GBT_COMPASS_CHEST] = HintText::Sometimes({Text{"the murky watered temple", "", ""}});
-    hintTable[GBT_BOSS_KEY_CHEST] = HintText::Sometimes({Text{"the murky watered temple", "", ""}});
-    hintTable[GBT_SMALL_KEY_CHEST] = HintText::Sometimes({Text{"the murky watered temple", "", ""}});
-    hintTable[GBT_SF_SKULLTULA] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_WATER_CONTROL_UNDERWATER_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_WATERWHEEL_ROOM_LOWER] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_WATERWHEEL_ROOM_UPPER] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_GREEN_VALVE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_SEESAW_ROOM] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_ENTRANCE_TORCHES] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_BIO_BABAS] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_UNDERWATER_BARREL] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_WHIRLPOOL_BARREL] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_WHIRLPOOL_JAR] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_DEXIHANDS_JAR] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_LEDGE_JAR] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_PRE_BOSS_ROOM_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GBT_SF_PRE_BOSS_ROOM_UNDERWATER_BUBBLE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[GYORG_HEART_CONTAINER] = HintText::Sometimes({Text{"a masked evil", "", ""}});
+    hintTable[GBT_ICE_ARROW_CHEST] = HintText::Exclude({Text{"the murky watered temple", "", ""}});
+    hintTable[GBT_MAP_CHEST] = HintText::Exclude({Text{"the murky watered temple", "", ""}});
+    hintTable[GBT_COMPASS_CHEST] = HintText::Exclude({Text{"the murky watered temple", "", ""}});
+    hintTable[GBT_BOSS_KEY_CHEST] = HintText::Exclude({Text{"the murky watered temple", "", ""}});
+    hintTable[GBT_SMALL_KEY_CHEST] = HintText::Exclude({Text{"the murky watered temple", "", ""}});
+    hintTable[GBT_SF_SKULLTULA] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_WATER_CONTROL_UNDERWATER_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_WATERWHEEL_ROOM_LOWER] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_WATERWHEEL_ROOM_UPPER] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_GREEN_VALVE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_SEESAW_ROOM] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_ENTRANCE_TORCHES] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_BIO_BABAS] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_UNDERWATER_BARREL] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_WHIRLPOOL_BARREL] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_WHIRLPOOL_JAR] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_DEXIHANDS_JAR] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_LEDGE_JAR] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_PRE_BOSS_ROOM_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GBT_SF_PRE_BOSS_ROOM_UNDERWATER_BUBBLE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[GYORG_HEART_CONTAINER] = HintText::Exclude({Text{"a masked evil", "", ""}});
 //Stone Tower Temple
-    hintTable[STONE_TOWER_TEMPLE_MAP_CHEST] = HintText::Sometimes({Text{"a rocky temple", "", ""}});
-    hintTable[STONE_TOWER_TEMPLE_COMPASS_CHEST] = HintText::Sometimes({Text{"a rocky temple", "", ""}});
-    hintTable[STONE_TOWER_TEMPLE_BOSS_KEY_CHEST] = HintText::Sometimes({Text{"a rocky temple", "", ""}});
-    hintTable[STONE_TOWER_TEMPLE_ARMOS_ROOM_CHEST] = HintText::Sometimes({Text{"a rocky temple", "", ""}});
-    hintTable[STONE_TOWER_TEMPLE_BRIDGE_SWITCH_CHEST] = HintText::Sometimes({Text{"a rocky temple", "", ""}});
-    hintTable[STONE_TOWER_TEMPLE_UPDRAFT_ROOM_CHEST] = HintText::Sometimes({Text{"a rocky temple", "", ""}});
-    hintTable[STONE_TOWER_TEMPLE_DEATH_ARMOS_ROOM_CHEST] = HintText::Sometimes({Text{"a rocky temple", "", ""}});
-    hintTable[STONE_TOWER_TEMPLE_LIGHT_ARROW_CHEST] = HintText::Sometimes({Text{"a rocky temple", "", ""}});
-    hintTable[STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST] = HintText::Sometimes({Text{"a rocky temple", "", ""}});
-    hintTable[ST_SF_MIRROR_SUN_BLOCK] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_LAVA_ROOM_LEDGE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_LAVA_ROOM_FIRE_RING] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_EYEGORE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_UPDRAFT_FIRE_RING] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_MIRROR_SUN_SWITCH] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_BOSS_WARP] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_WIZZROBE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_DEATH_ARMOS] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_UPDRAFT_FROZEN_EYE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_THIN_BRIDGE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_BASEMENT_LEDGE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_STATUE_EYE] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_UNDERWATER] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[ST_SF_BRIDGE_CRYSTAL] = HintText::Sometimes({Text{"a lost fairy", "", ""}});
-    hintTable[TWINMOLD_HEART_CONTAINER] = HintText::Sometimes({Text{"a masked evil", "", ""}});
+    hintTable[STONE_TOWER_TEMPLE_MAP_CHEST] = HintText::Exclude({Text{"a rocky temple", "", ""}});
+    hintTable[STONE_TOWER_TEMPLE_COMPASS_CHEST] = HintText::Exclude({Text{"a rocky temple", "", ""}});
+    hintTable[STONE_TOWER_TEMPLE_BOSS_KEY_CHEST] = HintText::Exclude({Text{"a rocky temple", "", ""}});
+    hintTable[STONE_TOWER_TEMPLE_ARMOS_ROOM_CHEST] = HintText::Exclude({Text{"a rocky temple", "", ""}});
+    hintTable[STONE_TOWER_TEMPLE_BRIDGE_SWITCH_CHEST] = HintText::Exclude({Text{"a rocky temple", "", ""}});
+    hintTable[STONE_TOWER_TEMPLE_UPDRAFT_ROOM_CHEST] = HintText::Exclude({Text{"a rocky temple", "", ""}});
+    hintTable[STONE_TOWER_TEMPLE_DEATH_ARMOS_ROOM_CHEST] = HintText::Exclude({Text{"a rocky temple", "", ""}});
+    hintTable[STONE_TOWER_TEMPLE_LIGHT_ARROW_CHEST] = HintText::Exclude({Text{"a rocky temple", "", ""}});
+    hintTable[STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST] = HintText::Exclude({Text{"a rocky temple", "", ""}});
+    hintTable[ST_SF_MIRROR_SUN_BLOCK] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_LAVA_ROOM_LEDGE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_LAVA_ROOM_FIRE_RING] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_EYEGORE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_UPDRAFT_FIRE_RING] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_MIRROR_SUN_SWITCH] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_BOSS_WARP] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_WIZZROBE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_DEATH_ARMOS] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_UPDRAFT_FROZEN_EYE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_THIN_BRIDGE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_BASEMENT_LEDGE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_STATUE_EYE] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_UNDERWATER] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[ST_SF_BRIDGE_CRYSTAL] = HintText::Exclude({Text{"a lost fairy", "", ""}});
+    hintTable[TWINMOLD_HEART_CONTAINER] = HintText::Exclude({Text{"a masked evil", "", ""}});
 //Pirate Fortress
-    hintTable[PF_INTERIOR_HOOKSHOT_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_INT_LOWER_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_INT_UPPER_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_INT_TANK_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_INT_GUARD_ROOM_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_CAGE_ROOM_SHALLOW_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_CAGE_ROOM_DEEP_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_MAZE_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_SEWER_CAGE] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_EXTERIOR_LOG_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_EXTERIOR_SAND_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_EXTERIOR_CORNER_CHEST] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_INT_INVISIBLE_SOLDIER] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_INT_HOOKSHOT_ROOM_ZORA_EGG] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_INT_GUARD_ROOM_ZORA_EGG] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_INT_BARREL_MAZE_ZORA_EGG] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
-    hintTable[PF_INT_LAVA_ROOM_ZORA_EGG] = HintText::Sometimes({Text{"the home of pirates", "", ""}});
+    hintTable[PF_INTERIOR_HOOKSHOT_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_INT_LOWER_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_INT_UPPER_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_INT_TANK_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_INT_GUARD_ROOM_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_CAGE_ROOM_SHALLOW_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_CAGE_ROOM_DEEP_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_MAZE_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_SEWER_CAGE] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_EXTERIOR_LOG_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_EXTERIOR_SAND_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_EXTERIOR_CORNER_CHEST] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_INT_INVISIBLE_SOLDIER] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_INT_HOOKSHOT_ROOM_ZORA_EGG] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_INT_GUARD_ROOM_ZORA_EGG] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_INT_BARREL_MAZE_ZORA_EGG] = HintText::Exclude({Text{"the home of pirates", "", ""}});
+    hintTable[PF_INT_LAVA_ROOM_ZORA_EGG] = HintText::Exclude({Text{"the home of pirates", "", ""}});
 //Beneath the Well
-    hintTable[BENEATH_THE_WELL_MIRROR_SHIELD_CHEST] = HintText::Sometimes({Text{"a frightful exchange", "", ""}});
-    hintTable[WELL_LEFT_PATH_CHEST] = HintText::Sometimes({Text{"a frightful exchange", "", ""}});
-    hintTable[WELL_RIGHT_PATH_CHEST] = HintText::Sometimes({Text{"a frightful exchange", "", ""}});  
-    hintTable[BENEATH_THE_WELL_COW] = HintText::Sometimes({Text{"a lost creature", "", ""}});
+    hintTable[BENEATH_THE_WELL_MIRROR_SHIELD_CHEST] = HintText::Exclude({Text{"a frightful exchange", "", ""}});
+    hintTable[WELL_LEFT_PATH_CHEST] = HintText::Exclude({Text{"a frightful exchange", "", ""}});
+    hintTable[WELL_RIGHT_PATH_CHEST] = HintText::Exclude({Text{"a frightful exchange", "", ""}});  
+    hintTable[BENEATH_THE_WELL_COW] = HintText::Exclude({Text{"a lost creature", "", ""}});
 //Ikana Castle
-    hintTable[IKANA_CASTLE_PILLAR] = HintText::Sometimes({Text{"a fiery pilar", "", ""}});
-    hintTable[IKANA_CASTLE_IKANA_KING] = HintText::Sometimes({Text{"a fallen king", "", ""}});
+    hintTable[IKANA_CASTLE_PILLAR] = HintText::Exclude({Text{"a fiery pilar", "", ""}});
+    hintTable[IKANA_CASTLE_IKANA_KING] = HintText::Exclude({Text{"a fallen king", "", ""}});
 //Secret Shrine 
-    hintTable[SECRET_SHRINE_DINOLFOS_CHEST] = HintText::Sometimes({Text{"a secret place", "", ""}});
-    hintTable[SECRET_SHRINE_WIZZROBE_CHEST] = HintText::Sometimes({Text{"a secret place", "", ""}});
-    hintTable[SECRET_SHRINE_WART_CHEST] = HintText::Sometimes({Text{"a secret place", "", ""}});
-    hintTable[SECRET_SHRINE_GARO_CHEST] = HintText::Sometimes({Text{"a secret place", "", ""}});
-    hintTable[SECRET_SHRINE_FINAL_CHEST] = HintText::Sometimes({Text{"a secret place", "", ""}});
+    hintTable[SECRET_SHRINE_DINOLFOS_CHEST] = HintText::Exclude({Text{"a secret place", "", ""}});
+    hintTable[SECRET_SHRINE_WIZZROBE_CHEST] = HintText::Exclude({Text{"a secret place", "", ""}});
+    hintTable[SECRET_SHRINE_WART_CHEST] = HintText::Exclude({Text{"a secret place", "", ""}});
+    hintTable[SECRET_SHRINE_GARO_CHEST] = HintText::Exclude({Text{"a secret place", "", ""}});
+    hintTable[SECRET_SHRINE_FINAL_CHEST] = HintText::Exclude({Text{"a secret place", "", ""}});
 //The Moon
-    hintTable[THE_MOON_DEKU_TRIAL_BONUS] = HintText::Sometimes({Text{"a masked child's game", "", ""}});
-    hintTable[THE_MOON_GORON_TRIAL_BONUS] = HintText::Sometimes({Text{"a masked child's game", "", ""}});
-    hintTable[THE_MOON_ZORA_TRIAL_BONUS] = HintText::Sometimes({Text{"a masked child's game", "", ""}});
-    hintTable[THE_MOON_LINK_TRIAL_BONUS] = HintText::Sometimes({Text{"a masked child's game", "", ""}});
-    hintTable[THE_MOON_GARO_CHEST] = HintText::Sometimes({Text{"a masked child's game", "", ""}});
-    hintTable[THE_MOON_IRON_KNUCKLE_CHEST] = HintText::Sometimes({Text{"a masked child's game", "", ""}});
-    hintTable[THE_MOON_MAJORA_CHILD] = HintText::Sometimes({Text{"the lonely child", "", ""}});
+    hintTable[THE_MOON_DEKU_TRIAL_BONUS] = HintText::Exclude({Text{"a masked child's game", "", ""}});
+    hintTable[THE_MOON_GORON_TRIAL_BONUS] = HintText::Exclude({Text{"a masked child's game", "", ""}});
+    hintTable[THE_MOON_ZORA_TRIAL_BONUS] = HintText::Exclude({Text{"a masked child's game", "", ""}});
+    hintTable[THE_MOON_LINK_TRIAL_BONUS] = HintText::Exclude({Text{"a masked child's game", "", ""}});
+    hintTable[THE_MOON_GARO_CHEST] = HintText::Exclude({Text{"a masked child's game", "", ""}});
+    hintTable[THE_MOON_IRON_KNUCKLE_CHEST] = HintText::Exclude({Text{"a masked child's game", "", ""}});
+    hintTable[THE_MOON_MAJORA_CHILD] = HintText::Exclude({Text{"the lonely child", "", ""}});
 //Southern Swamp Skulltula House
-    hintTable[SSH_MAIN_ROOM_NEAR_CEILING] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MAIN_ROOM_WATER] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MAIN_ROOM_LOWER_LEFT_SOIL] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MAIN_ROOM_LOWER_RIGHT_SOIL] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MAIN_ROOM_UPPER_SOIL] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MAIN_ROOM_PILLAR] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MAIN_ROOM_UPPER_PILLAR] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MAIN_ROOM_JAR] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MONUMENT_ROOM_CRATE_1] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MONUMENT_ROOM_CRATE_2] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MONUMENT_ROOM_TORCH] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MONUMENT_ROOM_ON_MONUMENT] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_MONUMENT_ROOM_LOWER_WALL] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_GOLD_ROOM_NEAR_CEILING] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_GOLD_ROOM_PILLAR] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_GOLD_ROOM_BEEHIVE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_GOLD_ROOM_WALL] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_POT_ROOM_JAR] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_POT_ROOM_POT_1] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_POT_ROOM_POT_2] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_POT_ROOM_BEHIND_VINES] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_POT_ROOM_WALL] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_POT_ROOM_BEEHIVE_1] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_POT_ROOM_BEEHIVE_2] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_TREE_ROOM_TREE_1] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_TREE_ROOM_TREE_2] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_TREE_ROOM_TREE_3] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_TREE_ROOM_GRASS_1] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_TREE_ROOM_GRASS_2] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[SSH_TREE_ROOM_BEEHIVE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MAIN_ROOM_NEAR_CEILING] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MAIN_ROOM_WATER] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MAIN_ROOM_LOWER_LEFT_SOIL] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MAIN_ROOM_LOWER_RIGHT_SOIL] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MAIN_ROOM_UPPER_SOIL] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MAIN_ROOM_PILLAR] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MAIN_ROOM_UPPER_PILLAR] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MAIN_ROOM_JAR] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MONUMENT_ROOM_CRATE_1] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MONUMENT_ROOM_CRATE_2] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MONUMENT_ROOM_TORCH] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MONUMENT_ROOM_ON_MONUMENT] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_MONUMENT_ROOM_LOWER_WALL] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_GOLD_ROOM_NEAR_CEILING] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_GOLD_ROOM_PILLAR] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_GOLD_ROOM_BEEHIVE] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_GOLD_ROOM_WALL] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_POT_ROOM_JAR] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_POT_ROOM_POT_1] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_POT_ROOM_POT_2] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_POT_ROOM_BEHIND_VINES] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_POT_ROOM_WALL] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_POT_ROOM_BEEHIVE_1] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_POT_ROOM_BEEHIVE_2] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_TREE_ROOM_TREE_1] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_TREE_ROOM_TREE_2] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_TREE_ROOM_TREE_3] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_TREE_ROOM_GRASS_1] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_TREE_ROOM_GRASS_2] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[SSH_TREE_ROOM_BEEHIVE] = HintText::Exclude({Text{"a gold spider", "", ""}});
 //Oceanside Spider House
-    hintTable[OSH_ENTRANCE_LEFT_WALL] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_ENTRANCE_RIGHT_WALL] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_ENTRANCE_WEB] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_LIBRARY_HOLE_BEHIND_PICTURE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_LIBRARY_HOLE_BEHIND_CABINET] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_LIBRARY_ON_CORNER_BOOKSHELF] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_LIBRARY_CEILING_EDGE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_LIBRARY_BEHIND_BOOKCASE_1] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_LIBRARY_BEHIND_BOOKCASE_2] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_LIBRARY_BEHIND_PICTURE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_SECOND_ROOM_CEILING_EDGE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_SECOND_ROOM_CEILING_PLANK] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_SECOND_ROOM_JAR] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_SECOND_ROOM_WEBBED_HOLE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_SECOND_ROOM_WEBBED_POT] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_SECOND_ROOM_UPPER_POT] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_SECOND_ROOM_BEHIND_SKULL_1] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_SECOND_ROOM_BEHIND_SKULL_2] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_SECOND_ROOM_LOWER_POT] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_STORAGE_ROOM_CEILING_WEB] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_STORAGE_ROOM_BEHIND_CRATE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_STORAGE_ROOM_WALL] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_STORAGE_ROOM_CRATE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_STORAGE_ROOM_BARREL] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_COLORED_SKULLS_CEILING_EDGE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_COLORED_SKULLS_CHANDELIER_1] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_COLORED_SKULLS_CHANDELIER_2] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_COLORED_SKULLS_CHANDELIER_3] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_COLORED_SKULLS_BEHIND_PICTURE] = HintText::Sometimes({Text{"a gold spider", "", ""}});
-    hintTable[OSH_COLORED_SKULLS_POT] = HintText::Sometimes({Text{"a gold spider", "", ""}});
+    hintTable[OSH_ENTRANCE_LEFT_WALL] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_ENTRANCE_RIGHT_WALL] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_ENTRANCE_WEB] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_LIBRARY_HOLE_BEHIND_PICTURE] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_LIBRARY_HOLE_BEHIND_CABINET] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_LIBRARY_ON_CORNER_BOOKSHELF] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_LIBRARY_CEILING_EDGE] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_LIBRARY_BEHIND_BOOKCASE_1] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_LIBRARY_BEHIND_BOOKCASE_2] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_LIBRARY_BEHIND_PICTURE] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_SECOND_ROOM_CEILING_EDGE] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_SECOND_ROOM_CEILING_PLANK] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_SECOND_ROOM_JAR] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_SECOND_ROOM_WEBBED_HOLE] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_SECOND_ROOM_WEBBED_POT] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_SECOND_ROOM_UPPER_POT] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_SECOND_ROOM_BEHIND_SKULL_1] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_SECOND_ROOM_BEHIND_SKULL_2] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_SECOND_ROOM_LOWER_POT] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_STORAGE_ROOM_CEILING_WEB] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_STORAGE_ROOM_BEHIND_CRATE] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_STORAGE_ROOM_WALL] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_STORAGE_ROOM_CRATE] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_STORAGE_ROOM_BARREL] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_COLORED_SKULLS_CEILING_EDGE] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_COLORED_SKULLS_CHANDELIER_1] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_COLORED_SKULLS_CHANDELIER_2] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_COLORED_SKULLS_CHANDELIER_3] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_COLORED_SKULLS_BEHIND_PICTURE] = HintText::Exclude({Text{"a gold spider", "", ""}});
+    hintTable[OSH_COLORED_SKULLS_POT] = HintText::Exclude({Text{"a gold spider", "", ""}});
 
 
   /*----------------------
@@ -864,24 +912,7 @@ void HintTable_Init() {
     hintTable[TWINMOLD] = HintText::Boss({Text{"A Giant Centipede Duo", "A Giant Centipede Duo", "A Giant Centipede Duo"}}),
     hintTable[MAJORA] = HintText::Boss({Text{"A Cursed Mask", "A Cursed Mask", "A Cursed Mask"}});
 
-  /*-----------------------
-  |    REFILL ITEMS       |
-  -----------------------*/
-    hintTable[RED_RUPEE] = HintText::Item({Text{"Red rupee", "", ""}});
-    hintTable[PURPLE_RUPEE] = HintText::Item({Text{"Purple rupee", "", ""}});
-    hintTable[SILVER_RUPEE] = HintText::Item({Text{"Silver rupee", "", ""}});
-    hintTable[HUGE_RUPEE] = HintText::Item({Text{"Huge rupee", "", ""}});
-    hintTable[DEKU_NUTS_5] = HintText::Item({Text{"5 nuts", "", ""}});
-    hintTable[DEKU_NUTS_10] = HintText::Item({Text{"10 nuts", "", ""}});
-    hintTable[BOMBS_5] = HintText::Item({Text{"5 explosive orbs", "", ""}});
-    hintTable[BOMBS_10] = HintText::Item({Text{"10 explosive orbs", "", ""}});
-    hintTable[BOMBS_20] = HintText::Item({Text{"20 explosive orbs", "", ""}});
-    hintTable[BOMBCHU_5] = HintText::Item({Text{"5 explosive mice", "", ""}});
-    hintTable[BOMBCHU_10] = HintText::Item({Text{"10 explosive mice", "", ""}});
-    hintTable[ARROWS_10] = HintText::Item({Text{"10 projectile sticks", "", ""}});
-    hintTable[ARROWS_30] = HintText::Item({Text{"30 projectile sticks", "", ""}});
-    hintTable[ARROWS_40] = HintText::Item({Text{"40 projectile sticks", "", ""}});
-    hintTable[ARROWS_50] = HintText::Item({Text{"50 projectile sticks", "", ""}});
+  
 }
 
 const HintText& Hint(const HintKey hintKey) {

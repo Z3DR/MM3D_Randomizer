@@ -367,7 +367,7 @@ static void PlaceVanillaMainInventory() {
 	PlaceItemInLocation(GBC_FISHERMAN_PHOTO, SEAHORSE);
 };
 
-const std::array<ItemKey, 8> progressiveItemsList = {
+const std::array<ItemKey, 7> progressiveItemsList = {
 	PROGRESSIVE_BOW,
 	PROGRESSIVE_BOW,
 	PROGRESSIVE_BOW, //1 Bow + 2 Quiver Upgrades
@@ -457,7 +457,7 @@ const std::array<ItemKey,4> scrubPurchaseItems = {
 	BLUE_POTION_REFILL,
 };
 
-const std::array<ItemKey, 6> moonItemList = {
+const std::array<ItemKey, 4> moonItemList = {
 	//2Chests and 4 trial rewards, FDM separate
 	//ARROWS_30,  -just replace with junk
 	//BOMBCHU_10,

@@ -891,7 +891,7 @@ int Fill() {
            // CreateEntranceOverrides();
            // CreateAlwaysIncludedMessages();
             //if (GossipStoneHints.IsNot(rnd::GossipStoneHintsSetting::HINTS_NO_HINTS)) {
-                printf("\x1b[10;10HCreating Hints...");
+                printf("\x1b[11;10HCreating Hints...");
                 CreateAllHints();
                 printf("Done");
             // }
