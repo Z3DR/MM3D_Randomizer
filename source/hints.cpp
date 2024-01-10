@@ -163,10 +163,8 @@ static void AddHint(Text hint, const LocationKey gossipStone, const std::vector<
   //create the in game message
   u16 messageId = Location(gossipStone)->GetTextID();
   //u32 sariaMessageId = 0xA00 + Location(gossipStone)->GetFlag();
-  /*CreateMessage(0x6133, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    "You got a #small key# for the #Woodfall Temple#! Use it to open a locked door in that temple.",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);*/
-  CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0000, hint.GetEnglish().c_str(), colors, {}, {}, 0x0, false, false);
+  CitraPrint("Our hint text is " + hint.GetEnglish());
+  CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, hint.GetEnglish().c_str(), colors, {}, {}, 0x0, false, false);
   //CreateMessageFromTextObject(messageId, 0, 2, 3, AddColorsAndFormat(hint, colors));
   //CreateMessageFromTextObject(sariaMessageId, 0, 2, 3, AddColorsAndFormat(hint + EVENT_TRIGGER(), colors));
 }
@@ -251,10 +249,12 @@ static void CreateWothHint(u8* remainingDungeonWothHints) {
   if (Location(hintedLocation)->IsDungeon()) {
     *remainingDungeonWothHints -= 1;
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
+    CitraPrint("Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
     locationText = AreaTable(parentRegion)->GetHint().GetText();
 
   } else {
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
+    CitraPrint("Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
     locationText = GetHintRegion(parentRegion)->GetHint().GetText();
   }
   Text finalWothHint = Hint(PREFIX).GetText()+"#"+locationText+"#"+Hint(WAY_OF_THE_HERO).GetText();
@@ -298,9 +298,11 @@ static void CreateBarrenHint(u8* remainingDungeonBarrenHints, std::vector<Locati
   if (Location(hintedLocation)->IsDungeon()) {
     *remainingDungeonBarrenHints -= 1;
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
+    CitraPrint("Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
     locationText = Hint(AreaTable(parentRegion)->hintKey).GetText();
   } else {
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
+    CitraPrint("Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
     locationText = Hint(GetHintRegion(parentRegion)->hintKey).GetText();
   }
   Text finalBarrenHint = Hint(PREFIX).GetText()+Hint(PLUNDERING).GetText()+"#"+locationText+"#"+Hint(FOOLISH).GetText();
@@ -362,6 +364,7 @@ static void CreateRandomLocationHint(const bool goodItem = false) {
     PlacementLog_Msg("\n\n");
     AddHint(finalHint, gossipStone, {QM_GREEN, QM_RED});
   } else {
+    CitraPrint("Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(Location(hintedLocation)->GetParentRegionKey())->GetName());
     Text locationText = GetHintRegion(Location(hintedLocation)->GetParentRegionKey())->GetHint().GetText();
     Text finalHint = Hint(PREFIX).GetText()+"#"+itemText+"# "+Hint(CAN_BE_FOUND_AT).GetText()+" #"+locationText+"#.";
     PlacementLog_Msg("\tMessage: ");
