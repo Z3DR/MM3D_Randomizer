@@ -587,7 +587,7 @@ void GenerateRandomizer() {
         return;
       }
     }
-    printf("\x1b[12;10HWriting Patch...");
+    printf("\x1b[13;10HWriting Patch...");
     if (WriteAllPatches()) {
         printf("Done");
         if (Settings::PlayOption == PATCH_CONSOLE) {

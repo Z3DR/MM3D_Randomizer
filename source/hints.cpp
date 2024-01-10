@@ -345,9 +345,9 @@ static void CreateRandomLocationHint(const bool goodItem = false) {
   LocationKey gossipStone = RandomElement(gossipStoneLocations);
 
   //form hint text
-  // CitraPrint("Checking location " + Location(hintedLocation)->GetName() + \
-  //            "'s item which is " + Location(hintedLocation)->GetPlacedItemName().GetEnglish() + \
-  //            " and GetItemID of " + Location(hintedLocation)->GetPlacedItem().GetItemId() + "\n");
+  /* CitraPrint("Checking location " + Location(hintedLocation)->GetName() + \
+              "'s item which is " + Location(hintedLocation)->GetPlacedItemName().GetEnglish() + \
+              " and GetItemID of " + Location(hintedLocation)->GetPlacedItem().GetItemId() + "\n"); */
   DebugPrint("Checking location %s's item which is %s and GetItemID of %#04x and hint text is %s\n", Location(hintedLocation)->GetName().c_str(), \
              Location(hintedLocation)->GetPlacedItemName().GetEnglish().c_str(), \
              Location(hintedLocation)->GetPlacedItem().GetItemId(), \
