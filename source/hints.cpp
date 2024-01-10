@@ -123,8 +123,8 @@ static Area* GetHintRegion(const AreaKey area) {
     }
 
     //add unchecked exits to spot queue
-    //bool checked = false;
-    /*
+    bool checked = false;
+    
     for (auto& exit : AreaTable(region)->exits) {
       for (AreaKey checkedExit : alreadyChecked) {
         if (exit.GetAreaKey() == checkedExit) {
@@ -136,7 +136,7 @@ static Area* GetHintRegion(const AreaKey area) {
       if (!checked) {
         spotQueue.insert(spotQueue.begin(), exit.GetAreaKey());
       }
-    }*/
+    }
   }
   return AreaTable(NONE);
 }
@@ -249,12 +249,12 @@ static void CreateWothHint(u8* remainingDungeonWothHints) {
   if (Location(hintedLocation)->IsDungeon()) {
     *remainingDungeonWothHints -= 1;
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
-    CitraPrint("Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
+    CitraPrint("WoTH Hint: Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
     locationText = AreaTable(parentRegion)->GetHint().GetText();
 
   } else {
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
-    CitraPrint("Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
+    CitraPrint("WoTH Hint: Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
     locationText = GetHintRegion(parentRegion)->GetHint().GetText();
   }
   Text finalWothHint = Hint(PREFIX).GetText()+"#"+locationText+"#"+Hint(WAY_OF_THE_HERO).GetText();
@@ -298,11 +298,11 @@ static void CreateBarrenHint(u8* remainingDungeonBarrenHints, std::vector<Locati
   if (Location(hintedLocation)->IsDungeon()) {
     *remainingDungeonBarrenHints -= 1;
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
-    CitraPrint("Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
+    CitraPrint("Barrent Hint: Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
     locationText = Hint(AreaTable(parentRegion)->hintKey).GetText();
   } else {
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
-    CitraPrint("Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
+    CitraPrint("Barrent Hint: Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
     locationText = Hint(GetHintRegion(parentRegion)->hintKey).GetText();
   }
   Text finalBarrenHint = Hint(PREFIX).GetText()+Hint(PLUNDERING).GetText()+"#"+locationText+"#"+Hint(FOOLISH).GetText();
@@ -349,22 +349,23 @@ static void CreateRandomLocationHint(const bool goodItem = false) {
   //form hint text
   /* CitraPrint("Checking location " + Location(hintedLocation)->GetName() + \
               "'s item which is " + Location(hintedLocation)->GetPlacedItemName().GetEnglish() + \
-              " and GetItemID of " + Location(hintedLocation)->GetPlacedItem().GetItemId() + "\n"); */
+              " and GetItemID of " + Location(hintedLocation)->GetPlacedItem().GetItemId() + "\n"); 
   DebugPrint("Checking location %s's item which is %s and GetItemID of %#04x and hint text is %s\n", Location(hintedLocation)->GetName().c_str(), \
              Location(hintedLocation)->GetPlacedItemName().GetEnglish().c_str(), \
              Location(hintedLocation)->GetPlacedItem().GetItemId(), \
              Location(hintedLocation)->GetPlacedItem().GetHint().GetText().GetEnglish().c_str());
-  Text itemText = Location(hintedLocation)->GetPlacedItem().GetHint().GetText();
+  Text itemText = Location(hintedLocation)->GetPlacedItem().GetHint().GetText(); */
   if (Location(hintedLocation)->IsDungeon()) {
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
     Text locationText = AreaTable(parentRegion)->GetHint().GetText();
+    CitraPrint("Random Loc Hint: Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
     Text finalHint = Hint(PREFIX).GetText()+"#"+locationText+"# "+Hint(HOARDS).GetText()+" #"+itemText+"#.";
     PlacementLog_Msg("\tMessage: ");
     PlacementLog_Msg(finalHint.english);
     PlacementLog_Msg("\n\n");
     AddHint(finalHint, gossipStone, {QM_GREEN, QM_RED});
   } else {
-    CitraPrint("Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(Location(hintedLocation)->GetParentRegionKey())->GetName());
+    CitraPrint("Random Loc Hint: Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(Location(hintedLocation)->GetParentRegionKey())->GetName());
     Text locationText = GetHintRegion(Location(hintedLocation)->GetParentRegionKey())->GetHint().GetText();
     Text finalHint = Hint(PREFIX).GetText()+"#"+itemText+"# "+Hint(CAN_BE_FOUND_AT).GetText()+" #"+locationText+"#.";
     PlacementLog_Msg("\tMessage: ");
