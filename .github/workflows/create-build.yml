@@ -47,12 +47,11 @@ jobs:
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.TOKEN }}
 
       - name: Run Build Script
         run: |
-          apt install openssh-client -y
-          eval `ssh-agent -s`
-          ssh-add - <<< '${{ secrets.SSH_KEY }}'
           chmod +x linux_build_rando.sh
           ./linux_build_rando.sh
 
