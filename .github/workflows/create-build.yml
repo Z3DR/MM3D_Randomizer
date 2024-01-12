@@ -51,8 +51,9 @@ jobs:
       - name: Run Build Script
         run: |
           apt install openssh-client -y
+          git config --global url."https://${{ secrets.TOKEN }}@github".insteadOf https://github
           eval `ssh-agent -s`
-          ssh-agent sh -c 'echo "${{ secrets.GH_PAT }}" | ssh-add -'
+          ssh-add - <<< '${{ secrets.SSH_KEY }}'
           chmod +x linux_build_rando.sh
           ./linux_build_rando.sh
 

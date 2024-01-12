@@ -32,6 +32,7 @@ jobs:
     - name: Compile Project
       run: |
         apt install openssh-client -y
+        git config --global url."https://${{ secrets.TOKEN }}@github".insteadOf https://github
         eval `ssh-agent -s`
-        ssh-agent sh -c 'echo "${{ secrets.GH_PAT }}" | ssh-add -'
+        ssh-add - <<< '${{ secrets.SSH_KEY }}'
         make -j
