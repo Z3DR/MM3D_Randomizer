@@ -52,7 +52,7 @@ jobs:
         run: |
           apt install openssh-client -y
           eval `ssh-agent -s`
-          ssh-agent sh -c 'echo "#{{ secrets.GH_PAT }}" | ssh-add -'
+          ssh-agent sh -c 'echo "${{ secrets.GH_PAT }}" | ssh-add -'
           chmod +x linux_build_rando.sh
           ./linux_build_rando.sh
 
