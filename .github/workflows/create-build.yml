@@ -23,8 +23,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.GH_PAT }}
-      - name: Get Last Nightly
+      - name: Get Last Nightly Commit and Private Key
         id: nightly-version
         run: |
           echo "last_nightly=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV
@@ -48,11 +47,10 @@ jobs:
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_PAT }}
 
       - name: Run Build Script
         run: |
+          ssh-agent sh -c 'echo "#{{ secrets.GH_PAT }}' | ssh-add -
           chmod +x linux_build_rando.sh
           ./linux_build_rando.sh
 

@@ -11,8 +11,6 @@ jobs:
     steps:
     - name: Checkout Project
       uses: actions/checkout@v3
-      with:
-          token: ${{ secrets.GH_PAT }}
 
 #    - name: Format Project
 #      uses: DoozyX/clang-format-lint-action@v0.15
@@ -30,8 +28,8 @@ jobs:
     steps:
     - name: Checkout Project
       uses: actions/checkout@v3
-      with:
-          token: ${{ secrets.GH_PAT }}
 
     - name: Compile Project
-      run: make -j
+      run: |
+        ssh-agent sh -c 'echo "#{{ secrets.GH_PAT }}' | ssh-add -
+        make -j
