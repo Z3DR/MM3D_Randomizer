@@ -34,5 +34,7 @@ jobs:
     - name: Compile Project
       run: |
         apt install openssh-client -y
+        eval `ssh-agent -s`
+        ssh-agent sh -c 'echo "${{ secrets.SSH_KEY }}" | ssh-add -'
         git config --global --add url.git@github.com:.insteadOf https://github.com/
         make -j
