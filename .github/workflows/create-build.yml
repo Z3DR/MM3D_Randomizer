@@ -50,6 +50,7 @@ jobs:
 
       - name: Run Build Script
         run: |
+          apt install openssh-client -y
           ssh-agent sh -c 'echo "#{{ secrets.GH_PAT }}' | ssh-add -
           chmod +x linux_build_rando.sh
           ./linux_build_rando.sh

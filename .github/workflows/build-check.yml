@@ -31,5 +31,6 @@ jobs:
 
     - name: Compile Project
       run: |
+        apt install openssh-client -y
         ssh-agent sh -c 'echo "#{{ secrets.GH_PAT }}' | ssh-add -
         make -j
