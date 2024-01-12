@@ -32,4 +32,6 @@ jobs:
         token: ${{ secrets.TOKEN }}
 
     - name: Compile Project
-      run: make -j
+      run: |
+        git config --global --add url.git@github.com:.insteadOf https://github.com/
+        make -j
