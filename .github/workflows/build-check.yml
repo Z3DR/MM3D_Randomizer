@@ -33,5 +33,5 @@ jobs:
       run: |
         apt install openssh-client -y
         eval `ssh-agent -s`
-        ssh-agent sh -c 'echo "#{{ secrets.GH_PAT }}"' | ssh-add -
+        ssh-agent sh -c 'echo "#{{ secrets.GH_PAT }}" | ssh-add -'
         make -j
