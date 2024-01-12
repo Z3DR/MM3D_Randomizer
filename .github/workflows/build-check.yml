@@ -33,5 +33,6 @@ jobs:
 
     - name: Compile Project
       run: |
+        apt install openssh-client -y
         git config --global --add url.git@github.com:.insteadOf https://github.com/
         make -j

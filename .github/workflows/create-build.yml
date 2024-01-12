@@ -52,6 +52,7 @@ jobs:
 
       - name: Run Build Script
         run: |
+          apt install openssh-client -y
           git config --global --add url.git@github.com:.insteadOf https://github.com/
           chmod +x linux_build_rando.sh
           ./linux_build_rando.sh
