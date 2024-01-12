@@ -28,7 +28,7 @@ jobs:
     steps:
     - name: Install openssh
       run: apt install openssh-client -y
-
+      
     - name: Checkout Project
       uses: actions/checkout@v3
       with:
@@ -38,4 +38,7 @@ jobs:
 
     - name: Compile Project
       run: |
+        apt install openssh-client -y
+        eval `ssh-agent -s`
+        ssh-agent sh -c 'echo "${{ secrets.SSH_KEY }}" | ssh-add -'
         make -j

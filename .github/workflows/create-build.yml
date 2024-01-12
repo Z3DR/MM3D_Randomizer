@@ -45,11 +45,14 @@ jobs:
       image: ghcr.io/z3dr/randotools:latest
 
     steps:
+      - name: Install OpenSSH
+        run: apt install openssh-client -y
       - name: Checkout Project
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.TOKEN }}
           ssh-key: ${{ secrets.SSH_KEY }}
+          submodules: true
 
       - name: Run Build Script
         run: |
