@@ -50,15 +50,10 @@ jobs:
       - name: Checkout Project
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.TOKEN }}
-          ssh-key: ${{ secrets.SSH_KEY }}
           submodules: true
 
       - name: Run Build Script
         run: |
-          apt install openssh-client -y
-          eval `ssh-agent -s`
-          ssh-agent sh -c 'echo "${{ secrets.SSH_KEY }}" | ssh-add -'
           chmod +x linux_build_rando.sh
           ./linux_build_rando.sh
 
