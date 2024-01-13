@@ -45,8 +45,6 @@ jobs:
       image: ghcr.io/z3dr/randotools:latest
 
     steps:
-      - name: Install OpenSSH
-        run: apt install openssh-client -y
       - name: Checkout Project
         uses: actions/checkout@v3
         with:
