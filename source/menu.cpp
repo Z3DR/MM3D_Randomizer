@@ -591,19 +591,19 @@ void GenerateRandomizer() {
     if (WriteAllPatches()) {
         printf("Done");
         if (Settings::PlayOption == PATCH_CONSOLE) {
-            printf("\x1b[14;10HQuit out using the home menu. Then\n");
-            printf("\x1b[15;10Henable game patching and launch MM3D!\n");
+            printf("\x1b[15;10HQuit out using the home menu. Then\n");
+            printf("\x1b[16;10Henable game patching and launch MM3D!\n");
         }
         else if (Settings::PlayOption == PATCH_CITRA) {
-            printf("\x1b[14;10HCopy code.ips, exheader.bin and romfs to\n");
-            printf("\x1b[15;10Hthe MM3D mods folder, then launch MM3D!\n");
+            printf("\x1b[15;10HCopy code.ips, exheader.bin and romfs to\n");
+            printf("\x1b[16;10Hthe MM3D mods folder, then launch MM3D!\n");
         }
 
 
         const auto& randomizerHash = GetRandomizerHash();
-        printf("\x1b[17;10HHash:");
+        printf("\x1b[18;10HHash:");
         for (size_t i = 0; i < randomizerHash.size(); i++) {
-            printf("\x1b[%zu;11H- %s", i + 18, randomizerHash[i].c_str());
+            printf("\x1b[%zu;11H- %s", i + 19, randomizerHash[i].c_str());
         }
     }
     else {

@@ -202,7 +202,7 @@ static void CreateLocationHint(const std::vector<LocationKey>& possibleHintLocat
 
   Text finalHint = prefix + locationHintText + " #"+itemHintText+"#.";
   PlacementLog_Msg("\tMessage: ");
- // PlacementLog_Msg(finalHint.english);
+  PlacementLog_Msg(finalHint.english);
   PlacementLog_Msg("\n\n");
 
   AddHint(finalHint, gossipStone, {QM_GREEN, QM_RED});
