@@ -312,20 +312,15 @@ string_view gossipStonesHintsDesc     = "Gossip Stones can be made to give hints
 /*------------------------------                                                           //
 |        CLEARER HINTS         |                                                           //
 ------------------------------*/                                                           //
-string_view clearerHintsDesc          = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "The hints provided by Gossip Stones will be very\n"
+string_view clearerHintsDesc          = "The hints provided by Gossip Stones will be very\n"
                                         "direct if this option is enabled.";               //    
 /*------------------------------                                                           //
 |      HINT DISTRIBUTION       |                                                           //
 ------------------------------*/                                                           //
-string_view uselessHintsDesc          = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Only junk hints.";                                //
-string_view balancedHintsDesc         = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Recommended hint spread.";                        //
-string_view strongHintsDesc           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "More useful hints.";                              //
-string_view veryStrongHintsDesc       = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Many powerful hints.";                            //
+string_view uselessHintsDesc          = "Only junk hints.";                                //
+string_view balancedHintsDesc         = "Recommended hint spread.";                        //
+string_view strongHintsDesc           = "More useful hints.";                              //
+string_view veryStrongHintsDesc       = "Many powerful hints.";                            //
                                                                                            //
 /*------------------------------                                                           //
 |    CHANGE OVERWORLD SPIRTES  |                                                           //

@@ -529,7 +529,7 @@ static void WriteWayOfTheHeroLocation(tinyxml2::XMLDocument& spoilerLog) {
 }
 
 // Writes the hints to the spoiler log, if they are enabled.
-/*static void WriteHints(tinyxml2::XMLDocument& spoilerLog) {
+static void WriteHints(tinyxml2::XMLDocument& spoilerLog) {
   if (Settings::GossipStoneHints.Is((u8)GossipStoneHintsSetting::HINTS_NO_HINTS)) {
     return;
   }
@@ -549,7 +549,7 @@ static void WriteWayOfTheHeroLocation(tinyxml2::XMLDocument& spoilerLog) {
   }
 
   spoilerLog.RootElement()->InsertEndChild(parentNode);
-}*/
+}
 
 static void WriteAllLocations(tinyxml2::XMLDocument& spoilerLog) {
   auto parentNode = spoilerLog.NewElement("all-locations");
@@ -585,7 +585,7 @@ bool SpoilerLog_Write() {
   playthroughBeatable = false;
   wothLocations.clear();
 
-  //WriteHints(spoilerLog);
+  WriteHints(spoilerLog);
  // WriteShuffledEntrances(spoilerLog);
   WriteAllLocations(spoilerLog);
 

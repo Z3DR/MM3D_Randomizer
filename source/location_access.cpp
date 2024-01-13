@@ -665,7 +665,7 @@ void AreaTable_Init() {
 		Entrance(ROAD_TO_IKANA, {[]{return true;}}),
 	});
 
-	areaTable[TERMINA_FIELD_PEAHAT_GROTTO] = Area("Termina Field Peahat Grotto","Termina Field Peahat Grotto", NONE,{
+	areaTable[TERMINA_FIELD_PEAHAT_GROTTO] = Area("Termina Field Peahat Grotto","Termina Field Peahat Grotto", TERMINA_FIELD_PEAHAT_GROTTO,{
 		//Events
 	},
 	{
@@ -677,7 +677,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_DODONGO_GROTTO] = Area("Termina Field Dodongo Grotto","Termina Field Dodongo Grotto", NONE,{
+	areaTable[TERMINA_FIELD_DODONGO_GROTTO] = Area("Termina Field Dodongo Grotto","Termina Field Dodongo Grotto", TERMINA_FIELD_DODONGO_GROTTO,{
 		//Events
 	},
 	{
@@ -689,7 +689,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_BIO_BABA_GROTTO] = Area("Termina Field Bio Baba Grotto","Termina Field Bio Baba Grotto", NONE,{
+	areaTable[TERMINA_FIELD_BIO_BABA_GROTTO] = Area("Termina Field Bio Baba Grotto","Termina Field Bio Baba Grotto", TERMINA_FIELD_BIO_BABA_GROTTO,{
 		//Events
 	},
 	{
@@ -700,7 +700,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_PILLAR_GROTTO] = Area("Termina Field Pillar Grotto","Termina Field Pillar Grotto", NONE,{
+	areaTable[TERMINA_FIELD_PILLAR_GROTTO] = Area("Termina Field Pillar Grotto","Termina Field Pillar Grotto", TERMINA_FIELD_PILLAR_GROTTO,{
 		//Events
 	},
 	{
@@ -711,7 +711,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_GRASS_GROTTO] = Area("Termina Field Grass Grotto","Termina Field Grass Grotto", NONE,{
+	areaTable[TERMINA_FIELD_GRASS_GROTTO] = Area("Termina Field Grass Grotto","Termina Field Grass Grotto", TERMINA_FIELD_GRASS_GROTTO,{
 		//Events
 	},
 	{
@@ -722,7 +722,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 	});
-	areaTable[TERMINA_FIELD_BUSINESS_SCRUB_GROTTO] = Area("Termina Field Business Scrub Grotto","Termina Field Business Scrub Grotto", NONE,{
+	areaTable[TERMINA_FIELD_BUSINESS_SCRUB_GROTTO] = Area("Termina Field Business Scrub Grotto","Termina Field Business Scrub Grotto", TERMINA_FIELD_BUSINESS_SCRUB_GROTTO,{
 		//Events
 	},
 	{
@@ -733,7 +733,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_COW_GROTTO] = Area("Termina Field Cow Grotto","Termina Field Cow Grotto", NONE,{
+	areaTable[TERMINA_FIELD_COW_GROTTO] = Area("Termina Field Cow Grotto","Termina Field Cow Grotto", TERMINA_FIELD_COW_GROTTO,{
 		//Events
 	},
 	{
@@ -745,7 +745,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_GOSSIP_STONES_GROTTO] = Area("Termina Field Gossip Stones Grotto","Termina Field Gossip Stones Grotto", NONE,{
+	areaTable[TERMINA_FIELD_GOSSIP_STONES_GROTTO] = Area("Termina Field Gossip Stones Grotto","Termina Field Gossip Stones Grotto", TERMINA_FIELD_GOSSIP_STONES_GROTTO,{
 		//Events
 	},
 	{
@@ -3457,7 +3457,7 @@ void AreaTable_Init() {
 	});
 
 
-	areaTable[SECRET_SHRINE_ENTRANCE] = Area("Secret Shrine Entrance", "Secret Shrine Entrance", SECRET_SHRINE_ENTRANCE, {
+	areaTable[SECRET_SHRINE_ENTRANCE] = Area("Secret Shrine Entrance", "Secret Shrine Entrance", SECRET_SHRINE, {
 		//Events
 	}, 
 	{
@@ -3469,7 +3469,7 @@ void AreaTable_Init() {
 		Entrance(SECRET_SHRINE_CENTER_ROOM, {[]{return LightArrows && Bow && MagicMeter;}}),
 	});
 
-	areaTable[SECRET_SHRINE_CENTER_ROOM] = Area("Secret Shrine Center Room", "Secret Shrine Center Room", SECRET_SHRINE_CENTER_ROOM, {
+	areaTable[SECRET_SHRINE_CENTER_ROOM] = Area("Secret Shrine Center Room", "Secret Shrine Center Room", SECRET_SHRINE, {
 		//Events
 	},
 	{
@@ -3485,7 +3485,7 @@ void AreaTable_Init() {
 		Entrance(SECRET_SHRINE_GARO_ROOM, {[]{return true;}}),
 	});
 
-	areaTable[SECRET_SHRINE_DINOLFOS_ROOM] = Area("Secret Shrine Dinolfos Room", "Secret Shrine Dinolfos Room", SECRET_SHRINE_DINOLFOS_ROOM, {
+	areaTable[SECRET_SHRINE_DINOLFOS_ROOM] = Area("Secret Shrine Dinolfos Room", "Secret Shrine Dinolfos Room", SECRET_SHRINE, {
 		//Events
 	},
 	{
@@ -3497,7 +3497,7 @@ void AreaTable_Init() {
 		Entrance(SECRET_SHRINE_CENTER_ROOM, {[]{return true;}}),
 	});
 
-	areaTable[SECRET_SHRINE_WIZZROBE_ROOM] = Area("Secret Shrine Wizzrobe Room", "Secret Shrine Wizzrobe Room", SECRET_SHRINE_WIZZROBE_ROOM, {
+	areaTable[SECRET_SHRINE_WIZZROBE_ROOM] = Area("Secret Shrine Wizzrobe Room", "Secret Shrine Wizzrobe Room", SECRET_SHRINE, {
 		//Events
 	},
 	{
@@ -3509,7 +3509,7 @@ void AreaTable_Init() {
 		Entrance(SECRET_SHRINE_CENTER_ROOM, {[]{return true;}}),
 	});
 
-	areaTable[SECRET_SHRINE_WART_ROOM] = Area("Secret Shrine Wart Room", "Secret Shrine Wart Room", SECRET_SHRINE_WART_ROOM, {
+	areaTable[SECRET_SHRINE_WART_ROOM] = Area("Secret Shrine Wart Room", "Secret Shrine Wart Room", SECRET_SHRINE, {
 		//Events
 	},
 	{
@@ -3521,7 +3521,7 @@ void AreaTable_Init() {
 		Entrance(SECRET_SHRINE_CENTER_ROOM, {[]{return true;}}),
 	});
 
-	areaTable[SECRET_SHRINE_GARO_ROOM] = Area("Secret Shrine Garo Room", "Secret Shrine Garo Room", SECRET_SHRINE_GARO_ROOM, {
+	areaTable[SECRET_SHRINE_GARO_ROOM] = Area("Secret Shrine Garo Room", "Secret Shrine Garo Room", SECRET_SHRINE, {
 		//Events
 	},
 	{
@@ -3550,7 +3550,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_LINK_TRIAL_ENTRANCE, {[]{return (TotalMaskCount() >= 4);}}),
 	});
 
-	areaTable[THE_MOON_DEKU_TRIAL] = Area("The Moon Deku Trial", "The Moon Deku Trial", THE_MOON_DEKU_TRIAL, {
+	areaTable[THE_MOON_DEKU_TRIAL] = Area("The Moon Deku Trial", "The Moon Deku Trial", THE_MOON, {
 		//Events
 	},
 	{
@@ -3569,7 +3569,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_DEKU_TRIAL_KID_ROOM, {[]{return DekuMask;}}),
 	});
 
-	areaTable[THE_MOON_DEKU_TRIAL_KID_ROOM] = Area("The Moon Deku Trial Kid Room", "The Moon Deku Trial Kid Room", THE_MOON_DEKU_TRIAL_KID_ROOM, {
+	areaTable[THE_MOON_DEKU_TRIAL_KID_ROOM] = Area("The Moon Deku Trial Kid Room", "The Moon Deku Trial Kid Room", THE_MOON, {
 		//Events
 	},
 	{
@@ -3581,7 +3581,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_DEKU_TRIAL, {[]{return true;}}),
 	});
 
-	areaTable[THE_MOON_GORON_TRIAL] = Area("The Moon Goron Trial", "The Moon Goron Trial", THE_MOON_GORON_TRIAL, {
+	areaTable[THE_MOON_GORON_TRIAL] = Area("The Moon Goron Trial", "The Moon Goron Trial", THE_MOON, {
 		//Events
 	},
 	{
@@ -3600,7 +3600,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_GORON_TRIAL_KID_ROOM, {[]{return GoronMask;}}),
 	});
 
-	areaTable[THE_MOON_GORON_TRIAL_KID_ROOM] = Area("The Moon Goron Trial Kid Room", "The Moon Goron Trial Kid Room", THE_MOON_GORON_TRIAL_KID_ROOM, {
+	areaTable[THE_MOON_GORON_TRIAL_KID_ROOM] = Area("The Moon Goron Trial Kid Room", "The Moon Goron Trial Kid Room", THE_MOON, {
 		//Events
 	},
 	{
@@ -3612,7 +3612,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_GORON_TRIAL, {[]{return GoronMask;}}),
 	});
 
-	areaTable[THE_MOON_ZORA_TRIAL] = Area("The Moon Zora Trial", "The Moon Zora Trial", THE_MOON_ZORA_TRIAL, {
+	areaTable[THE_MOON_ZORA_TRIAL] = Area("The Moon Zora Trial", "The Moon Zora Trial", THE_MOON, {
 		//Events
 	},
 	{
@@ -3631,7 +3631,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_ZORA_TRIAL_KID_ROOM, {[]{return ZoraMask && MagicMeter;}}),
 	});
 
-	areaTable[THE_MOON_ZORA_TRIAL_KID_ROOM] = Area("The Moon Zora Trial Kid Room", "The Moon Zora Trial Kid Room", THE_MOON_ZORA_TRIAL_KID_ROOM, {
+	areaTable[THE_MOON_ZORA_TRIAL_KID_ROOM] = Area("The Moon Zora Trial Kid Room", "The Moon Zora Trial Kid Room", THE_MOON, {
 		//Events
 	},
 	{
@@ -3643,7 +3643,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_ZORA_TRIAL, {[]{return true;}}),
 	});
 
-	areaTable[THE_MOON_LINK_TRIAL_ENTRANCE] = Area("The Moon Link Trial Entrance", "The Moon Link Trial Entrance", THE_MOON_LINK_TRIAL_ENTRANCE, {
+	areaTable[THE_MOON_LINK_TRIAL_ENTRANCE] = Area("The Moon Link Trial Entrance", "The Moon Link Trial Entrance", THE_MOON, {
 		//Events
 	},
 	{
@@ -3655,7 +3655,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_LINK_TRIAL_DINOLFOS_ROOM, {[]{return true;}}),
 	});
 
-	areaTable[THE_MOON_LINK_TRIAL_DINOLFOS_ROOM] = Area("The Moon Link Trial Dinolfos Room", "The Moon Link Trial Dinolfos Room", THE_MOON_LINK_TRIAL_DINOLFOS_ROOM, {
+	areaTable[THE_MOON_LINK_TRIAL_DINOLFOS_ROOM] = Area("The Moon Link Trial Dinolfos Room", "The Moon Link Trial Dinolfos Room", THE_MOON, {
 		//Events
 	},
 	{
@@ -3667,7 +3667,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_LINK_TRIAL_GOSSIP_ROOM_1, {[]{return Fighting;}}),
 	});
 
-	areaTable[THE_MOON_LINK_TRIAL_GOSSIP_ROOM_1] = Area("The Moon Link Trial Gossip Room 1", "The Moon Link Trial Gossip Room 1", THE_MOON_LINK_TRIAL_GOSSIP_ROOM_1, {
+	areaTable[THE_MOON_LINK_TRIAL_GOSSIP_ROOM_1] = Area("The Moon Link Trial Gossip Room 1", "The Moon Link Trial Gossip Room 1", THE_MOON, {
 		//Events
 	},
 	{
@@ -3681,7 +3681,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_LINK_TRIAL_GARO_ROOM, {[]{return true;}}),
 	});
 
-	areaTable[THE_MOON_LINK_TRIAL_GARO_ROOM] = Area("The Moon Link Trial Garo Room", "The Moon Link Trial Garo Room", THE_MOON_LINK_TRIAL_GARO_ROOM, {
+	areaTable[THE_MOON_LINK_TRIAL_GARO_ROOM] = Area("The Moon Link Trial Garo Room", "The Moon Link Trial Garo Room", THE_MOON, {
 		//Events
 	},
 	{
@@ -3694,7 +3694,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_LINK_TRIAL_GOSSIP_ROOM_2, {[]{return Fighting && Hookshot;}}),
 	});
 
-	areaTable[THE_MOON_LINK_TRIAL_GOSSIP_ROOM_2] = Area("The Moon Link Trial Gossip Room 2", "The Moon Link Trial Gossip Room 2", THE_MOON_LINK_TRIAL_GOSSIP_ROOM_2, {
+	areaTable[THE_MOON_LINK_TRIAL_GOSSIP_ROOM_2] = Area("The Moon Link Trial Gossip Room 2", "The Moon Link Trial Gossip Room 2", THE_MOON, {
 		//Events
 	},
 	{
@@ -3708,7 +3708,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_LINK_TRIAL_IRON_KNUCKLE_ROOM, {[]{return true;}}),
 	});
 
-	areaTable[THE_MOON_LINK_TRIAL_IRON_KNUCKLE_ROOM] = Area("The Moon Link Trial Iron Knuckle Room", "The Moon Link Trial Iron Knuckle Room", THE_MOON_LINK_TRIAL_IRON_KNUCKLE_ROOM, {
+	areaTable[THE_MOON_LINK_TRIAL_IRON_KNUCKLE_ROOM] = Area("The Moon Link Trial Iron Knuckle Room", "The Moon Link Trial Iron Knuckle Room", THE_MOON, {
 		//Events
 	},
 	{
@@ -3724,7 +3724,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM, {[]{return Fighting && AnyBombBag && Bow;}}),
 	});
 
-	areaTable[THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM] = Area("The Moon Link Trial Piece of Heart Room", "The Moon Link Trial Piece of Heart Room", THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM, {
+	areaTable[THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM] = Area("The Moon Link Trial Piece of Heart Room", "The Moon Link Trial Piece of Heart Room", THE_MOON, {
 		//Events
 	},
 	{
@@ -3739,7 +3739,7 @@ void AreaTable_Init() {
 		Entrance(THE_MOON_LINK_TRIAL_KID_ROOM, {[]{return (AnyBombBag && FireArrows && Bow && MagicMeter) || CanPlay(SongOfStorms);}}),
 	});
 
-	areaTable[THE_MOON_LINK_TRIAL_KID_ROOM] = Area("The Moon Link Trial Kid Room", "The Moon Link Trial Kid Room", THE_MOON_LINK_TRIAL_KID_ROOM, {
+	areaTable[THE_MOON_LINK_TRIAL_KID_ROOM] = Area("The Moon Link Trial Kid Room", "The Moon Link Trial Kid Room", THE_MOON, {
 		//Events
 	},
 	{
