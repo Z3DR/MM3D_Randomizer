@@ -162,9 +162,13 @@ static void AddHint(Text hint, const LocationKey gossipStone, const std::vector<
 
   //create the in game message
   u16 messageId = Location(gossipStone)->GetTextID();
+  std::vector<iconType> icons = {};
   //u32 sariaMessageId = 0xA00 + Location(gossipStone)->GetFlag();
   CitraPrint("Our hint text is " + hint.GetEnglish());
-  CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, hint.GetEnglish().c_str(), colors, {}, {}, 0x0, false, false);
+  if (hint.GetEnglish().find("$")) {
+    icons.push_back(B_BUTTON);
+  }
+  CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, hint.GetEnglish().c_str(), colors, icons, {}, 0x0, false, false);
   //CreateMessageFromTextObject(messageId, 0, 2, 3, AddColorsAndFormat(hint, colors));
   //CreateMessageFromTextObject(sariaMessageId, 0, 2, 3, AddColorsAndFormat(hint + EVENT_TRIGGER(), colors));
 }
@@ -394,6 +398,10 @@ static void CreateJunkHint() {
 
   PlacementLog_Msg("\tMessage: ");
   PlacementLog_Msg(hint.english);
+  PlacementLog_Msg("\n");
+
+  PlacementLog_Msg("\tLocation: ");
+  PlacementLog_Msg(Location(gossipStone)->GetName());
   PlacementLog_Msg("\n\n");
 
   AddHint(hint, gossipStone, {QM_RED});

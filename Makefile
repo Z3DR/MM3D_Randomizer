@@ -38,7 +38,7 @@ TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source
 DATA		:=	data
-INCLUDES	:=	source/include Z3DR/patch_code/mm3d/include
+INCLUDES	:=	source/include Z3DR/code/include
 GRAPHICS	:=	gfx
 GFXBUILD	:=	$(BUILD)
 ROMFS		:=	romfs
@@ -175,10 +175,10 @@ all: $(BUILD) $(GFXBUILD) $(DEPSDIR) $(ROMFS_T3XFILES) $(T3XHFILES)
 
 $(BUILD):
 	@git submodule update --init
-	$(MAKE) -C Z3DR/patch_code/mm3d/
-	@mv Z3DR/patch_code/mm3d/basecode.ips $(ROMFS)/basecode.ips
-	@mv Z3DR/patch_code/mm3d/basecode1.1.ips $(ROMFS)/basecode1.1.ips
-	@mv Z3DR/patch_code/mm3d/patch_symbols.hpp $(CURDIR)/source/include/
+	$(MAKE) -C Z3DR/code/
+	@mv Z3DR/code/basecode.ips $(ROMFS)/basecode.ips
+	@mv Z3DR/code/basecode1.1.ips $(ROMFS)/basecode1.1.ips
+	@mv Z3DR/source/patch_symbols.hpp $(CURDIR)/source/include/
 	@mkdir -p $@
 
 ifneq ($(GFXBUILD),$(BUILD))
@@ -195,8 +195,9 @@ endif
 clean:
 	@echo Cleaning app and basecode ...
 	@rm -fr $(BUILD) $(TARGET).3dsx $(TARGET).cia $(OUTPUT).smdh $(TARGET).elf $(GFXBUILD) $(ROMFS)/basecode.ips source/include/patch_symbols.hpp
-	$(MAKE) clean -f Z3DR/patch_code/mm3d/Makefile 
-	@rm -rf Z3DR/patch_code/mm3d/build
+	$(MAKE) clean -f Z3DR/code/Makefile 
+	@rm -rf Z3DR/code/build
+	@rm -rf Z3DR/code/basecode.ips Z3DR/code/basecode1.1.ips Z3DR/code/code.elf Z3DR/source/patch_symbols.hpp
 #---------------------------------------------------------------------------------
 $(GFXBUILD)/%.t3x	$(BUILD)/%.h	:	%.t3s
 #---------------------------------------------------------------------------------

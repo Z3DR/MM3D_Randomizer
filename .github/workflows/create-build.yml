@@ -1,0 +1,442 @@
+name: MM3DR Build Script
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Build type:'
+        required: true
+        type: choice
+        options:
+        - Nightly
+        - Release
+      version:
+        description: 'Release version: (For example: 3.2)'
+        required: false
+
+jobs:
+  get-changelog:
+    name: Retrieve Changelog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get Last Nightly Commit and Private Key
+        id: nightly-version
+        run: |
+          echo "last_nightly=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV
+      - name: Generate changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v4.0.1
+        with:
+          myToken: ${{ secrets.GITHUB_TOKEN }}
+          base-ref: ${{ env.last_nightly }}
+    outputs:
+      changelog: ${{ steps.changelog.outputs.changelog }}
+      last-nightly: ${{ env.last_nightly }}
+
+  build-cia-3dsx:
+    needs: get-changelog
+    name: Build CIA and 3DSX Files
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/z3dr/randotools:latest
+
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Run Build Script
+        run: |
+          chmod +x linux_build_rando.sh
+          ./linux_build_rando.sh
+
+      - name: Get shorthand commit.
+        id: vars
+        run: echo "sha_short=$(echo ${{ github.sha }} | cut -c1-6)" >> $GITHUB_ENV
+
+      - if: ${{ github.event.inputs.build_type == 'Nightly' }}
+        name: Create Pre-release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          artifacts: "MM3D_Randomizer.cia,MM3D_Randomizer.3dsx,cia.png,3dsx.png"
+          prerelease: true
+          commit: "${{ github.sha }}"
+          tag: "Nightly-${{ env.sha_short }}"
+          name: "Nightly-${{ env.sha_short }}"
+          body: |
+            Please note that these are DEVELOPMENT builds and may not be entirely stable.
+            When reporting issues, please mention the six character commit listed in the randomizer menu.
+            You can use the FBI homebrew application to install the randomizer using either of these QR codes.
+            CIA QR Code:
+            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/Nightly-${{ env.sha_short }}/cia.png)
+            3DSX QR Code:
+            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/Nightly-${{ env.sha_short }}/3dsx.png)
+
+            Changes Since [${{ needs.get-changelog.outputs.last-nightly }}](https://github.com/${{ github.repository }}/releases/tag/${{ needs.get-changelog.outputs.last-nightly }}) 🛠:  
+            ${{ needs.get-changelog.outputs.changelog }}
+
+
+      - if: ${{ github.event.inputs.build_type == 'Release' }}
+        name: Create Release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          artifacts: "MM3D_Randomizer.cia,MM3D_Randomizer.3dsx,cia.png,3dsx.png"
+          prerelease: false
+          commit: "${{ github.sha }}"
+          tag: "v${{ github.event.inputs.version }}"
+          name: "v${{ github.event.inputs.version }}"
+          body: |
+            ${{ github.event.inputs.version }} Changes:
+            - Please check back later for a full list of changes.
+            
+            When reporting issues, please mention the six character commit listed in the randomizer menu.
+            You can use the FBI homebrew application to install the randomizer using either of these QR codes.
+            CIA QR Code:
+            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/Nightly-${{ env.sha_short }}/cia.png)
+            3DSX QR Code:
+            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/Nightly-${{ env.sha_short }}/3dsx.png)
+
+  deploy-gist:
+    needs: build-cia-3dsx
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create basic JSON struct.
+
+        run: |
+          cat >> ./MM3DR.unistore<< EOF
+          {
+            "storeContent": [
+              {
+                "info": {
+                  "title": "MM3D Randomizer <VERSION_STABLE>",
+                  "author": "Z3DR Team",
+                  "description": "A randomizer patch for MM3D to be used with Luma for Nintendo 3DS",
+                  "category": [
+                    "game patch"
+                  ],
+                  "console": [
+                    "3DS"
+                  ],
+                  "icon_index": 2,
+                  "sheet_index": 0,
+                  "last_updated": "<VERSION_STABLE_MODIFIED> at <VERSION_STABLE_TIME> (UTC)",
+                  "license": "MIT",
+                  "version": "<VERSION_STABLE>"
+                },
+                "Download MM3D_Randomizer.3dsx": [
+                  {
+                    "file": "https://github.com/Z3DR/MM3D_Randomizer/releases/latest/download/MM3D_Randomizer.3dsx",
+                    "message": "Downloading MM3D_Randomizer_<VERSION_STABLE>.3dsx...",
+                    "output": "%3DSX%/MM3D_Randomizer_<VERSION_STABLE>.3dsx",
+                    "type": "downloadFile"
+                  }
+                ],
+                "Download MM3D_Randomizer.cia": [
+                  {
+                    "file": "https://github.com/Z3DR/MM3D_randomizer/releases/latest/download/MM3D_Randomizer.cia",
+                    "message": "Downloading MM3D_Randomizer_<VERSION_STABLE>.cia...",
+                    "output": "sdmc:/MM3D_Randomizer_<VERSION_STABLE>.cia",
+                    "type": "downloadFile"
+                  },
+                  {
+                    "file": "/MM3D_Randomizer_<VERSION_STABLE>.cia",
+                    "message": "Installing MM3D_Randomizer_<VERSION_STABLE>.cia...",
+                    "type": "installCia"
+                  },
+                  {
+                    "file": "sdmc:/MM3D_Randomizer_<VERSION_STABLE>.cia",
+                    "message": "Deleting MM3D_Randomizer_<VERSION_STABLE>.cia.",
+                    "type": "deleteFile"
+                  }
+                ]
+              },
+              {
+                "info": {
+                  "title": "MM3D Randomizer Nightly <NIGHTLY_1>",
+                  "author": "MM3DR Team",
+                  "description": "A randomizer patch for MM3D to be used with Luma for Nintendo 3DS",
+                  "category": [
+                    "game patch"
+                  ],
+                  "console": [
+                    "3DS"
+                  ],
+                  "icon_index": 1,
+                  "sheet_index": 0,
+                  "last_updated": "<NIGHTLY_1_CREATED> at <NIGHTLY_1_TIME> (UTC)",
+                  "license": "MIT",
+                  "version": "<NIGHTLY_1>"
+                },
+                "Download MM3D_Randomizer.3dsx": [
+                  {
+                    "file": "<NIGHTLY_1_URL_3DSX>",
+                    "message": "Downloading MM3D_Randomizer_<NIGHTLY_1>.3dsx...",
+                    "output": "%3DSX%/MM3D_Randomizer_<NIGHTLY_1>.3dsx",
+                    "type": "downloadFile"
+                  }
+                ],
+                "Download MM3D_Randomizer.cia": [
+                  {
+                    "file": "<NIGHTLY_1_URL_CIA>",
+                    "message": "Downloading MM3D_Randomizer_<NIGHTLY_1>.cia...",
+                    "output": "sdmc:/MM3D_Randomizer_<NIGHTLY_1>.cia",
+                    "type": "downloadFile"
+                  },
+                  {
+                    "file": "/MM3D_Randomizer_<NIGHTLY_1>.cia",
+                    "message": "Installing MM3D_Randomizer_<NIGHTLY_1>.cia...",
+                    "type": "installCia"
+                  },
+                  {
+                    "file": "sdmc:/MM3D_Randomizer_<NIGHTLY_1>.cia",
+                    "message": "Deleting MM3D_Randomizer_<NIGHTLY_1>.cia.",
+                    "type": "deleteFile"
+                  }
+                ]
+              },
+              {
+                "info": {
+                  "title": "MM3D Randomizer Nightly <NIGHTLY_2>",
+                  "author": "MM3DR Team",
+                  "description": "A randomizer patch for MM3D to be used with Luma for Nintendo 3DS",
+                  "category": [
+                    "game patch"
+                  ],
+                  "console": [
+                    "3DS"
+                  ],
+                  "icon_index": 1,
+                  "sheet_index": 0,
+                  "last_updated": "<NIGHTLY_2_CREATED> at <NIGHTLY_2_TIME> (UTC)",
+                  "license": "MIT",
+                  "version": "<NIGHTLY_2>"
+                },
+                "Download MM3D_Randomizer.3dsx": [
+                  {
+                    "file": "<NIGHTLY_2_URL_3DSX>",
+                    "message": "Downloading MM3D_Randomizer_<NIGHTLY_2>.3dsx...",
+                    "output": "%3DSX%/MM3D_Randomizer_<NIGHTLY_2>.3dsx",
+                    "type": "downloadFile"
+                  }
+                ],
+                "Download MM3D_Randomizer.cia": [
+                  {
+                    "file": "<NIGHTLY_2_URL_CIA>",
+                    "message": "Downloading MM3D_Randomizer_<NIGHTLY_2>.cia...",
+                    "output": "sdmc:/MM3D_Randomizer_<NIGHTLY_2>.cia",
+                    "type": "downloadFile"
+                  },
+                  {
+                    "file": "/MM3D_Randomizer_<NIGHTLY_2>.cia",
+                    "message": "Installing MM3D_Randomizer_<NIGHTLY_2>.cia...",
+                    "type": "installCia"
+                  },
+                  {
+                    "file": "sdmc:/MM3D_Randomizer_<NIGHTLY_2>.cia",
+                    "message": "Deleting MM3D_Randomizer_<NIGHTLY_2>.cia.",
+                    "type": "deleteFile"
+                  }
+                ]
+              },
+              {
+                "info": {
+                  "title": "MM3D Randomizer Nightly <NIGHTLY_3>",
+                  "author": "MM3DR Team",
+                  "description": "A randomizer patch for MM3D to be used with Luma for Nintendo 3DS",
+                  "category": [
+                    "game patch"
+                  ],
+                  "console": [
+                    "3DS"
+                  ],
+                  "icon_index": 1,
+                  "sheet_index": 0,
+                  "last_updated": "<NIGHTLY_3_CREATED> at <NIGHTLY_3_TIME> (UTC)",
+                  "license": "MIT",
+                  "version": "<NIGHTLY_3>"
+                },
+                "Download MM3D_Randomizer.3dsx": [
+                  {
+                    "file": "<NIGHTLY_3_URL_3DSX>",
+                    "message": "Downloading MM3D_Randomizer_<NIGHTLY_3>.3dsx...",
+                    "output": "%3DSX%/MM3D_Randomizer_<NIGHTLY_3>.3dsx",
+                    "type": "downloadFile"
+                  }
+                ],
+                "Download MM3D_Randomizer.cia": [
+                  {
+                    "file": "<NIGHTLY_3_URL_CIA>",
+                    "message": "Downloading MM3D_Randomizer_<NIGHTLY_3>.cia...",
+                    "output": "sdmc:/MM3D_Randomizer_<NIGHTLY_3>.cia",
+                    "type": "downloadFile"
+                  },
+                  {
+                    "file": "/MM3D_Randomizer_<NIGHTLY_3>.cia",
+                    "message": "Installing MM3D_Randomizer_<NIGHTLY_3>.cia...",
+                    "type": "installCia"
+                  },
+                  {
+                    "file": "sdmc:/MM3D_Randomizer_<NIGHTLY_3>.cia",
+                    "message": "Deleting MM3D_Randomizer_<NIGHTLY_3>.cia.",
+                    "type": "deleteFile"
+                  }
+                ]
+              },
+              {
+                "info": {
+                  "title": "MM3D Randomizer Nightly <NIGHTLY_4>",
+                  "author": "MM3DR Team",
+                  "description": "A randomizer patch for MM3D to be used with Luma for Nintendo 3DS",
+                  "category": [
+                    "game patch"
+                  ],
+                  "console": [
+                    "3DS"
+                  ],
+                  "icon_index": 1,
+                  "sheet_index": 0,
+                  "last_updated": "<NIGHTLY_4_CREATED> at <NIGHTLY_4_TIME> (UTC)",
+                  "license": "MIT",
+                  "version": "<NIGHTLY_4>"
+                },
+                "Download MM3D_Randomizer.3dsx": [
+                  {
+                    "file": "<NIGHTLY_4_URL_3DSX>",
+                    "message": "Downloading MM3D_Randomizer_<NIGHTLY_4>.3dsx...",
+                    "output": "%3DSX%/MM3D_Randomizer_<NIGHTLY_4>.3dsx",
+                    "type": "downloadFile"
+                  }
+                ],
+                "Download MM3D_Randomizer.cia": [
+                  {
+                    "file": "<NIGHTLY_4_URL_CIA>",
+                    "message": "Downloading MM3D_Randomizer_<NIGHTLY_4>.cia...",
+                    "output": "sdmc:/MM3D_Randomizer_<NIGHTLY_4>.cia",
+                    "type": "downloadFile"
+                  },
+                  {
+                    "file": "/MM3D_Randomizer_<NIGHTLY_4>.cia",
+                    "message": "Installing MM3D_Randomizer_<NIGHTLY_4>.cia...",
+                    "type": "installCia"
+                  },
+                  {
+                    "file": "sdmc:/MM3D_Randomizer_<NIGHTLY_4>.cia",
+                    "message": "Deleting MM3D_Randomizer_<NIGHTLY_4>.cia.",
+                    "type": "deleteFile"
+                  }
+                ]
+              },
+              {
+                "info": {
+                  "title": "MM3D Randomizer Nightly <NIGHTLY_5>",
+                  "author": "MM3DR Team",
+                  "description": "A randomizer patch for MM3D to be used with Luma for Nintendo 3DS",
+                  "category": [
+                    "game patch"
+                  ],
+                  "console": [
+                    "3DS"
+                  ],
+                  "icon_index": 1,
+                  "sheet_index": 0,
+                  "last_updated": "<NIGHTLY_5_CREATED> at <NIGHTLY_5_TIME> (UTC)",
+                  "license": "MIT",
+                  "version": "<NIGHTLY_5>"
+                },
+                "Download MM3D_Randomizer.3dsx": [
+                  {
+                    "file": "<NIGHTLY_5_URL_3DSX>",
+                    "message": "Downloading MM3D_Randomizer_<NIGHTLY_5>.3dsx...",
+                    "output": "%3DSX%/MM3D_Randomizer_<NIGHTLY_5>.3dsx",
+                    "type": "downloadFile"
+                  }
+                ],
+                "Download MM3D_Randomizer.cia": [
+                  {
+                    "file": "<NIGHTLY_5_URL_CIA>",
+                    "message": "Downloading MM3D_Randomizer_<NIGHTLY_5>.cia...",
+                    "output": "sdmc:/MM3D_Randomizer_<NIGHTLY_5>.cia",
+                    "type": "downloadFile"
+                  },
+                  {
+                    "file": "/MM3D_Randomizer_<NIGHTLY_5>.cia",
+                    "message": "Installing MM3D_Randomizer_<NIGHTLY_5>.cia...",
+                    "type": "installCia"
+                  },
+                  {
+                    "file": "sdmc:/MM3D_Randomizer_<NIGHTLY_5>.cia",
+                    "message": "Deleting MM3D_Randomizer_<NIGHTLY_5>.cia.",
+                    "type": "deleteFile"
+                  }
+                ]
+              }
+            ],
+            "storeInfo": {
+              "title": "MM3D Randomizer",
+              "author": "MM3DR Team",
+              "description": "MM3D Randomizer - An online database of the most recent versions of the random experience for MM3D",
+              "url": "https://phlexplexi.co/unistore",
+              "file": "MM3DR.unistore",
+              "sheetURL": "https://dl.dropboxusercontent.com/s/5qv4ngozhgmyyen/OOT3DR.t3x?dl=1",
+              "sheet": "MM3DR.t3x",
+              "bg_index": 1,
+              "bg_sheet": 0,
+              "revision": <REV_NUMBER>,
+              "version": 3
+            }
+          }
+          EOF
+          echo "Forgive me for this."
+          curl -sb -H "https://api.github.com/repos/Z3DR/MM3D_Randomizer/releases" | jq '.[0:8] | .[].assets | .[3] | (.browser_download_url + " " +.created_at)' | grep "Nightly" | head -n 5 >> ciaDownloads.txt
+          curl -sb -H "https://api.github.com/repos/Z3DR/MM3D_Randomizer/releases" | jq '.[0:8] | .[].assets | .[2] | (.browser_download_url + " " +.created_at)' | grep "Nightly" | head -n 5 >> 3dsxDownloads.txt
+          STABLEVERSION=`curl -sb -H "https://api.github.com/repos/Z3DR/MM3D_Randomizer/releases/latest" | jq '.name'`
+          STABLEMODIFIED=`curl -sb -H "https://api.github.com/repos/Z3DR/MM3D_Randomizer/releases/latest" | jq '.published_at'`
+          STABLEVERSION=`sed -e 's/^"//' -e 's/"$//' <<<"$STABLEVERSION"`
+          STABLEMODIFIED=`sed -e 's/^"//' -e 's/"$//' <<<"$STABLEMODIFIED"`
+          REVISION=`curl -Is -k "https://api.github.com/repos/Z3DR/MM3D_Randomizer/commits?per_page=1" | sed -n '/^[Ll]ink:/ s/.*"next".*page=\([0-9]*\).*"last".*/\1/p'`
+          MODIFIED=$(echo ${STABLEMODIFIED} | cut -c1-10)
+          MODIFIED_DATE=$(echo ${STABLEMODIFIED} | cut -c12-19)
+          sed -i "s#<VERSION_STABLE>#${STABLEVERSION}#g" MM3DR.unistore
+          sed -i "s#<VERSION_STABLE_MODIFIED>#$MODIFIED#g" MM3DR.unistore
+          sed -i "s#<VERSION_STABLE_TIME>#$MODIFIED_DATE#g" MM3DR.unistore
+          sed -i "s#<REV_NUMBER>#$REVISION#g" MM3DR.unistore
+          LINES=$(cat ciaDownloads.txt)
+          LINENUM=1
+          IFS=$'\n' 
+          for LINE in $LINES
+          do
+              LINE=`sed -e 's/^"//' -e 's/"$//' <<<"$LINE"`
+              ARRLINE=($(echo $LINE | tr " " "\n"))
+              sed -i "s#<NIGHTLY_${LINENUM}_URL_CIA>#${ARRLINE[0]}#g" MM3DR.unistore
+              VERSION=$(echo ${ARRLINE[0]} | cut -c75-80)
+              MODIFIED=$(echo ${ARRLINE[1]} | cut -c1-10)
+              MODIFIED_DATE=$(echo ${ARRLINE[1]} | cut -c12-19)
+              sed -i "s#<NIGHTLY_$LINENUM>#$VERSION#g" MM3DR.unistore
+              sed -i "s#<NIGHTLY_${LINENUM}_CREATED>#$MODIFIED#g" MM3DR.unistore
+              sed -i "s#<NIGHTLY_${LINENUM}_TIME>#$MODIFIED_DATE#g" MM3DR.unistore
+              LINENUM=`expr $LINENUM + 1`
+          done
+          LINES=$(cat 3dsxDownloads.txt)
+          LINENUM=1
+          for LINE in $LINES
+          do
+              LINE=`sed -e 's/^"//' -e 's/"$//' <<<"$LINE"`
+              ARRLINE=($(echo $LINE | tr " " "\n"))
+              sed -i "s#<NIGHTLY_${LINENUM}_URL_3DSX>#${ARRLINE[0]}#g" MM3DR.unistore
+              LINENUM=`expr $LINENUM + 1`
+          done
+
+      - name: Deploy to Gist
+        uses: exuanbo/actions-deploy-gist@v1.1.4
+        with:
+          token: ${{ secrets.TOKEN }}
+          gist_id: a0bb911772800a7071eddf6298ff6e9f
+          gist_file_name: MM3DR.unistore
+          file_path: ./MM3DR.unistore
