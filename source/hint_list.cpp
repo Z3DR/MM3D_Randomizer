@@ -860,9 +860,9 @@ void HintTable_Init() {
     hintTable[JUNK49] = HintText::Junk({Text{"", "", ""}});
     hintTable[JUNK50] = HintText::Junk({Text{"", "", ""}});
     hintTable[JUNK51] = HintText::Junk({Text{"", "", ""}});
-    hintTable[JUNK52] = HintText::Junk({Text{"", "", ""}});
-    hintTable[JUNK53] = HintText::Junk({Text{"", "", ""}});
-    hintTable[JUNK54] = HintText::Junk({Text{"", "", ""}});
+    hintTable[JUNK52] = HintText::Junk({Text{"Goodbye then.", "", ""}});
+    hintTable[JUNK53] = HintText::Junk({Text{"You've met with a terrible hint, haven't you?", "", ""}});
+    hintTable[JUNK54] = HintText::Junk({Text{"I'm stoned. Get it?", "", ""}});
     hintTable[JUNK55] = HintText::Junk({Text{"One who doesn't have all the masks will not get a #special reward#", "", ""}});
     hintTable[JUNK56] = HintText::Junk({Text{"They say the #blue dog# will win a race some day...", "", ""}});
     hintTable[JUNK57] = HintText::Junk({Text{"Remember to check your 3DS battery level and save often.", "", ""}});
