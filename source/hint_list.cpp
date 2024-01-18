@@ -879,7 +879,7 @@ void HintTable_Init() {
     hintTable[JUNK68] = HintText::Junk({Text{"They say if you have three specific items, you can zoom across Termina.", "", ""}});
     hintTable[JUNK69] = HintText::Junk({Text{"They say the powder keg can remain fairly elusive.", "", ""}});
     hintTable[JUNK70] = HintText::Junk({Text{"It's pretty cold here, would you mind warming me up, @?", "", ""}});
-    hintTable[JUMK71] = HintText::Junk({Text{"These hints can be quite useful. This is an exception.", "", ""}});
+    hintTable[JUNK71] = HintText::Junk({Text{"These hints can be quite useful. This is an exception.", "", ""}});
     hintTable[JUNK72] = HintText::Junk({Text{"Turns are more effective when you tilt the whole console.", "", ""}});
     hintTable[JUNK73] = HintText::Junk({Text{"You ever been in a cockpit before?", "", ""}});
     hintTable[JUNK74] = HintText::Junk({Text{"Smash 10 pots in 12 seconds.", "", ""}});

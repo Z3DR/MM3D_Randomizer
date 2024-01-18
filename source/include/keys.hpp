@@ -1116,7 +1116,7 @@ typedef enum {
   JUNK68,
   JUNK69,
   JUNK70,
-  JUMK71,
+  JUNK71,
   JUNK72,
   JUNK73,
   JUNK74,
