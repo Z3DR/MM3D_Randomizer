@@ -384,7 +384,7 @@ jobs:
               "description": "MM3D Randomizer - An online database of the most recent versions of the random experience for MM3D",
               "url": "https://phlexplexi.co/unistore",
               "file": "MM3DR.unistore",
-              "sheetURL": "https://dl.dropboxusercontent.com/s/5qv4ngozhgmyyen/OOT3DR.t3x?dl=1",
+              "sheetURL": "https://phlexplexi.co/icon.t3x",
               "sheet": "MM3DR.t3x",
               "bg_index": 1,
               "bg_sheet": 0,
