@@ -53,7 +53,7 @@ namespace Settings {
   Option CustomItemsButton    = Option::U8("Items",            { buttonOptions }, { customItemsButtonDesc },    OptionCategory::Setting, 0);
   Option CustomMasksButton    = Option::U8("Masks",            { buttonOptions }, { customMasksButtonDesc },    OptionCategory::Setting, 0);
   Option CustomNotebookButton = Option::U8("Bombers Notebook", { buttonOptions }, { customNotebookDesc },       OptionCategory::Setting, 1);
-  Option IngameSpoilersButton = Option::U8("Ingame Spoler Log",{ buttonOptions }, { ingameSpoilersButtonDesc }, OptionCategory::Setting, 2);
+  Option IngameSpoilersButton = Option::U8("Ingame Spoiler Log",{ buttonOptions }, { ingameSpoilersButtonDesc }, OptionCategory::Setting, 2);
 
   std::vector<Option *> customButtons = {
     &CustomMapButton,
