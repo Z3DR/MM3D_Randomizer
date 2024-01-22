@@ -424,6 +424,27 @@ bool WriteAllPatches() {
   }
   FSFILE_Close(titleassetsOut);
 
+  /*-------------------
+  | LOCALE EMULATION  |
+  -------------------*/
+
+  if (Settings::PlayOption == PATCH_CONSOLE) {
+    Handle localeOut;
+    const char* localeOutPath = "/luma/titles/0004000000125500/locale.txt";
+    FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, localeOutPath));
+
+    if (!R_SUCCEEDED(res = FSUSER_OpenFile(&localeOut, sdmcArchive, fsMakePath(PATH_ASCII, localeOutPath), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
+      return false;
+    }
+
+    std::vector<char> buffer = { 'U', 'S', 'A', ' ', 'E', 'N' };
+
+    if (!R_SUCCEEDED(res = FSFILE_Write(localeOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
+      return false;
+    }
+    FSFILE_Close(localeOut);
+  }
+
   FSUSER_CloseArchive(sdmcArchive);
 
   return true;
