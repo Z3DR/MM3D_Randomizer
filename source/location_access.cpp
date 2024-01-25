@@ -166,7 +166,7 @@ bool Area::CheckAllAccess(const AreaKey exitKey) {
 
 	for(Entrance& exit: exits) {
 		if(exit.GetAreaKey() == exitKey) {
-			exit.ConditionsMet();
+			exit.GetConditionsMet();
 		}
 	}
 	return false;
@@ -229,8 +229,8 @@ void AreaTable_Init() {
 		LocationAccess(N_CLOCK_TOWN_KEATON_QUIZ, {[] {return KeatonMask;}}),
 		LocationAccess(N_CLOCK_TOWN_TREE, {[] {return true;}}),
 		LocationAccess(N_CLOCK_TOWN_OLD_LADY, {[] {return Fighting || Bow;}}),
-		LocationAccess(TINGLE_N_CLOCK_TOWN_CT, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
-		LocationAccess(TINGLE_N_CLOCK_TOWN_WF, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
+		LocationAccess(TINGLE_N_CLOCK_TOWN_CT, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
+		LocationAccess(TINGLE_N_CLOCK_TOWN_WF, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
 		LocationAccess(N_CLOCK_TOWN_POSTBOX, {[]{return PostmansHat;}}),
 
 	},
@@ -328,7 +328,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(STOCKPOTINN_MIDNIGHT_MEETING, {[] {return KafeisMask && (DekuMask || RoomKey);}}),
-		LocationAccess(STOCKPOTINN_ANJU_AND_KAFEI, {[] {return KafeisMask && LetterKafei && PendantOfMemories && SunMask;}}),
+		LocationAccess(STOCKPOTINN_ANJU_AND_KAFEI, {[] {return KafeisMask && LetterKafei && PendantAccess && SunMask;}}),
 		LocationAccess(STOCKPOTINN_STAFF_ROOM_CHEST, {[] {return true;}}),//Day 3?
 	},
 	{
@@ -769,8 +769,8 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(ROAD_TO_SS_TREE, {[] {return DekuMask && (MagicMeter || Bow || Hookshot || ZoraMask);}}),//something to kill the dragonfly
-		LocationAccess(TINGLE_ROAD_TO_SS_WF, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
-		LocationAccess(TINGLE_ROAD_TO_SS_SH, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
+		LocationAccess(TINGLE_ROAD_TO_SS_WF, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
+		LocationAccess(TINGLE_ROAD_TO_SS_SH, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
 		//Gossip Stones
 		LocationAccess(ROAD_TO_SS_GOSSIP, {[] {return true;}}),
 	},
@@ -1086,10 +1086,10 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(TWIN_ISLANDS_UNDERWATER_RAMP_CHEST, {[] {return SnowheadClear && ZoraMask;}}),
 		LocationAccess(TWIN_ISLANDS_CAVE_CHEST, {[] {return SnowheadClear && ZoraMask;}}),
-		LocationAccess(TINGLE_TWIN_ISLANDS_SH, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
-		LocationAccess(TINGLE_TWIN_ISLANDS_RR, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
-		LocationAccess(TINGLE_TWIN_ISLANDS_SH_SPRING, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
-		LocationAccess(TINGLE_TWIN_ISLANDS_RR_SPRING, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
+		LocationAccess(TINGLE_TWIN_ISLANDS_SH, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
+		LocationAccess(TINGLE_TWIN_ISLANDS_RR, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
+		LocationAccess(TINGLE_TWIN_ISLANDS_SH_SPRING, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
+		LocationAccess(TINGLE_TWIN_ISLANDS_RR_SPRING, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
 	},
 	{
 		//Exits
@@ -1257,8 +1257,8 @@ void AreaTable_Init() {
 	}, 
 	{
 		//Locations
-		LocationAccess(TINGLE_MILK_ROAD_RR, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
-		LocationAccess(TINGLE_MILK_ROAD_GB, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
+		LocationAccess(TINGLE_MILK_ROAD_RR, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
+		LocationAccess(TINGLE_MILK_ROAD_GB, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
 		LocationAccess(MILK_ROAD_KEATON_QUIZ, {[] {return KeatonMask;}}),
 		//Gossip Stones
 		LocationAccess(MR_GOSSIP, {[] {return true;}}),
@@ -1369,8 +1369,8 @@ void AreaTable_Init() {
 		LocationAccess(GBC_FISHERMAN_GAME, {[] {return GreatBayClear && Hookshot;}}),
 		LocationAccess(GBC_LEDGE, {[] {return Hookshot && MagicBean && AnyBottle;}}),
 		LocationAccess(GBC_MIKAU, {[] {return CanPlay(SongOfHealing);}}),
-		LocationAccess(TINGLE_GBC_GB, {[]{ return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
-		LocationAccess(TINGLE_GBC_ST, {[]{ return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
+		LocationAccess(TINGLE_GBC_GB, {[]{ return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
+		LocationAccess(TINGLE_GBC_ST, {[]{ return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
 		//Gossip Stones
 		LocationAccess(GBC_BENEATH_COW_GROTTO_GOSSIP, {[] {return true;}}),
 		LocationAccess(GBC_OUTSIDE_FORTRESS_GOSSIP, {[] {return true;}}),
@@ -1758,7 +1758,7 @@ void AreaTable_Init() {
 
 	areaTable[IKANA_CANYON] = Area("Lower Ikana Canyon", "Lower Ikana Canyon", IKANA_CANYON, {
 		//Events
-		EventAccess(&EnterSakonHideout, {[]{return LetterKafei && PendantOfMemories && KafeisMask;}}),//probably missing a req
+		EventAccess(&EnterSakonHideout, {[]{return LetterKafei && PendantAccess && KafeisMask;}}),//probably missing a req
 	}, 
 	{
 		//Locations
@@ -1773,7 +1773,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(ROAD_TO_IKANA, {[]{return true;}}),
 		Entrance(SAKONS_HIDEOUT, {[]{return EnterSakonHideout;}}),
-		Entrance(SECRET_SHRINE, {[]{return true;}}), //slow swim but don't NEED zora mask
+		Entrance(SECRET_SHRINE_ENTRANCE, {[]{return true;}}), //slow swim but don't NEED zora mask
 		Entrance(IKANA_CANYON_SECRET_SHRINE_GROTTO, {[]{return true;}}),
 		Entrance(SOUTHERN_SWAMP, {[]{return true;}}),//end of river
 		Entrance(IKANA_CANYON_UPPER, {[]{return IceArrows && MagicMeter && Bow && Hookshot;}}),
@@ -1784,8 +1784,8 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(TINGLE_IKANA_CANYON_ST, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
-		LocationAccess(TINGLE_IKANA_CANYON_CT, {[]{return (ProgressiveMagic = 0) || ( (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask );}}),
+		LocationAccess(TINGLE_IKANA_CANYON_ST, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
+		LocationAccess(TINGLE_IKANA_CANYON_CT, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
 		//Gossip Stones
 		LocationAccess(IC_SPIRIT_HOUSE_GOSSIP, {[] {return true;}}),
 	},
@@ -2628,7 +2628,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(GBT_SF_WATERWHEEL_ROOM_LOWER, {[] {return Hookshot && ZoraMask && GBTReverseWaterDirection;}}),
+		LocationAccess(GBT_SF_WATERWHEEL_ROOM_LOWER, {[] {return Hookshot && ZoraMask && ReverseWaterFlow;}}),
 		LocationAccess(GBT_SF_WATERWHEEL_ROOM_UPPER, {[] {return ZoraMask && Hookshot && Bow && MagicMeter && IceArrows;}}),
 	},
 	{

@@ -491,6 +491,7 @@ std::array<ItemKey, 7> zoraEggs = {
 	ZORA_EGG,
 	ZORA_EGG,
 	ZORA_EGG,
+	ZORA_EGG,
 };
 
 std::array<ItemKey, 6> tingleMaps = {

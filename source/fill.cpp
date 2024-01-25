@@ -132,7 +132,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
 
                 //if the exit is accessable and hasn't been added yet, add it to pool
                 Area* exitArea = exit.GetConnectedRegion();
-                if (!exitArea->addedToPool && exit.ConditionsMet()) {
+                if (!exitArea->addedToPool && exit.GetConditionsMet()) {
                     exitArea->addedToPool = true;
                     areaPool.push_back(exit.GetAreaKey());
                     //PlacementLog_Msg("Added :" + exitArea->regionName + " to the pool \n");
@@ -156,7 +156,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
                 LocationKey loc = locPair.GetLocation();
                 ItemLocation* location = Location(loc);
 
-                if ((!location->IsAddedToPool())  && (locPair.ConditionsMet())) {   
+                if ((!location->IsAddedToPool())  && (locPair.GetConditionsMet())) {
 
                     location->AddToPool();
 
@@ -195,7 +195,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
                             }
                         }
                         //MAJORA'S_MASK has been found, seed is beatable, nothing else in this or future spheres matters
-                        else if (location->GetPlacedItemKey() == MAJORAS_MASK) {
+                        if (location->GetPlacedItemKey() == MAJORAS_MASK) {
                             CitraPrint("Majoras Mask has been found!");
                             itemSphere.clear();
                             itemSphere.push_back(loc);
@@ -878,7 +878,7 @@ int Fill() {
         GeneratePlaythrough(); //TODO::FIX PLAYTHROUGH
 
         //Successful placement, produced beatable result
-        if (!placementFailure ) {//&& playthroughBeatable  
+        if (!placementFailure && playthroughBeatable ) {
             printf("Done");
             printf("\x1b[9;10HCalculating Playthrough..."); 
             PareDownPlaythrough();
@@ -902,7 +902,8 @@ int Fill() {
         }
         //Unsuccessful placement
         if (retries < 4) {
-            GetAccessibleLocations(allLocations, SearchMode::AllLocationsReachable);
+            //LogicReset();
+            //GetAccessibleLocations(allLocations, SearchMode::AllLocationsReachable);
             printf("\x1b[9;10HFailed. Retrying... %d", retries + 2);
             CitraPrint("Failed. Retrying...");
             Areas::ResetAllLocations();

@@ -1111,7 +1111,7 @@ std::vector<LocationKey> GetLocations(const std::vector<LocationKey>& locationPo
 }
 
 void LocationReset() {
-  for (LocationKey il : allLocations) {
+/*for (LocationKey il : allLocations) {
     Location(il)->RemoveFromPool();
   }
 
@@ -1120,6 +1120,11 @@ void LocationReset() {
   }
 
   for (LocationKey il : gossipStoneLocations) {
+    Location(il)->RemoveFromPool();
+  }*/
+
+  // Something's still missing from allLocations, IDK what though and this fixes it
+  for (LocationKey il = LINKS_POCKET; il <= OSH_COLORED_SKULLS_POT; il++) {
     Location(il)->RemoveFromPool();
   }
 
