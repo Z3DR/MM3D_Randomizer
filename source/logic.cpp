@@ -428,7 +428,7 @@ namespace Logic {
 	}
 
 	bool TotalHeartContainers(u8 requiredAmount) {
-		return (HeartContainers + (PiecesOfHeart/4) >= requiredAmount);
+		return (HeartContainers + (PiecesOfHeart/4) + 3 >= requiredAmount);
 	}
 
 	u8 TotalMaskCount() { 

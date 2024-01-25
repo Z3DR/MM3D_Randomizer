@@ -352,6 +352,10 @@ std::vector<LocationKey> DungeonInfo::GetEveryLocation() const {
 							PF_INT_UPPER_CHEST,
 							PF_INT_TANK_CHEST,
 							PF_INT_INVISIBLE_SOLDIER,
+                            PF_INT_HOOKSHOT_ROOM_ZORA_EGG,
+                            PF_INT_GUARD_ROOM_ZORA_EGG,
+                            PF_INT_BARREL_MAZE_ZORA_EGG,
+                            PF_INT_LAVA_ROOM_ZORA_EGG,
                           },{} );
 
   DungeonInfo BeneathTheWell = DungeonInfo("Beneath The Well", NONE, NONE, NONE, NONE, 0, {
