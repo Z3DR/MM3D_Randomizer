@@ -272,6 +272,10 @@ void HintTable_Init() {
     hintTable[GORON_VILLAGE_LENS_OF_TRUTH_CHEST] = HintText::Sometimes({ Text{"a lonely peak contains", "", ""}});
     hintTable[GORON_VILLAGE_SCRUB_TRADE] = HintText::Sometimes({ Text{"a northern merchant trades", "", ""}});
     hintTable[GORON_VILLAGE_LEDGE] = HintText::Sometimes({ Text{"a cold ledge contains", "", ""}});
+    hintTable[GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING] = HintText::Sometimes({ Text{"a large goron rewards", "", ""}});
+    hintTable[GORON_VILLAGE_SCRUB_PURCHASE_SPRING] = HintText::Sometimes({ Text{"a northern merchant sells", "", ""}});
+    hintTable[GORON_VILLAGE_SCRUB_TRADE_SPRING] = HintText::Sometimes({ Text{"a northern merchant trades", "", ""}});
+    hintTable[GORON_VILLAGE_LEDGE_SPRING] = HintText::Sometimes({ Text{"a cold ledge contains", "", ""}});
     hintTable[GORON_VILLAGE_GORON_LULLABY] = HintText::Sometimes({ Text{"a lonely child teaches", "", ""}});
     hintTable[LENS_CAVE_RED_RUPEE] = HintText::Sometimes({ Text{"a lonely peak contains", "", ""}});
     hintTable[LENS_CAVE_PURPLE_RUPEE] = HintText::Sometimes({ Text{"a lonely peak contains", "", ""}});
@@ -448,7 +452,6 @@ void HintTable_Init() {
     hintTable[W_CLOCK_TOWN_SWORDSMANS_SCHOOL] = HintText::Sometimes({Text{"a town game rewards", "", ""}});
     hintTable[W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY] = HintText::Sometimes({Text{"a shady town merchant sells", "", ""}});
     hintTable[W_CLOCK_TOWN_BOMB_SHOP_GORON] = HintText::Sometimes({Text{"a town goron merchant sells", "", ""}});
-    hintTable[W_CLOCK_TOWN_POSTBOX] = HintText::Sometimes({Text{"a correspondence box contains", "", ""}});
   //hintTable[W_CLOCK_TOWN_LOTTERY] = HintText::Sometimes({Text{"", "", ""}});
     hintTable[TRADING_POST_ITEM_1] = HintText::Sometimes({Text{"a town merchant sells", "", ""}});
     hintTable[TRADING_POST_ITEM_2] = HintText::Sometimes({Text{"a town merchant sells", "", ""}});
