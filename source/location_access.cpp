@@ -303,7 +303,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(STOCKPOTINN_GUEST_ROOM, {[]{return GoronMask;}}),
+		Entrance(STOCKPOTINN_GUEST_ROOM, {[]{return RoomKey;}}),
 		Entrance(STOCKPOTINN_STAFF_ROOM, {[]{return  true;}}),
 		Entrance(STOCKPOTINN_GRANDMA_ROOM, {[]{return true;}}),
 		Entrance(E_CLOCK_TOWN, {[]{return true;}}),
@@ -433,8 +433,6 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(W_CLOCK_TOWN_ROSA_SISTERS, {[] {return KamarosMask;}}),
-		LocationAccess(W_CLOCK_TOWN_POSTBOX, {[]{return PostmansHat;}}),
-
 	},
 	{
 		//Exits
@@ -495,7 +493,7 @@ void AreaTable_Init() {
 		LocationAccess(BOMB_SHOP_ITEM_2, {[]{return true;}}),
 		LocationAccess(W_CLOCK_TOWN_BOMB_BAG_BUY, {[] {return true;}}),
 		LocationAccess(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY, {[] {return OldLadySaved;}}),
-		LocationAccess(W_CLOCK_TOWN_BOMB_SHOP_GORON, {[] {return GoronMask;}}),
+		LocationAccess(W_CLOCK_TOWN_BOMB_SHOP_GORON, {[] {return GoronMask && PowderKeg;}}),
 	},
 	{ 
 		//Exits
@@ -1147,6 +1145,10 @@ void AreaTable_Init() {
 		LocationAccess(GORON_VILLAGE_SCRUB_PURCHASE, {[] {return AnyWallet && GoronMask;}}),
 		LocationAccess(GORON_VILLAGE_SCRUB_TRADE, {[] {return DekuMask && SwampTitle;}}),
 		LocationAccess(GORON_VILLAGE_LEDGE, {[] {return DekuMask && SwampTitle;}}),
+		LocationAccess(GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING, {[] {return GoronMask && (SnowheadClear || (Bow && FireArrows && MagicMeter));}}),
+		LocationAccess(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, {[] {return AnyWallet && GoronMask;}}),
+		LocationAccess(GORON_VILLAGE_SCRUB_TRADE_SPRING, {[] {return DekuMask && SwampTitle;}}),
+		LocationAccess(GORON_VILLAGE_LEDGE_SPRING, {[] {return DekuMask && SwampTitle;}}),
 	},
 	{
 		//Exits
@@ -1312,7 +1314,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(ROMANI_RANCH_DOG_RACE, {[] {return true;}}),
+		LocationAccess(ROMANI_RANCH_DOG_RACE, {[] {return MaskOfTruth;}}),
 		LocationAccess(DOGGY_RACETRACK_ROOF_CHEST, {[] {return Hookshot || (WaterForBeans && MagicBean);}}),
 		//Gossip Stones
 		LocationAccess(DOGGY_RACETRACK_GOSSIP, {[] {return true;}}),

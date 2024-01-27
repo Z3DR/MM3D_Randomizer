@@ -133,7 +133,7 @@ void CreateBaselineCustomMessages() {
 
     // Great Bay
     CreateMessage(0x6141, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    "You got the #boss key# for the #Great Bay Temple#! ow you can enter the chamber where the boss lurks!",
+    "You got the #boss key# for the #Great Bay Temple#! Now you can enter the chamber where the boss lurks!",
     {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
 
     // Stone Tower

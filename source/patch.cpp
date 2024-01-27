@@ -356,7 +356,7 @@ bool WriteAllPatches() {
   
 
   // Delete assets if it exists
-  Handle assetsOut;
+  /*Handle assetsOut;
   const char* assetsOutPath = "/luma/titles/0004000000125500/romfs/actor/zelda_gi_melody.zar";
   const char* assetsInPath = "romfs:/zelda_gi_melody.zar";
   FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, assetsOutPath));
@@ -390,7 +390,7 @@ bool WriteAllPatches() {
   }
   FSFILE_Close(assetsOut);
 
-  //FSUSER_CloseArchive(sdmcArchive);
+  //FSUSER_CloseArchive(sdmcArchive);*/
 
   /*-------------------
   |  TITLESCREEN LZS  |

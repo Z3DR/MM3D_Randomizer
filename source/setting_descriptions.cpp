@@ -18,9 +18,9 @@ string_view logicVanilla              = "For those who want to play the game nor
                                         "locations will contain their vanilla items. This\n"
                                         "supercedes all item shuffle, logic, hint, and\n"  //
                                         "item pool settings. You can still use non-vanilla\n"
-                                        "world settings such as adult start or entrance\n" //
-                                        "shuffle, but the game may require glitches to\n"  //
-                                        "complete if you do.";                             //
+                                        "world settings such as entrance shuffle, \n"      //
+                                        "but the game may require glitches to complete\n"  //
+                                        "if you do.";                             //
 /*------------------------------                                                           //
 |   ALL LOCATIONS REACHABLE    |                                                           //
 ------------------------------*/                                                           //
@@ -639,7 +639,7 @@ string_view ingameSpoilersButtonDesc = "Change the button to open the ingame Spo
 |     BOMBERS MINIGAME SKIP     |                                                          //
 -------------------------------*/                                                          //
 string_view skipBombersMinigameDesc  = "Skip Bomber's Minigame to get the code.\n"         //
-                                       "Sets the code to 11111.";                          //
+                                       "Sets the code to 12345.";                          //
 
 /*------------------------------                                                                           //
 |           GLITCHES           |                                                                           //
