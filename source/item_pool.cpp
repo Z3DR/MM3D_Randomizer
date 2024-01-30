@@ -283,7 +283,8 @@ static void PlaceVanillaSongs() {
 	PlaceItemInLocation(GIANTS_OATH_TO_ORDER, OATH_TO_ORDER);
 };
 
-const std::array<ItemKey, 18> maskList = {
+// TODO: Change back to 18 when the override value is correct.
+const std::array<ItemKey, 17> maskList = {
 	KEATON_MASK,
 	BUNNY_HOOD,
 	POSTMANS_HAT,
@@ -300,7 +301,7 @@ const std::array<ItemKey, 18> maskList = {
 	GIBDOS_MASK,
 	GAROS_MASK,
 	CAPTAINS_HAT,
-	GIANTS_MASK,
+	// GIANTS_MASK, // TODO: Add this back in after the override is completed.
 	MASK_OF_TRUTH,
 };
 
@@ -799,7 +800,8 @@ static void PlaceVanillaShopItems() {
 	PlaceItemInLocation(TRADING_POST_ITEM_7, BUY_DEKU_NUT_10);
 	PlaceItemInLocation(TRADING_POST_ITEM_8, BUY_MAGIC_BEAN);
 	PlaceItemInLocation(BOMB_SHOP_ITEM_1, BUY_BOMBS_10);
-	PlaceItemInLocation(BOMB_SHOP_ITEM_2, BUY_BOMBCHU_10);
+	PlaceItemInLocation(BOMB_SHOP_ITEM_2, BUY_BOMBCHU_10);	
+	PlaceItemInLocation(W_CLOCK_TOWN_BOMB_SHOP_GORON, POWDER_KEG);	
 	PlaceItemInLocation(POTION_SHOP_ITEM_1, BUY_BLUE_POTION);
 	PlaceItemInLocation(POTION_SHOP_ITEM_2, BUY_GREEN_POTION);
 	PlaceItemInLocation(POTION_SHOP_ITEM_3, BUY_RED_POTION);
@@ -891,6 +893,9 @@ void GenerateItemPool() {
 	//temp placement until shopsanity works
 	PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE, MAGIC_BEAN);
 	
+	// TODO: Remove these once overrides are fixed.
+	PlaceItemInLocation(STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST, GIANTS_MASK);
+
 
 	//Place Temp Items at alt locations so they don't get filled with important stuff - will be replaced later
 	PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_IN_WOODS, BLUE_RUPEE);
