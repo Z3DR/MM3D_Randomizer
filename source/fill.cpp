@@ -344,9 +344,18 @@ static void FastFill(std::vector<ItemKey> items, std::vector<LocationKey> locati
     //Loop until locations are empty, or also end if items are empty and the parameters specify to end then
     while (!locations.empty() && (!endOnItemsEmpty || !items.empty())) {
         LocationKey loc = RandomElement(locations, true);
+        ItemKey item = RandomElement(items, true);
+        /*if ( (Location(loc)->IsRepeatable() == false) && (ItemTable(item).IsReusable() == true) ){
+                    //unsuccessfulPlacement = true;
+                    CitraPrint("Attemting to place repeatable item in nonrepeatable spot in FastFill");
+                    PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetEnglish() + " at " + Location(loc)->GetName());
+                    items.push_back(item);
+                    locations.push_back(loc);
+                }
+        else {*/
         Location(loc)->SetAsHintable();
-        PlaceItemInLocation(loc, RandomElement(items, true));
-
+        PlaceItemInLocation(loc, item);
+        
         if (items.empty() && !endOnItemsEmpty) {
             items.push_back(GetJunkItem());
         }
@@ -477,7 +486,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             LocationKey selectedLocation = RandomElement(accessibleLocations);
             if ( !(Location(selectedLocation)->IsRepeatable()) && ItemTable(item).IsReusable() ){
                     //unsuccessfulPlacement = true;
-                    CitraPrint("Attemting to place things where they shouldnt be");
+                    CitraPrint("Attemting to place repeatable item in non repeatable spot in AssumedFill");
                     PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetEnglish() + " at " + Location(selectedLocation)->GetName());
                     itemsToPlace.push_back(item);
                 }
@@ -814,7 +823,7 @@ int Fill() {
 
         //Place Main Inventory First
         //So first get all items in the pool + DekuMask,
-        std::vector<ItemKey> mainadvancementItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsAdvancement();});//&& ItemTable(i).GetItemType() == ITEMTYPE_ITEM
+        std::vector<ItemKey> mainadvancementItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsAdvancement() && ItemTable(i).GetItemType() != ITEMTYPE_QUEST;});//(ItemTable(i).GetItemType() == ITEMTYPE_ITEM || ItemTable(i).GetItemType() == ITEMTYPE_MASK || ItemTable(i).GetItemType() == ITEMTYPE_TRADE || ItemTable(i).GetItemType() == ITEMTYPE_GFAIRY)
         //Then Place those to expand the amount of checks available
         AssumedFill(mainadvancementItems, allLocations,true);
         

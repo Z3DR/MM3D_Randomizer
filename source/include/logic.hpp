@@ -114,6 +114,7 @@ namespace Logic {
 	extern bool SongOfStorms;
 	extern bool SongOfHealing;
 	extern bool SonataOfAwakening;
+	extern bool LullabyIntro;
 	extern bool GoronsLullaby;
 	extern bool NewWaveBossaNova;
 	extern bool ElegyOfEmptiness;

@@ -95,9 +95,13 @@ void GenerateStartingInventory() {
   AddItemToInventory(ELEGY_OF_EMPTINESS,        StartingElegyOfEmptiness.Value<u8>());
   AddItemToInventory(SONG_OF_HEALING,           StartingSongOfHealing.Value<u8>());
   AddItemToInventory(SONG_OF_SOARING,           StartingSongOfSoaring.Value<u8>());
-  AddItemToInventory(PROGRESSIVE_SWORD,         StartingKokiriSword.Value<u8>());
-  if (StartingShield.Value<u8>() == 1){  AddItemToInventory(HEROS_SHIELD,              1);}
-  if (StartingShield.Value<u8>() == 2){  AddItemToInventory(MIRROR_SHIELD,             1);}
+  //AddItemToInventory(PROGRESSIVE_SWORD,         StartingKokiriSword.Value<u8>());
+  if (StartingKokiriSword.Value<u8>() == (u8)0){ AddItemToInventory(PROGRESSIVE_SWORD, 0);}
+  if (StartingKokiriSword.Value<u8>() == (u8)1){ AddItemToInventory(PROGRESSIVE_SWORD, 1);}
+  if (StartingKokiriSword.Value<u8>() == (u8)2){ AddItemToInventory(PROGRESSIVE_SWORD, 2);}
+  if (StartingKokiriSword.Value<u8>() == (u8)3){ AddItemToInventory(PROGRESSIVE_SWORD, 0);}
+  if (StartingShield.Value<u8>() == (u8)0){  AddItemToInventory(HEROS_SHIELD,              1);}
+  if (StartingShield.Value<u8>() == (u8)1){  AddItemToInventory(MIRROR_SHIELD,             1);}
   AddItemToInventory(PROGRESSIVE_MAGIC_METER,   StartingMagicMeter.Value<u8>());
   AddItemToInventory(PROGRESSIVE_WALLET,        StartingWallet.Value<u8>());
   AddItemToInventory(DOUBLE_DEFENSE,            StartingDoubleDefense.Value<u8>());

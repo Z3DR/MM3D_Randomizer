@@ -122,6 +122,7 @@ namespace Logic {
 	bool SongOfStorms = false;
 	bool SonataOfAwakening = false;
 	bool SongOfHealing = false;
+	bool LullabyIntro = false;
 	bool GoronsLullaby = false;
 	bool NewWaveBossaNova = false;
 	bool ElegyOfEmptiness = false;
@@ -649,6 +650,7 @@ namespace Logic {
 	  SongOfStorms = false;
 	  SonataOfAwakening = false;
 	  SongOfHealing = false;
+	  LullabyIntro = false;
 	  GoronsLullaby = false;
 	  NewWaveBossaNova = false;
 	  ElegyOfEmptiness = false;

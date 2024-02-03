@@ -965,7 +965,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(DEKU_PALACE_BUTLER_RACE, {[] {return DekuMask;}}),// && DekuPrincessReturned
+		LocationAccess(DEKU_PALACE_BUTLER_RACE, {[] {return DekuMask && DekuPrincessReturned;}}),
 	},
 	{
 		//Exits
@@ -1084,6 +1084,7 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(TWIN_ISLANDS_UNDERWATER_RAMP_CHEST, {[] {return SnowheadClear && ZoraMask;}}),
 		LocationAccess(TWIN_ISLANDS_CAVE_CHEST, {[] {return SnowheadClear && ZoraMask;}}),
+		LocationAccess(TWIN_ISLANDS_LULLABY_INTRO, {[] {return GoronMask && ((AnyBottle && HotSpringWater) || (Bow && MagicMeter && FireArrows));}}),
 		LocationAccess(TINGLE_TWIN_ISLANDS_SH, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
 		LocationAccess(TINGLE_TWIN_ISLANDS_RR, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
 		LocationAccess(TINGLE_TWIN_ISLANDS_SH_SPRING, {[]{return (DekuMask && MagicMeter) || Bow || Hookshot || ZoraMask;}}),
@@ -1179,7 +1180,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(GORON_VILLAGE_GORON_LULLABY, {[]{return GoronMask;}}),
+		LocationAccess(GORON_VILLAGE_GORON_LULLABY, {[]{return GoronMask && LullabyIntro;}}),
 	},
 	{
 		//Exits
@@ -1718,7 +1719,19 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(IKANA_GRAVEYARD, {[]{return true;}}),
-		Entrance(IKANA_GRAVEYARD_IRON_KNUCKLE_ROOM, {[]{return true;}}),
+		Entrance(IKANA_GRAVEYARD_PRE_IRON_KNUCKLE_ROOM, {[]{return true;}}),
+	});
+
+	areaTable[IKANA_GRAVEYARD_PRE_IRON_KNUCKLE_ROOM] = Area("Ikana Graveyard Below Graves Pre Iron Knuckle Room", "Ikana Graveyard Below Graves Pre Iron Knuckle Room", NONE, {
+		//Evvents
+	},
+	{
+		//Locations
+	},
+	{
+		//Exits
+		Entrance(IKANA_GRAVEYARD_BELOW_GRAVE2, {[]{return true;}}),
+		Entrance(IKANA_GRAVEYARD_IRON_KNUCKLE_ROOM, {[]{return Bow && LensOfTruth && MagicMeter && AnyBombBag;}}),
 	});
 
 	areaTable[IKANA_GRAVEYARD_IRON_KNUCKLE_ROOM] = Area("Ikana Graveyard Below Graves Iron Knuckle Room", "Ikana Graveyard Below Graves Iron Knuckle Room", NONE, {
@@ -1726,7 +1739,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(IKANA_GRAVEYARD_IRON_KNUCKLE_CHEST, {[] {return CaptainsHat && AnyBombBag && Fighting;}}), //Doesnt need bombs?
+		LocationAccess(IKANA_GRAVEYARD_IRON_KNUCKLE_CHEST, {[] {return Fighting;}}), 
 	},
 	{
 		//Exits
@@ -2111,7 +2124,7 @@ void AreaTable_Init() {
 
 	areaTable[WOODFALL_TEMPLE_PRINCESS_ROOM] = Area("Deku Princess Room", "Deku Princess Room", WOODFALL_TEMPLE, {
 		//Events
-		EventAccess(&DekuPrincess, {[]{return WoodfallClear;}}),
+		EventAccess(&DekuPrincess, {[]{return WoodfallClear && AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -2436,6 +2449,7 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(GOHT, {[] {return GoronMask && FireArrows && Bow && MagicMeter && BossKeySnowheadTemple;}}),
 		LocationAccess(GOHT_HEART_CONTAINER, {[] {return GoronMask && BossKeySnowheadTemple && Bow && FireArrows && MagicMeter;}}),
+		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return SnowheadClear;}}),
 	},
 	{
 		//Exits
@@ -2677,6 +2691,7 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(GYORG, {[] {return ZoraMask && Hookshot && BossKeyGreatBayTemple && IceArrows && FireArrows && Bow && MagicMeter;}}),
 		LocationAccess(GYORG_HEART_CONTAINER, {[] {return ZoraMask && Hookshot && BossKeyGreatBayTemple && IceArrows && FireArrows && Bow && MagicMeter;}}),
+		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return GreatBayClear;}}),
 	},
 	{
 		//Exits
@@ -2989,6 +3004,7 @@ void AreaTable_Init() {
 		LocationAccess(STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST, {[] {return LightArrows && Bow && MagicMeter && BossKeyStoneTowerTemple;}}),
 		LocationAccess(TWINMOLD, {[] {return LightArrows && Bow && MagicMeter && BossKeyStoneTowerTemple && GiantsMask;}}),
 		LocationAccess(TWINMOLD_HEART_CONTAINER, {[] {return LightArrows && Bow && MagicMeter && BossKeyStoneTowerTemple && GiantsMask;}}),
+		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return StoneTowerClear;}}),
 	},
 	{
 		//Exits
@@ -3451,7 +3467,7 @@ void AreaTable_Init() {
 	}, 
 	{
 		//Locations
-		LocationAccess(IKANA_CASTLE_IKANA_KING, {[] {return (LightArrows || MirrorShield) && Fighting && FireArrows && Bow && MagicMeter;}}),
+		LocationAccess(IKANA_CASTLE_IKANA_KING, {[] {return MirrorShield && Fighting && FireArrows && Bow && MagicMeter;}}),
 	},
 	{
 		//Exits
@@ -4032,7 +4048,7 @@ void AreaTable_Init() {
 }
 
 namespace Areas {
-	static std::array < const AreaKey, 265> allAreas = {
+	static std::array < const AreaKey, 266> allAreas = {
 		ROOT,
 		ROOT_EXITS,
 		N_CLOCK_TOWN,
@@ -4135,6 +4151,7 @@ namespace Areas {
 		IKANA_GRAVEYARD_BATS_ROOM,
 		IKANA_GRAVEYARD_TABLET_ROOM,
 		IKANA_GRAVEYARD_BELOW_GRAVE2,
+		IKANA_GRAVEYARD_PRE_IRON_KNUCKLE_ROOM,
 		IKANA_GRAVEYARD_IRON_KNUCKLE_ROOM,
 		IKANA_GRAVEYARD_BELOW_GRAVE3,
 		DAMPES_HUT,

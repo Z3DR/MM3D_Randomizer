@@ -287,6 +287,18 @@ static void WriteIngameSpoilerLog() {
             {
               spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_REPEATABLE;
             }
+            if (key == HMS_DEKU_MASK && Settings::StartingSongOfHealing.Value<u8>() == u8(1))
+            {
+              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
+              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
+              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED; 
+            }
+            if (key == HMS_BOMBERS_NOTEBOOK && Settings::StartingSongOfHealing.Value<u8>() == u8(1))
+            {
+              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
+              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
+              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED; 
+            }
             auto checkGroup = loc->GetCollectionCheckGroup();
             spoilerData.ItemLocations[spoilerItemIndex].Group = checkGroup;
 

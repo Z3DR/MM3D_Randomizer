@@ -142,6 +142,7 @@ void HintTable_Init() {
 	//hintTable[INVERTED_SONG_OF_TIME] = HintText::Item({ Text{"slowed time", "slowed time", "slowed time"}});
 	hintTable[EPONAS_SONG] = HintText::Item({ Text{"a horses song", "a horses song", "a horses song"}});
 	hintTable[SONATA_OF_AWAKENING] = HintText::Item({ Text{"a royal song", "a royal song", "a royal song"}});
+    hintTable[LULLABY_INTRO] =  HintText::Item({ Text{"a sleepy melody intro", "a sleepy melody intro", "a sleepy melody intro"}});
 	hintTable[GORONS_LULLABY] = HintText::Item({ Text{"a sleepy melody", "a sleepy melody", "a sleepy melody"}});
 	hintTable[NEW_WAVE_BOSSA_NOVA] = HintText::Item({ Text{"a song of newborns", "a song of newborns", "a song of newborns"}});
 	hintTable[ELEGY_OF_EMPTINESS] = HintText::Item({ Text{"empty shells", "empty shells", "empty shells"}});
@@ -440,6 +441,7 @@ void HintTable_Init() {
     hintTable[TWIN_ISLANDS_GORON_RACETRACK_GROTTO_CHEST] = HintText::Sometimes({Text{"a hidden cave contains", "", ""}});
     hintTable[TWIN_ISLANDS_UNDERWATER_RAMP_CHEST] = HintText::Sometimes({Text{"a spring treasure contains", "", ""}});
     hintTable[TWIN_ISLANDS_CAVE_CHEST] = HintText::Sometimes({Text{"a sunken springtime treasure contains", "", ""}});
+    hintTable[TWIN_ISLANDS_LULLABY_INTRO] = HintText::Sometimes({Text{"a goron elder teaches", "", ""}});
     hintTable[TINGLE_TWIN_ISLANDS_SH] = HintText::Sometimes({Text{"a map maker sells ", "", ""}});
     hintTable[TINGLE_TWIN_ISLANDS_RR] = HintText::Sometimes({Text{"a map maker sells", "", ""}});
     hintTable[TINGLE_TWIN_ISLANDS_SH_SPRING] = HintText::Sometimes({Text{"a map maker sells", "", ""}});
@@ -795,6 +797,7 @@ void HintTable_Init() {
     hintTable[IKANA_GRAVEYARD_BATS_ROOM] = HintText::Region({Text{"Ikana Graveyard", "", ""}});
     hintTable[IKANA_GRAVEYARD_TABLET_ROOM] = HintText::Region({Text{"Ikana Graveyard", "", ""}});
     hintTable[IKANA_GRAVEYARD_BELOW_GRAVE2] = HintText::Region({Text{"Ikana Graveyard", "", ""}});
+    hintTable[IKANA_GRAVEYARD_PRE_IRON_KNUCKLE_ROOM] = HintText::Region({Text{"Ikana Graveyard", "", ""}});
     hintTable[IKANA_GRAVEYARD_IRON_KNUCKLE_ROOM] = HintText::Region({Text{"Ikana Graveyard", "", ""}});
     hintTable[IKANA_GRAVEYARD_BELOW_GRAVE3] = HintText::Region({Text{"Ikana Graveyard", "", ""}});
     hintTable[DAMPES_HUT] = HintText::Region({Text{"Ikana Graveyard", "", ""}});
