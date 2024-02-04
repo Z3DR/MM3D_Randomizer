@@ -1025,6 +1025,7 @@ void AreaTable_Init() {
 		LocationAccess(MOUNTAIN_VILLAGE_FROG_CHOIR, {[] {return SnowheadClear && LaundryFrog && SwampFrog && WoodfallFrog && GreatBayFrog && DonGerosMask;}}), 
 		LocationAccess(MOUNTAIN_VILLAGE_HUNGRY_GORON, {[] {return GoronMask && MagicMeter;}}),
 		LocationAccess(MOUNTAIN_WATERFALL_CHEST, {[] {return SnowheadClear;}}),
+		LocationAccess(MOUNTAIN_VILLAGE_KEATON_QUIZ, {[]{return SnowheadClear && KeatonMask && AnySword;}}),
 		//Gossip Stones
 		LocationAccess(MV_NEAR_FROGS_GOSSIP, {[] {return true;}}),
 		LocationAccess(MV_NEAR_GROTTO_GOSSIP, {[] {return true;}}),

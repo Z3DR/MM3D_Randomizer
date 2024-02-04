@@ -115,7 +115,8 @@ void LocationTable_Init() {
  locationTable[MOUNTAIN_VILLAGE_HUNGRY_GORON]                      = ItemLocation::Base       (0x50, 0x88, false, "MV Hungry Goron",                                          MOUNTAIN_VILLAGE_HUNGRY_GORON,                  DON_GEROS_MASK,               {Category::cMountainVillage, Category::cVanillaMask,Category::cDayOne},                                                    SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_MOUNTAIN_VILLAGE );
  locationTable[MOUNTAIN_WATERFALL_CHEST]                           = ItemLocation::Chest      (0x5A, 0x00, true,  "MV Waterfall Chest",                                       MOUNTAIN_WATERFALL_CHEST,                       RED_RUPEE,                    {Category::cMountainVillage,Category::cChest,Category::cDayOne },                                                                                                      SpoilerCollectionCheckGroup::GROUP_MOUNTAIN_VILLAGE );
  locationTable[MOUNTAIN_VILLAGE_SPRING_WATER_GROTTO_CHEST]         = ItemLocation::Chest      (0x07, 0x1B, true,  "MV Spring Water Grotto",                                   MOUNTAIN_VILLAGE_SPRING_WATER_GROTTO_CHEST,     RED_RUPEE,                    {Category::cMountainVillage, Category::cGrotto,Category::cChest,Category::cDayOne },                                                                                   SpoilerCollectionCheckGroup::GROUP_MOUNTAIN_VILLAGE );
- 
+ locationTable[MOUNTAIN_VILLAGE_KEATON_QUIZ]                       = ItemLocation::Base       (0x5A, 0x01, false, "MV Keaton Quiz",                                           MOUNTAIN_VILLAGE_KEATON_QUIZ,                   PIECE_OF_HEART,               {Category::cMountainVillage, Category::cVanillaHeartPiece,Category::cDayOne},                                              SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_MOUNTAIN_VILLAGE );
+
  //N Clock Town
  locationTable[N_CLOCK_TOWN_GREAT_FAIRY_DEKU]                      = ItemLocation::Base       (0x26, 0x0E, false, "NCT Great Fairy (Deku)",                                   N_CLOCK_TOWN_GREAT_FAIRY_DEKU,                  PROGRESSIVE_MAGIC_METER,      {Category::cNorthClockTown, Category::cFairyFountain,Category::cDayOne},                                                   SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_N_CLOCK_TOWN );
  //locationTable[N_CLOCK_TOWN_BOMBERS_HIDE_SEEK]                     = ItemLocation::Base       (0x6E, 0x50, true,  "NCT Bombers Hide n Seek",                                  N_CLOCK_TOWN_BOMBERS_HIDE_SEEK,                 BOMBERS_NOTEBOOK,             {Category::cNorthClockTown,Category::cDayOne},                                                                             SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_N_CLOCK_TOWN );
@@ -878,6 +879,7 @@ std::vector<LocationKey> overworldLocations = {
   MOUNTAIN_VILLAGE_SMITH_DAY_ONE,
   MOUNTAIN_VILLAGE_SMITH_DAY_TWO,
   MOUNTAIN_VILLAGE_FROG_CHOIR,
+  MOUNTAIN_VILLAGE_KEATON_QUIZ,
   MOUNTAIN_VILLAGE_DARMANI,
   MOUNTAIN_VILLAGE_HUNGRY_GORON,
   MOUNTAIN_WATERFALL_CHEST,
@@ -1198,6 +1200,7 @@ void CreateItemOverrides() {
  //Keaton Quiz
  auto loc14 = Location(N_CLOCK_TOWN_KEATON_QUIZ);
  PlaceItemInLocation(MILK_ROAD_KEATON_QUIZ, loc14->GetPlacedItemKey());//copy NCT keaton quiz item to milk road
+ PlaceItemInLocation(MOUNTAIN_VILLAGE_KEATON_QUIZ, loc14->GetPlacedItemKey());//copy NCT keaton quiz item to Mountain Village
  //Spring time Goron Village
  auto loc15 = Location(GORON_VILLAGE_POWDER_KEG_CHALLENGE);
  auto loc16 = Location(GORON_VILLAGE_SCRUB_PURCHASE);

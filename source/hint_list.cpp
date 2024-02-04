@@ -332,6 +332,7 @@ void HintTable_Init() {
     hintTable[MOUNTAIN_VILLAGE_SMITH_DAY_ONE] = HintText::Sometimes({Text{"a moutain smith crafts", "", ""}});
     hintTable[MOUNTAIN_VILLAGE_SMITH_DAY_TWO] = HintText::Sometimes({Text{"a mountain smith crafts", "", ""}});
     hintTable[MOUNTAIN_VILLAGE_FROG_CHOIR] = HintText::Sometimes({Text{"a frog choir rewards", "", ""}});
+    hintTable[MOUNTAIN_VILLAGE_KEATON_QUIZ] = HintText::Sometimes({Text{"a mysterious fox rewards", "", ""}});
     hintTable[MOUNTAIN_VILLAGE_DARMANI] = HintText::Sometimes({Text{"a mountain spirit rewards", "", ""}});
     hintTable[MOUNTAIN_VILLAGE_HUNGRY_GORON] = HintText::Sometimes({Text{"a hungry goron rewards", "", ""}});
     hintTable[MOUNTAIN_WATERFALL_CHEST] = HintText::Sometimes({Text{"a springtime waterfall contains", "", ""}});
