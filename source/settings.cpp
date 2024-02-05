@@ -1061,7 +1061,11 @@ namespace Settings {
           break;
         case 1:
           startingInventoryOptions[i]->Hide();
-          startingInventoryOptions[i]->SetSelectedIndex((startingInventoryOptions[i]->GetOptionCount())-1);
+          if (startingInventorySections.GetName() == "Equipment & Upgrades") {
+            startingInventoryOptions[i]->SetSelectedIndex((startingInventoryOptions[i]->GetOptionCount())-2);
+          } else {
+            startingInventoryOptions[i]->SetSelectedIndex((startingInventoryOptions[i]->GetOptionCount())-1);
+          }
           break;
         case 2:
           startingInventoryOptions[i]->Unhide();
@@ -1208,7 +1212,7 @@ namespace Settings {
       CollapseCategory(StartingSongsToggle, 51, 60);
       CollapseCategory(StartingUpgradesToggle, 61, 67);
       CollapseCategory(StartingQuestToggle, 68, 72);
-    for(int i = 14; i < 21 ;++i){
+    for(int i = 18; i < 25 ;++i) {
       switch(StartingInventoryToggle.Value<u8>()) {
         case 0:
           startingInventoryOptions[i]->Hide();

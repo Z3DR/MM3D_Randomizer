@@ -2129,7 +2129,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(WOODFALL_TEMPLE_DEKU_PRINCESS, {[]{return AnyBottle;}}),
+		LocationAccess(WOODFALL_TEMPLE_DEKU_PRINCESS, {[]{return AnyBottle && AnySword;}}),
 	},
 	{
 		//Exits
