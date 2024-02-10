@@ -5,8 +5,8 @@ compile() {
   APP_NAME=$(basename "$PWD")
   BANNERTOOLAPP=bannertool
   IS_GH_ACTIONS=true
-  if [ -n "$var" ]; then
-    echo "Building on Github Actions.."
+  if [ -n "$GITHUB_SHA" ]; then
+    echo "Building on Github Actions..."
   else
     echo "GITHUB_SHA is empty, building locally."
     IS_GH_ACTIONS=false
@@ -43,8 +43,13 @@ compile() {
   3dstool -cvtf romfs ./romfs.bin --romfs-dir ./romfs
   makerom -f cia -o ${APP_NAME}.cia -DAPP_ENCRYPTED=false -target t -exefslogo -elf ./${APP_NAME}.elf -icon ./icon.icn -banner ./banner.bnr -rsf ./mmrando.rsf -romfs ./romfs.bin -major 1 -minor 0 -micro 0
   if $IS_GH_ACTIONS; then
-    qrencode -ocia.png https://github.com/$GITHUB_REPOSITORY/releases/download/Nightly-$commitHashShort/${APP_NAME}.cia
-    qrencode -o3dsx.png https://github.com/$GITHUB_REPOSITORY/releases/download/Nightly-$commitHashShort/${APP_NAME}.3dsx
+    if [ -n "$url_tag" ]; then
+      qrencode -ocia.png https://github.com/$GITHUB_REPOSITORY/releases/download/$url_tag/${APP_NAME}.cia
+      qrencode -o3dsx.png https://github.com/$GITHUB_REPOSITORY/releases/download/$url_tag/${APP_NAME}.3dsx
+    else
+      qrencode -ocia.png https://github.com/$GITHUB_REPOSITORY/releases/download/Nightly-$commitHashShort/${APP_NAME}.cia
+      qrencode -o3dsx.png https://github.com/$GITHUB_REPOSITORY/releases/download/Nightly-$commitHashShort/${APP_NAME}.3dsx
+    fi
   fi
 }
 
