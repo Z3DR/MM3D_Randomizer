@@ -147,9 +147,9 @@ std::vector<LocationKey> DungeonInfo::GetEveryLocation() const {
                             WOODFALL_TEMPLE_MAP_CHEST,
                             WOODFALL_TEMPLE_COMPASS_CHEST,
                             WOODFALL_TEMPLE_SMALL_KEY_CHEST,
-                            ODOLWA_HEART_CONTAINER,
                             WOODFALL_TEMPLE_HEROS_BOW_CHEST,
 							WOODFALL_TEMPLE_BOSS_KEY_CHEST,
+                            ODOLWA_HEART_CONTAINER,
                             ODOLWA,
 							WOODFALL_TEMPLE_DEKU_PRINCESS,
 							},{
@@ -209,8 +209,8 @@ std::vector<LocationKey> DungeonInfo::GetEveryLocation() const {
                             GBT_SMALL_KEY_CHEST,
                             GBT_ICE_ARROW_CHEST,
 							GBT_BOSS_KEY_CHEST,
-                            GYORG,
 							GYORG_HEART_CONTAINER,
+                            GYORG,
   							},{
 							//STRAY FAIRY LOCATIONS
 							GBT_SF_SKULLTULA,
@@ -241,8 +241,8 @@ std::vector<LocationKey> DungeonInfo::GetEveryLocation() const {
 							STONE_TOWER_TEMPLE_UPDRAFT_ROOM_CHEST,
 							STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST,
 							STONE_TOWER_TEMPLE_LIGHT_ARROW_CHEST,
-							TWINMOLD,
 							TWINMOLD_HEART_CONTAINER,
+							TWINMOLD,
   							},{
 							//STRAY FAIRY LOCATIONS
 							ST_SF_MIRROR_SUN_BLOCK,
