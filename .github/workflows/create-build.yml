@@ -55,11 +55,17 @@ jobs:
         with:
           submodules: true
 
-      - name: Run Build Script
+      - if: ${{ github.event.inputs.build_type == 'Nightly' }}
+        name: Run Build Script Nightly
         run: |
-          if [[ ${{ github.event.inputs.build_type == 'Release' }} == true ]]; then
-            url_tag=v${{ github.event.inputs.version }}
-          fi
+          chmod +x linux_build_rando.sh
+          ./linux_build_rando.sh
+      
+      - if: ${{ github.event.inputs.build_type == 'Release' }}
+        name: Run Build Script Release
+        env:
+          url_tag: v${{ github.event.inputs.version }}
+        run: |
           chmod +x linux_build_rando.sh
           ./linux_build_rando.sh
 
