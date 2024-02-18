@@ -66,7 +66,7 @@ void LocationTable_Init() {
  locationTable[GORON_VILLAGE_LEDGE_SPRING]                         = ItemLocation::Collectable(0x48, 0x00, false, "GV Piece of Heart (Spring)",                               GORON_VILLAGE_LEDGE_SPRING,                     PIECE_OF_HEART,               {Category::cGoronVillage, Category::cVanillaHeartPiece,Category::cDayOne},                                                                                             SpoilerCollectionCheckGroup::GROUP_GORON_VILLAGE );
    
  //Great Bay Coast
- locationTable[GBC_OCEAN_SPIDER_DAY1]                              = ItemLocation::Base       (0x28, 0x48, false, "OSH Day 1 Reward",                                         GBC_OCEAN_SPIDER_DAY1,                          PROGRESSIVE_WALLET,           {Category::cGreatBayCoast ,Category::cDayOne},                                                                             SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_GREAT_BAY_COAST );
+ locationTable[GBC_OCEAN_SPIDER_DAY1]                              = ItemLocation::Base       (0x28, 0x48, false, "OSH Reward",                                               GBC_OCEAN_SPIDER_DAY1,                          PROGRESSIVE_WALLET,           {Category::cGreatBayCoast ,Category::cDayOne},                                                                             SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_GREAT_BAY_COAST );
  //locationTable[GBC_OCEAN_SPIDER_DAY2]                              = ItemLocation::Base       (0x28, 0x00, true,  "OSH Day 2 Reward",                                         GBC_OCEAN_SPIDER_DAY2,                          PURPLE_RUPEE,                 {Category::cGreatBayCoast ,Category::cDayTwo},                                                                             SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_GREAT_BAY_COAST );
  //locationTable[GBC_OCEAN_SPIDER_DAY3]                              = ItemLocation::Base       (0x28, 0x00, true,  "OSH Day 3 Reward",                                         GBC_OCEAN_SPIDER_DAY3,                          RED_RUPEE,                    {Category::cGreatBayCoast,Category::cDayThree},                                                                            SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_GREAT_BAY_COAST );
  locationTable[GBC_FISHERMAN_GAME]                                 = ItemLocation::Base       (0x37, 0x0C, false, "GBC Fisherman's Game",                                     GBC_FISHERMAN_GAME,                             PIECE_OF_HEART,               {Category::cGreatBayCoast, Category::cMinigame,Category::cDayOne},                                                         SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_GREAT_BAY_COAST );
@@ -507,10 +507,10 @@ void LocationTable_Init() {
     /*-------------------------------
           ---HEART CONTAINERS ---
       -------------------------------*/
- locationTable[ODOLWA_HEART_CONTAINER]                             = ItemLocation::Base       (0x1F, 0x00, false, "Woodfall Temple Odolwa Heart Container",                   ODOLWA_HEART_CONTAINER,                         HEART_CONTAINER,              {Category::cWoodfall, Category::cWoodfallTemple,Category::cBossHeart, Category::cDungeonReward,Category::cDayOne},         SpoilerCollectionCheck::Collectable(0x00,0x00),      SpoilerCollectionCheckGroup::GROUP_DUNGEON_WOODFALL_TEMPLE );
- locationTable[GOHT_HEART_CONTAINER]                               = ItemLocation::Base       (0x44, 0x00, false, "Snowhead Temple Goht Heart Container",                     GOHT_HEART_CONTAINER,                           HEART_CONTAINER,              {Category::cSnowhead, Category::cSnowheadTemple, Category::cBossHeart, Category::cDungeonReward,Category::cDayOne},        SpoilerCollectionCheck::Collectable(0x00,0x00),      SpoilerCollectionCheckGroup::GROUP_DUNGEON_SNOWHEAD_TEMPLE );
- locationTable[GYORG_HEART_CONTAINER]                              = ItemLocation::Base       (0x5F, 0x00, false, "Great Bay Temple Gyorg Heart Container",                   GYORG_HEART_CONTAINER,                          HEART_CONTAINER,              {Category::cZoraCape, Category::cGreatBayTemple, Category::cBossHeart, Category::cDungeonReward,Category::cDayOne},        SpoilerCollectionCheck::Collectable(0x00,0x00),      SpoilerCollectionCheckGroup::GROUP_DUNGEON_GREAT_BAY );
- locationTable[TWINMOLD_HEART_CONTAINER]                           = ItemLocation::Base       (0x36, 0x00, false, "Stone Tower Temple Twinmold Heart Container",              TWINMOLD_HEART_CONTAINER,                       HEART_CONTAINER,              {Category::cStoneTower, Category::cStoneTowerTemple,Category::cBossHeart, Category::cDungeonReward,Category::cDayOne},     SpoilerCollectionCheck::Collectable(0x00,0x00),      SpoilerCollectionCheckGroup::GROUP_DUNGEON_STONE_TOWER );
+ locationTable[ODOLWA_HEART_CONTAINER]                             = ItemLocation::Base       (0x1F, 0x0D, false, "Woodfall Temple Odolwa Heart Container",                   ODOLWA_HEART_CONTAINER,                         HEART_CONTAINER,              {Category::cWoodfall, Category::cWoodfallTemple,Category::cBossHeart, Category::cDungeonReward,Category::cDayOne},         SpoilerCollectionCheck::Collectable(0x00,0x00),      SpoilerCollectionCheckGroup::GROUP_DUNGEON_WOODFALL_TEMPLE );
+ locationTable[GOHT_HEART_CONTAINER]                               = ItemLocation::Base       (0x44, 0x0D, false, "Snowhead Temple Goht Heart Container",                     GOHT_HEART_CONTAINER,                           HEART_CONTAINER,              {Category::cSnowhead, Category::cSnowheadTemple, Category::cBossHeart, Category::cDungeonReward,Category::cDayOne},        SpoilerCollectionCheck::Collectable(0x00,0x00),      SpoilerCollectionCheckGroup::GROUP_DUNGEON_SNOWHEAD_TEMPLE );
+ locationTable[GYORG_HEART_CONTAINER]                              = ItemLocation::Base       (0x5F, 0x0D, false, "Great Bay Temple Gyorg Heart Container",                   GYORG_HEART_CONTAINER,                          HEART_CONTAINER,              {Category::cZoraCape, Category::cGreatBayTemple, Category::cBossHeart, Category::cDungeonReward,Category::cDayOne},        SpoilerCollectionCheck::Collectable(0x00,0x00),      SpoilerCollectionCheckGroup::GROUP_DUNGEON_GREAT_BAY );
+ locationTable[TWINMOLD_HEART_CONTAINER]                           = ItemLocation::Base       (0x36, 0x0D, false, "Stone Tower Temple Twinmold Heart Container",              TWINMOLD_HEART_CONTAINER,                       HEART_CONTAINER,              {Category::cStoneTower, Category::cStoneTowerTemple,Category::cBossHeart, Category::cDungeonReward,Category::cDayOne},     SpoilerCollectionCheck::Collectable(0x00,0x00),      SpoilerCollectionCheckGroup::GROUP_DUNGEON_STONE_TOWER );
  
     /*-------------------------------
                --- COWS ---
@@ -1132,11 +1132,11 @@ void LocationReset() {
 
   for (LocationKey il : dungeonRewardLocations) {
     Location(il)->RemoveFromPool();
-  }
+  }*/
 
   for (LocationKey il : gossipStoneLocations) {
     Location(il)->RemoveFromPool();
-  }*/
+  }
 
   // Something's still missing from allLocations, IDK what though and this fixes it
   for (LocationKey il = LINKS_POCKET; il <= OSH_COLORED_SKULLS_POT; il++) {

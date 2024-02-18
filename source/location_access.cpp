@@ -248,7 +248,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(N_CLOCK_TOWN_GREAT_FAIRY_DEKU, {[] {return ClockTownStrayFairy && (ZoraMask || DekuMask || GoronMask );}}),
+		LocationAccess(N_CLOCK_TOWN_GREAT_FAIRY_DEKU, {[] {return ClockTownStrayFairy && DekuMask;}}),
 		LocationAccess(N_CLOCK_TOWN_GREAT_FAIRY_HUMAN, {[] {return ClockTownStrayFairy;}}),
 		
 	},
@@ -464,7 +464,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(W_CLOCK_TOWN_POSTMANS_GAME, {[] {return true;}}),//Maybe Bunny Hood?
+		LocationAccess(W_CLOCK_TOWN_POSTMANS_GAME, {[] {return BunnyHood;}}),//trick to do without?
 	},
 	{
 		//Exits
@@ -1453,11 +1453,11 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(PINNACLE_ROCK_SEAHORSES,   {[]{return ZoraMask && MagicMeter && Seahorse;}}),
-		LocationAccess(PINNACLE_ROCK_UPPER_CHEST, {[]{return ZoraMask && MagicMeter;}}),
-		LocationAccess(PINNACLE_ROCK_LOWER_CHEST, {[]{return ZoraMask && MagicMeter;}}),
-		LocationAccess(PINNACLE_ROCK_ZORA_EGG1,   {[]{return ZoraMask && MagicMeter && AnyBottle;}}),
-		LocationAccess(PINNACLE_ROCK_ZORA_EGG2,   {[]{return ZoraMask && MagicMeter && AnyBottle;}}),
-		LocationAccess(PINNACLE_ROCK_ZORA_EGG3,   {[]{return ZoraMask && MagicMeter && AnyBottle;}}),
+		LocationAccess(PINNACLE_ROCK_UPPER_CHEST, {[]{return ZoraMask && MagicMeter && Seahorse;}}),
+		LocationAccess(PINNACLE_ROCK_LOWER_CHEST, {[]{return ZoraMask && MagicMeter && Seahorse;}}),
+		LocationAccess(PINNACLE_ROCK_ZORA_EGG1,   {[]{return ZoraMask && MagicMeter && AnyBottle && Seahorse;}}),
+		LocationAccess(PINNACLE_ROCK_ZORA_EGG2,   {[]{return ZoraMask && MagicMeter && AnyBottle && Seahorse;}}),
+		LocationAccess(PINNACLE_ROCK_ZORA_EGG3,   {[]{return ZoraMask && MagicMeter && AnyBottle && Seahorse;}}),
 	},
 	{
 		//Exits

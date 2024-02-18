@@ -286,7 +286,7 @@ static void PlaceVanillaSongs() {
 };
 
 // TODO: Change back to 18 when the override value is correct.
-const std::array<ItemKey, 17> maskList = {
+const std::array<ItemKey, 18> maskList = {
 	KEATON_MASK,
 	BUNNY_HOOD,
 	POSTMANS_HAT,
@@ -303,7 +303,7 @@ const std::array<ItemKey, 17> maskList = {
 	GIBDOS_MASK,
 	GAROS_MASK,
 	CAPTAINS_HAT,
-	// GIANTS_MASK, // TODO: Add this back in after the override is completed.
+    GIANTS_MASK, 
 	MASK_OF_TRUTH,
 };
 
@@ -894,10 +894,6 @@ void GenerateItemPool() {
     	
 	//temp placement until shopsanity works
 	PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE, MAGIC_BEAN);
-	
-	// TODO: Remove these once overrides are fixed.
-	PlaceItemInLocation(STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST, GIANTS_MASK);
-
 
 	//Place Temp Items at alt locations so they don't get filled with important stuff - will be replaced later
 	PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_IN_WOODS, BLUE_RUPEE);

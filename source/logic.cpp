@@ -463,9 +463,9 @@ namespace Logic {
 		DekuNutDrop = NutPot || NutCrate || DekuBabaNuts;
 		BugsAccess = BugShrub || WanderingBugs || BugRock;
 		FishAccess = LoneFish || FishGroup;
-		WaterAccess = (SpringWater && WitchBottle) || CanPlay(SongOfStorms);
-		HotSpringWaterAccess = HotSpringWater && WitchBottle;
-		WaterForBeans = (WitchBottle && WaterAccess) || SongOfStorms;
+		WaterAccess = (SpringWater && AnyBottle) || CanPlay(SongOfStorms);
+		HotSpringWaterAccess = HotSpringWater && AnyBottle;
+		WaterForBeans = (AnyBottle && WaterAccess) || SongOfStorms;
 		AnyMagicBean = (MagicBean || MagicBeanPack || LimitlessBeans);
 		//refills
 		Bombs = AnyBombBag;

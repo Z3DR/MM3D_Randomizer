@@ -151,7 +151,7 @@ static std::vector<LocationKey> GetAccessibleGossipStones(const LocationKey hint
   auto accessibleGossipStones = GetAccessibleLocations(gossipStoneLocations);
   //Give the item back to the location
   Location(hintedLocation)->SetPlacedItem(originalItem);
-
+  
   return accessibleGossipStones;
 }
 

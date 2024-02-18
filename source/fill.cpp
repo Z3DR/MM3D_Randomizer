@@ -238,7 +238,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
         }
         return {};
     }
-
+    
     erase_if(accessibleLocations, [&allowedLocations](LocationKey loc) {
         for (LocationKey allowedLocation : allowedLocations) {
             if (loc == allowedLocation || Location(loc)->GetPlacedItemKey() != NONE) {
@@ -247,6 +247,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
         }
         return true;
         });
+
     return accessibleLocations;
     
 }
@@ -731,11 +732,14 @@ static void RandomizeLinksPocket() {
 
 int VanillaFill() {
     //Perform minimum needed initialization
-    AreaTable_Init();
+    CitraPrint("Starting VanillaFill\n");
+     AreaTable_Init(); //Reset the world graph to intialize the proper locations
+    ItemReset(); //Reset shops incase of shopsanity random
     GenerateLocationPool();
     GenerateItemPool();
     GenerateStartingInventory();
-    //Place vanilla item in each location
+    RemoveStartingItemsFromPool();
+    FillExcludedLocations();
     RandomizeDungeonRewards();
     for (LocationKey loc : allLocations) {
         Location(loc)->PlaceVanillaItem();
@@ -747,42 +751,58 @@ int VanillaFill() {
     //    printf("\x1b[7;32HDone");
     //}
     //Finish up
+    GeneratePlaythrough();
+    printf("Done");
+    printf("\x1b[9;10HCalculating Playthrough..."); 
+    PareDownPlaythrough();
+    printf("Done");
+    printf("\x1b[10;10HCalculating Way of the Hero..."); 
+    CalculateWotH();
+    printf("Done");
+    CitraPrint("Creating Item Overrides");
     CreateItemOverrides();
-    //CreateEntranceOverrides();
-    //CreateAlwaysIncludedMessages();
+    // CreateEntranceOverrides();
+    // CreateAlwaysIncludedMessages();
+    if (GossipStoneHints.IsNot(rnd::GossipStoneHintsSetting::HINTS_NO_HINTS)) {
+        printf("\x1b[11;10HCreating Hints...");
+        CreateAllHints();
+        printf("Done");
+     }
+     
     return 1;
 }
 
 int NoLogicFill() {
+    CitraPrint("StartingNoLogicFill\n");
     AreaTable_Init(); //Reset the world graph to intialize the proper locations
     ItemReset(); //Reset shops incase of shopsanity random
     GenerateLocationPool();
     GenerateItemPool();
     GenerateStartingInventory();
+    RemoveStartingItemsFromPool();
+    FillExcludedLocations();
     RandomizeDungeonRewards();
     std::vector<ItemKey> remainingPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return true;});
     FastFill(remainingPool, GetAllEmptyLocations(), false);
     GeneratePlaythrough();
-    //Successful placement, produced beatable result
-    //if (playthroughBeatable && !placementFailure) {
-    //    printf("Done");
-    //    printf("\x1b[9;10HCalculating Playthrough...");
-    //    PareDownPlaythrough();
-    //    CalculateWotH();
-    //    printf("Done");
-        CreateItemOverrides();
-     // CreateEntranceOverrides();
-     // CreateAlwaysIncludedMessages();
-        /*if (GossipStoneHints.IsNot(HINTS_NO_HINTS)) {
-            printf("\x1b[10;10HCreating Hints...");
-            CreateAllHints();
-            printf("Done");
-        }
-        if (ShuffleMerchants.Is(SHUFFLEMERCHANTS_HINTS)) {
-            CreateMerchantsHints();
-        }*/
-    //}
-        return 1;
+    printf("Done");
+    printf("\x1b[9;10HCalculating Playthrough..."); 
+    PareDownPlaythrough();
+    printf("Done");
+    printf("\x1b[10;10HCalculating Way of the Hero..."); 
+    CalculateWotH();
+    printf("Done");
+    CitraPrint("Creating Item Overrides");
+    CreateItemOverrides();
+    // CreateEntranceOverrides();
+    // CreateAlwaysIncludedMessages();
+    if (GossipStoneHints.IsNot(rnd::GossipStoneHintsSetting::HINTS_NO_HINTS)) {
+        printf("\x1b[11;10HCreating Hints...");
+        CreateAllHints();
+        printf("Done");
+     }
+     
+     return 1;
 }
    
 

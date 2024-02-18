@@ -64,7 +64,7 @@ namespace Settings {
   };
   
   //Mode/Logic Settings
-  Option Logic = Option::U8("Logic", { "Glitchless", "No Logic", "Vanilla", "Glitched" }, { logicGlitchless, logicNoLogic, logicVanilla, logicGlitched });
+  Option Logic = Option::U8("Logic", { "Glitchless", "No Logic", "Vanilla", "Glitched" }, { logicGlitchless, logicNoLogic, logicVanilla, logicGlitched },OptionCategory::Setting, (u8)LogicSetting::LOGIC_GLITCHLESS);
   Option LocationsReachable = Option::Bool("All Locations Reachable", { "Off", "On" }, { locationsReachableDesc }, OptionCategory::Setting, 1); //All Locations Reachable On
   std::vector<Option*> logicOptions = {
     &Logic,
@@ -302,7 +302,7 @@ namespace Settings {
     &BossKeysanity,
     //&StrayFairysanity,
     //&ShuffleRewards,
-    //&ShuffleHeartContainers,
+    &ShuffleHeartContainers,
   };
 
   //Item Pool Settings 
