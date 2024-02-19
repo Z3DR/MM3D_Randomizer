@@ -351,7 +351,7 @@ namespace Settings {
       &CompassShowWoTH,
       //&DamageMultiplier,
       //&ChestAnimations,
-      //&ChestSize,
+      &ChestSize,
       //&ChangeOverworldItems,
       //&IngameSpoilers,
       //&MenuOpeningButton,
