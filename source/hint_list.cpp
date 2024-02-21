@@ -78,7 +78,7 @@ void HintTable_Init() {
 	hintTable[GAROS_MASK] = HintText::Item({ Text{"the mask of spies", "the mask of spies", "the mask of spies"}});
 	hintTable[CAPTAINS_HAT] = HintText::Item({ Text{"a commanding presence", "a commanding presence", "a commanding presence"}});
 	hintTable[GIANTS_MASK] = HintText::Item({ Text{"a growth spurt", "a growth spurt", "a growth spurt"}});
-	hintTable[FIERCE_DIETY_MASK] = HintText::Item({ Text{"the wrath of a god", "the wrath of a god", "the wrath of a god"}});
+	hintTable[FIERCE_DEITY_MASK] = HintText::Item({ Text{"the wrath of a god", "the wrath of a god", "the wrath of a god"}});
 	hintTable[MASK_OF_TRUTH] = HintText::Item({ Text{"a piercing gaze", "a piercing gaze", "a piercing gaze"}});
 	hintTable[FISHING_PASS] = HintText::Item({Text{"a fishing pass", "a fishing passs", "a fishing pass"}});
 	hintTable[ICE_TRAP] = HintText::Item({Text{"a frosty surprise", "a frosty surprise", "a frosty surprise"}});
@@ -411,7 +411,7 @@ void HintTable_Init() {
     hintTable[POTION_SHOP_ITEM_1] = HintText::Sometimes({Text{"a potion maker sells", "", ""}});
     hintTable[POTION_SHOP_ITEM_2] = HintText::Sometimes({Text{"a potion maker sells", "", ""}});
     hintTable[POTION_SHOP_ITEM_3] = HintText::Sometimes({Text{"a potion maker sells", "", ""}});
-//StockPotInn
+//Stock Pot Inn
     hintTable[STOCKPOTINN_RESERVATION] = HintText::Sometimes({Text{"checking-in rewards", "", ""}});
     hintTable[STOCKPOTINN_MIDNIGHT_MEETING] = HintText::Sometimes({Text{"a late meeting rewards", "", ""}});
     hintTable[STOCKPOTINN_TOILET_HAND] = HintText::Sometimes({Text{"a strange palm rewards", "", ""}});
@@ -705,10 +705,10 @@ void HintTable_Init() {
     hintTable[CLOCK_TOWN_FAIRY_FOUNTAIN] = HintText::Region({Text{"Clock Town Fairy Fountain", "", ""}});
     hintTable[CLOCK_TOWN_DEKU_PLAYGROUND] = HintText::Region({Text{"Deku Playground", "", ""}});
     hintTable[E_CLOCK_TOWN] = HintText::Region({Text{"E Clock Town", "", ""}});
-    hintTable[STOCKPOTINN] = HintText::Region({Text{"StockPotInn", "", ""}});
-    hintTable[STOCKPOTINN_GUEST_ROOM] = HintText::Region({Text{"StockPotInn", "", ""}});
-    hintTable[STOCKPOTINN_STAFF_ROOM] = HintText::Region({Text{"StockPotInn", "", ""}});
-    hintTable[STOCKPOTINN_GRANDMA_ROOM] = HintText::Region({Text{"StockPotInn", "", ""}});
+    hintTable[STOCKPOTINN] = HintText::Region({Text{"Stock Pot Inn", "", ""}});
+    hintTable[STOCKPOTINN_GUEST_ROOM] = HintText::Region({Text{"Stock Pot Inn", "", ""}});
+    hintTable[STOCKPOTINN_STAFF_ROOM] = HintText::Region({Text{"Stock Pot Inn", "", ""}});
+    hintTable[STOCKPOTINN_GRANDMA_ROOM] = HintText::Region({Text{"Stock Pot Inn", "", ""}});
     hintTable[CLOCK_TOWN_OBSERVATORY] = HintText::Region({Text{"Observatory", "", ""}});
     hintTable[CLOCK_TOWN_BAR] = HintText::Region({Text{"Milk Bar", "", ""}});
     hintTable[CLOCK_TOWN_HONEY_DARLING] = HintText::Region({Text{"E Clock Town", "", ""}});

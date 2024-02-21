@@ -90,7 +90,7 @@ namespace Logic {
 	bool GarosMask = false;
 	bool CaptainsHat = false;
 	bool GiantsMask = false;
-	bool FierceDietyMask = false;
+	bool FierceDeityMask = false;
 	bool MaskOfTruth = false;
 	bool OneMask = false;
 	bool TwoMasks = false;
@@ -364,7 +364,7 @@ namespace Logic {
 			(item == GAROS_MASK) ||
 			(item == CAPTAINS_HAT) ||
 			(item == GIANTS_MASK) ||
-			(item == FIERCE_DIETY_MASK) ||
+			(item == FIERCE_DEITY_MASK) ||
 			(item == MASK_OF_TRUTH);
 	}
 	static bool HasItem(ItemKey itemName) {
@@ -398,7 +398,7 @@ namespace Logic {
 			(itemName == GAROS_MASK && GarosMask) ||
 			(itemName == CAPTAINS_HAT && CaptainsHat) ||
 			(itemName == GIANTS_MASK && GiantsMask) ||
-			(itemName == FIERCE_DIETY_MASK && FierceDietyMask) ||
+			(itemName == FIERCE_DEITY_MASK && FierceDeityMask) ||
 			(itemName == MASK_OF_TRUTH && MaskOfTruth);
 	}
 
@@ -618,7 +618,7 @@ namespace Logic {
 	  GarosMask = false;
 	  CaptainsHat = false;
 	  GiantsMask = false;
-	  FierceDietyMask = false;
+	  FierceDeityMask = false;
 	  MaskOfTruth = false;
 	  OneMask = false;
 	  TwoMasks = false;

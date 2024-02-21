@@ -82,7 +82,7 @@ namespace Logic {
 	extern bool GarosMask;
 	extern bool CaptainsHat;
 	extern bool GiantsMask;
-	extern bool FierceDietyMask;
+	extern bool FierceDeityMask;
 	extern bool MaskOfTruth;
 	extern bool OneMask;
 	extern bool TwoMasks;

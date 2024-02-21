@@ -162,7 +162,7 @@ namespace Settings {
   Option StartingGaroMask          = Option::U8("  Garo Mask",              { "None",             "Garo M."},                                                  { "" });
   Option StartingCaptainsHat       = Option::U8("  Captain's Mask",         { "None",             "Captains M." },                                             { "" });
   Option StartingGiantsMask        = Option::U8("  Giants Mask",            { "None",             "Giants M." },                                               { "" });
-  Option StartingFierceDietyMask   = Option::U8("  Fierce Diety Mask",      { "None",             "F.D M." },                                                  { "" });
+  Option StartingFierceDeityMask   = Option::U8("  Fierce Deity Mask",      { "None",             "F.D M." },                                                  { "" });
   Option StartingMaskOfTruth       = Option::U8("  Mask of Truth",          { "None",             "Truth M." },                                                { "" });
   Option StartingStickCapacity     = Option::U8("  Stick Capacity",         { "None", "10 Sticks", "20 Sticks", "30 Sticks" },                                 { "" });
   Option StartingPictographBox     = Option::U8("  Pictograph Box",         { "None",             "PictoBox" },                                                { "" });
@@ -222,7 +222,7 @@ namespace Settings {
     &StartingGaroMask,
     &StartingCaptainsHat,
     &StartingGiantsMask,
-    &StartingFierceDietyMask,
+    &StartingFierceDeityMask,
     &StartingMaskOfTruth,
     &StartingSongsToggle,
     &StartingOathToOrder,
@@ -312,13 +312,13 @@ namespace Settings {
   Option ShuffleGFRewards       = Option::U8("Great Fairy Rewards",    {"Vanilla", "Great Fairies", "Anywhere" },       { shuffleGFVanilla, shuffleGFSelf, shuffleGFAnywhere },                   OptionCategory::Setting, (u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA);
   Option ShuffleMainInventory   = Option::Bool("Main Inventory",       {"Vanilla", "Random"},                           { shuffleMainInventoryDesc},                                              OptionCategory::Toggle,   1);
   Option ShuffleTransformation  = Option::Bool("Transformation Masks", {"Vanilla", "Random"},                           { shuffleTransformationDesc});
-  Option ShuffleFierceDiety     = Option::Bool("Fierce Diety Mask",    {"Vanilla", "Random"},                           { shuffleFierceDietyDesc});
+  Option ShuffleFierceDeity     = Option::Bool("Fierce Deity Mask",    {"Vanilla", "Random"},                           { shuffleFierceDeityDesc});
   Option ShuffleMoonItems       = Option::Bool("Shuffle Moon Items",   {"Off", "On"},                                   {shuffleMoonItemsDesc});
   std::vector<Option*>itemPoolSettingsOptions = {
       &ItemPoolValue,
       &ShuffleMainInventory,
       &ShuffleTransformation,
-      &ShuffleFierceDiety,
+      &ShuffleFierceDeity,
       &ShuffleMasks,
       &ShuffleGFRewards,
       &ShufflePiecesOfHeart,
@@ -362,7 +362,7 @@ namespace Settings {
 
   Option BlastMaskCooldown      = Option::U8("Blast Mask Cooldown",        { "Default", "Instant", "Very Short", "Short", "Long", "Very Long" }, { blastDefault, blastInstant, blastVeryShort, blastShort, blastLong, blastVeryLong });
   Option UnderwaterOcarina      = Option::Bool("Underwater Ocarina",       { "No","Yes" },                                                       { underwaterOcarinaDesc },                                                         OptionCategory::Toggle);
-  Option FierceDietyAnywhere    = Option::Bool("Fierce Diety Anywhere",    { "No","Yes" },                                                       { fierceDietyAnywhereDesc },                                                       OptionCategory::Toggle);
+  Option FierceDeityAnywhere    = Option::Bool("Fierce Deity Anywhere",    { "No","Yes" },                                                       { fierceDeityAnywhereDesc },                                                       OptionCategory::Toggle);
   Option ProgressiveGildedSword = Option::Bool("Progressive Gilded Sword", { "Off", "On" },                                                      { progressiveGildedSwordDesc });
   Option StartingSpin           = Option::Bool("Starting Spin",            { "Vanilla", "Upgraded" },                                            { startingSpinDesc });
   Option AmmoDrops              = Option::U8("Ammo Drops",                 { "Off", "On" },                                                      { ammoDropDesc });
@@ -373,7 +373,7 @@ namespace Settings {
      
      &BlastMaskCooldown,
      &UnderwaterOcarina,
-     &FierceDietyAnywhere,
+     &FierceDeityAnywhere,
      //&ProgressiveGildedSword,
      &StartingSpin,
      &AmmoDrops,
@@ -620,7 +620,7 @@ namespace Settings {
     ctx.itemPoolValue = ItemPoolValue.Value<u8>();
     //ctx.shuffleMainInventory = (ShuffleMainInventory) ? 1 : 0;
     //ctx.shuffleTransformation = (ShuffleTransformation) ? 1 : 0;
-    //ctx.shuffleFierceDiety = (ShuffleFierceDiety) ? 1:0;
+    //ctx.shuffleFierceDeity = (ShuffleFierceDeity) ? 1:0;
     //ctx.shuffleMasks = (ShuffleMasks) ? 1 : 0;
     ctx.shuffleGreatFairyRewards = ShuffleGFRewards.Value<u8>();
     //ctx.shufflePiecesOfHeart = (ShufflePiecesOfHeart) ? 1:0;
@@ -639,7 +639,7 @@ namespace Settings {
     
     //ctx.blastMaskCooldown = BlastMaskCooldown.Value<u8>();
     //ctx.underwaterOcarina = (UnderwaterOcarina) ? 1 : 0;
-    //ctx.fierceDietyAnywhere = (FierceDietyAnywhere) ? 1 : 0;
+    //ctx.fierceDeityAnywhere = (FierceDeityAnywhere) ? 1 : 0;
     ctx.skipMinigamePhases = (SkipMinigamePhases) ? 1 : 0;
     ctx.skipEponaRace = (SkipEponaRace) ? 1 : 0;
     //ctx.fastLabFish = (FastLabFish) ? 1 : 0;
@@ -765,7 +765,7 @@ namespace Settings {
     ctx.startingGaroMask = StartingGaroMask.Value<u8>();
     ctx.startingCaptainsHat = StartingCaptainsHat.Value<u8>();
     ctx.startingGiantsMask = StartingGiantsMask.Value<u8>();
-    ctx.startingFierceDietyMask = StartingFierceDietyMask.Value<u8>();
+    ctx.startingFierceDeityMask = StartingFierceDeityMask.Value<u8>();
     ctx.startingMaskOfTruth = StartingMaskOfTruth.Value<u8>();
 
     //Restoration Features
@@ -1419,7 +1419,7 @@ namespace Settings {
       ShuffleHeartContainers.SetSelectedIndex(0);
       ShuffleMainInventory.SetSelectedIndex(0);
       ShuffleTransformation.SetSelectedIndex(0);
-      ShuffleFierceDiety.SetSelectedIndex(0);
+      ShuffleFierceDeity.SetSelectedIndex(0);
       ShuffleMasks.SetSelectedIndex(0);
       ShuffleGFRewards.SetSelectedIndex(0);
       ShufflePiecesOfHeart.SetSelectedIndex(0);

@@ -363,7 +363,7 @@ namespace Settings {
   extern Option StartingGaroMask;
   extern Option StartingCaptainsHat;
   extern Option StartingGiantsMask;
-  extern Option StartingFierceDietyMask;
+  extern Option StartingFierceDeityMask;
   extern Option StartingMaskOfTruth;
   //Excluded Locations
   extern std::vector<Option*> excludeLocationsOptions;
@@ -400,7 +400,7 @@ namespace Settings {
   extern Option ItemPoolValue;
   extern Option ShuffleMainInventory;
   extern Option ShuffleTransformation;
-  extern Option ShuffleFierceDiety;
+  extern Option ShuffleFierceDeity;
   extern Option ShuffleChests;
   extern Option ShuffleMasks;
   extern Option ShuffleGFRewards;
@@ -427,7 +427,7 @@ namespace Settings {
   //Comfort
   extern Option BlastMaskCooldown;
   extern Option UnderwaterOcarina;
-  extern Option FierceDietyAnywhere;
+  extern Option FierceDeityAnywhere;
   extern Option ProgressiveGildedSword;
   extern Option StartingSpin;
   extern Option AmmoDrops;

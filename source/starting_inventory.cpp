@@ -134,7 +134,7 @@ void GenerateStartingInventory() {
   AddItemToInventory(GAROS_MASK,                StartingGaroMask.Value<u8>());
   AddItemToInventory(CAPTAINS_HAT,              StartingCaptainsHat.Value<u8>());
   AddItemToInventory(GIANTS_MASK,               StartingGiantsMask.Value<u8>());
-  AddItemToInventory(FIERCE_DIETY_MASK,         StartingFierceDietyMask.Value<u8>());
+  AddItemToInventory(FIERCE_DEITY_MASK,         StartingFierceDeityMask.Value<u8>());
   AddItemToInventory(MASK_OF_TRUTH,             StartingMaskOfTruth.Value<u8>());
 
   

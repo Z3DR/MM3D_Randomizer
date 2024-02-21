@@ -120,7 +120,7 @@ string_view shuffleMainInventoryDesc  = "Shuffle Main Inventory Items\n"        
                                         "Magic Beans and Fire, Ice, and Light Arrows";     //
                                                                                            //   
 string_view shuffleTransformationDesc = "Shuffles Deku, Goron, and Zora Masks";            //
-string_view shuffleFierceDietyDesc    = "Shuffles Fierce Diety Mask";                      //
+string_view shuffleFierceDeityDesc    = "Shuffles Fierce Deity Mask";                      //
 string_view shuffleMoonItemsDesc      = "Shuffles Items from the Moon into the pool\n"     //
                                         "Includes 4 Pieces of Heart, and 2 junk items";    //
 /*------------------------------                                                           //
@@ -420,8 +420,8 @@ string_view skipMinigamePhasesDesc    = "**OPTION CURRENTLY WIP**\n"            
                                         "both rewards at once for that minigame."          //
                                         "Also skips the first beaver race.";               //
                                                                                            //
-string_view fierceDietyAnywhereDesc   = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Enables the use of the Fierce Diety Mask anywhere";//
+string_view fierceDeityAnywhereDesc   = "**OPTION CURRENTLY WIP**\n"                       //
+                                        "Enables the use of the Fierce Deity Mask anywhere";//
                                                                                            //
  string_view underwaterOcarinaDesc    = "**OPTION CURRENTLY WIP**\n"                       //
                                         "Enables the use of the ocarina while underwater.";//

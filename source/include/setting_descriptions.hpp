@@ -106,7 +106,7 @@ extern string_view blastLong;
 extern string_view blastVeryLong;
 
 extern string_view underwaterOcarinaDesc;
-extern string_view fierceDietyAnywhereDesc;
+extern string_view fierceDeityAnywhereDesc;
 extern string_view skipMinigamePhasesDesc;
 extern string_view fastLabFishDesc;
 extern string_view fastBankDesc;
@@ -207,7 +207,7 @@ extern string_view shuffleHeartContainersDesc;
 extern string_view shufflePiecesOfHeartDesc;
 extern string_view shuffleMainInventoryDesc;
 extern string_view shuffleTransformationDesc;
-extern string_view shuffleFierceDietyDesc;
+extern string_view shuffleFierceDeityDesc;
 extern string_view shuffleMoonItemsDesc;
 extern string_view shuffleBombersNotebookDesc;
 extern string_view ocarinaDiveDesc;

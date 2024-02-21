@@ -103,7 +103,7 @@ const std::array<ItemKey, 83> easyItems = {
 	GAROS_MASK,
 	CAPTAINS_HAT,
 	GIANTS_MASK,
-	FIERCE_DIETY_MASK,
+	FIERCE_DEITY_MASK,
 	MASK_OF_TRUTH,
 	EMPTY_BOTTLE1,
 	EMPTY_BOTTLE2,
@@ -1045,12 +1045,12 @@ void GenerateItemPool() {
 		PlaceItemInLocation(GBC_MIKAU, ZORA_MASK);
 	}
 	
-	//FIERECE DIETY SHUFFLE
-	if(ShuffleFierceDiety){
-		AddItemToMainPool(FIERCE_DIETY_MASK);
+	//FIERECE DEITY SHUFFLE
+	if(ShuffleFierceDeity){
+		AddItemToMainPool(FIERCE_DEITY_MASK);
 	}
 	else{
-		PlaceItemInLocation(THE_MOON_MAJORA_CHILD,FIERCE_DIETY_MASK);
+		PlaceItemInLocation(THE_MOON_MAJORA_CHILD,FIERCE_DEITY_MASK);
 	}
 	
 	//PIECEOFHEART SHUFFLE

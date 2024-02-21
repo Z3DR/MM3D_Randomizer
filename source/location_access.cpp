@@ -284,7 +284,7 @@ void AreaTable_Init() {
 		Entrance(N_CLOCK_TOWN, {[]{return true;}}),
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 		Entrance(CLOCK_TOWN_OBSERVATORY, {[]{return BombersNotebook || SkipBombersMinigame;}}),
-		Entrance(STOCKPOTINN, {[]{return true;}}),//to-Do StockPotInn Night Access
+		Entrance(STOCKPOTINN, {[]{return true;}}),//to-Do Stock Pot Inn Night Access
 		Entrance(CLOCK_TOWN_BAR, {[]{return RomanisMask;}}),
 		Entrance(CLOCK_TOWN_HONEY_DARLING, {[]{return true;}}),
 		Entrance(CLOCK_TOWN_TREASURE_CHEST_GAME, {[]{return true;}}),
@@ -293,7 +293,7 @@ void AreaTable_Init() {
 		Entrance(S_CLOCK_TOWN, {[]{return true;}}),
 	});
 	
-	areaTable[STOCKPOTINN] = Area("StockPotInn", "StockPotInn", STOCKPOTINN, {
+	areaTable[STOCKPOTINN] = Area("Stock Pot Inn", "Stock Pot Inn", STOCKPOTINN, {
 		//Events
 	}, 
 	{
@@ -309,7 +309,7 @@ void AreaTable_Init() {
 		Entrance(E_CLOCK_TOWN, {[]{return true;}}),
 	});
 
-	areaTable[STOCKPOTINN_GUEST_ROOM] = Area("StockPotInn Guest Room", "StockPotInn Guest Room", NONE, {
+	areaTable[STOCKPOTINN_GUEST_ROOM] = Area("Stock Pot Inn Guest Room", "Stock Pot Inn Guest Room", NONE, {
 		//Events
 		//Listen to Anju? --probably not needed as its not hard required
 	},
@@ -322,7 +322,7 @@ void AreaTable_Init() {
 		Entrance(STOCKPOTINN, {[]{return true;}}),
 	});
 
-	areaTable[STOCKPOTINN_STAFF_ROOM] = Area("StockPotInn Staff Room", "StockPotInn Staff Room", NONE, {
+	areaTable[STOCKPOTINN_STAFF_ROOM] = Area("Stock Pot Inn Staff Room", "Stock Pot Inn Staff Room", NONE, {
 		//Events
 	},
 	{
@@ -336,7 +336,7 @@ void AreaTable_Init() {
 		Entrance(STOCKPOTINN, {[]{return true;}}),
 	});
 
-	areaTable[STOCKPOTINN_GRANDMA_ROOM] = Area("StockPotInn Grandma's Room", "StockPotInn Grandma's Room", NONE, {
+	areaTable[STOCKPOTINN_GRANDMA_ROOM] = Area("Stock Pot Inn Grandma's Room", "Stock Pot Inn Grandma's Room", NONE, {
 		//Events
 	},
 	{
