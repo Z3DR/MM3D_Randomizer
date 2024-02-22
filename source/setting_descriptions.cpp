@@ -393,17 +393,13 @@ string_view removeDDDesc              = "If set the double defense item will be 
 /*------------------------------                                                           //
 |     BLAST MASK COOLDOWN      |                                                           //
 ------------------------------*/                                                           //
-string_view blastDefault              = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Sets the cooldown time on the blastmask to \n"    //
+string_view blastDefault              = "Sets the cooldown time on the blastmask to \n"    //
                                         "the default cooldown time of 10 seconds";         //
-string_view blastInstant              = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Sets the cooldown time on the blastmask to \n"    //
+string_view blastInstant              = "Sets the cooldown time on the blastmask to \n"    //
                                         "have no cooldown time";                           //
-string_view blastVeryShort            = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Sets the cooldown time on the blastmask to \n"    //
-                                        "have an even shorter cooldown time of 1 second";  //
-string_view blastShort                = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Sets the cooldown time on the blastmask to \n"    //
+string_view blastVeryShort            = "Sets the cooldown time on the blastmask to \n"    //
+                                        "have an even shorter cooldown time of 3 seconds"; //
+string_view blastShort                = "Sets the cooldown time on the blastmask to \n"    //
                                         "have a shorter cooldown time of 5 seconds";       //
 string_view blastLong                 = "**OPTION CURRENTLY WIP**\n"                       //
                                         "Sets the cooldown time on the blastmask to \n"    //

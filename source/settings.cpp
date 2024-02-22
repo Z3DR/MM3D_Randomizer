@@ -360,7 +360,7 @@ namespace Settings {
   
   /*COMFORT*/
 
-  Option BlastMaskCooldown      = Option::U8("Blast Mask Cooldown",        { "Default", "Instant", "Very Short", "Short", "Long", "Very Long" }, { blastDefault, blastInstant, blastVeryShort, blastShort, blastLong, blastVeryLong });
+  Option BlastMaskCooldown      = Option::U8("Blast Mask Cooldown",        {"Default", "Short", "Very Short", "Instant"},                        { blastDefault, blastShort, blastVeryShort, blastInstant });
   Option UnderwaterOcarina      = Option::Bool("Underwater Ocarina",       { "No","Yes" },                                                       { underwaterOcarinaDesc },                                                         OptionCategory::Toggle);
   Option FierceDeityAnywhere    = Option::Bool("Fierce Deity Anywhere",    { "No","Yes" },                                                       { fierceDeityAnywhereDesc },                                                       OptionCategory::Toggle);
   Option ProgressiveGildedSword = Option::Bool("Progressive Gilded Sword", { "Off", "On" },                                                      { progressiveGildedSwordDesc });
@@ -372,12 +372,12 @@ namespace Settings {
   std::vector<Option*> comfortOptions = {
      
      &BlastMaskCooldown,
-     &UnderwaterOcarina,
-     &FierceDeityAnywhere,
+     // &UnderwaterOcarina,
+     // &FierceDeityAnywhere,
      //&ProgressiveGildedSword,
-     &StartingSpin,
-     &AmmoDrops,
-     &HeartDropRefills,
+     // &StartingSpin,
+     // &AmmoDrops,
+     // &HeartDropRefills,
      //&BombchusInLogic,
   };
  
@@ -543,7 +543,7 @@ namespace Settings {
   
 
   //Menu mainSettings = Menu::SubMenu("Main Settings", &mainSettingsOptions);
-  Menu comfort = Menu::SubMenu("Comfort", &comfortOptions);
+  Menu comfort = Menu::SubMenu("Comfort Settings", &comfortOptions);
   Menu restorationSettings = Menu::SubMenu("Restoration Settings", &restorationOptions);
   Menu cutsceneSettings = Menu::SubMenu("Cutscene Settings", &cutsceneOptions);
   Menu settingsPresets          = Menu::SubMenu("Settings Presets",           &settingsPresetItems);
@@ -563,7 +563,7 @@ namespace Settings {
     &itemPool,
     &startingInventory,
     &detailLogic,
-    //&comfort,
+    &comfort,
     &restorationSettings,
     &cutsceneSettings,
     &otherSettings,
@@ -637,7 +637,7 @@ namespace Settings {
     ctx.ingameSpoilers = (IngameSpoilers) ? 1 : 0;
     //ctx.menuOpeningButton = MenuOpeningButton.Value<u8>();
     
-    //ctx.blastMaskCooldown = BlastMaskCooldown.Value<u8>();
+    ctx.blastMaskCooldown = BlastMaskCooldown.Value<u8>();
     //ctx.underwaterOcarina = (UnderwaterOcarina) ? 1 : 0;
     //ctx.fierceDeityAnywhere = (FierceDeityAnywhere) ? 1 : 0;
     ctx.skipMinigamePhases = (SkipMinigamePhases) ? 1 : 0;
