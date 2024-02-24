@@ -1027,7 +1027,7 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(MOUNTAIN_VILLAGE_FROG_CHOIR, {[] {return SnowheadClear && LaundryFrog && SwampFrog && WoodfallFrog && GreatBayFrog && DonGerosMask;}}), 
 		LocationAccess(MOUNTAIN_VILLAGE_HUNGRY_GORON, {[] {return GoronMask && MagicMeter;}}),
-		LocationAccess(MOUNTAIN_WATERFALL_CHEST, {[] {return SnowheadClear;}}),
+		LocationAccess(MOUNTAIN_WATERFALL_CHEST, {[] {return SnowheadClear && LensOfTruth && MagicMeter;}}),
 		LocationAccess(MOUNTAIN_VILLAGE_KEATON_QUIZ, {[]{return SnowheadClear && KeatonMask && AnySword;}}),
 		//Gossip Stones
 		LocationAccess(MV_NEAR_FROGS_GOSSIP, {[] {return true;}}),
@@ -1112,7 +1112,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(TWIN_ISLANDS, {[]{return true;}}),
-		Entrance(TWIN_ISLANDS_GORON_RACETRACK_GROTTO, {[]{return AnyBombBag;}}),
+		Entrance(TWIN_ISLANDS_GORON_RACETRACK_GROTTO, {[]{return AnyBombBag || (Hookshot || GoronMask);}}),
 	});
 
 	areaTable[TWIN_ISLANDS_GORON_RACETRACK_GROTTO] = Area("Goron Racetrack Grotto", "Goron Racetrack Grotto", NONE, {
@@ -1901,8 +1901,8 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(IKANA_CANYON_UPPER, {[]{return true;}}),
-		Entrance(STONE_TOWER_TEMPLE_ENTRANCE, {[]{return CanPlay(ElegyOfEmptiness) && GoronMask && ZoraMask && DekuMask && Hookshot;}}),
-		Entrance(INVERTED_STONE_TOWER, {[]{return CanPlay(ElegyOfEmptiness) && GoronMask && ZoraMask && DekuMask && Hookshot && Bow && LightArrows && MagicMeter;}}),
+		Entrance(STONE_TOWER_TEMPLE_ENTRANCE, {[]{return CanPlay(ElegyOfEmptiness) && GoronMask && ZoraMask && Hookshot;}}),
+		Entrance(INVERTED_STONE_TOWER, {[]{return CanPlay(ElegyOfEmptiness) && GoronMask && ZoraMask && Hookshot && Bow && LightArrows && MagicMeter;}}),
 	});
 
 	areaTable[INVERTED_STONE_TOWER] = Area("Inverted Stone Tower", "Inverted Stone Tower", INVERTED_STONE_TOWER, {
@@ -2293,7 +2293,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(SNOWHEAD_TEMPLE_ICICLE_ROOM_CHEST, {[] {return Bow;}}),
-		LocationAccess(SH_SF_ICICLE_ROOM_WALL, {[] {return Bow && GreatFairyMask;}}),
+		LocationAccess(SH_SF_ICICLE_ROOM_WALL, {[] {return Bow && GreatFairyMask && LensOfTruth && MagicMeter;}}),
 	},
 	{
 		//Exits
@@ -2306,7 +2306,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(SH_SF_CEILING_BUBBLE, {[] {return (Hookshot || Bow) && GreatFairyMask;}}),
+		LocationAccess(SH_SF_CEILING_BUBBLE, {[] {return (Hookshot || Bow) && GreatFairyMask && LensOfTruth && MagicMeter;}}),
 	},
 	{
 		//Exits
@@ -2319,7 +2319,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(SH_SF_MAIN_ROOM_WALL, {[] {return (Bow || Hookshot) && GreatFairyMask;}}),
+		LocationAccess(SH_SF_MAIN_ROOM_WALL, {[] {return (Bow || Hookshot) && GreatFairyMask && LensOfTruth && MagicMeter;}}),
 	},
 	{
 		//Exits
@@ -3105,7 +3105,7 @@ void AreaTable_Init() {
 
 	areaTable[PIRATE_FORTRESS_HOOKSHOT_ROOM_TOP] = Area("Pirates Fortress Upper Hookshot Room", "Pirates Fortress Upper Hookshot Room", PIRATE_FORTRESS, {
 		//Events
-		EventAccess(&PirateBees, {[]{return Bow || Hookshot;}}),
+		EventAccess(&PirateBees, {[]{return Bow;}}),//potential trick for zora fins or deku bubble?
 	},
 	{
 		//Locations
@@ -3225,7 +3225,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(WELL_LEFT_PATH_CHEST, {[] {return true;}}),
+		LocationAccess(WELL_LEFT_PATH_CHEST, {[] {return LensOfTruth && MagicMeter;}}),//invisible chest
 	},
 	{
 		//Exits
