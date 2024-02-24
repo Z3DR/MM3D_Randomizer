@@ -25,12 +25,6 @@ void GenerateStartingInventory() {
     for (auto* dungeon : dungeonList) {
       if (dungeon->GetMap() != NONE) {
         AddItemToInventory(dungeon->GetMap());
-        AddItemToInventory(CLOCK_TOWN_MAP);
-        AddItemToInventory(WOODFALL_MAP);
-        AddItemToInventory(SNOWHEAD_MAP);
-        AddItemToInventory(ROMANI_RANCH_MAP);
-        AddItemToInventory(GREAT_BAY_MAP);
-        AddItemToInventory(STONE_TOWER_MAP);
       }
 
       if (dungeon->GetCompass() != NONE) {
