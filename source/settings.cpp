@@ -397,6 +397,7 @@ namespace Settings {
   Option DpadTransform       = Option::Bool("DPad Transformation",    { "No", "Yes" },                                       {dpadMaskDesc});
   Option DpadOcarina         = Option::Bool("DPad Ocarina",           { "No", "Yes" },                                       {dpadOcarinaDesc});
   Option DpadArrows          = Option::Bool("Dpad Arrow Swap",        { "No", "Yes" },                                       {dpadArrowDesc});
+  Option TwinmoldRestoration  = Option::Bool("Twinmold Restoration",   { "No", "Yes" },                                      {twinmoldRestorationDesc});
 
   std::vector<Option *> restorationOptions = {
     //&SkipMinigamePhases,
@@ -412,6 +413,7 @@ namespace Settings {
     &DpadTransform,
     &DpadOcarina,
     &DpadArrows,
+    &TwinmoldRestoration,
     //&SkipSongReplays,
   };
 
@@ -775,6 +777,7 @@ namespace Settings {
     ctx.enableFastMaskTransform = (DpadTransform) ? 1 : 0;
     ctx.enableFastOcarina = (DpadOcarina) ? 1 : 0;
     ctx.enableFastArrowSwap = (DpadArrows) ? 1 : 0;
+    ctx.twinmoldRestoration = (TwinmoldRestoration) ? 1 : 0;
 
     //Cutscene Skips
     ctx.skipHMSCutscenes = (SkipHMSCutscenes) ? 1 : 0;

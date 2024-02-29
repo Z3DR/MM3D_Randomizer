@@ -613,10 +613,12 @@ string_view ocarinaDiveDesc          = "Enables Ocarina Diving";                
 string_view dpadMaskDesc             = "Enables using the 3 D-Pad buttons to use\n"        //
                                        "transformation masks. This option will also\n"     //
                                        "patch using Down A with Mask Storage.";            //
-string_view dpadOcarinaDesc          = "Enables using D-Pad down to activate your\n"       //
+string_view dpadOcarinaDesc          = "Enables using D-Pad right to activate your\n"      //
                                        "ocarina.";                                         //
 string_view dpadArrowDesc            = "Enables using D-Pad up to change your current\n"   //
                                        "arrow that is being used.";                        //
+string_view twinmoldRestorationDesc  = "Fixes Twinmold boss fight so Red Twinmold does not\n"
+                                       "regen health when it burrows.";                    //
                                                                                            //
 /*-------------------------------                                                          //
 |   CUSTOM BUTTON MAPPING       |                                                          //

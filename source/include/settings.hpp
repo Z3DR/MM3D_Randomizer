@@ -448,6 +448,10 @@ namespace Settings {
   extern Option SkipSongReplays;
   extern Option FastZoraSwim;
   extern Option OcarinaDive;
+  extern Option DpadTransform;
+  extern Option DpadOcarina;
+  extern Option DpadArrows;
+  extern Option TwinmoldRestoraion;
 
   //Trial Skips
   extern Option OdolwaTrialSkip;

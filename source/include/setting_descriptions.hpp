@@ -215,6 +215,7 @@ extern string_view fastZoraSwimDesc;
 extern string_view dpadMaskDesc;
 extern string_view dpadOcarinaDesc;
 extern string_view dpadArrowDesc;
+extern string_view twinmoldRestorationDesc;
 extern string_view customMapButtonDesc;
 extern string_view customItemsButtonDesc;
 extern string_view customMasksButtonDesc;

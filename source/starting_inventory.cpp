@@ -96,6 +96,7 @@ void GenerateStartingInventory() {
   if (StartingKokiriSword.Value<u8>() == (u8)3){ AddItemToInventory(PROGRESSIVE_SWORD, 0);}
   if (StartingShield.Value<u8>() == (u8)0){  AddItemToInventory(HEROS_SHIELD,              1);}
   if (StartingShield.Value<u8>() == (u8)1){  AddItemToInventory(MIRROR_SHIELD,             1);}
+  AddItemToInventory(GREAT_FAIRYS_SWORD,        StartingGreatFairySword.Value<u8>());
   AddItemToInventory(PROGRESSIVE_MAGIC_METER,   StartingMagicMeter.Value<u8>());
   AddItemToInventory(PROGRESSIVE_WALLET,        StartingWallet.Value<u8>());
   AddItemToInventory(DOUBLE_DEFENSE,            StartingDoubleDefense.Value<u8>());

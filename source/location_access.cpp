@@ -352,6 +352,7 @@ void AreaTable_Init() {
 	areaTable[CLOCK_TOWN_OBSERVATORY] = Area("Astral Observatory/Bombers Hideout", "Astral Obseravtory/Bombers Hideout", NONE, {
 		//Events
 		EventAccess(&WatchMoonTearFall, {[]{return true;}}),
+		EventAccess(&ScarecrowSong, {[]{return Ocarina;}}),
 	},
 	{
 		//Locations
@@ -502,6 +503,8 @@ void AreaTable_Init() {
 
 	areaTable[CLOCK_TOWN_TRADING_POST] = Area("Trading Post", "Trading Post", NONE, {
 		//Events
+		EventAccess(&ScarecrowSong, {[]{return Ocarina;}}),
+		EventAccess(&SpringWater,   {[]{return SpringWater;}}),
 	},
 	{
 		//Locations
@@ -1112,7 +1115,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(TWIN_ISLANDS, {[]{return true;}}),
-		Entrance(TWIN_ISLANDS_GORON_RACETRACK_GROTTO, {[]{return AnyBombBag || (Hookshot || GoronMask);}}),
+		Entrance(TWIN_ISLANDS_GORON_RACETRACK_GROTTO, {[]{return AnyBombBag && ( (Hookshot && ScarecrowSong) || GoronMask);}}),
 	});
 
 	areaTable[TWIN_ISLANDS_GORON_RACETRACK_GROTTO] = Area("Goron Racetrack Grotto", "Goron Racetrack Grotto", NONE, {
@@ -1211,7 +1214,7 @@ void AreaTable_Init() {
 	}, 
 	{
 		//Locations
-		LocationAccess(ROAD_TO_SNOWHEAD_PILLAR, {[] {return GoronMask && MagicMeter && LensOfTruth;}}),
+		LocationAccess(ROAD_TO_SNOWHEAD_PILLAR, {[] {return GoronMask && MagicMeter && LensOfTruth && Hookshot && ScarecrowSong;}}),
 
 	},
 	{
@@ -3332,7 +3335,7 @@ void AreaTable_Init() {
 	}, 
 	{
 		//Locations
-		LocationAccess(BENEATH_THE_WELL_MIRROR_SHIELD_CHEST, {[] {return (FireArrows || LightArrows) && Bow && MagicMeter;}}),//Either burn the cloth or just light arow the switch
+		LocationAccess(BENEATH_THE_WELL_MIRROR_SHIELD_CHEST, {[] {return FireArrows && Bow && MagicMeter;}}),//Either burn the cloth or just light arow the switch
 	},
 	{
 		//Exits
