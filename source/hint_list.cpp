@@ -819,7 +819,7 @@ void HintTable_Init() {
   /*---------------------
   |   JUNK HINT TEXT    |
   ---------------------*/
-    hintTable[JUNK01] = HintText::Junk({Text{"<Junk hint here>", "", ""}});
+    hintTable[JUNK01] = HintText::Junk({Text{"That's no moon.", "", ""}});
     hintTable[JUNK02] = HintText::Junk({Text{"The moon is haunted.", "", ""}});
     hintTable[JUNK03] = HintText::Junk({Text{"Majora has sick dance moves.", "", ""}});
     hintTable[JUNK04] = HintText::Junk({Text{"Making hints is hard.", "", ""}});
@@ -892,7 +892,7 @@ void HintTable_Init() {
     hintTable[JUNK71] = HintText::Junk({Text{"These hints can be quite useful. This is an exception.", "", ""}});
     hintTable[JUNK72] = HintText::Junk({Text{"Turns are more effective when you tilt the whole console.", "", ""}});
     hintTable[JUNK73] = HintText::Junk({Text{"You ever been in a cockpit before?", "", ""}});
-    hintTable[JUNK74] = HintText::Junk({Text{"Smash 10 pots in 12 seconds.", "", ""}});
+    hintTable[JUNK74] = HintText::Junk({Text{"It's a secret to everybody", "", ""}});
     hintTable[JUNK75] = HintText::Junk({Text{"You found me!", "", ""}});
     hintTable[JUNK76] = HintText::Junk({Text{"I have it on my post-it note somewhere.", "", ""}});
     hintTable[JUNK77] = HintText::Junk({Text{"Follow the rainbow.", "", ""}});

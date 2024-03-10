@@ -332,10 +332,8 @@ string_view changeOverworldItemsDesc  = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |        INGAME SPOILERS       |                                                           //
 ------------------------------*/                                                           //
-string_view ingameSpoilersShowDesc    = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Every spoiler is shown.";                         //
-string_view ingameSpoilersHideDesc    = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Hides the spheres page and only shows a\n"        //
+string_view ingameSpoilersShowDesc    = "Every spoiler is shown.";                         //
+string_view ingameSpoilersHideDesc    = "Hides the spheres page and only shows a\n"        //
                                         "location's item after it has been found.";        //
                                                                                            //
 string_view genSpoilerLogDesc         = "Choose to Generate a Spoiler Log";                //
@@ -638,15 +636,23 @@ string_view ingameSpoilersButtonDesc = "Change the button to open the ingame Spo
 -------------------------------*/                                                          //
 string_view skipBombersMinigameDesc  = "Skip Bomber's Minigame to get the code.\n"         //
                                        "Sets the code to 12345.";                          //
-
-/*------------------------------                                                                           //
-|           GLITCHES           |                                                                           //
-------------------------------*/                                                                           //
+/*------------------------------                                                           //
+|           GLITCHES           |                                                           //
+------------------------------*/                                                           //
 const std::vector<string_view> GlitchDifficulties{"Novice", "Intermediate", "Advanced", "Expert", "Hero"};
-
-/*------------------------------                                                                           //
-|       CUTSCENE OPTIONS       |                                                                           //
-------------------------------*/  
+/*------------------------------                                                           //
+|       CUTSCENE OPTIONS       |                                                           //
+------------------------------*/                                                           //
 string_view skipHMSCutsceneDesc     = "Skips the initial Happy Mask Salesman's cutscenes"; //
 string_view skipDarmaniCutsceneDesc = "Skips the Song of Healing Cutscene for Darmani";    //
 string_view skipMikauCutsceneDesc   = "Skips the Song of Healing Cutscene for Mikau";      //
+/*------------------------------                                                           //
+|        REGION OPTIONS        |                                                           //
+------------------------------*/                                                           //
+string_view NARegionDesc            = "                 North America\n"                   //
+                                      "Currently only supports English Hints and Custom Text";
+string_view EURegionDesc            = "                     Europe\n"                      //
+                                      "Currently only supports English Hints and Custom Text";
+string_view VersionDesc             = "Due to patch size when using version 1.1 it can \n" //
+                                      "take up to 30 seconds to launch the game, this is\n"//
+                                      "expected and will not effect gameplay";             //
