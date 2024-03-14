@@ -588,7 +588,7 @@ void LocationTable_Init() {
       -------------------------------*/
     // These are not actual locations, but are filler spots used for hint reachability. - OoT Randomizer
     //                                                                                        flag + 0x400 = message ID
-locationTable[TF_MILK_ROAD_TREE_GOSSIP]                            = ItemLocation::HintStone  (0x00,0x20b0, true, "TF Near Milk Road Tree Gossip Stone",         {});
+locationTable[TF_MILK_ROAD_TREE_GOSSIP]                            = ItemLocation::HintStone  (0x00,0x20b8, true, "TF Near Milk Road Tree Gossip Stone",         {});
 locationTable[TF_IKANA_SNOWHEAD_GOSSIP]                            = ItemLocation::HintStone  (0x00,0x20bb, true, "TF Between Ikana And Snowhead Gossip Stone",  {});
 locationTable[TF_OBSERVATORY_GOSSIP]                               = ItemLocation::HintStone  (0x00,0x20c1, true, "TF Behind Observatory Gossip Stone",          {});
 locationTable[TF_TOP_SNOWHEAD_GOSSIP]                              = ItemLocation::HintStone  (0x00,0x20b9, true, "TF Top Snowhead Area Gossip Stone",           {});
