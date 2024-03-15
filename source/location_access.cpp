@@ -2860,7 +2860,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(STONE_TOWER_TEMPLE_UPDRAFT_ROOM, {[]{return true;}}),
-		Entrance(STONE_TOWER_TEMPLE_INVERTED_THIN_BRIDGE_ROOM, {[]{return Hookshot && InvertedChestSpawn;}}),
+		Entrance(STONE_TOWER_TEMPLE_INVERTED_EYEGORE_ROOM, {[]{return Hookshot && InvertedChestSpawn && SmallKeys(StoneTowerTempleKeys, 4);}}),
 	});
 
 	areaTable[STONE_TOWER_TEMPLE_UPDRAFT_ROOM] = Area("Inverted Stone Tower Temple Updraft Room", "Inverted Stone Tower Temple Updraft Room", STONE_TOWER_TEMPLE, {
@@ -2977,6 +2977,18 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(STONE_TOWER_TEMPLE_PRE_GOMESS_ROOM, {[]{return LightArrows && Bow && MagicMeter;}}),
+	});
+
+	areaTable[STONE_TOWER_TEMPLE_INVERTED_EYEGORE_ROOM] = Area("Inverted Stone Tower Eyegore Room", "Inverted Stone Tower Eyegore Room", STONE_TOWER_TEMPLE, {
+		//Events
+	},
+	{
+		//Locations
+	},
+	{
+		//Exits
+		Entrance(STONE_TOWER_TEMPLE_INVERTED_ENTRANCE, {[]{return true;}}),
+		Entrance(STONE_TOWER_TEMPLE_INVERTED_THIN_BRIDGE_ROOM, {[]{return Bow && MagicMeter && LightArrows;}})
 	});
 
 	areaTable[STONE_TOWER_TEMPLE_INVERTED_THIN_BRIDGE_ROOM] = Area("Inverted Stone Tower Thin Bridge Room", "Inverted Stone Tower Thin Bridge Room", STONE_TOWER_TEMPLE, {
@@ -4056,7 +4068,7 @@ void AreaTable_Init() {
 }
 
 namespace Areas {
-	static std::array < const AreaKey, 266> allAreas = {
+	static std::array < const AreaKey, 267> allAreas = {
 		ROOT,
 		ROOT_EXITS,
 		N_CLOCK_TOWN,
@@ -4248,6 +4260,7 @@ namespace Areas {
 		STONE_TOWER_TEMPLE_INVERTED_ENTRANCE_DEATH_ARMOS_LEDGE,
 		STONE_TOWER_TEMPLE_PRE_GOMESS_ROOM,
 		STONE_TOWER_TEMPLE_GOMESS_ROOM,
+		STONE_TOWER_TEMPLE_INVERTED_EYEGORE_ROOM,
 		STONE_TOWER_TEMPLE_INVERTED_THIN_BRIDGE_ROOM,
 		STONE_TOWER_TEMPLE_PRE_BOSS_ROOM,
 		STONE_TOWER_TEMPLE_BOSS_ROOM,
