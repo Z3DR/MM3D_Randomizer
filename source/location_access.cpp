@@ -1095,7 +1095,7 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(TWIN_ISLANDS_UNDERWATER_RAMP_CHEST, {[] {return SnowheadClear && ZoraMask;}}),
 		LocationAccess(TWIN_ISLANDS_CAVE_CHEST, {[] {return SnowheadClear && ZoraMask;}}),
-		LocationAccess(TWIN_ISLANDS_LULLABY_INTRO, {[] {return GoronMask && (HotSpringWater || CanUse(FIRE_ARROWS));}}),//Hot Spring Water may not be viable in ER, can timer be removed?
+		LocationAccess(TWIN_ISLANDS_LULLABY_INTRO, {[] {return SpokeToBabyGoron && GoronMask && (HotSpringWater || CanUse(FIRE_ARROWS));}}),//Hot Spring Water may not be viable in ER, can timer be removed?
 		LocationAccess(TINGLE_TWIN_ISLANDS_SH, {[]{return CanUseProjectile;}}),
 		LocationAccess(TINGLE_TWIN_ISLANDS_RR, {[]{return CanUseProjectile;}}),
 		LocationAccess(TINGLE_TWIN_ISLANDS_SH_SPRING, {[]{return CanUseProjectile;}}),
@@ -1185,9 +1185,8 @@ void AreaTable_Init() {
 
 	areaTable[GORON_VILLAGE_INTERIOR] = Area("Goron Village Interior", "Goron Village Interior", GORON_VILLAGE, {
 		//Events
+		EventAccess(&SpokeToBabyGoron, {[]{return true;}}),
 		EventAccess(&RockSirloin, {[]{return GoronMask && MagicMeter && (CanUse(FIRE_ARROWS) || (CanPlay(LullabyIntro) && HasFireSourceWithTorch));}}),
-		//Rock Roast?
-		//Stop Baby Crying?
 	},
 	{
 		//Locations
@@ -1225,7 +1224,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(ROAD_TO_SNOWHEAD_GROTTO, {[]{return GoronMask && MagicMeter && HasExplosives && MaskOfTruth;}}),//Trick for no MoT?
 		Entrance(MOUNTAIN_VILLAGE, {[]{return true;}}),
-		Entrance(SNOWHEAD, {[]{return GoronMask && MagicMeter;}}),
+		Entrance(SNOWHEAD, {[]{return GoronMask && MagicMeter;}}),//Trick for no magic?
 	});
 
 	areaTable[ROAD_TO_SNOWHEAD_GROTTO] = Area("Road To Snowhead Grotto", "Road to Snowhead Grotto", NONE, {
@@ -1487,12 +1486,12 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(GREAT_BAY_COAST, {[]{return true;}}),
-		Entrance(ZORA_HALL, {[]{return ZoraMask;}}),
+		Entrance(ZORA_HALL, {[]{return ZoraMask && MagicMeter;}}),//Trick to avoid Skullfish without shield?
 		Entrance(WATERFALL_RAPIDS, {[]{return Hookshot;}}),
 		Entrance(GREAT_BAY_FAIRY_FOUNTAIN, {[]{return Hookshot;}}),
 		Entrance(ZORA_CAPE_GROTTO, {[]{return CanBlastOrSmash;}}),
-		Entrance(GREAT_BAY_TEMPLE_ENTRANCE, {[]{return Hookshot && ZoraMask && CanPlay(NewWaveBossaNova);}}),
-		Entrance(ZORA_HALL_BACK_ENTRANCE, {[]{return true;}}),
+		Entrance(GREAT_BAY_TEMPLE_ENTRANCE, {[]{return Hookshot && ZoraMask && MagicMeter && CanPlay(NewWaveBossaNova);}}),//Trick to avoid Skullfish without shield?
+		Entrance(ZORA_HALL_BACK_ENTRANCE, {[]{return ZoraMask && MagicMeter;}}),//Trick to avoid Skullfish without shield?
 	});
 
 	areaTable[WATERFALL_RAPIDS] = Area("Waterfall Rapids", "Waterfall Rapids", NONE, {
@@ -3044,14 +3043,14 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(PF_EXTERIOR_LOG_CHEST, {[] {return ZoraMask;}}),
-		LocationAccess(PF_EXTERIOR_SAND_CHEST, {[] {return ZoraMask;}}),
-		LocationAccess(PF_EXTERIOR_CORNER_CHEST, {[] {return ZoraMask;}}),
+		LocationAccess(PF_EXTERIOR_LOG_CHEST, {[] {return ZoraMask && MagicMeter;}}),//Trick to avoid Skullfish without shield?
+		LocationAccess(PF_EXTERIOR_SAND_CHEST, {[] {return ZoraMask && MagicMeter;}}),//Trick to avoid Skullfish without shield?
+		LocationAccess(PF_EXTERIOR_CORNER_CHEST, {[] {return ZoraMask && MagicMeter;}}),//Trick to avoid Skullfish without shield?
 	},
 	{
 		//Exits
 		Entrance(ZORA_CAPE, {[]{return ZoraMask;}}),
-		Entrance(PIRATE_FORTRESS_MAZE_ROOM, {[]{return ZoraMask && GoronMask;}}),//need to hit goron switch to open grate
+		Entrance(PIRATE_FORTRESS_MAZE_ROOM, {[]{return ZoraMask && MagicMeter && GoronMask;}}),//Trick to avoid Skullfish without shield?
 	});
 
 	areaTable[PIRATE_FORTRESS_MAZE_ROOM] = Area("Pirates Fortress Maze Room", "Pirates Fortress Maze Room", PIRATE_FORTRESS, {

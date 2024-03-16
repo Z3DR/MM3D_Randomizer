@@ -323,6 +323,7 @@ namespace Logic {
 	extern bool WinnerPicture;
 	extern bool PiratePicture;
 	extern bool RockSirloin;
+	extern bool SpokeToBabyGoron;
 	
 	extern bool CanGoToMoon;
 

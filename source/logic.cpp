@@ -314,10 +314,12 @@ namespace Logic {
 	bool WinnerPicture = false;
 	bool PiratePicture = false;
 	bool RockSirloin = false;
+	bool SpokeToBabyGoron = false;
 
 	bool CanGoToMoon = false;
 	
 	u8 ZoraEgg = 0;
+	u8 AnyBottle = 0;
 
 	//placement tracking
 	u8 AddedProgressiveBombBags = 0;
@@ -863,6 +865,7 @@ namespace Logic {
 	WinnerPicture = false;
 	PiratePicture = false;
 	RockSirloin = false;
+	SpokeToBabyGoron = false;
 
 	
 	ZoraEgg = 0;
