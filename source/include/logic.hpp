@@ -209,7 +209,7 @@ namespace Logic {
 	extern bool AnySword;
 	extern bool AnyBombBag;
 	extern bool AnyMagicBean;
-	extern bool WaterForBeans;
+	extern bool BeansAndWater;
 	extern bool TwoBottles;
 	extern bool AnyWallet;
 	extern bool LimitlessBeans;
@@ -311,6 +311,15 @@ namespace Logic {
 	extern bool GreatBayFrog;
 	extern bool ThinBridgeCrystalChest;
 	extern bool MilkQuestStart;
+	extern bool KoumeSaved;
+	extern bool WoodfallPoisonClear;
+	extern bool UpdraftRoomSwitchUpright;
+	extern bool UpdraftRoomSwitchInverted;
+	extern bool DekuTrialClear;
+	extern bool GoronTrialClear;
+	extern bool ZoraTrialClear;
+	extern bool LinkTrialClear;
+	extern bool GoldRoomLadder;
 	
 	extern bool CanGoToMoon;
 
