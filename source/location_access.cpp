@@ -286,7 +286,7 @@ void AreaTable_Init() {
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 		Entrance(CLOCK_TOWN_OBSERVATORY, {[]{return BombersNotebook || SkipBombersMinigame;}}),
 		Entrance(STOCKPOTINN, {[]{return true;}}),//to-Do Stock Pot Inn Night Access
-		Entrance(CLOCK_TOWN_BAR, {[]{return true;}}),//Does not require Romani's Mask for Madame on day 3
+		Entrance(CLOCK_TOWN_BAR, {[]{return RomanisMask;}}),
 		Entrance(CLOCK_TOWN_HONEY_DARLING, {[]{return true;}}),
 		Entrance(CLOCK_TOWN_TREASURE_CHEST_GAME, {[]{return true;}}),
 		Entrance(CLOCK_TOWN_ARCHERY, {[]{return true;}}),
@@ -363,7 +363,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(E_CLOCK_TOWN, {[]{return true;}}),
-		Entrance(TERMINA_FIELD, {[]{return true;}}),//Pots can pop the balloon, both ways
+		Entrance(TERMINA_FIELD_OUTSIDE_OBSERVATORY, {[]{return CanUseProjectile;}}),//Trick for using pots?
 	});
 
 	areaTable[CLOCK_TOWN_BAR] = Area("Milk Bar", "Milk Bar", NONE, {
@@ -623,21 +623,13 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(TERMINA_FIELD_MOONS_TEAR, {[] {return WatchMoonTearFall;}}),
 		LocationAccess(TERMINA_FIELD_KAMARO, {[] {return CanPlay(SongOfHealing);}}),
 		LocationAccess(TERMINA_FIELD_UNDERWATER_CHEST, {[] {return ZoraMask;}}),
 		LocationAccess(TERMINA_FIELD_GRASS_CHEST, {[] {return true;}}),
 		LocationAccess(TERMINA_FIELD_STUMP_CHEST, {[] {return Hookshot || BeansAndWater;}}),
-		LocationAccess(TF_TOP_SNOWHEAD_GOSSIP, { [] { return true; } }),
-		LocationAccess(TF_MILK_ROAD_TREE_GOSSIP, { [] { return true; } }),
-		LocationAccess(TF_IKANA_SNOWHEAD_GOSSIP, { [] { return true; } }),
-		LocationAccess(TF_OBSERVATORY_GOSSIP, { [] { return true; } }),
-		LocationAccess(TF_LOWER_SNOWHEAD_GOSSIP, { [] { return true; } }),
-		LocationAccess(TF_NEAR_GRASS_CHEST_GOSSIP, { [] { return true; } }),
 		//Gossip Stones
 		LocationAccess(TF_MILK_ROAD_TREE_GOSSIP, {[] {return true;}}),
 		LocationAccess(TF_IKANA_SNOWHEAD_GOSSIP, {[] {return true;}}),
-		LocationAccess(TF_OBSERVATORY_GOSSIP, {[] {return true;}}),
 		LocationAccess(TF_TOP_SNOWHEAD_GOSSIP, {[] {return true;}}),
 		LocationAccess(TF_LOWER_SNOWHEAD_GOSSIP, {[] {return true;}}),
 		LocationAccess(TF_NEAR_GRASS_CHEST_GOSSIP, {[] {return true;}}),
@@ -661,8 +653,24 @@ void AreaTable_Init() {
 		Entrance(MILK_ROAD, {[]{return true;}}),
 		Entrance(GREAT_BAY_COAST, {[]{return CanPlay(EponasSong);}}),
 		Entrance(ROAD_TO_IKANA, {[]{return true;}}),
+		Entrance(TERMINA_FIELD_OUTSIDE_OBSERVATORY, {[]{return DekuMask;}}),
 	});
 
+	areaTable[TERMINA_FIELD_OUTSIDE_OBSERVATORY] = Area("Termina Field Outside Observatory","Termina Field Outside Observatory", TERMINA_FIELD_OUTSIDE_OBSERVATORY, {
+		//Events
+	},
+	{
+		//Locations
+		LocationAccess(TERMINA_FIELD_MOONS_TEAR, {[] {return WatchMoonTearFall;}}),
+		//Gossip Stones
+		LocationAccess(TF_OBSERVATORY_GOSSIP, {[] {return true;}}),
+	},
+	{
+		//Exits
+		Entrance(TERMINA_FIELD, {[]{return BeansAndWater;}}),
+		Entrance(CLOCK_TOWN_OBSERVATORY, {[]{return true;}}),
+	});
+	
 	areaTable[TERMINA_FIELD_PEAHAT_GROTTO] = Area("Termina Field Peahat Grotto","Termina Field Peahat Grotto", TERMINA_FIELD_PEAHAT_GROTTO, {
 		//Events
 	},
@@ -675,6 +683,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
+
 	areaTable[TERMINA_FIELD_DODONGO_GROTTO] = Area("Termina Field Dodongo Grotto","Termina Field Dodongo Grotto", TERMINA_FIELD_DODONGO_GROTTO, {
 		//Events
 	},
@@ -4142,6 +4151,7 @@ namespace Areas {
 		LAUNDRY_POOL,
 		LAUNDRY_POOL_KAFEI_HIDEOUT,
 		TERMINA_FIELD,
+		TERMINA_FIELD_OUTSIDE_OBSERVATORY,
 		TERMINA_FIELD_PEAHAT_GROTTO,
 		TERMINA_FIELD_DODONGO_GROTTO,
 		TERMINA_FIELD_BIO_BABA_GROTTO,
