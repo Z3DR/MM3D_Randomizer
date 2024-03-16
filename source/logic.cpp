@@ -304,6 +304,7 @@ namespace Logic {
 	bool MilkQuestStart = false;
 	bool KoumeSaved = false;
 	bool WoodfallPoisonClear = false;
+	bool WoodfallLadder = false;
 	bool UpdraftRoomSwitchUpright = false;
 	bool UpdraftRoomSwitchInverted = false;
 	bool DekuTrialClear = false;
@@ -315,6 +316,7 @@ namespace Logic {
 	bool PiratePicture = false;
 	bool RockSirloin = false;
 	bool SpokeToBabyGoron = false;
+	bool Milk = false;
 
 	bool CanGoToMoon = false;
 	
@@ -480,14 +482,14 @@ namespace Logic {
 		FishAccess = LoneFish || FishGroup;
 		WaterAccess = (SpringWater && AnyBottle) || CanPlay(SongOfStorms);
 		HotSpringWaterAccess = HotSpringWater && AnyBottle;
-		BeansAndWater = AnyMagicBean && ((AnyBottle && WaterAccess) || SongOfStorms);
+		BeansAndWater = AnyMagicBean && (SpringWater || SongOfStorms);
 		AnyMagicBean = (MagicBean || MagicBeanPack || LimitlessBeans);
 		//refills
 		Bombs = AnyBombBag;
 		Nuts = DekuNutDrop;
 		Sticks = DekuStickDrop || DekuStick;
-		Bugs = HasBottle && BugsAccess;
-		Fish = HasBottle && FishAccess;
+		Bugs = AnyBottle && BugsAccess;
+		Fish = AnyBottle && FishAccess;
 		
 		//Other Helpers
 		CanBlastOrSmash = HasExplosives || GoronMask;
@@ -514,7 +516,6 @@ namespace Logic {
 		AnyWallet = Townwallet200 || OceanWallet500 || (ProgressiveWallet >= 1);
 		AnyBottle = WitchBottle || AlienBottle || BeaverRaceBottle || ArcheryBottle || GoronRaceBottle || ChateauBottle || UsableMysteryMilkBottle || HasBottle;
 		MagicMeter = (ProgressiveMagic >= 1) || MagicPower || ExtendedMagicPower;
-		BeansAndWater = (AnyBottle && (SpringWater || HotSpringWater)) || SongOfStorms;
 		Scarecrow = Hookshot && CanPlay(ScarecrowSong);
 		AnyPaper = (LandTitle || SwampTitle || OceanTitle || MountainTitle || LetterKafei || LetterMama);
 		
@@ -850,6 +851,7 @@ namespace Logic {
 	MilkQuestStart = false;
 	KoumeSaved = false;
 	WoodfallPoisonClear = false;
+	WoodfallLadder = false;
 	UpdraftRoomSwitchUpright = false;
 	UpdraftRoomSwitchInverted = false;
 	DekuTrialClear = false;
@@ -861,6 +863,7 @@ namespace Logic {
 	PiratePicture = false;
 	RockSirloin = false;
 	SpokeToBabyGoron = false;
+	Milk = false;
 
 	
 	ZoraEgg = 0;

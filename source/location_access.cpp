@@ -297,6 +297,9 @@ void AreaTable_Init() {
 	areaTable[STOCKPOTINN] = Area("Stock Pot Inn", "Stock Pot Inn", STOCKPOTINN, {
 		//Events
 		EventAccess(&MilkQuestStart, {[] {return CircusLeadersMask;}}),
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -368,6 +371,7 @@ void AreaTable_Init() {
 
 	areaTable[CLOCK_TOWN_BAR] = Area("Milk Bar", "Milk Bar", NONE, {
 		//Events
+		EventAccess(&Milk, {[]{return RomanisMask && AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -589,6 +593,7 @@ void AreaTable_Init() {
 	areaTable[LAUNDRY_POOL] = Area("Laundry Pool", "Laundry Pool", LAUNDRY_POOL, {
 		//Events
 		EventAccess(&LaundryFrog, {[]{return DonGerosMask;}}),
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -673,6 +678,7 @@ void AreaTable_Init() {
 	
 	areaTable[TERMINA_FIELD_PEAHAT_GROTTO] = Area("Termina Field Peahat Grotto","Termina Field Peahat Grotto", TERMINA_FIELD_PEAHAT_GROTTO, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 	},
 	{
 		//Locations
@@ -698,6 +704,7 @@ void AreaTable_Init() {
 	});
 	areaTable[TERMINA_FIELD_BIO_BABA_GROTTO] = Area("Termina Field Bio Baba Grotto","Termina Field Bio Baba Grotto", TERMINA_FIELD_BIO_BABA_GROTTO, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 	},
 	{
 		//Locations
@@ -709,6 +716,11 @@ void AreaTable_Init() {
 	});
 	areaTable[TERMINA_FIELD_PILLAR_GROTTO] = Area("Termina Field Pillar Grotto","Termina Field Pillar Grotto", TERMINA_FIELD_PILLAR_GROTTO, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Locations
@@ -720,6 +732,11 @@ void AreaTable_Init() {
 	});
 	areaTable[TERMINA_FIELD_GRASS_GROTTO] = Area("Termina Field Grass Grotto","Termina Field Grass Grotto", TERMINA_FIELD_GRASS_GROTTO, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Locations
@@ -731,6 +748,8 @@ void AreaTable_Init() {
 	});
 	areaTable[TERMINA_FIELD_BUSINESS_SCRUB_GROTTO] = Area("Termina Field Business Scrub Grotto","Termina Field Business Scrub Grotto", TERMINA_FIELD_BUSINESS_SCRUB_GROTTO, {
 		//Events
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 	},
 	{
 		//Locations
@@ -742,6 +761,8 @@ void AreaTable_Init() {
 	});
 	areaTable[TERMINA_FIELD_COW_GROTTO] = Area("Termina Field Cow Grotto","Termina Field Cow Grotto", TERMINA_FIELD_COW_GROTTO, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Milk, {[]{return CanPlay(EponasSong) && AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -754,6 +775,9 @@ void AreaTable_Init() {
 	});
 	areaTable[TERMINA_FIELD_GOSSIP_STONES_GROTTO] = Area("Termina Field Gossip Stones Grotto","Termina Field Gossip Stones Grotto", TERMINA_FIELD_GOSSIP_STONES_GROTTO, {
 		//Events
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&SpringWater, {[] {return AnyBottle;}}),
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 	},
 	{
 		//Locations
@@ -772,7 +796,10 @@ void AreaTable_Init() {
 
 	areaTable[ROAD_TO_SOUTHERN_SWAMP] = Area("Road to Southern Swamp", "Road to Southern Swamp", ROAD_TO_SOUTHERN_SWAMP, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
 		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
 	},
 	{
@@ -808,6 +835,11 @@ void AreaTable_Init() {
 
 	areaTable[ROAD_TO_SWAMP_GROTTO] = Area("Road To Southen Swamp Grotto", "Road To Southern Swamp Grotto", NONE, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Locations		
@@ -821,8 +853,10 @@ void AreaTable_Init() {
 	
 	areaTable[SOUTHERN_SWAMP] = Area("Southern Swamp", "Southern Swamp", SOUTHERN_SWAMP, {
 		//Events
+		EventAccess(&Mushroom, {[]{return MaskOfScents && AnyBottle;}}),//Base logic expects mushrooms from SS or Woods
 		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
 		EventAccess(&SwampFrog, {[]{return DonGerosMask;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
 	},
 	{
 		//Locations
@@ -842,10 +876,11 @@ void AreaTable_Init() {
 		Entrance(MYSTERY_WOODS, {[]{return true;}}),
 		Entrance(SWAMP_TOURIST_CENTER, {[]{return true;}}),
 		Entrance(SOUTHERN_SWAMP_HAGS_POTION_SHOP, {[]{return true;}}),
-		Entrance(DEKU_PALACE, {[]{return KoumeSaved || WoodfallClear;}}),
+		
+		Entrance(DEKU_PALACE, {[]{return KoumeSaved || WoodfallClear || (DekuMask && (Bow || ZoraMask || Hookshot));}}),
 		Entrance(SOUTHERN_SWAMP_TOP, {[]{return false;}}),//Only accessable From top route falling down
-		Entrance(SSH_ENTRANCE, {[]{return (KoumeSaved && DekuMask) || WoodfallClear;}}),
-		Entrance(SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO, {[]{return (KoumeSaved && DekuMask) || WoodfallClear;}}),
+		Entrance(SSH_ENTRANCE, {[]{return (DekuMask && (KoumeSaved || Bow || ZoraMask || Hookshot)) || WoodfallClear;}}),
+		Entrance(SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO, {[]{return (DekuMask && (KoumeSaved || Bow || ZoraMask || Hookshot)) || WoodfallClear;}}),
 	});
 
 	areaTable[SWAMP_TOURIST_CENTER] = Area("Swamp Tourist Center", "Swamp Tourist Center", NONE, {
@@ -853,9 +888,9 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(SOUTHERN_SWAMP_KOUME, {[] {return AnyBottle;}}),
+		LocationAccess(SOUTHERN_SWAMP_KOUME, {[] {return KoumeSaved;}}),
 		LocationAccess(SOUTHERN_SWAMP_PICTOGRAPH_WINNER, {[] {return WinnerPicture;}}),
-		LocationAccess(SOUTHERN_SWAMP_BOAT_ARCHERY, {[] {return WoodfallClear && AnyBottle;}}),
+		LocationAccess(SOUTHERN_SWAMP_BOAT_ARCHERY, {[] {return WoodfallClear && KoumeSaved;}}),
 	},
 	{
 		//Exits
@@ -881,8 +916,8 @@ void AreaTable_Init() {
 
 	areaTable[MYSTERY_WOODS] = Area("Mystery Woods", "Mystery Woods", MYSTERY_WOODS, {
 		//Events
-		EventAccess(&Mushroom, {[]{return MaskOfScents && AnyBottle;}}),
-		EventAccess(&KoumeSaved, {[]{return AnyBottle;}}),
+		EventAccess(&Mushroom, {[]{return MaskOfScents && AnyBottle;}}),//Base logic expects mushrooms from SS or Woods
+		EventAccess(&KoumeSaved, {[]{return AnyBottle;}}),//Add Red Potion requirement for shuffle shops
 	},
 	{
 		//Locations
@@ -896,6 +931,11 @@ void AreaTable_Init() {
 
 	areaTable[SOUTHERN_SWAMP_MYSTERY_WOODS_GROTTO] = Area("Mystery Woods Grotto", "Mystery Woods Grotto", NONE, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Locations
@@ -932,6 +972,8 @@ void AreaTable_Init() {
 
 	areaTable[DEKU_PALACE] = Area("Deku Palace", "Deku Palace", DEKU_PALACE, {
 		//Events
+		EventAccess(&Mushroom, {[]{return /*DekuMask || WoodfallClear*/ false;}}),//Trick for obscure mushroom?
+		EventAccess(&DekuBabaNuts, {[]{return DekuMask || (WoodfallClear && Fighting);}}),
 	},
 	{
 		//locations
@@ -964,8 +1006,10 @@ void AreaTable_Init() {
 
 	areaTable[DEKU_PALACE_BEAN_GROTTO] = Area("Deku Palace Bean Grotto", "Deku Palace Bean Grotto", NONE, {
 		//Events
-		EventAccess(&LimitlessBeans, {[]{return LimitlessBeans;}}),
-		EventAccess(&SpringWater, {[]{return AnyBottle;}})
+		EventAccess(&LimitlessBeans, {[]{return true;}}),
+		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -1036,7 +1080,8 @@ void AreaTable_Init() {
 
 	areaTable[MOUNTAIN_VILLAGE] = Area("Mountain Village", "Mountain Village", MOUNTAIN_VILLAGE, {
 		//Events
-		EventAccess(&HotSpringWater, {[]{return GoronMask && AnyBottle;}}),
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle && SnowheadClear;}}),
 	},
 	{
 		//Locations
@@ -1060,6 +1105,7 @@ void AreaTable_Init() {
 
 	areaTable[GORON_GRAVEYARD] = Area("Goron Graveyard", "Goron Graveyard", NONE, {
 		//Events
+		EventAccess(&HotSpringWater, {[]{return GoronMask && AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -1086,6 +1132,11 @@ void AreaTable_Init() {
 
 	areaTable[MOUNTAIN_VILLAGE_SPRING_WATER_GROTTO] = Area("Mountain Village Spring Water Grotto", "Mountain Village Spring Water Grotto", NONE, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Locations
@@ -1128,11 +1179,16 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(TWIN_ISLANDS, {[]{return true;}}),
-		Entrance(TWIN_ISLANDS_GORON_RACETRACK_GROTTO, {[]{return HasExplosives && MaskOfTruth && ((Hookshot && CanUse(ScarecrowSong)) || GoronMask);}}),//Trick for no MoT?
+		Entrance(TWIN_ISLANDS_GORON_RACETRACK_GROTTO, {[]{return HasExplosives && MaskOfTruth && ((Hookshot && CanPlay(ScarecrowSong)) || GoronMask);}}),//Trick for no MoT?
 	});
 
 	areaTable[TWIN_ISLANDS_GORON_RACETRACK_GROTTO] = Area("Goron Racetrack Grotto", "Goron Racetrack Grotto", NONE, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Locations
@@ -1145,7 +1201,9 @@ void AreaTable_Init() {
 
 	areaTable[TWIN_ISLANDS_SPRING_WATER_GROTTO] = Area("Twin Islands Hot Spring Water Grotto", "Twin Islands Hot Spring Water Grotto", NONE, {
 		//Events
-		EventAccess(&HotSpringWater, {[]{return HotSpringWater;}}),
+		EventAccess(&HotSpringWater, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 	},
 	{
 		//Locations
@@ -1174,12 +1232,13 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(GORON_VILLAGE_LENS_CAVE, {[]{return true;}}),
-		Entrance(GORON_VILLAGE_INTERIOR, {[]{return true;}}),//The goron operating the door only becomes inaccessible on days 2-3
+		Entrance(GORON_VILLAGE_INTERIOR, {[]{return GoronMask || CanUse(FIRE_ARROWS);}}),//Ensure entry is available all days. Explosives do not work here
 		Entrance(TWIN_ISLANDS, {[]{return true;}}),
 	});
 
 	areaTable[GORON_VILLAGE_LENS_CAVE] = Area("Lens of Truth Cave", "Lens of Truth Cave", NONE, {
 		//Events
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -1226,7 +1285,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(ROAD_TO_SNOWHEAD_PILLAR, {[] {return GoronMask && CanUse(LENS_OF_TRUTH) && Hookshot && CanUse(ScarecrowSong);}}),
+		LocationAccess(ROAD_TO_SNOWHEAD_PILLAR, {[] {return GoronMask && CanUse(LENS_OF_TRUTH) && Hookshot && CanPlay(ScarecrowSong);}}),
 
 	},
 	{
@@ -1238,6 +1297,11 @@ void AreaTable_Init() {
 
 	areaTable[ROAD_TO_SNOWHEAD_GROTTO] = Area("Road To Snowhead Grotto", "Road to Snowhead Grotto", NONE, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Locations
@@ -1297,6 +1361,7 @@ void AreaTable_Init() {
 	areaTable[GORMAN_TRACK] = Area("Gorman Track", "Gorman Track", NONE, {
 		//Events
 		EventAccess(&UsableMysteryMilkBottle, {[] {return MilkQuestStart && CircusLeadersMask && MysteryMilkBottle;}}), // Assumes that if you could start the quest, you can finish it
+		EventAccess(&Milk, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -1333,6 +1398,7 @@ void AreaTable_Init() {
 
 	areaTable[DOGGY_RACETRACK] = Area("Doggy Racetrack", "Doggy Racetrack", NONE, {
 		//Events
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -1373,6 +1439,7 @@ void AreaTable_Init() {
 
 	areaTable[ROMANI_RANCH_BARN] = Area("Romani Ranch Barn", "Romani Ranch Barn", NONE, {
 		//Events
+		EventAccess(&Milk, {[]{return CanPlay(EponasSong) && AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -1388,6 +1455,8 @@ void AreaTable_Init() {
 	areaTable[GREAT_BAY_COAST] = Area("Great Bay Coast", "Great Bay Coast", GREAT_BAY_COAST, {
 		//Events
 		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -1428,6 +1497,11 @@ void AreaTable_Init() {
 
 	areaTable[GREAT_BAY_COAST_GROTTO] = Area("Great Bay Coast Grotto", "Great Bay Coast Grotto", NONE, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Locations
@@ -1440,6 +1514,7 @@ void AreaTable_Init() {
 
 	areaTable[GREAT_BAY_COAST_COW_GROTTO] = Area("Great Bay Coast Cow Grotto", "Great Bay Coast Cow Grotto", NONE, {
 		//Events
+		EventAccess(&Milk, {[]{return CanPlay(EponasSong) && AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -1482,6 +1557,8 @@ void AreaTable_Init() {
 
 	areaTable[ZORA_CAPE] = Area("Zora Cape", "Zora Cape", ZORA_CAPE, {
 		//Events
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -1500,7 +1577,7 @@ void AreaTable_Init() {
 		Entrance(GREAT_BAY_FAIRY_FOUNTAIN, {[]{return Hookshot;}}),
 		Entrance(ZORA_CAPE_GROTTO, {[]{return CanBlastOrSmash;}}),
 		Entrance(GREAT_BAY_TEMPLE_ENTRANCE, {[]{return Hookshot && ZoraMask && MagicMeter && CanPlay(NewWaveBossaNova);}}),//Trick to avoid Skullfish without shield?
-		Entrance(ZORA_HALL_BACK_ENTRANCE, {[]{return ZoraMask && MagicMeter;}}),//Trick to avoid Skullfish without shield?
+		Entrance(ZORA_HALL_BACK_ENTRANCE, {[]{return (ZoraMask && MagicMeter) || Hookshot;}}),//Trick to avoid Skullfish without shield?
 	});
 
 	areaTable[WATERFALL_RAPIDS] = Area("Waterfall Rapids", "Waterfall Rapids", NONE, {
@@ -1530,6 +1607,11 @@ void AreaTable_Init() {
 
 	areaTable[ZORA_CAPE_GROTTO] = Area("Zora Cape Grotto", "Zora Cape Grotto", NONE, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Loactions
@@ -1683,6 +1765,11 @@ void AreaTable_Init() {
 
 	areaTable[IKANA_GRAVEYARD_GROTTO] = Area("Ikana Graveyard Grotto", "Ikana Graveyard Grotto", NONE, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Locations
@@ -1780,6 +1867,7 @@ void AreaTable_Init() {
 
 	areaTable[DAMPES_HUT] = Area("Dampe's Hut", "Dampe's Hut", NONE, {
 		//Events
+		EventAccess(&BigPoe, {[]{return /*CanUseProjectile && AnyBottle*/ false;}}),//Trick Gibdo Big Poe out of well?
 	},
 	{
 		//Locations
@@ -1899,6 +1987,11 @@ void AreaTable_Init() {
 
 	areaTable[IKANA_CANYON_SECRET_SHRINE_GROTTO] = Area("Ikana Canyon Near Secret Shrine Grotto", "Ikana Canyon Near Secret Shrine Grotto", NONE, {
 		//Events
+		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 	},
 	{
 		//Locations
@@ -1924,6 +2017,7 @@ void AreaTable_Init() {
 
 	areaTable[INVERTED_STONE_TOWER] = Area("Inverted Stone Tower", "Inverted Stone Tower", INVERTED_STONE_TOWER, {
 		//Events
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -1975,12 +2069,13 @@ void AreaTable_Init() {
 		Entrance(WOODFALL_TEMPLE_ENTRANCE, {[]{return true;}}),
 		Entrance(WOODFALL_TEMPLE_BRIDGE_ROOM, {[]{return SmallKeys(WoodfallTempleKeys, 1);}}),
 		Entrance(WOODFALL_TEMPLE_PLATFORM_ROOM, {[]{return DekuMask || WoodfallPoisonClear;}}),
-		Entrance(WOODFALL_TEMPLE_UPPER_MAIN_ROOM, {[]{return (SmallKeys(WoodfallTempleKeys, 1) && DekuMask) || WoodfallPoisonClear;}}),//Ladder switch OR spinning platform, trick for hookshot on moth torch
+		Entrance(WOODFALL_TEMPLE_UPPER_MAIN_ROOM, {[]{return WoodfallLadder || WoodfallPoisonClear;}}),//Trick for hookshot on moth torch?
 	});
 
 	areaTable[WOODFALL_TEMPLE_UPPER_MAIN_ROOM] = Area("Woodfall Temple Main Room 2F", "Woodfall Temple Main Room 2F", WOODFALL_TEMPLE, {
 		//Events
 		EventAccess(&WoodfallPoisonClear, {[]{return Bow;}}),
+		EventAccess(&WoodfallLadder, {[]{return true;}}),
 	},
 	{
 		//Locations
@@ -2135,14 +2230,14 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(ODOLWA, {[] {return WoodfallClear;}}),
-		LocationAccess(ODOLWA_HEART_CONTAINER, {[] {return WoodfallClear;}}),
-		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return WoodfallClear;}}),
+		LocationAccess(ODOLWA, {[]{return DekuMask && Bow && Fighting;}}),//Trick for beating without Deku/Bow?
+		LocationAccess(ODOLWA_HEART_CONTAINER, {[]{return DekuMask && Bow && Fighting;}}),//Trick for beating without Deku/Bow?
+		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return DekuMask && Bow && Fighting;}}),//Trick for beating without Deku/Bow?
 	},
 	{
 		//Exits
 		Entrance(WOODFALL_TEMPLE_PRE_BOSS_ROOM, {[]{return false;}}),//One-way door
-		Entrance(WOODFALL_TEMPLE_PRINCESS_ROOM, {[]{return WoodfallClear;}}),
+		Entrance(WOODFALL_TEMPLE_PRINCESS_ROOM, {[]{return DekuMask && Bow && Fighting;}}),//Trick for beating without Deku/Bow?
 	});
 
 	areaTable[WOODFALL_TEMPLE_PRINCESS_ROOM] = Area("Deku Princess Room", "Deku Princess Room", WOODFALL_TEMPLE, {
@@ -2233,6 +2328,7 @@ void AreaTable_Init() {
 		Entrance(SNOWHEAD_TEMPLE_DOUBLE_BLOCK_ROOM_LOWER, {[]{return true;}}),
 		Entrance(SNOWHEAD_TEMPLE_ENTRANCE, {[]{return Bow;}}),
 		Entrance(SNOWHEAD_TEMPLE_PILLAR_FREEZARDS_ROOM, {[]{return CanUse(FIRE_ARROWS);}}),
+		Entrance(SNOWHEAD_TEMPLE_MAIN_ROOM_2F, {[]{return Hookshot || CanPlay(ScarecrowSong);}}),
 	});
 
 	areaTable[SNOWHEAD_TEMPLE_BASEMENT]= Area("Snowhead Temple Basement", "Snowhead Temple Basement", SNOWHEAD_TEMPLE, {
@@ -2470,14 +2566,14 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(GOHT, {[] {return SnowheadClear;}}),
-		LocationAccess(GOHT_HEART_CONTAINER, {[] {return SnowheadClear;}}),
-		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return SnowheadClear;}}),
+		LocationAccess(GOHT, {[]{return GoronMask && CanUse(FIRE_ARROWS);}}),
+		LocationAccess(GOHT_HEART_CONTAINER, {[]{return GoronMask && CanUse(FIRE_ARROWS);}}),
+		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return GoronMask && CanUse(FIRE_ARROWS);}}),
 	},
 	{
 		//Exits
 		Entrance(SNOWHEAD_TEMPLE_MAIN_ROOM_4F, {[]{return false;}}),
-		Entrance(SNOWHEAD, {[]{return SnowheadClear;}}),
+		Entrance(SNOWHEAD, {[]{return GoronMask && CanUse(FIRE_ARROWS);}}),
 	});
 
 	/*--------------------------
@@ -2712,14 +2808,14 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(GYORG, {[] {return GreatBayClear;}}),
-		LocationAccess(GYORG_HEART_CONTAINER, {[] {return GreatBayClear;}}),
-		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return GreatBayClear;}}),
+		LocationAccess(GYORG, {[]{return ZoraMask && MagicMeter && CanUseProjectile;}}),
+		LocationAccess(GYORG_HEART_CONTAINER, {[]{return ZoraMask && MagicMeter && CanUseProjectile;}}),
+		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return ZoraMask && MagicMeter && CanUseProjectile;}}),
 	},
 	{
 		//Exits
 		Entrance(GREAT_BAY_TEMPLE_PRE_BOSS_ROOM, {[]{return true;}}),
-		Entrance(ZORA_CAPE, {[]{return GreatBayClear;}}),
+		Entrance(ZORA_CAPE, {[]{return ZoraMask && MagicMeter && CanUseProjectile;}}),
 	});
 
 	/*--------------------------
@@ -3036,14 +3132,14 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST, {[] {return CanUse(LIGHT_ARROWS);}}),
-		LocationAccess(TWINMOLD, {[] {return StoneTowerClear;}}),
-		LocationAccess(TWINMOLD_HEART_CONTAINER, {[] {return StoneTowerClear;}}),
-		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return StoneTowerClear;}}),
+		LocationAccess(STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST, {[]{return CanUse(LIGHT_ARROWS) || CanUse(GIANTS_MASK);}}),
+		LocationAccess(TWINMOLD, {[]{return CanUse(LIGHT_ARROWS) && CanUse(GIANTS_MASK);}}),
+		LocationAccess(TWINMOLD_HEART_CONTAINER, {[]{return CanUse(LIGHT_ARROWS) && CanUse(GIANTS_MASK);}}),
+		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return CanUse(LIGHT_ARROWS) && CanUse(GIANTS_MASK);}}),
 	},
 	{
 		//Exits
-		Entrance(STONE_TOWER_TEMPLE, {[]{return StoneTowerClear;}}),
+		Entrance(STONE_TOWER_TEMPLE, {[]{return CanUse(LIGHT_ARROWS) && CanUse(GIANTS_MASK);}}),
 	});
 
 	areaTable[PIRATE_FORTRESS_EXTERIOR] = Area("Pirates Fortress Exterior", "Pirates Fortress Exterior", PIRATE_FORTRESS, {
@@ -3180,6 +3276,7 @@ void AreaTable_Init() {
 	areaTable[PIRATE_FORTRESS_GUARD_ROOM] = Area("Pirates Fortress Guard Room", "Pirates Fortress Guard Room", PIRATE_FORTRESS, {
 		//Events
 		EventAccess(&PiratePicture, {[]{return Pictobox && StoneMask;}}),//Trick for no Stone Mask?
+		EventAccess(&Fish, {[]{return AnyBottle && ZoraMask && Hookshot;}}),
 	},
 	{
 		//Locations
@@ -3206,7 +3303,7 @@ void AreaTable_Init() {
 
 	areaTable[BENEATH_THE_WELL_LEFT_PATH_ROOM] = Area("Beneath The Well Left Path", "Beneath The Well Left Path", BENEATH_THE_WELL, {
 		//Events
-		EventAccess(&LoneFish, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
 	},
 	{
@@ -3215,13 +3312,14 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(BENEATH_THE_WELL_ENTRANCE, {[]{return true;}}),
-		Entrance(BENEATH_THE_WELL_LEFT_PATH_HOT_WATER_ROOM, {[]{return GibdosMask && AnyBottle && FishAccess;}}),
-		Entrance(BENEATH_THE_WELL_LEFT_PATH_RIGHT_DOOR_ROOM, {[]{return GibdosMask && AnyBottle && SpringWater;}}),
+		Entrance(BENEATH_THE_WELL_LEFT_PATH_HOT_WATER_ROOM, {[]{return GibdosMask && Fish;}}),
+		Entrance(BENEATH_THE_WELL_LEFT_PATH_RIGHT_DOOR_ROOM, {[]{return GibdosMask && SpringWater;}}),
 	});
 
 	areaTable[BENEATH_THE_WELL_LEFT_PATH_HOT_WATER_ROOM] = Area("Beneath The Well Hot Water Room", "Beneath The Well Hot Water Room", BENEATH_THE_WELL, {
 		//Events
-		EventAccess(&FishGroup, {[]{return AnyBottle;}}),
+		EventAccess(&Fish, {[]{return AnyBottle;}}),
+		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
 		EventAccess(&HotSpringWater, {[]{return ZoraMask && AnyBottle;}}),
 	},
 	{
@@ -3234,7 +3332,7 @@ void AreaTable_Init() {
 
 	areaTable[BENEATH_THE_WELL_LEFT_PATH_RIGHT_DOOR_ROOM] = Area("Beneath The Well Left Path Right Room", "Beneath The Well Left Path Right Room", BENEATH_THE_WELL, {
 		//Events
-		EventAccess(&WanderingBugs, {[]{return AnyBottle;}}),
+		EventAccess(&Bugs, {[]{return AnyBottle && (CanUse(FIRE_ARROWS) || HasFireSourceWithTorch);}}),
 	},
 	{
 		//Locations
@@ -3242,8 +3340,8 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(BENEATH_THE_WELL_LEFT_PATH_ROOM, {[]{return true;}}),
-		Entrance(BENEATH_THE_WELL_LEFT_PATH_FAIRY_FOUNTAIN, {[]{return GibdosMask && BugsAccess && AnyBottle;}}),
-		Entrance(BENEATH_THE_WELL_LEFT_PATH_CHEST_ROOM, {[]{return GibdosMask && BugsAccess && AnyBottle;}}),
+		Entrance(BENEATH_THE_WELL_LEFT_PATH_FAIRY_FOUNTAIN, {[]{return GibdosMask && Bugs;}}),
+		Entrance(BENEATH_THE_WELL_LEFT_PATH_CHEST_ROOM, {[]{return GibdosMask && Bugs;}}),
 	});
 
 	areaTable[BENEATH_THE_WELL_LEFT_PATH_FAIRY_FOUNTAIN] = Area("Beneath The Well Fairy Fountain", "Beneath The Well Fairy Fountain", BENEATH_THE_WELL, {
@@ -3271,7 +3369,6 @@ void AreaTable_Init() {
 
 	areaTable[BENEATH_THE_WELL_RIGHT_PATH_ROOM] = Area("Beneath The Well Right Path", "Beneath The Well Right Path", BENEATH_THE_WELL, {
 		//Events
-		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
 		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
 		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
 	},
@@ -3281,13 +3378,13 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(BENEATH_THE_WELL_ENTRANCE, {[]{return true;}}),
-		Entrance(BENEATH_THE_WELL_RIGHT_PATH_LEFT_DOOR_ROOM, {[]{return GibdosMask && AnyBottle && FishAccess;}}),
+		Entrance(BENEATH_THE_WELL_RIGHT_PATH_LEFT_DOOR_ROOM, {[]{return GibdosMask && Fish;}}),
 		Entrance(BENEATH_THE_WELL_PRE_COW_AND_BIG_POE_ROOM, {[]{return GibdosMask && DekuBabaNuts;}}),
 	});
 
 	areaTable[BENEATH_THE_WELL_PRE_COW_AND_BIG_POE_ROOM] = Area("Beneath The Well Before Cow/Big Poe Room", "Beneath The Well Before Cow/Big Poe Room", BENEATH_THE_WELL, {
 		//Events
-		EventAccess(&WanderingBugs, {[]{return AnyBottle;}}),
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -3295,13 +3392,13 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(BENEATH_THE_WELL_RIGHT_PATH_ROOM, {[]{return true;}}),
-		Entrance(BENEATH_THE_WELL_COW_ROOM, {[]{return GibdosMask && HotSpringWater && AnyBottle;}}),
+		Entrance(BENEATH_THE_WELL_COW_ROOM, {[]{return GibdosMask && HotSpringWater;}}),
 		Entrance(BENEATH_THE_WELL_BIG_POE_ROOM, {[]{return GibdosMask && AnyBombBag;}}),
 	});
 
 	areaTable[BENEATH_THE_WELL_COW_ROOM] = Area("Beneath The Well Cow Room", "Beneath The Well Cow Room", BENEATH_THE_WELL, {
 		//Events
-		//Milk?
+		EventAccess(&Milk, {[]{return CanPlay(EponasSong) && AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -3335,8 +3432,8 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(BENEATH_THE_WELL_RIGHT_PATH_ROOM, {[]{return true;}}),
-		Entrance(BENEATH_THE_WELL_RIGHT_PATH_CHEST_ROOM, {[]{return GibdosMask && AnyBottle && BugsAccess;}}),
-		Entrance(BENEATH_THE_WELL_PRE_MIRROR_SHIELD_ROOM, {[]{return GibdosMask && AnyBottle && BigPoe;}}),
+		Entrance(BENEATH_THE_WELL_RIGHT_PATH_CHEST_ROOM, {[]{return GibdosMask && Bugs;}}),
+		Entrance(BENEATH_THE_WELL_PRE_MIRROR_SHIELD_ROOM, {[]{return GibdosMask && BigPoe;}}),
 	});
 
 	areaTable[BENEATH_THE_WELL_RIGHT_PATH_CHEST_ROOM] = Area("Beneath The Well Right Path Chest Room", "Beneath The Well Right Path Chest Room", BENEATH_THE_WELL, {
@@ -3353,7 +3450,7 @@ void AreaTable_Init() {
 
 	areaTable[BENEATH_THE_WELL_PRE_MIRROR_SHIELD_ROOM] = Area("Beneath The Well Pre Mirror Shield Room", "Beneath The Well Pre Mirror Shield Room", BENEATH_THE_WELL, {
 		//Events
-		EventAccess(&WanderingBugs, {[]{return AnyBottle;}}),
+		EventAccess(&Bugs, {[]{return AnyBottle && (CanUse(FIRE_ARROWS));}}),
 	},
 	{
 		//Locations
@@ -3361,7 +3458,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(BENEATH_THE_WELL_RIGHT_PATH_LEFT_DOOR_ROOM, {[]{return true;}}),
-		Entrance(BENEATH_THE_WELL_MIRROR_SHIELD_ROOM, {[]{return AnyBottle;}}),
+		Entrance(BENEATH_THE_WELL_MIRROR_SHIELD_ROOM, {[]{return GibdosMask && Milk;}}),
 	});
 
 	areaTable[BENEATH_THE_WELL_MIRROR_SHIELD_ROOM] = Area("Beneath The Well Mirror Shield Room", "Beneath The Well Mirror Shield Room", BENEATH_THE_WELL, {
@@ -3530,6 +3627,8 @@ void AreaTable_Init() {
 
 	areaTable[SECRET_SHRINE_ENTRANCE] = Area("Secret Shrine Entrance", "Secret Shrine Entrance", SECRET_SHRINE, {
 		//Events
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
+		EventAccess(&SpringWater, {[] {return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -3841,7 +3940,7 @@ void AreaTable_Init() {
 
 	areaTable[SSH_ENTRANCE] = Area("Swamp Spider House Entrance", "Swamp Spider House Entrance", SSH, {
 		//Events
-		EventAccess(&BugRock, {[]{return true;}}),
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -3996,6 +4095,7 @@ void AreaTable_Init() {
 
 	areaTable[SSH_TREE_ROOM] = Area("Swamp Spider House Tree Room", "Swamp Spider House Tree Room", SSH, {
 		//Events
+		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
@@ -4121,7 +4221,7 @@ void AreaTable_Init() {
 }
 
 namespace Areas {
-	static std::array < const AreaKey, 269> allAreas = {
+	static std::array < const AreaKey, 270> allAreas = {
 		ROOT,
 		ROOT_EXITS,
 		N_CLOCK_TOWN,

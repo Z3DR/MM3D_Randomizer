@@ -313,6 +313,7 @@ namespace Logic {
 	extern bool MilkQuestStart;
 	extern bool KoumeSaved;
 	extern bool WoodfallPoisonClear;
+	extern bool WoodfallLadder;
 	extern bool UpdraftRoomSwitchUpright;
 	extern bool UpdraftRoomSwitchInverted;
 	extern bool DekuTrialClear;
@@ -324,6 +325,7 @@ namespace Logic {
 	extern bool PiratePicture;
 	extern bool RockSirloin;
 	extern bool SpokeToBabyGoron;
+	extern bool Milk;
 	
 	extern bool CanGoToMoon;
 
