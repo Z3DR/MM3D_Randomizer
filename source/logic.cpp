@@ -311,6 +311,9 @@ namespace Logic {
 	bool ZoraTrialClear = false;
 	bool LinkTrialClear = false;
 	bool GoldRoomLadder = false;
+	bool WinnerPicture = false;
+	bool PiratePicture = false;
+	bool RockSirloin = false;
 
 	bool CanGoToMoon = false;
 	
@@ -429,6 +432,10 @@ namespace Logic {
 
 	bool ZoraEggCount(u8 currentEggCount, u8 requiredAmount) {
 		return (currentEggCount >= requiredAmount);
+	}
+
+	bool BottleCount(u8 currentBottleCount, u8 requiredAmount) {
+		return (currentBottleCount >= requiredAmount);
 	}
 
 	bool StrayFairyCount(u8 strayFairyCount, u8 requiredAmount) {
@@ -853,6 +860,9 @@ namespace Logic {
 	ZoraTrialClear = false;
 	LinkTrialClear = false;
 	GoldRoomLadder = false;
+	WinnerPicture = false;
+	PiratePicture = false;
+	RockSirloin = false;
 
 	
 	ZoraEgg = 0;

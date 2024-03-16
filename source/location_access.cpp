@@ -223,6 +223,7 @@ void AreaTable_Init() {
 	areaTable[N_CLOCK_TOWN] = Area("North Clock Town", "North Clock Town", N_CLOCK_TOWN, {
 		//Events
 		EventAccess(&OldLadySaved, {[]{return Fighting || Bow;}}),
+		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
 	},
 	{
 		//Locations
@@ -427,10 +428,6 @@ void AreaTable_Init() {
 		
 	areaTable[W_CLOCK_TOWN] = Area("West Clock Town", "West Clock Town", W_CLOCK_TOWN, {
 		//Events
-		EventAccess(&BugRock, {[]{return BugRock;}}),
-		EventAccess(&BugShrub, {[]{return BugShrub;}}),
-		EventAccess(&LoneFish, {[]{return LoneFish;}}),
-		EventAccess(&SpringWater, {[]{return SpringWater;}}),
 	},
 	{
 		//Locations
@@ -545,8 +542,8 @@ void AreaTable_Init() {
 		LocationAccess(S_CLOCK_TOWN_STRAW_ROOF_CHEST, {[] {return Hookshot || (DekuMask && MoonsTear);}}),
 		LocationAccess(S_CLOCK_TOWN_FINAL_DAY_CHEST, {[] {return Hookshot || (DekuMask && MoonsTear);}}),
 		LocationAccess(S_CLOCK_TOWN_BANK_REWARD_1, {[] {return true;}}),
-		LocationAccess(S_CLOCK_TOWN_BANK_REWARD_2, {[] {return AnyWallet;}}),//Adult Wallet for leniency
-		LocationAccess(S_CLOCK_TOWN_BANK_REWARD_3, {[] {return (OceanWallet500 || ProgressiveWallet > 1);}}),//Giant Wallet for leniency
+		LocationAccess(S_CLOCK_TOWN_BANK_REWARD_2, {[] {return AnyWallet;}}),//Adult Wallet for lenience
+		LocationAccess(S_CLOCK_TOWN_BANK_REWARD_3, {[] {return (OceanWallet500 || ProgressiveWallet > 1);}}),//Giant Wallet for lenience
 	},
 	{
 		//Exits
@@ -657,7 +654,7 @@ void AreaTable_Init() {
 		Entrance(TERMINA_FIELD_PILLAR_GROTTO, {[]{return true;}}),
 		Entrance(TERMINA_FIELD_GRASS_GROTTO, {[]{return true;}}),
 		Entrance(TERMINA_FIELD_BUSINESS_SCRUB_GROTTO, {[]{return true;}}),
-		Entrance(TERMINA_FIELD_COW_GROTTO, {[]{return HasExplosives;}}),
+		Entrance(TERMINA_FIELD_COW_GROTTO, {[]{return HasExplosives && MaskOfTruth;}}),//Trick for no MoT?
 		Entrance(TERMINA_FIELD_GOSSIP_STONES_GROTTO, {[]{return CanBlastOrSmash;}}),//Something to break rocks
 		Entrance(ROAD_TO_SOUTHERN_SWAMP, {[]{return true;}}),
 		Entrance(PATH_TO_MOUNTAIN_VILLAGE, {[]{return Bow;}}),// || (HotSpringWater && AnyBottle)
@@ -766,6 +763,8 @@ void AreaTable_Init() {
 
 	areaTable[ROAD_TO_SOUTHERN_SWAMP] = Area("Road to Southern Swamp", "Road to Southern Swamp", ROAD_TO_SOUTHERN_SWAMP, {
 		//Events
+		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
+		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
 	},
 	{
 		//Locations
@@ -813,6 +812,7 @@ void AreaTable_Init() {
 	
 	areaTable[SOUTHERN_SWAMP] = Area("Southern Swamp", "Southern Swamp", SOUTHERN_SWAMP, {
 		//Events
+		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
 		EventAccess(&SwampFrog, {[]{return DonGerosMask;}}),
 	},
 	{
@@ -845,7 +845,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(SOUTHERN_SWAMP_KOUME, {[] {return AnyBottle;}}),
-		LocationAccess(SOUTHERN_SWAMP_PICTOGRAPH_WINNER, {[] {return Pictobox;}}),
+		LocationAccess(SOUTHERN_SWAMP_PICTOGRAPH_WINNER, {[] {return WinnerPicture;}}),
 		LocationAccess(SOUTHERN_SWAMP_BOAT_ARCHERY, {[] {return WoodfallClear && AnyBottle;}}),
 	},
 	{
@@ -935,13 +935,14 @@ void AreaTable_Init() {
 		//BUT only the top route can reach woodfall
 		Entrance(SOUTHERN_SWAMP_TOP, {[]{return DekuMask;}}),
 		Entrance(DEKU_PALACE_INTERIOR, {[]{return DekuMask && BeansAndWater;}}),
-		Entrance(DEKU_PALACE_BEAN_GROTTO, {[]{return (DekuMask || WoodfallClear);}}),
+		Entrance(DEKU_PALACE_BEAN_GROTTO, {[]{return DekuMask || WoodfallClear;}}),
 		Entrance(DEKU_SHRINE, {[]{return WoodfallClear;}}),
 	});
 
 	areaTable[DEKU_PALACE_INTERIOR] = Area("Deku Palace Throne Room", "Deku Palace Throne Room", NONE, {
 		//Events
-		EventAccess(&DekuPrincessReturned, {[]{return DekuPrincess;}}),
+		EventAccess(&DekuPrincessReturned, {[]{return DekuMask && DekuPrincess;}}),
+		EventAccess(&WinnerPicture, {[]{return DekuMask && Pictobox;}}),
 	},
 	{
 		//Locations
@@ -955,7 +956,7 @@ void AreaTable_Init() {
 	areaTable[DEKU_PALACE_BEAN_GROTTO] = Area("Deku Palace Bean Grotto", "Deku Palace Bean Grotto", NONE, {
 		//Events
 		EventAccess(&LimitlessBeans, {[]{return LimitlessBeans;}}),
-		EventAccess(&SpringWater, {[]{return SpringWater;}})
+		EventAccess(&SpringWater, {[]{return AnyBottle;}})
 	},
 	{
 		//Locations
@@ -984,8 +985,8 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(WOODFALL_BRIDGE_CHEST, {[] {return DekuMask || Hookshot;}}),
-		LocationAccess(WOODFALL_BEHIND_OWL_CHEST, {[] {return DekuMask || Hookshot;}}),
+		LocationAccess(WOODFALL_BRIDGE_CHEST, {[] {return (DekuMask && (Fighting || CanUseProjectile)) || Hookshot;}}),//Fighting or projectile to get past the Hiploop
+		LocationAccess(WOODFALL_BEHIND_OWL_CHEST, {[] {return DekuMask && (Fighting || CanUseProjectile);}}),//Fighting or projectile to get past the Hiploop
 		LocationAccess(ENTRANCE_TO_WOODFALL_CHEST, {[] {return DekuMask || WoodfallClear || Hookshot;}}),
 
 	},
@@ -1026,11 +1027,12 @@ void AreaTable_Init() {
 
 	areaTable[MOUNTAIN_VILLAGE] = Area("Mountain Village", "Mountain Village", MOUNTAIN_VILLAGE, {
 		//Events
+		EventAccess(&HotSpringWater, {[]{return GoronMask && AnyBottle;}}),
 	},
 	{
 		//Locations
 		LocationAccess(MOUNTAIN_VILLAGE_FROG_CHOIR, {[] {return SnowheadClear && LaundryFrog && SwampFrog && WoodfallFrog && GreatBayFrog && DonGerosMask;}}),
-		LocationAccess(MOUNTAIN_VILLAGE_HUNGRY_GORON, {[] {return (GoronMask && MagicMeter) && (CanUse(FIRE_ARROWS) || (CanPlay(LullabyIntro) && HasFireSourceWithTorch));}}),
+		LocationAccess(MOUNTAIN_VILLAGE_HUNGRY_GORON, {[] {return GoronMask && RockSirloin;}}),
 		LocationAccess(MOUNTAIN_WATERFALL_CHEST, {[] {return SnowheadClear && CanUse(LENS_OF_TRUTH);}}),
 		LocationAccess(MOUNTAIN_VILLAGE_KEATON_QUIZ, {[]{return SnowheadClear && KeatonMask && AnySword;}}),
 		//Gossip Stones
@@ -1066,6 +1068,7 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(MOUNTAIN_VILLAGE_SMITH_DAY_ONE, {[] {return AnyWallet && AnyBSword && (HotSpringWater || SnowheadClear || CanUse(FIRE_ARROWS));}}), //Need to check for B sword
 		LocationAccess(MOUNTAIN_VILLAGE_SMITH_DAY_TWO, {[] {return GoronRaceBottle && AnyWallet && AnyBSword && (HotSpringWater || SnowheadClear || CanUse(FIRE_ARROWS));}}), //Currently need at least one progressive wallet as these are not independent checks
+	    //Hot Spring Water may not be viable in ER, can timer be removed?
 	},
 	{
 		//Exits
@@ -1086,13 +1089,13 @@ void AreaTable_Init() {
 
 	areaTable[TWIN_ISLANDS] = Area("Twin Islands", "Twin Islands", TWIN_ISLANDS, {
 		//Events
-		//Goron Elder song part?
+		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
 	},
 	 {
 		//Locations
 		LocationAccess(TWIN_ISLANDS_UNDERWATER_RAMP_CHEST, {[] {return SnowheadClear && ZoraMask;}}),
 		LocationAccess(TWIN_ISLANDS_CAVE_CHEST, {[] {return SnowheadClear && ZoraMask;}}),
-		LocationAccess(TWIN_ISLANDS_LULLABY_INTRO, {[] {return GoronMask && ((AnyBottle && HotSpringWater) || CanUse(FIRE_ARROWS));}}),
+		LocationAccess(TWIN_ISLANDS_LULLABY_INTRO, {[] {return GoronMask && (HotSpringWater || CanUse(FIRE_ARROWS));}}),//Hot Spring Water may not be viable in ER, can timer be removed?
 		LocationAccess(TINGLE_TWIN_ISLANDS_SH, {[]{return CanUseProjectile;}}),
 		LocationAccess(TINGLE_TWIN_ISLANDS_RR, {[]{return CanUseProjectile;}}),
 		LocationAccess(TINGLE_TWIN_ISLANDS_SH_SPRING, {[]{return CanUseProjectile;}}),
@@ -1102,7 +1105,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(MOUNTAIN_VILLAGE, {[]{return true;}}),
 		Entrance(GORON_RACETRACK, {[]{return PowderKeg && GoronMask;}}),
-		Entrance(TWIN_ISLANDS_SPRING_WATER_GROTTO, {[]{return CanUse(FIRE_ARROWS) || SnowheadClear;}}),
+		Entrance(TWIN_ISLANDS_SPRING_WATER_GROTTO, {[]{return (HotSpringWater || CanUse(FIRE_ARROWS)) || SnowheadClear;}}),//Hot Spring Water may not be viable in ER, can timer be removed?
 		Entrance(GORON_VILLAGE, {[]{return true;}}),
 	});
 
@@ -1116,7 +1119,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(TWIN_ISLANDS, {[]{return true;}}),
-		Entrance(TWIN_ISLANDS_GORON_RACETRACK_GROTTO, {[]{return HasExplosives && ((Hookshot && CanUse(ScarecrowSong)) || GoronMask);}}),
+		Entrance(TWIN_ISLANDS_GORON_RACETRACK_GROTTO, {[]{return HasExplosives && MaskOfTruth && ((Hookshot && CanUse(ScarecrowSong)) || GoronMask);}}),//Trick for no MoT?
 	});
 
 	areaTable[TWIN_ISLANDS_GORON_RACETRACK_GROTTO] = Area("Goron Racetrack Grotto", "Goron Racetrack Grotto", NONE, {
@@ -1182,7 +1185,7 @@ void AreaTable_Init() {
 
 	areaTable[GORON_VILLAGE_INTERIOR] = Area("Goron Village Interior", "Goron Village Interior", GORON_VILLAGE, {
 		//Events
-		//Light Torches?
+		EventAccess(&RockSirloin, {[]{return GoronMask && MagicMeter && (CanUse(FIRE_ARROWS) || (CanPlay(LullabyIntro) && HasFireSourceWithTorch));}}),
 		//Rock Roast?
 		//Stop Baby Crying?
 	},
@@ -1220,7 +1223,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(ROAD_TO_SNOWHEAD_GROTTO, {[]{return GoronMask && MagicMeter && HasExplosives;}}),
+		Entrance(ROAD_TO_SNOWHEAD_GROTTO, {[]{return GoronMask && MagicMeter && HasExplosives && MaskOfTruth;}}),//Trick for no MoT?
 		Entrance(MOUNTAIN_VILLAGE, {[]{return true;}}),
 		Entrance(SNOWHEAD, {[]{return GoronMask && MagicMeter;}}),
 	});
@@ -1265,6 +1268,7 @@ void AreaTable_Init() {
 
 	areaTable[MILK_ROAD] = Area("Milk Road", "Milk Road", MILK_ROAD, {
 		//Events
+		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
 	},
 	{
 		//Locations
@@ -1375,6 +1379,7 @@ void AreaTable_Init() {
 
 	areaTable[GREAT_BAY_COAST] = Area("Great Bay Coast", "Great Bay Coast", GREAT_BAY_COAST, {
 		//Events
+		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
 	},
 	{
 		//Locations
@@ -1402,7 +1407,6 @@ void AreaTable_Init() {
 
 	areaTable[GREAT_BAY_COAST_MARINE_LAB] = Area("Great Bay Marine Lab", "Great Bay Marine Lab", NONE, {
 		//Events
-		//Zora Eggs?
 	},
 	{
 		//Locations
@@ -1441,11 +1445,10 @@ void AreaTable_Init() {
 
 	areaTable[FISHERMAN_HUT] = Area("Fisherman's Hut", "Fisherman's Hut", NONE, {
 		//Events
-		EventAccess(&Seahorse, {[]{return Seahorse || (AnyBottle && ZoraMask && Pictobox);}}),
 	},
 	{
 		//Locations
-		LocationAccess(GBC_FISHERMAN_PHOTO, {[] {return Pictobox && ZoraMask;}}),
+		LocationAccess(GBC_FISHERMAN_PHOTO, {[] {return PiratePicture && ZoraMask;}}),
 	},
 	{
 		//Exits
@@ -1460,9 +1463,9 @@ void AreaTable_Init() {
 		LocationAccess(PINNACLE_ROCK_SEAHORSES,   {[]{return ZoraMask && MagicMeter && Seahorse;}}),
 		LocationAccess(PINNACLE_ROCK_UPPER_CHEST, {[]{return ZoraMask && MagicMeter && Seahorse;}}),
 		LocationAccess(PINNACLE_ROCK_LOWER_CHEST, {[]{return ZoraMask && MagicMeter && Seahorse;}}),
-		LocationAccess(PINNACLE_ROCK_ZORA_EGG1,   {[]{return ZoraMask && MagicMeter && AnyBottle && Seahorse;}}),
-		LocationAccess(PINNACLE_ROCK_ZORA_EGG2,   {[]{return ZoraMask && MagicMeter && AnyBottle && Seahorse;}}),
-		LocationAccess(PINNACLE_ROCK_ZORA_EGG3,   {[]{return ZoraMask && MagicMeter && AnyBottle && Seahorse;}}),
+		LocationAccess(PINNACLE_ROCK_ZORA_EGG1,   {[]{return ZoraMask && MagicMeter && BottleCount(AnyBottle, 3) && Seahorse;}}),//Require at least three bottles for lenience
+		LocationAccess(PINNACLE_ROCK_ZORA_EGG2,   {[]{return ZoraMask && MagicMeter && BottleCount(AnyBottle, 3) && Seahorse;}}),//Require at least three bottles for lenience
+		LocationAccess(PINNACLE_ROCK_ZORA_EGG3,   {[]{return ZoraMask && MagicMeter && BottleCount(AnyBottle, 3) && Seahorse;}}),//Require at least three bottles for lenience
 	},
 	{
 		//Exits
@@ -1667,7 +1670,7 @@ void AreaTable_Init() {
 		Entrance(IKANA_GRAVEYARD_BELOW_GRAVE1, {[]{return CaptainsHat;}}),
 		Entrance(IKANA_GRAVEYARD_BELOW_GRAVE2, {[]{return CaptainsHat;}}),
 		Entrance(IKANA_GRAVEYARD_BELOW_GRAVE3, {[]{return CaptainsHat;}}),
-		Entrance(IKANA_GRAVEYARD_GROTTO, {[]{return HasExplosives;}}),
+		Entrance(IKANA_GRAVEYARD_GROTTO, {[]{return HasExplosives && MaskOfTruth;}}),//Trick for no MoT?
 	});
 
 	areaTable[IKANA_GRAVEYARD_GROTTO] = Area("Ikana Graveyard Grotto", "Ikana Graveyard Grotto", NONE, {
@@ -1805,6 +1808,7 @@ void AreaTable_Init() {
 
 	areaTable[IKANA_CANYON_UPPER] = Area("Upper Ikana Canyon", "Upper Ikana Canyon", IKANA_CANYON, {
 		//Events
+		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
 	},
 	{
 		//Locations
@@ -3036,6 +3040,7 @@ void AreaTable_Init() {
 
 	areaTable[PIRATE_FORTRESS_EXTERIOR] = Area("Pirates Fortress Exterior", "Pirates Fortress Exterior", PIRATE_FORTRESS, {
 		//Events
+		EventAccess(&PiratePicture, {[]{return Pictobox && StoneMask;}}),//Trick for no Stone Mask?
 	},
 	{
 		//Locations
@@ -3092,6 +3097,7 @@ void AreaTable_Init() {
 
 	areaTable[PIRATE_FORTRESS_INTERIOR] = Area("Pirates Fortress Interior", "Pirates Fortress Interior", PIRATE_FORTRESS, {
 		//Events
+		EventAccess(&PiratePicture, {[]{return Pictobox && StoneMask;}}),//Trick for no Stone Mask?
 	},
 	{
 		//Locations
@@ -3111,11 +3117,12 @@ void AreaTable_Init() {
 
 	areaTable[PIRATE_FORTRESS_HOOKSHOT_ROOM] = Area("Pirates Fortress Hookshot Room", "Pirates Fortress Hookshot Room", PIRATE_FORTRESS, {
 		//Events
+		EventAccess(&PiratePicture, {[]{return Pictobox && StoneMask;}}),//Trick for no Stone Mask?
 	},
 	{
 		//Locations
 		LocationAccess(PF_INTERIOR_HOOKSHOT_CHEST, {[] {return PirateBees;}}),
-		LocationAccess(PF_INT_HOOKSHOT_ROOM_ZORA_EGG, {[]{return PirateBees && Hookshot && ZoraMask && AnyBottle;}}),
+		LocationAccess(PF_INT_HOOKSHOT_ROOM_ZORA_EGG, {[]{return PirateBees && Hookshot && ZoraMask && BottleCount(AnyBottle, 2);}}),//Require at least two bottles for lenience
 	},
 	{
 		//Exits
@@ -3137,10 +3144,11 @@ void AreaTable_Init() {
 
 	areaTable[PIRATE_FORTRESS_BARREL_MAZE] = Area("Pirates Fortress Barrel Maze", "Pirates Fortress Barrel Maze", PIRATE_FORTRESS, {
 		//Events
+		EventAccess(&PiratePicture, {[]{return Pictobox && StoneMask;}}),//Trick for no Stone Mask?
 	},
 	{
 		//Locations
-		LocationAccess(PF_INT_BARREL_MAZE_ZORA_EGG, {[]{return Hookshot && ZoraMask && AnyBottle;}}),
+		LocationAccess(PF_INT_BARREL_MAZE_ZORA_EGG, {[]{return Hookshot && ZoraMask && BottleCount(AnyBottle, 2);}}),//Require at least two bottles for lenience
 	},
 	{
 		//Exits
@@ -3149,11 +3157,12 @@ void AreaTable_Init() {
 
 	areaTable[PIRATE_FORTRESS_LAVA_ROOM] = Area("Pirate Fortress Lava Room", "Pirate Fortress Lava Room", PIRATE_FORTRESS, {
 		//Events
+		EventAccess(&PiratePicture, {[]{return Pictobox && StoneMask;}}),//Trick for no Stone Mask?
 	},
 	{
 		//Locations
-		LocationAccess(PF_INT_TANK_CHEST, {[] {return Hookshot && ZoraMask && AnyBottle;}}),
-		LocationAccess(PF_INT_LAVA_ROOM_ZORA_EGG, {[]{return Hookshot && ZoraMask && AnyBottle;}}),
+		LocationAccess(PF_INT_TANK_CHEST, {[] {return Hookshot && ZoraMask;}}),
+		LocationAccess(PF_INT_LAVA_ROOM_ZORA_EGG, {[]{return Hookshot && ZoraMask && BottleCount(AnyBottle, 2);}}),//Require at least two bottles for lenience
 	},
 	{
 		//Exits
@@ -3162,11 +3171,12 @@ void AreaTable_Init() {
 
 	areaTable[PIRATE_FORTRESS_GUARD_ROOM] = Area("Pirates Fortress Guard Room", "Pirates Fortress Guard Room", PIRATE_FORTRESS, {
 		//Events
+		EventAccess(&PiratePicture, {[]{return Pictobox && StoneMask;}}),//Trick for no Stone Mask?
 	},
 	{
 		//Locations
 		LocationAccess(PF_INT_GUARD_ROOM_CHEST, {[] {return CanUseProjectile || StoneMask;}}),
-		LocationAccess(PF_INT_GUARD_ROOM_ZORA_EGG, {[]{return Hookshot && ZoraMask && AnyBottle;}}),
+		LocationAccess(PF_INT_GUARD_ROOM_ZORA_EGG, {[]{return Hookshot && ZoraMask && BottleCount(AnyBottle, 2);}}),//Require at least two bottles for lenience
 	},
 	{
 		//Exits
@@ -3823,6 +3833,7 @@ void AreaTable_Init() {
 
 	areaTable[SSH_ENTRANCE] = Area("Swamp Spider House Entrance", "Swamp Spider House Entrance", SSH, {
 		//Events
+		EventAccess(&BugRock, {[]{return true;}}),
 	},
 	{
 		//Locations
@@ -3836,6 +3847,7 @@ void AreaTable_Init() {
 
 	areaTable[SSH_MAIN_ROOM_LOWER] = Area("Swamp Spider House Main Room", "Swamp Spider House Main Room", SSH, {
 		//Events
+		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
 	},
 	{
 		//Locations
