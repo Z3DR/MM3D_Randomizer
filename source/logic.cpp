@@ -319,7 +319,6 @@ namespace Logic {
 	bool CanGoToMoon = false;
 	
 	u8 ZoraEgg = 0;
-	u8 AnyBottle = 0;
 
 	//placement tracking
 	u8 AddedProgressiveBombBags = 0;
@@ -434,10 +433,6 @@ namespace Logic {
 
 	bool ZoraEggCount(u8 currentEggCount, u8 requiredAmount) {
 		return (currentEggCount >= requiredAmount);
-	}
-
-	bool BottleCount(u8 currentBottleCount, u8 requiredAmount) {
-		return (currentBottleCount >= requiredAmount);
 	}
 
 	bool StrayFairyCount(u8 strayFairyCount, u8 requiredAmount) {

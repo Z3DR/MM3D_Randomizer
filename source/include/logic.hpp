@@ -336,7 +336,6 @@ namespace Logic {
 	bool HasProjectile(ItemKey itemName);
 	bool SmallKeys(u8 dungeonKeyCount, u8 requiredAmount);
 	bool ZoraEggCount(u8 currentEggCount, u8 requiredAmount);
-	bool BottleCount(u8 currentBottleCount, u8 requiredAmount);
 	bool StrayFairyCount(u8 strayFairyCount, u8 requiredAmount);
 	bool SkulltulaCount(u8 currentSkulltulaCount, u8 requiredAmount);
 	bool TotalHeartContainers(u8 requiredAmount);

@@ -1462,9 +1462,9 @@ void AreaTable_Init() {
 		LocationAccess(PINNACLE_ROCK_SEAHORSES,   {[]{return ZoraMask && MagicMeter && Seahorse;}}),
 		LocationAccess(PINNACLE_ROCK_UPPER_CHEST, {[]{return ZoraMask && MagicMeter && Seahorse;}}),
 		LocationAccess(PINNACLE_ROCK_LOWER_CHEST, {[]{return ZoraMask && MagicMeter && Seahorse;}}),
-		LocationAccess(PINNACLE_ROCK_ZORA_EGG1,   {[]{return ZoraMask && MagicMeter && BottleCount(AnyBottle, 3) && Seahorse;}}),//Require at least three bottles for lenience
-		LocationAccess(PINNACLE_ROCK_ZORA_EGG2,   {[]{return ZoraMask && MagicMeter && BottleCount(AnyBottle, 3) && Seahorse;}}),//Require at least three bottles for lenience
-		LocationAccess(PINNACLE_ROCK_ZORA_EGG3,   {[]{return ZoraMask && MagicMeter && BottleCount(AnyBottle, 3) && Seahorse;}}),//Require at least three bottles for lenience
+		LocationAccess(PINNACLE_ROCK_ZORA_EGG1,   {[]{return ZoraMask && MagicMeter && TwoBottles && Seahorse;}}),//Require at least two bottles for lenience
+		LocationAccess(PINNACLE_ROCK_ZORA_EGG2,   {[]{return ZoraMask && MagicMeter && TwoBottles && Seahorse;}}),//Require at least two bottles for lenience
+		LocationAccess(PINNACLE_ROCK_ZORA_EGG3,   {[]{return ZoraMask && MagicMeter && TwoBottles && Seahorse;}}),//Require at least two bottles for lenience
 	},
 	{
 		//Exits
@@ -3121,7 +3121,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(PF_INTERIOR_HOOKSHOT_CHEST, {[] {return PirateBees;}}),
-		LocationAccess(PF_INT_HOOKSHOT_ROOM_ZORA_EGG, {[]{return PirateBees && Hookshot && ZoraMask && BottleCount(AnyBottle, 2);}}),//Require at least two bottles for lenience
+		LocationAccess(PF_INT_HOOKSHOT_ROOM_ZORA_EGG, {[]{return PirateBees && Hookshot && ZoraMask && TwoBottles;}}),//Require at least two bottles for lenience
 	},
 	{
 		//Exits
@@ -3147,7 +3147,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(PF_INT_BARREL_MAZE_ZORA_EGG, {[]{return Hookshot && ZoraMask && BottleCount(AnyBottle, 2);}}),//Require at least two bottles for lenience
+		LocationAccess(PF_INT_BARREL_MAZE_ZORA_EGG, {[]{return Hookshot && ZoraMask && TwoBottles;}}),//Require at least two bottles for lenience
 	},
 	{
 		//Exits
@@ -3161,7 +3161,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(PF_INT_TANK_CHEST, {[] {return Hookshot && ZoraMask;}}),
-		LocationAccess(PF_INT_LAVA_ROOM_ZORA_EGG, {[]{return Hookshot && ZoraMask && BottleCount(AnyBottle, 2);}}),//Require at least two bottles for lenience
+		LocationAccess(PF_INT_LAVA_ROOM_ZORA_EGG, {[]{return Hookshot && ZoraMask && TwoBottles;}}),//Require at least two bottles for lenience
 	},
 	{
 		//Exits
@@ -3175,7 +3175,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(PF_INT_GUARD_ROOM_CHEST, {[] {return CanUseProjectile || StoneMask;}}),
-		LocationAccess(PF_INT_GUARD_ROOM_ZORA_EGG, {[]{return Hookshot && ZoraMask && BottleCount(AnyBottle, 2);}}),//Require at least two bottles for lenience
+		LocationAccess(PF_INT_GUARD_ROOM_ZORA_EGG, {[]{return Hookshot && ZoraMask && TwoBottles;}}),//Require at least two bottles for lenience
 	},
 	{
 		//Exits
