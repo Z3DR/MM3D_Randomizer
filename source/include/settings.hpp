@@ -419,6 +419,7 @@ namespace Settings {
   extern Option ChestSize;
   extern Option ChangeOverworldItems;
   extern Option IngameSpoilers;
+  extern Option RegionSelect;
   extern Option MenuOpeningButton;
   extern Option RsDurability;
   extern Option SkipBombersMinigame;
@@ -529,8 +530,10 @@ namespace Settings {
   extern u32 LinksPocketRewardBitMask;
   extern std::array<u32, 9> rDungeonRewardOverrides;
 
-  extern u8 PlayOption;
-  extern u8 Version;
+  extern Option PlayOption;
+  extern Option Version;
+  extern std::vector<Option*> gameOptions;
+  extern Menu gameSettings;
 
 }
   

@@ -66,15 +66,24 @@ namespace Settings {
   //Mode/Logic Settings
   Option Logic = Option::U8("Logic", { "Glitchless", "No Logic", "Vanilla", "Glitched" }, { logicGlitchless, logicNoLogic, logicVanilla, logicGlitched },OptionCategory::Setting, (u8)LogicSetting::LOGIC_GLITCHLESS);
   Option LocationsReachable = Option::Bool("All Locations Reachable", { "Off", "On" }, { locationsReachableDesc }, OptionCategory::Setting, 1); //All Locations Reachable On
-  Option IngameSpoilers       = Option::Bool("Ingame Spoilers",        { "Hide", "Show" },                                  { ingameSpoilersHideDesc, ingameSpoilersShowDesc });
-  
   std::vector<Option*> logicOptions = {
     &Logic,
     &LocationsReachable,
+  };
+
+  //Game Settings
+  Option GenerateSpoilerLog   = Option::Bool("Generate Spoiler Log",   { "No", "Yes" },                                     { genSpoilerLogDesc },                                                                        OptionCategory::Setting, 1); // On
+  Option IngameSpoilers       = Option::Bool("Ingame Spoilers",        { "Hide", "Show" },                                  { ingameSpoilersHideDesc, ingameSpoilersShowDesc });
+  Option RegionSelect = Option::Bool("Game Region", {"NA", "EU"}, {NARegionDesc, EURegionDesc});
+  Option PlayOption = Option::U8("Console/Emulator", {"3DS", "Citra"}, {"How will you Play?"});
+  Option Version = Option::U8("Version", {"1.0", "1.1"}, {VersionDesc});
+  std::vector<Option *> gameOptions = {
+    &PlayOption,
+    &Version,
     &GenerateSpoilerLog,
     &IngameSpoilers,
+    &RegionSelect,
   };
-  
   //TODO MM3D LOGIC TRICKS
   //Function to make defining logic tricks easier to read
   //Option LogicTrick(std::string setting, std::string_view description) {
@@ -335,7 +344,6 @@ namespace Settings {
   Option ChestAnimations      = Option::Bool("Chest Animations",       { "Always Fast", "Match Contents"},                  {chestAnimDesc});
   Option ChestSize            = Option::Bool("Chest Size and Color",   { "Vanilla", "Match Contents"},                      {chestSizeDesc});
   Option ChangeOverworldItems = Option::Bool("Change Overworld Items", { "Vanilla", "Match Contents" },                     { changeOverworldItemsDesc });
-  Option GenerateSpoilerLog   = Option::Bool("Generate Spoiler Log",   { "No", "Yes" },                                     { genSpoilerLogDesc },                                                                        OptionCategory::Setting, 1); // On
   //Option MenuOpeningButton    = Option::U8("Open Info Menu with",      { "Select","Start","D-Pad Up","D-Pad Down","D-Pad Right","D-Pad Left", }, { menuButtonDesc });
   Option RandomTrapDmg        = Option::U8("Random Trap Damage",       { "Off", "Basic", "Advanced" },                      { randomTrapDmgDesc, basicTrapDmgDesc, advancedTrapDmgDesc });
   Option RsDurability         = Option::U8("Razor Sword Durability",   { "Vanilla", "Infinite" },                           { rsDurabilityVanilla, rsDurabilityInf});
@@ -536,6 +544,7 @@ namespace Settings {
   Menu excludeLocations = Menu::SubMenu("Exclude Locations", &excludeLocationsOptions, false);
   Menu glitchSettings   = Menu::SubMenu("Glitch Options",    &glitchOptions, false);
   Menu otherSettings = Menu::SubMenu("Other Settings", &otherSettingsOptions, false);
+  Menu gameSettings = Menu::SubMenu("Game Settings", &gameOptions);
   
   std::vector<Menu *> detailLogicSettings = {
       //&logicSettings,
@@ -561,6 +570,7 @@ namespace Settings {
   //adding a menu with no options crashes, might fix later
   std::vector<Menu *> mainMenu = {
     &logicSettings,
+    &gameSettings,
     &shuffleItems,
     &shuffleDungeon,
     &itemPool,
@@ -581,8 +591,8 @@ namespace Settings {
   std::array<u32, 9> rDungeonRewardOverrides{};
 
   //declared here, set in menu.cpp
-  u8 PlayOption;
-  u8 Version;
+  //u8 PlayOption;
+  //u8 Version;
 
   //Fills and returns a SettingsContext struct.
   //This struct is written to the code.ips patch and allows the game
@@ -595,7 +605,7 @@ namespace Settings {
     ctx.hashIndexes[3] = hashIconIndexes[3];
     ctx.hashIndexes[4] = hashIconIndexes[4];
 
-    ctx.playOption = PlayOption;
+    ctx.playOption = PlayOption.Value<u8>();
 
 ///things commented out below here need to be added or match up to SettingsContext in \mm3dr\code\include\rnd\settings.h
     ctx.logic                = Logic.Value<u8>();

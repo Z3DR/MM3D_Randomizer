@@ -2128,7 +2128,7 @@ void HintTable_Init() {
   /*---------------------
   |   JUNK HINT TEXT    |
   ---------------------*/
-    hintTable[JUNK01] = HintText::Junk({Text{"<Junk hint here>", "**FRENCH**", "**SPANISH**"}});
+    hintTable[JUNK01] = HintText::Junk({Text{"That's no moon.", "**FRENCH**", "**SPANISH**"}});
     hintTable[JUNK02] = HintText::Junk({Text{"The moon is haunted.", "**FRENCH**", "**SPANISH**"}});
     hintTable[JUNK03] = HintText::Junk({Text{"Majora has sick dance moves.", "**FRENCH**", "**SPANISH**"}});
     hintTable[JUNK04] = HintText::Junk({Text{"Making hints is hard.", "**FRENCH**", "**SPANISH**"}});
@@ -2201,7 +2201,7 @@ void HintTable_Init() {
     hintTable[JUNK71] = HintText::Junk({Text{"These hints can be quite useful. This is an exception.", "**FRENCH**", "**SPANISH**"}});
     hintTable[JUNK72] = HintText::Junk({Text{"Turns are more effective when you tilt the whole console.", "**FRENCH**", "**SPANISH**"}});
     hintTable[JUNK73] = HintText::Junk({Text{"You ever been in a cockpit before?", "**FRENCH**", "**SPANISH**"}});
-    hintTable[JUNK74] = HintText::Junk({Text{"Smash 10 pots in 12 seconds.", "**FRENCH**", "**SPANISH**"}});
+    hintTable[JUNK74] = HintText::Junk({Text{"It's a secret to everybody", "**FRENCH**", "**SPANISH**"}});
     hintTable[JUNK75] = HintText::Junk({Text{"You found me!", "**FRENCH**", "**SPANISH**"}});
     hintTable[JUNK76] = HintText::Junk({Text{"I have it on my post-it note somewhere.", "**FRENCH**", "**SPANISH**"}});
     hintTable[JUNK77] = HintText::Junk({Text{"Follow the rainbow.", "**FRENCH**", "**SPANISH**"}});
