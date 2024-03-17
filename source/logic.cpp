@@ -303,6 +303,7 @@ namespace Logic {
 	bool ThinBridgeCrystalChest = false;
 	bool MilkQuestStart = false;
 	bool KoumeSaved = false;
+	bool SpokeToKoume = false;
 	bool WoodfallPoisonClear = false;
 	bool WoodfallLadder = false;
 	bool UpdraftRoomSwitchUpright = false;
@@ -317,6 +318,8 @@ namespace Logic {
 	bool RockSirloin = false;
 	bool SpokeToBabyGoron = false;
 	bool Milk = false;
+	bool SpokeToKafei = false;
+	bool PostedKafeiLetter = false;
 
 	bool CanGoToMoon = false;
 	
@@ -850,6 +853,7 @@ namespace Logic {
 	ThinBridgeCrystalChest = false;
 	MilkQuestStart = false;
 	KoumeSaved = false;
+	SpokeToKoume = false;
 	WoodfallPoisonClear = false;
 	WoodfallLadder = false;
 	UpdraftRoomSwitchUpright = false;
@@ -864,6 +868,8 @@ namespace Logic {
 	RockSirloin = false;
 	SpokeToBabyGoron = false;
 	Milk = false;
+	SpokeToKafei = false;
+	PostedKafeiLetter = false;
 
 	
 	ZoraEgg = 0;

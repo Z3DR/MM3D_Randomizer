@@ -224,6 +224,7 @@ void AreaTable_Init() {
 		//Events
 		EventAccess(&OldLadySaved, {[]{return Fighting || Bow;}}),
 		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
+		EventAccess(&PostedKafeiLetter, {[]{return LetterKafei;}}),
 	},
 	{
 		//Locations
@@ -272,6 +273,7 @@ void AreaTable_Init() {
 
 	areaTable[E_CLOCK_TOWN] = Area("East Clock Town", "East Clock Town", E_CLOCK_TOWN, {
 		//Events
+		EventAccess(&PostedKafeiLetter, {[]{return LetterKafei;}}),
 	},
 	{
 		//Locations
@@ -333,7 +335,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(STOCKPOTINN_MIDNIGHT_MEETING, {[] {return KafeisMask && (DekuMask || RoomKey);}}),
-		LocationAccess(STOCKPOTINN_ANJU_AND_KAFEI, {[] {return KafeisMask && LetterKafei && PendantAccess && SunMask;}}),
+		LocationAccess(STOCKPOTINN_ANJU_AND_KAFEI, {[] {return KafeisMask && SpokeToKafei && PendantAccess && SunMask;}}),
 		LocationAccess(STOCKPOTINN_STAFF_ROOM_CHEST, {[] {return true;}}),//Day 3?
 	},
 	{
@@ -537,6 +539,7 @@ void AreaTable_Init() {
 
 	areaTable[S_CLOCK_TOWN] = Area("South Clock Town", "South Clock Town", S_CLOCK_TOWN, {
 		//Events
+		EventAccess(&PostedKafeiLetter, {[]{return LetterKafei;}}),
 	},
 	{
 		//Locations
@@ -597,23 +600,24 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(LAUNDRY_POOL_CURIOSITY_SHOP_MAN_ONE, {[] {return LetterKafei;}}),
-		LocationAccess(LAUNDRY_POOL_CURIOSITY_SHOP_MAN_TWO, {[] {return LetterKafei;}}),
+		LocationAccess(LAUNDRY_POOL_CURIOSITY_SHOP_MAN_ONE, {[] {return SpokeToKafei;}}),
+		LocationAccess(LAUNDRY_POOL_CURIOSITY_SHOP_MAN_TWO, {[] {return SpokeToKafei;}}),
 		LocationAccess(LAUNDRY_POOL_GURU_GURU, {[] {return true;}}), //No Reqs, Talk on night of day 1 or 2
 		LocationAccess(LAUNDRY_POOL_SF, { [] {return true;}}),
 	},
 	{
 		//Exits
 		Entrance(S_CLOCK_TOWN, {[]{return true;}}),
-		Entrance(LAUNDRY_POOL_KAFEI_HIDEOUT, {[]{return LetterKafei;}}),
+		Entrance(LAUNDRY_POOL_KAFEI_HIDEOUT, {[]{return PostedKafeiLetter;}}),
 	});
 
 	areaTable[LAUNDRY_POOL_KAFEI_HIDEOUT] = Area("Kafei's Hideout", "Kafei's Hideout", NONE, {
 		//Events
+		EventAccess(&SpokeToKafei, {[]{return PostedKafeiLetter;}}),
 	},
 	{
 		//Locations
-		LocationAccess(LAUNDRY_POOL_KAFEI, {[] {return LetterKafei;}}),
+		LocationAccess(LAUNDRY_POOL_KAFEI, {[] {return PostedKafeiLetter;}}),
 		
 	},
 	{
@@ -902,7 +906,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(SOUTHERN_SWAMP_KOTAKE, {[] {return true;}}),
+		LocationAccess(SOUTHERN_SWAMP_KOTAKE, {[] {return SpokeToKoume;}}),
 		LocationAccess(SOUTHERN_SWAMP_KOTAKE_MUSHROOM_SALE, {[] {return Mushroom;}}),
 		LocationAccess(POTION_SHOP_ITEM_1, {[]{return AnyBottle;}}),
 		LocationAccess(POTION_SHOP_ITEM_2, {[]{return AnyBottle;}}),
@@ -916,6 +920,7 @@ void AreaTable_Init() {
 
 	areaTable[MYSTERY_WOODS] = Area("Mystery Woods", "Mystery Woods", MYSTERY_WOODS, {
 		//Events
+		EventAccess(&SpokeToKoume, {[]{return true;}}),
 		EventAccess(&Mushroom, {[]{return MaskOfScents && AnyBottle;}}),//Base logic expects mushrooms from SS or Woods
 		EventAccess(&KoumeSaved, {[]{return AnyBottle;}}),//Add Red Potion requirement for shuffle shops
 	},
@@ -1881,7 +1886,7 @@ void AreaTable_Init() {
 
 	areaTable[IKANA_CANYON] = Area("Lower Ikana Canyon", "Lower Ikana Canyon", IKANA_CANYON, {
 		//Events
-		EventAccess(&EnterSakonHideout, {[]{return LetterKafei;}}),//Sakon spawns if Kafei was met in Laundry Pool
+		EventAccess(&EnterSakonHideout, {[]{return SpokeToKafei;}}),//Sakon spawns if Kafei was met in Laundry Pool
 	},
 	{
 		//Locations
