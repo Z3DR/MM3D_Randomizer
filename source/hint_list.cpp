@@ -2215,77 +2215,77 @@ void HintTable_Init() {
             Text{"the sleeping temple", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"the Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
     );
     hintTable[SNOWHEAD_TEMPLE] = HintText::DungeonName({
             //obscure
             Text{"an icy temple", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"the Snowhead Temple", "**FRENCH**", "**SPANISH**"}    
     );
     hintTable[GREAT_BAY_TEMPLE] = HintText::DungeonName({
             //obscure
             Text{"the murky watered temple", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"the Great Bay Temple", "**FRENCH**", "**SPANISH**"}    
     );
     hintTable[STONE_TOWER_TEMPLE] = HintText::DungeonName({
             //obscure
             Text{"a rocky temple", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"the Stone Tower Temple", "**FRENCH**", "**SPANISH**"}    
     );
     hintTable[PIRATE_FORTRESS] = HintText::DungeonName({
             //obscure
             Text{"the home of pirates", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"the Pirates' Fortress", "**FRENCH**", "**SPANISH**"}    
     );
     hintTable[BENEATH_THE_WELL] = HintText::DungeonName({
             //obscure
             Text{"an empty watering hole", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"Beneath the Well", "**FRENCH**", "**SPANISH**"}    
     );
     hintTable[IKANA_CASTLE]  = HintText::DungeonName({
             //obscure
             Text{"a fallen castle", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"the Ancient Castle of Ikana", "**FRENCH**", "**SPANISH**"}    
     );
     hintTable[SECRET_SHRINE] = HintText::DungeonName({
             //obscure
             Text{"a mini boss run area", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"the Secret Shrine", "**FRENCH**", "**SPANISH**"}    
     );
     hintTable[SSH] = HintText::DungeonName({
             //obscure
             Text{"a home to muddy spiders", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"the Swamp Spider House", "**FRENCH**", "**SPANISH**"}    
     );
     hintTable[OSH] = HintText::DungeonName({
             //obscure
             Text{"a home To swimming spiders", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"the Ocean Spider House", "**FRENCH**", "**SPANISH**"}    
     );
     hintTable[THE_MOON] = HintText::DungeonName({
             //obscure
             Text{"a dungeon out of this world", "**FRENCH**", "**SPANISH**"}
         },
             //clear
-            Text{"Woodfall Temple", "**FRENCH**", "**SPANISH**"}    
+            Text{"the Moon", "**FRENCH**", "**SPANISH**"}    
     );
 
   /*-----------------------
