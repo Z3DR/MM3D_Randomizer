@@ -1031,7 +1031,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(DEKU_PALACE_BUTLER_RACE, {[] {return DekuPrincessReturned;}}),
+		LocationAccess(DEKU_PALACE_BUTLER_RACE, {[] {return (Fighting || CanUseProjectile) && DekuPrincessReturned;}}),
 	},
 	{
 		//Exits
@@ -2333,7 +2333,7 @@ void AreaTable_Init() {
 		Entrance(SNOWHEAD_TEMPLE_DOUBLE_BLOCK_ROOM_LOWER, {[]{return true;}}),
 		Entrance(SNOWHEAD_TEMPLE_ENTRANCE, {[]{return Bow;}}),
 		Entrance(SNOWHEAD_TEMPLE_PILLAR_FREEZARDS_ROOM, {[]{return CanUse(FIRE_ARROWS);}}),
-		Entrance(SNOWHEAD_TEMPLE_MAIN_ROOM_2F, {[]{return Hookshot || CanPlay(ScarecrowSong);}}),
+		Entrance(SNOWHEAD_TEMPLE_MAIN_ROOM_2F, {[]{return Hookshot && CanPlay(ScarecrowSong);}}),
 	});
 
 	areaTable[SNOWHEAD_TEMPLE_BASEMENT]= Area("Snowhead Temple Basement", "Snowhead Temple Basement", SNOWHEAD_TEMPLE, {
