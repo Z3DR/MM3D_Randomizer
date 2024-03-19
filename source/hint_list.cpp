@@ -2125,6 +2125,7 @@ void HintTable_Init() {
     hintTable[STONE_TOWER] = HintText::Region({Text{"Stone Tower", "**FRENCH**", "**SPANISH**"}});
     hintTable[INVERTED_STONE_TOWER] = HintText::Region({Text{"Stone Tower", "**FRENCH**", "**SPANISH**"}});
 
+
   /*---------------------
   |   JUNK HINT TEXT    |
   ---------------------*/
