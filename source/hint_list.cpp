@@ -728,6 +728,7 @@ void HintTable_Init() {
     hintTable[LAUNDRY_POOL] = HintText::Region({Text{"Laundry Pool", "", ""}});
     hintTable[LAUNDRY_POOL_KAFEI_HIDEOUT] = HintText::Region({Text{"Laundry Pool", "", ""}});
     hintTable[TERMINA_FIELD] = HintText::Region({Text{"Termina Field", "", ""}});
+    hintTable[TERMINA_FIELD_OUTSIDE_OBSERVATORY] = HintText::Region({Text{"Termina Field", "", ""}});
     hintTable[TERMINA_FIELD_PEAHAT_GROTTO] = HintText::Region({Text{"Termina Field", "", ""}});
     hintTable[TERMINA_FIELD_DODONGO_GROTTO] = HintText::Region({Text{"Termina Field", "", ""}});
     hintTable[TERMINA_FIELD_BIO_BABA_GROTTO] = HintText::Region({Text{"Termina Field", "", ""}});

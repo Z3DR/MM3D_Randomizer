@@ -214,7 +214,7 @@ namespace Logic {
 	bool AnySword = false;
 	bool AnyBombBag = false;
 	bool AnyMagicBean = false;
-	bool WaterForBeans = false;
+	bool BeansAndWater = false;
 	bool TwoBottles = false;
 	bool AnyWallet = false;
 	bool LimitlessBeans = false;
@@ -302,6 +302,24 @@ namespace Logic {
 	bool GreatBayFrog = false;
 	bool ThinBridgeCrystalChest = false;
 	bool MilkQuestStart = false;
+	bool KoumeSaved = false;
+	bool SpokeToKoume = false;
+	bool WoodfallPoisonClear = false;
+	bool WoodfallLadder = false;
+	bool UpdraftRoomSwitchUpright = false;
+	bool UpdraftRoomSwitchInverted = false;
+	bool DekuTrialClear = false;
+	bool GoronTrialClear = false;
+	bool ZoraTrialClear = false;
+	bool LinkTrialClear = false;
+	bool GoldRoomLadder = false;
+	bool WinnerPicture = false;
+	bool PiratePicture = false;
+	bool RockSirloin = false;
+	bool SpokeToBabyGoron = false;
+	bool Milk = false;
+	bool SpokeToKafei = false;
+	bool PostedKafeiLetter = false;
 
 	bool CanGoToMoon = false;
 	
@@ -467,14 +485,14 @@ namespace Logic {
 		FishAccess = LoneFish || FishGroup;
 		WaterAccess = (SpringWater && AnyBottle) || CanPlay(SongOfStorms);
 		HotSpringWaterAccess = HotSpringWater && AnyBottle;
-		WaterForBeans = (AnyBottle && WaterAccess) || SongOfStorms;
+		BeansAndWater = AnyMagicBean && (SpringWater || SongOfStorms);
 		AnyMagicBean = (MagicBean || MagicBeanPack || LimitlessBeans);
 		//refills
 		Bombs = AnyBombBag;
 		Nuts = DekuNutDrop;
 		Sticks = DekuStickDrop || DekuStick;
-		Bugs = HasBottle && BugsAccess;
-		Fish = HasBottle && FishAccess;
+		Bugs = AnyBottle && BugsAccess;
+		Fish = AnyBottle && FishAccess;
 		
 		//Other Helpers
 		CanBlastOrSmash = HasExplosives || GoronMask;
@@ -491,16 +509,16 @@ namespace Logic {
 		AnyBSword = KokiriSword || RazorSword || GildedSword || (ProgressiveSword >= 1);
 		NightInnAccess = DekuMask || RoomKey;
 		
-		Fighting = GoronMask || ZoraMask || AnySword || DekuStickFighting;
+		Fighting = GoronMask || ZoraMask || AnySword /*|| DekuStickFighting || HasExplosives*/;//Trick for bombs, arrows and sticks?
 		AnyShield = HerosShield|| MirrorShield;
-		CanUseProjectile = HasExplosives || HerosBow || (ProgressiveBow >= 1);
+		CanUseProjectile = Hookshot || HerosBow || (ProgressiveBow >= 1) || (DekuMask && MagicMeter) || ZoraMask;
+		HasExplosives = AnyBombBag || (BlastMask && AnyShield);//Shield required to use Blast Mask without killing the player
 		
 		//Item Helpers
 		AnyMagicBean = MagicBean || LimitlessBeans;
 		AnyWallet = Townwallet200 || OceanWallet500 || (ProgressiveWallet >= 1);
 		AnyBottle = WitchBottle || AlienBottle || BeaverRaceBottle || ArcheryBottle || GoronRaceBottle || ChateauBottle || UsableMysteryMilkBottle || HasBottle;
 		MagicMeter = (ProgressiveMagic >= 1) || MagicPower || ExtendedMagicPower;
-		WaterForBeans = (AnyBottle && (SpringWater || HotSpringWater)) || SongOfStorms;
 		Scarecrow = Hookshot && CanPlay(ScarecrowSong);
 		AnyPaper = (LandTitle || SwampTitle || OceanTitle || MountainTitle || LetterKafei || LetterMama);
 		
@@ -745,7 +763,7 @@ namespace Logic {
 	  AnySword = false;
 	  AnyBombBag = false;
 	  AnyMagicBean = false;
-	  WaterForBeans = false;
+	  BeansAndWater = false;
 	  TwoBottles = false;
 	  AnyWallet = false;
 	  LimitlessBeans = false;
@@ -834,6 +852,24 @@ namespace Logic {
 	GreatBayFrog = false;
 	ThinBridgeCrystalChest = false;
 	MilkQuestStart = false;
+	KoumeSaved = false;
+	SpokeToKoume = false;
+	WoodfallPoisonClear = false;
+	WoodfallLadder = false;
+	UpdraftRoomSwitchUpright = false;
+	UpdraftRoomSwitchInverted = false;
+	DekuTrialClear = false;
+	GoronTrialClear = false;
+	ZoraTrialClear = false;
+	LinkTrialClear = false;
+	GoldRoomLadder = false;
+	WinnerPicture = false;
+	PiratePicture = false;
+	RockSirloin = false;
+	SpokeToBabyGoron = false;
+	Milk = false;
+	SpokeToKafei = false;
+	PostedKafeiLetter = false;
 
 	
 	ZoraEgg = 0;
