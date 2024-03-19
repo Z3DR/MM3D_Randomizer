@@ -356,7 +356,7 @@ namespace Settings {
       &SkipBombersMinigame,
       //&RandomTrapDmg,
       &GossipStoneHints,
-      //&ClearerHints,
+      &ClearerHints,
       &HintDistribution,
       &CompassShowWoTH,
       //&DamageMultiplier,
