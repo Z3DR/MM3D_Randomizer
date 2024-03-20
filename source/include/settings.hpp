@@ -363,7 +363,7 @@ namespace Settings {
   extern Option StartingGaroMask;
   extern Option StartingCaptainsHat;
   extern Option StartingGiantsMask;
-  extern Option StartingFierceDietyMask;
+  extern Option StartingFierceDeityMask;
   extern Option StartingMaskOfTruth;
   //Excluded Locations
   extern std::vector<Option*> excludeLocationsOptions;
@@ -400,7 +400,7 @@ namespace Settings {
   extern Option ItemPoolValue;
   extern Option ShuffleMainInventory;
   extern Option ShuffleTransformation;
-  extern Option ShuffleFierceDiety;
+  extern Option ShuffleFierceDeity;
   extern Option ShuffleChests;
   extern Option ShuffleMasks;
   extern Option ShuffleGFRewards;
@@ -419,6 +419,7 @@ namespace Settings {
   extern Option ChestSize;
   extern Option ChangeOverworldItems;
   extern Option IngameSpoilers;
+  extern Option RegionSelect;
   extern Option MenuOpeningButton;
   extern Option RsDurability;
   extern Option SkipBombersMinigame;
@@ -427,7 +428,7 @@ namespace Settings {
   //Comfort
   extern Option BlastMaskCooldown;
   extern Option UnderwaterOcarina;
-  extern Option FierceDietyAnywhere;
+  extern Option FierceDeityAnywhere;
   extern Option ProgressiveGildedSword;
   extern Option StartingSpin;
   extern Option AmmoDrops;
@@ -448,6 +449,10 @@ namespace Settings {
   extern Option SkipSongReplays;
   extern Option FastZoraSwim;
   extern Option OcarinaDive;
+  extern Option DpadTransform;
+  extern Option DpadOcarina;
+  extern Option DpadArrows;
+  extern Option TwinmoldRestoraion;
 
   //Trial Skips
   extern Option OdolwaTrialSkip;
@@ -525,8 +530,10 @@ namespace Settings {
   extern u32 LinksPocketRewardBitMask;
   extern std::array<u32, 9> rDungeonRewardOverrides;
 
-  extern u8 PlayOption;
-  extern u8 Version;
+  extern Option PlayOption;
+  extern Option Version;
+  extern std::vector<Option*> gameOptions;
+  extern Menu gameSettings;
 
 }
   

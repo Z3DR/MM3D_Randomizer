@@ -25,12 +25,6 @@ void GenerateStartingInventory() {
     for (auto* dungeon : dungeonList) {
       if (dungeon->GetMap() != NONE) {
         AddItemToInventory(dungeon->GetMap());
-        AddItemToInventory(CLOCK_TOWN_MAP);
-        AddItemToInventory(WOODFALL_MAP);
-        AddItemToInventory(SNOWHEAD_MAP);
-        AddItemToInventory(ROMANI_RANCH_MAP);
-        AddItemToInventory(GREAT_BAY_MAP);
-        AddItemToInventory(STONE_TOWER_MAP);
       }
 
       if (dungeon->GetCompass() != NONE) {
@@ -95,9 +89,14 @@ void GenerateStartingInventory() {
   AddItemToInventory(ELEGY_OF_EMPTINESS,        StartingElegyOfEmptiness.Value<u8>());
   AddItemToInventory(SONG_OF_HEALING,           StartingSongOfHealing.Value<u8>());
   AddItemToInventory(SONG_OF_SOARING,           StartingSongOfSoaring.Value<u8>());
-  AddItemToInventory(PROGRESSIVE_SWORD,         StartingKokiriSword.Value<u8>());
-  if (StartingShield.Value<u8>() == 1){  AddItemToInventory(HEROS_SHIELD,              1);}
-  if (StartingShield.Value<u8>() == 2){  AddItemToInventory(MIRROR_SHIELD,             1);}
+  //AddItemToInventory(PROGRESSIVE_SWORD,         StartingKokiriSword.Value<u8>());
+  if (StartingKokiriSword.Value<u8>() == (u8)0){ AddItemToInventory(PROGRESSIVE_SWORD, 0);}
+  if (StartingKokiriSword.Value<u8>() == (u8)1){ AddItemToInventory(PROGRESSIVE_SWORD, 1);}
+  if (StartingKokiriSword.Value<u8>() == (u8)2){ AddItemToInventory(PROGRESSIVE_SWORD, 2);}
+  if (StartingKokiriSword.Value<u8>() == (u8)3){ AddItemToInventory(PROGRESSIVE_SWORD, 0);}
+  if (StartingShield.Value<u8>() == (u8)0){  AddItemToInventory(HEROS_SHIELD,              1);}
+  if (StartingShield.Value<u8>() == (u8)1){  AddItemToInventory(MIRROR_SHIELD,             1);}
+  AddItemToInventory(GREAT_FAIRYS_SWORD,        StartingGreatFairySword.Value<u8>());
   AddItemToInventory(PROGRESSIVE_MAGIC_METER,   StartingMagicMeter.Value<u8>());
   AddItemToInventory(PROGRESSIVE_WALLET,        StartingWallet.Value<u8>());
   AddItemToInventory(DOUBLE_DEFENSE,            StartingDoubleDefense.Value<u8>());
@@ -130,7 +129,7 @@ void GenerateStartingInventory() {
   AddItemToInventory(GAROS_MASK,                StartingGaroMask.Value<u8>());
   AddItemToInventory(CAPTAINS_HAT,              StartingCaptainsHat.Value<u8>());
   AddItemToInventory(GIANTS_MASK,               StartingGiantsMask.Value<u8>());
-  AddItemToInventory(FIERCE_DIETY_MASK,         StartingFierceDietyMask.Value<u8>());
+  AddItemToInventory(FIERCE_DEITY_MASK,         StartingFierceDeityMask.Value<u8>());
   AddItemToInventory(MASK_OF_TRUTH,             StartingMaskOfTruth.Value<u8>());
 
   

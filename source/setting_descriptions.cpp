@@ -120,7 +120,7 @@ string_view shuffleMainInventoryDesc  = "Shuffle Main Inventory Items\n"        
                                         "Magic Beans and Fire, Ice, and Light Arrows";     //
                                                                                            //   
 string_view shuffleTransformationDesc = "Shuffles Deku, Goron, and Zora Masks";            //
-string_view shuffleFierceDietyDesc    = "Shuffles Fierce Diety Mask";                      //
+string_view shuffleFierceDeityDesc    = "Shuffles Fierce Deity Mask";                      //
 string_view shuffleMoonItemsDesc      = "Shuffles Items from the Moon into the pool\n"     //
                                         "Includes 4 Pieces of Heart, and 2 junk items";    //
 /*------------------------------                                                           //
@@ -332,10 +332,8 @@ string_view changeOverworldItemsDesc  = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |        INGAME SPOILERS       |                                                           //
 ------------------------------*/                                                           //
-string_view ingameSpoilersShowDesc    = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Every spoiler is shown.";                         //
-string_view ingameSpoilersHideDesc    = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Hides the spheres page and only shows a\n"        //
+string_view ingameSpoilersShowDesc    = "Every spoiler is shown.";                         //
+string_view ingameSpoilersHideDesc    = "Hides the spheres page and only shows a\n"        //
                                         "location's item after it has been found.";        //
                                                                                            //
 string_view genSpoilerLogDesc         = "Choose to Generate a Spoiler Log";                //
@@ -393,17 +391,13 @@ string_view removeDDDesc              = "If set the double defense item will be 
 /*------------------------------                                                           //
 |     BLAST MASK COOLDOWN      |                                                           //
 ------------------------------*/                                                           //
-string_view blastDefault              = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Sets the cooldown time on the blastmask to \n"    //
+string_view blastDefault              = "Sets the cooldown time on the blastmask to \n"    //
                                         "the default cooldown time of 10 seconds";         //
-string_view blastInstant              = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Sets the cooldown time on the blastmask to \n"    //
+string_view blastInstant              = "Sets the cooldown time on the blastmask to \n"    //
                                         "have no cooldown time";                           //
-string_view blastVeryShort            = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Sets the cooldown time on the blastmask to \n"    //
-                                        "have an even shorter cooldown time of 1 second";  //
-string_view blastShort                = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Sets the cooldown time on the blastmask to \n"    //
+string_view blastVeryShort            = "Sets the cooldown time on the blastmask to \n"    //
+                                        "have an even shorter cooldown time of 3 seconds"; //
+string_view blastShort                = "Sets the cooldown time on the blastmask to \n"    //
                                         "have a shorter cooldown time of 5 seconds";       //
 string_view blastLong                 = "**OPTION CURRENTLY WIP**\n"                       //
                                         "Sets the cooldown time on the blastmask to \n"    //
@@ -420,8 +414,8 @@ string_view skipMinigamePhasesDesc    = "**OPTION CURRENTLY WIP**\n"            
                                         "both rewards at once for that minigame."          //
                                         "Also skips the first beaver race.";               //
                                                                                            //
-string_view fierceDietyAnywhereDesc   = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Enables the use of the Fierce Diety Mask anywhere";//
+string_view fierceDeityAnywhereDesc   = "**OPTION CURRENTLY WIP**\n"                       //
+                                        "Enables the use of the Fierce Deity Mask anywhere";//
                                                                                            //
  string_view underwaterOcarinaDesc    = "**OPTION CURRENTLY WIP**\n"                       //
                                         "Enables the use of the ocarina while underwater.";//
@@ -617,10 +611,12 @@ string_view ocarinaDiveDesc          = "Enables Ocarina Diving";                
 string_view dpadMaskDesc             = "Enables using the 3 D-Pad buttons to use\n"        //
                                        "transformation masks. This option will also\n"     //
                                        "patch using Down A with Mask Storage.";            //
-string_view dpadOcarinaDesc          = "Enables using D-Pad down to activate your\n"       //
+string_view dpadOcarinaDesc          = "Enables using D-Pad right to activate your\n"      //
                                        "ocarina.";                                         //
 string_view dpadArrowDesc            = "Enables using D-Pad up to change your current\n"   //
                                        "arrow that is being used.";                        //
+string_view twinmoldRestorationDesc  = "Fixes Twinmold boss fight so Red Twinmold does not\n"
+                                       "regen health when it burrows.";                    //
                                                                                            //
 /*-------------------------------                                                          //
 |   CUSTOM BUTTON MAPPING       |                                                          //
@@ -640,15 +636,23 @@ string_view ingameSpoilersButtonDesc = "Change the button to open the ingame Spo
 -------------------------------*/                                                          //
 string_view skipBombersMinigameDesc  = "Skip Bomber's Minigame to get the code.\n"         //
                                        "Sets the code to 12345.";                          //
-
-/*------------------------------                                                                           //
-|           GLITCHES           |                                                                           //
-------------------------------*/                                                                           //
+/*------------------------------                                                           //
+|           GLITCHES           |                                                           //
+------------------------------*/                                                           //
 const std::vector<string_view> GlitchDifficulties{"Novice", "Intermediate", "Advanced", "Expert", "Hero"};
-
-/*------------------------------                                                                           //
-|       CUTSCENE OPTIONS       |                                                                           //
-------------------------------*/  
+/*------------------------------                                                           //
+|       CUTSCENE OPTIONS       |                                                           //
+------------------------------*/                                                           //
 string_view skipHMSCutsceneDesc     = "Skips the initial Happy Mask Salesman's cutscenes"; //
 string_view skipDarmaniCutsceneDesc = "Skips the Song of Healing Cutscene for Darmani";    //
 string_view skipMikauCutsceneDesc   = "Skips the Song of Healing Cutscene for Mikau";      //
+/*------------------------------                                                           //
+|        REGION OPTIONS        |                                                           //
+------------------------------*/                                                           //
+string_view NARegionDesc            = "                 North America\n"                   //
+                                      "Currently only supports English Hints and Custom Text";
+string_view EURegionDesc            = "                     Europe\n"                      //
+                                      "Currently only supports English Hints and Custom Text";
+string_view VersionDesc             = "Due to patch size when using version 1.1 it can \n" //
+                                      "take up to 30 seconds to launch the game, this is\n"//
+                                      "expected and will not effect gameplay";             //

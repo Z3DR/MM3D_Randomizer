@@ -134,206 +134,214 @@ static auto GetPlacementLogPath() {
 }
 
 static void WriteIngameSpoilerLog() {
-    u16 spoilerItemIndex = 0;
-    u32 spoilerStringOffset = 0;
+    u16 spoilerTotalItems       = 0;
+    u16 spoilerItemIndex        = 0;
+    u32 spoilerStringOffset     = 0;
     u16 spoilerSphereItemoffset = 0;
-    u16 spoilerGroupOffset = 0;
+    u16 spoilerGroupOffset      = 0;
     // Intentionally junk value so we trigger the 'new group, record some stuff' code
-    u8 currentGroup = SpoilerCollectionCheckGroup::SPOILER_COLLECTION_GROUP_COUNT;
+    u8 currentGroup        = SpoilerCollectionCheckGroup::SPOILER_COLLECTION_GROUP_COUNT;
     bool spoilerOutOfSpace = false;
 
     // Create map of string data offsets for all _unique_ item locations and names in the playthrough
     // Some item names, like gold skulltula tokens, can appear many times in a playthrough
-    std::unordered_map<LocationKey, u16> itemLocationsMap; // Map of LocationKey to an index into spoiler data item locations
+    std::unordered_map<LocationKey, u16>
+        itemLocationsMap; // Map of LocationKey to an index into spoiler data item locations
     itemLocationsMap.reserve(allLocations.size());
-    std::unordered_map<std::string, u16> stringOffsetMap; // Map of strings to their offset into spoiler string data array
+    std::unordered_map<std::string, u16>
+        stringOffsetMap; // Map of strings to their offset into spoiler string data array
     stringOffsetMap.reserve(allLocations.size() * 2);
 
-    // Sort all locations by their group, so the in-game log can show a group of items by simply starting/ending at certain indices
+    // Sort all locations by their group, so the in-game log can show a group of items by simply starting/ending at
+    // certain indices
     std::stable_sort(allLocations.begin(), allLocations.end(), [](const LocationKey& a, const LocationKey& b) {
         auto groupA = Location(a)->GetCollectionCheckGroup();
         auto groupB = Location(b)->GetCollectionCheckGroup();
         return groupA < groupB;
-        });
+    });
 
     for (const LocationKey key : allLocations) {
+        if (spoilerTotalItems >= SPOILER_ITEMS_MAX * SPOILER_LOCDATS) {
+            spoilerOutOfSpace = true;
+            break;
+        }
         auto loc = Location(key);
 
-        // Exclude uncheckable/repeatable locations from ingame tracker
-        if (!Settings::IngameSpoilers) {
-            // General
-            if (loc->IsExcluded() || loc->GetHintKey() == NONE) {
-                continue;
+        // Hide excluded locations from ingame tracker
+        if (loc->IsExcluded()) {
+            continue;
+        }
+        
+        // Cows
+        else if (!Settings::ShuffleCows && loc->IsCategory(Category::cCow)) {
+            continue;
+        }
+        // Deku Merchant Trade Quest
+        else if (!Settings::ShuffleMerchants && loc->IsCategory(Category::cTradeItem)) {
+            continue;
+        }
+        // Aju and Kafei
+        else if (!Settings::ShuffleTradeItems && loc->IsCategory(Category::cAnjuAndKafei)) {
+            continue;
+        }
+        // Shops
+        else if ((Settings::Shopsanity.Is(ShopsanitySetting::SHOPSANITY_OFF)) && loc->IsCategory(Category::cShop)){
+          continue;
+        }
+        // Stray Fairies
+        if (!Settings::StrayFairysanity &&Location(key)->GetPlacedItemKey() == CT_STRAY_FAIRY) {
+          continue;
+         }
+        if (!Settings::StrayFairysanity &&Location(key)->GetPlacedItemKey() == WF_STRAY_FAIRY) {
+          continue;
+        }
+        if (!Settings::StrayFairysanity &&Location(key)->GetPlacedItemKey() == SH_STRAY_FAIRY) {
+          continue;
+        }
+        if (!Settings::StrayFairysanity &&Location(key)->GetPlacedItemKey() == GBT_STRAY_FAIRY) {
+          continue;
+        }
+        if (!Settings::StrayFairysanity && Location(key)->GetPlacedItemKey() == ST_STRAY_FAIRY) {
+          continue;
+        }
+        // Skulltula Tokens
+        if (!Settings::Tokensanity && Location(key)->GetPlacedItemKey() == OCEANSIDE_SKULLTULA_TOKEN) {
+          continue;
+        }
+        if (!Settings::Tokensanity && Location(key)->GetPlacedItemKey() == SWAMP_SKULLTULA_TOKEN) {
+          continue;
+        }
+        // Songs
+        if ((Settings::ShuffleSongs.Is(SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) && Location(key)->IsCategory(Category::cSong)) {
+          continue;
+        }
+        // Tingle Maps
+        if (!Settings::ShuffleTingleMaps && Location(key)->IsCategory(Category::cTingleMap)) {
+          continue;
+        }
+        // If Starting with Song of Healing hide Deku Mask and Bombers Notebook as they're unobtainable and junk
+        if (key == HMS_DEKU_MASK && (Settings::StartingSongOfHealing.Value<u8>() == u8(1) || !Settings::ShuffleTransformation)) {
+           continue;
+        }
+        if (key == HMS_BOMBERS_NOTEBOOK && (Settings::StartingSongOfHealing.Value<u8>() == u8(1) || !Settings::ShuffleBombersNotebook)) {
+           continue;
+        }
+        // Always hide unreachable checks
+        if (key == CLOCK_TOWER_OCARINA_OF_TIME) {
+          continue;
+        }
+        if (key == HMS_STARTING_SWORD){ // && Settings::StartingKokiriSword.Is((u8)StartingSwordSetting::STARTINGSWORD_KOKIRI)) {
+          continue;     
+        }
+        if (key == HMS_STARTING_SHIELD) {
+          continue;           
+        }
+            
+            
+
+        // Copy at most 51 chars from the name and location name to avoid issues with names that don't fit on screen
+        // Only copy enough characters that can fit on the screen
+        const char* locNameFormat  = "%.51s";
+        const char* itemNameFormat = "%.49s";
+
+        auto locName = loc->GetName();
+        if (stringOffsetMap.find(locName) == stringOffsetMap.end()) {
+            if (spoilerStringOffset + locName.size() + 1 >= SPOILER_STRING_DATA_SIZE) {
+                spoilerOutOfSpace = true;
+                break;
+            } else {
+                stringOffsetMap[locName] = spoilerStringOffset;
+                spoilerStringOffset +=
+                    sprintf(&spoilerData.StringData[spoilerStringOffset], locNameFormat, locName.c_str()) + 1;
             }
-            // Shops
-           /* else if (loc->IsShop() && (
-                //loc->GetPlacedItem().GetItemType() == ITEMTYPE_REFILL ||
-                //loc->GetPlacedItem().GetItemType() == ITEMTYPE_SHOP ||
-                loc->GetPlacedItem().GetHintKey() == PROGRESSIVE_BOMBCHUS)) {
-                continue;
+        }
+
+        auto locItem = loc->GetPlacedItemName().GetEnglish();
+        /*if (loc->IsCategory(Category::cShop)) {
+            if (loc->GetPlacedItemKey() == ICE_TRAP) {
+                locItem = NonShopItems[TransformShopIndex(GetShopIndex(key))].Name.GetNAEnglish();
             }
-            // Deku Scrubs
-            else if (Settings::Scrubsanity.Is(SCRUBSANITY_OFF) && loc->IsCategory(Category::cDekuScrub) && !loc->IsCategory(Category::cDekuScrubUpgrades)) {
-                continue;
-            }
-            // Cows
-            else if (!Settings::ShuffleCows && loc->IsCategory(Category::cCow)) {
-                continue;
-            }
+            locItem += ": " + std::to_string(loc->GetPrice()) + " Rupees";
         }*/
-
-            auto locName = loc->GetName();
-            if (stringOffsetMap.find(locName) == stringOffsetMap.end()) {
-                if (spoilerStringOffset + locName.size() + 1 >= SPOILER_STRING_DATA_SIZE) {
-                    spoilerOutOfSpace = true;
-                    break;
-                }
-                else {
-                    stringOffsetMap[locName] = spoilerStringOffset;
-                    spoilerStringOffset += sprintf(&spoilerData.StringData[spoilerStringOffset], "%s", locName.c_str()) + 1;
-                }
+        if (stringOffsetMap.find(locItem) == stringOffsetMap.end()) {
+            if (spoilerStringOffset + locItem.size() + 1 >= SPOILER_STRING_DATA_SIZE) {
+                spoilerOutOfSpace = true;
+                break;
+            } else {
+                stringOffsetMap[locItem] = spoilerStringOffset;
+                spoilerStringOffset +=
+                    sprintf(&spoilerData.StringData[spoilerStringOffset], itemNameFormat, locItem.c_str()) + 1;
             }
-
-            auto locItem = loc->GetPlacedItemName().GetEnglish();
-            if (stringOffsetMap.find(locItem) == stringOffsetMap.end()) {
-                if (spoilerStringOffset + locItem.size() + 1 >= SPOILER_STRING_DATA_SIZE) {
-                    spoilerOutOfSpace = true;
-                    break;
-                }
-                else {
-                    stringOffsetMap[locItem] = spoilerStringOffset;
-                    spoilerStringOffset += sprintf(&spoilerData.StringData[spoilerStringOffset], "%s", locItem.c_str()) + 1;
-                }
-            }
+        }
 
             spoilerData.ItemLocations[spoilerItemIndex].LocationStrOffset = stringOffsetMap[locName];
             spoilerData.ItemLocations[spoilerItemIndex].ItemStrOffset = stringOffsetMap[locItem];
             spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = loc->GetCollectionCheck().type;
             spoilerData.ItemLocations[spoilerItemIndex].OverrideType = loc->GetOverrideType();
-            //spoilerData.ItemLocations[spoilerItemIndex].LocationScene = loc->GetCollectionCheck().scene;
-            //spoilerData.ItemLocations[spoilerItemIndex].LocationFlag = loc->GetCollectionCheck().flag;
             spoilerData.ItemLocations[spoilerItemIndex].LocationScene = loc->GetScene();
             spoilerData.ItemLocations[spoilerItemIndex].LocationFlag = loc->GetFlag();
-            //Always Reveal unreachable checks
-            if (key == CLOCK_TOWER_OCARINA_OF_TIME)
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;
-            }
-            if (key == HMS_STARTING_SWORD)
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;    
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;        
-            }
-            if (key == HMS_STARTING_SHIELD)
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;              
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;            
-            }
-            //Reveal Stray Fairies and Skulltula Tokens as they're not randomized yet
-            if (Location(key)->GetPlacedItemKey() == CT_STRAY_FAIRY)
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;
-            }
-            if (Location(key)->GetPlacedItemKey() == WF_STRAY_FAIRY)
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;
-            }
-            if (Location(key)->GetPlacedItemKey() == SH_STRAY_FAIRY)
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;
-            }
-            if (Location(key)->GetPlacedItemKey() == GBT_STRAY_FAIRY)
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;
-            }
-            if (Location(key)->GetPlacedItemKey() == ST_STRAY_FAIRY)
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;
-            }
-            if (Location(key)->GetPlacedItemKey() == OCEANSIDE_SKULLTULA_TOKEN)
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;
-            }
-            if (Location(key)->GetPlacedItemKey() == SWAMP_SKULLTULA_TOKEN)
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;
-            }
-            //Reveal Songs as they're not randomized yet
-            if (Location(key)->IsCategory(Category::cSong))
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NEVER;
-              spoilerData.ItemLocations[spoilerItemIndex].RevealType = REVEALTYPE_ALWAYS;
-              spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = SPOILER_CHK_ALWAYS_COLLECTED;
-            }
+            
+            //Set Repeatable locations CollectType(Used for changing color in spoiler log)
             if (Location(key)->IsRepeatable())
             {
               spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_REPEATABLE;
             }
-            auto checkGroup = loc->GetCollectionCheckGroup();
-            spoilerData.ItemLocations[spoilerItemIndex].Group = checkGroup;
+              
+            auto checkGroup                                   = loc->GetCollectionCheckGroup();
+        spoilerData.ItemLocations[spoilerItemIndex].Group = checkGroup;
 
-            // Group setup
-            if (checkGroup != currentGroup) {
-                currentGroup = checkGroup;
-                spoilerData.GroupOffsets[currentGroup] = spoilerGroupOffset;
-            }
-            ++spoilerData.GroupItemCounts[currentGroup];
-            ++spoilerGroupOffset;
-
-            itemLocationsMap[key] = spoilerItemIndex++;
+        // Group setup
+        if (checkGroup != currentGroup) {
+            currentGroup                           = checkGroup;
+            spoilerData.GroupOffsets[currentGroup] = spoilerGroupOffset;
         }
-        spoilerData.ItemLocationsCount = spoilerItemIndex;
+        ++spoilerData.GroupItemCounts[currentGroup];
+        ++spoilerGroupOffset;
 
-        if (Settings::IngameSpoilers) {
-            bool playthroughItemNotFound = false;
-            // Write playthrough data to in-game spoiler log
-            if (!spoilerOutOfSpace) {
-                for (u32 i = 0; i < playthroughLocations.size(); i++) {
-                    if (i >= SPOILER_SPHERES_MAX) {
+        itemLocationsMap[key] = spoilerTotalItems++;
+
+        spoilerItemIndex++;
+        if (spoilerItemIndex >= SPOILER_ITEMS_MAX) {
+            stringOffsetMap.clear();
+            spoilerItemIndex    = 0;
+            spoilerStringOffset = 0;
+        }
+    }
+    spoilerData.ItemLocationsCount = spoilerTotalItems;
+
+    if (Settings::IngameSpoilers) {
+        bool playthroughItemNotFound = false;
+        // Write playthrough data to in-game spoiler log
+        if (!spoilerOutOfSpace) {
+            for (u32 i = 0; i < playthroughLocations.size(); i++) {
+                if (i >= SPOILER_SPHERES_MAX) {
+                    spoilerOutOfSpace = true;
+                    break;
+                }
+                spoilerData.Spheres[i].ItemLocationsOffset = spoilerSphereItemoffset;
+                for (u32 loc = 0; loc < playthroughLocations[i].size(); ++loc) {
+                    if (spoilerSphereItemoffset >= SPOILER_ITEMS_MAX) {
                         spoilerOutOfSpace = true;
                         break;
                     }
-                    spoilerData.Spheres[i].ItemLocationsOffset = spoilerSphereItemoffset;
-                    for (u32 loc = 0; loc < playthroughLocations[i].size(); ++loc) {
-                        if (spoilerSphereItemoffset >= SPOILER_ITEMS_MAX) {
-                            spoilerOutOfSpace = true;
-                            break;
-                        }
 
-                        const auto foundItemLoc = itemLocationsMap.find(playthroughLocations[i][loc]);
-                        if (foundItemLoc != itemLocationsMap.end()) {
-                            spoilerData.SphereItemLocations[spoilerSphereItemoffset++] = foundItemLoc->second;
-                        }
-                        else {
-                            playthroughItemNotFound = true;
-                        }
-                        ++spoilerData.Spheres[i].ItemCount;
+                    const auto foundItemLoc = itemLocationsMap.find(playthroughLocations[i][loc]);
+                    if (foundItemLoc != itemLocationsMap.end()) {
+                        spoilerData.SphereItemLocations[spoilerSphereItemoffset++] = foundItemLoc->second;
+                    } else {
+                        playthroughItemNotFound = true;
                     }
-                    ++spoilerData.SphereCount;
+                    ++spoilerData.Spheres[i].ItemCount;
                 }
+                ++spoilerData.SphereCount;
             }
-            if (spoilerOutOfSpace || playthroughItemNotFound) { printf("%sError!%s ", YELLOW, WHITE); }
+        }
+        if (spoilerOutOfSpace || playthroughItemNotFound) {
+            printf("%sError!%s ", YELLOW, WHITE);
         }
     }
 }
+
     // Writes the location to the specified node.
     static void WriteLocation(
         tinyxml2::XMLElement * parentNode,

@@ -20,16 +20,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Get Last Nightly Commit and Private Key
         id: nightly-version
         run: |
-          echo "last_nightly=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV
+          if [[ ${{ github.event.inputs.build_type == 'Nightly' }} == true ]]; then
+            echo "last_nightly=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV
+          else
+            echo "last_nightly=$(git describe --tags --match="v[0-9]*" HEAD --abbrev=0)" >> $GITHUB_ENV
+          fi
+          
       - name: Generate changelog
         id: changelog
-        uses: metcalfc/changelog-generator@v4.0.1
+        uses: metcalfc/changelog-generator@v4.3.0
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
           base-ref: ${{ env.last_nightly }}
@@ -46,11 +51,20 @@ jobs:
 
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: true
 
-      - name: Run Build Script
+      - if: ${{ github.event.inputs.build_type == 'Nightly' }}
+        name: Run Build Script Nightly
+        run: |
+          chmod +x linux_build_rando.sh
+          ./linux_build_rando.sh
+      
+      - if: ${{ github.event.inputs.build_type == 'Release' }}
+        name: Run Build Script Release
+        env:
+          url_tag: v${{ github.event.inputs.version }}
         run: |
           chmod +x linux_build_rando.sh
           ./linux_build_rando.sh
@@ -61,7 +75,7 @@ jobs:
 
       - if: ${{ github.event.inputs.build_type == 'Nightly' }}
         name: Create Pre-release
-        uses: ncipollo/release-action@v1.12.0
+        uses: ncipollo/release-action@v1.14.0
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           artifacts: "MM3D_Randomizer.cia,MM3D_Randomizer.3dsx,cia.png,3dsx.png"
@@ -84,7 +98,7 @@ jobs:
 
       - if: ${{ github.event.inputs.build_type == 'Release' }}
         name: Create Release
-        uses: ncipollo/release-action@v1.12.0
+        uses: ncipollo/release-action@v1.14.0
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           artifacts: "MM3D_Randomizer.cia,MM3D_Randomizer.3dsx,cia.png,3dsx.png"
@@ -93,15 +107,15 @@ jobs:
           tag: "v${{ github.event.inputs.version }}"
           name: "v${{ github.event.inputs.version }}"
           body: |
-            ${{ github.event.inputs.version }} Changes:
-            - Please check back later for a full list of changes.
+            ${{ github.event.inputs.version }} Changes 🛠:  
+            ${{ needs.get-changelog.outputs.changelog }}
             
             When reporting issues, please mention the six character commit listed in the randomizer menu.
             You can use the FBI homebrew application to install the randomizer using either of these QR codes.
             CIA QR Code:
-            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/Nightly-${{ env.sha_short }}/cia.png)
+            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/v${{ github.event.inputs.version }}/cia.png)
             3DSX QR Code:
-            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/Nightly-${{ env.sha_short }}/3dsx.png)
+            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/v${{ github.event.inputs.version }}/3dsx.png)
 
   deploy-gist:
     needs: build-cia-3dsx

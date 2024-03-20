@@ -37,9 +37,10 @@ namespace Logic {
 	extern bool AlienBottle;
 	extern bool GoronRaceBottle;
 	extern bool BeaverRaceBottle;
-	extern bool DampeBottle;
+	extern bool ArcheryBottle;
 	extern bool ChateauBottle;
 	extern bool MysteryMilkBottle;
+	extern bool UsableMysteryMilkBottle;
 	extern bool BombersNotebook;
 	extern bool MirrorShield;
 	extern bool HerosShield;
@@ -82,7 +83,7 @@ namespace Logic {
 	extern bool GarosMask;
 	extern bool CaptainsHat;
 	extern bool GiantsMask;
-	extern bool FierceDietyMask;
+	extern bool FierceDeityMask;
 	extern bool MaskOfTruth;
 	extern bool OneMask;
 	extern bool TwoMasks;
@@ -114,6 +115,7 @@ namespace Logic {
 	extern bool SongOfStorms;
 	extern bool SongOfHealing;
 	extern bool SonataOfAwakening;
+	extern bool LullabyIntro;
 	extern bool GoronsLullaby;
 	extern bool NewWaveBossaNova;
 	extern bool ElegyOfEmptiness;
@@ -207,7 +209,7 @@ namespace Logic {
 	extern bool AnySword;
 	extern bool AnyBombBag;
 	extern bool AnyMagicBean;
-	extern bool WaterForBeans;
+	extern bool BeansAndWater;
 	extern bool TwoBottles;
 	extern bool AnyWallet;
 	extern bool LimitlessBeans;
@@ -308,6 +310,25 @@ namespace Logic {
 	extern bool WoodfallFrog;
 	extern bool GreatBayFrog;
 	extern bool ThinBridgeCrystalChest;
+	extern bool MilkQuestStart;
+	extern bool KoumeSaved;
+	extern bool SpokeToKoume;
+	extern bool WoodfallPoisonClear;
+	extern bool WoodfallLadder;
+	extern bool UpdraftRoomSwitchUpright;
+	extern bool UpdraftRoomSwitchInverted;
+	extern bool DekuTrialClear;
+	extern bool GoronTrialClear;
+	extern bool ZoraTrialClear;
+	extern bool LinkTrialClear;
+	extern bool GoldRoomLadder;
+	extern bool WinnerPicture;
+	extern bool PiratePicture;
+	extern bool RockSirloin;
+	extern bool SpokeToBabyGoron;
+	extern bool Milk;
+	extern bool SpokeToKafei;
+	extern bool PostedKafeiLetter;
 	
 	extern bool CanGoToMoon;
 

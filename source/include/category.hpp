@@ -77,6 +77,13 @@ enum class Category {
     cDayOne,
     cDayTwo,
     cDayThree,
+    cAnjuAndKafei,
+    cNotebook,
+    cAlternateCheck,
+    cZoraEgg,
+    cMoonItems,
+    cFDM,
+    cMainInventory,
 };
 
 enum class OptionCategory {

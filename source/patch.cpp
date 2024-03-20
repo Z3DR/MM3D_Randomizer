@@ -111,15 +111,27 @@ bool WriteAllPatches() {
   FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma"), FS_ATTRIBUTE_DIRECTORY);
   //Create the titles directory if it doesn't exist
   FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles"), FS_ATTRIBUTE_DIRECTORY);
-  //Create the 0004000000125500 directory if it doesn't exist (mm3d game id)
-  FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500"), FS_ATTRIBUTE_DIRECTORY);
-  //Create the romfs directory if it doesn't exist (for LayeredFS)
-  FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500/romfs"), FS_ATTRIBUTE_DIRECTORY);
-  //Create the actor directory if it doesn't exist
-  FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500/romfs/actor"), FS_ATTRIBUTE_DIRECTORY);
-  //Create the actors directory if it doesn't exist
-  FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500/romfs/actors"), FS_ATTRIBUTE_DIRECTORY);
+  //Create the 0004000000125500 OR 0004000000125600 directory if it doesn't exist (mm3d game id: NA/EUR)
+  if (!Settings::RegionSelect){
+      FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500"), FS_ATTRIBUTE_DIRECTORY);
+      //Create the romfs directory if it doesn't exist (for LayeredFS)
+      FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500/romfs"), FS_ATTRIBUTE_DIRECTORY);
+      //Create the actor directory if it doesn't exist
+      FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500/romfs/actor"), FS_ATTRIBUTE_DIRECTORY);
+      //Create the actors directory if it doesn't exist
+      FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500/romfs/actors"), FS_ATTRIBUTE_DIRECTORY);
+  }
 
+  //EU
+  if (Settings::RegionSelect){
+      FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125600"), FS_ATTRIBUTE_DIRECTORY);
+      //Create the romfs directory if it doesn't exist (for LayeredFS)
+      FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125600/romfs"), FS_ATTRIBUTE_DIRECTORY);
+      //Create the actor directory if it doesn't exist
+      FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125600/romfs/actor"), FS_ATTRIBUTE_DIRECTORY);
+      //Create the actors directory if it doesn't exist
+      FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125600/romfs/actors"), FS_ATTRIBUTE_DIRECTORY);
+  }
   /*romfs is used to get files from the romfs folder.This allows us to copy
   //from basecode and write the exheader without the user needing to worry about
   //placing them manually on their SD card.*/
@@ -131,17 +143,29 @@ bool WriteAllPatches() {
   /*------------------------ -
   |       basecode.ips      |
   --------------------------*/
-  
-  // Delete code.ips if it exists
-  FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500/code.ips"));
+  //NA
+  if  (!Settings::RegionSelect){
+      // Delete code.ips if it exists
+      FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500/code.ips"));
 
- // Open code.ips
-  if (!R_SUCCEEDED(res = FSUSER_OpenFile(&code, sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500/code.ips"), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
-    return false;
+      // Open code.ips
+      if (!R_SUCCEEDED(res = FSUSER_OpenFile(&code, sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125500/code.ips"), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
+        return false;
+      }
+  }
+  //EU
+  if  (Settings::RegionSelect){
+      // Delete code.ips if it exists
+      FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125600/code.ips"));
+
+      // Open code.ips
+      if (!R_SUCCEEDED(res = FSUSER_OpenFile(&code, sdmcArchive, fsMakePath(PATH_ASCII, "/luma/titles/0004000000125600/code.ips"), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
+        return false;
+      }
   }
 
   // Copy basecode to code
-  const char* basecodeFile = Settings::Version == 0 ? "romfs:/basecode.ips" : "romfs:/basecode1.1.ips";
+  const char* basecodeFile = Settings::Version.Value<u8>() == 0 ? "romfs:/basecode.ips" : "romfs:/basecode1.1.ips";
   if (auto basecode = FILEPtr{std::fopen(basecodeFile, "r"), std::fclose}) {
     // obtain basecode.ips file size
     fseek(basecode.get(), 0, SEEK_END);
@@ -340,13 +364,19 @@ bool WriteAllPatches() {
 
   // Get exheader for proper playOption
   const char * filePath;
-  if (Settings::PlayOption == PATCH_CONSOLE) {
+  if (Settings::PlayOption.Value<u8>() == PATCH_CONSOLE) {
     filePath = "romfs:/exheader.bin";
   } else {
     filePath = "romfs:/exheader_citra.bin";
   }
-
-  CopyFile(sdmcArchive, "/luma/titles/0004000000125500/exheader.bin", filePath);
+  //NA
+  if (!Settings::RegionSelect){
+    CopyFile(sdmcArchive, "/luma/titles/0004000000125500/exheader.bin", filePath);
+    }
+  //EU
+  if (Settings::RegionSelect){
+    CopyFile(sdmcArchive, "/luma/titles/0004000000125600/exheader.bin", filePath);
+    }
 
   /*------------------------ -
   |       custom assets      |
@@ -398,51 +428,102 @@ bool WriteAllPatches() {
 
   // Delete assets if it exists
   Handle titleassetsOut;
-  const char* titleassetsOutPath = "/luma/titles/0004000000125500/romfs/actors/zelda2_mag.gar.lzs";
   const char* titleassetsInPath = "romfs:/zelda2_mag.gar.lzs";
-  FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, titleassetsOutPath));
-
-  // Open assets destination
-  if (!R_SUCCEEDED(res = FSUSER_OpenFile(&titleassetsOut, sdmcArchive, fsMakePath(PATH_ASCII, titleassetsOutPath), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
-    return false;
-  }
-
-  if (auto file = FILEPtr{std::fopen(titleassetsInPath, "r"), std::fclose}) {
-    // obtain assets size
-    fseek(file.get(), 0, SEEK_END);
-    const auto lSize = static_cast<size_t>(ftell(file.get()));
-    rewind(file.get());
-
-    // copy assets into the buffer
-    std::vector<char> buffer(lSize);
-    fread(buffer.data(), 1, buffer.size(), file.get());
-
-    // Write the assets to final destination
-    if (!R_SUCCEEDED(res = FSFILE_Write(titleassetsOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
+  //NA
+  if (!Settings::RegionSelect){
+    const char* titleassetsOutPath = "/luma/titles/0004000000125500/romfs/actors/zelda2_mag.gar.lzs";
+    FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, titleassetsOutPath));
+    // Open assets destination
+    if (!R_SUCCEEDED(res = FSUSER_OpenFile(&titleassetsOut, sdmcArchive, fsMakePath(PATH_ASCII, titleassetsOutPath), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
       return false;
     }
+
+    if (auto file = FILEPtr{std::fopen(titleassetsInPath, "r"), std::fclose}) {
+      // obtain assets size
+      fseek(file.get(), 0, SEEK_END);
+      const auto lSize = static_cast<size_t>(ftell(file.get()));
+      rewind(file.get());
+
+      // copy assets into the buffer
+      std::vector<char> buffer(lSize);
+      fread(buffer.data(), 1, buffer.size(), file.get());
+
+      // Write the assets to final destination
+      if (!R_SUCCEEDED(res = FSFILE_Write(titleassetsOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
+        return false;
+      }
+    }
   }
+  //EU
+  if (Settings::RegionSelect){
+    const char* titleassetsOutPath = "/luma/titles/0004000000125600/romfs/actors/zelda2_mag.gar.lzs";
+    FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, titleassetsOutPath));
+    // Open assets destination
+    if (!R_SUCCEEDED(res = FSUSER_OpenFile(&titleassetsOut, sdmcArchive, fsMakePath(PATH_ASCII, titleassetsOutPath), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
+      return false;
+    }
+
+    if (auto file = FILEPtr{std::fopen(titleassetsInPath, "r"), std::fclose}) {
+      // obtain assets size
+      fseek(file.get(), 0, SEEK_END);
+      const auto lSize = static_cast<size_t>(ftell(file.get()));
+      rewind(file.get());
+
+      // copy assets into the buffer
+      std::vector<char> buffer(lSize);
+      fread(buffer.data(), 1, buffer.size(), file.get());
+
+      // Write the assets to final destination
+      if (!R_SUCCEEDED(res = FSFILE_Write(titleassetsOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
+        return false;
+      }
+    }
+  }
+    
   FSFILE_Close(titleassetsOut);
 
   /*-------------------
   | LOCALE EMULATION  |
   -------------------*/
 
-  if (Settings::PlayOption == PATCH_CONSOLE) {
+  if (Settings::PlayOption.Value<u8>() == PATCH_CONSOLE) {
     Handle localeOut;
-    const char* localeOutPath = "/luma/titles/0004000000125500/locale.txt";
-    FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, localeOutPath));
-
-    if (!R_SUCCEEDED(res = FSUSER_OpenFile(&localeOut, sdmcArchive, fsMakePath(PATH_ASCII, localeOutPath), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
-      return false;
+    //NA
+    if (!Settings::RegionSelect){
+      const char* localeOutPath = "/luma/titles/0004000000125500/locale.txt";
+      FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, localeOutPath));
+      
+      if (!R_SUCCEEDED(res = FSUSER_OpenFile(&localeOut, sdmcArchive, fsMakePath(PATH_ASCII, localeOutPath), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
+        return false;
+        }
+    }
+    //EU
+    if (Settings::RegionSelect){
+      const char* localeOutPath = "/luma/titles/0004000000125600/locale.txt";
+      FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, localeOutPath));
+      if (!R_SUCCEEDED(res = FSUSER_OpenFile(&localeOut, sdmcArchive, fsMakePath(PATH_ASCII, localeOutPath), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
+        return false;
+        }
     }
 
-    std::vector<char> buffer = { 'U', 'S', 'A', ' ', 'E', 'N' };
-
-    if (!R_SUCCEEDED(res = FSFILE_Write(localeOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
-      return false;
+    
+    //NA
+    if (!Settings::RegionSelect){
+      std::vector<char> buffer = { 'U', 'S', 'A', ' ', 'E', 'N' };
+      if (!R_SUCCEEDED(res = FSFILE_Write(localeOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
+        return false;
+        }
+        FSFILE_Close(localeOut);
     }
-    FSFILE_Close(localeOut);
+    //EU
+    if (Settings::RegionSelect){
+      std::vector<char> buffer = { 'E', 'U', 'R', ' ', 'E', 'N' };
+      if (!R_SUCCEEDED(res = FSFILE_Write(localeOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
+        return false;
+        }
+        FSFILE_Close(localeOut);
+    }
+
   }
 
   FSUSER_CloseArchive(sdmcArchive);

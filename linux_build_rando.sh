@@ -5,8 +5,8 @@ compile() {
   APP_NAME=$(basename "$PWD")
   BANNERTOOLAPP=bannertool
   IS_GH_ACTIONS=true
-  if [ -n "$var" ]; then
-    echo "Building on Github Actions.."
+  if [ -n "$GITHUB_SHA" ]; then
+    echo "Building on Github Actions..."
   else
     echo "GITHUB_SHA is empty, building locally."
     IS_GH_ACTIONS=false
@@ -36,15 +36,20 @@ compile() {
 
   export commitHashShort=$(echo ${GITHUB_SHA::6})
   sed -i "s/develop/${commitHashShort:-develop}/" ./source/include/version.hpp
-  make -j debug_app=1
+  make -j
   sed -i "s/${commitHashShort}/develop/" ./source/include/version.hpp
   $BANNERTOOLAPP makebanner -i ./banner.png -a ./audio.wav -o ./banner.bnr
   $BANNERTOOLAPP makesmdh -s "Majora's Mask 3D Randomizer" -l "A Randomized Majoras Mask Experience" -p "Z3DR Team" -i icon.png -o ./icon.icn
   3dstool -cvtf romfs ./romfs.bin --romfs-dir ./romfs
   makerom -f cia -o ${APP_NAME}.cia -DAPP_ENCRYPTED=false -target t -exefslogo -elf ./${APP_NAME}.elf -icon ./icon.icn -banner ./banner.bnr -rsf ./mmrando.rsf -romfs ./romfs.bin -major 1 -minor 0 -micro 0
   if $IS_GH_ACTIONS; then
-    qrencode -ocia.png https://github.com/$GITHUB_REPOSITORY/releases/download/Nightly-$commitHashShort/${APP_NAME}.cia
-    qrencode -o3dsx.png https://github.com/$GITHUB_REPOSITORY/releases/download/Nightly-$commitHashShort/${APP_NAME}.3dsx
+    if [[ ${url_tag+x} ]]; then
+      qrencode -ocia.png https://github.com/$GITHUB_REPOSITORY/releases/download/$url_tag/${APP_NAME}.cia
+      qrencode -o3dsx.png https://github.com/$GITHUB_REPOSITORY/releases/download/$url_tag/${APP_NAME}.3dsx
+    else
+      qrencode -ocia.png https://github.com/$GITHUB_REPOSITORY/releases/download/Nightly-$commitHashShort/${APP_NAME}.cia
+      qrencode -o3dsx.png https://github.com/$GITHUB_REPOSITORY/releases/download/Nightly-$commitHashShort/${APP_NAME}.3dsx
+    fi
   fi
 }
 

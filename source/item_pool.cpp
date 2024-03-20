@@ -103,7 +103,7 @@ const std::array<ItemKey, 83> easyItems = {
 	GAROS_MASK,
 	CAPTAINS_HAT,
 	GIANTS_MASK,
-	FIERCE_DIETY_MASK,
+	FIERCE_DEITY_MASK,
 	MASK_OF_TRUTH,
 	EMPTY_BOTTLE1,
 	EMPTY_BOTTLE2,
@@ -257,7 +257,7 @@ const std::array<ItemKey, 8> chestItems = {
 	MIRROR_SHIELD,
 };
 
-const std::array<ItemKey, 11> songList = {
+const std::array<ItemKey, 12> songList = {
 	//SONG_OF_TIME,
 	//SONG_OF_DOUBLE_TIME,
 	//INVERTED_SONG_OF_TIME, //SoT not included yet
@@ -266,6 +266,7 @@ const std::array<ItemKey, 11> songList = {
 	SONG_OF_HEALING,
 	//SONG_OF_SOARING,
 	SONATA_OF_AWAKENING,
+	LULLABY_INTRO,
 	GORONS_LULLABY,
 	NEW_WAVE_BOSSA_NOVA,
 	ELEGY_OF_EMPTINESS,
@@ -275,6 +276,7 @@ const std::array<ItemKey, 11> songList = {
 static void PlaceVanillaSongs() {
 	PlaceItemInLocation(HMS_SONG_OF_HEALING, SONG_OF_HEALING);
 	PlaceItemInLocation(DEKU_PALACE_IMPRISONED_MONKEY, SONATA_OF_AWAKENING);
+	PlaceItemInLocation(TWIN_ISLANDS_LULLABY_INTRO, LULLABY_INTRO);
 	PlaceItemInLocation(GORON_VILLAGE_GORON_LULLABY, GORONS_LULLABY);
 	PlaceItemInLocation(ROMANI_RANCH_ROMANIS_GAME, EPONAS_SONG);
 	PlaceItemInLocation(GBC_BABY_ZORAS, NEW_WAVE_BOSSA_NOVA);
@@ -283,6 +285,7 @@ static void PlaceVanillaSongs() {
 	PlaceItemInLocation(GIANTS_OATH_TO_ORDER, OATH_TO_ORDER);
 };
 
+// TODO: Change back to 18 when the override value is correct.
 const std::array<ItemKey, 18> maskList = {
 	KEATON_MASK,
 	BUNNY_HOOD,
@@ -300,7 +303,7 @@ const std::array<ItemKey, 18> maskList = {
 	GIBDOS_MASK,
 	GAROS_MASK,
 	CAPTAINS_HAT,
-	GIANTS_MASK,
+    GIANTS_MASK, 
 	MASK_OF_TRUTH,
 };
 
@@ -362,8 +365,8 @@ static void PlaceVanillaMainInventory() {
 	PlaceItemInLocation(TWIN_ISLANDS_GORON_RACE, GOLD_DUST);
 	PlaceItemInLocation(E_CLOCK_TOWN_AROMA_IN_BAR, CHATEAU_ROMANI);
 	PlaceItemInLocation(GORMAN_TRACK_MYSTERY_MILK_QUEST, BOTTLE_WITH_MYSTERY_MILK);
-	PlaceItemInLocation(ZORA_CAPE_BEAVER_RACE_1,EMPTY_BOTTLE2);
-	PlaceItemInLocation(IKANA_GRAVEYARD_DAMPE_DIGGING,EMPTY_BOTTLE1);
+	PlaceItemInLocation(SOUTHERN_SWAMP_BOAT_ARCHERY, EMPTY_BOTTLE1);
+	PlaceItemInLocation(ZORA_CAPE_BEAVER_RACE_1, EMPTY_BOTTLE2);
 	PlaceItemInLocation(ROMANI_RANCH_ALIEN_DEFENSE,BOTTLE_WITH_MILK);
 	PlaceItemInLocation(GBC_FISHERMAN_PHOTO, SEAHORSE);
 };
@@ -799,7 +802,8 @@ static void PlaceVanillaShopItems() {
 	PlaceItemInLocation(TRADING_POST_ITEM_7, BUY_DEKU_NUT_10);
 	PlaceItemInLocation(TRADING_POST_ITEM_8, BUY_MAGIC_BEAN);
 	PlaceItemInLocation(BOMB_SHOP_ITEM_1, BUY_BOMBS_10);
-	PlaceItemInLocation(BOMB_SHOP_ITEM_2, BUY_BOMBCHU_10);
+	PlaceItemInLocation(BOMB_SHOP_ITEM_2, BUY_BOMBCHU_10);	
+	PlaceItemInLocation(W_CLOCK_TOWN_BOMB_SHOP_GORON, POWDER_KEG);	
 	PlaceItemInLocation(POTION_SHOP_ITEM_1, BUY_BLUE_POTION);
 	PlaceItemInLocation(POTION_SHOP_ITEM_2, BUY_GREEN_POTION);
 	PlaceItemInLocation(POTION_SHOP_ITEM_3, BUY_RED_POTION);
@@ -890,23 +894,25 @@ void GenerateItemPool() {
     	
 	//temp placement until shopsanity works
 	PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE, MAGIC_BEAN);
-	
 
 	//Place Temp Items at alt locations so they don't get filled with important stuff - will be replaced later
 	PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_IN_WOODS, BLUE_RUPEE);
 	PlaceItemInLocation(N_CLOCK_TOWN_POSTBOX, BLUE_RUPEE);
 	PlaceItemInLocation(E_CLOCK_TOWN_POSTBOX, BLUE_RUPEE);
 	PlaceItemInLocation(MILK_ROAD_KEATON_QUIZ, BLUE_RUPEE);
+	PlaceItemInLocation(MOUNTAIN_VILLAGE_KEATON_QUIZ, BLUE_RUPEE);
 	PlaceItemInLocation(GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING, BLUE_RUPEE);
     PlaceItemInLocation(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, BLUE_RUPEE);
     PlaceItemInLocation(GORON_VILLAGE_SCRUB_TRADE_SPRING, BLUE_RUPEE);
     PlaceItemInLocation(GORON_VILLAGE_LEDGE_SPRING, BLUE_RUPEE);
-	
+    PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR, BLUE_RUPEE);
+    PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, BLUE_RUPEE);
+    PlaceItemInLocation(SWAMP_TOURIST_CENTER_ROOF_CLEAR, BLUE_RUPEE);
 	//Check Non Dungeon Settings
 
 	//KOKIRISWORD SHUFFLE
 	if(StartingKokiriSword.Value<u8>() == (u8)StartingSwordSetting::STARTINGSWORD_NONE) {//if starting with no sword we need to add an extra to the pool
-		AddItemToMainPool(PROGRESSIVE_SWORD);
+		AddItemToMainPool(PROGRESSIVE_SWORD, 1);
 		IceTrapModels.push_back(0x37);//GetItemID::GI_KOKIRI_SWORD
 		PlaceItemInLocation(HMS_STARTING_SWORD,GREEN_RUPEE);//Add Junk to this location because theres no way to get it otherwise
 	} else {
@@ -915,7 +921,7 @@ void GenerateItemPool() {
 
 	//SHUFFLE STARTING SHIELD
 	if(StartingShield.Value<u8>() == (u8)StartingSheildSetting::STARTINGSHIELD_NONE){//if starting with no shield add an extra to the pool
-		AddItemToMainPool(HEROS_SHIELD);
+		AddItemToMainPool(HEROS_SHIELD, 1);
 		PlaceItemInLocation(HMS_STARTING_SHIELD, GREEN_RUPEE);//PlaceJunk Here because you cant not get this
 	}
 	else { PlaceItemInLocation(HMS_STARTING_SHIELD, HEROS_SHIELD);}//if starting with any other shield place this here because this location is unobtainable
@@ -989,6 +995,10 @@ void GenerateItemPool() {
 	//else {
 		PlaceVanillaSongs();
 	//}
+	if (StartingSongOfHealing.Value<u8>() == u8(1)){//if starting with song of healing fill deku mask and notebook spots as they are unobtainable
+		PlaceItemInLocation(HMS_DEKU_MASK, GREEN_RUPEE);
+		PlaceItemInLocation(HMS_BOMBERS_NOTEBOOK, GREEN_RUPEE);
+	}
 
 	//if (ShuffleSoaring)
 	//{
@@ -1035,12 +1045,12 @@ void GenerateItemPool() {
 		PlaceItemInLocation(GBC_MIKAU, ZORA_MASK);
 	}
 	
-	//FIERECE DIETY SHUFFLE
-	if(ShuffleFierceDiety){
-		AddItemToMainPool(FIERCE_DIETY_MASK);
+	//FIERECE DEITY SHUFFLE
+	if(ShuffleFierceDeity){
+		AddItemToMainPool(FIERCE_DEITY_MASK);
 	}
 	else{
-		PlaceItemInLocation(THE_MOON_MAJORA_CHILD,FIERCE_DIETY_MASK);
+		PlaceItemInLocation(THE_MOON_MAJORA_CHILD,FIERCE_DEITY_MASK);
 	}
 	
 	//PIECEOFHEART SHUFFLE
@@ -1090,14 +1100,14 @@ void GenerateItemPool() {
 	if (ShuffleTradeItems){//TradeItems refers to Anju&Kafei Items
 		AddItemsToPool(ItemPool, anjuKafeiTradeItems);
 	} else {
-		if(ShuffleMasks){
-			AddItemToMainPool(KAFEIS_MASK);
-			AddItemToMainPool(COUPLES_MASK);
-		}
-		else{
+		//if(ShuffleMasks){ //-Kafei & Couples Mask part of A&K not masks
+		//	AddItemToMainPool(KAFEIS_MASK);
+		//	AddItemToMainPool(COUPLES_MASK);
+		//}
+		//else{
 		PlaceItemInLocation(E_CLOCK_TOWN_AROMA_IN_OFFICE, KAFEIS_MASK);
 		PlaceItemInLocation(STOCKPOTINN_ANJU_AND_KAFEI, COUPLES_MASK);
-		}
+		//}
 		PlaceItemInLocation(STOCKPOTINN_MIDNIGHT_MEETING, LETTER_KAFEI);
 		PlaceItemInLocation(LAUNDRY_POOL_CURIOSITY_SHOP_MAN_TWO, LETTER_MAMA);
 		PlaceItemInLocation(STOCKPOTINN_RESERVATION, ROOM_KEY);
@@ -1187,7 +1197,6 @@ void GenerateItemPool() {
 				AddItemToMainPool(dungeon->GetCompass());
 			}
 		}
-		AddItemsToPool(ItemPool, tingleMaps);
 	}
 
 	if (Keysanity.Is(KeysanitySetting::KEYSANITY_VANILLA)) {

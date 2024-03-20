@@ -45,9 +45,10 @@ namespace Logic {
 	bool AlienBottle = false;
 	bool GoronRaceBottle = false;
 	bool BeaverRaceBottle = false;
-	bool DampeBottle = false;
+	bool ArcheryBottle = false;
 	bool ChateauBottle = false;
 	bool MysteryMilkBottle = false;
+	bool UsableMysteryMilkBottle = false;
 	bool BombersNotebook = false;
 	bool MirrorShield = false;
 	bool HerosShield = false;
@@ -90,7 +91,7 @@ namespace Logic {
 	bool GarosMask = false;
 	bool CaptainsHat = false;
 	bool GiantsMask = false;
-	bool FierceDietyMask = false;
+	bool FierceDeityMask = false;
 	bool MaskOfTruth = false;
 	bool OneMask = false;
 	bool TwoMasks = false;
@@ -122,6 +123,7 @@ namespace Logic {
 	bool SongOfStorms = false;
 	bool SonataOfAwakening = false;
 	bool SongOfHealing = false;
+	bool LullabyIntro = false;
 	bool GoronsLullaby = false;
 	bool NewWaveBossaNova = false;
 	bool ElegyOfEmptiness = false;
@@ -212,7 +214,7 @@ namespace Logic {
 	bool AnySword = false;
 	bool AnyBombBag = false;
 	bool AnyMagicBean = false;
-	bool WaterForBeans = false;
+	bool BeansAndWater = false;
 	bool TwoBottles = false;
 	bool AnyWallet = false;
 	bool LimitlessBeans = false;
@@ -299,6 +301,25 @@ namespace Logic {
 	bool WoodfallFrog = false;
 	bool GreatBayFrog = false;
 	bool ThinBridgeCrystalChest = false;
+	bool MilkQuestStart = false;
+	bool KoumeSaved = false;
+	bool SpokeToKoume = false;
+	bool WoodfallPoisonClear = false;
+	bool WoodfallLadder = false;
+	bool UpdraftRoomSwitchUpright = false;
+	bool UpdraftRoomSwitchInverted = false;
+	bool DekuTrialClear = false;
+	bool GoronTrialClear = false;
+	bool ZoraTrialClear = false;
+	bool LinkTrialClear = false;
+	bool GoldRoomLadder = false;
+	bool WinnerPicture = false;
+	bool PiratePicture = false;
+	bool RockSirloin = false;
+	bool SpokeToBabyGoron = false;
+	bool Milk = false;
+	bool SpokeToKafei = false;
+	bool PostedKafeiLetter = false;
 
 	bool CanGoToMoon = false;
 	
@@ -363,7 +384,7 @@ namespace Logic {
 			(item == GAROS_MASK) ||
 			(item == CAPTAINS_HAT) ||
 			(item == GIANTS_MASK) ||
-			(item == FIERCE_DIETY_MASK) ||
+			(item == FIERCE_DEITY_MASK) ||
 			(item == MASK_OF_TRUTH);
 	}
 	static bool HasItem(ItemKey itemName) {
@@ -397,7 +418,7 @@ namespace Logic {
 			(itemName == GAROS_MASK && GarosMask) ||
 			(itemName == CAPTAINS_HAT && CaptainsHat) ||
 			(itemName == GIANTS_MASK && GiantsMask) ||
-			(itemName == FIERCE_DIETY_MASK && FierceDietyMask) ||
+			(itemName == FIERCE_DEITY_MASK && FierceDeityMask) ||
 			(itemName == MASK_OF_TRUTH && MaskOfTruth);
 	}
 
@@ -462,16 +483,16 @@ namespace Logic {
 		DekuNutDrop = NutPot || NutCrate || DekuBabaNuts;
 		BugsAccess = BugShrub || WanderingBugs || BugRock;
 		FishAccess = LoneFish || FishGroup;
-		WaterAccess = (SpringWater && WitchBottle) || CanPlay(SongOfStorms);
-		HotSpringWaterAccess = HotSpringWater && WitchBottle;
-		WaterForBeans = (WitchBottle && WaterAccess) || SongOfStorms;
+		WaterAccess = (SpringWater && AnyBottle) || CanPlay(SongOfStorms);
+		HotSpringWaterAccess = HotSpringWater && AnyBottle;
+		BeansAndWater = AnyMagicBean && (SpringWater || SongOfStorms);
 		AnyMagicBean = (MagicBean || MagicBeanPack || LimitlessBeans);
 		//refills
 		Bombs = AnyBombBag;
 		Nuts = DekuNutDrop;
 		Sticks = DekuStickDrop || DekuStick;
-		Bugs = HasBottle && BugsAccess;
-		Fish = HasBottle && FishAccess;
+		Bugs = AnyBottle && BugsAccess;
+		Fish = AnyBottle && FishAccess;
 		
 		//Other Helpers
 		CanBlastOrSmash = HasExplosives || GoronMask;
@@ -488,16 +509,16 @@ namespace Logic {
 		AnyBSword = KokiriSword || RazorSword || GildedSword || (ProgressiveSword >= 1);
 		NightInnAccess = DekuMask || RoomKey;
 		
-		Fighting = GoronMask || ZoraMask || AnySword || DekuStickFighting;
+		Fighting = GoronMask || ZoraMask || AnySword /*|| DekuStickFighting || HasExplosives*/;//Trick for bombs, arrows and sticks?
 		AnyShield = HerosShield|| MirrorShield;
-		CanUseProjectile = HasExplosives || HerosBow || (ProgressiveBow >= 1);
+		CanUseProjectile = Hookshot || HerosBow || (ProgressiveBow >= 1) || (DekuMask && MagicMeter) || ZoraMask;
+		HasExplosives = AnyBombBag || (BlastMask && AnyShield);//Shield required to use Blast Mask without killing the player
 		
 		//Item Helpers
 		AnyMagicBean = MagicBean || LimitlessBeans;
 		AnyWallet = Townwallet200 || OceanWallet500 || (ProgressiveWallet >= 1);
-		AnyBottle = WitchBottle || AlienBottle || BeaverRaceBottle || DampeBottle || GoronRaceBottle || ChateauBottle || MysteryMilkBottle || HasBottle;
+		AnyBottle = WitchBottle || AlienBottle || BeaverRaceBottle || ArcheryBottle || GoronRaceBottle || ChateauBottle || UsableMysteryMilkBottle || HasBottle;
 		MagicMeter = (ProgressiveMagic >= 1) || MagicPower || ExtendedMagicPower;
-		WaterForBeans = (AnyBottle && (SpringWater || HotSpringWater)) || SongOfStorms;
 		Scarecrow = Hookshot && CanPlay(ScarecrowSong);
 		AnyPaper = (LandTitle || SwampTitle || OceanTitle || MountainTitle || LetterKafei || LetterMama);
 		
@@ -514,13 +535,13 @@ namespace Logic {
 		AnyHealingPotion = AnyRedPotion || AnyBluePotion;
 		AnyRedPotion = AnyBottle;
 		AnyBluePotion = AnyBottle;
-		TwoBottles = { (WitchBottle && AlienBottle) || (WitchBottle && BeaverRaceBottle) || (WitchBottle && DampeBottle) ||
+		TwoBottles = { (WitchBottle && AlienBottle) || (WitchBottle && BeaverRaceBottle) || (WitchBottle && ArcheryBottle) ||
 					(WitchBottle && GoronRaceBottle) || (WitchBottle && ChateauBottle) || (AlienBottle && GoronRaceBottle) ||
-					(AlienBottle && BeaverRaceBottle) || (AlienBottle && DampeBottle) || (AlienBottle && ChateauBottle) ||
-					(GoronRaceBottle && BeaverRaceBottle) || (GoronRaceBottle && DampeBottle) || (GoronRaceBottle && ChateauBottle) ||
-					(BeaverRaceBottle && DampeBottle) || (BeaverRaceBottle && ChateauBottle) || (DampeBottle && ChateauBottle) || 
-					(WitchBottle && MysteryMilkBottle) || (AlienBottle && MysteryMilkBottle) || (BeaverRaceBottle && MysteryMilkBottle) || 
-					(DampeBottle && MysteryMilkBottle) || (GoronRaceBottle && MysteryMilkBottle) || (ChateauBottle && MysteryMilkBottle)};
+					(AlienBottle && BeaverRaceBottle) || (AlienBottle && ArcheryBottle) || (AlienBottle && ChateauBottle) ||
+					(GoronRaceBottle && BeaverRaceBottle) || (GoronRaceBottle && ArcheryBottle) || (GoronRaceBottle && ChateauBottle) ||
+					(BeaverRaceBottle && ArcheryBottle) || (BeaverRaceBottle && ChateauBottle) || (ArcheryBottle && ChateauBottle) ||
+					(WitchBottle && UsableMysteryMilkBottle) || (AlienBottle && UsableMysteryMilkBottle) || (BeaverRaceBottle && UsableMysteryMilkBottle) ||
+					(ArcheryBottle && UsableMysteryMilkBottle) || (GoronRaceBottle && UsableMysteryMilkBottle) || (ChateauBottle && UsableMysteryMilkBottle)};
 		
 		//Tricks
 		PoisonWaterAsZora = ZoraMask && TakeDamage;
@@ -572,9 +593,10 @@ namespace Logic {
 	  AlienBottle = false;
 	  GoronRaceBottle = false;
 	  BeaverRaceBottle = false;
-	  DampeBottle = false;
+	  ArcheryBottle = false;
 	  ChateauBottle = false;
 	  MysteryMilkBottle = false;
+	  UsableMysteryMilkBottle = false;
 	  BombersNotebook = false;
 	  MirrorShield = false;
 	  HerosShield = false;
@@ -617,7 +639,7 @@ namespace Logic {
 	  GarosMask = false;
 	  CaptainsHat = false;
 	  GiantsMask = false;
-	  FierceDietyMask = false;
+	  FierceDeityMask = false;
 	  MaskOfTruth = false;
 	  OneMask = false;
 	  TwoMasks = false;
@@ -649,6 +671,7 @@ namespace Logic {
 	  SongOfStorms = false;
 	  SonataOfAwakening = false;
 	  SongOfHealing = false;
+	  LullabyIntro = false;
 	  GoronsLullaby = false;
 	  NewWaveBossaNova = false;
 	  ElegyOfEmptiness = false;
@@ -740,7 +763,7 @@ namespace Logic {
 	  AnySword = false;
 	  AnyBombBag = false;
 	  AnyMagicBean = false;
-	  WaterForBeans = false;
+	  BeansAndWater = false;
 	  TwoBottles = false;
 	  AnyWallet = false;
 	  LimitlessBeans = false;
@@ -828,6 +851,25 @@ namespace Logic {
 	WoodfallFrog = false;
 	GreatBayFrog = false;
 	ThinBridgeCrystalChest = false;
+	MilkQuestStart = false;
+	KoumeSaved = false;
+	SpokeToKoume = false;
+	WoodfallPoisonClear = false;
+	WoodfallLadder = false;
+	UpdraftRoomSwitchUpright = false;
+	UpdraftRoomSwitchInverted = false;
+	DekuTrialClear = false;
+	GoronTrialClear = false;
+	ZoraTrialClear = false;
+	LinkTrialClear = false;
+	GoldRoomLadder = false;
+	WinnerPicture = false;
+	PiratePicture = false;
+	RockSirloin = false;
+	SpokeToBabyGoron = false;
+	Milk = false;
+	SpokeToKafei = false;
+	PostedKafeiLetter = false;
 
 	
 	ZoraEgg = 0;

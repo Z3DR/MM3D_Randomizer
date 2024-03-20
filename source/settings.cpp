@@ -64,14 +64,26 @@ namespace Settings {
   };
   
   //Mode/Logic Settings
-  Option Logic = Option::U8("Logic", { "Glitchless", "No Logic", "Vanilla", "Glitched" }, { logicGlitchless, logicNoLogic, logicVanilla, logicGlitched });
+  Option Logic = Option::U8("Logic", { "Glitchless", "No Logic", "Vanilla", "Glitched" }, { logicGlitchless, logicNoLogic, logicVanilla, logicGlitched },OptionCategory::Setting, (u8)LogicSetting::LOGIC_GLITCHLESS);
   Option LocationsReachable = Option::Bool("All Locations Reachable", { "Off", "On" }, { locationsReachableDesc }, OptionCategory::Setting, 1); //All Locations Reachable On
   std::vector<Option*> logicOptions = {
     &Logic,
     &LocationsReachable,
-    &GenerateSpoilerLog,
   };
-  
+
+  //Game Settings
+  Option GenerateSpoilerLog   = Option::Bool("Generate Spoiler Log",   { "No", "Yes" },                                     { genSpoilerLogDesc },                                                                        OptionCategory::Setting, 1); // On
+  Option IngameSpoilers       = Option::Bool("Ingame Spoilers",        { "Hide", "Show" },                                  { ingameSpoilersHideDesc, ingameSpoilersShowDesc });
+  Option RegionSelect = Option::Bool("Game Region", {"NA", "EU"}, {NARegionDesc, EURegionDesc});
+  Option PlayOption = Option::U8("Console/Emulator", {"3DS", "Citra"}, {"How will you Play?"});
+  Option Version = Option::U8("Version", {"1.0", "1.1"}, {VersionDesc});
+  std::vector<Option *> gameOptions = {
+    &PlayOption,
+    &Version,
+    &GenerateSpoilerLog,
+    &IngameSpoilers,
+    &RegionSelect,
+  };
   //TODO MM3D LOGIC TRICKS
   //Function to make defining logic tricks easier to read
   //Option LogicTrick(std::string setting, std::string_view description) {
@@ -162,7 +174,7 @@ namespace Settings {
   Option StartingGaroMask          = Option::U8("  Garo Mask",              { "None",             "Garo M."},                                                  { "" });
   Option StartingCaptainsHat       = Option::U8("  Captain's Mask",         { "None",             "Captains M." },                                             { "" });
   Option StartingGiantsMask        = Option::U8("  Giants Mask",            { "None",             "Giants M." },                                               { "" });
-  Option StartingFierceDietyMask   = Option::U8("  Fierce Diety Mask",      { "None",             "F.D M." },                                                  { "" });
+  Option StartingFierceDeityMask   = Option::U8("  Fierce Deity Mask",      { "None",             "F.D M." },                                                  { "" });
   Option StartingMaskOfTruth       = Option::U8("  Mask of Truth",          { "None",             "Truth M." },                                                { "" });
   Option StartingStickCapacity     = Option::U8("  Stick Capacity",         { "None", "10 Sticks", "20 Sticks", "30 Sticks" },                                 { "" });
   Option StartingPictographBox     = Option::U8("  Pictograph Box",         { "None",             "PictoBox" },                                                { "" });
@@ -222,7 +234,7 @@ namespace Settings {
     &StartingGaroMask,
     &StartingCaptainsHat,
     &StartingGiantsMask,
-    &StartingFierceDietyMask,
+    &StartingFierceDeityMask,
     &StartingMaskOfTruth,
     &StartingSongsToggle,
     &StartingOathToOrder,
@@ -263,7 +275,7 @@ namespace Settings {
   Option ShuffleCows            = Option::Bool("Shuffle Cows",          {"Off", "On"},                                       {shuffleCowsDesc});
   //Option ShuffleOcarinas        = Option::Bool("Shuffle Ocarinas",       {"Off", "On"},                                                     {ocarinasDesc});
   Option ShuffleMerchants       = Option::Bool("Deku Merchant Trades",  { "Off", "On" },                                     { shuffleMerchantsDesc });
-  Option ShuffleSongs           = Option::U8("Shuffle Songs",           { "Song Locations", "Dungeon Rewards", "Anywhere" }, { songsSongLocations, songsDungeonRewards, songsAllLocations });
+  Option ShuffleSongs           = Option::U8("Shuffle Songs",           { "Vanilla", "Dungeon Rewards", "Anywhere" }, { songsSongLocations, songsDungeonRewards, songsAllLocations }, OptionCategory::Setting, (u8)SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS);
   Option ShuffleSoaring         = Option::Bool("Shuffle SoS",           {"Vanilla", "Random"},                               {shuffleSoaringVanilla, shuffleSoaringRandom});
   Option ShuffleStartingShield  = Option::Bool("Starting Shield",       {"Off", "On"},                                       {shuffleStartShield});
   Option ShuffleTradeItems      = Option::Bool("Anju And Kafei Items",  {"Vanilla", "Random"},                               {shuffleTradeItemsDesc});
@@ -302,7 +314,7 @@ namespace Settings {
     &BossKeysanity,
     //&StrayFairysanity,
     //&ShuffleRewards,
-    //&ShuffleHeartContainers,
+    &ShuffleHeartContainers,
   };
 
   //Item Pool Settings 
@@ -312,13 +324,13 @@ namespace Settings {
   Option ShuffleGFRewards       = Option::U8("Great Fairy Rewards",    {"Vanilla", "Great Fairies", "Anywhere" },       { shuffleGFVanilla, shuffleGFSelf, shuffleGFAnywhere },                   OptionCategory::Setting, (u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA);
   Option ShuffleMainInventory   = Option::Bool("Main Inventory",       {"Vanilla", "Random"},                           { shuffleMainInventoryDesc},                                              OptionCategory::Toggle,   1);
   Option ShuffleTransformation  = Option::Bool("Transformation Masks", {"Vanilla", "Random"},                           { shuffleTransformationDesc});
-  Option ShuffleFierceDiety     = Option::Bool("Fierce Diety Mask",    {"Vanilla", "Random"},                           { shuffleFierceDietyDesc});
+  Option ShuffleFierceDeity     = Option::Bool("Fierce Deity Mask",    {"Vanilla", "Random"},                           { shuffleFierceDeityDesc});
   Option ShuffleMoonItems       = Option::Bool("Shuffle Moon Items",   {"Off", "On"},                                   {shuffleMoonItemsDesc});
   std::vector<Option*>itemPoolSettingsOptions = {
       &ItemPoolValue,
       &ShuffleMainInventory,
       &ShuffleTransformation,
-      &ShuffleFierceDiety,
+      &ShuffleFierceDeity,
       &ShuffleMasks,
       &ShuffleGFRewards,
       &ShufflePiecesOfHeart,
@@ -332,8 +344,6 @@ namespace Settings {
   Option ChestAnimations      = Option::Bool("Chest Animations",       { "Always Fast", "Match Contents"},                  {chestAnimDesc});
   Option ChestSize            = Option::Bool("Chest Size and Color",   { "Vanilla", "Match Contents"},                      {chestSizeDesc});
   Option ChangeOverworldItems = Option::Bool("Change Overworld Items", { "Vanilla", "Match Contents" },                     { changeOverworldItemsDesc });
-  Option GenerateSpoilerLog   = Option::Bool("Generate Spoiler Log",   { "No", "Yes" },                                     { genSpoilerLogDesc },                                                                        OptionCategory::Setting, 1); // On
-  Option IngameSpoilers       = Option::Bool("Ingame Spoilers",        { "Hide", "Show" },                                  { ingameSpoilersHideDesc, ingameSpoilersShowDesc });
   //Option MenuOpeningButton    = Option::U8("Open Info Menu with",      { "Select","Start","D-Pad Up","D-Pad Down","D-Pad Right","D-Pad Left", }, { menuButtonDesc });
   Option RandomTrapDmg        = Option::U8("Random Trap Damage",       { "Off", "Basic", "Advanced" },                      { randomTrapDmgDesc, basicTrapDmgDesc, advancedTrapDmgDesc });
   Option RsDurability         = Option::U8("Razor Sword Durability",   { "Vanilla", "Infinite" },                           { rsDurabilityVanilla, rsDurabilityInf});
@@ -346,23 +356,22 @@ namespace Settings {
       &SkipBombersMinigame,
       //&RandomTrapDmg,
       &GossipStoneHints,
-      //&ClearerHints,
+      &ClearerHints,
       &HintDistribution,
       &CompassShowWoTH,
       //&DamageMultiplier,
       //&ChestAnimations,
-      //&ChestSize,
+      &ChestSize,
       //&ChangeOverworldItems,
-      //&IngameSpoilers,
       //&MenuOpeningButton,
       //&RsDurability,
   };
   
   /*COMFORT*/
 
-  Option BlastMaskCooldown      = Option::U8("Blast Mask Cooldown",        { "Default", "Instant", "Very Short", "Short", "Long", "Very Long" }, { blastDefault, blastInstant, blastVeryShort, blastShort, blastLong, blastVeryLong });
+  Option BlastMaskCooldown      = Option::U8("Blast Mask Cooldown",        {"Default", "Short", "Very Short", "Instant"},                        { blastDefault, blastShort, blastVeryShort, blastInstant });
   Option UnderwaterOcarina      = Option::Bool("Underwater Ocarina",       { "No","Yes" },                                                       { underwaterOcarinaDesc },                                                         OptionCategory::Toggle);
-  Option FierceDietyAnywhere    = Option::Bool("Fierce Diety Anywhere",    { "No","Yes" },                                                       { fierceDietyAnywhereDesc },                                                       OptionCategory::Toggle);
+  Option FierceDeityAnywhere    = Option::Bool("Fierce Deity Anywhere",    { "No","Yes" },                                                       { fierceDeityAnywhereDesc },                                                       OptionCategory::Toggle);
   Option ProgressiveGildedSword = Option::Bool("Progressive Gilded Sword", { "Off", "On" },                                                      { progressiveGildedSwordDesc });
   Option StartingSpin           = Option::Bool("Starting Spin",            { "Vanilla", "Upgraded" },                                            { startingSpinDesc });
   Option AmmoDrops              = Option::U8("Ammo Drops",                 { "Off", "On" },                                                      { ammoDropDesc });
@@ -372,12 +381,12 @@ namespace Settings {
   std::vector<Option*> comfortOptions = {
      
      &BlastMaskCooldown,
-     &UnderwaterOcarina,
-     &FierceDietyAnywhere,
+     // &UnderwaterOcarina,
+     // &FierceDeityAnywhere,
      //&ProgressiveGildedSword,
-     &StartingSpin,
-     &AmmoDrops,
-     &HeartDropRefills,
+     // &StartingSpin,
+     // &AmmoDrops,
+     // &HeartDropRefills,
      //&BombchusInLogic,
   };
  
@@ -397,6 +406,7 @@ namespace Settings {
   Option DpadTransform       = Option::Bool("DPad Transformation",    { "No", "Yes" },                                       {dpadMaskDesc});
   Option DpadOcarina         = Option::Bool("DPad Ocarina",           { "No", "Yes" },                                       {dpadOcarinaDesc});
   Option DpadArrows          = Option::Bool("Dpad Arrow Swap",        { "No", "Yes" },                                       {dpadArrowDesc});
+  Option TwinmoldRestoration  = Option::Bool("Twinmold Restoration",   { "No", "Yes" },                                      {twinmoldRestorationDesc});
 
   std::vector<Option *> restorationOptions = {
     //&SkipMinigamePhases,
@@ -412,6 +422,7 @@ namespace Settings {
     &DpadTransform,
     &DpadOcarina,
     &DpadArrows,
+    &TwinmoldRestoration,
     //&SkipSongReplays,
   };
 
@@ -533,6 +544,7 @@ namespace Settings {
   Menu excludeLocations = Menu::SubMenu("Exclude Locations", &excludeLocationsOptions, false);
   Menu glitchSettings   = Menu::SubMenu("Glitch Options",    &glitchOptions, false);
   Menu otherSettings = Menu::SubMenu("Other Settings", &otherSettingsOptions, false);
+  Menu gameSettings = Menu::SubMenu("Game Settings", &gameOptions);
   
   std::vector<Menu *> detailLogicSettings = {
       //&logicSettings,
@@ -543,7 +555,7 @@ namespace Settings {
   
 
   //Menu mainSettings = Menu::SubMenu("Main Settings", &mainSettingsOptions);
-  Menu comfort = Menu::SubMenu("Comfort", &comfortOptions);
+  Menu comfort = Menu::SubMenu("Comfort Settings", &comfortOptions);
   Menu restorationSettings = Menu::SubMenu("Restoration Settings", &restorationOptions);
   Menu cutsceneSettings = Menu::SubMenu("Cutscene Settings", &cutsceneOptions);
   Menu settingsPresets          = Menu::SubMenu("Settings Presets",           &settingsPresetItems);
@@ -558,12 +570,13 @@ namespace Settings {
   //adding a menu with no options crashes, might fix later
   std::vector<Menu *> mainMenu = {
     &logicSettings,
+    &gameSettings,
     &shuffleItems,
     &shuffleDungeon,
     &itemPool,
     &startingInventory,
     &detailLogic,
-    //&comfort,
+    &comfort,
     &restorationSettings,
     &cutsceneSettings,
     &otherSettings,
@@ -578,8 +591,8 @@ namespace Settings {
   std::array<u32, 9> rDungeonRewardOverrides{};
 
   //declared here, set in menu.cpp
-  u8 PlayOption;
-  u8 Version;
+  //u8 PlayOption;
+  //u8 Version;
 
   //Fills and returns a SettingsContext struct.
   //This struct is written to the code.ips patch and allows the game
@@ -592,7 +605,7 @@ namespace Settings {
     ctx.hashIndexes[3] = hashIconIndexes[3];
     ctx.hashIndexes[4] = hashIconIndexes[4];
 
-    ctx.playOption = PlayOption;
+    ctx.playOption = PlayOption.Value<u8>();
 
 ///things commented out below here need to be added or match up to SettingsContext in \mm3dr\code\include\rnd\settings.h
     ctx.logic                = Logic.Value<u8>();
@@ -620,7 +633,7 @@ namespace Settings {
     ctx.itemPoolValue = ItemPoolValue.Value<u8>();
     //ctx.shuffleMainInventory = (ShuffleMainInventory) ? 1 : 0;
     //ctx.shuffleTransformation = (ShuffleTransformation) ? 1 : 0;
-    //ctx.shuffleFierceDiety = (ShuffleFierceDiety) ? 1:0;
+    //ctx.shuffleFierceDeity = (ShuffleFierceDeity) ? 1:0;
     //ctx.shuffleMasks = (ShuffleMasks) ? 1 : 0;
     ctx.shuffleGreatFairyRewards = ShuffleGFRewards.Value<u8>();
     //ctx.shufflePiecesOfHeart = (ShufflePiecesOfHeart) ? 1:0;
@@ -637,9 +650,9 @@ namespace Settings {
     ctx.ingameSpoilers = (IngameSpoilers) ? 1 : 0;
     //ctx.menuOpeningButton = MenuOpeningButton.Value<u8>();
     
-    //ctx.blastMaskCooldown = BlastMaskCooldown.Value<u8>();
+    ctx.blastMaskCooldown = BlastMaskCooldown.Value<u8>();
     //ctx.underwaterOcarina = (UnderwaterOcarina) ? 1 : 0;
-    //ctx.fierceDietyAnywhere = (FierceDietyAnywhere) ? 1 : 0;
+    //ctx.fierceDeityAnywhere = (FierceDeityAnywhere) ? 1 : 0;
     ctx.skipMinigamePhases = (SkipMinigamePhases) ? 1 : 0;
     ctx.skipEponaRace = (SkipEponaRace) ? 1 : 0;
     //ctx.fastLabFish = (FastLabFish) ? 1 : 0;
@@ -765,7 +778,7 @@ namespace Settings {
     ctx.startingGaroMask = StartingGaroMask.Value<u8>();
     ctx.startingCaptainsHat = StartingCaptainsHat.Value<u8>();
     ctx.startingGiantsMask = StartingGiantsMask.Value<u8>();
-    ctx.startingFierceDietyMask = StartingFierceDietyMask.Value<u8>();
+    ctx.startingFierceDeityMask = StartingFierceDeityMask.Value<u8>();
     ctx.startingMaskOfTruth = StartingMaskOfTruth.Value<u8>();
 
     //Restoration Features
@@ -775,6 +788,7 @@ namespace Settings {
     ctx.enableFastMaskTransform = (DpadTransform) ? 1 : 0;
     ctx.enableFastOcarina = (DpadOcarina) ? 1 : 0;
     ctx.enableFastArrowSwap = (DpadArrows) ? 1 : 0;
+    ctx.twinmoldRestoration = (TwinmoldRestoration) ? 1 : 0;
 
     //Cutscene Skips
     ctx.skipHMSCutscenes = (SkipHMSCutscenes) ? 1 : 0;
@@ -1061,7 +1075,11 @@ namespace Settings {
           break;
         case 1:
           startingInventoryOptions[i]->Hide();
-          startingInventoryOptions[i]->SetSelectedIndex((startingInventoryOptions[i]->GetOptionCount())-1);
+          if (startingInventorySections.GetName() == "Equipment & Upgrades") {
+            startingInventoryOptions[i]->SetSelectedIndex((startingInventoryOptions[i]->GetOptionCount())-2);
+          } else {
+            startingInventoryOptions[i]->SetSelectedIndex((startingInventoryOptions[i]->GetOptionCount())-1);
+          }
           break;
         case 2:
           startingInventoryOptions[i]->Unhide();
@@ -1076,35 +1094,48 @@ namespace Settings {
   
   static void ResolveExcludedLocationConflicts() {
 
-      //std::vector<LocationKey> shopLocations = GetLocations(everyPossibleLocation, Category::cShop);
       //For now, just always hide shop locations, as not sure how to handle hiding them-
       //1-4 should always be hidden, while the others should be settings dependent, but random shopsanity makes that more complicated...
       //Excluded shop locations are also wonky
-      //IncludeAndHide(shopLocations);
+      std::vector<LocationKey> shopLocations = GetLocations(everyPossibleLocation, Category::cShop);
+      IncludeAndHide(shopLocations);
 
       //Force include song locations
      std::vector<LocationKey> songLocations = GetLocations(everyPossibleLocation, Category::cSong);
-     std::vector<LocationKey> DungeonRewards = GetLocations(everyPossibleLocation, Category::cDungeonReward);
-
       //Unhide all song locations, then lock necessary ones
-      Unhide(songLocations);
-      Unhide(DungeonRewards);
+      //Unhide(songLocations);
 
-      if (ShuffleSongs.Is((u8)SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) {
+      //if (ShuffleSongs.Is((u8)SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) {
+      //    IncludeAndHide(songLocations);
+     // }
+      //else if (ShuffleSongs.Is((u8)SongShuffleSetting::SONGSHUFFLE_DUNGEON_REWARDS)) {
           IncludeAndHide(songLocations);
-      }
-      else if (ShuffleSongs.Is((u8)SongShuffleSetting::SONGSHUFFLE_DUNGEON_REWARDS)) {
-          IncludeAndHide(DungeonRewards);
-      }
+      //}
+     
+     //Force Include Dungeon Rewards
+     std::vector<LocationKey> DungeonRewards = GetLocations(everyPossibleLocation, Category::cDungeonReward);
+     //if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_END_OF_DUNGEON)) {
+         IncludeAndHide(DungeonRewards);
+     //}
+     //else {
+     //    Unhide(DungeonRewards);
+     //}
+     //Force hide Ocarina
+     IncludeAndHide({CLOCK_TOWER_OCARINA_OF_TIME});
 
+     //Force hide Deku Princess
+     IncludeAndHide({WOODFALL_TEMPLE_DEKU_PRINCESS});
+     
       //Force Include Vanilla Skulltula locations
       std::vector<LocationKey> SwampSkulltulaLocations = GetLocations(everyPossibleLocation, Category::cSwampSkulltula);
       std::vector<LocationKey> OceanSkulltulaLocations = GetLocations(everyPossibleLocation, Category::cOceanSkulltula);
-      Unhide(SwampSkulltulaLocations);
-      Unhide(OceanSkulltulaLocations);
-      if(Tokensanity) {
+      if(!Tokensanity) {
         IncludeAndHide(SwampSkulltulaLocations);
         IncludeAndHide(OceanSkulltulaLocations);
+      }
+      else {
+        Unhide(SwampSkulltulaLocations);
+        Unhide(OceanSkulltulaLocations);
       }
       /*if (Tokensanity.IsNot(TOKENSANITY_ALL_TOKENS)) {
           if (Tokensanity.Is(TOKENSANITY_OVERWORLD)) {
@@ -1138,24 +1169,113 @@ namespace Settings {
       else {
           IncludeAndHide(cowLocations);
       }
-      
-      //Force include the Kokiri Sword Chest if Shuffle Kokiri Sword is Off
-      //& Also Set Starting Sword to None 
-      if (ShuffleKokiriSword) {
-          Unhide({ HMS_STARTING_SWORD });
-          StartingKokiriSword.SetSelectedIndex(0);
+
+      //Force Include Anju & Kafei Items
+      std::vector<LocationKey> kafeiLocations = GetLocations(everyPossibleLocation, Category::cAnjuAndKafei);
+      if (ShuffleTradeItems) {
+        Unhide(kafeiLocations);
       }
       else {
-          IncludeAndHide({ HMS_STARTING_SWORD });
+        IncludeAndHide(kafeiLocations);
       }
 
-      //Force include the ocarina locations if Shuffle Ocarinas is Off
-   //   std::vector<LocationKey> ocarinaLocations = {LW_GIFT_FROM_SARIA, HF_OCARINA_OF_TIME_ITEM};
-  //    if (ShuffleOcarinas) {
-  //      Unhide(ocarinaLocations);
-  //    } else {
-  //      IncludeAndHide(ocarinaLocations);
-  //    }
+      //Force include Deku Trade Items
+      std::vector<LocationKey> dekuLocations = GetLocations(everyPossibleLocation, Category::cTradeItem);
+      if (ShuffleMerchants) {
+        Unhide(dekuLocations);
+      }
+      else {
+        IncludeAndHide(dekuLocations);
+      }
+
+      //Force include Tingle Maps
+      std::vector<LocationKey> tingleLocations = GetLocations(everyPossibleLocation, Category::cTingleMap);
+      if (ShuffleTingleMaps) {
+        Unhide(tingleLocations);
+      }
+      else {
+        IncludeAndHide(tingleLocations);
+      }
+
+      //Force Include Bombers Notebook
+      std::vector<LocationKey> notebookLocation = GetLocations(everyPossibleLocation, Category::cNotebook);
+      if (ShuffleBombersNotebook) {
+        Unhide(notebookLocation);
+      }
+      else {
+        IncludeAndHide(notebookLocation);
+      }
+
+      //Force Include Zora Eggs
+      std::vector<LocationKey> eggLocations = GetLocations(everyPossibleLocation, Category::cZoraEgg);
+      IncludeAndHide(eggLocations);
+      
+      //Hide alternate check locations
+      std::vector<LocationKey> altLocations = GetLocations(everyPossibleLocation, Category::cAlternateCheck);
+      IncludeAndHide(altLocations);
+
+      //Force Include Great Fairy
+      std::vector<LocationKey> gfLocations = GetLocations(everyPossibleLocation, Category::cFairyFountain);
+      if (ShuffleGFRewards.Is((u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_ANYWHERE)){
+        Unhide(gfLocations);
+      }
+      else {
+        IncludeAndHide(gfLocations);
+      }
+
+      //Force Include Main Inventory
+      std::vector<LocationKey> maininventoryLocations = GetLocations(everyPossibleLocation, Category::cMainInventory);
+      if (ShuffleMainInventory) {
+        Unhide(maininventoryLocations);
+      }
+      else {
+        IncludeAndHide(maininventoryLocations);
+      }
+
+      //Force include Masks
+      std::vector<LocationKey> maskLocations = GetLocations(everyPossibleLocation, Category::cVanillaMask);
+      if (ShuffleMasks) {
+        Unhide(maskLocations);
+      }
+      else {
+        IncludeAndHide(maskLocations);
+      }
+
+      //Force include Transformation Masks
+      std::vector<LocationKey> transformLocations = GetLocations(everyPossibleLocation, Category::cTransformMask);
+      if (ShuffleTransformation) {
+        Unhide(transformLocations);
+      }
+      else {
+        IncludeAndHide(transformLocations);
+      }
+
+      //Force include Piece of Heart
+      std::vector<LocationKey> heartPieceLocations = GetLocations(everyPossibleLocation, Category::cVanillaHeartPiece);
+      if (ShufflePiecesOfHeart) {
+        Unhide(heartPieceLocations);
+      }
+      else {
+        IncludeAndHide(heartPieceLocations);
+      }
+
+      //Force include Fierce Deity
+      std::vector<LocationKey> fdmLocation = GetLocations(everyPossibleLocation, Category::cFDM);
+      if (ShuffleFierceDeity) {
+        Unhide(fdmLocation);
+      }
+      else {
+        IncludeAndHide(fdmLocation);
+      }
+
+      //Force include Moon Items
+      std::vector<LocationKey> moonItemLocations = GetLocations(everyPossibleLocation, Category::cMoonItems);
+      if (ShuffleMoonItems) {
+        Unhide(moonItemLocations);
+      }
+      else {
+        IncludeAndHide(moonItemLocations);
+      }
 
       //Force include Magic Bean salesman if Shuffle Magic Beans is off
       if (ShuffleMagicBeans) {
@@ -1194,6 +1314,24 @@ namespace Settings {
       else {
           Unhide(bossKeyChests);
       }
+
+      //Forcce include Boss Heart Containers if Heart Containers are Vanilla
+      std::vector<LocationKey> heartContainers = GetLocations(everyPossibleLocation, Category::cBossHeart);
+      if (!ShuffleHeartContainers) {
+        IncludeAndHide(heartContainers);
+      }
+      else {
+        Unhide(heartContainers);
+      }
+
+      //Force include Stray Fairies if Stray Fairy Sanity is Vanilla
+      std::vector<LocationKey> strayFairies = GetLocations(everyPossibleLocation, Category::cVanillaStrayFairy);
+      if (!StrayFairysanity) {
+        IncludeAndHide(strayFairies);
+      }
+      else {
+        Unhide(strayFairies);
+      }
       
   }
 
@@ -1208,7 +1346,7 @@ namespace Settings {
       CollapseCategory(StartingSongsToggle, 51, 60);
       CollapseCategory(StartingUpgradesToggle, 61, 67);
       CollapseCategory(StartingQuestToggle, 68, 72);
-    for(int i = 14; i < 21 ;++i){
+    for(int i = 18; i < 25 ;++i) {
       switch(StartingInventoryToggle.Value<u8>()) {
         case 0:
           startingInventoryOptions[i]->Hide();
@@ -1415,7 +1553,7 @@ namespace Settings {
       ShuffleHeartContainers.SetSelectedIndex(0);
       ShuffleMainInventory.SetSelectedIndex(0);
       ShuffleTransformation.SetSelectedIndex(0);
-      ShuffleFierceDiety.SetSelectedIndex(0);
+      ShuffleFierceDeity.SetSelectedIndex(0);
       ShuffleMasks.SetSelectedIndex(0);
       ShuffleGFRewards.SetSelectedIndex(0);
       ShufflePiecesOfHeart.SetSelectedIndex(0);

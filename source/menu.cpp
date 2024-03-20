@@ -20,7 +20,6 @@ using namespace Settings;
 
 namespace {
   bool seedChanged;
-  bool choosePlayOption;
   u16 pastSeedLength;
   u16 settingBound = 0;
   PrintConsole topScreen, bottomScreen;
@@ -48,7 +47,6 @@ void MenuInit() {
   Settings::InitSettings();
 
   seedChanged = false;
-  choosePlayOption = false;
   pastSeedLength = Settings::seed.length();
 
   settingBound = 0;
@@ -164,7 +162,7 @@ void MenuUpdate(u32 kDown) {
      }
     }
   //If they pressed B on any menu other than main, go backwards to the previous menu
-  else if (kDown & KEY_B && currentMenu->mode != MAIN_MENU && !choosePlayOption) {
+  else if (kDown & KEY_B && currentMenu->mode != MAIN_MENU) {
     
     //Want to reset generate menu when leaving
     if (currentMenu->mode == POST_GENERATE) {
@@ -226,9 +224,6 @@ void MenuUpdate(u32 kDown) {
     PrintResetToDefaultsMenu();
   } else if (currentMenu->mode == GENERATE_MODE) {
     UpdateGenerateMenu(kDown);
-    if (currentMenu->mode != POST_GENERATE) {
-      PrintGenerateMenu();
-    }
   } else if (currentMenu->mode == SUB_MENU) {
     PrintSubMenu();
   }
@@ -322,34 +317,12 @@ void UpdateResetToDefaultsMenu(u32 kDown) {
 }
 u16 menuIdx2;
 void UpdateGenerateMenu(u32 kDown) {
-  if (!choosePlayOption) {
-    if ((kDown & KEY_A) != 0) {
-      Settings::PlayOption = currentMenu->menuIdx;
-      consoleSelect(&bottomScreen);
-      consoleClear();
-      choosePlayOption = true;
-      menuIdx2 = currentMenu->menuIdx;
-      currentMenu->menuIdx = 0;
-    }
-  }
-  else {
-    if ((kDown & KEY_B) !=0) {
-       consoleSelect(&bottomScreen);
-       consoleClear();
-       choosePlayOption = false;
-       currentMenu->menuIdx = menuIdx2;
-     }
-    else if ((kDown & KEY_A) !=0) {
-        Settings::Version = currentMenu->menuIdx;
-        consoleSelect(&bottomScreen);
-        consoleClear();
+        //consoleSelect(&bottomScreen);
+        //consoleClear();
         GenerateRandomizer();
         //This is just a dummy mode to stop the prompt from appearing again
         currentMenu->mode = POST_GENERATE;
-        choosePlayOption = false;
-      }
-    }
-  }
+        }
 
 void PrintMainMenu() {
   printf("\x1b[0;%dHMain Settings", 1+(BOTTOM_WIDTH-13)/2);
@@ -488,47 +461,6 @@ void PrintResetToDefaultsMenu() {
   printf("\x1b[12;4HPress B to return to the preset menu.");
 }
 
-void PrintGenerateMenu() {
-
-  consoleSelect(&bottomScreen);
-
-  if (!choosePlayOption) {
-    printf("\x1b[3;%dHHow will you play?", 1+(BOTTOM_WIDTH-18)/2);
-    std::vector<std::string> playOptions = {"3ds Console", "Citra Emulator"};
-
-    for (u8 i = 0; i < playOptions.size(); i++) {
-
-      std::string option = playOptions[i];
-      u8 row = 6 + (i * 2);
-      //make the current selection green
-      if (currentMenu->menuIdx == i) {
-        printf("\x1b[%d;%dH%s>",   row, 14, GREEN);
-        printf("\x1b[%d;%dH%s%s",  row, 15, option.c_str(), RESET);
-      } else {
-        printf("\x1b[%d;%dH%s",    row, 15, option.c_str());
-      }
-    }
-  }
-  else {
-    printf("\x1b[3;%dHSelect your game version", 1 + (BOTTOM_WIDTH -18) / 2);
-    std::vector<std::string> versionOptions = {"1.0", "1.1"};
-
-    for (u8 j=0; j < versionOptions.size(); j++) {
-      std::string option = versionOptions[j];
-      u8 row             = 6 + (j * 2);
-      //make the current selection green
-      if (currentMenu->menuIdx == j) {
-        printf("\x1b[%d;%dH%s>",   row, 14, GREEN);
-        printf("\x1b[%d;%dH%s%s",  row, 15, option.c_str(), RESET);
-      } else {
-        printf("\x1b[%d;%dH%s",    row, 15, option.c_str());
-      }
-    }
-    ClearDescription();
-    PrintVersionDescription();
-
-  }
-}
 
 void ClearDescription() {
   consoleSelect(&topScreen);
@@ -542,15 +474,6 @@ void ClearDescription() {
 void PrintOptionDescription() {
   ClearDescription();
   std::string_view description = currentSetting->GetSelectedOptionDescription();
-
-  printf("\x1b[22;0H%s", description.data());
-}
-
-void PrintVersionDescription() {
-  ClearDescription();          //"Description must fit in this space ---------------//"
-  std::string_view description = "Due to patch size when using version 1.1 it can \n"
-                                 "take up to 30 seconds to launch the game, this is\n"
-                                 "expected and will not effect gameplay";
 
   printf("\x1b[22;0H%s", description.data());
 }
@@ -590,11 +513,11 @@ void GenerateRandomizer() {
     printf("\x1b[13;10HWriting Patch...");
     if (WriteAllPatches()) {
         printf("Done");
-        if (Settings::PlayOption == PATCH_CONSOLE) {
+        if (Settings::PlayOption.Value<u8>() == PATCH_CONSOLE) {
             printf("\x1b[15;10HQuit out using the home menu. Then\n");
             printf("\x1b[16;10Henable game patching and launch MM3D!\n");
         }
-        else if (Settings::PlayOption == PATCH_CITRA) {
+        else if (Settings::PlayOption.Value<u8>() == PATCH_CITRA) {
             printf("\x1b[15;10HCopy code.ips, exheader.bin and romfs to\n");
             printf("\x1b[16;10Hthe MM3D mods folder, then launch MM3D!\n");
         }
