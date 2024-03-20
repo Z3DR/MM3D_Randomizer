@@ -665,7 +665,7 @@ void AreaTable_Init() {
 		Entrance(TERMINA_FIELD_OUTSIDE_OBSERVATORY, {[]{return DekuMask;}}),
 	});
 
-	areaTable[TERMINA_FIELD_OUTSIDE_OBSERVATORY] = Area("Termina Field Outside Observatory","Termina Field Outside Observatory", TERMINA_FIELD_OUTSIDE_OBSERVATORY, {
+	areaTable[TERMINA_FIELD_OUTSIDE_OBSERVATORY] = Area("Termina Field Outside Observatory","Termina Field Outside Observatory", NONE, {
 		//Events
 	},
 	{
@@ -680,7 +680,7 @@ void AreaTable_Init() {
 		Entrance(CLOCK_TOWN_OBSERVATORY, {[]{return true;}}),
 	});
 	
-	areaTable[TERMINA_FIELD_PEAHAT_GROTTO] = Area("Termina Field Peahat Grotto","Termina Field Peahat Grotto", TERMINA_FIELD_PEAHAT_GROTTO, {
+	areaTable[TERMINA_FIELD_PEAHAT_GROTTO] = Area("Termina Field Peahat Grotto","Termina Field Peahat Grotto", NONE, {
 		//Events
 		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 	},
@@ -694,7 +694,7 @@ void AreaTable_Init() {
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
 
-	areaTable[TERMINA_FIELD_DODONGO_GROTTO] = Area("Termina Field Dodongo Grotto","Termina Field Dodongo Grotto", TERMINA_FIELD_DODONGO_GROTTO, {
+	areaTable[TERMINA_FIELD_DODONGO_GROTTO] = Area("Termina Field Dodongo Grotto","Termina Field Dodongo Grotto", NONE, {
 		//Events
 	},
 	{
@@ -706,7 +706,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_BIO_BABA_GROTTO] = Area("Termina Field Bio Baba Grotto","Termina Field Bio Baba Grotto", TERMINA_FIELD_BIO_BABA_GROTTO, {
+	areaTable[TERMINA_FIELD_BIO_BABA_GROTTO] = Area("Termina Field Bio Baba Grotto","Termina Field Bio Baba Grotto", NONE, {
 		//Events
 		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 	},
@@ -718,7 +718,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_PILLAR_GROTTO] = Area("Termina Field Pillar Grotto","Termina Field Pillar Grotto", TERMINA_FIELD_PILLAR_GROTTO, {
+	areaTable[TERMINA_FIELD_PILLAR_GROTTO] = Area("Termina Field Pillar Grotto","Termina Field Pillar Grotto", NONE, {
 		//Events
 		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
@@ -734,7 +734,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_GRASS_GROTTO] = Area("Termina Field Grass Grotto","Termina Field Grass Grotto", TERMINA_FIELD_GRASS_GROTTO, {
+	areaTable[TERMINA_FIELD_GRASS_GROTTO] = Area("Termina Field Grass Grotto","Termina Field Grass Grotto", NONE, {
 		//Events
 		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
@@ -750,7 +750,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 	});
-	areaTable[TERMINA_FIELD_BUSINESS_SCRUB_GROTTO] = Area("Termina Field Business Scrub Grotto","Termina Field Business Scrub Grotto", TERMINA_FIELD_BUSINESS_SCRUB_GROTTO, {
+	areaTable[TERMINA_FIELD_BUSINESS_SCRUB_GROTTO] = Area("Termina Field Business Scrub Grotto","Termina Field Business Scrub Grotto", NONE, {
 		//Events
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
@@ -763,7 +763,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_COW_GROTTO] = Area("Termina Field Cow Grotto","Termina Field Cow Grotto", TERMINA_FIELD_COW_GROTTO, {
+	areaTable[TERMINA_FIELD_COW_GROTTO] = Area("Termina Field Cow Grotto","Termina Field Cow Grotto", NONE, {
 		//Events
 		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 		EventAccess(&Milk, {[]{return CanPlay(EponasSong) && AnyBottle;}}),
@@ -777,7 +777,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
-	areaTable[TERMINA_FIELD_GOSSIP_STONES_GROTTO] = Area("Termina Field Gossip Stones Grotto","Termina Field Gossip Stones Grotto", TERMINA_FIELD_GOSSIP_STONES_GROTTO, {
+	areaTable[TERMINA_FIELD_GOSSIP_STONES_GROTTO] = Area("Termina Field Gossip Stones Grotto","Termina Field Gossip Stones Grotto", NONE, {
 		//Events
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&SpringWater, {[] {return AnyBottle;}}),
