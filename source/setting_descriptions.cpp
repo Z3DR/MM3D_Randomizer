@@ -656,3 +656,7 @@ string_view EURegionDesc            = "                     Europe\n"           
 string_view VersionDesc             = "Due to patch size when using version 1.1 it can \n" //
                                       "take up to 30 seconds to launch the game, this is\n"//
                                       "expected and will not effect gameplay";             //
+string_view LanguageDesc           =  "Selected region differs from console meaning a\n"   //
+                                      "locale.txt file will need to be generated\n\n"      //
+                                      "Please select your preferred language\n"            //
+                                      "NOTE: custom text still only supports English";     //

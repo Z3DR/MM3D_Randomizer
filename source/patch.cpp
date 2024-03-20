@@ -485,8 +485,8 @@ bool WriteAllPatches() {
   /*-------------------
   | LOCALE EMULATION  |
   -------------------*/
-
-  if (Settings::PlayOption.Value<u8>() == PATCH_CONSOLE) {
+  // Check if a language is selected, only the case if playing on console and region does not match selected game region
+  if (Settings::LanguageSelect.Value<u8>() != Settings::LANGUAGE_NONE) {
     Handle localeOut;
     //NA
     if (!Settings::RegionSelect){
@@ -506,10 +506,31 @@ bool WriteAllPatches() {
         }
     }
 
-    
+    std::vector<char> buffer = { 'U', 'S', 'A', ' ', 'E', 'N' };
+    // Change EN to appropriate language code if necessary
+    switch (Settings::LanguageSelect.Value<u8>()) {
+        case Settings::LANGUAGE_FRENCH:
+            buffer[4] = 'F';
+            buffer[5] = 'R';
+            break;
+
+        case Settings::LANGUAGE_SPANISH:
+            buffer[4] = 'E';
+            buffer[5] = 'S';
+            break;
+
+        case Settings::LANGUAGE_GERMAN:
+            buffer[4] = 'D';
+            buffer[5] = 'E';
+            break;
+
+        case Settings::LANGUAGE_ITALIAN:
+            buffer[4] = 'I';
+            buffer[5] = 'T';
+    }
+
     //NA
     if (!Settings::RegionSelect){
-      std::vector<char> buffer = { 'U', 'S', 'A', ' ', 'E', 'N' };
       if (!R_SUCCEEDED(res = FSFILE_Write(localeOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
         return false;
         }
@@ -517,7 +538,10 @@ bool WriteAllPatches() {
     }
     //EU
     if (Settings::RegionSelect){
-      std::vector<char> buffer = { 'E', 'U', 'R', ' ', 'E', 'N' };
+      // Change USA to EUR
+      buffer[0] = 'E';
+      buffer[1] = 'U';
+      buffer[2] = 'R';
       if (!R_SUCCEEDED(res = FSFILE_Write(localeOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
         return false;
         }

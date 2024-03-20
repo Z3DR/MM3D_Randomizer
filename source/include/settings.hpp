@@ -252,6 +252,17 @@ class Menu {
 };
 
 namespace Settings {
+  typedef enum {
+    LANGUAGE_NONE = 0,
+    LANGUAGE_WRAP_LOW,
+    LANGUAGE_ENGLISH,
+    LANGUAGE_FRENCH,
+    LANGUAGE_SPANISH,
+    LANGUAGE_GERMAN,
+    LANGUAGE_ITALIAN,
+    LANGUAGE_WRAP_HIGH,
+  } LanguageSettings;
+
   void UpdateSettings();
   rnd::SettingsContext FillContext();
   void InitSettings();
@@ -420,6 +431,7 @@ namespace Settings {
   extern Option ChangeOverworldItems;
   extern Option IngameSpoilers;
   extern Option RegionSelect;
+  extern Option LanguageSelect;
   extern Option MenuOpeningButton;
   extern Option RsDurability;
   extern Option SkipBombersMinigame;
