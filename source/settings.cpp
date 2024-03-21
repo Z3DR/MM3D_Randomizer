@@ -266,37 +266,45 @@ namespace Settings {
   //Excluded Locations (Individual definitions made in ItemLocation class)
   std::vector<Option*> excludeLocationsOptions = {};
 
-  //Shuffle Settings
-  Option ShuffleMagicBeans      = Option::Bool("Shuffle Magic Beans",   { "Off", "On" },                                     { magicBeansDesc });
-  Option ShuffleKokiriSword     = Option::Bool("Shuffle Kokiri Sword",  { "Off", "On" },                                     { kokiriSwordDesc });
-  Option Shopsanity             = Option::U8("Shopsanity",              {"Off", "0", "1", "2", "3", "4", "Random"},          {shopsOff, shopsZero, shopsOne, shopsTwo, shopsThree, shopsFour, shopsRandom});
-  Option Tokensanity            = Option::Bool("Tokensanity",           {"Off", "Anywhere"},                                 {tokensOff, tokensAllTokens});
-  Option Scrubsanity            = Option::U8("Scrub Purchases",         {"Off", "Affordable", "Expensive", "Random Prices"}, {scrubsOff, scrubsAffordable, scrubsExpensive, scrubsRandomPrices});
+  //Overworld Shuffle Settings
+  Option ShuffleMainInventory   = Option::Bool("Shuffle Starting Gear", {"Off", "On"},                                       {shuffleMainInventoryDesc},                                             OptionCategory::Toggle,   1);
+  Option ShuffleMasks           = Option::Bool("Shuffle Masks",         {"Off", "On"},                                       {shuffleMasksVanilla, shuffleMasksRandom},                              OptionCategory::Toggle,   1);
+  Option ShuffleTransformation  = Option::Bool("Shuffle Transformation",{"Off", "On"},                                       {shuffleTransformationDesc});
+  Option ShufflePiecesOfHeart   = Option::Bool("Shuffle Piece of Heart",{"Off", "On"},                                       {shufflePiecesOfHeartDesc },                                            OptionCategory::Toggle,   1);
+  Option ShuffleSongs           = Option::U8  ("Shuffle Songs",         {"Off", "Dungeon Rewards", "Anywhere"},              {songsSongLocations, songsDungeonRewards, songsAllLocations},           OptionCategory::Setting, (u8)SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS);
+  Option ShuffleSoaring         = Option::Bool("Shuffle SoS",           {"Off", "On"},                                       {shuffleSoaringVanilla, shuffleSoaringRandom});
+  Option Shopsanity             = Option::U8  ("Shopsanity",            {"Off", "0", "1", "2", "3", "4", "Random"},          {shopsOff, shopsZero, shopsOne, shopsTwo, shopsThree, shopsFour, shopsRandom});
+  Option Tokensanity            = Option::Bool("Tokensanity",           {"Off", "On"},                                       {tokensOff, tokensAllTokens});
+  Option Scrubsanity            = Option::U8  ("Shuffle Scrub Wares",   {"Off", "Affordable", "Expensive", "Random Prices"}, {scrubsOff, scrubsAffordable, scrubsExpensive, scrubsRandomPrices});
+  Option ShuffleMerchants       = Option::Bool("Shuffle Scrub Trades",  {"Off", "On"},                                       {shuffleMerchantsDesc});
+  Option ShuffleTradeItems      = Option::Bool("Shuffle Anju & Kafei",  {"Off", "On"},                                       {shuffleTradeItemsDesc});
+  Option ShuffleGFRewards       = Option::U8  ("Shuffle Fairy Rewards", {"Off", "Great Fairies", "Anywhere" },               {shuffleGFVanilla, shuffleGFSelf, shuffleGFAnywhere},                   OptionCategory::Setting, (u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA);
   Option ShuffleCows            = Option::Bool("Shuffle Cows",          {"Off", "On"},                                       {shuffleCowsDesc});
-  //Option ShuffleOcarinas        = Option::Bool("Shuffle Ocarinas",       {"Off", "On"},                                                     {ocarinasDesc});
-  Option ShuffleMerchants       = Option::Bool("Deku Merchant Trades",  { "Off", "On" },                                     { shuffleMerchantsDesc });
-  Option ShuffleSongs           = Option::U8("Shuffle Songs",           { "Vanilla", "Dungeon Rewards", "Anywhere" }, { songsSongLocations, songsDungeonRewards, songsAllLocations }, OptionCategory::Setting, (u8)SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS);
-  Option ShuffleSoaring         = Option::Bool("Shuffle SoS",           {"Vanilla", "Random"},                               {shuffleSoaringVanilla, shuffleSoaringRandom});
-  Option ShuffleStartingShield  = Option::Bool("Starting Shield",       {"Off", "On"},                                       {shuffleStartShield});
-  Option ShuffleTradeItems      = Option::Bool("Anju And Kafei Items",  {"Vanilla", "Random"},                               {shuffleTradeItemsDesc});
-  Option ShuffleTingleMaps      = Option::Bool("Tingle Maps",           {"Vanilla", "Random"},                               {shuffleTingleMapsDesc});
-  Option RemoveDoubleDefense    = Option::Bool("Remove Double Defense", { "No", "Yes" },                                     { removeDDDesc });
-  Option ShuffleBombersNotebook = Option::Bool("Bomber's Notebook",     {"Off", "On"},                                       {shuffleBombersNotebookDesc});
+  Option ShuffleOcarinas        = Option::Bool("Shuffle Ocarina",       {"Off", "On"},                                       {ocarinasDesc});
+  Option ShuffleTingleMaps      = Option::Bool("Shuffle Tingle Maps",   {"Off", "On"},                                       {shuffleTingleMapsDesc});
+  Option ShuffleMagicBeans      = Option::Bool("Shuffle Magic Beans",   {"Off", "On"},                                       {magicBeansDesc});
+  Option ShuffleBombersNotebook = Option::Bool("Shuffle Notebook",      {"Off", "On"},                                       {shuffleBombersNotebookDesc});
+  Option ShuffleMoonItems       = Option::Bool("Shuffle Moon Items",    {"Off", "On"},                                       {shuffleMoonItemsDesc});
+  Option ShuffleFierceDeity     = Option::Bool("Shuffle Fierce Deity",  {"Off", "On"},                                       {shuffleFierceDeityDesc});
   std::vector<Option*> shuffleItemOptions = {
+      &ShuffleMainInventory,
+      &ShuffleMasks,
+      &ShuffleTransformation,
+      &ShufflePiecesOfHeart,
       //&ShuffleSongs,
       //&ShuffleSoaring,
       //&Shopsanity,
       //&Tokensanity,
-      //&ShuffleCows,
-      //&ShuffleKokiriSword, --redundant
-      //&ShuffleStartingShield, --redundant
-      &ShuffleBombersNotebook,
-      &ShuffleTradeItems,
       &ShuffleMerchants,
-      &ShuffleTingleMaps,
-      &RemoveDoubleDefense,
-      //&ShuffleMagicBeans,
+      &ShuffleTradeItems,
+      &ShuffleGFRewards,
+      //&ShuffleCows,
       //&ShuffleOcarinas,
+      &ShuffleTingleMaps,
+      //&ShuffleMagicBeans,
+      &ShuffleBombersNotebook,
+      &ShuffleMoonItems,
+      &ShuffleFierceDeity,
   };
   //Shuffle Dungeon Items
   Option RandomizeDungeon       = Option::U8("Randomize Settings", { "No","Yes"},                                                                      { dungeonRandomize},                                                                                                             OptionCategory::Toggle);
@@ -318,23 +326,11 @@ namespace Settings {
   };
 
   //Item Pool Settings 
-  Option ItemPoolValue          = Option::U8("Item Pool",              {"Plentiful", "Balanced", "Scarce", "Minimal" }, { itemPoolPlentiful, itemPoolBalanced, itemPoolScarce, itemPoolMinimal }, OptionCategory::Setting, (u8)ItemPoolSetting::ITEMPOOL_BALANCED);
-  Option ShuffleMasks           = Option::Bool("Shuffle Masks",        {"Vanilla", "Random"},                           { shuffleMasksVanilla, shuffleMasksRandom},                               OptionCategory::Toggle,   1);
-  Option ShufflePiecesOfHeart   = Option::Bool("Pieces of Heart",      {"Vanilla", "Random"},                           { shufflePiecesOfHeartDesc },                                             OptionCategory::Toggle,   1);
-  Option ShuffleGFRewards       = Option::U8("Great Fairy Rewards",    {"Vanilla", "Great Fairies", "Anywhere" },       { shuffleGFVanilla, shuffleGFSelf, shuffleGFAnywhere },                   OptionCategory::Setting, (u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA);
-  Option ShuffleMainInventory   = Option::Bool("Main Inventory",       {"Vanilla", "Random"},                           { shuffleMainInventoryDesc},                                              OptionCategory::Toggle,   1);
-  Option ShuffleTransformation  = Option::Bool("Transformation Masks", {"Vanilla", "Random"},                           { shuffleTransformationDesc});
-  Option ShuffleFierceDeity     = Option::Bool("Fierce Deity Mask",    {"Vanilla", "Random"},                           { shuffleFierceDeityDesc});
-  Option ShuffleMoonItems       = Option::Bool("Shuffle Moon Items",   {"Off", "On"},                                   {shuffleMoonItemsDesc});
+  Option ItemPoolValue          = Option::U8  ("Item Pool",             {"Plentiful", "Balanced", "Scarce", "Minimal" },   {itemPoolPlentiful, itemPoolBalanced, itemPoolScarce, itemPoolMinimal }, OptionCategory::Setting, (u8)ItemPoolSetting::ITEMPOOL_BALANCED);
+  Option RemoveDoubleDefense    = Option::Bool("Remove Double Defense", {"No", "Yes"},                                     {removeDDDesc});
   std::vector<Option*>itemPoolSettingsOptions = {
       &ItemPoolValue,
-      &ShuffleMainInventory,
-      &ShuffleTransformation,
-      &ShuffleFierceDeity,
-      &ShuffleMasks,
-      &ShuffleGFRewards,
-      &ShufflePiecesOfHeart,
-      &ShuffleMoonItems,
+      &RemoveDoubleDefense,
   };
 
   Option GossipStoneHints     = Option::U8("Gossip Stone Hints",       { "No Hints", "Need Nothing", "Mask of Truth" },    { gossipStonesHintsDesc },                                                     OptionCategory::Setting, (u8)GossipStoneHintsSetting::HINTS_NEED_NOTHING);
