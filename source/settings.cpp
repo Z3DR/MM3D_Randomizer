@@ -10,6 +10,7 @@
 #include "random.hpp"
 #include "version.hpp"
 #include "setting_descriptions.hpp"
+#include "system.hpp"
 #include "keys.hpp"
 //#include "../mm3dr/code/include/game/pad.h"
 
@@ -72,17 +73,19 @@ namespace Settings {
   };
 
   //Game Settings
-  Option GenerateSpoilerLog   = Option::Bool("Generate Spoiler Log",   { "No", "Yes" },                                     { genSpoilerLogDesc },                                                                        OptionCategory::Setting, 1); // On
-  Option IngameSpoilers       = Option::Bool("Ingame Spoilers",        { "Hide", "Show" },                                  { ingameSpoilersHideDesc, ingameSpoilersShowDesc });
-  Option RegionSelect = Option::Bool("Game Region", {"NA", "EU"}, {NARegionDesc, EURegionDesc});
-  Option PlayOption = Option::U8("Console/Emulator", {"3DS", "Citra"}, {"How will you Play?"});
-  Option Version = Option::U8("Version", {"1.0", "1.1"}, {VersionDesc});
+  Option GenerateSpoilerLog   = Option::Bool("Generate Spoiler Log",   { "No", "Yes" },                                                         { genSpoilerLogDesc },                                                                        OptionCategory::Setting, 1); // On
+  Option IngameSpoilers       = Option::Bool("Ingame Spoilers",        { "Hide", "Show" },                                                      { ingameSpoilersHideDesc, ingameSpoilersShowDesc });
+  Option RegionSelect         = Option::Bool("Game Region",            { "NA", "EU" },                                                          { NARegionDesc, EURegionDesc });
+  Option PlayOption           = Option::U8  ("Console/Emulator",       { "3DS", "Citra" },                                                      { "How will you Play?" });
+  Option LanguageSelect       = Option::U8  ("  Language",             { "", "", "English", "Francais", "Espanol", "Deutsch", "Italiano", "" }, { LanguageDesc });
+  Option Version              = Option::U8  ("Version",                { "1.0", "1.1" },                                                        { VersionDesc });
   std::vector<Option *> gameOptions = {
     &PlayOption,
     &Version,
     &GenerateSpoilerLog,
     &IngameSpoilers,
     &RegionSelect,
+    &LanguageSelect,
   };
   //TODO MM3D LOGIC TRICKS
   //Function to make defining logic tricks easier to read
@@ -1420,6 +1423,41 @@ namespace Settings {
 //      ShuffleFanfares.Hide();
 //      ShuffleOcaMusic.Hide();
 //    }
+
+    // Playing on console and selected game region does not match console region
+    if (!PlayOption && ((!RegionSelect && SystemInfo_GetRegion() != CFG_REGION_USA) || (RegionSelect && SystemInfo_GetRegion() != CFG_REGION_EUR))) {
+        LanguageSelect.Unhide();
+
+        if (LanguageSelect.Is(LANGUAGE_NONE)) {
+            switch(SystemInfo_GetLanguage()) {
+                case CFG_LANGUAGE_FR:
+                    LanguageSelect.SetSelectedIndex(LANGUAGE_FRENCH);
+                    break;
+                case CFG_LANGUAGE_ES:
+                    LanguageSelect.SetSelectedIndex(LANGUAGE_SPANISH);
+                    break;
+                case CFG_LANGUAGE_DE:
+                    LanguageSelect.SetSelectedIndex(LANGUAGE_GERMAN);
+                    break;
+                case CFG_LANGUAGE_IT:
+                    LanguageSelect.SetSelectedIndex(LANGUAGE_ITALIAN);
+                    break;
+                default:
+                    LanguageSelect.SetSelectedIndex(LANGUAGE_ENGLISH);
+            }
+        }
+
+        if (LanguageSelect.Value<u8>() < LANGUAGE_ENGLISH) {
+            LanguageSelect.SetSelectedIndex((RegionSelect) ? LANGUAGE_ITALIAN : LANGUAGE_SPANISH);
+        }
+
+        if (LanguageSelect.Value<u8>() > ((RegionSelect) ? LANGUAGE_ITALIAN : LANGUAGE_SPANISH)) {
+            LanguageSelect.SetSelectedIndex(LANGUAGE_ENGLISH);
+        }
+    } else {
+        LanguageSelect.Hide();
+        LanguageSelect.SetSelectedIndex(LANGUAGE_NONE);
+    }
 
     ResolveExcludedLocationConflicts();
   }

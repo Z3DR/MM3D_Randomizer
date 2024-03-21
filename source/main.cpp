@@ -9,6 +9,7 @@
 #include "item_location.hpp"
 #include "location_access.hpp"
 #include "custom_messages.hpp"
+#include "system.hpp"
 
 
 #define TICKS_PER_SEC 268123480.0
@@ -21,6 +22,7 @@ int main() {
     ItemTable_Init();
     LocationTable_Init();
     MenuInit();
+    SystemInfoInit();
 
     /*CustomMessages::CreateMessage(0x0224, 0x8000, 0x3FFFFFFF, 0xFF0000,
         "This is a test scrolling #custom message# with #multiple# #colours#, %d%e%l%a%y%s, and icons $ $ $^Let's also test filename:&#@#",

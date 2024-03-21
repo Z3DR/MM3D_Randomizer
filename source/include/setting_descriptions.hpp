@@ -229,3 +229,4 @@ extern string_view skipBombersMinigameDesc;
 extern string_view NARegionDesc;
 extern string_view EURegionDesc;
 extern string_view VersionDesc;
+extern string_view LanguageDesc;
