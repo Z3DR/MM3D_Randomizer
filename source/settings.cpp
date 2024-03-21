@@ -268,6 +268,8 @@ namespace Settings {
 
   //Overworld Shuffle Settings
   Option ShuffleMainInventory   = Option::Bool("Shuffle Starting Gear", {"Off", "On"},                                       {shuffleMainInventoryDesc},                                             OptionCategory::Toggle,   1);
+  Option ShuffleKokiriSword     = Option::Bool("Shuffle Kokiri Sword",  {"Off", "On"},                                       {kokiriSwordDesc});
+  Option ShuffleStartingShield  = Option::Bool("Starting Shield",       {"Off", "On"},                                       {shuffleStartShield});
   Option ShuffleMasks           = Option::Bool("Shuffle Masks",         {"Off", "On"},                                       {shuffleMasksVanilla, shuffleMasksRandom},                              OptionCategory::Toggle,   1);
   Option ShuffleTransformation  = Option::Bool("Shuffle Transformation",{"Off", "On"},                                       {shuffleTransformationDesc});
   Option ShufflePiecesOfHeart   = Option::Bool("Shuffle Piece of Heart",{"Off", "On"},                                       {shufflePiecesOfHeartDesc },                                            OptionCategory::Toggle,   1);
@@ -288,6 +290,8 @@ namespace Settings {
   Option ShuffleFierceDeity     = Option::Bool("Shuffle Fierce Deity",  {"Off", "On"},                                       {shuffleFierceDeityDesc});
   std::vector<Option*> shuffleItemOptions = {
       &ShuffleMainInventory,
+      //&ShuffleKokiriSword, --redundant
+      //&ShuffleStartingShield, --redundant
       &ShuffleMasks,
       &ShuffleTransformation,
       &ShufflePiecesOfHeart,
