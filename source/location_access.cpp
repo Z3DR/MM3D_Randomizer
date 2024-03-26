@@ -223,7 +223,7 @@ void AreaTable_Init() {
 	areaTable[N_CLOCK_TOWN] = Area("North Clock Town", "North Clock Town", N_CLOCK_TOWN, {
 		//Events
 		EventAccess(&OldLadySaved, {[]{return Fighting || Bow;}}),
-		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
+		EventAccess(&WinnerPicture, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && Pictobox;}}),
 		EventAccess(&PostedKafeiLetter, {[]{return LetterKafei;}}),
 	},
 	{
@@ -299,7 +299,7 @@ void AreaTable_Init() {
 	areaTable[STOCKPOTINN] = Area("Stock Pot Inn", "Stock Pot Inn", STOCKPOTINN, {
 		//Events
 		EventAccess(&MilkQuestStart, {[] {return CircusLeadersMask;}}),
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
@@ -368,7 +368,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(E_CLOCK_TOWN, {[]{return true;}}),
-		Entrance(TERMINA_FIELD_OUTSIDE_OBSERVATORY, {[]{return CanUseProjectile;}}),//Trick for using pots?
+		Entrance(TERMINA_FIELD_OUTSIDE_OBSERVATORY, {[]{return CanUseProjectile || KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED);}}),//Pots can be used to pop the balloon
 	});
 
 	areaTable[CLOCK_TOWN_BAR] = Area("Milk Bar", "Milk Bar", NONE, {
@@ -655,7 +655,7 @@ void AreaTable_Init() {
 		Entrance(TERMINA_FIELD_PILLAR_GROTTO, {[]{return true;}}),
 		Entrance(TERMINA_FIELD_GRASS_GROTTO, {[]{return true;}}),
 		Entrance(TERMINA_FIELD_BUSINESS_SCRUB_GROTTO, {[]{return true;}}),
-		Entrance(TERMINA_FIELD_COW_GROTTO, {[]{return HasExplosives && MaskOfTruth;}}),//Trick for no MoT?
+		Entrance(TERMINA_FIELD_COW_GROTTO, {[]{return HasExplosives && (MaskOfTruth || KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED));}}),
 		Entrance(TERMINA_FIELD_GOSSIP_STONES_GROTTO, {[]{return CanBlastOrSmash;}}),//Something to break rocks
 		Entrance(ROAD_TO_SOUTHERN_SWAMP, {[]{return true;}}),
 		Entrance(PATH_TO_MOUNTAIN_VILLAGE, {[]{return Bow;}}),// || (HotSpringWater && AnyBottle)
@@ -682,7 +682,7 @@ void AreaTable_Init() {
 	
 	areaTable[TERMINA_FIELD_PEAHAT_GROTTO] = Area("Termina Field Peahat Grotto","Termina Field Peahat Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 	},
 	{
 		//Locations
@@ -708,7 +708,7 @@ void AreaTable_Init() {
 	});
 	areaTable[TERMINA_FIELD_BIO_BABA_GROTTO] = Area("Termina Field Bio Baba Grotto","Termina Field Bio Baba Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 	},
 	{
 		//Locations
@@ -720,7 +720,7 @@ void AreaTable_Init() {
 	});
 	areaTable[TERMINA_FIELD_PILLAR_GROTTO] = Area("Termina Field Pillar Grotto","Termina Field Pillar Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -736,7 +736,7 @@ void AreaTable_Init() {
 	});
 	areaTable[TERMINA_FIELD_GRASS_GROTTO] = Area("Termina Field Grass Grotto","Termina Field Grass Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -753,7 +753,7 @@ void AreaTable_Init() {
 	areaTable[TERMINA_FIELD_BUSINESS_SCRUB_GROTTO] = Area("Termina Field Business Scrub Grotto","Termina Field Business Scrub Grotto", NONE, {
 		//Events
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 	},
 	{
 		//Locations
@@ -765,7 +765,7 @@ void AreaTable_Init() {
 	});
 	areaTable[TERMINA_FIELD_COW_GROTTO] = Area("Termina Field Cow Grotto","Termina Field Cow Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Milk, {[]{return CanPlay(EponasSong) && AnyBottle;}}),
 	},
 	{
@@ -781,7 +781,7 @@ void AreaTable_Init() {
 		//Events
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&SpringWater, {[] {return AnyBottle;}}),
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 	},
 	{
 		//Locations
@@ -800,11 +800,11 @@ void AreaTable_Init() {
 
 	areaTable[ROAD_TO_SOUTHERN_SWAMP] = Area("Road to Southern Swamp", "Road to Southern Swamp", ROAD_TO_SOUTHERN_SWAMP, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
-		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
+		EventAccess(&WinnerPicture, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && Pictobox;}}),
 	},
 	{
 		//Locations
@@ -839,7 +839,7 @@ void AreaTable_Init() {
 
 	areaTable[ROAD_TO_SWAMP_GROTTO] = Area("Road To Southen Swamp Grotto", "Road To Southern Swamp Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -936,7 +936,7 @@ void AreaTable_Init() {
 
 	areaTable[SOUTHERN_SWAMP_MYSTERY_WOODS_GROTTO] = Area("Mystery Woods Grotto", "Mystery Woods Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -977,7 +977,7 @@ void AreaTable_Init() {
 
 	areaTable[DEKU_PALACE] = Area("Deku Palace", "Deku Palace", DEKU_PALACE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return /*DekuMask || WoodfallClear*/ false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return /*DekuMask || WoodfallClear*/ KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&DekuBabaNuts, {[]{return DekuMask || (WoodfallClear && Fighting);}}),
 	},
 	{
@@ -1013,7 +1013,7 @@ void AreaTable_Init() {
 		//Events
 		EventAccess(&LimitlessBeans, {[]{return true;}}),
 		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 	},
 	{
@@ -1085,7 +1085,7 @@ void AreaTable_Init() {
 
 	areaTable[MOUNTAIN_VILLAGE] = Area("Mountain Village", "Mountain Village", MOUNTAIN_VILLAGE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle && SnowheadClear;}}),
 	},
 	{
@@ -1137,7 +1137,7 @@ void AreaTable_Init() {
 
 	areaTable[MOUNTAIN_VILLAGE_SPRING_WATER_GROTTO] = Area("Mountain Village Spring Water Grotto", "Mountain Village Spring Water Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -1154,7 +1154,7 @@ void AreaTable_Init() {
 
 	areaTable[TWIN_ISLANDS] = Area("Twin Islands", "Twin Islands", TWIN_ISLANDS, {
 		//Events
-		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
+		EventAccess(&WinnerPicture, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && Pictobox;}}),
 	},
 	 {
 		//Locations
@@ -1184,12 +1184,12 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(TWIN_ISLANDS, {[]{return true;}}),
-		Entrance(TWIN_ISLANDS_GORON_RACETRACK_GROTTO, {[]{return HasExplosives && MaskOfTruth && ((Hookshot && CanPlay(ScarecrowSong)) || GoronMask);}}),//Trick for no MoT?
+		Entrance(TWIN_ISLANDS_GORON_RACETRACK_GROTTO, {[]{return HasExplosives && (MaskOfTruth || KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED)) && ((Hookshot && CanPlay(ScarecrowSong)) || GoronMask);}}),
 	});
 
 	areaTable[TWIN_ISLANDS_GORON_RACETRACK_GROTTO] = Area("Goron Racetrack Grotto", "Goron Racetrack Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -1208,7 +1208,7 @@ void AreaTable_Init() {
 		//Events
 		EventAccess(&HotSpringWater, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaSticks, {[]{return Fighting;}}),
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 	},
 	{
 		//Locations
@@ -1295,14 +1295,14 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(ROAD_TO_SNOWHEAD_GROTTO, {[]{return GoronMask && MagicMeter && HasExplosives && MaskOfTruth;}}),//Trick for no MoT?
+		Entrance(ROAD_TO_SNOWHEAD_GROTTO, {[]{return GoronMask && MagicMeter && HasExplosives && (MaskOfTruth || KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED));}}),
 		Entrance(MOUNTAIN_VILLAGE, {[]{return true;}}),
 		Entrance(SNOWHEAD, {[]{return GoronMask && MagicMeter;}}),//Trick for no magic?
 	});
 
 	areaTable[ROAD_TO_SNOWHEAD_GROTTO] = Area("Road To Snowhead Grotto", "Road to Snowhead Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -1345,7 +1345,7 @@ void AreaTable_Init() {
 
 	areaTable[MILK_ROAD] = Area("Milk Road", "Milk Road", MILK_ROAD, {
 		//Events
-		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
+		EventAccess(&WinnerPicture, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && Pictobox;}}),
 	},
 	{
 		//Locations
@@ -1459,7 +1459,7 @@ void AreaTable_Init() {
 
 	areaTable[GREAT_BAY_COAST] = Area("Great Bay Coast", "Great Bay Coast", GREAT_BAY_COAST, {
 		//Events
-		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
+		EventAccess(&WinnerPicture, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && Pictobox;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 	},
@@ -1502,7 +1502,7 @@ void AreaTable_Init() {
 
 	areaTable[GREAT_BAY_COAST_GROTTO] = Area("Great Bay Coast Grotto", "Great Bay Coast Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -1612,7 +1612,7 @@ void AreaTable_Init() {
 
 	areaTable[ZORA_CAPE_GROTTO] = Area("Zora Cape Grotto", "Zora Cape Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -1736,7 +1736,7 @@ void AreaTable_Init() {
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return CanPlay(EponasSong);}}),
 		Entrance(IKANA_GRAVEYARD, {[]{return CanPlay(EponasSong);}}),
-		Entrance(IKANA_CANYON, {[]{return Hookshot && GarosMask && CanPlay(EponasSong);}}),//Trick for Gibdo Mask?
+		Entrance(IKANA_CANYON, {[]{return Hookshot && (GarosMask || (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && GibdosMask)) && CanPlay(EponasSong);}}),
 		Entrance(ROAD_TO_IKANA_GROTTO, {[]{return GoronMask;}}),//Goron-only boulder
 	});
 
@@ -1765,12 +1765,12 @@ void AreaTable_Init() {
 		Entrance(IKANA_GRAVEYARD_BELOW_GRAVE1, {[]{return CaptainsHat;}}),
 		Entrance(IKANA_GRAVEYARD_BELOW_GRAVE2, {[]{return CaptainsHat;}}),
 		Entrance(IKANA_GRAVEYARD_BELOW_GRAVE3, {[]{return CaptainsHat;}}),
-		Entrance(IKANA_GRAVEYARD_GROTTO, {[]{return HasExplosives && MaskOfTruth;}}),//Trick for no MoT?
+		Entrance(IKANA_GRAVEYARD_GROTTO, {[]{return HasExplosives && (MaskOfTruth || KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED));}}),
 	});
 
 	areaTable[IKANA_GRAVEYARD_GROTTO] = Area("Ikana Graveyard Grotto", "Ikana Graveyard Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -1872,7 +1872,7 @@ void AreaTable_Init() {
 
 	areaTable[DAMPES_HUT] = Area("Dampe's Hut", "Dampe's Hut", NONE, {
 		//Events
-		EventAccess(&BigPoe, {[]{return /*CanUseProjectile && AnyBottle*/ false;}}),//Trick Gibdo Big Poe out of well?
+		EventAccess(&BigPoe, {[]{return (CanUseProjectile && AnyBottle && KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED));}}),
 	},
 	{
 		//Locations
@@ -1909,7 +1909,7 @@ void AreaTable_Init() {
 
 	areaTable[IKANA_CANYON_UPPER] = Area("Upper Ikana Canyon", "Upper Ikana Canyon", IKANA_CANYON, {
 		//Events
-		EventAccess(&WinnerPicture, {[]{return false;}}),//Trick for picture of Tingle instead of Deku King?
+		EventAccess(&WinnerPicture, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && Pictobox;}}),
 	},
 	{
 		//Locations
@@ -1992,7 +1992,7 @@ void AreaTable_Init() {
 
 	areaTable[IKANA_CANYON_SECRET_SHRINE_GROTTO] = Area("Ikana Canyon Near Secret Shrine Grotto", "Ikana Canyon Near Secret Shrine Grotto", NONE, {
 		//Events
-		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
+		EventAccess(&Mushroom, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && AnyBottle && MaskOfScents;}}),
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
 		EventAccess(&Fish, {[]{return AnyBottle;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
@@ -2066,7 +2066,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(WF_SF_MAIN_ROOM_BUBBLE, {[] {return (Bow || Hookshot) && GreatFairyMask;}}),//Stricter to make sure it can be obtained from the entrance platform
-		LocationAccess(WF_SF_JAR_FAIRY, {[] {return DekuMask && GreatFairyMask;}}),//Trick for hidden fairy without GFM?
+		LocationAccess(WF_SF_JAR_FAIRY, {[] {return DekuMask && (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || GreatFairyMask);}}),
 		LocationAccess(WF_SF_DEKU_BABA, {[] {return Fighting || DekuMask;}}),
 	},
 	{
@@ -2113,7 +2113,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(WOODFALL_TEMPLE_MAP_CHEST, {[] {return DekuMask;}}),//Trick for clearing with Goron?
+		LocationAccess(WOODFALL_TEMPLE_MAP_CHEST, {[] {return DekuMask || (GoronMask && KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED));}}),//Turtle can be flipped with Goron pound
 	},
 	{
 		//Exits
@@ -2125,7 +2125,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(WF_SF_PLATFORM_ROOM_BEEHIVE, {[] {return CanUseProjectile && GreatFairyMask;}}),//Trick for hidden fairy without GFM?
+		LocationAccess(WF_SF_PLATFORM_ROOM_BEEHIVE, {[] {return CanUseProjectile && (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || GreatFairyMask);}}),
 	},
 	{
 		//Exits
@@ -2136,11 +2136,11 @@ void AreaTable_Init() {
 
 	areaTable[WOODFALL_TEMPLE_BOSS_KEY_ROOM] = Area("Woodfall Temple Boss Key Room", "Woodfall Temple Boss Key Room", WOODFALL_TEMPLE, {
 		//Events
-		EventAccess(&WoodfallFrog, {[]{return DekuMask && Fighting && Bow && DonGerosMask;}}),//Trick for clearing with Goron?
+		EventAccess(&WoodfallFrog, {[]{return (DekuMask || (GoronMask && KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED))) && Fighting && Bow && DonGerosMask;}}),//Turtle can be flipped with Goron pound
 	},
 	{
 		//Locations
-		LocationAccess(WOODFALL_TEMPLE_BOSS_KEY_CHEST, {[] {return DekuMask && Fighting && Bow;}}),//Trick for clearing with Goron?
+		LocationAccess(WOODFALL_TEMPLE_BOSS_KEY_CHEST, {[] {return (DekuMask || (GoronMask && KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED))) && Fighting && Bow;}}),//Turtle can be flipped with Goron pound
 	},
 	{
 		//Exits
@@ -2165,8 +2165,8 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(WF_SF_BRIDGE_ROOM_BEEHIVE, {[] {return CanUseProjectile && GreatFairyMask;}}),//Trick for hidden fairy without GFM?
-		LocationAccess(WF_SF_SKULLTULA, {[] {return Fighting && GreatFairyMask;}}),//Trick for hidden fairy without GFM?
+		LocationAccess(WF_SF_BRIDGE_ROOM_BEEHIVE, {[] {return CanUseProjectile && (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || GreatFairyMask);}}),
+		LocationAccess(WF_SF_SKULLTULA, {[] {return Fighting && (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || GreatFairyMask);}}),
 	},
 	{
 		//Exits
@@ -2231,18 +2231,18 @@ void AreaTable_Init() {
 
 	areaTable[WOODFALL_TEMPLE_BOSS_ROOM] = Area("Woodfall Temple Boss Room", "Woodfall Temple Boss Room", WOODFALL_TEMPLE, {
 		//Events
-		EventAccess(&WoodfallClear, {[]{return DekuMask && Bow && Fighting;}}),//Trick for beating without Deku/Bow?
+		EventAccess(&WoodfallClear, {[]{return (DekuMask && Nuts && Fighting) || FierceDeityMask;}}),//Trick for beating without Deku/Nuts?
 	},
 	{
 		//Locations
-		LocationAccess(ODOLWA, {[]{return DekuMask && Bow && Fighting;}}),//Trick for beating without Deku/Bow?
-		LocationAccess(ODOLWA_HEART_CONTAINER, {[]{return DekuMask && Bow && Fighting;}}),//Trick for beating without Deku/Bow?
-		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return DekuMask && Bow && Fighting;}}),//Trick for beating without Deku/Bow?
+		LocationAccess(ODOLWA, {[]{return (DekuMask && Nuts && Fighting) || FierceDeityMask;}}),//Trick for beating without Deku/Nuts?
+		LocationAccess(ODOLWA_HEART_CONTAINER, {[]{return (DekuMask && Nuts && Fighting) || FierceDeityMask;}}),//Trick for beating without Deku/Nuts?
+		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return (DekuMask && Nuts && Fighting) || FierceDeityMask;}}),//Trick for beating without Deku/Nuts?
 	},
 	{
 		//Exits
 		Entrance(WOODFALL_TEMPLE_PRE_BOSS_ROOM, {[]{return false;}}),//One-way door
-		Entrance(WOODFALL_TEMPLE_PRINCESS_ROOM, {[]{return DekuMask && Bow && Fighting;}}),//Trick for beating without Deku/Bow?
+		Entrance(WOODFALL_TEMPLE_PRINCESS_ROOM, {[]{return (DekuMask && Nuts && Fighting) || FierceDeityMask;}}),//Trick for beating without Deku/Bow?
 	});
 
 	areaTable[WOODFALL_TEMPLE_PRINCESS_ROOM] = Area("Deku Princess Room", "Deku Princess Room", WOODFALL_TEMPLE, {
@@ -2272,7 +2272,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(SNOWHEAD, {[]{return true;}}),
-		Entrance(SNOWHEAD_TEMPLE_BRIDGE_ROOM, {[]{return GoronMask;}}),//All exits into the temple require Goron to push the block
+		Entrance(SNOWHEAD_TEMPLE_BRIDGE_ROOM, {[]{return GoronMask || (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && ZoraMask);}}),//Zora can also push the block
 		Entrance(SNOWHEAD_TEMPLE_COMPASS_ROOM, {[]{return GoronMask && SmallKeys(SnowheadTempleKeys, 1);}}),
 		Entrance(SNOWHEAD_TEMPLE_MAIN_ROOM_1F, {[]{return GoronMask && CanUse(FIRE_ARROWS);}}),
 	});
@@ -2372,7 +2372,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(SNOWHEAD_TEMPLE_MAIN_ROOM_1F, {[]{return true;}}),
-		Entrance(SNOWHEAD_TEMPLE_DOUBLE_BLOCK_ROOM_UPPER, {[]{return false;}}),//Trick for Zora climb?
+		Entrance(SNOWHEAD_TEMPLE_DOUBLE_BLOCK_ROOM_UPPER, {[]{return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && ZoraMask;}}),//Blocks are climbable as Zora
 	});
 
 	areaTable[SNOWHEAD_TEMPLE_DOUBLE_BLOCK_ROOM_UPPER] = Area("Snowhead Temple Double Block Room Upper", "Snowhead Temple Double Block Room Upper", SNOWHEAD_TEMPLE, {
@@ -2397,7 +2397,7 @@ void AreaTable_Init() {
 		
 		//Stray Fairies
 		LocationAccess(SH_SF_ICE_PUZZLE, {[] {return CanUse(FIRE_ARROWS);}}),
-		LocationAccess(SH_SF_CRATE, {[] {return HasExplosives && GreatFairyMask;}}),//Trick for Goron pound? //Trick for hidden fairy without GFM?
+		LocationAccess(SH_SF_CRATE, {[] {return HasExplosives && (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || GreatFairyMask);}}),//Trick for Goron pound?
 		
 	},
 	{
@@ -2413,7 +2413,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(SNOWHEAD_TEMPLE_ICICLE_ROOM_CHEST, {[] {return (Bow || ZoraMask) && (CanBlastOrSmash || CanUse(FIRE_ARROWS));}}), //Shoot icicles down or climb as Zora. Make Zora into a trick?
-		LocationAccess(SH_SF_ICICLE_ROOM_WALL, {[] {return Bow && GreatFairyMask && CanUse(LENS_OF_TRUTH);}}),//Trick for jump without bow? //Trick for hidden fairy without GFM?
+		LocationAccess(SH_SF_ICICLE_ROOM_WALL, {[] {return KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || (Bow && GreatFairyMask && CanUse(LENS_OF_TRUTH));}}),
 	},
 	{
 		//Exits
@@ -2439,7 +2439,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(SH_SF_MAIN_ROOM_WALL, {[] {return Hookshot && CanPlay(ScarecrowSong) && GreatFairyMask && CanUse(LENS_OF_TRUTH);}}),//Trick for Hookshot-less? Trick for hidden fairy without GFM?
+		LocationAccess(SH_SF_MAIN_ROOM_WALL, {[] {return Hookshot && CanPlay(ScarecrowSong) && (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || GreatFairyMask) && CanUse(LENS_OF_TRUTH);}}),//Trick for Hookshot-less?
 	},
 	{
 		//Exits
@@ -2618,8 +2618,8 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(GBT_SF_WHIRLPOOL_JAR, {[] {return (ZoraMask || Bow) && GreatFairyMask;}}),//Trick for hidden fairy without GFM?
-		LocationAccess(GBT_SF_WHIRLPOOL_BARREL, {[] {return GreatFairyMask;}}),//Trick for hidden fairy without GFM?
+		LocationAccess(GBT_SF_WHIRLPOOL_JAR, {[] {return (ZoraMask || Bow) && (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || GreatFairyMask);}}),
+		LocationAccess(GBT_SF_WHIRLPOOL_BARREL, {[] {return (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || GreatFairyMask);}}),
 	},
 	{
 		//Exits
@@ -2690,7 +2690,7 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(GBT_COMPASS_CHEST, {[] {return CanUseProjectile || Hookshot;}}),//Projectile sever Bio Baba from platforms
 		LocationAccess(GBT_SMALL_KEY_CHEST, {[] {return ZoraMask;}}),
-		LocationAccess(GBT_SF_DEXIHANDS_JAR, {[] {return CanUseProjectile && GreatFairyMask;}}),//Trick for hidden fairy without GFM?
+		LocationAccess(GBT_SF_DEXIHANDS_JAR, {[] {return CanUseProjectile && (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || GreatFairyMask);}}),
 	},
 	{
 		//Exits
@@ -2784,7 +2784,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(GBT_SF_SEESAW_ROOM, {[] {return CanUse(FIRE_ARROWS) && CanUse(ICE_ARROWS);}}),
-		LocationAccess(GBT_SF_UNDERWATER_BARREL, {[] {return ZoraMask && GreatFairyMask;}}),//Trick for hidden fairy without GFM?
+		LocationAccess(GBT_SF_UNDERWATER_BARREL, {[] {return ZoraMask && (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || GreatFairyMask);}}),
 	},
 	{
 		//Exits
@@ -3240,7 +3240,7 @@ void AreaTable_Init() {
 
 	areaTable[PIRATE_FORTRESS_HOOKSHOT_ROOM_TOP] = Area("Pirates Fortress Upper Hookshot Room", "Pirates Fortress Upper Hookshot Room", PIRATE_FORTRESS, {
 		//Events
-		EventAccess(&PirateBees, {[]{return Bow;}}),//Trick for zora fins or deku bubble?
+		EventAccess(&PirateBees, {[]{return Bow || (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && (ZoraMask || (DekuMask && MagicMeter)));}}),
 	},
 	{
 		//Locations
@@ -3446,7 +3446,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(WELL_RIGHT_PATH_CHEST, {[] {return CanUse(FIRE_ARROWS);}}),//Trick for lighting torches with Deku Sticks?
+		LocationAccess(WELL_RIGHT_PATH_CHEST, {[] {return (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && HasFireSourceWithTorch) || CanUse(FIRE_ARROWS);}}),
 	},
 	{
 		//Exits
@@ -3471,7 +3471,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(BENEATH_THE_WELL_MIRROR_SHIELD_CHEST, {[] {return CanUse(FIRE_ARROWS);}}),//Trick for lighting torches with Deku Sticks?
+		LocationAccess(BENEATH_THE_WELL_MIRROR_SHIELD_CHEST, {[] {return (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && HasFireSourceWithTorch && GibdosMask && Milk && BigPoe) || CanUse(FIRE_ARROWS);}}),//Torch is before the Big Poe Gibdo
 	},
 	{
 		//Exits
@@ -3899,7 +3899,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(THE_MOON_LINK_TRIAL_GOSSIP_ROOM_2, {[]{return Fighting;}}),
-		Entrance(THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM, {[]{return Fighting && HasBombchus && Bow;}}),//Trick for Song of Storms?
+		Entrance(THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM, {[]{return Fighting && ((KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && CanPlay(SongOfStorms)) || (HasBombchus && Bow));}}),//SoS in front of the previous Gossip Stone makes the ladder appear
 	});
 
 	areaTable[THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM] = Area("The Moon Link Trial Piece of Heart Room", "The Moon Link Trial Piece of Heart Room", THE_MOON, {
@@ -3914,7 +3914,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(THE_MOON_LINK_TRIAL_IRON_KNUCKLE_ROOM, {[]{return true;}}),
-		Entrance(THE_MOON_LINK_TRIAL_KID_ROOM, {[]{return HasBombchus && CanUse(FIRE_ARROWS);}}),//Trick for Song of Storms?
+		Entrance(THE_MOON_LINK_TRIAL_KID_ROOM, {[]{return (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && CanPlay(SongOfStorms)) || (HasBombchus && CanUse(FIRE_ARROWS));}}),//SoS in front of the previous Gossip Stone makes the door open
 	});
 
 	areaTable[THE_MOON_LINK_TRIAL_KID_ROOM] = Area("The Moon Link Trial Kid Room", "The Moon Link Trial Kid Room", THE_MOON, {
@@ -4072,7 +4072,7 @@ void AreaTable_Init() {
 
 	areaTable[SSH_GOLD_ROOM_UPPER_LEFT] = Area("Swamp Spider House Gold Room", "Swamp Spider House Gold Room", SSH, {
 		//Events
-		EventAccess(&GoldRoomLadder, {[]{return CanUseProjectile;}}),//Trick for Bombchu to hit the switch from lower?
+		EventAccess(&GoldRoomLadder, {[]{return (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && HasBombchus) || CanUseProjectile;}}),//Trick for Bombchu to hit the switch from lower?
 	},
 	{
 		//Locations
@@ -4086,7 +4086,7 @@ void AreaTable_Init() {
 
 	areaTable[SSH_GOLD_ROOM_UPPER_RIGHT] = Area("Swamp Spider House Gold Room", "Swamp Spider House Gold Room", SSH, {
 		//Events
-		EventAccess(&GoldRoomLadder, {[]{return Fighting || CanUseProjectile;}}),//Trick for Bombchu to hit the switch from lower?
+		EventAccess(&GoldRoomLadder, {[]{return Fighting || CanUseProjectile;}}),
 	},
 	{
 		//Locations
@@ -4189,7 +4189,7 @@ void AreaTable_Init() {
 		LocationAccess(OSH_COLORED_SKULLS_CHANDELIER_3, {[] {return Fighting || CanUseProjectile;}}),
 		LocationAccess(OSH_COLORED_SKULLS_BEHIND_PICTURE, {[] {return Hookshot || ZoraMask;}}),
 		LocationAccess(OSH_COLORED_SKULLS_POT, {[] {return Fighting || CanUseProjectile;}}),
-		LocationAccess(GBC_OCEAN_SPIDER_CHEST, {[] {return CaptainsHat && Bow;}}),//Trick for without Captain's Hat?
+		LocationAccess(GBC_OCEAN_SPIDER_CHEST, {[] {return (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) || CaptainsHat) && Bow;}}),
 	},
 	{
 		//Exits

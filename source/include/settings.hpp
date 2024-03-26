@@ -285,6 +285,7 @@ namespace Settings {
   extern Option GenerateSpoilerLog;
   extern std::vector<Option*> logicOptions;
   extern Option LogicTrick;
+  extern Option KnowTheGame;
  
   //Trick Settings
   extern Option ToggleAllTricks;

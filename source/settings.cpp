@@ -65,11 +65,13 @@ namespace Settings {
   };
   
   //Mode/Logic Settings
-  Option Logic = Option::U8("Logic", { "Glitchless", "No Logic", "Vanilla", "Glitched" }, { logicGlitchless, logicNoLogic, logicVanilla, logicGlitched },OptionCategory::Setting, (u8)LogicSetting::LOGIC_GLITCHLESS);
-  Option LocationsReachable = Option::Bool("All Locations Reachable", { "Off", "On" }, { locationsReachableDesc }, OptionCategory::Setting, 1); //All Locations Reachable On
+  Option Logic              = Option::U8  ("Logic",                   {"Glitchless", "No Logic", "Vanilla", "Glitched"}, {logicGlitchless, logicNoLogic, logicVanilla, logicGlitched}, OptionCategory::Setting, (u8)LogicSetting::LOGIC_GLITCHLESS);
+  Option LocationsReachable = Option::Bool("All Locations Reachable", {"Off", "On"},                                     {locationsReachableDesc},                                     OptionCategory::Setting, 1); //All Locations Reachable On
+  Option KnowTheGame        = Option::U8  ("Game Knowledge Expected", {"Basic", "Advanced"/*, "Complete"*/},             {knowBasicDesc, knowAdvancedDesc/*, knowCompleteDesc*/},      OptionCategory::Setting, (u8)KnowSetting::KNOW_BASIC);
   std::vector<Option*> logicOptions = {
     &Logic,
     &LocationsReachable,
+    &KnowTheGame,
   };
 
   //Game Settings
@@ -613,6 +615,7 @@ namespace Settings {
 ///things commented out below here need to be added or match up to SettingsContext in \mm3dr\code\include\rnd\settings.h
     ctx.logic                = Logic.Value<u8>();
     ctx.locationsReachable = (LocationsReachable) ? 1 : 0;
+    ctx.knowTheGame = KnowTheGame.Value<u8>();
     ctx.linksPocketItem = LinksPocketItem.Value<u8>();
 
     ctx.shuffleSongs = ShuffleSongs.Value<u8>();

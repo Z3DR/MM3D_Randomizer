@@ -20,7 +20,7 @@ string_view logicVanilla              = "For those who want to play the game nor
                                         "item pool settings. You can still use non-vanilla\n"
                                         "world settings such as entrance shuffle, \n"      //
                                         "but the game may require glitches to complete\n"  //
-                                        "if you do.";                             //
+                                        "if you do.";                                      //
 /*------------------------------                                                           //
 |   ALL LOCATIONS REACHABLE    |                                                           //
 ------------------------------*/                                                           //
@@ -29,6 +29,21 @@ string_view locationsReachableDesc    = "When this options is enabled, the rando
                                         "location is reachable. When disabled, only\n"     //
                                         "required items and locations to beat the game\n"  //
                                         "will be guaranteed reachable.";                   //
+/*------------------------------                                                           //
+|   GAME KNOWLEDGE EXPECTED    |                                                           //
+------------------------------*/                                                           //
+string_view knowBasicDesc             = "There are many intricacies about the game that\n" //
+                                        "you are not expected to know by default.\n\n"     //
+                                        "Basic game knowledge is the knowledge necessary\n"//
+                                        "to complete the base game without a guide.";      //
+string_view knowAdvancedDesc          = "There are many intricacies about the game that\n" //
+                                        "you are not expected to know by default.\n\n"     //
+                                        "Advanced game knowledge means that you know\n"    //
+                                        "every unusual (but intended) way to reach\n"      //
+                                        "places, and you know where things are hidden\n"   //
+                                        "(such as grottos and stray fairies).";            //
+//string_view knowCompleteDesc          = "There are many intricacies about the game that\n" //
+//                                        "you are not expected to know by default.\n\n"     //
 /*------------------------------                                                           //
 |  DETAILED LOGIC EXPLANATIONS |                                                           //
 ------------------------------*/                                                           //

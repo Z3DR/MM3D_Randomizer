@@ -153,6 +153,8 @@ extern string_view quickTextDesc3;
 extern string_view damageMultiDesc;
 
 extern string_view locationsReachableDesc;
+extern string_view knowBasicDesc;
+extern string_view knowAdvancedDesc;
 
 extern string_view chestAnimDesc;
 
