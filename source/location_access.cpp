@@ -3899,7 +3899,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(THE_MOON_LINK_TRIAL_GOSSIP_ROOM_2, {[]{return Fighting;}}),
-		Entrance(THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM, {[]{return Fighting && ((KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && CanPlay(SongOfStorms)) || (HasBombchus && Bow));}}),//SoS in front of the previous Gossip Stone makes the ladder appear
+		Entrance(THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM, {[]{return Fighting && ((KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && (CanPlay(SongOfStorms) || CanPlay(EponasSong) || CanPlay(SongOfHealing))) || (HasBombchus && Bow));}}),//Fairy-spawning songs in front of the previous Gossip Stone makes the ladder appear
 	});
 
 	areaTable[THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM] = Area("The Moon Link Trial Piece of Heart Room", "The Moon Link Trial Piece of Heart Room", THE_MOON, {
@@ -3914,7 +3914,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(THE_MOON_LINK_TRIAL_IRON_KNUCKLE_ROOM, {[]{return true;}}),
-		Entrance(THE_MOON_LINK_TRIAL_KID_ROOM, {[]{return (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && CanPlay(SongOfStorms)) || (HasBombchus && CanUse(FIRE_ARROWS));}}),//SoS in front of the previous Gossip Stone makes the door open
+		Entrance(THE_MOON_LINK_TRIAL_KID_ROOM, {[]{return (KnowTheGame.Is(rnd::KnowSetting::KNOW_ADVANCED) && (CanPlay(SongOfStorms) || CanPlay(EponasSong) || CanPlay(SongOfHealing))) || (HasBombchus && CanUse(FIRE_ARROWS));}}),//Fairy-spawning songs in front of the previous Gossip Stone makes the door open
 	});
 
 	areaTable[THE_MOON_LINK_TRIAL_KID_ROOM] = Area("The Moon Link Trial Kid Room", "The Moon Link Trial Kid Room", THE_MOON, {
