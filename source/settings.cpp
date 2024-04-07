@@ -270,7 +270,7 @@ namespace Settings {
   std::vector<Option*> excludeLocationsOptions = {};
 
   //Overworld Shuffle Settings
-  Option ShuffleMainInventory   = Option::Bool("Shuffle Starting Gear", {"Off", "On"},                                       {shuffleMainInventoryDesc},                                             OptionCategory::Toggle,   1);
+  Option ShuffleMainInventory   = Option::Bool("Shuffle Main Inventory",{"Off", "On"},                                       {shuffleMainInventoryDesc},                                             OptionCategory::Toggle,   1);
   Option ShuffleKokiriSword     = Option::Bool("Shuffle Kokiri Sword",  {"Off", "On"},                                       {kokiriSwordDesc});
   Option ShuffleStartingShield  = Option::Bool("Starting Shield",       {"Off", "On"},                                       {shuffleStartShield});
   Option ShuffleMasks           = Option::Bool("Shuffle Masks",         {"Off", "On"},                                       {shuffleMasksVanilla, shuffleMasksRandom},                              OptionCategory::Toggle,   1);
@@ -282,7 +282,7 @@ namespace Settings {
   Option Tokensanity            = Option::Bool("Tokensanity",           {"Off", "On"},                                       {tokensOff, tokensAllTokens});
   Option Scrubsanity            = Option::U8  ("Shuffle Scrub Wares",   {"Off", "Affordable", "Expensive", "Random Prices"}, {scrubsOff, scrubsAffordable, scrubsExpensive, scrubsRandomPrices});
   Option ShuffleMerchants       = Option::Bool("Shuffle Scrub Trades",  {"Off", "On"},                                       {shuffleMerchantsDesc});
-  Option ShuffleTradeItems      = Option::Bool("Shuffle Anju & Kafei",  {"Off", "On"},                                       {shuffleTradeItemsDesc});
+  Option ShuffleTradeItems      = Option::Bool("Shuffle Anju and Kafei",{"Off", "On"},                                       {shuffleTradeItemsDesc});
   Option ShuffleGFRewards       = Option::U8  ("Shuffle Fairy Rewards", {"Off", "Great Fairies", "Anywhere" },               {shuffleGFVanilla, shuffleGFSelf, shuffleGFAnywhere},                   OptionCategory::Setting, (u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA);
   Option ShuffleCows            = Option::Bool("Shuffle Cows",          {"Off", "On"},                                       {shuffleCowsDesc});
   Option ShuffleOcarinas        = Option::Bool("Shuffle Ocarina",       {"Off", "On"},                                       {ocarinasDesc});
