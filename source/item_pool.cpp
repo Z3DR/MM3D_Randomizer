@@ -1119,7 +1119,7 @@ void GenerateItemPool() {
 	//TO-DO----SHOP SANITY
 	//for now... its all vanilla lol
 	//if (Settings::Shopsanity.Is(ShopsanitySetting::SHOPSANITY_OFF) || Settings::Shopsanity.Is(ShopsanitySetting::SHOPSANITY_ZERO)) {
-    //AddItemsToPool(ItemPool, normalRupees);
+    AddItemsToPool(ItemPool, normalRupees);
 	PlaceVanillaShopItems();
  	// } else { //Shopsanity 1-4, random
     //AddItemsToPool(ItemPool, shopsanityRupees); //Shopsanity gets extra large rupees

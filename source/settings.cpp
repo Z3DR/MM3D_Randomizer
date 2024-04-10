@@ -639,7 +639,7 @@ namespace Settings {
     //ctx.shuffleFierceDeity = (ShuffleFierceDeity) ? 1:0;
     //ctx.shuffleMasks = (ShuffleMasks) ? 1 : 0;
     ctx.shuffleGreatFairyRewards = ShuffleGFRewards.Value<u8>();
-    ctx.shufflePiecesOfHeart = (ShufflePiecesOfHeart) ? 1:0;
+    //ctx.shufflePiecesOfHeart = (ShufflePiecesOfHeart) ? 1:0;
 
     ctx.iceTrapValue = IceTrapValue.Value<u8>();
     //ctx.randomTrapDmg = RandomTrapDmg.Value<u8>();
@@ -1350,7 +1350,7 @@ namespace Settings {
       } else {
         ShufflePiecesOfHeart.Unlock();
       }
-      
+
     //Groups the item categories; bottles are handled separately because the proper item is Empty Bottle (1)
       CollapseCategory(StartingInventoryToggle, 3, 25);
       CollapseCategory(StartingMaskToggle, 26, 50);
