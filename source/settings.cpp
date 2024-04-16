@@ -1343,6 +1343,14 @@ namespace Settings {
   //will force Starting Age to Child).
   void ForceChange(u32 kDown, Option* currentSetting) {
 
+      //Lock Shuffle Heart Pieces if the item pool is set to Plentiful, since heart piece locations are used to extra items
+      if (ItemPoolValue.Is(ItemPoolSetting::ITEMPOOL_PLENTIFUL)) {
+        ShufflePiecesOfHeart.SetSelectedIndex(1);
+        ShufflePiecesOfHeart.Lock();
+      } else {
+        ShufflePiecesOfHeart.Unlock();
+      }
+
     //Groups the item categories; bottles are handled separately because the proper item is Empty Bottle (1)
       CollapseCategory(StartingInventoryToggle, 3, 25);
       CollapseCategory(StartingMaskToggle, 26, 50);

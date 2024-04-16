@@ -365,7 +365,12 @@ string_view advancedTrapDmgDesc       = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |          ITEM POOL           |                                                           //
 ------------------------------*/                                                           //
-string_view itemPoolPlentiful         = "Extra major items are added to the pool.";        //
+string_view itemPoolPlentiful         = "In addition to the regular pool:\n"               //
+                                        "- A duplicate for each major item and upgrade;\n" //
+                                        "- A duplicate for each mask;\n"                   //
+                                        "- A duplicate for each key;\n"                    //
+                                        "- Heart Containers replace most Pieces of Heart.\n\n"
+                                        "This will force enable Shuffle Piece of Heart.";  //
 string_view itemPoolBalanced          = "Original item pool.";                             //
 string_view itemPoolScarce            = "Some excess items are removed, including health\n"//
                                         "upgrades.";                                       //

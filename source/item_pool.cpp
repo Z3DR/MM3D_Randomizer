@@ -1055,11 +1055,13 @@ void GenerateItemPool() {
 	}
 	
 	//PIECEOFHEART SHUFFLE
-	if(ShufflePiecesOfHeart){
-		AddItemToMainPool(PIECE_OF_HEART,48);//52Total-4MoonHearts
+	if(ShufflePiecesOfHeart) {
+		if(ItemPoolValue.IsNot(ItemPoolSetting::ITEMPOOL_PLENTIFUL)) {
+		    AddItemToMainPool(PIECE_OF_HEART,48);//52Total-4MoonHearts}
+		}
 	}
 
-	else{
+	else {
 		PlaceVanillaHeartPieces();
 	}
 	
@@ -1253,6 +1255,26 @@ void GenerateItemPool() {
 	}
 
 	if (ItemPoolValue.Is(ItemPoolSetting::ITEMPOOL_PLENTIFUL)) {
+        AddItemsToPool(ItemPool, maskList);
+        AddItemToMainPool(DEKU_MASK);
+        AddItemToMainPool(GORON_MASK);
+        AddItemToMainPool(ZORA_MASK);
+        AddItemToMainPool(FIERCE_DEITY_MASK);
+        AddItemToMainPool(PROGRESSIVE_BOW);
+        AddItemToMainPool(FIRE_ARROWS);
+        AddItemToMainPool(ICE_ARROWS);
+        AddItemToMainPool(LIGHT_ARROWS);
+        AddItemToMainPool(LENS_OF_TRUTH);
+        AddItemToMainPool(HOOKSHOT);
+        AddItemToMainPool(PICTOGRAPH_BOX);
+        AddItemToMainPool(MIRROR_SHIELD);
+        AddItemToMainPool(GREAT_FAIRYS_SWORD);
+        AddItemToMainPool(PROGRESSIVE_SWORD);
+        AddItemToMainPool(PROGRESSIVE_WALLET);
+        AddItemToMainPool(PROGRESSIVE_MAGIC_METER);
+        AddItemToMainPool(SPIN_ATTACK);
+        AddItemToMainPool(DOUBLE_DEFENSE);
+        AddItemToMainPool(HEART_CONTAINER, 12);
 
 		//Plentiful small keys
 		if (Keysanity.Is(KeysanitySetting::KEYSANITY_ANYWHERE)) {
