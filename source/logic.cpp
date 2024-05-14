@@ -353,15 +353,11 @@ namespace Logic {
 			item == ICE_ARROWS ||
 			item == LIGHT_ARROWS;
 	}
-	static bool IsItemOrMask(ItemKey item) {
+	static bool IsNonMagicItemOrMask(ItemKey item) {
 		return (item == KOKIRI_SWORD) ||
 			(item == DEKU_STICK) ||
-			(item == LENS_OF_TRUTH) ||
 			(item == HEROS_BOW) ||
 			(item == SCARECROW) ||
-			(item == FIRE_ARROWS) ||
-			(item == ICE_ARROWS) ||
-			(item == LIGHT_ARROWS) ||
 			(item == DEKU_STICK) ||
 			(item == PICTOGRAPH_BOX) ||
 			(item == POWDER_KEG) ||
@@ -383,7 +379,6 @@ namespace Logic {
 			(item == GIBDOS_MASK) ||
 			(item == GAROS_MASK) ||
 			(item == CAPTAINS_HAT) ||
-			(item == GIANTS_MASK) ||
 			(item == FIERCE_DEITY_MASK) ||
 			(item == MASK_OF_TRUTH);
 	}
@@ -425,11 +420,11 @@ namespace Logic {
 	bool CanUse(ItemKey itemName) {
 		return (IsMagicItem(itemName) && HasItem(itemName) && MagicMeter) ||
 			(IsMagicArrow(itemName) && HasItem(itemName) && MagicMeter && Bow) ||
-			(IsItemOrMask(itemName) && HasItem(itemName));
+			(IsNonMagicItemOrMask(itemName) && HasItem(itemName));
 	}
 
 	bool HasProjectile(ItemKey itemName) {
-		return (IsItemOrMask(itemName) && HasItem(itemName) && Bow);
+		return (IsNonMagicItemOrMask(itemName) && HasItem(itemName) && Bow);
 	}
 
 	bool SmallKeys(u8 dungeonKeyCount, u8 requiredAmount) {
