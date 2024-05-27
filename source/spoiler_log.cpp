@@ -450,14 +450,53 @@ static void WriteExcludedLocations(tinyxml2::XMLDocument& spoilerLog) {
 static void WriteStartingInventory(tinyxml2::XMLDocument& spoilerLog) {
   auto parentNode = spoilerLog.NewElement("starting-inventory");
 
-  // Start at index 3 to skip over the toggle, "Start with Consumables", and "Start with Max Rupees".
-  for (size_t i = 3; i < Settings::startingInventoryOptions.size(); ++i) {
-    const auto setting = Settings::startingInventoryOptions[i];
+  for (size_t i = 0; i < Settings::startingInventoryInventory.size(); ++i) {
+    const auto setting = Settings::startingInventoryInventory[i];
     //Ignore no starting bottles and the Choose/All On toggles
     if (setting->GetSelectedOptionIndex() == (u8)StartingBottleSetting::STARTINGBOTTLE_NONE || setting->GetSelectedOptionText() == "Choose" || setting->GetSelectedOptionText() == "All On") {
       continue;
-    }
+    } 
+  
+    auto node = parentNode->InsertNewChildElement("item");
+    node->SetAttribute("name", setting->GetName().c_str());
+    node->SetText(setting->GetSelectedOptionText().c_str());
+  }
 
+  for (size_t i = 0; i < Settings::startingInventoryMasks.size(); ++i) {
+    const auto setting = Settings::startingInventoryMasks[i];
+    if (setting->GetSelectedOptionIndex() == 0) { 
+      continue;
+    }
+    auto node = parentNode->InsertNewChildElement("item");
+    node->SetAttribute("name", setting->GetName().c_str());
+    node->SetText(setting->GetSelectedOptionText().c_str());
+  }
+
+  for (size_t i = 0; i < Settings::startingInventorySongs.size(); ++i) {
+    const auto setting = Settings::startingInventorySongs[i];
+    if (setting->GetSelectedOptionIndex() == 0) { 
+      continue;
+    }
+    auto node = parentNode->InsertNewChildElement("item");
+    node->SetAttribute("name", setting->GetName().c_str());
+    node->SetText(setting->GetSelectedOptionText().c_str());
+  }
+
+  for (size_t i = 0; i < Settings::startingInventoryUpgrades.size(); ++i) {
+    const auto setting = Settings::startingInventoryUpgrades[i];
+    if (setting->GetSelectedOptionIndex() == 0) { 
+      continue;
+    } 
+    auto node = parentNode->InsertNewChildElement("item");
+    node->SetAttribute("name", setting->GetName().c_str());
+    node->SetText(setting->GetSelectedOptionText().c_str());
+  }
+
+  for (size_t i = 0; i < Settings::startingInventoryRemains.size(); ++i) {
+    const auto setting = Settings::startingInventoryRemains[i];
+    if (setting->GetSelectedOptionIndex() == 0) { 
+      continue;
+    }
     auto node = parentNode->InsertNewChildElement("item");
     node->SetAttribute("name", setting->GetName().c_str());
     node->SetText(setting->GetSelectedOptionText().c_str());
