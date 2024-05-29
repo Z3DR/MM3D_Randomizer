@@ -387,6 +387,8 @@ std::vector<LocationKey> DungeonInfo::GetEveryLocation() const {
                             THE_MOON_DEKU_TRIAL_BONUS,
 							THE_MOON_GORON_TRIAL_BONUS,
 							THE_MOON_ZORA_TRIAL_BONUS,
+							THE_MOON_GARO_CHEST,
+							THE_MOON_IRON_KNUCKLE_CHEST,
 							THE_MOON_LINK_TRIAL_BONUS,
 							THE_MOON_MAJORA_CHILD,
                           },{} );

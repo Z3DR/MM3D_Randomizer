@@ -1050,9 +1050,9 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(WOODFALL_TEMPLE_ENTRANCE, {[]{return DekuMask && CanPlay(SonataOfAwakening);}}),
+		Entrance(WOODFALL_TEMPLE_ENTRANCE, {[]{return DekuMask && CanPlay(SonataOfAwakening) && (Fighting || CanUseProjectile);}}),
 		Entrance(SOUTHERN_SWAMP_TOP, {[]{return true;}}),
-		Entrance(WOODFALL_FAIRY_FOUNTAIN, {[]{return DekuMask;}}),
+		Entrance(WOODFALL_FAIRY_FOUNTAIN, {[]{return DekuMask && (Fighting || CanUseProjectile);}}),
 		Entrance(WOODFALL_TEMPLE_PRINCESS_ROOM, {[]{return WoodfallClear;}}),
 	});
 
@@ -2012,6 +2012,8 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
+		LocationAccess(ST_LOWER_GOSSIP, {[] {return CanPlay(ElegyOfEmptiness) && GoronMask && ZoraMask && Hookshot;}}),
+		LocationAccess(ST_UPPER_GOSSIP, {[] {return CanPlay(ElegyOfEmptiness) && GoronMask && ZoraMask && Hookshot;}}),
 	},
 	{
 		//Exits

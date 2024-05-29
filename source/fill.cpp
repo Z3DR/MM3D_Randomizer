@@ -828,10 +828,12 @@ int Fill() {
         RandomizeDungeonRewards();
         
         //Place dungeon items restricted to their Own Dungeon
-        
         for (auto dungeon : Dungeon::dungeonList) {
             RandomizeOwnDungeon(dungeon);
         }
+
+        //Then place dungeon items that are assigned to restrictive location pools
+        RandomizeDungeonItems();
 
         if (ShuffleGFRewards.Is((u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_ALL_GREAT_FARIES)){
             //get GF locations
@@ -848,11 +850,9 @@ int Fill() {
         AssumedFill(mainadvancementItems, allLocations,true);
         
         //Then Place Anju & Kafei Items in spots accessable on Day 1, this should prevent situations where you cant get an item in time for its use
-        if(ShuffleTradeItems) {
         std::vector<LocationKey> day1Locations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cDayOne);});
         std::vector<ItemKey> anjukafeiitems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_QUEST;});
         AssumedFill(anjukafeiitems, day1Locations,true);
-        }
 
         //Then Place Deku Merchant Items
        /* if(ShuffleMerchants) {
@@ -880,8 +880,7 @@ int Fill() {
         
         
 
-        //Then place dungeon items that are assigned to restrictive location pools
-        RandomizeDungeonItems();
+        
 
         //Then place Link's Pocket Item if it has to be an advancement item
         //Links Pocket is useless as there is no unobtainable check due to a certain time travel sword pedistal 

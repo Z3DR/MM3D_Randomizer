@@ -623,6 +623,7 @@ string_view dpadArrowDesc            = "Enables using D-Pad up to change your cu
 string_view twinmoldRestorationDesc  = "Fixes Twinmold boss fight so Red Twinmold does not\n"
                                        "regen health when it burrows.";                    //
                                                                                            //
+string_view fastMaskDesc             = "Enables Fast Transformation Animations.";          //
 /*-------------------------------                                                          //
 |   CUSTOM BUTTON MAPPING       |                                                          //
 -------------------------------*/                                                          //

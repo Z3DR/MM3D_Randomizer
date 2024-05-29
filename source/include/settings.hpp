@@ -297,6 +297,7 @@ namespace Settings {
   extern Option StartingNutCapacity;
   extern Option StartingInventoryToggle;
   extern Option StartingOcarina;
+  extern Option StartingNotebook;
   extern Option StartingBombBag;
   extern Option StartingBombchus;
   extern Option StartingHookshot;
@@ -349,6 +350,13 @@ namespace Settings {
   extern Option StartingRazorSword;
   extern Option StartingGildedSword;
   extern std::vector<Option*> startingInventoryOptions;
+  extern std::vector<Option*> startingInventoryInventory;
+  extern std::vector<Option*> startingInventoryMasks;
+  extern std::vector<Option*> startingInventorySongs;
+  extern std::vector<Option*> startingInventoryUpgrades;
+  extern std::vector<Option*> startingInventoryRemains;
+  extern std::vector<Option*> startingInventoryTokensFairys;
+  extern std::vector<Menu*> startingInventoryMenu;
 
   //Starting Masks
   extern Option StartingMaskToggle;
@@ -465,6 +473,7 @@ namespace Settings {
   extern Option DpadOcarina;
   extern Option DpadArrows;
   extern Option TwinmoldRestoraion;
+  extern Option FastMasks;
 
   //Trial Skips
   extern Option OdolwaTrialSkip;
@@ -508,6 +517,13 @@ namespace Settings {
   extern Menu glitchSettings;
   //extern Menu itemSettings;
   extern Menu otherSettings;
+  extern Menu startingInventoryOptionals;
+  extern Menu startingInventoryInventoryMenu;
+  extern Menu startingInventoryMasksMenu;
+  extern Menu startingInventorySongsMenu;
+  extern Menu startingInventoryUpgradesMenu;
+  extern Menu startingInventoryRemainsMenu;
+  extern Menu startingInventoryTokensMenu;
   
   //Main Menu
   extern std::vector<Menu *> mainSettingsOptions;

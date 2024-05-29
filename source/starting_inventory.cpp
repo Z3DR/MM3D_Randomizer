@@ -75,7 +75,7 @@ void GenerateStartingInventory() {
   AddItemToInventory(GOLD_DUST,				          StartingBottle5.Value<u8>());
   AddItemToInventory(CHATEAU_ROMANI,			      StartingBottle6.Value<u8>());
   AddItemToInventory(BOTTLE_WITH_MYSTERY_MILK,	StartingBottle7.Value<u8>());
-  
+  AddItemToInventory(BOMBERS_NOTEBOOK,          StartingNotebook.Value<u8>());
   AddItemToInventory(OCARINA_OF_TIME,     		  StartingOcarina.Value<u8>());
   AddItemToInventory(OATH_TO_ORDER,             StartingOathToOrder.Value<u8>());
   AddItemToInventory(EPONAS_SONG,               StartingEponasSong.Value<u8>());
