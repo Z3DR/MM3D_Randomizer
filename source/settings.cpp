@@ -78,7 +78,7 @@ namespace Settings {
   Option IngameSpoilers       = Option::Bool("Ingame Spoilers",        { "Hide", "Show" },                                                      { ingameSpoilersHideDesc, ingameSpoilersShowDesc });
   Option RegionSelect         = Option::Bool("Game Region",            { "NA", "EU" },                                                          { NARegionDesc, EURegionDesc });
   Option PlayOption           = Option::U8  ("Console/Emulator",       { "3DS", "Citra" },                                                      { "How will you Play?" });
-  Option LanguageSelect       = Option::U8  ("  Language",             { "", "", "English", "Francais", "Espanol", "Deutsch", "Italiano", "" }, { LanguageDesc });
+  Option LanguageSelect       = Option::U8("  Language",               {"", "", "English", "Francais", "Espanol", "Deutsch", "Italiano", ""},   {LanguageDesc});
   Option Version              = Option::U8  ("Version",                { "1.0", "1.1" },                                                        { VersionDesc });
   std::vector<Option *> gameOptions = {
     &PlayOption,
@@ -395,10 +395,13 @@ namespace Settings {
   Option AmmoDrops              = Option::U8("Ammo Drops",                 { "Off", "On" },                                                      { ammoDropDesc });
   Option HeartDropRefills       = Option::U8("Heart Drops",                { "Off", "On" },                                                      { heartDropDesc });
   Option BombchusInLogic        = Option::U8("Bombchus In Logic",          { "Off", "On" },                                                      { bombchuInLogicDesc });
-
+  Option FastMasks              = Option::Bool("Fast Mask Transform",      {"No", "Yes"},                                                        {fastMaskDesc});
+  Option NotebookAnimations     = Option::Bool("Fast Notebook",            {"No", "Yes"},                                                        {disableBotebookAnimation});
   std::vector<Option*> comfortOptions = {
      
      &BlastMaskCooldown,
+     &FastMasks,
+     &NotebookAnimations,
      // &UnderwaterOcarina,
      // &FierceDeityAnywhere,
      //&ProgressiveGildedSword,
@@ -425,7 +428,7 @@ namespace Settings {
   Option DpadOcarina         = Option::Bool("DPad Ocarina",           { "No", "Yes" },                                       {dpadOcarinaDesc});
   Option DpadArrows          = Option::Bool("Dpad Arrow Swap",        { "No", "Yes" },                                       {dpadArrowDesc});
   Option TwinmoldRestoration = Option::Bool("Twinmold Restoration",   { "No", "Yes" },                                       {twinmoldRestorationDesc});
-  Option FastMasks           = Option::Bool("Fast Mask Transform",    { "No", "Yes" },                                       {fastMaskDesc});
+
 
   std::vector<Option *> restorationOptions = {
     //&SkipMinigamePhases,
@@ -442,7 +445,6 @@ namespace Settings {
     &DpadOcarina,
     &DpadArrows,
     &TwinmoldRestoration,
-    &FastMasks,
     //&SkipSongReplays,
   };
 
@@ -825,7 +827,8 @@ namespace Settings {
     ctx.enableFastOcarina = (DpadOcarina) ? 1 : 0;
     ctx.enableFastArrowSwap = (DpadArrows) ? 1 : 0;
     ctx.twinmoldRestoration = (TwinmoldRestoration) ? 1 : 0;
-    //ctx.enableFastMaskTransform = (FastMasks) ? 1 : 0;
+    ctx.enableNoAnimationTransform = (FastMasks) ? 1 : 0;
+    ctx.enableBomberAnimationSkipping = (NotebookAnimations) ? 1 : 0;
 
     //Cutscene Skips
     ctx.skipHMSCutscenes = (SkipHMSCutscenes) ? 1 : 0;
@@ -833,7 +836,7 @@ namespace Settings {
     ctx.skipMikauCutscene = (SkipMikauCutscenes) ? 1 : 0;
     
     //CustomButtons
-    CitraPrint("Adding Custom Inputs to SettingsContext");
+    // CitraPrint("Adding Custom Inputs to SettingsContext");
     ctx.customMapButton = CustomButtonConvert(CustomMapButton.Value<u8>());
     ctx.customItemButton = CustomButtonConvert(CustomItemsButton.Value<u8>());
     ctx.customMaskButton = CustomButtonConvert(CustomMasksButton.Value<u8>());
@@ -938,7 +941,7 @@ namespace Settings {
   u32 customButtonValue;
   u32 CustomButtonConvert(u8 customButton)
   {
-    CitraPrint("Converting Custom Inputs");
+    // CitraPrint("Converting Custom Inputs");
     
     if (customButton == u8(0)) {//Default
       customButtonValue = 0;
@@ -1728,7 +1731,7 @@ namespace Settings {
  //we dont want users to select the same values for multiple inputs, so check if any of the selected options match
  //multiple options can be index 0 or Default as this won't cause issues in game.
   bool CheckCustomButtons() {
-    CitraPrint("Checking Custom Buttons in function");
+    // CitraPrint("Checking Custom Buttons in function");
     u8 mapButtonValue = CustomMapButton.Value<u8>();
     u8 itemButtonValue = CustomItemsButton.Value<u8>();
     u8 maskButtonValue = CustomMasksButton.Value<u8>();

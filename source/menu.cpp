@@ -149,7 +149,7 @@ void MenuUpdate(u32 kDown) {
      {
        consoleSelect(&bottomScreen);
        printf("\x1b[1;%dH\n\n\n\n\n\n\n\n\n\n\n\nYou Cannot Have Duplicate \nButton Combinations!", 1+(BOTTOM_WIDTH-18)/2);
-       CitraPrint("Checking Custom Button in Menus");
+      //  CitraPrint("Checking Custom Button in Menus");
      }
      else 
      {

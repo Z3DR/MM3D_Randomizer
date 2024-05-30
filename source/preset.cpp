@@ -139,6 +139,8 @@ bool LoadPreset(std::string_view presetName, OptionCategory category) {
     for (Option* setting : *menu->settingsList) {
       if (!setting->IsCategory(category)) {
         continue;
+      } else if (!curNode->GetText()) {
+        continue;
       }
 
       // Since presets are saved linearly, we can simply loop through the nodes as
