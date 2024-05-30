@@ -1256,6 +1256,6 @@ void CreateItemOverrides() {
     PlacementLog_Msg("\n");
   }
   PlacementLog_Msg("Overrides Created: ");
-  CitraPrint("Overrides Created");
+  // CitraPrint("Overrides Created");
   PlacementLog_Msg(std::to_string(overrides.size()));
 }

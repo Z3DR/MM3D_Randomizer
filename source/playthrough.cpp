@@ -140,7 +140,7 @@ namespace Playthrough {
       for (int i = 0; i < count; i++) {
         repeatedSeed = rand() % 0xFFFFFFFF;
         Settings::seed = std::to_string(repeatedSeed);
-        CitraPrint("testing seed: " + Settings::seed);
+        // CitraPrint("testing seed: " + Settings::seed);
         Playthrough_Init(std::hash<std::string>{}(Settings::seed));
         PlacementLog_Clear();
         printf("\x1b[15;15HSeeds Generated: %d\n", i + 1);

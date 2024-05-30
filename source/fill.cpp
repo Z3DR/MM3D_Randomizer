@@ -196,7 +196,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
                         }
                         //MAJORA'S_MASK has been found, seed is beatable, nothing else in this or future spheres matters
                         if (location->GetPlacedItemKey() == MAJORAS_MASK) {
-                            CitraPrint("Majoras Mask has been found!");
+                            // CitraPrint("Majoras Mask has been found!");
                             itemSphere.clear();
                             itemSphere.push_back(loc);
                             playthroughBeatable = true;
@@ -230,7 +230,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
                 allLocationsReachable = false;
                 auto message = "Location " + Location(loc)->GetName() + " not reachable\n";
                 PlacementLog_Msg(message);
-                CitraPrint(message);
+                // CitraPrint(message);
                 #ifndef ENABLE_DEBUG
                     break;
                 #endif
@@ -280,7 +280,7 @@ static void PareDownPlaythrough() {
                  std::string itemname(ItemTable(copy).GetName().GetEnglish());
                  std::string locationname(Location(loc)->GetName());
                  std::string removallog = itemname + " at " + locationname + " removed from playthrough";
-                 CitraPrint(removallog);
+                //  CitraPrint(removallog);
                 playthroughLocations[i].erase(playthroughLocations[i].begin() + j);
                 Location(loc)->SetDelayedItem(copy); //Game is still beatable, don't add back until later
                 toAddBackItem.push_back(loc);
@@ -487,7 +487,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             LocationKey selectedLocation = RandomElement(accessibleLocations);
             if ( !(Location(selectedLocation)->IsRepeatable()) && ItemTable(item).IsReusable() ){
                     //unsuccessfulPlacement = true;
-                    CitraPrint("Attemting to place repeatable item in non repeatable spot in AssumedFill");
+                    // CitraPrint("Attemting to place repeatable item in non repeatable spot in AssumedFill");
                     PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetEnglish() + " at " + Location(selectedLocation)->GetName());
                     itemsToPlace.push_back(item);
                 }
@@ -732,8 +732,8 @@ static void RandomizeLinksPocket() {
 
 int VanillaFill() {
     //Perform minimum needed initialization
-    CitraPrint("Starting VanillaFill\n");
-     AreaTable_Init(); //Reset the world graph to intialize the proper locations
+    // CitraPrint("Starting VanillaFill\n");
+    AreaTable_Init(); //Reset the world graph to intialize the proper locations
     ItemReset(); //Reset shops incase of shopsanity random
     GenerateLocationPool();
     GenerateItemPool();
@@ -759,7 +759,7 @@ int VanillaFill() {
     printf("\x1b[10;10HCalculating Way of the Hero..."); 
     CalculateWotH();
     printf("Done");
-    CitraPrint("Creating Item Overrides");
+    // CitraPrint("Creating Item Overrides");
     CreateItemOverrides();
     // CreateEntranceOverrides();
     // CreateAlwaysIncludedMessages();
@@ -773,7 +773,7 @@ int VanillaFill() {
 }
 
 int NoLogicFill() {
-    CitraPrint("StartingNoLogicFill\n");
+    // CitraPrint("StartingNoLogicFill\n");
     AreaTable_Init(); //Reset the world graph to intialize the proper locations
     ItemReset(); //Reset shops incase of shopsanity random
     GenerateLocationPool();
@@ -792,7 +792,7 @@ int NoLogicFill() {
     printf("\x1b[10;10HCalculating Way of the Hero..."); 
     CalculateWotH();
     printf("Done");
-    CitraPrint("Creating Item Overrides");
+    // CitraPrint("Creating Item Overrides");
     CreateItemOverrides();
     // CreateEntranceOverrides();
     // CreateAlwaysIncludedMessages();
@@ -892,16 +892,16 @@ int Fill() {
         std::vector<ItemKey> tokens = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_TOKEN; });
         AssumedFill(tokens, allLocations, true);
 
-        CitraPrint("Starting AssumedFill...");
+        // CitraPrint("Starting AssumedFill...");
          //Then place the rest of the advancement items
         std::vector<ItemKey> remainingAdvancementItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).IsAdvancement();});
         AssumedFill(remainingAdvancementItems, allLocations, true);
-        CitraPrint("AssumedFill was sucessful");
-        CitraPrint("Starting Fast Fill...");
+        // CitraPrint("AssumedFill was sucessful");
+        // CitraPrint("Starting Fast Fill...");
         //Fast fill for the rest of the pool
         std::vector<ItemKey> remainingPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return true;});
         FastFill(remainingPool, GetAllEmptyLocations(), false);
-        CitraPrint("Fast Fill of Remaining locations was sucessful");
+        // CitraPrint("Fast Fill of Remaining locations was sucessful");
         //CitraPrint("Generating Playthrough...");
         GeneratePlaythrough(); //TODO::FIX PLAYTHROUGH
 
@@ -914,7 +914,7 @@ int Fill() {
             printf("\x1b[10;10HCalculating Way of the Hero..."); 
             CalculateWotH();
             printf("Done");
-            CitraPrint("Creating Item Overrides");
+            // CitraPrint("Creating Item Overrides");
             CreateItemOverrides();
            // CreateEntranceOverrides();
            // CreateAlwaysIncludedMessages();
@@ -933,7 +933,7 @@ int Fill() {
             //LogicReset();
             //GetAccessibleLocations(allLocations, SearchMode::AllLocationsReachable);
             printf("\x1b[9;10HFailed. Retrying... %d", retries + 2);
-            CitraPrint("Failed. Retrying...");
+            // CitraPrint("Failed. Retrying...");
             Areas::ResetAllLocations();
             LogicReset();
         }
