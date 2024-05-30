@@ -612,7 +612,8 @@ string_view shuffleOcaMusicDesc      = "**OPTION CURRENTLY WIP**\n"             
 |      RESTORATION OPTIONS     |                                                           //
 ------------------------------*/                                                           //
 string_view fastZoraSwimDesc         = "Enables Fast Zora Swimming without magic.";        //
-string_view ocarinaDiveDesc          = "Enables Ocarina Diving";                           //
+string_view ocarinaDiveDesc          = "Enables Ocarina Diving. This also patches\n"       //
+                                       "walking with ocarina from gossip stones.";         //
 string_view dpadMaskDesc             = "Enables using the 3 D-Pad buttons to use\n"        //
                                        "transformation masks. This option will also\n"     //
                                        "patch using Down A with Mask Storage.";            //
@@ -624,6 +625,8 @@ string_view twinmoldRestorationDesc  = "Fixes Twinmold boss fight so Red Twinmol
                                        "regen health when it burrows.";                    //
                                                                                            //
 string_view fastMaskDesc             = "Enables Fast Transformation Animations.";          //
+string_view disableBotebookAnimation = "Removes all Bomber's notebook popups, even if\n"   //
+                                       "you obtain or already have the Bomber's Notebook.";//
 /*-------------------------------                                                          //
 |   CUSTOM BUTTON MAPPING       |                                                          //
 -------------------------------*/                                                          //

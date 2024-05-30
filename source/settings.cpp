@@ -395,10 +395,13 @@ namespace Settings {
   Option AmmoDrops              = Option::U8("Ammo Drops",                 { "Off", "On" },                                                      { ammoDropDesc });
   Option HeartDropRefills       = Option::U8("Heart Drops",                { "Off", "On" },                                                      { heartDropDesc });
   Option BombchusInLogic        = Option::U8("Bombchus In Logic",          { "Off", "On" },                                                      { bombchuInLogicDesc });
-
+  Option FastMasks              = Option::Bool("Fast Mask Transform",      {"No", "Yes"},                                                        {fastMaskDesc});
+  Option NotebookAnimations     = Option::Bool("Fast Notebook",            {"No", "Yes"},                                                        {disableBotebookAnimation});
   std::vector<Option*> comfortOptions = {
      
      &BlastMaskCooldown,
+     &FastMasks,
+     &NotebookAnimations,
      // &UnderwaterOcarina,
      // &FierceDeityAnywhere,
      //&ProgressiveGildedSword,
@@ -425,7 +428,7 @@ namespace Settings {
   Option DpadOcarina         = Option::Bool("DPad Ocarina",           { "No", "Yes" },                                       {dpadOcarinaDesc});
   Option DpadArrows          = Option::Bool("Dpad Arrow Swap",        { "No", "Yes" },                                       {dpadArrowDesc});
   Option TwinmoldRestoration = Option::Bool("Twinmold Restoration",   { "No", "Yes" },                                       {twinmoldRestorationDesc});
-  Option FastMasks           = Option::Bool("Fast Mask Transform",    { "No", "Yes" },                                       {fastMaskDesc});
+
 
   std::vector<Option *> restorationOptions = {
     //&SkipMinigamePhases,
@@ -442,7 +445,6 @@ namespace Settings {
     &DpadOcarina,
     &DpadArrows,
     &TwinmoldRestoration,
-    &FastMasks,
     //&SkipSongReplays,
   };
 
@@ -825,7 +827,8 @@ namespace Settings {
     ctx.enableFastOcarina = (DpadOcarina) ? 1 : 0;
     ctx.enableFastArrowSwap = (DpadArrows) ? 1 : 0;
     ctx.twinmoldRestoration = (TwinmoldRestoration) ? 1 : 0;
-    //ctx.enableFastMaskTransform = (FastMasks) ? 1 : 0;
+    ctx.enableNoAnimationTransform = (FastMasks) ? 1 : 0;
+    ctx.enableBomberAnimationSkipping = (NotebookAnimations) ? 1 : 0;
 
     //Cutscene Skips
     ctx.skipHMSCutscenes = (SkipHMSCutscenes) ? 1 : 0;
