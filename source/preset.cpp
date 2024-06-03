@@ -140,9 +140,8 @@ bool LoadPreset(std::string_view presetName, OptionCategory category) {
       if (!setting->IsCategory(category)) {
         continue;
       } else if (!curNode->GetText()) {
-        continue;
+        curNode->SetText("");
       }
-
       // Since presets are saved linearly, we can simply loop through the nodes as
       // we loop through the settings to find most of the matching elements.
       const std::string& settingToFind = RemoveLineBreaks(setting->GetName());
