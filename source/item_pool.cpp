@@ -16,7 +16,7 @@ using namespace rnd;
 std::vector<ItemKey> ItemPool = {};
 std::vector<ItemKey> PendingJunkPool = {};
 std::vector<u8> IceTrapModels = {};
-const std::array<ItemKey, 5> dungeonRewards = {
+const std::array<ItemKey, 4> dungeonRewards = {
 	ODOLWAS_REMAINS,
 	GOHTS_REMAINS,
 	GYORGS_REMAINS,
@@ -877,7 +877,7 @@ void GenerateItemPool() {
 		IceTrapModels.push_back(0x54);
 		//IceTrapModels.push_back(0x53); // should be song of time but not included yet
 		//IceTrapModels.push_back(0xC6);
-	}
+	}*/
 	if (ShuffleRewards.Is(rnd::RewardShuffleSetting::REWARDSHUFFLE_ANYWHERE)) {
 		//Push item ids for dungeon rewards
 		IceTrapModels.push_back(0x55);
@@ -885,7 +885,7 @@ void GenerateItemPool() {
 		IceTrapModels.push_back(0x57);
 		IceTrapModels.push_back(0x58);
 	}
-     */
+     
 	//Fixed Item Locations
 	PlaceItemInLocation(MAJORA, MAJORAS_MASK, true);
 	PlaceItemInLocation(CLOCK_TOWER_OCARINA_OF_TIME, OCARINA_OF_TIME, true);
@@ -1236,8 +1236,8 @@ void GenerateItemPool() {
 		AddItemToMainPool(ST_STRAY_FAIRY, 15);
 	}
 
-	//TO-DO--DungeonRewards
-	//AddItemsToPool(ItemPool, dungeonRewards);
+	//DungeonRewards
+	AddItemsToPool(ItemPool, dungeonRewards);
 
 
 	// TO-DO ItemPool for extra items & Scarce and Minimal pools

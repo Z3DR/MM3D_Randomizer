@@ -203,18 +203,14 @@ string_view fairyAnywhere             = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |   SHUFFLE DUNGEON REWARDS    |                                                           //
 ------------------------------*/                                                           //
-string_view shuffleRewardsEndOfDungeon = "**OPTION CURRENTLY WIP**\n"                      //
-                                         "Boss Remains will be given as\n"                 //
+string_view shuffleRewardsEndOfDungeon = "Boss Remains will be given as\n"                 //
                                          "rewards for beating dungeons.\n";                //
                                                                                            //
-string_view shuffleRewardsAnyDungeon  = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Boss Remains can only appear inside of dungeons.\n"; 
+string_view shuffleRewardsAnyDungeon  = "Boss Remains can only appear inside of dungeons.\n"; 
                                                                                            //
-string_view shuffleRewardsOverworld   = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Boss Remains can only appear outside of dungeons.\n"; 
+string_view shuffleRewardsOverworld   = "Boss Remains can only appear outside of dungeons.\n"; 
                                                                                            //
-string_view shuffleRewardsAnywhere    = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Boss Remains can appear anywhere.\n";             //  
+string_view shuffleRewardsAnywhere    = "Boss Remains can appear anywhere.\n";             //  
                                                                                            //
 /*------------------------------                                                           //
 |      SHUFFLE MAGIC BEANS     |                                                           //
