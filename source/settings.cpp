@@ -334,7 +334,7 @@ namespace Settings {
   Option Keysanity              = Option::U8("Small Keys",         { "Vanilla", "Start With", "Own Dungeon", "Any Dungeon", "Overworld", "Anywhere" }, { smallKeyVanilla, smallKeyStartWith, smallKeyOwnDungeon, smallKeyAnyDungeon, smallKeyOverworld, smallKeyAnywhere },             OptionCategory::Setting, (u8)KeysanitySetting::KEYSANITY_VANILLA);
   Option BossKeysanity          = Option::U8("Boss Keys",          { "Vanilla", "Start With", "Own Dungeon", "Any Dungeon", "Overworld", "Anywhere" }, { bossKeyVanilla, bossKeyStartWith, bossKeyOwnDungeon, bossKeyAnyDungeon, bossKeyOverworld, bossKeyAnywhere },                   OptionCategory::Setting, (u8)BossKeysanitySetting::BOSSKEYSANITY_VANILLA);
   Option StrayFairysanity       = Option::U8("Stray Fairies",      { "Vanilla", "Start With", "Own Dungeon", "Any Dungeon", "Overworld", "Anywhere" }, { fairyVanilla, fairyStartWith, fairyOwnDungeon, fairyAnyDungeon, fairyOverworld, fairyAnywhere },                               OptionCategory::Setting, (u8)StrayFairySanitySetting::STRAYFAIRYSANITY_VANILLA);
-  Option ShuffleRewards         = Option::U8("Dungeon Rewards",    { "End of Dungeons", "Any Dungeon", "Overworld", "Anywhere" },                      { shuffleRewardsEndOfDungeon, shuffleRewardsAnyDungeon, shuffleRewardsOverworld, shuffleRewardsAnywhere });
+  Option ShuffleRewards         = Option::U8("Dungeon Rewards",    { "Vanilla", "Any Dungeon", "Overworld", "Anywhere" },                              { shuffleRewardsEndOfDungeon, shuffleRewardsAnyDungeon, shuffleRewardsOverworld, shuffleRewardsAnywhere });
   Option ShuffleHeartContainers = Option::Bool("Heart Containers", { "Vanilla", "Random"},                                                             { shuffleHeartContainersDesc });
 
   std::vector<Option*>dungeonSettingsOptions = {
@@ -343,7 +343,7 @@ namespace Settings {
     &Keysanity,
     &BossKeysanity,
     //&StrayFairysanity,
-    //&ShuffleRewards,
+    &ShuffleRewards,
     &ShuffleHeartContainers,
   };
 
@@ -1172,12 +1172,21 @@ namespace Settings {
      
      //Force Include Dungeon Rewards
      std::vector<LocationKey> DungeonRewards = GetLocations(everyPossibleLocation, Category::cDungeonReward);
-     //if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_END_OF_DUNGEON)) {
+     if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_END_OF_DUNGEON)) {
          IncludeAndHide(DungeonRewards);
-     //}
-     //else {
-     //    Unhide(DungeonRewards);
-     //}
+     }
+     else {
+         Unhide(DungeonRewards);
+     }
+
+     //Heart Containers
+     std::vector<LocationKey> HeartContainers = GetLocations(everyPossibleLocation,Category::cBossHeart);
+     if (!ShuffleHeartContainers){
+      IncludeAndHide(HeartContainers);
+     }
+     else {
+      Unhide(HeartContainers);
+     }
      //Force hide Ocarina
      IncludeAndHide({CLOCK_TOWER_OCARINA_OF_TIME});
 

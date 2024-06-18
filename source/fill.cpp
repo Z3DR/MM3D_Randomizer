@@ -531,62 +531,14 @@ std::vector<ItemKey> rewards = FilterAndEraseFromPool(ItemPool, [](const ItemKey
                 Location(loc)->PlaceVanillaItem();
             }
         }
-        else { //Randomize dungeon rewards with assumed fill -- for now both place vanilla as random dungeon rewards is not implemented yet
-            for (LocationKey loc : dungeonRewardLocations) {
-                Location(loc)->PlaceVanillaItem();
-            }
-              // AssumedFill(rewards, dungeonRewardLocations);
-        }
-/*
-    //quest item bit mask of each stone/medallion for the savefile
-    static constexpr std::array<u32, 9> bitMaskTable = {
-      0x00040000, //Kokiri Emerald
-      0x00080000, //Goron Ruby
-      0x00100000, //Zora Sapphire
-      0x00000001, //Forest Medallion
-      0x00000002, //Fire Medallion
-      0x00000004, //Water Medallion
-      0x00000008, //Spirit Medallion
-      0x00000010, //Shadow Medallion
-      0x00000020, //Light Medallion
-    };
-    int baseOffset = ItemTable(KOKIRI_EMERALD).GetItemID();
-
-    //End of Dungeons includes Link's Pocket
-    if (ShuffleRewards.Is(REWARDSHUFFLE_END_OF_DUNGEON)) {
-        //get stones and medallions
-        std::vector<ItemKey> rewards = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_DUNGEONREWARD;});
-        if (Settings::Logic.Is(LOGIC_VANILLA)) { //Place dungeon rewards in vanilla locations
+        else if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_END_OF_DUNGEON)){ //Randomize dungeon rewards with assumed fill -- End of Dungeon = Vanilla
             for (LocationKey loc : dungeonRewardLocations) {
                 Location(loc)->PlaceVanillaItem();
             }
         }
-        else { //Randomize dungeon rewards with assumed fill
-            AssumedFill(rewards, dungeonRewardLocations);
+        else if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_ANYWHERE)){
+            AssumedFill(rewards, allLocations);
         }
-
-        for (size_t i = 0; i < dungeonRewardLocations.size(); i++) {
-            const auto index = Location(dungeonRewardLocations[i])->GetPlacedItem().GetItemID() - baseOffset;
-            rDungeonRewardOverrides[i] = index;
-
-            //set the player's dungeon reward on file creation instead of pushing it to them at the start.
-            //This is done mainly because players are already familiar with seeing their dungeon reward
-            //before opening up their file
-            if (i == dungeonRewardLocations.size() - 1) {
-                LinksPocketRewardBitMask = bitMaskTable[index];
-            }
-        }
-    }
-    else if (LinksPocketItem.Is(LINKSPOCKETITEM_DUNGEON_REWARD)) {
-        //get 1 stone/medallion
-        std::vector<ItemKey> rewards = FilterFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_DUNGEONREWARD;});
-        ItemKey startingReward = RandomElement(rewards, true);
-
-        LinksPocketRewardBitMask = bitMaskTable[ItemTable(startingReward).GetItemID() - baseOffset];
-        PlaceItemInLocation(LINKS_POCKET, startingReward);
-        //erase the stone/medallion from the Item Pool
-        FilterAndEraseFromPool(ItemPool, [startingReward](const ItemKey i) {return i == startingReward;});
-    }*/
 }
 
 //Fills any locations excluded by the player with junk items so that advancement items
@@ -610,13 +562,13 @@ static void RandomizeOwnDungeon(const Dungeon::DungeonInfo* dungeon) {
     //filter out locations that may be required to have songs placed at them
     
     dungeonLocations = FilterFromPool(dungeonLocations, [](const LocationKey loc) {
-        if (ShuffleSongs.Is(rnd::SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) {
-            return !(Location(loc)->IsCategory(Category::cSong));
-        }
-        if (ShuffleSongs.Is(rnd::SongShuffleSetting::SONGSHUFFLE_DUNGEON_REWARDS)) {
-            return !(Location(loc)->IsCategory(Category::cDungeonReward));
-        }
-        return true;
+        //if (ShuffleSongs.Is(rnd::SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) {
+            return !(Location(loc)->IsCategory(Category::cSong)) && !(Location(loc)->IsCategory(Category::cDungeonReward));
+        //}
+        //if (ShuffleSongs.Is(rnd::SongShuffleSetting::SONGSHUFFLE_DUNGEON_REWARDS)) {
+           // return !(Location(loc)->IsCategory(Category::cDungeonReward));
+        //}
+        // true;
         });
         /*
          PlacementLog_Msg("\nAllowed Locations are: \n"); 
@@ -687,16 +639,26 @@ static void RandomizeDungeonItems() {
         }
 
     }
-/*
-    if (ShuffleRewards.Is(rnd::RewardShuffleSetting::REWARDSHUFFLE_ANY_DUNGEON)) {
-        auto rewards = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_DUNGEONREWARD;});
-        AddElementsToPool(anyDungeonItems, rewards);
+
+const std::array<ItemKey, 4> dungeonRewards = {
+	ODOLWAS_REMAINS,
+	GOHTS_REMAINS,
+	GYORGS_REMAINS,
+	TWINMOLDS_REMAINS,
+	//MAJORAS_MASK,
+};    for (ItemKey item : dungeonRewards) {
+            CitraPrint("Rewards:\n");
+            CitraPrint(ItemTable(item).GetName().GetEnglish() + "\n");
+            }
+    //CitraPrint("About to start attempting Reward Shuffle Any Dungeon");
+    if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_ANY_DUNGEON)) {
+        AddElementsToPool(anyDungeonItems, dungeonRewards);
     }
-    else if (ShuffleRewards.Is(rnd::RewardShuffleSetting::REWARDSHUFFLE_OVERWORLD)) {
-        auto rewards = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_DUNGEONREWARD;});
-        AddElementsToPool(overworldItems, rewards);
+    //CitraPrint("About to start attempting Reward Shuffle Overworld");
+    if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_OVERWORLD)) {
+        AddElementsToPool(overworldItems, dungeonRewards);
     }
-*/
+
     //Randomize Any Dungeon and Overworld pools
     AssumedFill(anyDungeonItems, anyDungeonLocations, true);
     AssumedFill(overworldItems, overworldLocations, true);
