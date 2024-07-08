@@ -316,7 +316,7 @@ namespace Settings {
       //&ShuffleSongs,
       //&ShuffleSoaring,
       //&Shopsanity,
-      //&Tokensanity,
+      &Tokensanity,
       &ShuffleMerchants,
       &ShuffleTradeItems,
       &ShuffleGFRewards,

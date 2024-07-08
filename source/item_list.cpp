@@ -66,10 +66,10 @@ void ItemTable_Init() {    //repeatable denotes that an item in a vanilla playth
     itemTable[FISHING_PASS]                      = Item(false,     true,           &noVariable,                  Text{"Fishing Pass",                    "Fishing Pass",                                     "Fishing Pass"},                                       FISHING_PASS,          0xBA,                                   ITEMTYPE_ITEM );
 //
     //Swamp Spider Tokens
-    itemTable[SWAMP_SKULLTULA_TOKEN]             = Item(true,      true,           &SwampSkulltulaTokens,        Text{"Swamp Skulltula Token",           "Jeton de Skulltula dorée",                         "Símbolo de skulltula dorada" },                       SWAMP_SKULLTULA_TOKEN, (u32)GetItemID::GI_GOLD_SKULLTULA_SPIRIT, ITEMTYPE_TOKEN);
+    itemTable[SWAMP_SKULLTULA_TOKEN]             = Item(true,      true,           &SwampSkulltulaTokens,        Text{"Swamp Skulltula Token",           "Jeton de Skulltula dorée",                         "Símbolo de skulltula dorada" },                       SWAMP_SKULLTULA_TOKEN, 0x44, ITEMTYPE_TOKEN);
 
     //Oceanside Spider Tokens
-    itemTable[OCEANSIDE_SKULLTULA_TOKEN]         = Item(true,      true,           &OceanSkulltulaTokens,        Text{"Oceanside Skulltula Token",       "Jeton de Skulltula dorée",                         "Símbolo de skulltula dorada" },                       OCEANSIDE_SKULLTULA_TOKEN, (u32)GetItemID::GI_GOLD_SKULLTULA_SPIRIT, ITEMTYPE_TOKEN);
+    itemTable[OCEANSIDE_SKULLTULA_TOKEN]         = Item(true,      true,           &OceanSkulltulaTokens,        Text{"Oceanside Skulltula Token",       "Jeton de Skulltula dorée",                         "Símbolo de skulltula dorada" },                       OCEANSIDE_SKULLTULA_TOKEN, 0x6D, ITEMTYPE_TOKEN);
     
     //Stray Fairies//
 

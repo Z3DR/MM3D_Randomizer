@@ -1079,13 +1079,13 @@ void GenerateItemPool() {
 	}
 
 	//TOKENSANITY
-	//if(Tokensanity){
-	//	AddItemToMainPool(SWAMP_SKULLTULA_TOKEN, 30);
-	//	AddItemToMainPool(OCEANSIDE_SKULLTULA_TOKEN, 30);
-	//}
-	//else {
+	if(Tokensanity){
+		AddItemToMainPool(SWAMP_SKULLTULA_TOKEN, 30);
+		AddItemToMainPool(OCEANSIDE_SKULLTULA_TOKEN, 30);
+	}
+	else {
 		PlaceVanillaSkulltulaTokens();
-	//}
+	}
 
 	//DEKU MERCHANT TRADE QUEST
 	if (ShuffleMerchants){//Merchants is Deku Scrub Trade Quest
