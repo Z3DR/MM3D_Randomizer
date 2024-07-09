@@ -4,13 +4,13 @@ on:
   pull_request:
 
 jobs:
-  format:
-    name: Verify Formatting
-    runs-on: ubuntu-latest
+  # format:
+  #   name: Verify Formatting
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout Project
-      uses: actions/checkout@v3
+  #   steps:
+  #   - name: Checkout Project
+  #     uses: actions/checkout@v4
 
 #    - name: Format Project
 #      uses: DoozyX/clang-format-lint-action@v0.15
@@ -27,7 +27,7 @@ jobs:
 
     steps:      
     - name: Checkout Project
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4.1.7
       with:
         submodules: true
 
