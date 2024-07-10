@@ -47,7 +47,7 @@ jobs:
     name: Build CIA and 3DSX Files
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/z3dr/randotools:latest
+      image: ghcr.io/z3dr/randotools:next
 
     steps:
       - name: Checkout Project
