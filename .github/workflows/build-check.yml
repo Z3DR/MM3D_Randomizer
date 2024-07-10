@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/z3dr/randotools:next
+      options: --user 1001
 
     steps:      
     - name: Checkout Project
