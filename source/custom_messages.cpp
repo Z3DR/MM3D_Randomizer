@@ -64,61 +64,61 @@ void CreateBaselineCustomMessages() {
     // Woodfall
     CreateMessage(0x6133, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "You got a #small key# for the #Woodfall Temple#! Use it to open a locked door in that temple.",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
     // Snowhead
     CreateMessage(0x6134, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "You got a #small key# for the #Snowhead Temple#! Use it to open a locked door in that temple.",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
     // Great Bay
     CreateMessage(0x6135, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "You got a #small key# for the #Great Bay Temple#! Use it to open a locked door in that temple.",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
     // Stone Tower
     CreateMessage(0x6136, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "You got a #small key# for the #Stone Tower Temple#! Use it to open a locked door in that temple.",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
 
     // Maps
     // Woodfall
     CreateMessage(0x6137, 0x003E, 0x3FFFFFFF, 0xFF0000, 
     "You found the #dungeon map# for the #Woodfall#!",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
 
     // Snowhead
     CreateMessage(0x6138, 0x003E, 0x3FFFFFFF, 0xFF0000, 
     "You found the #dungeon map# for the #Snowhead#!",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
 
     // Great Bay
     CreateMessage(0x6139, 0x003E, 0x3FFFFFFF, 0xFF0000, 
     "You found the #dungeon map# for the #Great Bay#!",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
 
     // Stone Tower
     CreateMessage(0x613A, 0x003E, 0x3FFFFFFF, 0xFF0000, 
     "You found the #dungeon map# for the #Stone Tower#!",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
 
     // Compasses
     // Woodfall
     CreateMessage(0x613B, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "You got the #compass# for the #Woodfall Temple#! Now many of the dungeon's hidden things will appear on the map!",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
 
     // Snowhead
     CreateMessage(0x613C, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "You got the #compass# for the #Snowhead Temple#! Now many of the dungeon's hidden things will appear on the map!",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
 
     // Great Bay
     CreateMessage(0x613D, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "You got the #compass# for the #Great Bay Temple#! Now many of the dungeon's hidden things will appear on the map!",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
 
     // Stone Tower
     CreateMessage(0x613E, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "You got the #compass# for the #Stone Tower Temple#! Now many of the dungeon's hidden things will appear on the map!",
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
 
     // Boss Keys
     // Woodfall
@@ -150,6 +150,17 @@ void CreateBaselineCustomMessages() {
     CreateMessage(0x0012, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
     "          #FOOL!#",
     {QM_RED}, {}, {}, 0x0, false, false);
+
+    //Swamp Skulltula Tokens
+    CreateMessage(0x0052, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+    "You got a #Swamp Skulltula Token#! You have collected #&SSH#.",
+    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+
+    //Ocean Skulltula Tokens
+    CreateMessage(0x6143, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+    "You got a #Ocean Skulltula Token#! You have collected #&OSH#.",
+    {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false);
+
 }
 
 u32 NumMessages() {
