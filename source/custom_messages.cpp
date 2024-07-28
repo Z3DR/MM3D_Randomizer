@@ -153,12 +153,12 @@ void CreateBaselineCustomMessages() {
 
     //Swamp Skulltula Tokens
     CreateMessage(0x0052, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
-    "You got a #Swamp Skulltula Token#! You have collected #&SSH#.",
+    "You got a #Swamp Skulltula Token#! You have collected #=SSH#.",
     {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
 
     //Ocean Skulltula Tokens
     CreateMessage(0x6143, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
-    "You got a #Ocean Skulltula Token#! You have collected #&OSH#.",
+    "You got a #Ocean Skulltula Token#! You have collected #=OSH#.",
     {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false);
 
 }
