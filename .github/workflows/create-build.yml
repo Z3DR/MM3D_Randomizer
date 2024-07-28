@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.7
         with:
           fetch-depth: 0
       - name: Get Last Nightly Commit and Private Key
@@ -34,7 +34,7 @@ jobs:
           
       - name: Generate changelog
         id: changelog
-        uses: metcalfc/changelog-generator@v4.3.0
+        uses: metcalfc/changelog-generator@v4.3.1
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
           base-ref: ${{ env.last_nightly }}
@@ -47,11 +47,12 @@ jobs:
     name: Build CIA and 3DSX Files
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/z3dr/randotools:latest
+      image: ghcr.io/z3dr/randotools:next
+      options: --user 1001
 
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.7
         with:
           submodules: true
 

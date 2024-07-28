@@ -144,7 +144,7 @@ namespace Settings {
   Option StartingKokiriSword       = Option::U8("Sword",                  { "Kokiri Sword",     "Razor Sword", "Gilded Sword", "None" },                     { "" }, OptionCategory::Setting, (u8)StartingSwordSetting::STARTINGSWORD_KOKIRI);//1U = StartingSwordSetting::STARTINGSWORD_KOKIRI
   Option StartingGreatFairySword   = Option::U8("Great Fairy Sword",      { "None",             "G. F. S." },                                                { "" });
   Option StartingShield            = Option::U8("Shield",                 { "Hero's Shield",    "Mirror Shield", "None" },                                   { "" }, OptionCategory::Setting, (u8)StartingSheildSetting::STARTINGSHIELD_HERO);//1U = StartingShieldSetting::STARTINGSHIELD_HERO
-  Option StartingWallet            = Option::U8("Wallet Upgrade",         { "None",             "Adult's Wallet",   "Giant's Wallet" ,  "Tycoon's Wallet" }, { "" }, OptionCategory::Setting, (u8)StartingWalletSetting::STARTINGWALLET_NONE);
+  Option StartingWallet            = Option::U8("Wallet Upgrade",         { "None",          "Adult's Wallet",   "Giant's Wallet"/*,  "Tycoon's Wallet"*/ }, { "" }, OptionCategory::Setting, (u8)StartingWalletSetting::STARTINGWALLET_NONE);
   Option StartingHealth            = Option::U8("Health",                 healthOptions,                                                                     { "" });
   Option StartingMagicMeter        = Option::U8("Magic Meter",            { "None",             "Single Magic",     "Double Magic" },                        { "" });
   Option StartingDoubleDefense     = Option::U8("Double Defense",         { "None",             "Double Defense" },                                          { "" });
