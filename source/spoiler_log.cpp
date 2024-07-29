@@ -236,6 +236,13 @@ static void WriteIngameSpoilerLog() {
         if (key == HMS_STARTING_SHIELD) {
           continue;           
         }
+        //Hide Deku Princess & Zora Eggs as they're not randomized yet
+        if (key == WOODFALL_TEMPLE_DEKU_PRINCESS) {
+          continue;
+        }
+        if (Location(key)->IsCategory(Category::cZoraEgg)) {
+          continue;
+        }
             
             
 
