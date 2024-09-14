@@ -2292,11 +2292,11 @@ void HintTable_Init() {
   /*-----------------------
   |    BOSS HINT TEXT     |
   -----------------------*/
-    hintTable[ODOLWA] = HintText::Boss({Text{"a masked jungle warrior", "**FRENCH**", "**SPANISH**"}});
-    hintTable[GOHT] = HintText::Boss({Text{"a masked mechanical monster", "**FRENCH**", "**SPANISH**"}});
-    hintTable[GYORG] = HintText::Boss({Text{"a gargantuan masked fish", "**FRENCH**", "**SPANISH**"}});
-    hintTable[TWINMOLD] = HintText::Boss({Text{"a giant masked insect", "**FRENCH**", "**SPANISH**"}});
-    hintTable[MAJORA] = HintText::Boss({Text{"a cursed mask", "**FRENCH**", "**SPANISH**"}});
+    hintTable[ODOLWA] = HintText::Boss({Text{"a masked jungle warrior holds", "**FRENCH**", "**SPANISH**"}});
+    hintTable[GOHT] = HintText::Boss({Text{"a masked mechanical monster holds", "**FRENCH**", "**SPANISH**"}});
+    hintTable[GYORG] = HintText::Boss({Text{"a gargantuan masked fish holds", "**FRENCH**", "**SPANISH**"}});
+    hintTable[TWINMOLD] = HintText::Boss({Text{"a giant masked insect holds", "**FRENCH**", "**SPANISH**"}});
+    hintTable[MAJORA] = HintText::Boss({Text{"a cursed mask holds", "**FRENCH**", "**SPANISH**"}});
 
   
 }
