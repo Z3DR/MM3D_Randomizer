@@ -531,6 +531,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY, {[] {return (ProgressiveWallet >= 2);}}),
+		LocationAccess(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, {[] {return AnyWallet;}}),
 	},
 	{
 		//Exits
