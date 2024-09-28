@@ -236,7 +236,7 @@ void LocationTable_Init() {
  locationTable[W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY]                    = ItemLocation::Base       (0x0D, 0x7E, false,  "WCT All-Night Mask Purchase",                              W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY,               ALL_NIGHT_MASK,               {Category::cWestClockTown, Category::cVanillaMask,Category::cDayThree},                                                    SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_W_CLOCK_TOWN );
  //locationTable[W_CLOCK_TOWN_LOTTERY]                               = ItemLocation::Base       (0x39, 0x00, true,  "WCT Lottery",                                              W_CLOCK_TOWN_LOTTERY,                           PURPLE_RUPEE,                 {Category::cWestClockTown},                                                                                                SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_W_CLOCK_TOWN );
  locationTable[W_CLOCK_TOWN_BOMB_SHOP_GORON]                       = ItemLocation::Base       (0x0D, 0x34, true,  "WCT Bomb Shop Goron",                                      W_CLOCK_TOWN_BOMB_SHOP_GORON,                   POWDER_KEG,                   {Category::cWestClockTown, Category::cMerchant,Category::cDayOne, Category::cShop, Category::cMainInventory},              SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_W_CLOCK_TOWN );
- 
+ locationTable[W_CLOCK_TOWN_CURIOSITY_BOMB_BAG]                    = ItemLocation::Base       (0x0D, 0x00, true,  "WCT Curiosity Shop Bomb Bag",                              W_CLOCK_TOWN_CURIOSITY_BOMB_BAG,                PROGRESSIVE_BOMB_BAG,         {Category::cWestClockTown, Category::cDayTwo, Category::cShop, Category::cMainInventory},                                  SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_W_CLOCK_TOWN );
  //Woodfall
  locationTable[WOODFALL_BRIDGE_CHEST]                              = ItemLocation::Chest      (0x46, 0x01, true,  "WF Bridge Chest",                                          WOODFALL_BRIDGE_CHEST,                          PIECE_OF_HEART,               {Category::cWoodfall, Category::cVanillaHeartPiece, Category::cChest, Category::cDayOne},                                                                              SpoilerCollectionCheckGroup::GROUP_WOODFALL );
  locationTable[WOODFALL_BEHIND_OWL_CHEST]                          = ItemLocation::Chest      (0x46, 0x02, true,  "WF Behind Owl Chest",                                      WOODFALL_BEHIND_OWL_CHEST,                      BLUE_RUPEE,                   {Category::cWoodfall,Category::cChest ,Category::cDayOne},                                                                                                             SpoilerCollectionCheckGroup::GROUP_WOODFALL );
@@ -1012,6 +1012,7 @@ std::vector<LocationKey> overworldLocations = {
   W_CLOCK_TOWN_SWORDSMANS_SCHOOL,
   W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY,
   W_CLOCK_TOWN_BOMB_SHOP_GORON,
+  W_CLOCK_TOWN_CURIOSITY_BOMB_BAG,
   //W_CLOCK_TOWN_LOTTERY,
   TRADING_POST_ITEM_1,
   TRADING_POST_ITEM_2,
@@ -1227,6 +1228,9 @@ void CreateItemOverrides() {
  PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR, loc19->GetPlacedItemKey());
  PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, loc20->GetPlacedItemKey());
  PlaceItemInLocation(SWAMP_TOURIST_CENTER_ROOF_CLEAR, loc21->GetPlacedItemKey());
+ //Curiosity Shop Big Bomb Bag is same as Bomb Shop Big Bomb Bag
+ auto loc22 = Location(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY);
+ PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, loc22->GetPlacedItemKey());
 
   for (LocationKey locKey : allLocations) {
     auto loc = Location(locKey);

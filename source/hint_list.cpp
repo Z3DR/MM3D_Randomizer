@@ -1552,6 +1552,8 @@ void HintTable_Init() {
             Text{"a shady town merchant sells", "**FRENCH**", "**SPANISH**"}});
     hintTable[W_CLOCK_TOWN_BOMB_SHOP_GORON] = HintText::Sometimes({
             Text{"a town goron merchant sells", "**FRENCH**", "**SPANISH**"}});
+    hintTable[W_CLOCK_TOWN_CURIOSITY_BOMB_BAG] = HintText::Sometimes({
+            Text{"a shady town merchant sells", "**FRENCH**", "**SPANISH**"}});
   //hintTable[W_CLOCK_TOWN_LOTTERY] = HintText::Sometimes({Text{"**ENGLISH**", "**FRENCH**", "**SPANISH**"}});
     hintTable[TRADING_POST_ITEM_1] = HintText::Sometimes({
             Text{"a town merchant sells", "**FRENCH**", "**SPANISH**"}});
