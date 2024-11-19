@@ -180,6 +180,10 @@ public:
     bool IsRepeatable() const {
         return repeatable;
     }
+
+    void SetRepeatable(bool repeatable_) {
+        repeatable = repeatable_;
+    }
     
     bool IsAddedToPool() const {
         return addedToPool;

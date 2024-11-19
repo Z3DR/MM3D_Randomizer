@@ -563,6 +563,8 @@ namespace Settings {
   extern std::vector<Option*> gameOptions;
   extern Menu gameSettings;
 
+  extern Option RepeatableItemsOnTokens;
+
 }
   
 

@@ -8,6 +8,7 @@
 #include "spoiler_log.hpp"
 #include "rnd/item_override.h"
 #include "custom_messages.hpp"
+#include "hints.hpp"
 
 #include <3ds.h>
 #include <unistd.h>
@@ -49,14 +50,11 @@ namespace Playthrough {
       if (Settings::Logic.Is(rnd::LogicSetting::LOGIC_VANILLA)) {
         VanillaFill(); //Just place items in their vanilla locations
       }
-      else if (Settings::Logic.Is(rnd::LogicSetting::LOGIC_GLITCHLESS) || Settings::Logic.Is(rnd::LogicSetting::LOGIC_GLITCHED)){ //Fill locations with logic
+      else { //Fill locations with logic
         int ret = Fill(); 
         if (ret < 0) {
             return ret;
         }
-      }
-      else if (Settings::Logic.Is(rnd::LogicSetting::LOGIC_NONE)){ 
-        NoLogicFill(); //no logic fill
       }
 
       GenerateHash();
@@ -79,6 +77,7 @@ namespace Playthrough {
         #endif
         PlacementLog_Clear();
       }
+      CreateTingleHintText();
 
       playthroughLocations.clear();
       wothLocations.clear();

@@ -79,7 +79,7 @@ namespace Settings {
   Option RegionSelect         = Option::Bool("Game Region",            { "NA", "EU" },                                                          { NARegionDesc, EURegionDesc });
   Option PlayOption           = Option::U8  ("Console/Emulator",       { "3DS", "Citra" },                                                      { "How will you Play?" });
   Option LanguageSelect       = Option::U8("  Language",               {"", "", "English", "Francais", "Espanol", "Deutsch", "Italiano", ""},   {LanguageDesc});
-  Option Version              = Option::U8  ("Version",                { "1.0", "1.1" },                                                        { VersionDesc });
+  Option Version              = Option::U8  ("Game Version",           { "1.0", "1.1" },                                                        { VersionDesc });
   std::vector<Option *> gameOptions = {
     &PlayOption,
     &Version,
@@ -350,9 +350,11 @@ namespace Settings {
   //Item Pool Settings 
   Option ItemPoolValue          = Option::U8  ("Item Pool",             {"Plentiful", "Balanced", "Scarce", "Minimal" },   {itemPoolPlentiful, itemPoolBalanced, itemPoolScarce, itemPoolMinimal }, OptionCategory::Setting, (u8)ItemPoolSetting::ITEMPOOL_BALANCED);
   Option RemoveDoubleDefense    = Option::Bool("Remove Double Defense", {"No", "Yes"},                                     {removeDDDesc});
+  Option RepeatableItemsOnTokens= Option::Bool("Repeat Items on Tokens",{"No", "Yes"},                                     {repeatItemsOnTokensDesc});
   std::vector<Option*>itemPoolSettingsOptions = {
       &ItemPoolValue,
       &RemoveDoubleDefense,
+      &RepeatableItemsOnTokens,
   };
 
   Option GossipStoneHints     = Option::U8("Gossip Stone Hints",       { "No Hints", "Need Nothing", "Mask of Truth" },    { gossipStonesHintsDesc },                                                     OptionCategory::Setting, (u8)GossipStoneHintsSetting::HINTS_NEED_NOTHING);
