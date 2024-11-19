@@ -67,6 +67,10 @@ static bool UpdateToDAccess(Entrance* entrance) {
 
     return ageTimePropigated;
 }*/
+std::vector<LocationKey> GetEmptyLocations(std::vector<LocationKey> allowedLocations) {
+    return FilterFromPool(allowedLocations,
+                          [](const LocationKey loc) { return Location(loc)->GetPlacedItemKey() == NONE; });
+}
 
 std::vector<LocationKey> GetAllEmptyLocations() {
     return FilterFromPool(allLocations, [](const LocationKey loc) { return Location(loc)->GetPlacedItemKey() == NONE;});
@@ -388,6 +392,12 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
         }
         PlacementLog_Write();
         placementFailure = true;
+        return;
+    }
+
+    //If No Logic fast fill everything
+    if (Settings::Logic.Is(LogicSetting::LOGIC_NONE)) {
+        FastFill(items, GetEmptyLocations(allowedLocations), true);
         return;
     }
 

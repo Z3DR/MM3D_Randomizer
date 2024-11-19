@@ -232,3 +232,4 @@ extern string_view VersionDesc;
 extern string_view LanguageDesc;
 extern string_view fastMaskDesc;
 extern string_view disableBotebookAnimation;
+extern string_view repeatItemsOnTokensDesc;

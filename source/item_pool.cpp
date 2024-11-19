@@ -1084,10 +1084,24 @@ void GenerateItemPool() {
 	if(Tokensanity){
 		AddItemToMainPool(SWAMP_SKULLTULA_TOKEN, 30);
 		AddItemToMainPool(OCEANSIDE_SKULLTULA_TOKEN, 30);
+		
+		//REPEATABLE ITEMS ON SKULLTOKENS
+	    if(RepeatableItemsOnTokens){
+		 std::vector<LocationKey> SwampSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSwampSkulltula);});
+         for (LocationKey loc : SwampSkullLocations) {
+                Location(loc)->SetRepeatable(true);
+            }
+		std::vector<LocationKey> OceanSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc1) {return Location(loc1)->IsCategory(Category::cOceanSkulltula);});
+         for (LocationKey loc1 : OceanSkullLocations) {
+                Location(loc1)->SetRepeatable(true);
+            }
+		}
 	}
 	else {
 		PlaceVanillaSkulltulaTokens();
 	}
+
+	
 
 	//DEKU MERCHANT TRADE QUEST
 	if (ShuffleMerchants){//Merchants is Deku Scrub Trade Quest
