@@ -1268,11 +1268,11 @@ namespace Settings {
 
       //Force Include Bombers Notebook
       std::vector<LocationKey> notebookLocation = GetLocations(everyPossibleLocation, Category::cNotebook);
-      if (ShuffleBombersNotebook) {
-        Unhide(notebookLocation);
+      if (!ShuffleBombersNotebook || (StartingSongOfHealing.Value<u8>()==1)) {
+        IncludeAndHide(notebookLocation);
       }
       else {
-        IncludeAndHide(notebookLocation);
+        Unhide(notebookLocation);
       }
 
       //Force Include Zora Eggs
@@ -1312,11 +1312,14 @@ namespace Settings {
 
       //Force include Transformation Masks
       std::vector<LocationKey> transformLocations = GetLocations(everyPossibleLocation, Category::cTransformMask);
-      if (ShuffleTransformation) {
-        Unhide(transformLocations);
+      if (!ShuffleTransformation) {
+        IncludeAndHide(transformLocations);
       }
       else {
-        IncludeAndHide(transformLocations);
+        Unhide(transformLocations);
+        if (StartingSongOfHealing.Value<u8>()==1) {
+          IncludeAndHide({HMS_DEKU_MASK});
+        }
       }
 
       //Force include Piece of Heart
@@ -1468,6 +1471,9 @@ namespace Settings {
     }*/
     //If starting with Song of Healing and transformation masks / notebook are unshuffled then also start with those 
     if (StartingSongOfHealing.Value<u8>() == 1){
+      //if starting with Song of Healing hide the exclude locations for Deku Mask and Notebook
+      IncludeAndHide({HMS_DEKU_MASK});
+      IncludeAndHide({HMS_BOMBERS_NOTEBOOK});
       if (!ShuffleTransformation) {
         StartingDekuMask.SetSelectedIndex(1);
         StartingDekuMask.Lock();
@@ -1486,7 +1492,12 @@ namespace Settings {
         StartingNotebook.Unlock();
         StartingNotebook.Unhide();
       }
-    } 
+    }
+    //if not starting with Song of Healing unhide the exclude locations for Deku Mask and Notebook
+    else{
+      Unhide({HMS_BOMBERS_NOTEBOOK});
+      Unhide({HMS_DEKU_MASK});
+    }
 
     if (RemoveDoubleDefense) {
       StartingDoubleDefense.SetSelectedIndex(0);
