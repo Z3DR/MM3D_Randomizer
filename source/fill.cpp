@@ -497,7 +497,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             LocationKey selectedLocation = RandomElement(accessibleLocations);
             if ( !(Location(selectedLocation)->IsRepeatable()) && ItemTable(item).IsReusable() ){
                     //unsuccessfulPlacement = true;
-                    // CitraPrint("Attemting to place repeatable item in non repeatable spot in AssumedFill");
+                    CitraPrint("Attemting to place repeatable item in non repeatable spot in AssumedFill");
                     PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetEnglish() + " at " + Location(selectedLocation)->GetName());
                     itemsToPlace.push_back(item);
                 }
@@ -650,16 +650,17 @@ static void RandomizeDungeonItems() {
 
     }
 
-const std::array<ItemKey, 4> dungeonRewards = {
-	ODOLWAS_REMAINS,
-	GOHTS_REMAINS,
-	GYORGS_REMAINS,
-	TWINMOLDS_REMAINS,
-	//MAJORAS_MASK,
-};    for (ItemKey item : dungeonRewards) {
-            CitraPrint("Rewards:\n");
-            CitraPrint(ItemTable(item).GetName().GetEnglish() + "\n");
-            }
+    const std::array<ItemKey, 4> dungeonRewards = {
+	    ODOLWAS_REMAINS,
+	    GOHTS_REMAINS,
+	    GYORGS_REMAINS,
+	    TWINMOLDS_REMAINS,
+	    //MAJORAS_MASK,
+    };    
+    //for (ItemKey item : dungeonRewards) {
+    //        CitraPrint("Rewards:\n");
+    //        CitraPrint(ItemTable(item).GetName().GetEnglish() + "\n");
+    //        }
     //CitraPrint("About to start attempting Reward Shuffle Any Dungeon");
     if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_ANY_DUNGEON)) {
         AddElementsToPool(anyDungeonItems, dungeonRewards);
@@ -796,7 +797,7 @@ int Fill() {
         
         showItemProgress = true;
 
-        //Place dungeon rewards - always vanilla for now
+        //Place dungeon rewards
         RandomizeDungeonRewards();
         
         //Place dungeon items restricted to their Own Dungeon
@@ -814,7 +815,32 @@ int Fill() {
             
             AssumedFill(gfItems, gfLocations, true);
         }
+        //Then if repeatable items on tokens is off -- fill token spots with nonrepeatable items
+        if (!RepeatableItemsOnTokens){
+            //Get all nonrepeatable items
+            std::vector<ItemKey> remainingNonRepeatItemPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsReusable() == false;});
+            std::vector<LocationKey> SwampSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSwampSkulltula);});
+            //CitraPrint("Starting Assumed Fill on Swamp Locations");
+            //fill skulltula spots with them
+            FastFill(remainingNonRepeatItemPool, SwampSkullLocations);
 
+            std::vector<LocationKey> OceanSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc1) {return Location(loc1)->IsCategory(Category::cOceanSkulltula);});
+            //CitraPrint("Starting Assumed Fill on Ocean Locations");
+            FastFill(remainingNonRepeatItemPool, OceanSkullLocations);
+
+            //CitraPrint("Adding RemainingNonRepeatItems back to main ItemPool");
+            AddElementsToPool(ItemPool, remainingNonRepeatItemPool);
+            //Then Place Anju & Kafei Items in spots accessable on Day 1, this should prevent situations where you cant get an item in time for its use
+            std::vector<LocationKey> day1Locations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cDayOne);});
+            std::vector<ItemKey> anjukafeiitems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_QUEST;});
+            AssumedFill(anjukafeiitems, day1Locations,true);
+
+            //get the rest of the repeatable items and fill them in -- may not be needed?
+            //std::vector<ItemKey> remainingRepeatItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsReusable();});
+            //CitraPrint("Starting Fill of remaining Repeat Items");
+            //AssumedFill(remainingRepeatItems, allLocations,true);
+        }   
+                
         //Place Main Inventory First
         //So first get all items in the pool + DekuMask,
         std::vector<ItemKey> mainadvancementItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsAdvancement() && ItemTable(i).GetItemType() != ITEMTYPE_QUEST;});//(ItemTable(i).GetItemType() == ITEMTYPE_ITEM || ItemTable(i).GetItemType() == ITEMTYPE_MASK || ItemTable(i).GetItemType() == ITEMTYPE_TRADE || ItemTable(i).GetItemType() == ITEMTYPE_GFAIRY)
@@ -825,6 +851,10 @@ int Fill() {
         std::vector<LocationKey> day1Locations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cDayOne);});
         std::vector<ItemKey> anjukafeiitems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_QUEST;});
         AssumedFill(anjukafeiitems, day1Locations,true);
+
+        std::vector<LocationKey> repeatableItemLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsRepeatable();});
+        std::vector<ItemKey> remainingRepeatItemPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsReusable();});
+        AssumedFill(remainingRepeatItemPool, repeatableItemLocations, true);
 
         //Then Place Deku Merchant Items
        /* if(ShuffleMerchants) {
@@ -849,25 +879,22 @@ int Fill() {
             }
             AssumedFill(songs, songLocations, true);
         }*/
-        
-        
-
-        
-
+       
         //Then place Link's Pocket Item if it has to be an advancement item
         //Links Pocket is useless as there is no unobtainable check due to a certain time travel sword pedistal 
         //Any check that occurs before MM3D world initialization like Ocarina/KokiriSword/Shield/SongofTime
         //Can just be handled by starting inventory 
         //RandomizeLinksPocket();  
-
+        
+        //Then place the rest of the advancement items
+        std::vector<ItemKey> remainingAdvancementItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).IsAdvancement();});
+        AssumedFill(remainingAdvancementItems, allLocations, true);
+        
         //Place Tokens before junk
         std::vector<ItemKey> tokens = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_TOKEN; });
         AssumedFill(tokens, allLocations, true);
 
         // CitraPrint("Starting AssumedFill...");
-         //Then place the rest of the advancement items
-        std::vector<ItemKey> remainingAdvancementItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).IsAdvancement();});
-        AssumedFill(remainingAdvancementItems, allLocations, true);
         // CitraPrint("AssumedFill was sucessful");
         // CitraPrint("Starting Fast Fill...");
         //Fast fill for the rest of the pool
