@@ -816,7 +816,7 @@ int Fill() {
             AssumedFill(gfItems, gfLocations, true);
         }
         //Then if repeatable items on tokens is off -- fill token spots with nonrepeatable items
-        if (!RepeatableItemsOnTokens){
+        if (Tokensanity && !RepeatableItemsOnTokens){
             //Get all nonrepeatable items
             std::vector<ItemKey> remainingNonRepeatItemPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsReusable() == false;});
             std::vector<LocationKey> SwampSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSwampSkulltula);});
