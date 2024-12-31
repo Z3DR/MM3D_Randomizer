@@ -1080,21 +1080,31 @@ void GenerateItemPool() {
 		PlaceItemInLocation(THE_MOON_IRON_KNUCKLE_CHEST, BOMBCHU_10);
 	}
 
+	
 	//TOKENSANITY
 	if(Tokensanity){
 		AddItemToMainPool(SWAMP_SKULLTULA_TOKEN, 30);
 		AddItemToMainPool(OCEANSIDE_SKULLTULA_TOKEN, 30);
-		
+		std::vector<LocationKey> SwampSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSwampSkulltula);});
+        std::vector<LocationKey> OceanSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc1) {return Location(loc1)->IsCategory(Category::cOceanSkulltula);});
+        
 		//REPEATABLE ITEMS ON SKULLTOKENS
 	    if(RepeatableItemsOnTokens){
-		 std::vector<LocationKey> SwampSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSwampSkulltula);});
-         for (LocationKey loc : SwampSkullLocations) {
+		 for (LocationKey loc : SwampSkullLocations) {
                 Location(loc)->SetRepeatable(true);
             }
-		std::vector<LocationKey> OceanSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc1) {return Location(loc1)->IsCategory(Category::cOceanSkulltula);});
-         for (LocationKey loc1 : OceanSkullLocations) {
+		for (LocationKey loc1 : OceanSkullLocations) {
                 Location(loc1)->SetRepeatable(true);
             }
+		}
+		else {
+		//DEFAULT REPEATABLE TO FALSE
+	    for (LocationKey loc : SwampSkullLocations) {
+               Location(loc)->SetRepeatable(false);
+           }
+	    for (LocationKey loc1 : OceanSkullLocations) {
+               Location(loc1)->SetRepeatable(false);
+           }
 		}
 	}
 	else {
