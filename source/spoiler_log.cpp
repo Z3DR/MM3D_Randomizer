@@ -142,7 +142,8 @@ static void WriteIngameSpoilerLog() {
     // Intentionally junk value so we trigger the 'new group, record some stuff' code
     u8 currentGroup        = SpoilerCollectionCheckGroup::SPOILER_COLLECTION_GROUP_COUNT;
     bool spoilerOutOfSpace = false;
-
+    // Bring in randomizer commit into
+    strcpy(spoilerData.randoVersion, Settings::version.c_str());
     // Create map of string data offsets for all _unique_ item locations and names in the playthrough
     // Some item names, like gold skulltula tokens, can appear many times in a playthrough
     std::unordered_map<LocationKey, u16>

@@ -77,7 +77,7 @@ namespace Settings {
   Option GenerateSpoilerLog   = Option::Bool("Generate Spoiler Log",   { "No", "Yes" },                                                         { genSpoilerLogDesc },                                                                        OptionCategory::Setting, 1); // On
   Option IngameSpoilers       = Option::Bool("Ingame Spoilers",        { "Hide", "Show" },                                                      { ingameSpoilersHideDesc, ingameSpoilersShowDesc });
   Option RegionSelect         = Option::Bool("Game Region",            { "NA", "EU" },                                                          { NARegionDesc, EURegionDesc });
-  Option PlayOption           = Option::U8  ("Console/Emulator",       { "3DS", "Citra" },                                                      { "How will you Play?" });
+  Option PlayOption           = Option::U8  ("Console/Emulator",       { "Console", "Emulator" },                                               { "How will you Play?" });
   Option LanguageSelect       = Option::U8("  Language",               {"", "", "English", "Francais", "Espanol", "Deutsch", "Italiano", ""},   {LanguageDesc});
   Option Version              = Option::U8  ("Game Version",           { "1.0", "1.1" },                                                        { VersionDesc });
   std::vector<Option *> gameOptions = {
