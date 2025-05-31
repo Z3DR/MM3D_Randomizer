@@ -422,7 +422,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
         }
 
         unsuccessfulPlacement = false;
-        std::vector<ItemKey>itemsToPlace = items;
+        std::vector<ItemKey> itemsToPlace = items;
 
         //copy all not yet placed advancement items so that we can apply their effects for the fill algorithm
         //std::vector<ItemKey> itemsToNotPlace = FilterFromPool(ItemPool, [](const ItemKey i) { 
@@ -515,7 +515,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
 
             //If Tokensanity is on and RepeatableItemsOnTokens is off
             //Only place non repeatable items
-            if (NoRepeatOnTokens){
+            if (NoRepeatOnTokens) {
                 //If the item is repeatable put it back and try again
                 if (ItemTable(item).IsReusable() ) {
                     CitraPrint("Attempting to place Repeatable Item in SSH/OSH Location");
