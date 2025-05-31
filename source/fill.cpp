@@ -602,7 +602,7 @@ std::vector<ItemKey> rewards = FilterAndEraseFromPool(ItemPool, [](const ItemKey
             }
         }
         else if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_ANYWHERE)){
-            AssumedFill(rewards, allLocations);
+            AssumedFill(rewards, allLocations, true);
         }
 }
 
@@ -656,12 +656,12 @@ static void RandomizeOwnDungeon(const Dungeon::DungeonInfo* dungeon) {
     }
 
     //randomize boss key and small keys together for even distribution
-    AssumedFill(dungeonItems, dungeonLocations);
+    AssumedFill(dungeonItems, dungeonLocations, true);
 
     //randomize map and compass separately since they're not progressive
     if (MapsAndCompasses.Is((u8)MapsAndCompassesSetting::MAPSANDCOMPASSES_OWN_DUNGEON) && dungeon->GetMap() != NONE && dungeon->GetCompass() != NONE) {
         auto dungeonMapAndCompass = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) { return i == dungeon->GetMap() || i == dungeon->GetCompass();});
-        AssumedFill(dungeonMapAndCompass, dungeonLocations);
+        AssumedFill(dungeonMapAndCompass, dungeonLocations, true);
     }
 }
 
