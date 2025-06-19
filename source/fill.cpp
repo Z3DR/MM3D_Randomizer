@@ -357,16 +357,24 @@ static void FastFill(std::vector<ItemKey> items, std::vector<LocationKey> locati
                     PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetEnglish() + " at " + Location(loc)->GetName());
                     items.push_back(item);
                     locations.push_back(loc);
-                }
-        else {*/
-        Location(loc)->SetAsHintable();
-        PlaceItemInLocation(loc, item);
-        
-        if (items.empty() && !endOnItemsEmpty) {
-            items.push_back(GetJunkItem());
+                }*/
+        if (NoRepeatOnTokens) {
+            //put back the last item we picked up
+            items.push_back(item);
+            //then put the unused items back into the main pool and stop
+            AddElementsToPool(ItemPool, items);
+            break;
+        }
+        else {
+            Location(loc)->SetAsHintable();
+            PlaceItemInLocation(loc, item);
+            if (items.empty() && !endOnItemsEmpty) {
+                items.push_back(GetJunkItem());
+            }
         }
     }
 }
+
 
 /*
 | The algorithm places items in the world in reverse.
@@ -879,12 +887,6 @@ int Fill() {
             //Get NonRepeatItems
             std::vector<ItemKey> NonRepeatItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return !ItemTable(i).IsReusable();});
             //fill SSH spots with nonrepeatableitems
-            //CitraPrint("Items in NonRepeatItems:\n");
-            //PlacementLog_Msg("Items in NonRepeatItems:\n");
-            //for (ItemKey item : NonRepeatItems) {
-            //    CitraPrint(ItemTable(item).GetName().GetEnglish() + "\n");
-            //    PlacementLog_Msg(ItemTable(item).GetName().GetEnglish() + "\n");
-            //    }
             AssumedFill(NonRepeatItems, SwampSkullLocations, true);
 
             //Get OSH locations
@@ -892,11 +894,6 @@ int Fill() {
             //Get NonRepeatItems
             std::vector<ItemKey> NonRepeatItems2 = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return !ItemTable(i).IsReusable();});
             //CitraPrint("Items in NonRepeatItems2:\n");
-            //PlacementLog_Msg("Items in NonRepeatItems2:\n");
-            //for (ItemKey item : NonRepeatItems2) {
-            //    CitraPrint(ItemTable(item).GetName().GetEnglish() + "\n");
-            //    PlacementLog_Msg(ItemTable(item).GetName().GetEnglish() + "\n");
-            //    }
             //fill OSH spots with NonRepeatableItems
             AssumedFill(NonRepeatItems2, OceanSkullLocations, true);
             //Set Variable back to false to go back to normal filling
