@@ -871,6 +871,17 @@ int Fill() {
         //Then place dungeon items that are assigned to restrictive location pools
         RandomizeDungeonItems();
 
+        //If Ocarina is shuffled place that first 
+        if (StartingOcarina.Value<u8>() == 0) {
+            //Get acceptable Ocarina Locations
+            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
+            std::vector<ItemKey> ocarinaItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemId()==(u32)GetItemID::GI_OCARINA_OF_TIME; });
+            //reuse NoRepeatOnTokens variable because making a new one is stupid
+            NoRepeatOnTokens = true;
+            AssumedFill(ocarinaItem, ocarinaLocations, true);
+            NoRepeatOnTokens = false;
+        }
+
         if (ShuffleGFRewards.Is((u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_ALL_GREAT_FARIES)){
             //get GF locations
             std::vector<LocationKey> gfLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cFairyFountain);});

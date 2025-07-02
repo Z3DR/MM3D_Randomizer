@@ -112,7 +112,7 @@ namespace Settings {
   Option StartingMaxRupees         = Option::Bool("Start with Max Rupees",  { "No",               "Yes" },                                                     { startWithMaxRupeesDesc });
   Option StartingInventoryToggle   = Option::U8("Inventory",                { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingNutCapacity       = Option::U8("Deku Nuts",              { "None",             "20 Deku Nuts",     "30 Deku Nuts",     "40 Deku Nuts" },    { "" });
-  Option StartingOcarina           = Option::U8("Ocarina",                { "Ocarina of Time",  "Ocarina of Time" },                                         { "" }, OptionCategory::Toggle, 1);
+  Option StartingOcarina           = Option::U8("Ocarina",                { "None",  "Ocarina of Time" },                                         { "" }, OptionCategory::Toggle, 1);
   Option StartingNotebook          = Option::U8("Bomber's Notebook",       { "None",             "B. Notebook"},                                              { "" });
   Option StartingBombBag           = Option::U8("Bomb Bag",               { "None",             "Bomb Bag 20",      "Bomb Bag 30",      "Bomb Bag 40" },     { "" });
   Option StartingBombchus          = Option::U8("Bombchus",               { "None",             "Bombchus" },                                                { "" });
@@ -276,9 +276,8 @@ namespace Settings {
   };
 
   std::vector<Option*> startingInventoryTokensFairys = {
-	  //&StartingSwampToken,
-    //&StartingOceanToken,
-    
+	  &StartingSwampToken,
+    &StartingOceanToken,
   };
 
   //Excluded Locations (Individual definitions made in ItemLocation class)
@@ -379,7 +378,7 @@ namespace Settings {
       &ClearerHints,
       &HintDistribution,
       &CompassShowWoTH,
-      //&DamageMultiplier,
+      &DamageMultiplier,
       //&ChestAnimations,
       &ChestSize,
       //&ChangeOverworldItems,
@@ -405,7 +404,7 @@ namespace Settings {
      &FastMasks,
      &NotebookAnimations,
      // &UnderwaterOcarina,
-     // &FierceDeityAnywhere,
+     &FierceDeityAnywhere,
      //&ProgressiveGildedSword,
      // &StartingSpin,
      // &AmmoDrops,
@@ -591,7 +590,7 @@ namespace Settings {
     &startingInventorySongsMenu,
     &startingInventoryUpgradesMenu,
     &startingInventoryRemainsMenu,
-    //&startingInventoryTokensMenu,
+    &startingInventoryTokensMenu,
   };
   //Menu mainSettings = Menu::SubMenu("Main Settings", &mainSettingsOptions);
   Menu comfort = Menu::SubMenu("Comfort Settings", &comfortOptions);
@@ -691,7 +690,7 @@ namespace Settings {
     
     ctx.blastMaskCooldown = BlastMaskCooldown.Value<u8>();
     //ctx.underwaterOcarina = (UnderwaterOcarina) ? 1 : 0;
-    //ctx.fierceDeityAnywhere = (FierceDeityAnywhere) ? 1 : 0;
+    ctx.useFierceDeityAnywhere = (FierceDeityAnywhere) ? 1 : 0;
     ctx.skipMinigamePhases = (SkipMinigamePhases) ? 1 : 0;
     ctx.skipEponaRace = (SkipEponaRace) ? 1 : 0;
     //ctx.fastLabFish = (FastLabFish) ? 1 : 0;
@@ -744,7 +743,7 @@ namespace Settings {
     ctx.startingMaxRupees = (StartingMaxRupees) ? 1 : 0;
     ctx.startingNutCapacity = StartingNutCapacity.Value<u8>();
     ctx.startingStickCapacity = StartingStickCapacity.Value<u8>();
-    ctx.startingOcarina = StartingOcarina.Value<u8>();
+    ctx.startingOcarina = (StartingOcarina) ? 1 : 0;
     ctx.startingNotebook = StartingNotebook.Value<u8>();
     ctx.startingBombBag = StartingBombBag.Value<u8>();
     ctx.startingBombchus = StartingBombchus.Value<u8>();
@@ -1189,8 +1188,14 @@ namespace Settings {
      else {
       Unhide(HeartContainers);
      }
-     //Force hide Ocarina
-     IncludeAndHide({CLOCK_TOWER_OCARINA_OF_TIME});
+     //Ocarina
+     if (StartingOcarina.Value<u8>() == 0) {
+      Unhide({CLOCK_TOWER_OCARINA_OF_TIME});
+      }
+     else{
+      IncludeAndHide({CLOCK_TOWER_OCARINA_OF_TIME});
+     }
+     
 
      //Force hide Deku Princess
      IncludeAndHide({WOODFALL_TEMPLE_DEKU_PRINCESS});

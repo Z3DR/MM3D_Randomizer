@@ -84,6 +84,7 @@ enum class Category {
     cMoonItems,
     cFDM,
     cMainInventory,
+    cNoOcarinaStart,
 };
 
 enum class OptionCategory {

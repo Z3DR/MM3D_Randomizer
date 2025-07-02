@@ -228,7 +228,7 @@ static void WriteIngameSpoilerLog() {
            continue;
         }
         // Always hide unreachable checks
-        if (key == CLOCK_TOWER_OCARINA_OF_TIME) {
+        if (key == CLOCK_TOWER_OCARINA_OF_TIME && (Settings::StartingOcarina.Value<u8>() == u8(1))) {
           continue;
         }
         if (key == HMS_STARTING_SWORD){ // && Settings::StartingKokiriSword.Is((u8)StartingSwordSetting::STARTINGSWORD_KOKIRI)) {
