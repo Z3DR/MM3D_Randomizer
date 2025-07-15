@@ -1090,11 +1090,8 @@ void GenerateItemPool() {
 	
 	//TOKENSANITY
 	if(Tokensanity){
-		//Calculate amount of tokens based on number of tokens being started with
-		int SwampTokens = StartingSwampToken.Value<u8>();
-		int OceanTokens = static_cast<int>(StartingOceanToken.Value<u8>());
-		AddItemToMainPool(SWAMP_SKULLTULA_TOKEN, (30 - SwampTokens));
-		AddItemToMainPool(OCEANSIDE_SKULLTULA_TOKEN, (30 - OceanTokens));
+		AddItemToMainPool(SWAMP_SKULLTULA_TOKEN, 30);
+		AddItemToMainPool(OCEANSIDE_SKULLTULA_TOKEN, 30);
 		std::vector<LocationKey> SwampSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSwampSkulltula);});
         std::vector<LocationKey> OceanSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc1) {return Location(loc1)->IsCategory(Category::cOceanSkulltula);});
         

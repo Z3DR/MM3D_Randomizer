@@ -461,7 +461,7 @@ static void WriteStartingInventory(tinyxml2::XMLDocument& spoilerLog) {
   for (size_t i = 0; i < Settings::startingInventoryInventory.size(); ++i) {
     const auto setting = Settings::startingInventoryInventory[i];
     //Ignore no starting bottles and the Choose/All On toggles
-    if (setting->GetSelectedOptionIndex() == (u8)StartingBottleSetting::STARTINGBOTTLE_NONE || setting->GetSelectedOptionText() == "Choose" || setting->GetSelectedOptionText() == "All On") {
+    if (setting->GetSelectedOptionIndex() == (u8)StartingBottleSetting::STARTINGBOTTLE_NONE || setting->GetSelectedOptionText() == "Choose" || setting->GetSelectedOptionText() == "All On" || setting->GetSelectedOptionIndex() == 0) {
       continue;
     } 
   
@@ -502,6 +502,16 @@ static void WriteStartingInventory(tinyxml2::XMLDocument& spoilerLog) {
 
   for (size_t i = 0; i < Settings::startingInventoryRemains.size(); ++i) {
     const auto setting = Settings::startingInventoryRemains[i];
+    if (setting->GetSelectedOptionIndex() == 0) { 
+      continue;
+    }
+    auto node = parentNode->InsertNewChildElement("item");
+    node->SetAttribute("name", setting->GetName().c_str());
+    node->SetText(setting->GetSelectedOptionText().c_str());
+  }
+
+  for (size_t i = 0; i < Settings::startingInventoryTokensFairys.size(); ++i) {
+    const auto setting = Settings::startingInventoryTokensFairys[i];
     if (setting->GetSelectedOptionIndex() == 0) { 
       continue;
     }
@@ -629,7 +639,7 @@ bool SpoilerLog_Write() {
   rootNode->SetAttribute("seed", Settings::seed.c_str());
   rootNode->SetAttribute("hash", GetRandomizerHashAsString().c_str());
 
-  WriteSettings(spoilerLog);
+  WriteSettings(spoilerLog, true);
   WriteExcludedLocations(spoilerLog);
   WriteStartingInventory(spoilerLog);
   //WriteEnabledTricks(spoilerLog);

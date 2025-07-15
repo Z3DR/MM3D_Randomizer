@@ -111,9 +111,9 @@ namespace Settings {
   Option StartingConsumables       = Option::Bool("Start with Consumables", { "No",               "Yes" },                                                     { startWithConsumablesDesc });
   Option StartingMaxRupees         = Option::Bool("Start with Max Rupees",  { "No",               "Yes" },                                                     { startWithMaxRupeesDesc });
   Option StartingInventoryToggle   = Option::U8("Inventory",                { "All Off",          "All On",           "Choose" },                              { "" });
-  Option StartingNutCapacity       = Option::U8("Deku Nuts",              { "None",             "20 Deku Nuts",     "30 Deku Nuts",     "40 Deku Nuts" },    { "" });
-  Option StartingOcarina           = Option::U8("Ocarina",                { "None",  "Ocarina of Time" },                                         { "" }, OptionCategory::Toggle, 1);
-  Option StartingNotebook          = Option::U8("Bomber's Notebook",       { "None",             "B. Notebook"},                                              { "" });
+  Option StartingNutCapacity       = Option::U8("Deku Nuts",                { "None",             "20 Deku Nuts",     "30 Deku Nuts",     "40 Deku Nuts" },    { "" });
+  Option StartingOcarina           = Option::U8("Ocarina",                  { "None",  "Ocarina of Time" },                                                    { "" }, OptionCategory::Setting, 1);
+  Option StartingNotebook          = Option::U8("Bomber's Notebook",      { "None",             "B. Notebook"},                                              { "" });
   Option StartingBombBag           = Option::U8("Bomb Bag",               { "None",             "Bomb Bag 20",      "Bomb Bag 30",      "Bomb Bag 40" },     { "" });
   Option StartingBombchus          = Option::U8("Bombchus",               { "None",             "Bombchus" },                                                { "" });
   Option StartingHookshot          = Option::U8("Hookshot",               { "None",             "Hookshot" },                                                { "" });
@@ -153,8 +153,8 @@ namespace Settings {
   Option StartingGohtRemains       = Option::U8("Goht's Remains",         { "None",             "Goht's R." },                                               { "" });
   Option StartingGyorgRemains      = Option::U8("Gyorg's Remains",        { "None",             "Gyorg's R." },                                              { "" });
   Option StartingTwinmoldRemains   = Option::U8("Twinmold's Remains",     { "None",             "TwinMold's R." },                                           { "" });
-  Option StartingSwampToken        = Option::U8("Swamp Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0, false);
-  Option StartingOceanToken        = Option::U8("Ocean Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0, false);
+  Option StartingSwampToken        = Option::U8("Swamp Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
+  Option StartingOceanToken        = Option::U8("Ocean Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
   //Starting Masks 
   Option StartingMaskToggle        = Option::U8("Masks",                    { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingDekuMask          = Option::U8("Deku Mask",              { "None",             "Deku M." },                                                 { "" });
@@ -390,7 +390,7 @@ namespace Settings {
 
   Option BlastMaskCooldown      = Option::U8("Blast Mask Cooldown",        {"Default", "Short", "Very Short", "Instant"},                        { blastDefault, blastShort, blastVeryShort, blastInstant });
   Option UnderwaterOcarina      = Option::Bool("Underwater Ocarina",       { "No","Yes" },                                                       { underwaterOcarinaDesc },                                                         OptionCategory::Toggle);
-  Option FierceDeityAnywhere    = Option::Bool("Fierce Deity Anywhere",    { "No","Yes" },                                                       { fierceDeityAnywhereDesc },                                                       OptionCategory::Toggle);
+  Option FierceDeityAnywhere    = Option::Bool("Fierce Deity Anywhere",    { "No","Yes" },                                                       { fierceDeityAnywhereDesc });
   Option ProgressiveGildedSword = Option::Bool("Progressive Gilded Sword", { "Off", "On" },                                                      { progressiveGildedSwordDesc });
   Option StartingSpin           = Option::Bool("Starting Spin",            { "Vanilla", "Upgraded" },                                            { startingSpinDesc });
   Option AmmoDrops              = Option::U8("Ammo Drops",                 { "Off", "On" },                                                      { ammoDropDesc });
@@ -1020,7 +1020,7 @@ namespace Settings {
     for (int i = 0; i <= 30; i++) {
       OtokenOptions.push_back(std::to_string(i));
     }
-	StartingSwampToken.SetOptions(StokenOptions);
+	  StartingSwampToken.SetOptions(StokenOptions);
     StartingOceanToken.SetOptions(OtokenOptions);
     
     //Create Location Exclude settings
