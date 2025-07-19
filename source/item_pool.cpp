@@ -889,7 +889,6 @@ void GenerateItemPool() {
      
 	//Fixed Item Locations
 	PlaceItemInLocation(MAJORA, MAJORAS_MASK, true);
-	PlaceItemInLocation(CLOCK_TOWER_OCARINA_OF_TIME, OCARINA_OF_TIME, true);
 	PlaceItemInLocation(WOODFALL_TEMPLE_DEKU_PRINCESS, DEKU_PRINCESS);
 	PlaceItemInLocation(W_CLOCK_TOWN_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
 	PlaceItemInLocation(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
@@ -912,6 +911,14 @@ void GenerateItemPool() {
     PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, BLUE_RUPEE);
     PlaceItemInLocation(SWAMP_TOURIST_CENTER_ROOF_CLEAR, BLUE_RUPEE);
 	//Check Non Dungeon Settings
+
+	//OCARINA SHUFFLE
+	if(StartingOcarina.Value<u8>() == 0) {//If starting without ocarina add it to pool
+		AddItemToMainPool(OCARINA_OF_TIME, 1);
+	}
+	else { //else place it vanilla cause we start with it 
+		PlaceItemInLocation(CLOCK_TOWER_OCARINA_OF_TIME, OCARINA_OF_TIME, true);
+	}
 
 	//KOKIRISWORD SHUFFLE
 	if(StartingKokiriSword.Value<u8>() == (u8)StartingSwordSetting::STARTINGSWORD_NONE) {//if starting with no sword we need to add an extra to the pool

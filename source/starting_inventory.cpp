@@ -153,6 +153,7 @@ void GenerateStartingInventory() {
       AddItemToInventory(PIECE_OF_HEART, (hearts - maxContainers) * 4);
     }
   }
+
 }
 
 void ApplyStartingInventory() {
