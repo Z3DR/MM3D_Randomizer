@@ -166,3 +166,4 @@ private:
 
 extern void CreateAllHints();
 extern void CreateTingleHintText();
+extern void CreateClockTowerDoorHints();
