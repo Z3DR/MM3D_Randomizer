@@ -215,7 +215,13 @@ void HintTable_Init() {
             //clear
             Text{"Double Defense", "**FRENCH**", "**SPANISH**"}
     );
-	//	OCARINA_OF_TIME,
+        hintTable[OCARINA_OF_TIME] = HintText::Item({
+            //obscure
+            Text{"a musical instrument", "**FRENCH**", "**SPANISH**"}
+        },
+            //clear
+            Text{"the Ocarina of Time", "**FRENCH**", "**SPANISH**"}
+    );
 	hintTable[PICTOGRAPH_BOX] = HintText::Item({
             //obscure
             Text{"a capture device", "**FRENCH**", "**SPANISH**"}

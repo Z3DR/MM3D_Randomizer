@@ -484,13 +484,52 @@ void CreateTingleHintText() {
       }
 }
 //Find the location which has the given itemKey and create the generic altar text for the reward
-/*
-static Text BuildDungeonRewardText(ItemID itemID, const ItemKey itemKey) {
+
+/*static Text BuildDungeonRewardText(ItemID itemID, const ItemKey itemKey) {
   LocationKey location = FilterFromPool(allLocations, [itemKey](const LocationKey loc){return Location(loc)->GetPlacedItemKey() == itemKey;})[0];
   //Calling ITEM_OBTAINED draws the passed in itemID to the left side of the textbox
   return Text()+ITEM_OBTAINED(itemID)+"#"+GetHintRegion(Location(location)->GetParentRegionKey())->GetHint().GetText()+"#...^";
+}*/
+
+static std::string BuildDoorText(const ItemKey itemKey) {
+  LocationKey location = FilterFromPool(allLocations, [itemKey](const LocationKey loc){return Location(loc)->GetPlacedItemKey() == itemKey;})[0];
+  return "#"+GetHintRegion(Location(location)->GetParentRegionKey())->GetHint().GetText().GetEnglish()+"#...^";
 }
-*/
+
+void CreateClockTowerDoorHints() {
+  // Create Ocarina Hint
+ // LocationKey ocalocation = FilterFromPool(allLocations, [](const LocationKey loc){return Location(loc)->GetPlacedItemKey() == OCARINA_OF_TIME;})[0];
+  std::string ocarinaText = ItemTable(OCARINA_OF_TIME).GetHint().GetText().GetEnglish(); // Location(ocalocation)->GetPlacedItem().GetHint().GetText().GetEnglish();
+  std::string ocarinaHint = Hint(PREFIX).GetText().GetEnglish()+"#"+ocarinaText+"# "+Hint(CAN_BE_FOUND_AT).GetText().GetEnglish()+" "+BuildDoorText(OCARINA_OF_TIME);
+  // Create Odolwa Hint Hint(PREFIX).GetText()+"#"+itemText+"# "+Hint(CAN_BE_FOUND_AT).GetText()+" #"+locationText+"#.";
+  std::string odolwaText = ItemTable(ODOLWAS_REMAINS).GetHint().GetText().GetEnglish();
+  std::string odolwaHint = Hint(PREFIX).GetText().GetEnglish()+"#"+odolwaText+"# "+Hint(CAN_BE_FOUND_AT).GetText().GetEnglish()+" "+BuildDoorText(ODOLWAS_REMAINS);
+  // Create Goht Hint
+  std::string gohtText = ItemTable(GOHTS_REMAINS).GetHint().GetText().GetEnglish();
+  std::string gohtHint = Hint(PREFIX).GetText().GetEnglish()+"#"+gohtText+"# "+Hint(CAN_BE_FOUND_AT).GetText().GetEnglish()+" "+BuildDoorText(GOHTS_REMAINS);
+  // Create Gyorg Hint
+  std::string gyorgText = ItemTable(GYORGS_REMAINS).GetHint().GetText().GetEnglish();
+  std::string gyorgHint = Hint(PREFIX).GetText().GetEnglish()+"#"+gyorgText+"# "+Hint(CAN_BE_FOUND_AT).GetText().GetEnglish()+" "+BuildDoorText(GYORGS_REMAINS);
+  // Create Twinmold Hint
+  std::string twinmoldText = ItemTable(TWINMOLDS_REMAINS).GetHint().GetText().GetEnglish();
+  std::string twinmoldHint = Hint(PREFIX).GetText().GetEnglish()+"#"+twinmoldText+"# "+Hint(CAN_BE_FOUND_AT).GetText().GetEnglish()+" "+BuildDoorText(TWINMOLDS_REMAINS);
+
+  // Combine them all for the final text
+  // If starting without ocarina final hint should include its location
+  if(StartingOcarina.Value<u8>() == 0) {
+    std::string finalHint = ocarinaHint + odolwaHint + gohtHint + gyorgHint + twinmoldHint;
+    CustomMessages::CreateMessage(0x0630, 0xFFFF, 0x3fffffff, 0xFF0211,
+        finalHint.c_str(),
+        {QM_BLUE, QM_RED, QM_GREEN, QM_RED, QM_MAGENTA, QM_RED, QM_CYAN, QM_RED, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+  }
+  else {
+    std::string finalHint = odolwaHint + gohtHint + gyorgHint + twinmoldHint;
+    CustomMessages::CreateMessage(0x0630, 0xFFFF, 0x3fffffff, 0xFF0211,
+        finalHint.c_str(),
+        {QM_GREEN, QM_RED, QM_MAGENTA, QM_RED, QM_CYAN, QM_RED, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+  }
+}
+
 //insert the required number into the hint and set the singular/plural form
 /*
 static Text BuildCountReq(const HintKey req, const Option& count) {
