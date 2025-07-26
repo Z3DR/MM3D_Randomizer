@@ -493,41 +493,32 @@ void CreateTingleHintText() {
 
 static std::string BuildDoorText(const ItemKey itemKey) {
   LocationKey location = FilterFromPool(allLocations, [itemKey](const LocationKey loc){return Location(loc)->GetPlacedItemKey() == itemKey;})[0];
-  return "#"+GetHintRegion(Location(location)->GetParentRegionKey())->GetHint().GetText().GetEnglish()+"#...^";
+  return "#"+GetHintRegion(Location(location)->GetParentRegionKey())->GetHint().GetText().GetEnglish()+"#.";
 }
 
 void CreateClockTowerDoorHints() {
-  // Create Ocarina Hint
- // LocationKey ocalocation = FilterFromPool(allLocations, [](const LocationKey loc){return Location(loc)->GetPlacedItemKey() == OCARINA_OF_TIME;})[0];
-  std::string ocarinaText = ItemTable(OCARINA_OF_TIME).GetHint().GetText().GetEnglish(); // Location(ocalocation)->GetPlacedItem().GetHint().GetText().GetEnglish();
-  std::string ocarinaHint = Hint(PREFIX).GetText().GetEnglish()+"#"+ocarinaText+"# "+Hint(CAN_BE_FOUND_AT).GetText().GetEnglish()+" "+BuildDoorText(OCARINA_OF_TIME);
-  // Create Odolwa Hint Hint(PREFIX).GetText()+"#"+itemText+"# "+Hint(CAN_BE_FOUND_AT).GetText()+" #"+locationText+"#.";
-  std::string odolwaText = ItemTable(ODOLWAS_REMAINS).GetHint().GetText().GetEnglish();
-  std::string odolwaHint = Hint(PREFIX).GetText().GetEnglish()+"#"+odolwaText+"# "+Hint(CAN_BE_FOUND_AT).GetText().GetEnglish()+" "+BuildDoorText(ODOLWAS_REMAINS);
-  // Create Goht Hint
-  std::string gohtText = ItemTable(GOHTS_REMAINS).GetHint().GetText().GetEnglish();
-  std::string gohtHint = Hint(PREFIX).GetText().GetEnglish()+"#"+gohtText+"# "+Hint(CAN_BE_FOUND_AT).GetText().GetEnglish()+" "+BuildDoorText(GOHTS_REMAINS);
-  // Create Gyorg Hint
-  std::string gyorgText = ItemTable(GYORGS_REMAINS).GetHint().GetText().GetEnglish();
-  std::string gyorgHint = Hint(PREFIX).GetText().GetEnglish()+"#"+gyorgText+"# "+Hint(CAN_BE_FOUND_AT).GetText().GetEnglish()+" "+BuildDoorText(GYORGS_REMAINS);
-  // Create Twinmold Hint
-  std::string twinmoldText = ItemTable(TWINMOLDS_REMAINS).GetHint().GetText().GetEnglish();
-  std::string twinmoldHint = Hint(PREFIX).GetText().GetEnglish()+"#"+twinmoldText+"# "+Hint(CAN_BE_FOUND_AT).GetText().GetEnglish()+" "+BuildDoorText(TWINMOLDS_REMAINS);
+  // Create hint text
+  std::string ocarinaHint   = "Hey, didn't you have some sort of #musical instrument#?&If I know skullkid, I bet he hid it at "+BuildDoorText(OCARINA_OF_TIME);
+  std::string odolwaHint    = "There's one with a #crown# and #jewellery# said to be found at "+BuildDoorText(ODOLWAS_REMAINS);
+  std::string gohtHint      = "Another #extremely sturdy# one with #huge horns# at "+BuildDoorText(GOHTS_REMAINS);
+  std::string gyorgHint     = "One with #giant fins# and #razor sharp teeth# at "+BuildDoorText(GYORGS_REMAINS);
+  std::string twinmoldHint  = "And one with #three eyes# and #enormous mandibles# at "+BuildDoorText(TWINMOLDS_REMAINS);
 
-  // Combine them all for the final text
-  // If starting without ocarina final hint should include its location
-  if(StartingOcarina.Value<u8>() == 0) {
-    std::string finalHint = ocarinaHint + odolwaHint + gohtHint + gyorgHint + twinmoldHint;
-    CustomMessages::CreateMessage(0x0630, 0xFFFF, 0x3fffffff, 0xFF0211,
-        finalHint.c_str(),
-        {QM_BLUE, QM_RED, QM_GREEN, QM_RED, QM_MAGENTA, QM_RED, QM_CYAN, QM_RED, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
-  }
-  else {
-    std::string finalHint = odolwaHint + gohtHint + gyorgHint + twinmoldHint;
-    CustomMessages::CreateMessage(0x0630, 0xFFFF, 0x3fffffff, 0xFF0211,
-        finalHint.c_str(),
-        {QM_GREEN, QM_RED, QM_MAGENTA, QM_RED, QM_CYAN, QM_RED, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
-  }
+  CustomMessages::CreateMessage(0x0630, (StartingOcarina.Value<u8>() == 0) ? 0x8000 : 0x8002, 0x3FFFFFFF, 0x0FF0211,
+    "Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
+    "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#",
+    {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, ocarinaHint.c_str(), {QM_BLUE, QM_RED}, {}, {}, 0x037C, false, false);
+  CustomMessages::CreateMessage(0x8001, 0x8003, 0x3FFFFFFF, 0x1FF0000,
+    "Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+    {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8002, 0x8003, 0x3FFFFFFF, 0x1FF0000,
+    "Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+    {QM_RED, QM_RED}, {}, {}, 0x037C, false, false);
+  CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, odolwaHint.c_str(), {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, gohtHint.c_str(), {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, gyorgHint.c_str(), {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8006, 0xFFFF, 0x3FFFFFFF, 0x0600000, twinmoldHint.c_str(), {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
 }
 
 //insert the required number into the hint and set the singular/plural form
