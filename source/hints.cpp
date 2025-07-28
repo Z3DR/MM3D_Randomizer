@@ -123,9 +123,9 @@ static Area* GetHintRegion(const AreaKey area) {
     }
 
     //add unchecked exits to spot queue
-    bool checked = false;
-    
     for (auto& exit : AreaTable(region)->exits) {
+      bool checked = false;
+
       for (AreaKey checkedExit : alreadyChecked) {
         if (exit.GetAreaKey() == checkedExit) {
           checked = true;
@@ -498,7 +498,7 @@ static std::string BuildDoorText(const ItemKey itemKey) {
 
 void CreateClockTowerDoorHints() {
   // Create hint text
-  std::string ocarinaHint   = "Hey, didn't you have some sort of #musical instrument#?&If I know skullkid, I bet he hid it at "+BuildDoorText(OCARINA_OF_TIME);
+  std::string ocarinaHint   = "Hey, didn't you have some sort of #musical instrument#?&If I know the Skull Kid, I bet he hid it at "+BuildDoorText(OCARINA_OF_TIME);
   std::string odolwaHint    = "There's one with a #crown# and #jewellery# said to be found at "+BuildDoorText(ODOLWAS_REMAINS);
   std::string gohtHint      = "Another #extremely sturdy# one with #huge horns# at "+BuildDoorText(GOHTS_REMAINS);
   std::string gyorgHint     = "One with #giant fins# and #razor sharp teeth# at "+BuildDoorText(GYORGS_REMAINS);
