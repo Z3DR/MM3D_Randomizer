@@ -493,6 +493,9 @@ void CreateTingleHintText() {
 
 static std::string BuildDoorText(const ItemKey itemKey) {
   LocationKey location = FilterFromPool(allLocations, [itemKey](const LocationKey loc){return Location(loc)->GetPlacedItemKey() == itemKey;})[0];
+  if (Location(location)->GetParentRegionKey() == NONE) {
+    Location(location)->SetParentRegion(LINKS_POCKET);
+  }
   return "#"+GetHintRegion(Location(location)->GetParentRegionKey())->GetHint().GetText().GetEnglish()+"#.";
 }
 
