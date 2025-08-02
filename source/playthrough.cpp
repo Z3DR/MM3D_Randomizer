@@ -78,6 +78,7 @@ namespace Playthrough {
         PlacementLog_Clear();
       }
       CreateTingleHintText();
+      CreateClockTowerDoorHints();
 
       playthroughLocations.clear();
       wothLocations.clear();

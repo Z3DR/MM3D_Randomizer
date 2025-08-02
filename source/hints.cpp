@@ -123,9 +123,9 @@ static Area* GetHintRegion(const AreaKey area) {
     }
 
     //add unchecked exits to spot queue
-    bool checked = false;
-    
     for (auto& exit : AreaTable(region)->exits) {
+      bool checked = false;
+
       for (AreaKey checkedExit : alreadyChecked) {
         if (exit.GetAreaKey() == checkedExit) {
           checked = true;
@@ -484,13 +484,58 @@ void CreateTingleHintText() {
       }
 }
 //Find the location which has the given itemKey and create the generic altar text for the reward
-/*
-static Text BuildDungeonRewardText(ItemID itemID, const ItemKey itemKey) {
+
+/*static Text BuildDungeonRewardText(ItemID itemID, const ItemKey itemKey) {
   LocationKey location = FilterFromPool(allLocations, [itemKey](const LocationKey loc){return Location(loc)->GetPlacedItemKey() == itemKey;})[0];
   //Calling ITEM_OBTAINED draws the passed in itemID to the left side of the textbox
   return Text()+ITEM_OBTAINED(itemID)+"#"+GetHintRegion(Location(location)->GetParentRegionKey())->GetHint().GetText()+"#...^";
+}*/
+
+static std::string BuildDoorText(const ItemKey itemKey) {
+  LocationKey location = FilterFromPool(allLocations, [itemKey](const LocationKey loc){return Location(loc)->GetPlacedItemKey() == itemKey;})[0];
+  if (Location(location)->GetParentRegionKey() == NONE) {
+    Location(location)->SetParentRegion(LINKS_POCKET);
+  }
+  return "#"+GetHintRegion(Location(location)->GetParentRegionKey())->GetHint().GetText().GetEnglish()+"#.";
 }
-*/
+
+void CreateClockTowerDoorHints() {
+  // Create hint text
+  std::string ocarinaHint   = "Hey, didn't you have some sort of #musical instrument#?&If I know the Skull Kid, I bet he hid it at "+BuildDoorText(OCARINA_OF_TIME);
+  std::string odolwaHint    = "There's one with a #crown# and #jewellery# said to be found at "+BuildDoorText(ODOLWAS_REMAINS);
+  std::string gohtHint      = "Another #extremely sturdy# one with #huge horns# at "+BuildDoorText(GOHTS_REMAINS);
+  std::string gyorgHint     = "One with #giant fins# and #razor sharp teeth# at "+BuildDoorText(GYORGS_REMAINS);
+  std::string twinmoldHint  = "And one with #three eyes# and #enormous mandibles# at "+BuildDoorText(TWINMOLDS_REMAINS);
+  if (StartingOdolwaRemains.Value<u8>() == 1) {
+     odolwaHint    = "There's one with a #crown# and #jewellery# said to be found in "+BuildDoorText(ODOLWAS_REMAINS); 
+  }
+  if (StartingGohtRemains.Value<u8>() == 1) {
+    gohtHint      = "Another #extremely sturdy# one with #huge horns# in "+BuildDoorText(GOHTS_REMAINS);
+  }
+  if (StartingGyorgRemains.Value<u8>() == 1) {
+     gyorgHint     = "One with #giant fins# and #razor sharp teeth# in "+BuildDoorText(GYORGS_REMAINS);
+  }
+  if (StartingTwinmoldRemains.Value<u8>() == 1){
+     twinmoldHint  = "And one with #three eyes# and #enormous mandibles# in "+BuildDoorText(TWINMOLDS_REMAINS); 
+  }
+
+  CustomMessages::CreateMessage(0x0630, (StartingOcarina.Value<u8>() == 0) ? 0x8000 : 0x8002, 0x3FFFFFFF, 0x0FF0211,
+    "Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
+    "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#",
+    {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, ocarinaHint.c_str(), {QM_BLUE, QM_RED}, {}, {}, 0x037C, false, false);
+  CustomMessages::CreateMessage(0x8001, 0x8003, 0x3FFFFFFF, 0x1FF0000,
+    "Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+    {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8002, 0x8003, 0x3FFFFFFF, 0x1FF0000,
+    "Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+    {QM_RED, QM_RED}, {}, {}, 0x037C, false, false);
+  CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, odolwaHint.c_str(), {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, gohtHint.c_str(), {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, gyorgHint.c_str(), {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8006, 0xFFFF, 0x3FFFFFFF, 0x0600000, twinmoldHint.c_str(), {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+}
+
 //insert the required number into the hint and set the singular/plural form
 /*
 static Text BuildCountReq(const HintKey req, const Option& count) {

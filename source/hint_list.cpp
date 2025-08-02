@@ -215,7 +215,13 @@ void HintTable_Init() {
             //clear
             Text{"Double Defense", "**FRENCH**", "**SPANISH**"}
     );
-	//	OCARINA_OF_TIME,
+        hintTable[OCARINA_OF_TIME] = HintText::Item({
+            //obscure
+            Text{"a musical instrument", "**FRENCH**", "**SPANISH**"}
+        },
+            //clear
+            Text{"the Ocarina of Time", "**FRENCH**", "**SPANISH**"}
+    );
 	hintTable[PICTOGRAPH_BOX] = HintText::Item({
             //obscure
             Text{"a capture device", "**FRENCH**", "**SPANISH**"}
@@ -2012,6 +2018,7 @@ void HintTable_Init() {
   /*----------------------
   |   REGTION HINT TEXT  |
   ----------------------*/
+    hintTable[LINKS_POCKET] = HintText::Region({ Text{"Your Pocket", "**FRENCH**", "**SPANISH**"}});
     hintTable[N_CLOCK_TOWN] = HintText::Region({ Text{"N Clock Town", "**FRENCH**", "**SPANISH**"}});
     hintTable[CLOCK_TOWN_FAIRY_FOUNTAIN] = HintText::Region({Text{"Clock Town Fairy Fountain", "**FRENCH**", "**SPANISH**"}});
     hintTable[CLOCK_TOWN_DEKU_PLAYGROUND] = HintText::Region({Text{"Deku Playground", "**FRENCH**", "**SPANISH**"}});

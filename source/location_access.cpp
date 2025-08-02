@@ -212,6 +212,11 @@ void AreaTable_Init() {
 		Entrance(S_CLOCK_TOWN, {[]{return true;}}),
 	});
 
+	areaTable[LINKS_POCKET] = Area("Links Pocket", "Links Pocket", LINKS_POCKET, {}, {}, {
+		//Exits
+		Entrance(S_CLOCK_TOWN, {[]{return true;}}),
+	});
+
 	/*--------------------------
 	|    OVERWORLD             |
 	---------------------------*/
@@ -750,6 +755,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
+		Entrance(TERMINA_FIELD, {[]{return true;}}),
 	});
 	areaTable[TERMINA_FIELD_BUSINESS_SCRUB_GROTTO] = Area("Termina Field Business Scrub Grotto","Termina Field Business Scrub Grotto", NONE, {
 		//Events
