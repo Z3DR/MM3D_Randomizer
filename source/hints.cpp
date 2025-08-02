@@ -506,6 +506,18 @@ void CreateClockTowerDoorHints() {
   std::string gohtHint      = "Another #extremely sturdy# one with #huge horns# at "+BuildDoorText(GOHTS_REMAINS);
   std::string gyorgHint     = "One with #giant fins# and #razor sharp teeth# at "+BuildDoorText(GYORGS_REMAINS);
   std::string twinmoldHint  = "And one with #three eyes# and #enormous mandibles# at "+BuildDoorText(TWINMOLDS_REMAINS);
+  if (StartingOdolwaRemains.Value<u8>() == 1) {
+     odolwaHint    = "There's one with a #crown# and #jewellery# said to be found in "+BuildDoorText(ODOLWAS_REMAINS); 
+  }
+  if (StartingGohtRemains.Value<u8>() == 1) {
+    gohtHint      = "Another #extremely sturdy# one with #huge horns# in "+BuildDoorText(GOHTS_REMAINS);
+  }
+  if (StartingGyorgRemains.Value<u8>() == 1) {
+     gyorgHint     = "One with #giant fins# and #razor sharp teeth# in "+BuildDoorText(GYORGS_REMAINS);
+  }
+  if (StartingTwinmoldRemains.Value<u8>() == 1){
+     twinmoldHint  = "And one with #three eyes# and #enormous mandibles# in "+BuildDoorText(TWINMOLDS_REMAINS); 
+  }
 
   CustomMessages::CreateMessage(0x0630, (StartingOcarina.Value<u8>() == 0) ? 0x8000 : 0x8002, 0x3FFFFFFF, 0x0FF0211,
     "Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
