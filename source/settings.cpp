@@ -112,7 +112,7 @@ namespace Settings {
   Option StartingMaxRupees         = Option::Bool("Start with Max Rupees",  { "No",               "Yes" },                                                     { startWithMaxRupeesDesc });
   Option StartingInventoryToggle   = Option::U8("Inventory",                { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingNutCapacity       = Option::U8("Deku Nuts",                { "None",             "20 Deku Nuts",     "30 Deku Nuts",     "40 Deku Nuts" },    { "" });
-  Option StartingOcarina           = Option::U8("Ocarina",                  { "None",  "Ocarina of Time" },                                                    { "" }, OptionCategory::Setting, 1);
+  Option StartingOcarina           = Option::U8("Ocarina",                  { "None",  "Ocarina of Time" },                                                    { ocarinasDesc }, OptionCategory::Setting, 1);
   Option StartingNotebook          = Option::U8("Bomber's Notebook",      { "None",             "B. Notebook"},                                              { "" });
   Option StartingBombBag           = Option::U8("Bomb Bag",               { "None",             "Bomb Bag 20",      "Bomb Bag 30",      "Bomb Bag 40" },     { "" });
   Option StartingBombchus          = Option::U8("Bombchus",               { "None",             "Bombchus" },                                                { "" });
