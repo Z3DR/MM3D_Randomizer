@@ -400,12 +400,6 @@ string_view blastVeryShort            = "Sets the cooldown time on the blastmask
                                         "have an even shorter cooldown time of 3 seconds"; //
 string_view blastShort                = "Sets the cooldown time on the blastmask to \n"    //
                                         "have a shorter cooldown time of 5 seconds";       //
-string_view blastLong                 = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Sets the cooldown time on the blastmask to \n"    //
-                                        "have a longer cooldown time of 15 seconds";       //
-string_view blastVeryLong             = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Sets the cooldown time on the blastmask to \n"    //
-                                        "have an even longer cooldown time of 20 seconds"; //
 /*------------------------------                                                           //
 |   VARIOUS COMFORT SETTINGS   |                                                           //
 ------------------------------*/                                                           //
@@ -415,8 +409,8 @@ string_view skipMinigamePhasesDesc    = "**OPTION CURRENTLY WIP**\n"            
                                         "both rewards at once for that minigame."          //
                                         "Also skips the first beaver race.";               //
                                                                                            //
-string_view fierceDeityAnywhereDesc   = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Enables the use of the Fierce Deity Mask anywhere";//
+string_view fierceDeityAnywhereDesc   = "Enables the use of the Fierce Deity Mask anywhere\n"
+                                        "Softlocks or crashes are possible use with caution!";//
                                                                                            //
  string_view underwaterOcarinaDesc    = "**OPTION CURRENTLY WIP**\n"                       //
                                         "Enables the use of the ocarina while underwater.";//
@@ -494,15 +488,8 @@ string_view shopsRandom               = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |         TOKENSANITY          |                                                           //
 ------------------------------*/                                                           //
-string_view tokensOff                 = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "GS locations will not be shuffled.";              //
-string_view tokensDungeon             = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "GS tokens will appear only in dungeons";          //
-string_view tokensOverworld           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "This only shuffles the GS locations that are\n"   //
-                                        "outside of dungeons.";                            //
-string_view tokensAllTokens           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Effectively adds 60 new locations for items to\n"//
+string_view tokensOff                 = "GS locations will not be shuffled.";              //
+string_view tokensAllTokens           = "Effectively adds 60 new locations for items to\n"//
                                         "appear.";                                         //
                                                                                            //
 /*------------------------------                                                           //
@@ -527,9 +514,8 @@ string_view shuffleCowsDesc           = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |       SHUFFLE OCARINAS       |                                                           //
 ------------------------------*/                                                           //
-string_view ocarinasDesc              = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Enabling this shuffles the Ocarina of Time into \n"//
-                                        "the item pool."        					       //
+string_view ocarinasDesc              = "Setting this to None shuffles the Ocarina of Time\n"//
+                                        "into the item pool."     					       //
                                         "\n"                                               //
                                         "This will require finding an Ocarina before being\n"
                                         "able to play songs. or restart the days";         //
@@ -546,8 +532,7 @@ string_view freeScarecrowDesc         = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |       DAMAGE MULTIPLIER      |                                                           //
 ------------------------------*/                                                           //
-string_view damageMultiDesc           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Changes the amount of damage taken.\n"            //
+string_view damageMultiDesc           = "Changes the amount of damage taken.\n"            //
                                         "\n"                                               //
                                         "If set to OHKO, Link will die in one hit.";       //
 
@@ -561,8 +546,7 @@ string_view chestAnimDesc             = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |     CHEST SIZE AND COLOR     |                                                           //
 ------------------------------*/                                                           //
-string_view chestSizeDesc             = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "This option will change the appearance of all\n"  //
+string_view chestSizeDesc             = "This option will change the appearance of all\n"  //
                                         "regular chests depending on their contents:\n"    //
                                         "Major Items    =    Big Gold Trimmed Chests\n"    //
                                         "Lesser Items   =    Small Gold Trimmed Chests\n"  //
