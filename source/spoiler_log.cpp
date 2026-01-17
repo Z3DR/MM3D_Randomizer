@@ -213,9 +213,15 @@ static void WriteIngameSpoilerLog() {
           continue;
         }
         // Songs
-        if ((Settings::ShuffleSongs.Is(SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) && Location(key)->IsCategory(Category::cSong)) {
+        if ((Settings::ShuffleSongs.Value<u8>() == u8(0)) && Location(key)->IsCategory(Category::cSong)) {
           continue;
         }
+        //if ((!Settings::ShuffleSongOfTime) && Location(key)->IsCategory(Category::cSong)) {
+        //  continue;
+        //}
+        //if ((!Settings::ShuffleSoaring) && Location(key)->IsCategory(Category::cSong)) {
+        //  continue;
+        //}
         // Tingle Maps
         if (!Settings::ShuffleTingleMaps && Location(key)->IsCategory(Category::cTingleMap)) {
           continue;
