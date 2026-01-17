@@ -279,19 +279,17 @@ string_view startingSpinDesc          = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |         SONG SHUFFLE         |                                                           //
 ------------------------------*/                                                           //
-string_view songsSongLocations        = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Songs will only appear at locations that normally\n"
+string_view songsSongLocations        = "Songs will only appear at locations that normally\n"
                                         "teach songs.";                                    //
-string_view songsDungeonRewards       = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Songs appear at the end of dungeons. For major\n" //
+string_view songsDungeonRewards       = "Songs appear at the end of dungeons. For major\n" //
                                         "dungeons, they will be at the boss heart container"
                                         "location. ";                                      //
-string_view songsAllLocations         = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Songs can appear in any location.";               //
-                                                                                           //
+string_view songsAllLocations         = "Songs can appear in any location.";               //
+string_view songsVanilla              = "Songs will not be randomized";                    // 
 string_view shuffleSoaringVanilla     = "Sets Song of Soaring to its Vanilla Location";    //
-string_view shuffleSoaringRandom      = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Randomizes Song of Soaring";                      //                                                                                                             
+string_view shuffleSoaringRandom      = "Randomizes Song of Soaring";                      //
+string_view songTimeVanilla           = "Sets Song of Time to its Vanilla Location";       //
+string_view songTimeRandom            = "Randomizes Song of Time";                         //
 /*------------------------------                                                           //
 |     GOSSIP STONE HINTS       |                                                           //
 ------------------------------*/                                                           //

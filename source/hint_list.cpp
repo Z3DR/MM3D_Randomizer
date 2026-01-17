@@ -674,7 +674,13 @@ void HintTable_Init() {
 	hintTable[MAGIC_POWER]          = HintText::Item({Text{"magic power", "**FRENCH**", "**SPANISH**"}});
 	hintTable[EXTENDED_MAGIC_POWER] = HintText::Item({Text{"magic power", "**FRENCH**", "**SPANISH**"}});
 		//SONGS
-	//hintTable[SONG_OF_TIME] = HintText::Item({Text{"song of time", "**FRENCH**", "**SPANISH**"}});
+	hintTable[SONG_OF_TIME] = HintText::Item({
+            //obscure
+            Text{"song of time", "**FRENCH**", "**SPANISH**"}
+        },
+            //clear
+            Text{"the Song of Time", "**FRENCH**", "**SPANISH**"}
+        );
 	hintTable[SONG_OF_STORMS] = HintText::Item({
             //obscure
             Text{"stormy weather", "**FRENCH**", "**SPANISH**"}
@@ -1148,6 +1154,8 @@ void HintTable_Init() {
 	// Clock Tower
     hintTable[CLOCK_TOWER_OCARINA_OF_TIME] = HintText::Sometimes({
             Text{"A Musical Instrument", "**FRENCH**", "**SPANISH**"}});
+    hintTable[CLOCK_TOWER_SONG_OF_TIME] = HintText::Sometimes({
+            Text{"A Timeless Song", "**FRENCH**", "**SPANISH**"}});
     hintTable[HMS_DEKU_MASK] = HintText::Sometimes({
             Text{"a forest curse removed rewards", "**FRENCH**", "**SPANISH**"}});
     hintTable[HMS_SONG_OF_HEALING] = HintText::Sometimes({

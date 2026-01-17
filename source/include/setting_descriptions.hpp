@@ -60,8 +60,11 @@ extern string_view kokiriSwordDesc;
 extern string_view songsSongLocations;
 extern string_view songsDungeonRewards;
 extern string_view songsAllLocations;
+extern string_view songsVanilla;
 extern string_view shuffleSoaringVanilla;
 extern string_view shuffleSoaringRandom;
+extern string_view songTimeVanilla;
+extern string_view songTimeRandom;
 
 extern string_view gossipStonesHintsDesc;
 

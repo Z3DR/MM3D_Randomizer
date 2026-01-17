@@ -111,6 +111,7 @@ namespace Logic {
 	extern bool LetterMamaAccess;
 	extern bool MoonsTearAccess;
 	//Songs
+	extern bool SongOfTime;
 	extern bool ScarecrowSong;
 	extern bool SongOfStorms;
 	extern bool SongOfHealing;

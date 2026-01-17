@@ -591,7 +591,8 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(CLOCK_TOWER_OCARINA_OF_TIME, {[]{return true;}}),
+		LocationAccess(CLOCK_TOWER_OCARINA_OF_TIME, {[]{return CanUseProjectile;}}),
+		LocationAccess(CLOCK_TOWER_SONG_OF_TIME, {[]{return CanUseProjectile;}}),
 	},
 	{
 		//Exits

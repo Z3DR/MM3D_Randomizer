@@ -873,6 +873,34 @@ int Fill() {
         //Then place dungeon items that are assigned to restrictive location pools
         RandomizeDungeonItems();
 
+        CitraPrint("Trying to place songs");
+
+        //Place Songs before inventory to prevent song locations from being used
+        //get Songs in pool
+        std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
+        //If Shuffled in Song Locations restrict location pool to only song locations
+        //If Song of Time is shuffled do that first with a restricted location pool to prevent softlocks
+        if (ShuffleSongOfTime) {
+            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
+            std::vector<ItemKey> SoTItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetHintKey() == SONG_OF_TIME; });
+            NoRepeatOnTokens = true;
+            AssumedFill(SoTItem, ocarinaLocations, true);
+            NoRepeatOnTokens = false;
+        }
+        //If Songs are at song locations get all song locations and place them there
+        if (ShuffleSongs.Value<u8>() == u8(1)){
+            std::vector<LocationKey> songLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSong);});
+            NoRepeatOnTokens = true;
+            AssumedFill(songs, songLocations,true);
+            NoRepeatOnTokens = false;
+        }
+        //else just place them anywhere
+        else {
+            NoRepeatOnTokens = true;
+            AssumedFill(songs, allLocations,true);
+            NoRepeatOnTokens = false;
+        }
+
         //If Ocarina is shuffled place that first 
         if (StartingOcarina.Value<u8>() == 0) {
             //Get acceptable Ocarina Locations
@@ -922,7 +950,7 @@ int Fill() {
             //std::vector<ItemKey> remainingRepeatItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsReusable();});
             //CitraPrint("Starting Fill of remaining Repeat Items");
             //AssumedFill(remainingRepeatItems, allLocations,true);
-        }   
+        }
                 
         //Place Main Inventory First
         //So first get all items in the pool + DekuMask,

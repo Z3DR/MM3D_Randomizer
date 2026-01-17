@@ -119,6 +119,7 @@ namespace Logic {
 	bool LetterMamaAccess = false;
 	bool MoonsTearAccess = false;
 	//Songs
+	bool SongOfTime = false;
 	bool ScarecrowSong = false;
 	bool SongOfStorms = false;
 	bool SonataOfAwakening = false;

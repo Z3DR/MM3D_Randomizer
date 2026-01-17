@@ -257,7 +257,7 @@ const std::array<ItemKey, 8> chestItems = {
 	MIRROR_SHIELD,
 };
 
-const std::array<ItemKey, 12> songList = {
+const std::array<ItemKey, 9> songList = {
 	//SONG_OF_TIME,
 	//SONG_OF_DOUBLE_TIME,
 	//INVERTED_SONG_OF_TIME, //SoT not included yet
@@ -283,6 +283,8 @@ static void PlaceVanillaSongs() {
 	PlaceItemInLocation(IKANA_CASTLE_IKANA_KING, ELEGY_OF_EMPTINESS);
 	PlaceItemInLocation(IKANA_GRAVEYARD_DAY_ONE_GRAVE_TABLET, SONG_OF_STORMS);
 	PlaceItemInLocation(GIANTS_OATH_TO_ORDER, OATH_TO_ORDER);
+	PlaceItemInLocation(CLOCK_TOWER_SONG_OF_TIME, SONG_OF_TIME);
+	PlaceItemInLocation(SOUTHERN_SWAMP_MUSIC_STATUE, SONG_OF_SOARING);
 };
 
 // TODO: Change back to 18 when the override value is correct.
@@ -867,7 +869,7 @@ void GenerateItemPool() {
 	};
 	//Check song shuffle and dungeon reward shuffle just for ice traps
 	/*
-	if (ShuffleSongs.Is(rnd::SongShuffleSetting::SONGSHUFFLE_ANYWHERE)) {
+	if (ShuffleSongs.Value<u8>() != 0) {
 		//Push item ids for songs
 		IceTrapModels.push_back(0x4B);
 		IceTrapModels.push_back(0x4C);
@@ -876,10 +878,10 @@ void GenerateItemPool() {
 		IceTrapModels.push_back(0x4F);
 		IceTrapModels.push_back(0x51);
 		IceTrapModels.push_back(0x54);
-		//IceTrapModels.push_back(0x53); // should be song of time but not included yet
+		IceTrapModels.push_back(0x53); // should be song of time but not included yet
 		//IceTrapModels.push_back(0xC6);
 	}*/
-	if (ShuffleRewards.Is(rnd::RewardShuffleSetting::REWARDSHUFFLE_ANYWHERE)) {
+	if (ShuffleRewards.Value<u8>() != 0) {
 		//Push item ids for dungeon rewards
 		IceTrapModels.push_back(0x55);
 		IceTrapModels.push_back(0x56);
@@ -943,8 +945,6 @@ void GenerateItemPool() {
 	}
 	else {PlaceItemInLocation(HMS_BOMBERS_NOTEBOOK, BOMBERS_NOTEBOOK);}
 
-	//ShuffleOcarina
-
 	//COWSANITY
 	//if (ShuffleCows) {
 		//8 total cows -- rather have junk than 8 extra milk refills
@@ -995,29 +995,32 @@ void GenerateItemPool() {
 	}
 
 	//SONG SHUFFLE
-	//add extra songs only if song shuffle is anywhere
-	//if (ShuffleSongs.Is(SongShuffleSetting::SONGSHUFFLE_ANYWHERE)){
-	//	AddItemsToPool(ItemPool, songList);
-	//}
-	//else if (ShuffleSongs.Is(SongShuffleSetting::SONGSHUFFLE_ANYWHERE) && ItemPoolValue.Is(ItemPoolSetting::ITEMPOOL_PLENTIFUL)) {
-	//	AddItemsToPool(PendingJunkPool, songList);
-	//}
-	//else {
+	//Add songs to pool if they're shuffled 
+	if (ShuffleSongs.Value<u8>() != u8(0)) {
+		AddItemsToPool(ItemPool, songList);
+		//If Song of Time is shuffled add it to the pool
+		if (ShuffleSongOfTime) {
+			AddItemToMainPool(SONG_OF_TIME);
+		}
+		else {
+			PlaceItemInLocation(CLOCK_TOWER_SONG_OF_TIME, SONG_OF_TIME);
+		}
+		//If Soaring is shuffled add it to the pool
+		if (ShuffleSoaring) {
+			AddItemToMainPool(SONG_OF_SOARING);
+		}
+		else {
+			PlaceItemInLocation(SOUTHERN_SWAMP_MUSIC_STATUE, SONG_OF_SOARING);
+		}
+	}
+	else {
 		PlaceVanillaSongs();
-	//}
+	}
+	
 	if (StartingSongOfHealing.Value<u8>() == u8(1)){//if starting with song of healing fill deku mask and notebook spots as they are unobtainable
 		PlaceItemInLocation(HMS_DEKU_MASK, GREEN_RUPEE);
 		PlaceItemInLocation(HMS_BOMBERS_NOTEBOOK, GREEN_RUPEE);
 	}
-
-	//if (ShuffleSoaring)
-	//{
-	//	AddItemToPool(ItemPool, SONG_OF_SOARING);
-	//}
-	//else {
-		PlaceItemInLocation(SOUTHERN_SWAMP_MUSIC_STATUE, SONG_OF_SOARING); 
-	//	}
-
 	
 	//GREAT FAIRY SHUFFLE
 	if(ShuffleGFRewards.Is((u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA)){

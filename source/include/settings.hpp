@@ -327,6 +327,8 @@ namespace Settings {
   extern Option StartingElegyOfEmptiness;
   extern Option StartingSongOfHealing;
   extern Option StartingSongOfSoaring;
+  extern Option StartingSongOfTime;
+  extern Option StartingGoronIntro;
   extern Option StartingUpgradesToggle;
   extern Option StartingKokiriSword;
   extern Option StartingGreatFairySword;
@@ -398,6 +400,7 @@ namespace Settings {
   extern Option ShuffleMerchants;
   extern Option ShuffleSongs;
   extern Option ShuffleSoaring;
+  extern Option ShuffleSongOfTime;
   extern Option ShuffleStartingShield;
   extern Option ShuffleBombersNotebook;
   extern Option ShuffleTradeItems;
