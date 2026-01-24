@@ -2583,7 +2583,6 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(GOHT, {[]{return GoronMask && CanUse(FIRE_ARROWS);}}),
 		LocationAccess(GOHT_HEART_CONTAINER, {[]{return GoronMask && CanUse(FIRE_ARROWS);}}),
-		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return GoronMask && CanUse(FIRE_ARROWS);}}),
 	},
 	{
 		//Exits
@@ -2825,7 +2824,6 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(GYORG, {[]{return ZoraMask && MagicMeter && CanUseProjectile;}}),
 		LocationAccess(GYORG_HEART_CONTAINER, {[]{return ZoraMask && MagicMeter && CanUseProjectile;}}),
-		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return ZoraMask && MagicMeter && CanUseProjectile;}}),
 	},
 	{
 		//Exits
@@ -3150,7 +3148,6 @@ void AreaTable_Init() {
 		LocationAccess(STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST, {[]{return CanUse(LIGHT_ARROWS) || CanUse(GIANTS_MASK);}}),
 		LocationAccess(TWINMOLD, {[]{return CanUse(LIGHT_ARROWS) && CanUse(GIANTS_MASK);}}),
 		LocationAccess(TWINMOLD_HEART_CONTAINER, {[]{return CanUse(LIGHT_ARROWS) && CanUse(GIANTS_MASK);}}),
-		LocationAccess(GIANTS_OATH_TO_ORDER, {[]{return CanUse(LIGHT_ARROWS) && CanUse(GIANTS_MASK);}}),
 	},
 	{
 		//Exits
