@@ -168,7 +168,7 @@ static void AddHint(Text hint, const LocationKey gossipStone, const std::vector<
   if (hint.GetEnglish().find("$")) {
     icons.push_back(B_BUTTON);
   }
-  CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, hint.GetEnglish().c_str(), colors, icons, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, {hint.GetEnglish().c_str()}, colors, icons, {}, 0x0, false, false);
   //CreateMessageFromTextObject(messageId, 0, 2, 3, AddColorsAndFormat(hint, colors));
   //CreateMessageFromTextObject(sariaMessageId, 0, 2, 3, AddColorsAndFormat(hint + EVENT_TRIGGER(), colors));
 }
@@ -449,37 +449,37 @@ void CreateTingleHintText() {
         std::string stoneTowerMap = ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName().GetEnglish();
         
         CustomMessages::CreateMessage(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
-        clockTownMap.insert(0, "#").append("#    #5 Rupees#&").append(woodfallMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str(),
+        {clockTownMap.insert(0, "#").append("#    #5 Rupees#&").append(woodfallMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
         clockTownMap = ItemTable(Location(TINGLE_N_CLOCK_TOWN_CT)->GetPlacedItemKey()).GetName().GetEnglish();
         woodfallMap = ItemTable(Location(TINGLE_N_CLOCK_TOWN_WF)->GetPlacedItemKey()).GetName().GetEnglish();
 
         CustomMessages::CreateMessage(0x1D12, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        woodfallMap.insert(0, "#").append("#    #20 Rupees#&").append(snowHeadMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str(),
+        {woodfallMap.insert(0, "#").append("#    #20 Rupees#&").append(snowHeadMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
         woodfallMap = ItemTable(Location(TINGLE_N_CLOCK_TOWN_WF)->GetPlacedItemKey()).GetName().GetEnglish();
         snowHeadMap = ItemTable(Location(TINGLE_TWIN_ISLANDS_SH)->GetPlacedItemKey()).GetName().GetEnglish();
 
         CustomMessages::CreateMessage(0x1D13, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        snowHeadMap.insert(0, "#").append("#    #20 Rupees#&").append(romaniMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str(),
+        {snowHeadMap.insert(0, "#").append("#    #20 Rupees#&").append(romaniMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
         snowHeadMap = ItemTable(Location(TINGLE_TWIN_ISLANDS_SH)->GetPlacedItemKey()).GetName().GetEnglish();
         romaniMap = ItemTable(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey()).GetName().GetEnglish();
 
         CustomMessages::CreateMessage(0x1D14, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        romaniMap.insert(0, "#").append("#    #20 Rupees#&").append(greatBayMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str(),
+        {romaniMap.insert(0, "#").append("#    #20 Rupees#&").append(greatBayMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
         romaniMap = ItemTable(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey()).GetName().GetEnglish();
         greatBayMap = ItemTable(Location(TINGLE_GBC_GB)->GetPlacedItemKey()).GetName().GetEnglish();
 
         CustomMessages::CreateMessage(0x1D15, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        greatBayMap.insert(0, "#").append("#    #20 Rupees#&").append(stoneTowerMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str(),
+        {greatBayMap.insert(0, "#").append("#    #20 Rupees#&").append(stoneTowerMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
         greatBayMap = ItemTable(Location(TINGLE_GBC_GB)->GetPlacedItemKey()).GetName().GetEnglish();
         stoneTowerMap = ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName().GetEnglish();
 
         CustomMessages::CreateMessage(0x1D16, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        stoneTowerMap.insert(0, "#").append("#    #20 Rupees#&").append(clockTownMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str(),
+        {stoneTowerMap.insert(0, "#").append("#    #20 Rupees#&").append(clockTownMap.insert(0, "#").c_str()).append("#     #40 Rupees#").append("&#No thanks#").c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
       }
 }
@@ -520,20 +520,20 @@ void CreateClockTowerDoorHints() {
   }
 
   CustomMessages::CreateMessage(0x0630, (StartingOcarina.Value<u8>() == 0) ? 0x8000 : 0x8002, 0x3FFFFFFF, 0x0FF0211,
-    "Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
-    "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#",
+    {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
+    "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#"},
     {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, ocarinaHint.c_str(), {QM_BLUE, QM_RED}, {}, {}, 0x037C, false, false);
+  CustomMessages::CreateMessage(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, {ocarinaHint.c_str()}, {QM_BLUE, QM_RED}, {}, {}, 0x037C, false, false);
   CustomMessages::CreateMessage(0x8001, 0x8003, 0x3FFFFFFF, 0x1FF0000,
-    "Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+    {"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"},
     {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessage(0x8002, 0x8003, 0x3FFFFFFF, 0x1FF0000,
-    "Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+    {"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"},
     {QM_RED, QM_RED}, {}, {}, 0x037C, false, false);
-  CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, odolwaHint.c_str(), {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, gohtHint.c_str(), {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, gyorgHint.c_str(), {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8006, 0xFFFF, 0x3FFFFFFF, 0x0600000, twinmoldHint.c_str(), {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, {odolwaHint.c_str()}, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, {gohtHint.c_str()}, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, {gyorgHint.c_str()}, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8006, 0xFFFF, 0x3FFFFFFF, 0x0600000, {twinmoldHint.c_str()}, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
 }
 
 //insert the required number into the hint and set the singular/plural form

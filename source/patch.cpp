@@ -328,6 +328,34 @@ bool WriteAllPatches() {
     return false;
   }
 
+  messageEntriesInfo = CustomMessages::RawMessageTextData();
+  messageEntriesOffset = V_TO_P(RCUSTOMMESSAGETEXTDATA_ADDR);
+  messageEntriesSize = messageEntriesInfo.second;
+  if (!WritePatch(messageEntriesOffset, messageEntriesSize, (char*)messageEntriesInfo.first, code, bytesWritten, totalRW, buf)) {
+    return false;
+  }
+
+  messageEntriesInfo = CustomMessages::RawMessageColData();
+  messageEntriesOffset = V_TO_P(RCUSTOMMESSAGECOLDATA_ADDR);
+  messageEntriesSize = messageEntriesInfo.second;
+  if (!WritePatch(messageEntriesOffset, messageEntriesSize, (char*)messageEntriesInfo.first, code, bytesWritten, totalRW, buf)) {
+    return false;
+  }
+
+  messageEntriesInfo = CustomMessages::RawMessageIconData();
+  messageEntriesOffset = V_TO_P(RCUSTOMMESSAGEICONDATA_ADDR);
+  messageEntriesSize = messageEntriesInfo.second;
+  if (!WritePatch(messageEntriesOffset, messageEntriesSize, (char*)messageEntriesInfo.first, code, bytesWritten, totalRW, buf)) {
+    return false;
+  }
+
+  messageEntriesInfo = CustomMessages::RawMessageDelayData();
+  messageEntriesOffset = V_TO_P(RCUSTOMMESSAGEDELAYDATA_ADDR);
+  messageEntriesSize = messageEntriesInfo.second;
+  if (!WritePatch(messageEntriesOffset, messageEntriesSize, (char*)messageEntriesInfo.first, code, bytesWritten, totalRW, buf)) {
+    return false;
+  }
+
   // Write numCustomMessageEntries to code
   patchOffset = V_TO_P(NUMCUSTOMMESSAGEENTRIES_ADDR);
   patchSize = 4;

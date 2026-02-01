@@ -1,7 +1,7 @@
 #include "fill.hpp"
 
-//#include "custom_messages.hpp"
 #include "dungeon.hpp"
+#include "custom_messages.hpp"
 #include "item_location.hpp"
 #include "item_pool.hpp"
 #include "location_access.hpp"
@@ -843,6 +843,8 @@ int NoLogicFill() {
    
 
 int Fill() {
+    CustomMessages::CreateBaselineCustomMessages();
+
     int retries = 0;
     while (retries < 5) {
         placementFailure = false;
