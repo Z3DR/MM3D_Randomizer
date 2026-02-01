@@ -295,7 +295,7 @@ std::pair<const char*, u32> RawMessageData() {
     u32 size         = arrangedMessageEntries.size() * sizeof(UnformattedMessage);
     return { data, size };
 }
-const char* conv = "0123456789ABCDEF";
+
 std::pair<const char*, u32> RawMessageTextData() {
     const char* data = (const char*)textData.data();
     u32 size         = textData.size();
