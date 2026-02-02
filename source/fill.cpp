@@ -887,6 +887,16 @@ int Fill() {
             AssumedFill(SoTItem, ocarinaLocations, true);
             NoRepeatOnTokens = false;
         }
+        //If Ocarina is shuffled place that first 
+        if (StartingOcarina.Value<u8>() == 0) {
+            //Get acceptable Ocarina Locations
+            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
+            std::vector<ItemKey> ocarinaItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemId()==(u32)GetItemID::GI_OCARINA_OF_TIME; });
+            //reuse NoRepeatOnTokens variable because making a new one is stupid
+            NoRepeatOnTokens = true;
+            AssumedFill(ocarinaItem, ocarinaLocations, true);
+            NoRepeatOnTokens = false;
+        }
         //If Songs are at song locations get all song locations and place them there
         if (ShuffleSongs.Value<u8>() == u8(1)){
             std::vector<LocationKey> songLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSong);});
@@ -898,17 +908,6 @@ int Fill() {
         else {
             NoRepeatOnTokens = true;
             AssumedFill(songs, allLocations,true);
-            NoRepeatOnTokens = false;
-        }
-
-        //If Ocarina is shuffled place that first 
-        if (StartingOcarina.Value<u8>() == 0) {
-            //Get acceptable Ocarina Locations
-            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
-            std::vector<ItemKey> ocarinaItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemId()==(u32)GetItemID::GI_OCARINA_OF_TIME; });
-            //reuse NoRepeatOnTokens variable because making a new one is stupid
-            NoRepeatOnTokens = true;
-            AssumedFill(ocarinaItem, ocarinaLocations, true);
             NoRepeatOnTokens = false;
         }
 

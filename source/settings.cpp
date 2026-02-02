@@ -295,8 +295,8 @@ namespace Settings {
   Option ShuffleTransformation  = Option::Bool("Shuffle Transformation",{"Off", "On"},                                       {shuffleTransformationDesc});
   Option ShufflePiecesOfHeart   = Option::Bool("Shuffle Piece of Heart",{"Off", "On"},                                       {shufflePiecesOfHeartDesc },                                            OptionCategory::Toggle,   1);
   Option ShuffleSongs           = Option::U8  ("Shuffle Songs",         {"Off", "Song Locations", "Anywhere"},               {songsVanilla, songsSongLocations, songsAllLocations},                  OptionCategory::Setting,  0);
-  Option ShuffleSoaring         = Option::Bool("Shuffle Song of Soaring",{"Off", "On"},                                      {shuffleSoaringVanilla, shuffleSoaringRandom},                          OptionCategory::Toggle,   0);
-  Option ShuffleSongOfTime      = Option::Bool("Shuffle Song of Time",  {"Off", "On"},                                       {songTimeVanilla, songTimeRandom},                                      OptionCategory::Toggle,   0);
+  Option ShuffleSoaring         = Option::Bool("Shuffle Song of Soaring",{"Off", "On"},                                      {shuffleSoaringVanilla, shuffleSoaringRandom},                          OptionCategory::Setting,   0);
+  Option ShuffleSongOfTime      = Option::Bool("Shuffle Song of Time",  {"Off", "On"},                                       {songTimeVanilla, songTimeRandom},                                      OptionCategory::Setting,   0);
   Option Shopsanity             = Option::U8  ("Shopsanity",            {"Off", "0", "1", "2", "3", "4", "Random"},          {shopsOff, shopsZero, shopsOne, shopsTwo, shopsThree, shopsFour, shopsRandom});
   Option Tokensanity            = Option::Bool("Tokensanity",           {"Off", "On"},                                       {tokensOff, tokensAllTokens});
   Option Scrubsanity            = Option::U8  ("Shuffle Scrub Wares",   {"Off", "Affordable", "Expensive", "Random Prices"}, {scrubsOff, scrubsAffordable, scrubsExpensive, scrubsRandomPrices});
@@ -1580,6 +1580,7 @@ namespace Settings {
         LanguageSelect.Hide();
         LanguageSelect.SetSelectedIndex(LANGUAGE_NONE);
     }
+    
     //Show or Hide Shuffle Song of Soaring / Song of Time if Song Shuffle is on / off
     if (ShuffleSongs.Value<u8>() == u8(0)) {
       ShuffleSoaring.Hide();
@@ -1719,8 +1720,6 @@ namespace Settings {
     //If vanilla logic, we want to set all settings which unnecessarily modify vanilla behavior to off
     if (Logic.Is((u8)LogicSetting::LOGIC_VANILLA)) {
       ShuffleSongs.SetSelectedIndex(0);
-      ShuffleSoaring.SetSelectedIndex(0);
-      ShuffleSongOfTime.SetSelectedIndex(0);
       Shopsanity.SetSelectedIndex(0);
       Tokensanity.SetSelectedIndex(0);
       ShuffleCows.SetSelectedIndex(0);
