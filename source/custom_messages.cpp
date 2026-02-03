@@ -57,6 +57,11 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const char* 
     newEntry.sfxAndFlags = ((instant) ? 0x8000 : 0x0000) | ((repeatSfx) ? 0x4000 : 0x0000) | sfx;
 
     messageEntries.insert(newEntry);
+    // Duplicate moon trial hints to their alternate version
+    if (textId > 0x2102 && textId < 0x2117) {
+        newEntry.id -= 0x2F;
+        messageEntries.insert(newEntry);
+    }
 }
 
 void CreateBaselineCustomMessages() {
