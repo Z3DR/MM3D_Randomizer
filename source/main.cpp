@@ -35,8 +35,6 @@ int main() {
         0x0000, true, false
     );*/
 
-    CustomMessages::CreateBaselineCustomMessages();
-
     u64 initialHoldTime = svcGetSystemTick();
     u64 intervalTime = initialHoldTime;
     while (aptMainLoop()) {
