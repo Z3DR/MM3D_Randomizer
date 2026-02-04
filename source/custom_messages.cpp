@@ -167,6 +167,11 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
     newEntry.delayOffset= (u16)offsetDelay;
 
     messageEntries.insert(newEntry);
+    // Duplicate moon trial hints to their alternate version
+    if (textId > 0x2102 && textId < 0x2117) {
+        newEntry.id -= 0x2F;
+        messageEntries.insert(newEntry);
+    }
 }
 
 void CreateBaselineCustomMessages() {
