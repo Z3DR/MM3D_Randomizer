@@ -1439,6 +1439,8 @@ void HintTable_Init() {
     hintTable[SNOWHEAD_GREAT_FAIRY] = HintText::Sometimes({
             Text{"the fairy of power rewards", "**FRENCH**", "**SPANISH**"}});
 //Southern Swamp
+    hintTable[SOUTHERN_SWAMP_MUSIC_STATUE] = HintText::Exclude({
+            Text{"a guiding owl teaches", "**FRENCH**", "**SPANISH**"}});
     hintTable[SOUTHERN_SWAMP_KOUME] = HintText::Sometimes({
             Text{"a witch rewards", "**FRENCH**", "**SPANISH**"}});
     hintTable[SOUTHERN_SWAMP_KOTAKE] = HintText::Sometimes({
@@ -1683,6 +1685,8 @@ void HintTable_Init() {
             Text{"a lost fairy is", "**FRENCH**", "**SPANISH**"}});
     hintTable[ODOLWA_HEART_CONTAINER] = HintText::Exclude({
             Text{"a masked evil contains", "**FRENCH**", "**SPANISH**"}});	
+    hintTable[GIANTS_OATH_TO_ORDER] = HintText::Exclude({
+            Text{"a gentile giant teaches", "**FRENCH**", "**SPANISH**"}});
 //Snowhead Temple
     hintTable[SNOWHEAD_TEMPLE_FIRE_ARROW_CHEST] = HintText::Exclude({
             Text{"an icy temple contains", "**FRENCH**", "**SPANISH**"}});
