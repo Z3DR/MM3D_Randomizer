@@ -140,6 +140,8 @@ namespace Settings {
   Option StartingElegyOfEmptiness  = Option::U8("Elegy of Emptiness",     { "None",             "Elegy of Emptiness" },                                      { "" });
   Option StartingSongOfHealing     = Option::U8("Song of Healing",        { "None",             "Song of Healing" },                                         { "" }, OptionCategory::Setting);
   Option StartingSongOfSoaring     = Option::U8("Song of Soaring",        { "None",             "Song of Soaring" },                                         { "" });
+  Option StartingSongOfTime        = Option::U8("Song of Time",           { "None",             "Song of Time" },                                            { "" });
+  Option StartingGoronIntro        = Option::U8("Goron Lullaby Intro",    { "None",             "Lullaby Intro" },                                           { "" });
   Option StartingUpgradesToggle    = Option::U8("Equipment & Upgrades",     { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingKokiriSword       = Option::U8("Sword",                  { "Kokiri Sword",     "Razor Sword", "Gilded Sword", "None" },                     { "" }, OptionCategory::Setting, (u8)StartingSwordSetting::STARTINGSWORD_KOKIRI);//1U = StartingSwordSetting::STARTINGSWORD_KOKIRI
   Option StartingGreatFairySword   = Option::U8("Great Fairy Sword",      { "None",             "G. F. S." },                                                { "" });
@@ -248,10 +250,12 @@ namespace Settings {
   };
 
   std::vector<Option*> startingInventorySongs = {
+    &StartingSongOfTime,
     &StartingOathToOrder,
     &StartingEponasSong,
     &StartingSongOfStorms,
     &StartingSonataOfAwakening,
+    &StartingGoronIntro,
     &StartingGoronsLullaby,
     &StartingNewWaveBossaNova,
     &StartingElegyOfEmptiness,
@@ -290,8 +294,9 @@ namespace Settings {
   Option ShuffleMasks           = Option::Bool("Shuffle Masks",         {"Off", "On"},                                       {shuffleMasksVanilla, shuffleMasksRandom},                              OptionCategory::Toggle,   1);
   Option ShuffleTransformation  = Option::Bool("Shuffle Transformation",{"Off", "On"},                                       {shuffleTransformationDesc});
   Option ShufflePiecesOfHeart   = Option::Bool("Shuffle Piece of Heart",{"Off", "On"},                                       {shufflePiecesOfHeartDesc },                                            OptionCategory::Toggle,   1);
-  Option ShuffleSongs           = Option::U8  ("Shuffle Songs",         {"Off", "Dungeon Rewards", "Anywhere"},              {songsSongLocations, songsDungeonRewards, songsAllLocations},           OptionCategory::Setting, (u8)SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS);
-  Option ShuffleSoaring         = Option::Bool("Shuffle SoS",           {"Off", "On"},                                       {shuffleSoaringVanilla, shuffleSoaringRandom});
+  Option ShuffleSongs           = Option::U8  ("Shuffle Songs",         {"Off", "Song Locations", "Anywhere"},               {songsVanilla, songsSongLocations, songsAllLocations},                  OptionCategory::Setting,  0);
+  Option ShuffleSoaring         = Option::Bool("Shuffle Song of Soaring",{"Off", "On"},                                      {shuffleSoaringVanilla, shuffleSoaringRandom},                          OptionCategory::Setting,   0);
+  Option ShuffleSongOfTime      = Option::Bool("Shuffle Song of Time",  {"Off", "On"},                                       {songTimeVanilla, songTimeRandom},                                      OptionCategory::Setting,   0);
   Option Shopsanity             = Option::U8  ("Shopsanity",            {"Off", "0", "1", "2", "3", "4", "Random"},          {shopsOff, shopsZero, shopsOne, shopsTwo, shopsThree, shopsFour, shopsRandom});
   Option Tokensanity            = Option::Bool("Tokensanity",           {"Off", "On"},                                       {tokensOff, tokensAllTokens});
   Option Scrubsanity            = Option::U8  ("Shuffle Scrub Wares",   {"Off", "Affordable", "Expensive", "Random Prices"}, {scrubsOff, scrubsAffordable, scrubsExpensive, scrubsRandomPrices});
@@ -312,8 +317,9 @@ namespace Settings {
       &ShuffleMasks,
       &ShuffleTransformation,
       &ShufflePiecesOfHeart,
-      //&ShuffleSongs,
-      //&ShuffleSoaring,
+      &ShuffleSongs,
+      &ShuffleSoaring,
+      &ShuffleSongOfTime,
       //&Shopsanity,
       &Tokensanity,
       &ShuffleMerchants,
@@ -777,6 +783,8 @@ namespace Settings {
     ctx.startingElegyOfEmptiness = StartingElegyOfEmptiness.Value<u8>();
     ctx.startingSongOfSoaring = StartingSongOfSoaring.Value<u8>();
     ctx.startingSongOfHealing = StartingSongOfHealing.Value<u8>();
+    ctx.startingSongOfTime = StartingSongOfTime.Value<u8>();
+    ctx.startingGoronIntro = StartingGoronIntro.Value<u8>();
     //Upgrades
     ctx.startingKokiriSword = StartingKokiriSword.Value<u8>();
     ctx.startingShield = StartingShield.Value<u8>();
@@ -1162,15 +1170,18 @@ namespace Settings {
       //Force include song locations
      std::vector<LocationKey> songLocations = GetLocations(everyPossibleLocation, Category::cSong);
       //Unhide all song locations, then lock necessary ones
-      //Unhide(songLocations);
-
-      //if (ShuffleSongs.Is((u8)SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) {
-      //    IncludeAndHide(songLocations);
-     // }
-      //else if (ShuffleSongs.Is((u8)SongShuffleSetting::SONGSHUFFLE_DUNGEON_REWARDS)) {
+      if (ShuffleSongs.Value<u8>() == 0) {
           IncludeAndHide(songLocations);
-      //}
-     
+      }
+      else {
+        Unhide(songLocations);
+      }
+      if (!ShuffleSoaring) {
+        IncludeAndHide({SOUTHERN_SWAMP_MUSIC_STATUE});
+      }
+      if (!ShuffleSongOfTime) {
+        IncludeAndHide({CLOCK_TOWER_SONG_OF_TIME});
+      }
      //Force Include Dungeon Rewards
      std::vector<LocationKey> DungeonRewards = GetLocations(everyPossibleLocation, Category::cDungeonReward);
      if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_END_OF_DUNGEON)) {
@@ -1569,6 +1580,29 @@ namespace Settings {
         LanguageSelect.Hide();
         LanguageSelect.SetSelectedIndex(LANGUAGE_NONE);
     }
+    
+    //Show or Hide Shuffle Song of Soaring / Song of Time if Song Shuffle is on / off
+    if (ShuffleSongs.Value<u8>() == u8(0)) {
+      ShuffleSoaring.Hide();
+      ShuffleSongOfTime.Hide();
+    }
+    else {
+      ShuffleSoaring.Unhide();
+      ShuffleSoaring.Unlock();
+      ShuffleSongOfTime.Unhide();
+      ShuffleSongOfTime.Unlock();
+    }
+    //if starting with Song of Soaring or Song of Time set settings to Vanilla and hide and lock
+    if (StartingSongOfSoaring.Value<u8>() == u8(1)) {
+      ShuffleSoaring.SetSelectedIndex(0);
+      ShuffleSoaring.Hide();
+      ShuffleSoaring.Lock();
+    }
+    if (StartingSongOfTime.Value<u8>() == u8(1)) {
+      ShuffleSongOfTime.SetSelectedIndex(0);
+      ShuffleSongOfTime.Hide();
+      ShuffleSongOfTime.Lock();
+    }
 
     ResolveExcludedLocationConflicts();
   }
@@ -1686,7 +1720,6 @@ namespace Settings {
     //If vanilla logic, we want to set all settings which unnecessarily modify vanilla behavior to off
     if (Logic.Is((u8)LogicSetting::LOGIC_VANILLA)) {
       ShuffleSongs.SetSelectedIndex(0);
-      ShuffleSoaring.SetSelectedIndex(0);
       Shopsanity.SetSelectedIndex(0);
       Tokensanity.SetSelectedIndex(0);
       ShuffleCows.SetSelectedIndex(0);
