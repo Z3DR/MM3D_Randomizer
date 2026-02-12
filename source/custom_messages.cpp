@@ -67,12 +67,12 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
         if (colParity) colData.pop_back();
         for (auto& col: cols) {
             if (colParity)
-                colData.push_back((col << 4) | temp);
+                colData.push_back(temp | col);
             else
-                temp = col;
+                temp = col << 4;
             colParity = 1 - colParity;
         }
-        colData.push_back((colParity) ? (0xF0 | temp) : 0x0F);
+        colData.push_back((colParity) ? (temp | 0x0F) : 0xF0);
         colParity = 1 - colParity;
     }
 
@@ -83,36 +83,36 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
         for (auto& icon: icons) {
             switch (iconParity) {
             case 0:
-                temp = icon;
+                temp = icon << 2;
                 break;
             case 1:
-                iconData.push_back((icon << 6) | temp);
-                temp = icon >> 2;
+                iconData.push_back(temp | (icon >> 4));
+                temp = icon << 4;
                 break;
             case 2:
-                iconData.push_back((icon << 4) | temp);
-                temp = icon >> 4;
+                iconData.push_back(temp | (icon >> 2));
+                temp = icon << 6;
                 break;
             case 3:
-                iconData.push_back((icon << 2) | temp);
+                iconData.push_back(temp | icon);
                 break;
             }
             iconParity = (iconParity + 1) % 4;
         }
         switch (iconParity) {
         case 0:
-          iconData.push_back(0x3F);
+          iconData.push_back(0xFC);
           break;
         case 1:
-          iconData.push_back(0xC0 | temp);
-          iconData.push_back(0x0F);
+          iconData.push_back(temp | 0x03);
+          iconData.push_back(0xF0);
           break;
         case 2:
-          iconData.push_back(0xF0 | temp);
-          iconData.push_back(0x03);
+          iconData.push_back(temp | 0x0F);
+          iconData.push_back(0xC0);
           break;
         case 3:
-          iconData.push_back(0xFC | temp);
+          iconData.push_back(temp | 0x3F);
           break;
         }
         iconParity = (iconParity + 1) % 4;
@@ -125,36 +125,36 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
         for (auto& delay: delays) {
             switch (delayParity) {
             case 0:
-                temp = delay;
+                temp = delay << 2;
                 break;
             case 1:
-                delayData.push_back((delay << 6) | temp);
-                temp = delay >> 2;
+                delayData.push_back(temp | (delay >> 4));
+                temp = delay << 4;
                 break;
             case 2:
-                delayData.push_back((delay << 4) | temp);
-                temp = delay >> 4;
+                delayData.push_back(temp | (delay >> 2));
+                temp = delay << 6;
                 break;
             case 3:
-                delayData.push_back((delay << 2) | temp);
+                delayData.push_back(temp | delay);
                 break;
             }
             delayParity = (delayParity + 1) % 4;
         }
         switch (delayParity) {
         case 0:
-          delayData.push_back(0x3F);
+          delayData.push_back(0xFC);
           break;
         case 1:
-          delayData.push_back(0xC0 | temp);
-          delayData.push_back(0x0F);
+          delayData.push_back(temp | 0x03);
+          delayData.push_back(0xF0);
           break;
         case 2:
-          delayData.push_back(0xF0 | temp);
-          delayData.push_back(0x03);
+          delayData.push_back(temp | 0x0F);
+          delayData.push_back(0xC0);
           break;
         case 3:
-          delayData.push_back(0xFC | temp);
+          delayData.push_back(temp | 0x3F);
           break;
         }
         delayParity = (delayParity + 1) % 4;
