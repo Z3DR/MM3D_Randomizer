@@ -62,7 +62,7 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
     if (text.Dutch)   offsetNl = pushText(text.Dutch);
 
     if (cols.size()) {
-        offsetCol = colData.size() * 2 + colParity;
+        offsetCol = colData.size() * 2 - colParity;
         char temp = (colParity) ? colData.back() : 0;
         if (colParity) colData.pop_back();
         for (auto& col: cols) {
