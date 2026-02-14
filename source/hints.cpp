@@ -523,13 +523,13 @@ void CreateClockTowerDoorHints() {
     {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
     "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#"},
     {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, {ocarinaHint.c_str()}, {QM_BLUE, QM_RED}, {}, {}, 0x037C, false, false);
+  CustomMessages::CreateMessage(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, {ocarinaHint.c_str()}, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
   CustomMessages::CreateMessage(0x8001, 0x8003, 0x3FFFFFFF, 0x1FF0000,
     {"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"},
     {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessage(0x8002, 0x8003, 0x3FFFFFFF, 0x1FF0000,
     {"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"},
-    {QM_RED, QM_RED}, {}, {}, 0x037C, false, false);
+    {QM_RED, QM_RED}, {}, {}, 0x083E, false, false);
   CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, {odolwaHint.c_str()}, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessage(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, {gohtHint.c_str()}, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessage(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, {gyorgHint.c_str()}, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
