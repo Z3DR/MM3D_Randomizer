@@ -39,6 +39,10 @@ public:
         return Text{english + right, french + right, spanish + right};
     }
 
+    Text MakeColored() const {
+        return Text{"#" + english + "#", "#" + french + "#", "#" + spanish + "#"};
+    }
+
     bool operator==(const Text& right) const {
         return english == right.english;
     }
