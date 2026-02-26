@@ -270,7 +270,7 @@ static void WriteIngameSpoilerLog() {
             }
         }
 
-        auto locItem = loc->GetPlacedItemName().GetEnglish();
+        auto locItem = loc->GetPlacedItemName().GetNAEnglish();
         /*if (loc->IsCategory(Category::cShop)) {
             if (loc->GetPlacedItemKey() == ICE_TRAP) {
                 locItem = NonShopItems[TransformShopIndex(GetShopIndex(key))].Name.GetNAEnglish();
@@ -365,7 +365,7 @@ static void WriteIngameSpoilerLog() {
 
         auto node = parentNode->InsertNewChildElement("location");
         node->SetAttribute("name", location->GetName().c_str());
-        node->SetText(location->GetPlacedItemName().GetEnglish().c_str());
+        node->SetText(location->GetPlacedItemName().GetNAEnglish().c_str());
 
         if (withPadding) {
             constexpr int16_t LONGEST_NAME = 56; // The longest name of a location.
@@ -613,7 +613,7 @@ static void WriteHints(tinyxml2::XMLDocument& spoilerLog) {
     auto node = parentNode->InsertNewChildElement("hint");
     node->SetAttribute("location", location->GetName().c_str());
 
-    auto text = location->GetPlacedItemName().GetEnglish();
+    auto text = location->GetPlacedItemName().GetNAEnglish();
     std::replace(text.begin(), text.end(), '&', ' ');
     std::replace(text.begin(), text.end(), '^', ' ');
     node->SetText(text.c_str());

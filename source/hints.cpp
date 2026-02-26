@@ -164,11 +164,11 @@ static void AddHint(Text hint, const LocationKey gossipStone, const std::vector<
   u16 messageId = Location(gossipStone)->GetTextID();
   std::vector<iconType> icons = {};
   //u32 sariaMessageId = 0xA00 + Location(gossipStone)->GetFlag();
-  // CitraPrint("Our hint text is " + hint.GetEnglish());
-  if (hint.GetEnglish().find("$")) {
+  // CitraPrint("Our hint text is " + hint.GetNAEnglish());
+  if (hint.GetNAEnglish().find("$")) {
     icons.push_back(B_BUTTON);
   }
-  CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, {hint.GetEnglish().c_str()}, colors, icons, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, {hint.GetNAEnglish().c_str()}, colors, icons, {}, 0x0, false, false);
   //CreateMessageFromTextObject(messageId, 0, 2, 3, AddColorsAndFormat(hint, colors));
   //CreateMessageFromTextObject(sariaMessageId, 0, 2, 3, AddColorsAndFormat(hint + EVENT_TRIGGER(), colors));
 }
@@ -188,7 +188,7 @@ static void CreateLocationHint(const std::vector<LocationKey>& possibleHintLocat
   PlacementLog_Msg("\n");
 
   PlacementLog_Msg("\tItem: ");
-  PlacementLog_Msg(Location(hintedLocation)->GetPlacedItemName().GetEnglish());
+  PlacementLog_Msg(Location(hintedLocation)->GetPlacedItemName().GetNAEnglish());
   PlacementLog_Msg("\n");
 
   if (accessibleGossipStones.empty()) {
@@ -235,7 +235,7 @@ static void CreateWothHint(u8* remainingDungeonWothHints) {
   PlacementLog_Msg("\n");
 
   PlacementLog_Msg("\tItem: ");
-  PlacementLog_Msg(Location(hintedLocation)->GetPlacedItemName().GetEnglish());
+  PlacementLog_Msg(Location(hintedLocation)->GetPlacedItemName().GetNAEnglish());
   PlacementLog_Msg("\n");
 
   //get an accessible gossip stone
@@ -285,7 +285,7 @@ static void CreateBarrenHint(u8* remainingDungeonBarrenHints, std::vector<Locati
   PlacementLog_Msg("\n");
 
   PlacementLog_Msg("\tItem: ");
-  PlacementLog_Msg(Location(hintedLocation)->GetPlacedItemName().GetEnglish());
+  PlacementLog_Msg(Location(hintedLocation)->GetPlacedItemName().GetNAEnglish());
   PlacementLog_Msg("\n");
 
   //get an accessible gossip stone
@@ -338,7 +338,7 @@ static void CreateRandomLocationHint(const bool goodItem = false) {
   PlacementLog_Msg("\n");
 
   PlacementLog_Msg("\tItem: ");
-  PlacementLog_Msg(Location(hintedLocation)->GetPlacedItemName().GetEnglish());
+  PlacementLog_Msg(Location(hintedLocation)->GetPlacedItemName().GetNAEnglish());
   PlacementLog_Msg("\n");
 
   //get an acessible gossip stone
@@ -352,12 +352,12 @@ static void CreateRandomLocationHint(const bool goodItem = false) {
 
   //form hint text
   /* CitraPrint("Checking location " + Location(hintedLocation)->GetName() + \
-              "'s item which is " + Location(hintedLocation)->GetPlacedItemName().GetEnglish() + \
+              "'s item which is " + Location(hintedLocation)->GetPlacedItemName().GetNAEnglish() + \
               " and GetItemID of " + Location(hintedLocation)->GetPlacedItem().GetItemId() + "\n"); 
   DebugPrint("Checking location %s's item which is %s and GetItemID of %#04x and hint text is %s\n", Location(hintedLocation)->GetName().c_str(), \
-             Location(hintedLocation)->GetPlacedItemName().GetEnglish().c_str(), \
+             Location(hintedLocation)->GetPlacedItemName().GetNAEnglish().c_str(), \
              Location(hintedLocation)->GetPlacedItem().GetItemId(), \
-             Location(hintedLocation)->GetPlacedItem().GetHint().GetText().GetEnglish().c_str()); */
+             Location(hintedLocation)->GetPlacedItem().GetHint().GetText().GetNAEnglish().c_str()); */
   Text itemText = Location(hintedLocation)->GetPlacedItem().GetHint().GetText();
   if (Location(hintedLocation)->IsDungeon()) {
     AreaKey parentRegion = Location(hintedLocation)->GetParentRegionKey();
@@ -462,27 +462,27 @@ void CreateTingleHintText() {
         Text tingleTextIkana = ikanaMap+priceTwenty+clockTownMap+priceForty+leaveShop;
 
         CustomMessages::CreateMessage(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
-        {tingleTextClockTown.GetEnglish().c_str()},
+        {tingleTextClockTown.GetNAEnglish().c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
 
         CustomMessages::CreateMessage(0x1D12, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        {tingleTextWoodfall.GetEnglish().c_str()},
+        {tingleTextWoodfall.GetNAEnglish().c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
 
         CustomMessages::CreateMessage(0x1D13, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        {tingleTextSnowhead.GetEnglish().c_str(),},
+        {tingleTextSnowhead.GetNAEnglish().c_str(),},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
 
         CustomMessages::CreateMessage(0x1D14, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        {tingleTextMilkRoad.GetEnglish().c_str()},
+        {tingleTextMilkRoad.GetNAEnglish().c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
 
         CustomMessages::CreateMessage(0x1D15, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        {tingleTextGreatBay.GetEnglish().c_str()},
+        {tingleTextGreatBay.GetNAEnglish().c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
 
         CustomMessages::CreateMessage(0x1D16, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        {tingleTextIkana.GetEnglish().c_str()},
+        {tingleTextIkana.GetNAEnglish().c_str()},
         {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
       }
 }
@@ -589,17 +589,17 @@ void CreateClockTowerDoorHints() {
     {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
     "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#"},
     {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, {ocarinaHint.GetEnglish().c_str()}, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
+  CustomMessages::CreateMessage(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, {ocarinaHint.GetNAEnglish().c_str()}, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
   CustomMessages::CreateMessage(0x8001, 0x8003, 0x3FFFFFFF, 0x1FF0000,
     {"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"},
     {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessage(0x8002, 0x8003, 0x3FFFFFFF, 0x1FF0000,
     {"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"},
     {QM_RED, QM_RED}, {}, {}, 0x083E, false, false);
-  CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, {odolwaHint.GetEnglish().c_str()}, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, {gohtHint.GetEnglish().c_str()}, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, {gyorgHint.GetEnglish().c_str()}, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8006, 0xFFFF, 0x3FFFFFFF, 0x0600000, {twinmoldHint.GetEnglish().c_str()}, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, {odolwaHint.GetNAEnglish().c_str()}, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, {gohtHint.GetNAEnglish().c_str()}, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, {gyorgHint.GetNAEnglish().c_str()}, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8006, 0xFFFF, 0x3FFFFFFF, 0x0600000, {twinmoldHint.GetNAEnglish().c_str()}, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
 }
 
 //insert the required number into the hint and set the singular/plural form

@@ -9,39 +9,72 @@ class Text {
 public:
     Text() = default;
     Text(std::string generic)
-      : NAenglish(generic),
-        NAfrench(generic),
-        NAspanish(generic) {}
+      : NAenglish(generic), NAfrench(generic), NAspanish(generic),
+        EURenglish(generic), EURfrench(generic), EURspanish(generic) {}
 
     Text(std::string english_, std::string french_, std::string spanish_)
-      : NAenglish(std::move(english_)),
-        NAfrench(std::move(french_)),
-        NAspanish(std::move(spanish_)) {}
+      : NAenglish(std::move(english_)),  NAfrench(std::move(french_)),  NAspanish(std::move(spanish_)),
+        EURenglish(std::move(english_)), EURfrench(std::move(french_)), EURspanish(std::move(spanish_)) {}
 
-    const std::string& GetEnglish() const {
+    Text(std::string NAenglish_, std::string NAfrench_, std::string NAspanish_,
+         std::string EURenglish_, std::string EURfrench_, std::string EURspanish_)
+      : NAenglish(std::move(NAenglish_)),   NAfrench(std::move(NAfrench_)),   NAspanish(std::move(NAspanish_)),
+        EURenglish(std::move(EURenglish_)), EURfrench(std::move(EURfrench_)), EURspanish(std::move(EURspanish_)) {
+            //Fallback to NA string if EUR one is blank
+            //Should allow for easier selective definition
+            if (EURenglish.length() == 0) {EURenglish = NAenglish;}
+            if (EURfrench.length() == 0) {EURfrench = NAfrench;}
+            if (EURspanish.length() == 0) {EURspanish = NAspanish;}
+        }
+
+    const std::string& GetNAEnglish() const {
         return NAenglish;
     }
 
-    const std::string& GetFrench() const {
+    const std::string& GetNAFrench() const {
         if (NAfrench.length() > 0) {
             return NAfrench;
         }
         return NAenglish;
     }
 
-    const std::string& GetSpanish() const {
+    const std::string& GetNASpanish() const {
         if (NAspanish.length() > 0) {
             return NAspanish;
         }
         return NAenglish;
     }
 
+    const std::string& GetEUREnglish() const {
+        return EURenglish;
+    }
+
+    const std::string& GetEURFrench() const {
+        if (EURfrench.length() > 0) {
+            return EURfrench;
+        }
+        return EURenglish;
+    }
+
+    const std::string& GetEURSpanish() const {
+        if (EURspanish.length() > 0) {
+            return EURspanish;
+        }
+        return EURenglish;
+    }
+
     Text operator+ (const Text& right) const {
-        return Text{NAenglish + right.GetEnglish(), NAfrench + right.GetFrench(), NAspanish + right.GetSpanish()};
+        return Text{
+            NAenglish + right.GetNAEnglish(), NAfrench + right.GetNAFrench(), NAspanish + right.GetNASpanish(),
+            EURenglish + right.GetEUREnglish(), EURfrench + right.GetEURFrench(), EURspanish + right.GetEURSpanish()
+        };
     }
 
     Text operator+ (const std::string& right) const {
-        return Text{NAenglish + right, NAfrench + right, NAspanish + right};
+        return Text{
+            NAenglish + right, NAfrench + right, NAspanish + right,
+            EURenglish + right, EURfrench + right, EURspanish + right
+        };
     }
 
     bool operator==(const Text& right) const {
@@ -92,4 +125,7 @@ public:
     std::string NAenglish = "";
     std::string NAfrench = "";
     std::string NAspanish = "";
+    std::string EURenglish = "";
+    std::string EURfrench  = "";
+    std::string EURspanish = "";
 };

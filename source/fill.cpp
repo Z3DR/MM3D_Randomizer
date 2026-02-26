@@ -177,7 +177,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
                         //Item is an advancement item, figure out if it should be added to this sphere
                         if (!playthroughBeatable && location->GetPlacedItem().IsAdvancement()) {
                             //ItemType type = location->GetPlacedItem().GetItemType();//type needed to check for gold skulltula
-                            std::string itemName(location->GetPlacedItemName().GetEnglish());
+                            std::string itemName(location->GetPlacedItemName().GetNAEnglish());
                             //bool bombchus = itemName.find("Bombchu") != std::string::npos; //Is a bombchu location
 
                             //Decide whether to exclude this location
@@ -282,7 +282,7 @@ static void PareDownPlaythrough() {
             //Playthrough is still beatable without this item, therefore it can be removed from playthrough section.
             if (playthroughBeatable) {
                 //Uncomment to print playthrough deletion log in citra
-                 std::string itemname(ItemTable(copy).GetName().GetEnglish());
+                 std::string itemname(ItemTable(copy).GetName().GetNAEnglish());
                  std::string locationname(Location(loc)->GetName());
                  std::string removallog = itemname + " at " + locationname + " removed from playthrough";
                 //  CitraPrint(removallog);
@@ -354,7 +354,7 @@ static void FastFill(std::vector<ItemKey> items, std::vector<LocationKey> locati
         /*if ( (Location(loc)->IsRepeatable() == false) && (ItemTable(item).IsReusable() == true) ){
                     //unsuccessfulPlacement = true;
                     CitraPrint("Attemting to place repeatable item in nonrepeatable spot in FastFill");
-                    PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetEnglish() + " at " + Location(loc)->GetName());
+                    PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(loc)->GetName());
                     items.push_back(item);
                     locations.push_back(loc);
                 }*/
@@ -396,7 +396,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             PlacementLog_Msg("Items:\n");
             for (const ItemKey item : items) {
                 PlacementLog_Msg("\t");
-                PlacementLog_Msg(ItemTable(item).GetName().GetEnglish());
+                PlacementLog_Msg(ItemTable(item).GetName().GetNAEnglish());
                 PlacementLog_Msg("\n");
             }
             PlacementLog_Msg("\nAllowed Locations:\n");
@@ -435,13 +435,13 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
         //copy all not yet placed advancement items so that we can apply their effects for the fill algorithm
         //std::vector<ItemKey> itemsToNotPlace = FilterFromPool(ItemPool, [](const ItemKey i) { 
             //CitraPrint("Added item to itemsToNotPlace: ");
-            //CitraPrint(ItemTable(i).GetName().GetEnglish());
+            //CitraPrint(ItemTable(i).GetName().GetNAEnglish());
           //  return ItemTable(i).IsAdvancement();});
         std::vector<ItemKey> itemsToNotPlace = ItemPool;
         //PlacementLog_Msg("ItemsNotToPlace:\n");
         //for (ItemKey items : itemsToNotPlace)
         //{
-        //    PlacementLog_Msg(" " + ItemTable(items).GetName().GetEnglish() + "," );
+        //    PlacementLog_Msg(" " + ItemTable(items).GetName().GetNAEnglish() + "," );
         //}
         //shuffle the order of items to place
         Shuffle(itemsToPlace);
@@ -453,11 +453,11 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
 
             //assume we have all unplaced items
             LogicReset();
-            //PlacementLog_Msg("\nCurrent item for placement is: " + ItemTable(item).GetName().GetEnglish());
+            //PlacementLog_Msg("\nCurrent item for placement is: " + ItemTable(item).GetName().GetNAEnglish());
             //PlacementLog_Msg("\nitemsToPlace: ");
             for (ItemKey unplacedItem : itemsToPlace) {
                 ItemTable(unplacedItem).ApplyEffect();
-                //PlacementLog_Msg(" " + ItemTable(unplacedItem).GetName().GetEnglish() + ", ");
+                //PlacementLog_Msg(" " + ItemTable(unplacedItem).GetName().GetNAEnglish() + ", ");
             }
             for (ItemKey unplacedItem : itemsToNotPlace) {
                 ItemTable(unplacedItem).ApplyEffect();
@@ -500,7 +500,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
                 }
 
                 PlacementLog_Msg("\nCANNOT PLACE ");
-                PlacementLog_Msg(ItemTable(item).GetName().GetEnglish());
+                PlacementLog_Msg(ItemTable(item).GetName().GetNAEnglish());
                 PlacementLog_Msg(". TRYING AGAIN...\n");
                 //DebugPrint("%s: accessable locations according to code %u\n", __func__, accessibleLocations);
                 
@@ -560,13 +560,13 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
                 if ( !(Location(selectedLocation)->IsRepeatable()) && ItemTable(item).IsReusable() ){
                         //unsuccessfulPlacement = true;
                         CitraPrint("Attemting to place repeatable item in non repeatable spot in AssumedFill");
-                        PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetEnglish() + " at " + Location(selectedLocation)->GetName());
+                        PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
                         itemsToPlace.push_back(item);
                     }
                 else { 
                     PlaceItemInLocation(selectedLocation, item); 
-                    //PlacementLog_Msg("Placed " + ItemTable(item).GetName().GetEnglish() + " at " + Location(selectedLocation)->GetName());
-                    //CitraPrint("Placed " + ItemTable(item).GetName().GetEnglish() + " at " + Location(selectedLocation)->GetName());
+                    //PlacementLog_Msg("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
+                    //CitraPrint("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
                     attemptedLocations.push_back(selectedLocation);
     
                     //This tells us the location went through the randomization algorithm
@@ -722,7 +722,7 @@ static void RandomizeDungeonItems() {
     };    
     //for (ItemKey item : dungeonRewards) {
     //        CitraPrint("Rewards:\n");
-    //        CitraPrint(ItemTable(item).GetName().GetEnglish() + "\n");
+    //        CitraPrint(ItemTable(item).GetName().GetNAEnglish() + "\n");
     //        }
     //CitraPrint("About to start attempting Reward Shuffle Any Dungeon");
     if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_ANY_DUNGEON)) {
