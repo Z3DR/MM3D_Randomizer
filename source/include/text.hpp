@@ -10,15 +10,18 @@ public:
     Text() = default;
     Text(std::string generic)
       : NAenglish(generic), NAfrench(generic), NAspanish(generic),
+        //EURgerman(generic),   //EURItalian(generic),   //Japanese? Either way, MM3D doesn't support Dutch
         EURenglish(generic), EURfrench(generic), EURspanish(generic) {}
 
     Text(std::string english_, std::string french_, std::string spanish_)
       : NAenglish(std::move(english_)),  NAfrench(std::move(french_)),  NAspanish(std::move(spanish_)),
+        //EURgerman(std::move(german_)),   //EURitalian(std::move(italian_)),
         EURenglish(std::move(english_)), EURfrench(std::move(french_)), EURspanish(std::move(spanish_)) {}
 
     Text(std::string NAenglish_, std::string NAfrench_, std::string NAspanish_,
          std::string EURenglish_, std::string EURfrench_, std::string EURspanish_)
       : NAenglish(std::move(NAenglish_)),   NAfrench(std::move(NAfrench_)),   NAspanish(std::move(NAspanish_)),
+        //EURgerman(std::move(EURgerman_)),   //EURitalian(std::move(EURitalian_)),
         EURenglish(std::move(EURenglish_)), EURfrench(std::move(EURfrench_)), EURspanish(std::move(EURspanish_)) {
             //Fallback to NA string if EUR one is blank
             //Should allow for easier selective definition
@@ -45,6 +48,20 @@ public:
         return NAenglish;
     }
 
+    // const std::string& GetEURGerman() const {
+    //     if (EURgerman.length() > 0) {
+    //         return EURgerman;
+    //     }
+    //     return EURenglish;
+    // }
+
+    // const std::string& GetEURItalian() const {
+    //     if (EURitalian.length() > 0) {
+    //         return EURitalian;
+    //     }
+    //     return EURenglish;
+    // }
+
     const std::string& GetEUREnglish() const {
         return EURenglish;
     }
@@ -66,6 +83,7 @@ public:
     Text operator+ (const Text& right) const {
         return Text{
             NAenglish + right.GetNAEnglish(), NAfrench + right.GetNAFrench(), NAspanish + right.GetNASpanish(),
+            //EURgerman + right.GetEUREnglish(), //EURitalian + right.GetEURFrench(),
             EURenglish + right.GetEUREnglish(), EURfrench + right.GetEURFrench(), EURspanish + right.GetEURSpanish()
         };
     }
@@ -73,6 +91,7 @@ public:
     Text operator+ (const std::string& right) const {
         return Text{
             NAenglish + right, NAfrench + right, NAspanish + right,
+            //EURgerman + right, //EURitalian + right,
             EURenglish + right, EURfrench + right, EURspanish + right
         };
     }
@@ -125,6 +144,8 @@ public:
     std::string NAenglish = "";
     std::string NAfrench = "";
     std::string NAspanish = "";
+    //std::string EURgerman = "";
+    //std::string EURitalian  = "";
     std::string EURenglish = "";
     std::string EURfrench  = "";
     std::string EURspanish = "";
