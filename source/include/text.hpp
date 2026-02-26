@@ -83,7 +83,7 @@ public:
     Text operator+ (const Text& right) const {
         return Text{
             NAenglish + right.GetNAEnglish(), NAfrench + right.GetNAFrench(), NAspanish + right.GetNASpanish(),
-            //EURgerman + right.GetEUREnglish(), //EURitalian + right.GetEURFrench(),
+            //EURgerman + right.GetEURGerman(), //EURitalian + right.GetEURItalian(),
             EURenglish + right.GetEUREnglish(), EURfrench + right.GetEURFrench(), EURspanish + right.GetEURSpanish()
         };
     }
@@ -106,7 +106,7 @@ public:
 
     void Replace(std::string oldStr, std::string newStr) {
 
-        for (std::string* str : {&NAenglish, &NAfrench, &NAspanish}) {
+        for (std::string* str : {&NAenglish, &NAfrench, &NAspanish, /*&EURgerman, &EURitalian,*/ &EURenglish, &EURfrench, &EURspanish}) {
             size_t position = str->find(oldStr);
             while (position != std::string::npos) {
               str->replace(position, oldStr.length(), newStr);
@@ -117,7 +117,7 @@ public:
 
     //find the appropriate bars that separate singular from plural
     void SetForm(int form) {
-        for (std::string* str : {&NAenglish, &NAfrench, &NAspanish}) {
+        for (std::string* str : {&NAenglish, &NAfrench, &NAspanish, /*&EURgerman, &EURitalian,*/ &EURenglish, &EURfrench, &EURspanish}) {
 
             size_t firstBar = str->find('|');
             if (firstBar != std::string::npos) {
