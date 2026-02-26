@@ -8,43 +8,44 @@
 class Text {
 public:
     Text() = default;
+    Text(std::string generic)
+      : NAenglish(generic),
+        NAfrench(generic),
+        NAspanish(generic) {}
+
     Text(std::string english_, std::string french_, std::string spanish_)
-      : english(std::move(english_)),
-        french(std::move(french_)),
-        spanish(std::move(spanish_)) {}
+      : NAenglish(std::move(english_)),
+        NAfrench(std::move(french_)),
+        NAspanish(std::move(spanish_)) {}
 
     const std::string& GetEnglish() const {
-        return english;
+        return NAenglish;
     }
 
     const std::string& GetFrench() const {
-        if (french.length() > 0) {
-            return french;
+        if (NAfrench.length() > 0) {
+            return NAfrench;
         }
-        return english;
+        return NAenglish;
     }
 
     const std::string& GetSpanish() const {
-        if (spanish.length() > 0) {
-            return spanish;
+        if (NAspanish.length() > 0) {
+            return NAspanish;
         }
-        return english;
+        return NAenglish;
     }
 
     Text operator+ (const Text& right) const {
-        return Text{english + right.GetEnglish(), french + right.GetFrench(), spanish + right.GetSpanish()};
+        return Text{NAenglish + right.GetEnglish(), NAfrench + right.GetFrench(), NAspanish + right.GetSpanish()};
     }
 
     Text operator+ (const std::string& right) const {
-        return Text{english + right, french + right, spanish + right};
-    }
-
-    Text MakeColored() const {
-        return Text{"#" + english + "#", "#" + french + "#", "#" + spanish + "#"};
+        return Text{NAenglish + right, NAfrench + right, NAspanish + right};
     }
 
     bool operator==(const Text& right) const {
-        return english == right.english;
+        return NAenglish == right.NAenglish;
     }
 
     bool operator!=(const Text& right) const {
@@ -53,7 +54,7 @@ public:
 
     void Replace(std::string oldStr, std::string newStr) {
 
-        for (std::string* str : {&english, &french, &spanish}) {
+        for (std::string* str : {&NAenglish, &NAfrench, &NAspanish}) {
             size_t position = str->find(oldStr);
             while (position != std::string::npos) {
               str->replace(position, oldStr.length(), newStr);
@@ -64,7 +65,7 @@ public:
 
     //find the appropriate bars that separate singular from plural
     void SetForm(int form) {
-        for (std::string* str : {&english, &french, &spanish}) {
+        for (std::string* str : {&NAenglish, &NAfrench, &NAspanish}) {
 
             size_t firstBar = str->find('|');
             if (firstBar != std::string::npos) {
@@ -88,7 +89,7 @@ public:
         this->Replace("|", "");
     }
 
-    std::string english = "";
-    std::string french = "";
-    std::string spanish = "";
+    std::string NAenglish = "";
+    std::string NAfrench = "";
+    std::string NAspanish = "";
 };

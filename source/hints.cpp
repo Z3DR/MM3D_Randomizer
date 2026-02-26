@@ -206,7 +206,7 @@ static void CreateLocationHint(const std::vector<LocationKey>& possibleHintLocat
 
   Text finalHint = prefix + locationHintText + " #"+itemHintText+"#.";
   PlacementLog_Msg("\tMessage: ");
-  PlacementLog_Msg(finalHint.english);
+  PlacementLog_Msg(finalHint.NAenglish);
   PlacementLog_Msg("\n\n");
 
   AddHint(finalHint, gossipStone, {QM_GREEN, QM_RED});
@@ -263,7 +263,7 @@ static void CreateWothHint(u8* remainingDungeonWothHints) {
   }
   Text finalWothHint = Hint(PREFIX).GetText()+"#"+locationText+"#"+Hint(WAY_OF_THE_HERO).GetText();
   PlacementLog_Msg("\tMessage: ");
-  PlacementLog_Msg(finalWothHint.english);
+  PlacementLog_Msg(finalWothHint.NAenglish);
   PlacementLog_Msg("\n\n");
   AddHint(finalWothHint, gossipStone, {QM_BLUE});
 }
@@ -311,7 +311,7 @@ static void CreateBarrenHint(u8* remainingDungeonBarrenHints, std::vector<Locati
   }
   Text finalBarrenHint = Hint(PREFIX).GetText()+Hint(PLUNDERING).GetText()+"#"+locationText+"#"+Hint(FOOLISH).GetText();
   PlacementLog_Msg("\tMessage: ");
-  PlacementLog_Msg(finalBarrenHint.english);
+  PlacementLog_Msg(finalBarrenHint.NAenglish);
   PlacementLog_Msg("\n\n");
   AddHint(finalBarrenHint, gossipStone, {QM_RED});
 
@@ -365,7 +365,7 @@ static void CreateRandomLocationHint(const bool goodItem = false) {
     // CitraPrint("Random Loc Hint: Getting " + Location(hintedLocation)->GetName() + "'s parent region which is " + Location(parentRegion)->GetName());
     Text finalHint = Hint(PREFIX).GetText()+"#"+locationText+"# "+Hint(HOARDS).GetText()+" #"+itemText+"#.";
     PlacementLog_Msg("\tMessage: ");
-    PlacementLog_Msg(finalHint.english);
+    PlacementLog_Msg(finalHint.NAenglish);
     PlacementLog_Msg("\n\n");
     AddHint(finalHint, gossipStone, {QM_GREEN, QM_RED});
   } else {
@@ -373,7 +373,7 @@ static void CreateRandomLocationHint(const bool goodItem = false) {
     Text locationText = GetHintRegion(Location(hintedLocation)->GetParentRegionKey())->GetHint().GetText();
     Text finalHint = Hint(PREFIX).GetText()+"#"+itemText+"# "+Hint(CAN_BE_FOUND_AT).GetText()+" #"+locationText+"#.";
     PlacementLog_Msg("\tMessage: ");
-    PlacementLog_Msg(finalHint.english);
+    PlacementLog_Msg(finalHint.NAenglish);
     PlacementLog_Msg("\n\n");
     AddHint(finalHint, gossipStone, {QM_RED, QM_GREEN});
   }
@@ -397,7 +397,7 @@ static void CreateJunkHint() {
   Text hint = junkHint.GetText();
 
   PlacementLog_Msg("\tMessage: ");
-  PlacementLog_Msg(hint.english);
+  PlacementLog_Msg(hint.NAenglish);
   PlacementLog_Msg("\n");
 
   PlacementLog_Msg("\tLocation: ");
@@ -441,17 +441,17 @@ void CreateTingleHintText() {
       if (Settings::ShuffleTingleMaps.Is(true)) {
         // Logic: Get item names from location.
         // Create custom message for each tingle location (6)
-        Text clockTownMap = ItemTable(Location(TINGLE_N_CLOCK_TOWN_CT)->GetPlacedItemKey()).GetName().MakeColored();
-        Text woodfallMap = ItemTable(Location(TINGLE_N_CLOCK_TOWN_WF)->GetPlacedItemKey()).GetName().MakeColored();
-        Text snowHeadMap = ItemTable(Location(TINGLE_TWIN_ISLANDS_SH)->GetPlacedItemKey()).GetName().MakeColored();
-        Text romaniMap = ItemTable(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey()).GetName().MakeColored();
-        Text greatBayMap = ItemTable(Location(TINGLE_GBC_GB)->GetPlacedItemKey()).GetName().MakeColored();
-        Text ikanaMap = ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName().MakeColored();
+        Text clockTownMap = Text{"#"}+ItemTable(Location(TINGLE_N_CLOCK_TOWN_CT)->GetPlacedItemKey()).GetName();
+        Text woodfallMap = Text{"#"}+ItemTable(Location(TINGLE_N_CLOCK_TOWN_WF)->GetPlacedItemKey()).GetName();
+        Text snowHeadMap = Text{"#"}+ItemTable(Location(TINGLE_TWIN_ISLANDS_SH)->GetPlacedItemKey()).GetName();
+        Text romaniMap = Text{"#"}+ItemTable(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey()).GetName();
+        Text greatBayMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_GB)->GetPlacedItemKey()).GetName();
+        Text ikanaMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName();
 
         //               {"English", "French", "Spanish"}
-        Text priceFive = {"    #5 Rupees#&", "    #5 Rubis#&", ""};
-        Text priceTwenty = {"    #20 Rupees#&", "    #20 Rubis#&", ""};
-        Text priceForty = {"    #40 Rupees#", "    #40 Rubis#", ""};
+        Text priceFive = {"    ##5 Rupees#&", "    ##5 Rubis#&", ""};
+        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", ""};
+        Text priceForty = {"    ##40 Rupees#", "    ##40 Rubis#", ""};
         Text leaveShop = {"&#No thanks#", "&#Non merci#", ""};
 
         Text tingleTextClockTown = clockTownMap+priceFive+woodfallMap+priceForty+leaveShop;
@@ -499,7 +499,7 @@ static Text BuildDoorText(const ItemKey itemKey) {
   if (Location(location)->GetParentRegionKey() == NONE) {
     Location(location)->SetParentRegion(LINKS_POCKET);
   }
-  return GetHintRegion(Location(location)->GetParentRegionKey())->GetHint().GetText().MakeColored()+".";
+  return Text{"#"}+GetHintRegion(Location(location)->GetParentRegionKey())->GetHint().GetText()+"#.";
 }
 
 void CreateClockTowerDoorHints() {
