@@ -12,7 +12,7 @@ typedef struct {
     const char* NaSpanish;
     const char* EuGerman;
     const char* EuItalian;
-    const char* EuDutch;
+    //const char* EuDutch;
     const char* EuEnglish;
     const char* EuFrench;
     const char* EuSpanish;

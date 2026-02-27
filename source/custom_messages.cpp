@@ -59,7 +59,7 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
     if (text.NaSpanish) offsetNaEs = offsetEuEs = pushText(text.NaSpanish);
     if (text.EuGerman)  offsetEuDe = pushText(text.EuGerman);
     if (text.EuItalian) offsetEuIt = pushText(text.EuItalian);
-    if (text.EuDutch)   offsetEuNl = pushText(text.EuDutch);
+    //if (text.EuDutch)   offsetEuNl = pushText(text.EuDutch);
     if (text.EuEnglish) offsetEuEn = pushText(text.EuEnglish);
     if (text.EuFrench)  offsetEuFr = pushText(text.EuFrench);
     if (text.EuSpanish) offsetEuEs = pushText(text.EuSpanish);
