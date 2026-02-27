@@ -54,15 +54,16 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
     u32 offsetNaEn = 0, offsetNaFr = 0, offsetNaEs = 0, offsetEuEn = 0, offsetEuFr = 0, offsetEuEs = 0, offsetEuDe = 0, offsetEuIt = 0, offsetEuNl = 0;
     u32 offsetCol = 0, offsetIcon = 0, offsetDelay = 0;
 
+    //If text exists and doesn't seem redundant, write it to patch and store its offset
     if (text.NaEnglish) offsetNaEn = offsetEuEn = pushText(text.NaEnglish);
-    if (text.NaFrench)  offsetNaFr = offsetEuFr = pushText(text.NaFrench);
-    if (text.NaSpanish) offsetNaEs = offsetEuEs = pushText(text.NaSpanish);
-    if (text.EuGerman)  offsetEuDe = pushText(text.EuGerman);
-    if (text.EuItalian) offsetEuIt = pushText(text.EuItalian);
+    if (text.NaFrench  && (text.NaFrench  != text.NaEnglish)) offsetNaFr = offsetEuFr = pushText(text.NaFrench);
+    if (text.NaSpanish && (text.NaSpanish != text.NaEnglish)) offsetNaEs = offsetEuEs = pushText(text.NaSpanish);
+    if (text.EuGerman  && (text.EuGerman  != text.EuEnglish)) offsetEuDe = pushText(text.EuGerman);
+    if (text.EuItalian && (text.EuItalian != text.EuEnglish)) offsetEuIt = pushText(text.EuItalian);
     //if (text.EuDutch)   offsetEuNl = pushText(text.EuDutch);
-    if (text.EuEnglish) offsetEuEn = pushText(text.EuEnglish);
-    if (text.EuFrench)  offsetEuFr = pushText(text.EuFrench);
-    if (text.EuSpanish) offsetEuEs = pushText(text.EuSpanish);
+    if (text.EuEnglish && (text.EuEnglish != text.NaEnglish)) offsetEuEn = pushText(text.EuEnglish);
+    if (text.EuFrench  && (text.EuFrench  != text.NaFrench )) offsetEuFr = pushText(text.EuFrench);
+    if (text.EuSpanish && (text.EuSpanish != text.NaSpanish)) offsetEuEs = pushText(text.EuSpanish);
 
     if (cols.size()) {
         offsetCol = colData.size() * 2 - colParity;
