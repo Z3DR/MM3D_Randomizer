@@ -7,12 +7,15 @@
 namespace CustomMessages {
 
 typedef struct {
-    const char* English;
-    const char* French;
-    const char* Spanish;
-    const char* German;
-    const char* Italian;
-    const char* Dutch;
+    const char* NaEnglish;
+    const char* NaFrench;
+    const char* NaSpanish;
+    const char* EuGerman;
+    const char* EuItalian;
+    const char* EuDutch;
+    const char* EuEnglish;
+    const char* EuFrench;
+    const char* EuSpanish;
 } Language;
 void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Language& text,
                    const std::vector<colType>& cols, const std::vector<iconType>& icons, const std::vector<u8>& delays,

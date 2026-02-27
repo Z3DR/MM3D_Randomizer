@@ -51,15 +51,18 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
     newEntry.flags = flags;
     newEntry.sfxAndFlags = ((instant) ? 0x8000 : 0x0000) | ((repeatSfx) ? 0x4000 : 0x0000) | sfx;
 
-    u32 offsetEn = 0, offsetFr = 0, offsetEs = 0, offsetDe = 0, offsetIt = 0, offsetNl = 0;
+    u32 offsetNaEn = 0, offsetNaFr = 0, offsetNaEs = 0, offsetEuEn = 0, offsetEuFr = 0, offsetEuEs = 0, offsetEuDe = 0, offsetEuIt = 0, offsetEuNl = 0;
     u32 offsetCol = 0, offsetIcon = 0, offsetDelay = 0;
 
-    if (text.English) offsetEn = pushText(text.English);
-    if (text.French)  offsetFr = pushText(text.French);
-    if (text.Spanish) offsetEs = pushText(text.Spanish);
-    if (text.German)  offsetDe = pushText(text.German);
-    if (text.Italian) offsetIt = pushText(text.Italian);
-    if (text.Dutch)   offsetNl = pushText(text.Dutch);
+    if (text.NaEnglish) offsetNaEn = offsetEuEn = pushText(text.NaEnglish);
+    if (text.NaFrench)  offsetNaFr = offsetEuFr = pushText(text.NaFrench);
+    if (text.NaSpanish) offsetNaEs = offsetEuEs = pushText(text.NaSpanish);
+    if (text.EuGerman)  offsetEuDe = pushText(text.EuGerman);
+    if (text.EuItalian) offsetEuIt = pushText(text.EuItalian);
+    if (text.EuDutch)   offsetEuNl = pushText(text.EuDutch);
+    if (text.EuEnglish) offsetEuEn = pushText(text.EuEnglish);
+    if (text.EuFrench)  offsetEuFr = pushText(text.EuFrench);
+    if (text.EuSpanish) offsetEuEs = pushText(text.EuSpanish);
 
     if (cols.size()) {
         offsetCol = colData.size() * 2 - colParity;
@@ -160,11 +163,12 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
         delayParity = (delayParity + 1) % 4;
     }
 
-    newEntry.offsets[0] = offsetEn | (offsetFr << 18);
-    newEntry.offsets[1] = (offsetFr >> 14) | (offsetEs << 4) | (offsetDe << 22);
-    newEntry.offsets[2] = (offsetDe >> 10) | (offsetIt << 8) | (offsetNl << 26);
-    newEntry.offsets[3] = (offsetNl >> 6) | (offsetCol << 12) | (offsetIcon << 22);
-    newEntry.delayOffset= (u16)offsetDelay;
+    newEntry.offsets[0] =  offsetNaEn        | (offsetNaFr << 18);
+    newEntry.offsets[1] = (offsetNaFr >> 14) | (offsetNaEs <<  4) | (offsetEuEn << 22);
+    newEntry.offsets[2] = (offsetEuEn >> 10) | (offsetEuFr <<  8) | (offsetEuEs << 26);
+    newEntry.offsets[3] = (offsetEuEs >>  6) | (offsetEuDe << 12) | (offsetEuIt << 30);
+    newEntry.offsets[4] = (offsetEuIt >>  2) | (offsetEuNl << 16);
+    newEntry.offsets[5] = (offsetEuNl >> 16) | (offsetCol  <<  2) | (offsetIcon << 12) | (offsetDelay << 22);
 
     messageEntries.insert(newEntry);
     // Duplicate moon trial hints to their alternate version
