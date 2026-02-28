@@ -51,7 +51,7 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
     newEntry.flags = flags;
     newEntry.sfxAndFlags = ((instant) ? 0x8000 : 0x0000) | ((repeatSfx) ? 0x4000 : 0x0000) | sfx;
 
-    u32 offsetNaEn = 0, offsetNaFr = 0, offsetNaEs = 0, offsetEuEn = 0, offsetEuFr = 0, offsetEuEs = 0, offsetEuDe = 0, offsetEuIt = 0, offsetEuNl = 0;
+    u32 offsetNaEn = 0, offsetNaFr = 0, offsetNaEs = 0, offsetEuEn = 0, offsetEuFr = 0, offsetEuEs = 0, offsetEuDe = 0, offsetEuIt = 0, offsetJpJp = 0;
     u32 offsetCol = 0, offsetIcon = 0, offsetDelay = 0;
 
     //If text exists and doesn't seem redundant, write it to patch and store its offset
@@ -60,7 +60,7 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
     if (text.NaSpanish && (text.NaSpanish != text.NaEnglish)) offsetNaEs = offsetEuEs = pushText(text.NaSpanish);
     if (text.EuGerman  && (text.EuGerman  != text.EuEnglish)) offsetEuDe = pushText(text.EuGerman);
     if (text.EuItalian && (text.EuItalian != text.EuEnglish)) offsetEuIt = pushText(text.EuItalian);
-    //if (text.EuDutch)   offsetEuNl = pushText(text.EuDutch);
+    //if (text.Japanese  && (text.Japanese  != text.NaEnglish)) offsetJpJp = pushText(text.Japanese);
     if (text.EuEnglish && (text.EuEnglish != text.NaEnglish)) offsetEuEn = pushText(text.EuEnglish);
     if (text.EuFrench  && (text.EuFrench  != text.NaFrench )) offsetEuFr = pushText(text.EuFrench);
     if (text.EuSpanish && (text.EuSpanish != text.NaSpanish)) offsetEuEs = pushText(text.EuSpanish);
@@ -168,8 +168,8 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
     newEntry.offsets[1] = (offsetNaFr >> 14) | (offsetNaEs <<  4) | (offsetEuEn << 22);
     newEntry.offsets[2] = (offsetEuEn >> 10) | (offsetEuFr <<  8) | (offsetEuEs << 26);
     newEntry.offsets[3] = (offsetEuEs >>  6) | (offsetEuDe << 12) | (offsetEuIt << 30);
-    newEntry.offsets[4] = (offsetEuIt >>  2) | (offsetEuNl << 16);
-    newEntry.offsets[5] = (offsetEuNl >> 16) | (offsetCol  <<  2) | (offsetIcon << 12) | (offsetDelay << 22);
+    newEntry.offsets[4] = (offsetEuIt >>  2) | (offsetJpJp << 16);
+    newEntry.offsets[5] = (offsetJpJp >> 16) | (offsetCol  <<  2) | (offsetIcon << 12) | (offsetDelay << 22);
 
     messageEntries.insert(newEntry);
     // Duplicate moon trial hints to their alternate version
