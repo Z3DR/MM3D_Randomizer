@@ -126,7 +126,7 @@ public:
     }
 
     const Text& GetClear() const {
-        if (clearText.GetEnglish().empty()) {
+        if (clearText.GetNAEnglish().empty()) {
             return GetObscure();
         }
         return clearText;
