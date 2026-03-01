@@ -19,6 +19,10 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
 using namespace rnd;
 namespace {
   std::string placementtxt;
@@ -92,6 +96,25 @@ namespace {
 static RandomizerHash randomizerHash;
 static SpoilerData spoilerData;
 
+void CreateLogDirectories(FS_Archive sdmcArchive) {
+  std::vector<std::string> dirs = {
+    "/MM3DR/",
+    "/MM3DR/Spoiler_Logs/",
+  };
+
+  const auto printInfo = [&](int progress) {
+    consoleClear();
+    printf("\x1b[10;10HCreating Log Directories");
+    printf("\x1b[11;10HProgress: %d/%d", progress, dirs.size());
+  };
+
+  printInfo(0);
+  for (size_t i = 0; i < dirs.size(); i++) {
+    FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, dirs[i].c_str()), FS_ATTRIBUTE_DIRECTORY);
+    printInfo(i + 1);
+  }
+}
+
 void GenerateHash() {
   for (size_t i = 0; i < randomizerHash.size(); i++) {
     const auto iconIndex = static_cast<u8>(Random(0, hashIcons.size()));
@@ -122,7 +145,7 @@ const SpoilerData& GetSpoilerData() {
 }
 
 static auto GetGeneralPath() {
-  return "/3ds/mm3dr/spoiler_logs/" + Settings::seed + " (" + GetRandomizerHashAsString() + ")";
+  return "/MM3DR/Spoiler_Logs/" + Settings::seed + " (" + GetRandomizerHashAsString() + ")";
 }
 
 static auto GetSpoilerLogPath() {
