@@ -479,5 +479,7 @@ bool WriteAllPatches() {
 
   FSUSER_CloseArchive(sdmcArchive);
 
+  romfsExit();
+
   return true;
 }
