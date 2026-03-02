@@ -96,11 +96,14 @@ namespace {
 static RandomizerHash randomizerHash;
 static SpoilerData spoilerData;
 
-void CreateLogDirectories(FS_Archive sdmcArchive) {
+void InitLogDirectories(FS_Archive sdmcArchive) {
   std::vector<std::string> dirs = {
     "/MM3DR/",
     "/MM3DR/Spoiler_Logs/",
   };
+
+  const char* stylesheetSrc  = "romfs:/spoiler-log.css";
+  const char* stylesheetDest = "/MM3DR/Spoiler_Logs/spoiler-log.css";
 
   const auto printInfo = [&](int progress) {
     consoleClear();
@@ -113,6 +116,13 @@ void CreateLogDirectories(FS_Archive sdmcArchive) {
     FSUSER_CreateDirectory(sdmcArchive, fsMakePath(PATH_ASCII, dirs[i].c_str()), FS_ATTRIBUTE_DIRECTORY);
     printInfo(i + 1);
   }
+
+  Result rc = romfsInit();
+  if (rc) {
+    printf("\nromfsInit: %08lX\n", rc);
+  }
+  CopyFile(sdmcArchive, stylesheetDest, stylesheetSrc);
+  romfsExit();
 }
 
 void GenerateHash() {
@@ -443,6 +453,18 @@ static void WriteShuffledEntrance(
   }
 }*/
 
+// Create a checkbox that collapses the next section when checked
+static tinyxml2::XMLElement* CreateCollapseCheckbox(tinyxml2::XMLDocument& spoilerLog,
+                                                    const bool startCollapsed = true) {
+  auto collapseCheckbox = spoilerLog.NewElement("h:input");
+  collapseCheckbox->SetAttribute("type", "checkbox");
+  collapseCheckbox->SetAttribute("class", "collapse");
+  if (startCollapsed) {
+    collapseCheckbox->SetAttribute("checked", "");
+  }
+  return collapseCheckbox;
+}
+
 // Writes the settings (without excluded locations, starting inventory and tricks) to the spoilerLog document.
 static void WriteSettings(tinyxml2::XMLDocument& spoilerLog, const bool printAll = false) {
   auto parentNode = spoilerLog.NewElement("settings");
@@ -455,7 +477,7 @@ static void WriteSettings(tinyxml2::XMLDocument& spoilerLog, const bool printAll
       for (const Option* setting : *menu->settingsList) {
         if (printAll || (!setting->IsHidden() && setting->IsCategory(OptionCategory::Setting))) {
           auto node = parentNode->InsertNewChildElement("setting");
-          node->SetAttribute("name", RemoveLineBreaks(setting->GetName()).c_str());
+          node->SetAttribute("name", SanitizedString(setting->GetName()).c_str());
           node->SetText(setting->GetSelectedOptionText().c_str());
         }
       }
@@ -474,7 +496,7 @@ static void WriteExcludedLocations(tinyxml2::XMLDocument& spoilerLog) {
     }
 
     tinyxml2::XMLElement* node = spoilerLog.NewElement("location");
-    node->SetAttribute("name", RemoveLineBreaks(location->GetName()).c_str());
+    node->SetAttribute("name", SanitizedString(location->GetName()).c_str());
     parentNode->InsertEndChild(node);
   }
 
@@ -484,7 +506,7 @@ static void WriteExcludedLocations(tinyxml2::XMLDocument& spoilerLog) {
 }
 
 // Writes the starting inventory to the spoiler log, if there is any.
-static void WriteStartingInventory(tinyxml2::XMLDocument& spoilerLog) {
+static void WriteStartingInventory(tinyxml2::XMLDocument& spoilerLog, const bool collapsible = false) {
   auto parentNode = spoilerLog.NewElement("starting-inventory");
 
   for (size_t i = 0; i < Settings::startingInventoryInventory.size(); ++i) {
@@ -550,6 +572,9 @@ static void WriteStartingInventory(tinyxml2::XMLDocument& spoilerLog) {
   }
 
   if (!parentNode->NoChildren()) {
+    if (collapsible) {
+      spoilerLog.RootElement()->InsertEndChild(CreateCollapseCheckbox(spoilerLog));
+    }
     spoilerLog.RootElement()->InsertEndChild(parentNode);
   }
 }
@@ -564,7 +589,7 @@ static void WriteEnabledTricks(tinyxml2::XMLDocument& spoilerLog) {
     }
 
     auto node = parentNode->InsertNewChildElement("trick");
-    node->SetAttribute("name", RemoveLineBreaks(setting->GetName()).c_str());
+    node->SetAttribute("name", SanitizedString(setting->GetName()).c_str());
   }
 
   if (!parentNode->NoChildren()) {
@@ -574,10 +599,13 @@ static void WriteEnabledTricks(tinyxml2::XMLDocument& spoilerLog) {
 
 
 // Writes the intended playthrough to the spoiler log, separated into spheres.
-static void WritePlaythrough(tinyxml2::XMLDocument& spoilerLog) {
+static void WritePlaythrough(tinyxml2::XMLDocument& spoilerLog, const bool collapsible = false) {
   auto playthroughNode = spoilerLog.NewElement("playthrough");
 
   for (uint i = 0; i < playthroughLocations.size(); ++i) {
+    if (collapsible) {
+      playthroughNode->InsertEndChild(CreateCollapseCheckbox(spoilerLog));
+    }
     auto sphereNode = playthroughNode->InsertNewChildElement("sphere");
     sphereNode->SetAttribute("level", i + 1);
 
@@ -586,11 +614,14 @@ static void WritePlaythrough(tinyxml2::XMLDocument& spoilerLog) {
     }
   }
 
+  if (collapsible) {
+    spoilerLog.RootElement()->InsertEndChild(CreateCollapseCheckbox(spoilerLog));
+  }
   spoilerLog.RootElement()->InsertEndChild(playthroughNode);
 }
 /*
 //Write the randomized entrance playthrough to the spoiler log, if applicable
-static void WriteShuffledEntrances(tinyxml2::XMLDocument& spoilerLog) {
+static void WriteShuffledEntrances(tinyxml2::XMLDocument& spoilerLog, const bool collapsible = false) {
   if (!Settings::ShuffleEntrances || noRandomEntrances) {
     return;
   }
@@ -598,6 +629,9 @@ static void WriteShuffledEntrances(tinyxml2::XMLDocument& spoilerLog) {
   auto playthroughNode = spoilerLog.NewElement("entrance-playthrough");
 
   for (uint i = 0; i < playthroughEntrances.size(); ++i) {
+    if (collapsible) {
+      playthroughNode->InsertEndChild(CreateCollapseCheckbox(spoilerLog));
+    }
     auto sphereNode = playthroughNode->InsertNewChildElement("sphere");
     sphereNode->SetAttribute("level", i + 1);
 
@@ -606,11 +640,14 @@ static void WriteShuffledEntrances(tinyxml2::XMLDocument& spoilerLog) {
     }
   }
 
+  if (collapsible) {
+    spoilerLog.RootElement()->InsertEndChild(CreateCollapseCheckbox(spoilerLog));
+  }
   spoilerLog.RootElement()->InsertEndChild(playthroughNode);
 }
 */
 // Writes the WOTH locations to the spoiler log, if there are any.
-static void WriteWayOfTheHeroLocation(tinyxml2::XMLDocument& spoilerLog) {
+static void WriteWayOfTheHeroLocation(tinyxml2::XMLDocument& spoilerLog, const bool collapsible = false) {
   auto parentNode = spoilerLog.NewElement("way-of-the-hero-locations");
 
   for (const LocationKey key : wothLocations) {
@@ -618,6 +655,9 @@ static void WriteWayOfTheHeroLocation(tinyxml2::XMLDocument& spoilerLog) {
   }
 
   if (!parentNode->NoChildren()) {
+    if (collapsible) {
+      spoilerLog.RootElement()->InsertEndChild(CreateCollapseCheckbox(spoilerLog));
+    }
     spoilerLog.RootElement()->InsertEndChild(parentNode);
   }
 }
@@ -645,13 +685,16 @@ static void WriteHints(tinyxml2::XMLDocument& spoilerLog) {
   spoilerLog.RootElement()->InsertEndChild(parentNode);
 }
 
-static void WriteAllLocations(tinyxml2::XMLDocument& spoilerLog) {
+static void WriteAllLocations(tinyxml2::XMLDocument& spoilerLog, const bool collapsible = false) {
   auto parentNode = spoilerLog.NewElement("all-locations");
 
   for (const LocationKey key : allLocations) {
     WriteLocation(parentNode, key, true);
   }
 
+  if (collapsible) {
+    spoilerLog.RootElement()->InsertEndChild(CreateCollapseCheckbox(spoilerLog));
+  }
   spoilerLog.RootElement()->InsertEndChild(parentNode);
 }
 
@@ -660,6 +703,7 @@ bool SpoilerLog_Write() {
 
   auto spoilerLog = tinyxml2::XMLDocument(false);
   spoilerLog.InsertEndChild(spoilerLog.NewDeclaration());
+  spoilerLog.InsertEndChild(spoilerLog.NewDeclaration("xml-stylesheet href=\"spoiler-log.css\""));
 
   auto rootNode = spoilerLog.NewElement("spoiler-log");
   spoilerLog.InsertEndChild(rootNode);
@@ -667,21 +711,28 @@ bool SpoilerLog_Write() {
   rootNode->SetAttribute("version", Settings::version.c_str());
   rootNode->SetAttribute("seed", Settings::seed.c_str());
   rootNode->SetAttribute("hash", GetRandomizerHashAsString().c_str());
+  rootNode->SetAttribute("xmlns:h", "http://www.w3.org/1999/xhtml");
+
+  auto hideSpoilersCheckbox = spoilerLog.NewElement("h:input");
+  hideSpoilersCheckbox->SetAttribute("type", "checkbox");
+  hideSpoilersCheckbox->SetAttribute("checked", "");
+  hideSpoilersCheckbox->SetAttribute("id", "hide-spoilers");
+  rootNode->InsertEndChild(hideSpoilersCheckbox);
 
   WriteSettings(spoilerLog, true);
   WriteExcludedLocations(spoilerLog);
-  WriteStartingInventory(spoilerLog);
   //WriteEnabledTricks(spoilerLog);
-  WritePlaythrough(spoilerLog);
-  WriteWayOfTheHeroLocation(spoilerLog);
+  WriteStartingInventory(spoilerLog, true);
+  WritePlaythrough(spoilerLog, true);
+  WriteWayOfTheHeroLocation(spoilerLog, true);
 
   playthroughLocations.clear();
   playthroughBeatable = false;
   wothLocations.clear();
 
   WriteHints(spoilerLog);
- // WriteShuffledEntrances(spoilerLog);
-  WriteAllLocations(spoilerLog);
+  // WriteShuffledEntrances(spoilerLog, true);
+  WriteAllLocations(spoilerLog, true);
 
   auto e = spoilerLog.SaveFile(GetSpoilerLogPath().c_str());
   return e == tinyxml2::XML_SUCCESS;
