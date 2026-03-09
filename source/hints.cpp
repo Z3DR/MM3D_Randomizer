@@ -449,10 +449,10 @@ void CreateTingleHintText() {
         Text ikanaMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName();
 
         //               {"English", "French", "Spanish"}
-        Text priceFive = {"    ##5 Rupees#&", "    ##5 Rubis#&", ""};
-        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", ""};
-        Text priceForty = {"    ##40 Rupees#", "    ##40 Rubis#", ""};
-        Text leaveShop = {"&#No thanks#", "&#Non merci#", ""};
+        Text priceFive = {"    ##5 Rupees#&", "    ##5 Rubis#&", "    ##5 rupias#&"};
+        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", "    ##20 rupias#&"};
+        Text priceForty = {"    ##40 Rupees#", "    ##40 Rubis#", "    ##40 rupias#"};
+        Text leaveShop = {"&#No thanks#", "&#Non merci#", "&#No, gracias#"};
 
         Text tingleTextClockTown = clockTownMap+priceFive+woodfallMap+priceForty+leaveShop;
         Text tingleTextWoodfall = woodfallMap+priceTwenty+snowHeadMap+priceForty+leaveShop;
@@ -505,83 +505,56 @@ static Text BuildDoorText(const ItemKey itemKey) {
 void CreateClockTowerDoorHints() {
   // Create hint text
   Text ocarinaHint = Text{
-    //English
-    "Hey, didn't you have some sort of #musical instrument#?&If I know the Skull Kid, I bet he hid it at ",
-    //French
-    "Dis, t'avais pas un #instrument de musique#?&Je parie que Skull Kid, l'a caché vers ",
-    //Spanish
-    ""
+    /*English*/"Hey, didn't you have some sort of #musical instrument#?&If I know the Skull Kid, I bet he hid it at ",
+    /*French */"Dis, t'avais pas un #instrument de musique#?&Je parie que Skull Kid, l'a caché vers ",
+    /*Spanish*/"**SPANISH** "
   }+BuildDoorText(OCARINA_OF_TIME);
   Text odolwaHint = Text{
-    //English
-    "There's one with a #crown# and #jewellery# said to be found at ",
-    //French
-    "Y'en a un avec une #couronne# et des #bijoux# situé vers ",
-    //Spanish
-    ""
+    /*English*/"There's one with a #crown# and #jewellery# said to be found at ",
+    /*French */"Y'en a un avec une #couronne# et des #bijoux# situé vers ",
+    /*Spanish*/"**SPANISH** "
   }+BuildDoorText(ODOLWAS_REMAINS);
   Text gohtHint = Text{
-    //English
-    "Another #extremely sturdy# one with #huge horns# at ",
-    //French
-    "Un autre #très solide# avec des #cornes immenses# situé vers ",
-    //Spanish
-    ""
+    /*English*/"Another #extremely sturdy# one with #huge horns# at ",
+    /*French */"Un autre #très solide# avec des #cornes immenses# situé vers ",
+    /*Spanish*/"**SPANISH** "
   }+BuildDoorText(GOHTS_REMAINS);
   Text gyorgHint = Text{
-    //English
-    "One with #giant fins# and #razor sharp teeth# at ",
-    //French
-    "Un qui a des #nageoires géantes# et #dents acérées# situé vers ",
-    //Spanish
-    ""
+    /*English*/"One with #giant fins# and #razor sharp teeth# at ",
+    /*French */"Un qui a des #nageoires géantes# et #dents acérées# situé vers ",
+    /*Spanish*/"**SPANISH** "
   }+BuildDoorText(GYORGS_REMAINS);
   Text twinmoldHint = Text{
-    //English
-    "And one with #three eyes# and #enormous mandibles# at ",
-    //French
-    "Et un avec #trois yeux# et d'#énormes mandibules# situé vers ",
-    //Spanish
-    ""
+    /*English*/"And one with #three eyes# and #enormous mandibles# at ",
+    /*French */"Et un avec #trois yeux# et d'#énormes mandibules# situé vers ",
+    /*Spanish*/"**SPANISH** "
   }+BuildDoorText(TWINMOLDS_REMAINS);
   if (StartingOdolwaRemains.Value<u8>() == 1) {
     odolwaHint = Text{
-      //English
-      "There's one with a #crown# and #jewellery# said to be found in ",
-      //French
-      "Y'en a un avec une #couronne# et des #bijoux# situé dans ",
-      //Spanish
-      ""
+      /*English*/"There's one with a #crown# and #jewellery# said to be found in ",
+      /*French */"Y'en a un avec une #couronne# et des #bijoux# situé dans ",
+      /*Spanish*/"**SPANISH** "
     }+BuildDoorText(ODOLWAS_REMAINS);
   }
   if (StartingGohtRemains.Value<u8>() == 1) {
     gohtHint = Text{
-      //English
-      "Another #extremely sturdy# one with #huge horns# in ",
-      //French
-      "Un autre #très solide# avec des #cornes immenses# situé dans ",
-      //Spanish
-      ""
+      /*English*/"Another #extremely sturdy# one with #huge horns# in ",
+      /*French */"Un autre #très solide# avec des #cornes immenses# situé dans ",
+      /*Spanish*/"**SPANISH** "
     }+BuildDoorText(GOHTS_REMAINS);
   }
   if (StartingGyorgRemains.Value<u8>() == 1) {
     gyorgHint = Text{
-      //English
-      "One with #giant fins# and #razor sharp teeth# in ",
-      //French
-      "Un qui a des #nageoires géantes# et #dents acérées# situé dans ",
-      //Spanish
-      ""
+      /*English*/"One with #giant fins# and #razor sharp teeth# in ",
+      /*French */"Un qui a des #nageoires géantes# et #dents acérées# situé dans ",
+      /*Spanish*/"**SPANISH** "
     }+BuildDoorText(GYORGS_REMAINS);
   }
   if (StartingTwinmoldRemains.Value<u8>() == 1){
     twinmoldHint = Text{
-      //English
-      "And one with #three eyes# and #enormous mandibles# in ",
-      //French
-      "Et un avec #trois yeux# et d'#énormes mandibules# situé dans ",
-      //Spanish
-      ""
+      /*English*/"And one with #three eyes# and #enormous mandibles# in ",
+      /*French */"Et un avec #trois yeux# et d'#énormes mandibules# situé dans ",
+      /*Spanish*/"**SPANISH** "
     }+BuildDoorText(TWINMOLDS_REMAINS);
   }
 
