@@ -79,6 +79,7 @@ namespace Playthrough {
       }
       CreateTingleHintText();
       CreateClockTowerDoorHints();
+      CreateMoonChildHint();
 
       playthroughLocations.clear();
       wothLocations.clear();
