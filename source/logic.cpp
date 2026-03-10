@@ -559,8 +559,8 @@ namespace Logic {
 		
 		//Calculate number of masks needed 
 		CurrentRemains = OdolwaRemains + GohtRemains + GyorgRemains + TwinmoldRemains;
-		RemainsForMoon = (MoonRemainsRequired.Value<u8>() <= CurrentRemains);
-		RemainsForMajora = (MajoraRemainsRequired.Value<u8>() <= CurrentRemains);
+		RemainsForMoon = ((4 - MoonRemainsRequired.Value<u8>()) <= CurrentRemains);
+		RemainsForMajora = ((4 - MajoraRemainsRequired.Value<u8>()) <= CurrentRemains);
 
 	}
 

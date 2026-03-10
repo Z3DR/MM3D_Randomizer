@@ -562,7 +562,7 @@ void CreateClockTowerDoorHints() {
     /*French */"D'après les rumeurs, si on a #les quatre#, un truc bien va se produire.",
     /*Spanish*/"**SPANISH**"
     };
-  switch (MoonRemainsRequired.Value<u8>()) {
+  switch (4 - MoonRemainsRequired.Value<u8>()) {
     case 0:
       remainsNeededHint = {
       /*English*/"I think collecting them would just be a #waste of time# though.",
@@ -572,8 +572,8 @@ void CreateClockTowerDoorHints() {
       break;
     case 1:
       remainsNeededHint = {
-      /*English*/"The rumours say having #three of them# causes something good to happen.",
-      /*French */"D'après les rumeurs, si on en a #trois#, un truc bien va se produire.",
+      /*English*/"The rumours say having #just one# is enough to make something good happen.",
+      /*French */"D'après les rumeurs, il suffit d'en avoir #un seul# pour qu'un truc bien se produise.",
       /*Spanish*/"**SPANISH**"
       };
       break;
@@ -586,8 +586,8 @@ void CreateClockTowerDoorHints() {
       break;
     case 3:
       remainsNeededHint = {
-      /*English*/"The rumours say having #just one# is enough to make something good happen.,",
-      /*French */"D'après les rumeurs, il suffit d'en avoir #un seul# pour qu'un truc bien se produise.",
+      /*English*/"The rumours say having #three of them# causes something good to happen.",
+      /*French */"D'après les rumeurs, si on en a #trois#, un truc bien va se produire.",
       /*Spanish*/"**SPANISH**"
       };
       break;
@@ -618,12 +618,12 @@ void CreateMoonChildHint() {
     /*French */"^Reviens avec les &#restes de quatre boss#...",
     /*Spanish*/"^**SPANISH**"
     };
-  switch (MajoraRemainsRequired.Value<u8>()) {
+  switch (4 - MajoraRemainsRequired.Value<u8>()) {
     case 1:
       moonChildHint = {
-      /*English*/"^Come back with &#three Bosses' Remains#...",
-      /*French */"^Reviens avec les &#restes de trois boss#...",
-      /*Spanish*/"**SPANISH**"  
+      /*English*/"^Come back with &#one Boss's Remains#...",
+      /*French */"^Reviens avec les &#restes d'un boss#...",
+      /*Spanish*/"**SPANISH**"
       };
       break;
     case 2:
@@ -635,8 +635,8 @@ void CreateMoonChildHint() {
       break;
     case 3:
       moonChildHint = {
-      /*English*/"^Come back with &#one Boss's Remains#...",
-      /*French */"^Reviens avec les &#restes d'un boss#...",
+      /*English*/"^Come back with &#three Bosses' Remains#...",
+      /*French */"^Reviens avec les &#restes de trois boss#...",
       /*Spanish*/"**SPANISH**"
       };
       break;
@@ -653,7 +653,7 @@ void CreateMoonChildHint() {
     /*Spanish*/"^**SPANISH**"
   };
 
-  CustomMessages::CreateMessage(0x6144, 0xFFFF, 0x3FFFFFFF, 0xff0020, {moonChildHint.GetNAEnglish().c_str()}, {QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x6144, 0xFFFF, 0x3FFFFFFF, 0x0FF0020, {moonChildHint.GetNAEnglish().c_str()}, {QM_RED}, {}, {}, 0x0, false, false);
 }
 
 //insert the required number into the hint and set the singular/plural form

@@ -722,8 +722,8 @@ namespace Settings {
     ctx.gyorgTrialSkip = (GyorgTrialSkip) ? 1 : 0;
     ctx.twinmoldTrialSkip = (TwinmoldTrialSkip) ? 1 : 0;
 
-    ctx.masksNeededToEnterMoon = MoonRemainsRequired.Value<u8>();
-    ctx.masksNeededForVictory = MajoraRemainsRequired.Value<u8>();
+    ctx.masksNeededToEnterMoon = 4 - MoonRemainsRequired.Value<u8>();
+    ctx.masksNeededForVictory = 4 - MajoraRemainsRequired.Value<u8>();
 
     ctx.shuffleDungeonEntrances = (ShuffleDungeonEntrances) ? 1 : 0;
     

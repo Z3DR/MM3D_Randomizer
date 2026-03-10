@@ -656,7 +656,7 @@ string_view repeatItemsOnTokensDesc = "Allows items potentially needed more than
                                       "to be placed on gold skulltula drops";              //
 /*------------------------------                                                           //
 | MOON AND MAJORA REQUIREMENTS |                                                           //
--------------------------------*/                                                          //
+------------------------------*/                                                          //
 string_view MoonRemainsRequiredDesc = "Select the number of Boss Remains needed to \n"     //
                                       "enter the moon by playing Oath to Order on the roof";//
 string_view MajoraRemainsRequiredDesc="Select the number of Boss Remains needed to \n"     //
