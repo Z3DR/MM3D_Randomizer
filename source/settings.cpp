@@ -341,6 +341,8 @@ namespace Settings {
   Option StrayFairysanity       = Option::U8("Stray Fairies",      { "Vanilla", "Start With", "Own Dungeon", "Any Dungeon", "Overworld", "Anywhere" }, { fairyVanilla, fairyStartWith, fairyOwnDungeon, fairyAnyDungeon, fairyOverworld, fairyAnywhere },                               OptionCategory::Setting, (u8)StrayFairySanitySetting::STRAYFAIRYSANITY_VANILLA);
   Option ShuffleRewards         = Option::U8("Dungeon Rewards",    { "Vanilla", "Any Dungeon", "Overworld", "Anywhere" },                              { shuffleRewardsEndOfDungeon, shuffleRewardsAnyDungeon, shuffleRewardsOverworld, shuffleRewardsAnywhere });
   Option ShuffleHeartContainers = Option::Bool("Heart Containers", { "Vanilla", "Random"},                                                             { shuffleHeartContainersDesc });
+  Option MoonRemainsRequired    = Option::U8("Moon Requirements",  {"Vanilla", "3", "2", "1", "0"},                                                    { MoonRemainsRequiredDesc },                                                                                                     OptionCategory::Setting);
+  Option MajoraRemainsRequired  = Option::U8("Majora Requirements",{"Vanilla", "3", "2", "1", "0"},                                                    { MajoraRemainsRequiredDesc },                                                                                                   OptionCategory::Setting);
 
   std::vector<Option*>dungeonSettingsOptions = {
     &RandomizeDungeon,
@@ -350,6 +352,8 @@ namespace Settings {
     //&StrayFairysanity,
     &ShuffleRewards,
     &ShuffleHeartContainers,
+    &MoonRemainsRequired,
+    &MajoraRemainsRequired,
   };
 
   //Item Pool Settings 
@@ -459,10 +463,12 @@ namespace Settings {
   Option SkipHMSCutscenes     = Option::Bool("Skip HMS Cutscenes",  {"Don't Skip", "Skip"},     {skipHMSCutsceneDesc});
   Option SkipDarmaniCutscenes = Option::Bool("Skip Darmani Cutscenes",  {"Don't Skip", "Skip"}, {skipDarmaniCutsceneDesc});
   Option SkipMikauCutscenes   = Option::Bool("Skip Mikau Cutscenes",  {"Don't Skip", "Skip"},   {skipMikauCutsceneDesc});
+  Option SkipGiantCutscenes   = Option::Bool("Skip Giants Cutscene", {"Don't Skip", "Skip"}, {skipGiantCutsceneDesc});
   std::vector<Option *> cutsceneOptions = {
     &SkipHMSCutscenes,
     &SkipDarmaniCutscenes,
-    &SkipMikauCutscenes
+    &SkipMikauCutscenes,
+    &SkipGiantCutscenes
   };
 
   /*TRIAL SKIPS*/
@@ -716,6 +722,9 @@ namespace Settings {
     ctx.gyorgTrialSkip = (GyorgTrialSkip) ? 1 : 0;
     ctx.twinmoldTrialSkip = (TwinmoldTrialSkip) ? 1 : 0;
 
+    ctx.masksNeededToEnterMoon = MoonRemainsRequired.Value<u8>();
+    ctx.masksNeededForVictory = MajoraRemainsRequired.Value<u8>();
+
     ctx.shuffleDungeonEntrances = (ShuffleDungeonEntrances) ? 1 : 0;
     
     ctx.customTunicColors = (CustomTunicColors) ? 1 : 0;
@@ -843,6 +852,7 @@ namespace Settings {
     ctx.skipHMSCutscenes = (SkipHMSCutscenes) ? 1 : 0;
     ctx.skipDarmaniCutscene = (SkipDarmaniCutscenes) ? 1 : 0;
     ctx.skipMikauCutscene = (SkipMikauCutscenes) ? 1 : 0;
+    ctx.skipGiantsCutscene = (SkipGiantCutscenes) ? 1 : 0;
     
     //CustomButtons
     // CitraPrint("Adding Custom Inputs to SettingsContext");

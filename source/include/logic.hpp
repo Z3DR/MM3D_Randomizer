@@ -332,6 +332,9 @@ namespace Logic {
 	extern bool PostedKafeiLetter;
 	
 	extern bool CanGoToMoon;
+	extern bool RemainsForMoon;
+	extern bool RemainsForMajora;
+	extern u8 CurrentRemains;
 
 	void UpdateHelpers();
 	bool CanPlay(bool song);

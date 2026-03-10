@@ -562,36 +562,36 @@ void CreateClockTowerDoorHints() {
     /*French */"D'après les rumeurs, si on a #les quatre#, un truc bien va se produire.",
     /*Spanish*/"**SPANISH**"
     };
-  // switch (MoonRemainsRequired.Value<u8>()) {
-  //   case 0:
-  //     remainsNeededHint = {
-  //     /*English*/"I think collecting them would just be a #waste of time# though.",
-  //     /*French */"Mais à mon avis, les collectionner ne serait qu'une #perte de temps#.",
-  //     /*Spanish*/"**SPANISH**"
-  //     };
-  //     break;
-  //   case 1:
-  //     remainsNeededHint = {
-  //     /*English*/"The rumours say having #just one# is enough to make something good happen.,",
-  //     /*French */"D'après les rumeurs, il suffit d'en avoir #un seul# pour qu'un truc bien se produise.",
-  //     /*Spanish*/"**SPANISH**"
-  //     };
-  //     break;
-  //   case 2:
-  //     remainsNeededHint = {
-  //     /*English*/"The rumours say having #half of them# causes something good to happen.",
-  //     /*French */"D'après les rumeurs, si on en a #la moitié#, un truc bien va se produire.",
-  //     /*Spanish*/"**SPANISH**"
-  //     };
-  //     break;
-  //   case 3:
-  //     remainsNeededHint = {
-  //     /*English*/"The rumours say having #three of them# causes something good to happen.",
-  //     /*French */"D'après les rumeurs, si on en a #trois#, un truc bien va se produire.",
-  //     /*Spanish*/"**SPANISH**"
-  //     };
-  //     break;
-  // }
+  switch (MoonRemainsRequired.Value<u8>()) {
+    case 0:
+      remainsNeededHint = {
+      /*English*/"I think collecting them would just be a #waste of time# though.",
+      /*French */"Mais à mon avis, les collectionner ne serait qu'une #perte de temps#.",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+    case 1:
+      remainsNeededHint = {
+      /*English*/"The rumours say having #three of them# causes something good to happen.",
+      /*French */"D'après les rumeurs, si on en a #trois#, un truc bien va se produire.",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+    case 2:
+      remainsNeededHint = {
+      /*English*/"The rumours say having #half of them# causes something good to happen.",
+      /*French */"D'après les rumeurs, si on en a #la moitié#, un truc bien va se produire.",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+    case 3:
+      remainsNeededHint = {
+      /*English*/"The rumours say having #just one# is enough to make something good happen.,",
+      /*French */"D'après les rumeurs, il suffit d'en avoir #un seul# pour qu'un truc bien se produise.",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+  }
 
   CustomMessages::CreateMessage(0x0630, (StartingOcarina.Value<u8>() == 0) ? 0x8000 : 0x8002, 0x3FFFFFFF, 0x0FF0211,
     {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
@@ -618,29 +618,29 @@ void CreateMoonChildHint() {
     /*French */"^Reviens avec les &#restes de quatre boss#...",
     /*Spanish*/"^**SPANISH**"
     };
-  // switch (MajoraRemainsRequired.Value<u8>()) {
-  //   case 1:
-  //     moonChildHint = {
-  //     /*English*/"^Come back with &#one Boss's Remains#...",
-  //     /*French */"^Reviens avec les &#restes d'un boss#...",
-  //     /*Spanish*/"**SPANISH**"
-  //     };
-  //     break;
-  //   case 2:
-  //     moonChildHint = {
-  //     /*English*/"^Come back with &#two Bosses' Remains#...",
-  //     /*French */"^Reviens avec les &#restes de deux boss#...",
-  //     /*Spanish*/"**SPANISH**"
-  //     };
-  //     break;
-  //   case 3:
-  //     moonChildHint = {
-  //     /*English*/"^Come back with &#three Bosses' Remains#...",
-  //     /*French */"^Reviens avec les &#restes de trois boss#...",
-  //     /*Spanish*/"**SPANISH**"
-  //     };
-  //     break;
-  // }
+  switch (MajoraRemainsRequired.Value<u8>()) {
+    case 1:
+      moonChildHint = {
+      /*English*/"^Come back with &#three Bosses' Remains#...",
+      /*French */"^Reviens avec les &#restes de trois boss#...",
+      /*Spanish*/"**SPANISH**"  
+      };
+      break;
+    case 2:
+      moonChildHint = {
+      /*English*/"^Come back with &#two Bosses' Remains#...",
+      /*French */"^Reviens avec les &#restes de deux boss#...",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+    case 3:
+      moonChildHint = {
+      /*English*/"^Come back with &#one Boss's Remains#...",
+      /*French */"^Reviens avec les &#restes d'un boss#...",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+  }
 
   // Add opening and closing textboxes to hint
   moonChildHint = Text{

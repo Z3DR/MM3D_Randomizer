@@ -633,6 +633,7 @@ const std::vector<string_view> GlitchDifficulties{"Novice", "Intermediate", "Adv
 string_view skipHMSCutsceneDesc     = "Skips the initial Happy Mask Salesman's cutscenes"; //
 string_view skipDarmaniCutsceneDesc = "Skips the Song of Healing Cutscene for Darmani";    //
 string_view skipMikauCutsceneDesc   = "Skips the Song of Healing Cutscene for Mikau";      //
+string_view skipGiantCutsceneDesc   = "Skips the cutscene of the giants catching the moon";//
 /*------------------------------                                                           //
 |        REGION OPTIONS        |                                                           //
 ------------------------------*/                                                           //
@@ -652,4 +653,11 @@ string_view LanguageDesc            = "Selected region differs from console mean
 ------------------------------*/                                                           //
 string_view repeatItemsOnTokensDesc = "Allows items potentially needed more than once \n"  // 
                                       "such as Title Deeds and Anju & Kafei quest items \n"//
-                                      "to be placed on gold skulltula drops";              // 
+                                      "to be placed on gold skulltula drops";              //
+/*------------------------------                                                           //
+| MOON AND MAJORA REQUIREMENTS |                                                           //
+-------------------------------*/                                                          //
+string_view MoonRemainsRequiredDesc = "Select the number of Boss Remains needed to \n"     //
+                                      "enter the moon by playing Oath to Order on the roof";//
+string_view MajoraRemainsRequiredDesc="Select the number of Boss Remains needed to \n"     //
+                                      "Fight Majora";                                      //

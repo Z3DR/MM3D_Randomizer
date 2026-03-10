@@ -339,6 +339,10 @@ namespace Logic {
 	u8 PlacedMasks = 0;
 	u8 PiecesOfHeart = 0;
 	u8 HeartContainers = 0;
+
+	bool RemainsForMoon = false;
+	bool RemainsForMajora = false;
+	u8 CurrentRemains = 0;
     
 	bool CanPlay(bool song) {
 		return Ocarina && song;
@@ -552,6 +556,12 @@ namespace Logic {
 		AllMasks = (PostmansHat && AllNightMask && BlastMask && StoneMask && GreatFairyMask && KeatonMask && BremenMask && BunnyHood &&
 				DonGerosMask && MaskOfScents && RomanisMask && CircusLeadersMask && KafeisMask && CouplesMask && MaskOfTruth && KamarosMask &&
 				GibdosMask && GarosMask && CaptainsHat && GiantsMask);
+		
+		//Calculate number of masks needed 
+		CurrentRemains = OdolwaRemains + GohtRemains + GyorgRemains + TwinmoldRemains;
+		RemainsForMoon = (MoonRemainsRequired.Value<u8>() <= CurrentRemains);
+		RemainsForMajora = (MajoraRemainsRequired.Value<u8>() <= CurrentRemains);
+
 	}
 
 	bool EventsUpdated() {
@@ -883,6 +893,10 @@ namespace Logic {
 	PlacedMasks = 0;
 	PiecesOfHeart = 0;
 	HeartContainers = 0;
+
+	CurrentRemains = 0;
+	RemainsForMoon = 0;
+	RemainsForMajora = 0;
 	
 	}
 }

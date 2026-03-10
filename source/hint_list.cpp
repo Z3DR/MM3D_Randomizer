@@ -1792,6 +1792,8 @@ void HintTable_Init() {
             Text{"a rocky temple contains", "**FRENCH**", "**SPANISH**"}});
     hintTable[STONE_TOWER_TEMPLE_DEATH_ARMOS_ROOM_CHEST] = HintText::Exclude({
             Text{"a rocky temple contains", "**FRENCH**", "**SPANISH**"}});
+    hintTable[STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST] = HintText::Exclude({
+            Text{"a rocky temple contains", "**FRENCH**", "**SPANISH**"}});
     hintTable[STONE_TOWER_TEMPLE_LIGHT_ARROW_CHEST] = HintText::Exclude({
             Text{"a rocky temple contains", "**FRENCH**", "**SPANISH**"}});
     hintTable[STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST] = HintText::Exclude({
