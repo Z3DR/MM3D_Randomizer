@@ -449,10 +449,10 @@ void CreateTingleHintText() {
         Text ikanaMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName();
 
         //               {"English", "French", "Spanish"}
-        Text priceFive = {"    ##5 Rupees#&", "    ##5 Rubis#&", ""};
-        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", ""};
-        Text priceForty = {"    ##40 Rupees#", "    ##40 Rubis#", ""};
-        Text leaveShop = {"&#No thanks#", "&#Non merci#", ""};
+        Text priceFive = {"    ##5 Rupees#&", "    ##5 Rubis#&", "    ##5 rupias#&"};
+        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", "    ##20 rupias#&"};
+        Text priceForty = {"    ##40 Rupees#", "    ##40 Rubis#", "    ##40 rupias#"};
+        Text leaveShop = {"&#No thanks#", "&#Non merci#", "&#No, gracias#"};
 
         Text tingleTextClockTown = clockTownMap+priceFive+woodfallMap+priceForty+leaveShop;
         Text tingleTextWoodfall = woodfallMap+priceTwenty+snowHeadMap+priceForty+leaveShop;
@@ -505,84 +505,92 @@ static Text BuildDoorText(const ItemKey itemKey) {
 void CreateClockTowerDoorHints() {
   // Create hint text
   Text ocarinaHint = Text{
-    //English
-    "Hey, didn't you have some sort of #musical instrument#?&If I know the Skull Kid, I bet he hid it at ",
-    //French
-    "Dis, t'avais pas un #instrument de musique#?&Je parie que Skull Kid, l'a caché vers ",
-    //Spanish
-    ""
+    /*English*/"Hey, didn't you have some sort of #musical instrument#?&If I know the Skull Kid, I bet he hid it at ",
+    /*French */"Dis, t'avais pas un #instrument de musique#?&Je parie que Skull Kid, l'a caché vers ",
+    /*Spanish*/"**SPANISH** "
   }+BuildDoorText(OCARINA_OF_TIME);
   Text odolwaHint = Text{
-    //English
-    "There's one with a #crown# and #jewellery# said to be found at ",
-    //French
-    "Y'en a un avec une #couronne# et des #bijoux# situé vers ",
-    //Spanish
-    ""
+    /*English*/"There's one with a #crown# and #jewellery# said to be found at ",
+    /*French */"Y'en a un avec une #couronne# et des #bijoux# situé vers ",
+    /*Spanish*/"**SPANISH** "
   }+BuildDoorText(ODOLWAS_REMAINS);
   Text gohtHint = Text{
-    //English
-    "Another #extremely sturdy# one with #huge horns# at ",
-    //French
-    "Un autre #très solide# avec des #cornes immenses# situé vers ",
-    //Spanish
-    ""
+    /*English*/"Another #extremely sturdy# one with #huge horns# at ",
+    /*French */"Un autre #très solide# avec des #cornes immenses# situé vers ",
+    /*Spanish*/"**SPANISH** "
   }+BuildDoorText(GOHTS_REMAINS);
   Text gyorgHint = Text{
-    //English
-    "One with #giant fins# and #razor sharp teeth# at ",
-    //French
-    "Un qui a des #nageoires géantes# et #dents acérées# situé vers ",
-    //Spanish
-    ""
+    /*English*/"One with #giant fins# and #razor sharp teeth# at ",
+    /*French */"Un qui a des #nageoires géantes# et #dents acérées# situé vers ",
+    /*Spanish*/"**SPANISH** "
   }+BuildDoorText(GYORGS_REMAINS);
   Text twinmoldHint = Text{
-    //English
-    "And one with #three eyes# and #enormous mandibles# at ",
-    //French
-    "Et un avec #trois yeux# et d'#énormes mandibules# situé vers ",
-    //Spanish
-    ""
+    /*English*/"And one with #three eyes# and #enormous mandibles# at ",
+    /*French */"Et un avec #trois yeux# et d'#énormes mandibules# situé vers ",
+    /*Spanish*/"**SPANISH** "
   }+BuildDoorText(TWINMOLDS_REMAINS);
   if (StartingOdolwaRemains.Value<u8>() == 1) {
     odolwaHint = Text{
-      //English
-      "There's one with a #crown# and #jewellery# said to be found in ",
-      //French
-      "Y'en a un avec une #couronne# et des #bijoux# situé dans ",
-      //Spanish
-      ""
+      /*English*/"There's one with a #crown# and #jewellery# said to be found in ",
+      /*French */"Y'en a un avec une #couronne# et des #bijoux# situé dans ",
+      /*Spanish*/"**SPANISH** "
     }+BuildDoorText(ODOLWAS_REMAINS);
   }
   if (StartingGohtRemains.Value<u8>() == 1) {
     gohtHint = Text{
-      //English
-      "Another #extremely sturdy# one with #huge horns# in ",
-      //French
-      "Un autre #très solide# avec des #cornes immenses# situé dans ",
-      //Spanish
-      ""
+      /*English*/"Another #extremely sturdy# one with #huge horns# in ",
+      /*French */"Un autre #très solide# avec des #cornes immenses# situé dans ",
+      /*Spanish*/"**SPANISH** "
     }+BuildDoorText(GOHTS_REMAINS);
   }
   if (StartingGyorgRemains.Value<u8>() == 1) {
     gyorgHint = Text{
-      //English
-      "One with #giant fins# and #razor sharp teeth# in ",
-      //French
-      "Un qui a des #nageoires géantes# et #dents acérées# situé dans ",
-      //Spanish
-      ""
+      /*English*/"One with #giant fins# and #razor sharp teeth# in ",
+      /*French */"Un qui a des #nageoires géantes# et #dents acérées# situé dans ",
+      /*Spanish*/"**SPANISH** "
     }+BuildDoorText(GYORGS_REMAINS);
   }
   if (StartingTwinmoldRemains.Value<u8>() == 1){
     twinmoldHint = Text{
-      //English
-      "And one with #three eyes# and #enormous mandibles# in ",
-      //French
-      "Et un avec #trois yeux# et d'#énormes mandibules# situé dans ",
-      //Spanish
-      ""
+      /*English*/"And one with #three eyes# and #enormous mandibles# in ",
+      /*French */"Et un avec #trois yeux# et d'#énormes mandibules# situé dans ",
+      /*Spanish*/"**SPANISH** "
     }+BuildDoorText(TWINMOLDS_REMAINS);
+  }
+  Text remainsNeededHint = {
+    /*English*/"The rumours say having #all four# causes something good to happen.",
+    /*French */"D'après les rumeurs, si on a #les quatre#, un truc bien va se produire.",
+    /*Spanish*/"**SPANISH**"
+    };
+  switch (4 - MoonRemainsRequired.Value<u8>()) {
+    case 0:
+      remainsNeededHint = {
+      /*English*/"I think collecting them would just be a #waste of time# though.",
+      /*French */"Mais à mon avis, les collectionner ne serait qu'une #perte de temps#.",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+    case 1:
+      remainsNeededHint = {
+      /*English*/"The rumours say having #just one# is enough to make something good happen.",
+      /*French */"D'après les rumeurs, il suffit d'en avoir #un seul# pour qu'un truc bien se produise.",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+    case 2:
+      remainsNeededHint = {
+      /*English*/"The rumours say having #half of them# causes something good to happen.",
+      /*French */"D'après les rumeurs, si on en a #la moitié#, un truc bien va se produire.",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+    case 3:
+      remainsNeededHint = {
+      /*English*/"The rumours say having #three of them# causes something good to happen.",
+      /*French */"D'après les rumeurs, si on en a #trois#, un truc bien va se produire.",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
   }
 
   CustomMessages::CreateMessage(0x0630, (StartingOcarina.Value<u8>() == 0) ? 0x8000 : 0x8002, 0x3FFFFFFF, 0x0FF0211,
@@ -599,7 +607,53 @@ void CreateClockTowerDoorHints() {
   CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, {odolwaHint.GetNAEnglish().c_str()}, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessage(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, {gohtHint.GetNAEnglish().c_str()}, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessage(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, {gyorgHint.GetNAEnglish().c_str()}, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8006, 0xFFFF, 0x3FFFFFFF, 0x0600000, {twinmoldHint.GetNAEnglish().c_str()}, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8006, 0x8007, 0x3FFFFFFF, 0x1600000, {twinmoldHint.GetNAEnglish().c_str()}, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x8007, 0xFFFF, 0x3FFFFFFF, 0x0FF0000, {remainsNeededHint.GetNAEnglish().c_str()}, {QM_RED}, {}, {}, 0x0, false, false);
+}
+
+void CreateMoonChildHint() {
+  // Create textbox with main hint
+  Text moonChildHint = {
+    /*English*/"^Come back with &#four Bosses' Remains#...",
+    /*French */"^Reviens avec les &#restes de quatre boss#...",
+    /*Spanish*/"^**SPANISH**"
+    };
+  switch (4 - MajoraRemainsRequired.Value<u8>()) {
+    case 1:
+      moonChildHint = {
+      /*English*/"^Come back with &#one Boss's Remains#...",
+      /*French */"^Reviens avec les &#restes d'un boss#...",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+    case 2:
+      moonChildHint = {
+      /*English*/"^Come back with &#two Bosses' Remains#...",
+      /*French */"^Reviens avec les &#restes de deux boss#...",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+    case 3:
+      moonChildHint = {
+      /*English*/"^Come back with &#three Bosses' Remains#...",
+      /*French */"^Reviens avec les &#restes de trois boss#...",
+      /*Spanish*/"**SPANISH**"
+      };
+      break;
+  }
+
+  // Add opening and closing textboxes to hint
+  moonChildHint = Text{
+    /*English*/"You...^You don't have many masks...do you?",
+    /*French */"Toi...^Tu n'as pas beaucoup de masques... n'est-ce pas ?",
+    /*Spanish*/"**SPANISH**"
+  }+moonChildHint+Text{
+    /*English*/"^Then we can play.",
+    /*French */"^Alors, on pourra jouer.",
+    /*Spanish*/"^**SPANISH**"
+  };
+
+  CustomMessages::CreateMessage(0x6144, 0xFFFF, 0x3FFFFFFF, 0x0FF0020, {moonChildHint.GetNAEnglish().c_str()}, {QM_RED}, {}, {}, 0x0, false, false);
 }
 
 //insert the required number into the hint and set the singular/plural form

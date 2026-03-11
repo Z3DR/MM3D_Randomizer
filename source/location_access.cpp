@@ -587,7 +587,7 @@ void AreaTable_Init() {
 
 	areaTable[CLOCK_TOWER_ROOF] = Area("Clock Tower Roof", "Clock Tower Roof", CLOCK_TOWER_ROOF, {
 		//Events
-		EventAccess(&CanGoToMoon, {[]{return OdolwaRemains && GohtRemains && GyorgRemains && TwinmoldRemains && CanPlay(OathToOrder);}}),
+		EventAccess(&CanGoToMoon, {[]{return RemainsForMoon && CanPlay(OathToOrder);}}),
 	},
 	{
 		//Locations
@@ -2856,6 +2856,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
+		LocationAccess(STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST, {[] {return GoronMask && Pictobox && Bow;}}),
 	},
 	{
 		//Exits
@@ -3725,7 +3726,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(S_CLOCK_TOWN, {[]{return true;}}),
-		Entrance(THE_MOON_BOSS_ROOM, {[]{return true;}}),
+		Entrance(THE_MOON_BOSS_ROOM, {[]{return RemainsForMajora;}}),
 		Entrance(THE_MOON_DEKU_TRIAL, {[]{return (TotalMaskCount() >= 1);}}),
 		Entrance(THE_MOON_GORON_TRIAL, {[]{return (TotalMaskCount() >= 2);}}),
 		Entrance(THE_MOON_ZORA_TRIAL, {[]{return (TotalMaskCount() >= 3);}}),
