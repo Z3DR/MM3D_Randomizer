@@ -10,18 +10,19 @@ public:
     Text() = default;
     Text(std::string generic)
       : NAenglish(generic), NAfrench(generic), NAspanish(generic),
-        //EURgerman(generic),   //EURItalian(generic),   //Japanese? Either way, MM3D doesn't support Dutch
-        EURenglish(generic), EURfrench(generic), EURspanish(generic) {}
+        //EURgerman(generic),   //EURitalian(generic),   //japanese(generic),
+        EURenglish(generic), EURfrench(generic), EURspanish(std::move(generic)) {}
 
-    Text(std::string english_, std::string french_, std::string spanish_)
-      : NAenglish(std::move(english_)),  NAfrench(std::move(french_)),  NAspanish(std::move(spanish_)),
-        //EURgerman(std::move(german_)),   //EURitalian(std::move(italian_)),
+    Text(std::string english_, std::string french_, std::string spanish_ /*std::string german_, std::string italian_, std::string japanese_*/)
+      : NAenglish(english_),  NAfrench(french_),  NAspanish(spanish_),
+        //EURgerman(std::move(german_)),   //EURitalian(std::move(italian_)), //japanese(std::move(japanese_)),
         EURenglish(std::move(english_)), EURfrench(std::move(french_)), EURspanish(std::move(spanish_)) {}
 
     Text(std::string NAenglish_, std::string NAfrench_, std::string NAspanish_,
+         //std::string EURgerman_, //std::string EURitalian_, //std::string japanese_,
          std::string EURenglish_, std::string EURfrench_, std::string EURspanish_)
       : NAenglish(std::move(NAenglish_)),   NAfrench(std::move(NAfrench_)),   NAspanish(std::move(NAspanish_)),
-        //EURgerman(std::move(EURgerman_)),   //EURitalian(std::move(EURitalian_)),
+        //EURgerman(std::move(EURgerman_)),   //EURitalian(std::move(EURitalian_)), //japanese(std::move(japanese_)),
         EURenglish(std::move(EURenglish_)), EURfrench(std::move(EURfrench_)), EURspanish(std::move(EURspanish_)) {
             //Fallback to NA string if EUR one is blank
             //Should allow for easier selective definition
@@ -62,6 +63,13 @@ public:
     //     return EURenglish;
     // }
 
+    // const std::string& GetJapanese() const {
+    //     if (japanese.length() > 0) {
+    //         return japanese;
+    //     }
+    //     return NAenglish;
+    // }
+
     const std::string& GetEUREnglish() const {
         return EURenglish;
     }
@@ -83,7 +91,7 @@ public:
     Text operator+ (const Text& right) const {
         return Text{
             NAenglish + right.GetNAEnglish(), NAfrench + right.GetNAFrench(), NAspanish + right.GetNASpanish(),
-            //EURgerman + right.GetEURGerman(), //EURitalian + right.GetEURItalian(),
+            //EURgerman + right.GetEURGerman(), //EURitalian + right.GetEURItalian(), //japanese + right.GetJapanese(),
             EURenglish + right.GetEUREnglish(), EURfrench + right.GetEURFrench(), EURspanish + right.GetEURSpanish()
         };
     }
@@ -91,7 +99,7 @@ public:
     Text operator+ (const std::string& right) const {
         return Text{
             NAenglish + right, NAfrench + right, NAspanish + right,
-            //EURgerman + right, //EURitalian + right,
+            //EURgerman + right, //EURitalian + right, //japanese + right,
             EURenglish + right, EURfrench + right, EURspanish + right
         };
     }
@@ -106,7 +114,7 @@ public:
 
     void Replace(std::string oldStr, std::string newStr) {
 
-        for (std::string* str : {&NAenglish, &NAfrench, &NAspanish, /*&EURgerman, &EURitalian,*/ &EURenglish, &EURfrench, &EURspanish}) {
+        for (std::string* str : {&NAenglish, &NAfrench, &NAspanish, /*&EURgerman, &EURitalian, &japanese,*/ &EURenglish, &EURfrench, &EURspanish}) {
             size_t position = str->find(oldStr);
             while (position != std::string::npos) {
               str->replace(position, oldStr.length(), newStr);
@@ -117,7 +125,7 @@ public:
 
     //find the appropriate bars that separate singular from plural
     void SetForm(int form) {
-        for (std::string* str : {&NAenglish, &NAfrench, &NAspanish, /*&EURgerman, &EURitalian,*/ &EURenglish, &EURfrench, &EURspanish}) {
+        for (std::string* str : {&NAenglish, &NAfrench, &NAspanish, /*&EURgerman, &EURitalian, &japanese,*/ &EURenglish, &EURfrench, &EURspanish}) {
 
             size_t firstBar = str->find('|');
             if (firstBar != std::string::npos) {
@@ -146,6 +154,7 @@ public:
     std::string NAspanish = "";
     //std::string EURgerman = "";
     //std::string EURitalian  = "";
+    //std::string japanese  = "";
     std::string EURenglish = "";
     std::string EURfrench  = "";
     std::string EURspanish = "";
