@@ -168,7 +168,7 @@ static void AddHint(Text hint, const LocationKey gossipStone, const std::vector<
   if (hint.GetNAEnglish().find("$")) {
     icons.push_back(B_BUTTON);
   }
-  CustomMessages::CreateMessage(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, {hint.GetNAEnglish().c_str()}, colors, icons, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, hint, colors, icons, {}, 0x0, false, false);
   //CreateMessageFromTextObject(messageId, 0, 2, 3, AddColorsAndFormat(hint, colors));
   //CreateMessageFromTextObject(sariaMessageId, 0, 2, 3, AddColorsAndFormat(hint + EVENT_TRIGGER(), colors));
 }
@@ -454,36 +454,35 @@ void CreateTingleHintText() {
         Text priceForty = {"    ##40 Rupees#", "    ##40 Rubis#", "    ##40 rupias#"};
         Text leaveShop = {"&#No thanks#", "&#Non merci#", "&#No, gracias#"};
 
-        Text tingleTextClockTown = clockTownMap+priceFive+woodfallMap+priceForty+leaveShop;
-        Text tingleTextWoodfall = woodfallMap+priceTwenty+snowHeadMap+priceForty+leaveShop;
-        Text tingleTextSnowhead = snowHeadMap+priceTwenty+romaniMap+priceForty+leaveShop;
-        Text tingleTextMilkRoad = romaniMap+priceTwenty+greatBayMap+priceForty+leaveShop;
-        Text tingleTextGreatBay = greatBayMap+priceTwenty+ikanaMap+priceForty+leaveShop;
-        Text tingleTextIkana = ikanaMap+priceTwenty+clockTownMap+priceForty+leaveShop;
+        // Clock Town message
+        CustomMessages::CreateMessageFromTextObject(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
+          clockTownMap+priceFive+woodfallMap+priceForty+leaveShop,
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
 
-        CustomMessages::CreateMessage(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
-        {tingleTextClockTown.GetNAEnglish().c_str()},
-        {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+        // Woodfall message
+        CustomMessages::CreateMessageFromTextObject(0x1D12, 0xFFFF, 0x3FF0A014, 0xFF1001,
+          woodfallMap+priceTwenty+snowHeadMap+priceForty+leaveShop,
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
 
-        CustomMessages::CreateMessage(0x1D12, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        {tingleTextWoodfall.GetNAEnglish().c_str()},
-        {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+        // Snowhead message
+        CustomMessages::CreateMessageFromTextObject(0x1D13, 0xFFFF, 0x3FF0A014, 0xFF1001,
+          snowHeadMap+priceTwenty+romaniMap+priceForty+leaveShop,
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
 
-        CustomMessages::CreateMessage(0x1D13, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        {tingleTextSnowhead.GetNAEnglish().c_str(),},
-        {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+        // Milk Road message
+        CustomMessages::CreateMessageFromTextObject(0x1D14, 0xFFFF, 0x3FF0A014, 0xFF1001,
+          romaniMap+priceTwenty+greatBayMap+priceForty+leaveShop,
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
 
-        CustomMessages::CreateMessage(0x1D14, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        {tingleTextMilkRoad.GetNAEnglish().c_str()},
-        {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+        // Great Bay message
+        CustomMessages::CreateMessageFromTextObject(0x1D15, 0xFFFF, 0x3FF0A014, 0xFF1001,
+          greatBayMap+priceTwenty+ikanaMap+priceForty+leaveShop,
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
 
-        CustomMessages::CreateMessage(0x1D15, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        {tingleTextGreatBay.GetNAEnglish().c_str()},
-        {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
-
-        CustomMessages::CreateMessage(0x1D16, 0xFFFF, 0x3FF0A014, 0xFF1001,
-        {tingleTextIkana.GetNAEnglish().c_str()},
-        {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+        // Ikana message
+        CustomMessages::CreateMessageFromTextObject(0x1D16, 0xFFFF, 0x3FF0A014, 0xFF1001,
+          ikanaMap+priceTwenty+clockTownMap+priceForty+leaveShop,
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
       }
 }
 //Find the location which has the given itemKey and create the generic altar text for the reward
@@ -597,18 +596,18 @@ void CreateClockTowerDoorHints() {
     {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
     "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#"},
     {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, {ocarinaHint.GetNAEnglish().c_str()}, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, ocarinaHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
   CustomMessages::CreateMessage(0x8001, 0x8003, 0x3FFFFFFF, 0x1FF0000,
     {"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"},
     {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessage(0x8002, 0x8003, 0x3FFFFFFF, 0x1FF0000,
     {"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"},
     {QM_RED, QM_RED}, {}, {}, 0x083E, false, false);
-  CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, {odolwaHint.GetNAEnglish().c_str()}, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, {gohtHint.GetNAEnglish().c_str()}, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, {gyorgHint.GetNAEnglish().c_str()}, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8006, 0x8007, 0x3FFFFFFF, 0x1600000, {twinmoldHint.GetNAEnglish().c_str()}, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8007, 0xFFFF, 0x3FFFFFFF, 0x0FF0000, {remainsNeededHint.GetNAEnglish().c_str()}, {QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, odolwaHint, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, gohtHint, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, gyorgHint, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8006, 0x8007, 0x3FFFFFFF, 0x1600000, twinmoldHint, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8007, 0xFFFF, 0x3FFFFFFF, 0x0FF0000, remainsNeededHint, {QM_RED}, {}, {}, 0x0, false, false);
 }
 
 void CreateMoonChildHint() {
@@ -653,7 +652,7 @@ void CreateMoonChildHint() {
     /*Spanish*/"^**SPANISH**"
   };
 
-  CustomMessages::CreateMessage(0x6144, 0xFFFF, 0x3FFFFFFF, 0x0FF0020, {moonChildHint.GetNAEnglish().c_str()}, {QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x6144, 0xFFFF, 0x3FFFFFFF, 0x0FF0020, moonChildHint, {QM_RED}, {}, {}, 0x0, false, false);
 }
 
 //insert the required number into the hint and set the singular/plural form
