@@ -559,35 +559,35 @@ void CreateClockTowerDoorHints() {
   Text remainsNeededHint = {
     /*English*/"The rumours say having #all four# causes something good to happen.",
     /*French */"D'après les rumeurs, si on a #les quatre#, un truc bien va se produire.",
-    /*Spanish*/"**SPANISH**"
+    /*Spanish*/"**SPANISH_4_REMAINS_NEEDED**"
     };
   switch (4 - MoonRemainsRequired.Value<u8>()) {
     case 0:
       remainsNeededHint = {
       /*English*/"I think collecting them would just be a #waste of time# though.",
       /*French */"Mais à mon avis, les collectionner ne serait qu'une #perte de temps#.",
-      /*Spanish*/"**SPANISH**"
+      /*Spanish*/"**SPANISH_0_REMAINS_NEEDED**"
       };
       break;
     case 1:
       remainsNeededHint = {
       /*English*/"The rumours say having #just one# is enough to make something good happen.",
       /*French */"D'après les rumeurs, il suffit d'en avoir #un seul# pour qu'un truc bien se produise.",
-      /*Spanish*/"**SPANISH**"
+      /*Spanish*/"**SPANISH_1_REMAINS_NEEDED**"
       };
       break;
     case 2:
       remainsNeededHint = {
       /*English*/"The rumours say having #half of them# causes something good to happen.",
       /*French */"D'après les rumeurs, si on en a #la moitié#, un truc bien va se produire.",
-      /*Spanish*/"**SPANISH**"
+      /*Spanish*/"**SPANISH_2_REMAINS_NEEDED**"
       };
       break;
     case 3:
       remainsNeededHint = {
       /*English*/"The rumours say having #three of them# causes something good to happen.",
       /*French */"D'après les rumeurs, si on en a #trois#, un truc bien va se produire.",
-      /*Spanish*/"**SPANISH**"
+      /*Spanish*/"**SPANISH_3_REMAINS_NEEDED**"
       };
       break;
   }
@@ -615,28 +615,28 @@ void CreateMoonChildHint() {
   Text moonChildHint = {
     /*English*/"^Come back with &#four Bosses' Remains#...",
     /*French */"^Reviens avec les &#restes de quatre boss#...",
-    /*Spanish*/"^**SPANISH**"
+    /*Spanish*/"^**SPANISH_4_REMAINS_NEEDED**"
     };
   switch (4 - MajoraRemainsRequired.Value<u8>()) {
     case 1:
       moonChildHint = {
       /*English*/"^Come back with &#one Boss's Remains#...",
       /*French */"^Reviens avec les &#restes d'un boss#...",
-      /*Spanish*/"**SPANISH**"
+      /*Spanish*/"^**SPANISH_1_REMAINS_NEEDED**"
       };
       break;
     case 2:
       moonChildHint = {
       /*English*/"^Come back with &#two Bosses' Remains#...",
       /*French */"^Reviens avec les &#restes de deux boss#...",
-      /*Spanish*/"**SPANISH**"
+      /*Spanish*/"^**SPANISH_2_REMAINS_NEEDED**"
       };
       break;
     case 3:
       moonChildHint = {
       /*English*/"^Come back with &#three Bosses' Remains#...",
       /*French */"^Reviens avec les &#restes de trois boss#...",
-      /*Spanish*/"**SPANISH**"
+      /*Spanish*/"^**SPANISH_3_REMAINS_NEEDED**"
       };
       break;
   }
