@@ -23,7 +23,6 @@ void HintTable_Init() {
     /*--------------------------
     |        ITEM HINTS        |
     --------------------------*/
-
     hintTable[KOKIRI_SWORD] = HintText::Item({
             //obscure
             Text{"a forest blade", "une lame sylvestre", "acero del bosque"}
@@ -799,7 +798,7 @@ void HintTable_Init() {
             //obscure
             Text{"icy small key", "une clé glacée", "una llave helada"}
         },  //clear
-            Text{"the Snowhead Temple Small Key", "une petite clé du temple du Pic des neiges", "una llave pequeña del Templo del Pico Nevado", "", "une petite clé du temple du pic des Neiges", ""}
+            Text{"a Snowhead Temple Small Key", "une petite clé du temple du Pic des neiges", "una llave pequeña del Templo del Pico Nevado", "", "une petite clé du temple du pic des Neiges", ""}
     );
     hintTable[GBT_SMALL_KEY] = HintText::Item({
             //obscure
@@ -811,7 +810,7 @@ void HintTable_Init() {
             //obscure
             Text{"rocky small key", "une clé rocheuse", "una llave rocosa"}
         },  //clear
-            Text{"the Stone Tower Temple Small Key", "une petite clé du temple de la forteresse de pierre", "una llave pequeña del Templo de la Torre de Piedra"}
+            Text{"a Stone Tower Temple Small Key", "une petite clé du temple de la forteresse de pierre", "una llave pequeña del Templo de la Torre de Piedra"}
     );
 //DUNGEON REWARDS
     hintTable[ODOLWAS_REMAINS] = HintText::Item({
@@ -1009,79 +1008,79 @@ void HintTable_Init() {
 //Clock Tower
     hintTable[CLOCK_TOWER_OCARINA_OF_TIME] = HintText::Sometimes({
             //obscure
-            Text{"A Musical Instrument", "l'#instrument qui t'a été volé# est", "Un instrumento musical"}});
+            Text{"a #musical instrument# is", "l'#instrument qui t'a été volé# est", "Un instrumento musical"}});
     hintTable[CLOCK_TOWER_SONG_OF_TIME] = HintText::Sometimes({
             //obscure
-            Text{"A Timeless Song", "le #souvenir de la princesse# est", ""}});
+            Text{"a #timeless song# is", "le #souvenir de la princesse# est", ""}});
     hintTable[HMS_DEKU_MASK] = HintText::Sometimes({
             //obscure
-            Text{"a forest curse removed rewards", "#lever une malédiction sylvestre# crée", "remover la maldición del bosque otorga"}});
+            Text{"a #forest curse removed# rewards", "#lever une malédiction sylvestre# crée", "remover la maldición del bosque otorga"}});
     hintTable[HMS_SONG_OF_HEALING] = HintText::Sometimes({
             //obscure
-            Text{"a masked man's melody teaches", "la #foire aux masques# enseigne", "la melodía del hombre enmascarado enseña"}});
+            Text{"a #masked man's melody# teaches", "la #foire aux masques# enseigne", "la melodía del hombre enmascarado enseña"}});
     hintTable[HMS_BOMBERS_NOTEBOOK] = HintText::Sometimes({
             //obscure
-            Text{"a masked man's gift rewards", "la #foire aux masque# offre", "el hombre enmascarado otorga"}});
+            Text{"a #masked man's gift# rewards", "la #foire aux masque# offre", "el hombre enmascarado otorga"}});
     hintTable[HMS_STARTING_SWORD] = HintText::Sometimes({
             //obscure
-            Text{"a new file yields", "une #nouvelle partie# procure", "una nueva partida otorga"}});
+            Text{"a #new file# yields", "une #nouvelle partie# procure", "una nueva partida otorga"}});
     hintTable[HMS_STARTING_SHIELD] = HintText::Sometimes({
             //obscure
-            Text{"a new file yields", "une #nouvelle partie# procure", "una nueva partida otorga"}});
+            Text{"a #new file# yields", "une #nouvelle partie# procure", "una nueva partida otorga"}});
     //PRE_CLOCK_TOWN_CHEST
 //Deku Palace
     hintTable[DEKU_PALACE_BEAN_SELLER] = HintText::Sometimes({
             //obscure
-            Text{"a gorging merchant sells", "un #marchand goulu# vend", "el mercader enterrado vende"}});
+            Text{"a #gorging merchant# sells", "un #marchand goulu# vend", "el mercader enterrado vende"}});
     hintTable[DEKU_PALACE_WEST_GARDEN] = HintText::Sometimes({
             //obscure
-            Text{"the home of scrubs contains", "l'#habitat des pestes# contient", "el hogar de los matorrales contiene"}});
+            Text{"the #home of scrubs# contains", "l'#habitat des pestes# contient", "el hogar de los matorrales contiene"}});
     hintTable[DEKU_PALACE_BUTLER_RACE] = HintText::Sometimes({
             //obscure
-            Text{"the royal servant rewards", "le #servant royal# offre", "el sirviente real recompensa con"}});
+            Text{"the #royal servant# rewards", "le #servant royal# offre", "el sirviente real recompensa con"}});
     hintTable[DEKU_PALACE_BEAN_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a merchant's cave contains", "la #grotte d'un marchand# contient", "la cueva del mercader contiene"}});
+            Text{"a #merchant's cave# contains", "la #grotte d'un marchand# contient", "la cueva del mercader contiene"}});
     hintTable[DEKU_PALACE_IMPRISONED_MONKEY] = HintText::Sometimes({
             //obscure
-            Text{"a false imprisonment teaches", "un #détenu innocent# enseigne", "un falso aprisionamiento enseña"}});
+            Text{"a #false imprisonment# teaches", "un #détenu innocent# enseigne", "un falso aprisionamiento enseña"}});
 //East Clock Town
     hintTable[E_CLOCK_TOWN_AROMA_IN_BAR] = HintText::Sometimes({
             //obscure
-            Text{"an important lady rewards", "un #rapport fructueux# confère", "una señora importante recompensa con"}});
+            Text{"an #important lady# rewards", "un #rapport fructueux# confère", "una señora importante recompensa con"}});
     hintTable[E_CLOCK_TOWN_ARCHERY_1] = HintText::Sometimes({
             //obscure
-            Text{"a town activity rewards", "un #habile abattage d'octoroks# octroie", "una actividad en la ciudad recompensa con"}});
+            Text{"a #town activity# rewards", "un #habile abattage d'octoroks# octroie", "una actividad en la ciudad recompensa con"}});
     hintTable[E_CLOCK_TOWN_ARCHERY_2] = HintText::Sometimes({
             //obscure
-            Text{"a town activity rewards", "un #parfait abattage d'octoroks# octroie", "una actividad en la ciudad recompensa con"}});
+            Text{"a #town activity# rewards", "un #parfait abattage d'octoroks# octroie", "una actividad en la ciudad recompensa con"}});
     hintTable[E_CLOCK_TOWN_MAYOR] = HintText::Sometimes({
             //obscure
-            Text{"a town leader rewards", "un #homme d'état# offre", "el líder de la ciudad recompensa con"}});
+            Text{"a #town leader# rewards", "un #homme d'état# offre", "el líder de la ciudad recompensa con"}});
     hintTable[E_CLOCK_TOWN_HONEY_DARLING_3DAYS] = HintText::Sometimes({
             //obscure
-            Text{"a lovers game rewards", "un #jeu d'amants# offre", "un juego de amantes recompensa con"}});
+            Text{"a #lovers game# rewards", "un #jeu d'amants# offre", "un juego de amantes recompensa con"}});
     hintTable[E_CLOCK_TOWN_TREASURE_CHEST_GAME_GORON] = HintText::Sometimes({
             //obscure
-            Text{"a treasure game rewards", "un #jeu trésorier# offre", "un juego del tesoro recompensa con"}});
+            Text{"a #treasure game# rewards", "un #jeu trésorier# offre", "un juego del tesoro recompensa con"}});
     hintTable[E_CLOCK_TOWN_POSTMAN_FREEDOM] = HintText::Sometimes({
             //obscure
-            Text{"a delivery person rewards", "un #ex-livreur# offre", "un repartidor recompensa con"}});
+            Text{"a #delivery person# rewards", "un #ex-livreur# offre", "un repartidor recompensa con"}});
     hintTable[E_CLOCK_TOWN_GORMAN] = HintText::Sometimes({
             //obscure
-            Text{"a miserable leader rewards", "un #homme ivre# offre", "un líder miserable otorga"}});
+            Text{"a #miserable leader# rewards", "un #homme ivre# offre", "un líder miserable otorga"}});
     hintTable[E_CLOCK_TOWN_AROMA_IN_OFFICE] = HintText::Sometimes({
             //obscure
-            Text{"an important lady rewards", "une #affectation détective# confie", "una señora importante recompensa con"}});
+            Text{"an #important lady# rewards", "une #affectation détective# confie", "una señora importante recompensa con"}});
     hintTable[BOMBERS_HIDEOUT_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a secret hideout contains", "un #recoin de repaire# recèle", "un escondite secreto contiene"}});
+            Text{"a #secret hideout# contains", "un #recoin de repaire# recèle", "un escondite secreto contiene"}});
     hintTable[E_CLOCK_TOWN_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a shop roof contains", "un #toit d'entreprise# contient", "el techo de una tienda contiene"}});
+            Text{"a #shop roof# contains", "un #toit d'entreprise# contient", "el techo de una tienda contiene"}});
     hintTable[E_CLOCK_TOWN_POSTBOX] = HintText::Sometimes({
             //obscure
-            Text{"a correspondence box contains", "un #boîte à correspondances# contient", "una caja de correspondencia contiene"}});
+            Text{"a #correspondence box# contains", "un #boîte à correspondances# contient", "una caja de correspondencia contiene"}});
     //hintTable[E_CLOCK_TOWN_MILK_BAR_CHATEAU] = HintText::Sometimes({
     //        //obscure
     //        Text{"**ENGLISH**", "un #spécialiste laitier# vend", "un lugar de copas vende"}});
@@ -1090,7 +1089,7 @@ void HintTable_Init() {
     //        Text{"**ENGLISH**", "un #spécialiste laitier# vend", "un lugar de copas vende"}});
     hintTable[GORMAN_TRACK_MYSTERY_MILK_QUEST] = HintText::Sometimes({
             //obscure
-            Text{"an upset stomach cure rewards", "#soigner un mal de ventre# produit", "la cura a un mal estomacal recompensa con"}});
+            Text{"an #upset stomach cure# rewards", "#soigner un mal de ventre# produit", "la cura a un mal estomacal recompensa con"}});
     //hintTable[E_CLOCK_TOWN_HONEY_DARLING_ANY_DAY] = HintText::Sometimes({
     //        //obscure
     //        Text{"**ENGLISH**", "un #jeu d'amants# offre quotidiennement", "un juego de amantes recompensa con"}});
@@ -1106,53 +1105,53 @@ void HintTable_Init() {
 //Goron Village
     hintTable[GORON_VILLAGE_POWDER_KEG_CHALLENGE] = HintText::Sometimes({
             //obscure
-            Text{"a large goron rewards", "un #grand goron# confie", "un enorme goron recompensa con"}});
+            Text{"a #large goron# rewards", "un #grand goron# confie", "un enorme goron recompensa con"}});
     hintTable[GORON_VILLAGE_SCRUB_PURCHASE] = HintText::Sometimes({
             //obscure
-            Text{"a northern merchant sells", "un #marchand septentrional# vend", "un mercader en el norte vende"}});
+            Text{"a #northern merchant# sells", "un #marchand septentrional# vend", "un mercader en el norte vende"}});
     hintTable[GORON_VILLAGE_LENS_OF_TRUTH_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a lonely peak contains", "un #pic esseulé# contient", "una cumbre solitaria contiene"}});
+            Text{"a #lonely peak# contains", "un #pic esseulé# contient", "una cumbre solitaria contiene"}});
     hintTable[GORON_VILLAGE_SCRUB_TRADE] = HintText::Sometimes({
             //obscure
-            Text{"a northern merchant trades", "un #marchand septentrional# échange", "un mercader en el norte intercambia por"}});
+            Text{"a #northern merchant# trades", "un #marchand septentrional# échange", "un mercader en el norte intercambia por"}});
     hintTable[GORON_VILLAGE_LEDGE] = HintText::Sometimes({
             //obscure
-            Text{"a cold ledge contains", "Un #rebord froid# recèle", "una cornisa fría contiene"}});
+            Text{"a #cold ledge# contains", "Un #rebord froid# recèle", "una cornisa fría contiene"}});
     hintTable[GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING] = HintText::Sometimes({
             //obscure
-            Text{"a large goron rewards", "un #grand goron# confie", "un enorme goron recompensa con"}});
+            Text{"a #large goron# rewards", "un #grand goron# confie", "un enorme goron recompensa con"}});
     hintTable[GORON_VILLAGE_SCRUB_PURCHASE_SPRING] = HintText::Sometimes({
             //obscure
-            Text{"a northern merchant sells", "un #marchand septentrional# vend", "un mercader en el norte vende"}});
+            Text{"a #northern merchant# sells", "un #marchand septentrional# vend", "un mercader en el norte vende"}});
     hintTable[GORON_VILLAGE_SCRUB_TRADE_SPRING] = HintText::Sometimes({
             //obscure
-            Text{"a northern merchant trades", "un #marchand septentrional# échange", "un mercader en el norte intercambia por"}});
+            Text{"a #northern merchant# trades", "un #marchand septentrional# échange", "un mercader en el norte intercambia por"}});
     hintTable[GORON_VILLAGE_LEDGE_SPRING] = HintText::Sometimes({
             //obscure
-            Text{"a cold ledge contains", "un #rebord froid# recèle", "una cornisa fría contiene"}});
+            Text{"a #cold ledge# contains", "un #rebord froid# recèle", "una cornisa fría contiene"}});
     hintTable[GORON_VILLAGE_GORON_LULLABY] = HintText::Sometimes({
             //obscure
-            Text{"a lonely child teaches", "un #enfant délaissé# enseigne", "un niño solitario enseña"}});
+            Text{"a #lonely child# teaches", "un #enfant délaissé# enseigne", "un niño solitario enseña"}});
     hintTable[LENS_CAVE_RED_RUPEE] = HintText::Sometimes({
             //obscure
-            Text{"a lonely peak contains", "un #pic esseulé# contient", "una cumbre solitaria contiene"}});
+            Text{"a #lonely peak# contains", "un #pic esseulé# contient", "una cumbre solitaria contiene"}});
     hintTable[LENS_CAVE_PURPLE_RUPEE] = HintText::Sometimes({
             //obscure
-            Text{"a lonely peak contains", "un #pic esseulé# contient", "una cumbre solitaria contiene"}});
+            Text{"a #lonely peak# contains", "un #pic esseulé# contient", "una cumbre solitaria contiene"}});
     hintTable[GORON_SHOP_ITEM_1] = HintText::Sometimes({
             //obscure
-            Text{"a goron shop sells", "une #boutique minière# vend", "una tienda Goron vende"}});
+            Text{"a #goron shop# sells", "une #boutique minière# vend", "una tienda Goron vende"}});
     hintTable[GORON_SHOP_ITEM_2] = HintText::Sometimes({
             //obscure
-            Text{"a goron shop sells", "une #boutique minière# vend", "una tienda Goron vende"}});
+            Text{"a #goron shop# sells", "une #boutique minière# vend", "una tienda Goron vende"}});
     hintTable[GORON_SHOP_ITEM_3] = HintText::Sometimes({
             //obscure
-            Text{"a goron shop sells", "une #boutique minière# vend", "una tienda Goron vende"}});
+            Text{"a #goron shop# sells", "une #boutique minière# vend", "una tienda Goron vende"}});
 //Great Bay Coast
     hintTable[GBC_OCEAN_SPIDER_DAY1] = HintText::Sometimes({
             //obscure
-            Text{"a new ocean home owner rewards", "un #emménagement côtier# octroie", "un nuevo dueño de una casa en el océano recompensa con"}});
+            Text{"a #new ocean home owner# rewards", "un #emménagement côtier# octroie", "un nuevo dueño de una casa en el océano recompensa con"}});
     //hintTable[GBC_OCEAN_SPIDER_DAY2] = HintText::Sometimes({
     //        //obscure
     //        Text{"**ENGLISH**", "une récompense #indisponible en 3D# est", "un nuevo dueño de una casa en el océano recompensa con"}});
@@ -1161,324 +1160,324 @@ void HintTable_Init() {
     //        Text{"**ENGLISH**", "une récompense #indisponible en 3D# est", "un nuevo dueño de una casa en el océano recompensa con"}});
     hintTable[GBC_FISHERMAN_GAME] = HintText::Sometimes({
             //obscure
-            Text{"an ocean game rewards", "un #jeu bondissant# offre", "un juego en el océano recompensa con"}});
+            Text{"an #ocean game# rewards", "un #jeu bondissant# offre", "un juego en el océano recompensa con"}});
     hintTable[GBC_OCEAN_SPIDER_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"the colored masks contains", "les #masques colorés# protègent", "las máscaras de colores contienen"}});
+            Text{"the #colored masks# contain", "les #masques colorés# protègent", "las máscaras de colores contienen"}});
     hintTable[GBC_LAB_FISH] = HintText::Sometimes({
             //obscure
-            Text{"feeding the fish rewards", "une #croissance ichtyenne# dévoile", "alimentar a los peces recompensa con"}});
+            Text{"#feeding the fish# rewards", "une #croissance ichtyenne# dévoile", "alimentar a los peces recompensa con"}});
     hintTable[GBC_LEDGE] = HintText::Sometimes({
             //obscure
-            Text{"an ocean ledge contains", "un #rebord côtier# recèle", "una cornisa en el océano contiene"}});
+            Text{"an #ocean ledge# contains", "un #rebord côtier# recèle", "una cornisa en el océano contiene"}});
     hintTable[GBC_MIKAU] = HintText::Sometimes({
             //obscure
-            Text{"a healed spirit rewards", "l'#apaisement d'un guitariste# crée", "un espíritu curado recompensa con"}});
+            Text{"a #healed spirit# rewards", "l'#apaisement d'un guitariste# crée", "un espíritu curado recompensa con"}});
     hintTable[GBC_BABY_ZORAS] = HintText::Sometimes({
             //obscure
-            Text{"the pirates' loot teaches", "le #butin des pirates# enseigne", "el botín de los piratas enseña"}});
+            Text{"the #pirates' loot# teaches", "le #butin des pirates# enseigne", "el botín de los piratas enseña"}});
     hintTable[GBC_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"an ocean cave contains", "un #trou côtier# contient", "una cueva en el océano contiene"}});
+            Text{"an #ocean cave# contains", "un #trou côtier# contient", "una cueva en el océano contiene"}});
     hintTable[GBC_GROTTO_COW1] = HintText::Sometimes({
             //obscure
-            Text{"a lost creature gives", "un #ruminant côtier# prodigue", "una criatura perdida da"}});
+            Text{"a #lost creature# gives", "un #ruminant côtier# prodigue", "una criatura perdida da"}});
     hintTable[GBC_GROTTO_COW2] = HintText::Sometimes({
             //obscure
-            Text{"a lost creature gives", "un #ruminant côtier# prodigue", "una criatura perdida da"}});
+            Text{"a #lost creature# gives", "un #ruminant côtier# prodigue", "una criatura perdida da"}});
     hintTable[GBC_FISHERMAN_PHOTO] = HintText::Sometimes({
             //obscure
-            Text{"a fisherman rewards", "un #pêcheur# échange", "un pescador recompensa con"}});
+            Text{"a #fisherman# rewards", "un #pêcheur# échange", "un pescador recompensa con"}});
     hintTable[TINGLE_GBC_GB] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells", "un #cartographe# vend", "un cartógrafo vende"}});
     hintTable[TINGLE_GBC_ST] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells", "un #cartographe# vend", "un cartógrafo vende"}});
 //Ikana Canyon
     hintTable[IKANA_CANYON_GREAT_FAIRY] = HintText::Sometimes({
             //obscure
-            Text{"the fairy of kindness rewards", "la #fée de la bonté# prodigue", "la hada de la bondad recompensa con"}});
+            Text{"the #fairy of kindness# rewards", "la #fée de la bonté# prodigue", "la hada de la bondad recompensa con"}});
     hintTable[IKANA_CANYON_POE_HUT_HP] = HintText::Sometimes({
             //obscure
-            Text{"a game of ghosts rewards", "une #arène spectrale# remet", "un juego de fantasmas recompensa con"}});
+            Text{"a #game of ghosts# rewards", "une #arène spectrale# remet", "un juego de fantasmas recompensa con"}});
     hintTable[IKANA_CANYON_LEDGE] = HintText::Sometimes({
             //obscure
-            Text{"a canyon ledge contains", "un #rebord de vallée# recèle", "una repisa en el cañón contiene"}});
+            Text{"a #canyon ledge# contains", "un #rebord de vallée# recèle", "una repisa en el cañón contiene"}});
     hintTable[IKANA_CANYON_PAMELAS_FATHER] = HintText::Sometimes({
             //obscure
-            Text{"a lost father rewards", "un #chercheur est maudit par#", "un padre absorto recompensa con"}});
+            Text{"a #lost father# rewards", "un #chercheur est maudit par#", "un padre absorto recompensa con"}});
     hintTable[IKANA_CANYON_SECRET_SHRINE_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a waterfall cave contains", "une #trou de cascade# contient", "una cueva en la cascada contiene"}});
+            Text{"a #waterfall cave# contains", "une #trou de cascade# contient", "una cueva en la cascada contiene"}});
     hintTable[IKANA_CANYON_SCRUB_TRADE] = HintText::Sometimes({
             //obscure
-            Text{"an eastern merchant trades", "un #marchand oriental# échange", "un mercader del este intercambia por"}});
+            Text{"an #eastern merchant# trades", "un #marchand oriental# échange", "un mercader del este intercambia por"}});
     hintTable[IKANA_CANYON_SCRUB_PURCHASE] = HintText::Sometimes({
             //obscure
-            Text{"an eastern merchant sells", "un #marchand oriental# vend", "un mercader del este vende"}});
+            Text{"an #eastern merchant# sells", "un #marchand oriental# vend", "un mercader del este vende"}});
     hintTable[TINGLE_IKANA_CANYON_ST] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells", "un #cartographe# vend", "un cartógrafo vende"}});
     hintTable[TINGLE_IKANA_CANYON_CT] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells", "un #cartographe# vend", "un cartógrafo vende"}});
 //Ikana Graveyard
     hintTable[IKANA_GRAVEYARD_DAMPE_DIGGING] = HintText::Sometimes({
             //obscure
-            Text{"a fearful basement contains", "#déterrer trois flammes# révèle", "un sótano aterrorizante contiene"}});
+            Text{"a #fearful basement# contains", "#déterrer trois flammes# révèle", "un sótano aterrorizante contiene"}});
     hintTable[IKANA_GRAVEYARD_IRON_KNUCKLE_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a hollow ground contains", "une #tombe illusoire# contient", "un suelo hueco contiene"}});
+            Text{"a #hollow ground# contains", "une #tombe illusoire# contient", "un suelo hueco contiene"}});
     hintTable[IKANA_GRAVEYARD_CAPTAIN_KEETA_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a skeletal leader rewards", "un #squelette roupilleur# protège", "un líder esquelético recompensa con"}});
+            Text{"a #skeletal leader# rewards", "un #squelette roupilleur# protège", "un líder esquelético recompensa con"}});
     hintTable[IKANA_GRAVEYARD_DAY_ONE_GRAVE_TABLET] = HintText::Sometimes({
             //obscure
-            Text{"a hollow ground teaches", "#la requête du compositeur# octroie", "un suelo hueco enseña"}});
+            Text{"a #hollow ground# teaches", "#la requête du compositeur# octroie", "un suelo hueco enseña"}});
     hintTable[IKANA_GRAVEYARD_DAY_ONE_GRAVE_BATS] = HintText::Sometimes({
             //obscure
-            Text{"a cloud of bats contains", "une #nuée de chauve-souris# protège", "un grupo de murciélagos contiene"}});
+            Text{"a #cloud of bats# contains", "une #nuée de chauve-souris# protège", "un grupo de murciélagos contiene"}});
     hintTable[IKANA_GRAVEYARD_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a circled cave contains", "une #grotte encerclée# contient", "una cueva rodeada contiene"}});
+            Text{"a #circled cave# contains", "une #grotte encerclée# contient", "una cueva rodeada contiene"}});
 //Laundry Pool
     hintTable[LAUNDRY_POOL_KAFEI] = HintText::Sometimes({
             //obscure
-            Text{"a posted letter rewards", "#rencontrer un disparu# octroie", "una carta enviada recompensa con"}});
+            Text{"a #posted letter# rewards", "#rencontrer un disparu# octroie", "una carta enviada recompensa con"}});
     hintTable[LAUNDRY_POOL_CURIOSITY_SHOP_MAN_ONE] = HintText::Sometimes({
             //obscure
-            Text{"a shady dealer rewards", "un #commerçant suspect# confie", "un comerciante sospechoso recompensa con"}});
+            Text{"a #shady dealer# rewards", "un #commerçant suspect# confie", "un comerciante sospechoso recompensa con"}});
     hintTable[LAUNDRY_POOL_CURIOSITY_SHOP_MAN_TWO] = HintText::Sometimes({
             //obscure
-            Text{"a shady dealer rewards", "un #commerçant suspect# confie", "un comerciante sospechoso recompensa con"}});
+            Text{"a #shady dealer# rewards", "un #commerçant suspect# confie", "un comerciante sospechoso recompensa con"}});
     hintTable[LAUNDRY_POOL_GURU_GURU] = HintText::Sometimes({
             //obscure
-            Text{"a musician gives", "un #musicien ambulant# délègue", "un músico da"}});
+            Text{"a #musician# gives", "un #musicien ambulant# délègue", "un músico da"}});
     hintTable[LAUNDRY_POOL_SF] = HintText::Sometimes({
             //obscure
-            Text{"a lost fairy is", "une #fée orange# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée orange# est", "una hada perdida es"}});
 //Milk Road
     hintTable[MILK_ROAD_GORMAN_RACE] = HintText::Sometimes({
             //obscure
-            Text{"a sporting event rewards", "un #pari hippique# octroie", "un evento deportivo recompensa con"}});
+            Text{"a #sporting event# rewards", "un #pari hippique# octroie", "un evento deportivo recompensa con"}});
     hintTable[MILK_ROAD_GORMAN_MILK_BUY] = HintText::Sometimes({
             //obscure
-            Text{"a dodgy seller sells", "un #duo suspect# vend", "un vendedor tramposo vende"}});
+            Text{"a #dodgy seller# sells", "un #duo suspect# vend", "un vendedor tramposo vende"}});
     hintTable[MILK_ROAD_KEATON_QUIZ] = HintText::Sometimes({
             //obscure
-            Text{"a mysterious fox rewards", "un #mystérieux goupil# offre", "un zorro misterioso recompensa con"}});
+            Text{"a #mysterious fox# rewards", "un #mystérieux goupil# offre", "un zorro misterioso recompensa con"}});
     hintTable[TINGLE_MILK_ROAD_RR] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells", "un #cartographe# vend", "un cartógrafo vende"}});
     hintTable[TINGLE_MILK_ROAD_GB] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells", "un #cartographe# vend", "un cartógrafo vende"}});
 //Mountain Village
     hintTable[MOUNTAIN_VILLAGE_SMITH_DAY_ONE] = HintText::Sometimes({
             //obscure
-            Text{"a moutain smith crafts", "un #achat acéré# octroie", "un herrero en la montaña forja"}});
+            Text{"a #mountain smith# crafts", "un #achat acéré# octroie", "un herrero en la montaña forja"}});
     hintTable[MOUNTAIN_VILLAGE_SMITH_DAY_TWO] = HintText::Sometimes({
             //obscure
-            Text{"a mountain smith crafts", "#échanger de l'or# octroie", "un herrero en la montaña forja"}});
+            Text{"a #mountain smith# crafts", "#échanger de l'or# octroie", "un herrero en la montaña forja"}});
     hintTable[MOUNTAIN_VILLAGE_FROG_CHOIR] = HintText::Sometimes({
             //obscure
-            Text{"a frog choir rewards", "une #chorale coassante# offre", "un coro de ranas recompensa con"}});
+            Text{"a #frog choir# rewards", "une #chorale coassante# offre", "un coro de ranas recompensa con"}});
     hintTable[MOUNTAIN_VILLAGE_KEATON_QUIZ] = HintText::Sometimes({
             //obscure
-            Text{"a mysterious fox rewards", "un #mystérieux goupil# offre", "un zorro misterioso recompensa con"}});
+            Text{"a #mysterious fox# rewards", "un #mystérieux goupil# offre", "un zorro misterioso recompensa con"}});
     hintTable[MOUNTAIN_VILLAGE_DARMANI] = HintText::Sometimes({
             //obscure
-            Text{"a mountain spirit rewards", "un #esprit montagnard# offre", "un espíritu en la montaña recompensa con"}});
+            Text{"a #mountain spirit# rewards", "un #esprit montagnard# offre", "un espíritu en la montaña recompensa con"}});
     hintTable[MOUNTAIN_VILLAGE_HUNGRY_GORON] = HintText::Sometimes({
             //obscure
-            Text{"a hungry goron rewards", "un #goron affamé# a", "un goron hambriento recompensa con"}});
+            Text{"a #hungry goron# rewards", "un #goron affamé# a", "un goron hambriento recompensa con"}});
     hintTable[MOUNTAIN_WATERFALL_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a springtime waterfall contains", "une #chute d'eau printanière# contient", "una cascada en primavera contiene"}});
+            Text{"a #springtime waterfall# contains", "une #chute d'eau printanière# contient", "una cascada en primavera contiene"}});
     hintTable[MOUNTAIN_VILLAGE_SPRING_WATER_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a springtime cave contains", "une #grotte printanière# contient", "una cueva en primavera contiene"}});
+            Text{"a #springtime cave# contains", "une #grotte printanière# contient", "una cueva en primavera contiene"}});
 //N Clock Town
     hintTable[N_CLOCK_TOWN_GREAT_FAIRY_DEKU] = HintText::Sometimes({
             //obscure
-            Text{"the fairy of magic rewards", "la #fée des enchantements# prodigue", "la hada de la magia recompensa con"}});
+            Text{"the #fairy of magic# rewards", "la #fée des enchantements# prodigue", "la hada de la magia recompensa con"}});
     //hintTable[N_CLOCK_TOWN_BOMBERS_HIDE_SEEK] = HintText::Sometimes({
     //        //obscure
     //        Text{"**ENGLISH**", "une récompense #indisponible en 3D# est", "un juego de escondidas recompensa con"}});
     hintTable[N_CLOCK_TOWN_KEATON_QUIZ] = HintText::Sometimes({
             //obscure
-            Text{"a mysterious fox rewards", "un #mystérieux goupil# offre", "un zorro misterioso recompensa con"}});
+            Text{"a #mysterious fox# rewards", "un #mystérieux goupil# offre", "un zorro misterioso recompensa con"}});
     hintTable[N_CLOCK_TOWN_DEKU_PLAYGROUND_3DAYS] = HintText::Sometimes({
             //obscure
-            Text{"a game for scrubs rewards", "un #pro en vol plané# reçoit", "un campo de juegos para matorrales recompensa con"}});
+            Text{"a #game for scrubs# rewards", "un #pro en vol plané# reçoit", "un campo de juegos para matorrales recompensa con"}});
     hintTable[N_CLOCK_TOWN_TREE] = HintText::Sometimes({
             //obscure
-            Text{"a town playground contains", "une #aire de jeu citadine# recèle", "un campo de juegos contiene"}});
+            Text{"a #town playground# contains", "une #aire de jeu citadine# recèle", "un campo de juegos contiene"}});
     hintTable[N_CLOCK_TOWN_OLD_LADY] = HintText::Sometimes({
             //obscure
-            Text{"an old lady's struggle rewards", "#aider une aînée# octroie", "el forcejeo de una anciana recompensa con"}});
+            Text{"an #old lady's struggle# rewards", "#aider une aînée# octroie", "el forcejeo de una anciana recompensa con"}});
     hintTable[N_CLOCK_TOWN_GREAT_FAIRY_HUMAN] = HintText::Sometimes({
             //obscure
-            Text{"the fairy of magi rewardsc", "la #fée des enchantements# prodigue", "la hada de la magia recompensa con"}});
+            Text{"the #fairy of magic# rewards", "la #fée des enchantements# prodigue", "la hada de la magia recompensa con"}});
     hintTable[TINGLE_N_CLOCK_TOWN_CT] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells", "un #cartographe# vend", "un cartógrafo vende"}});
     hintTable[TINGLE_N_CLOCK_TOWN_WF] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells", "un #cartographe# vend", "un cartógrafo vende"}});
     hintTable[N_CLOCK_TOWN_POSTBOX] = HintText::Sometimes({
             //obscure
-            Text{"a correspondence box contains", "un #boîte a correspondances# contient", "una caja de correspondencia contiene"}});
+            Text{"a #correspondence box# contains", "un #boîte a correspondances# contient", "una caja de correspondencia contiene"}});
     //hintTable[N_CLOCK_TOWN_DEKU_PLAYGROUND_ADAY] = HintText::Sometimes({
     //        //obscure
-    //        Text{"a game for scrubs", "un #jeu pour pestes# offre quotidiennement", "un juego para matorrales contiene"}});
+    //        Text{"a #game for scrubs' daily reward# is", "un #jeu pour pestes# offre quotidiennement", "un juego para matorrales contiene"}});
 //Road to Snowhead
     hintTable[ROAD_TO_SNOWHEAD_PILLAR] = HintText::Sometimes({
             //obscure
-            Text{"a cold platform contains", "une #plateforme froide# recèle", "una plataforma fría contiene"}});
+            Text{"a #cold platform# contains", "une #plateforme froide# recèle", "una plataforma fría contiene"}});
     hintTable[ROAD_TO_SNOWHEAD_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a snowy cave contains", "une #grotte assaillie de neige# contient", "una cueva nevada contiene"}});
+            Text{"a #snowy cave# contains", "une #grotte assaillie de neige# contient", "una cueva nevada contiene"}});
 //Pinnacle Rock
     hintTable[PINNACLE_ROCK_SEAHORSES] = HintText::Sometimes({
             //obscure
-            Text{"a fishy reunion rewards", "une #réunion de poissons# octroie", "una reunión acuática recompensa con"}});
+            Text{"a #fishy reunion# rewards", "une #réunion de poissons# octroie", "una reunión acuática recompensa con"}});
     hintTable[PINNACLE_ROCK_UPPER_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a marine trench contains", "une #tranchée marine# contient", "una fosa marina contiene"}});
+            Text{"a #marine trench# contains", "une #tranchée marine# contient", "una fosa marina contiene"}});
     hintTable[PINNACLE_ROCK_LOWER_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a marine trench contains", "une #tranchée marine# contient", "una fosa marina contiene"}});
+            Text{"a #marine trench# contains", "une #tranchée marine# contient", "una fosa marina contiene"}});
     hintTable[PINNACLE_ROCK_ZORA_EGG1] = HintText::Sometimes({
             //obscure
-            Text{"in a marine trench rests", "une #tranchée marine# héberge", "en una fosa marina espera"}});
+            Text{"in a #marine trench# rests", "une #tranchée marine# héberge", "en una fosa marina espera"}});
     hintTable[PINNACLE_ROCK_ZORA_EGG2] = HintText::Sometimes({
             //obscure
-            Text{"in a marine trench rests", "une #tranchée marine# héberge", "en una fosa marina espera"}});
+            Text{"in a #marine trench# rests", "une #tranchée marine# héberge", "en una fosa marina espera"}});
     hintTable[PINNACLE_ROCK_ZORA_EGG3] = HintText::Sometimes({
             //obscure
-            Text{"in a marine trench rests", "une #tranchée marine# héberge", "en una fosa marina espera"}});
+            Text{"in a #marine trench# rests", "une #tranchée marine# héberge", "en una fosa marina espera"}});
 //Road to Ikana
     hintTable[ROAD_TO_IKANA_PILLAR_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a high chest contains", "un #coffre haut-placé# contient", "un cofre en lo alto contiene"}});
+            Text{"a #high chest# contains", "un #coffre haut-placé# contient", "un cofre en lo alto contiene"}});
     hintTable[ROAD_TO_IKANA_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a blocked cave contains", "une #grotte bouchée# contient", "una cueva obstruida contiene"}});
+            Text{"a #blocked cave# contains", "une #grotte bouchée# contient", "una cueva obstruida contiene"}});
 //Road to Southern Swamp
     hintTable[ROAD_TO_SS_ARCHERY_1] = HintText::Sometimes({
             //obscure
-            Text{"a swamp game rewards", "#si tu vises bien comme il faut#, tu gagnes", "un juego en el pantano recompensa con", "", "#s'tu vises bien correc'#, tu gagnes", ""}});
+            Text{"a #swamp game# rewards", "#si tu vises bien comme il faut#, tu gagnes", "un juego en el pantano recompensa con", "", "#s'tu vises bien correc'#, tu gagnes", ""}});
     hintTable[ROAD_TO_SS_ARCHERY_2] = HintText::Sometimes({
             //obscure
-            Text{"a swamp game rewards", "#si tu vises bien comme il faut#, tu gagnes", "un juego en el pantano recompensa con", "", "#s'tu vises bien correc'#, tu gagnes", ""}});
+            Text{"a #swamp game# rewards", "#si tu vises bien comme il faut#, tu gagnes", "un juego en el pantano recompensa con", "", "#s'tu vises bien correc'#, tu gagnes", ""}});
     hintTable[ROAD_TO_SS_TREE] = HintText::Sometimes({
             //obscure
-            Text{"a batty tree contains", "un #arbre saigneur# recèle", "un árbol repleto de alas negras tiene"}});
+            Text{"a #batty tree# contains", "un #arbre saigneur# recèle", "un árbol repleto de alas negras tiene"}});
     hintTable[ROAD_TO_SWAMP_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a southern cave contains", "une #grotte australe# contient", "una cueva en el sur contiene"}});
+            Text{"a #southern cave# contains", "une #grotte australe# contient", "una cueva en el sur contiene"}});
     hintTable[TINGLE_ROAD_TO_SS_WF] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells", "un #cartographe# vend", "un cartógrafo vende"}});
     hintTable[TINGLE_ROAD_TO_SS_SH] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells", "un #cartographe# vend", "un cartógrafo vende"}});
 //Romani Ranch
     hintTable[ROMANI_RANCH_ALIEN_DEFENSE] = HintText::Sometimes({
             //obscure
-            Text{"a ranch invasion rewards", "une #invasion de ranch# octroie", "una invasión al rancho recompensa con"}});
+            Text{"a #ranch invasion# rewards", "une #invasion de ranch# octroie", "una invasión al rancho recompensa con"}});
     hintTable[ROMANI_RANCH_DOG_RACE] = HintText::Sometimes({
             //obscure
-            Text{"a sporting event rewards", "bien comprendre #les chien-chiens# octroie", "un evento deportivo recompensa con"}});
+            Text{"a #sporting event# rewards", "bien comprendre #les chien-chiens# octroie", "un evento deportivo recompensa con"}});
     hintTable[ROMANI_RANCH_GROG] = HintText::Sometimes({
             //obscure
-            Text{"a chicken lover rewards", "un #amateur de cocottes# offre", "un amante de las gallinas recompensa con"}});
+            Text{"a #chicken lover# rewards", "un #amateur de cocottes# offre", "un amante de las gallinas recompensa con"}});
     hintTable[ROMANI_RANCH_CREMIA_ESCORT] = HintText::Sometimes({
             //obscure
-            Text{"an older sister rewards", "une #grande sœur# détient", "una hermana mayor recompensa con"}});
+            Text{"an #older sister# rewards", "une #grande sœur# détient", "una hermana mayor recompensa con"}});
     hintTable[ROMANI_RANCH_ROMANIS_GAME] = HintText::Sometimes({
             //obscure
-            Text{"an equine reunion teaches", "une #réunion équestre# enseigne", "una reunión equina recompensa con"}});
+            Text{"an #equine reunion# teaches", "une #réunion équestre# enseigne", "una reunión equina recompensa con"}});
     hintTable[ROMANI_RANCH_COW_1] = HintText::Sometimes({
             //obscure
-            Text{"a lost creature gives", "#leur cible# prodigue", "una criatura perdida da"}});
+            Text{"a #lost creature# gives", "#leur cible# prodigue", "una criatura perdida da"}});
     hintTable[ROMANI_RANCH_COW_2] = HintText::Sometimes({
             //obscure
-            Text{"a lost creature gives", "#leur cible# prodigue", "una criatura perdida da"}});
+            Text{"a #lost creature# gives", "#leur cible# prodigue", "una criatura perdida da"}});
     hintTable[ROMANI_RANCH_COW_3] = HintText::Sometimes({
             //obscure
-            Text{"a lost creature gives", "#leur cible# prodigue", "una criatura perdida da"}});
+            Text{"a #lost creature# gives", "#leur cible# prodigue", "una criatura perdida da"}});
     hintTable[DOGGY_RACETRACK_ROOF_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a day at the races contains", "les #courses sont surplombées# par", "un día en las carreras contiene"}});
+            Text{"a #day at the races# contains", "les #courses sont surplombées# par", "un día en las carreras contiene"}});
 //S Clock Town
     hintTable[S_CLOCK_TOWN_SCRUB_TRADE] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant trades", "un #marchant citadin# échange", "un mercader en la ciudad intercambia por"}});
+            Text{"a #town merchant# trades", "un #marchant citadin# échange", "un mercader en la ciudad intercambia por"}});
     hintTable[S_CLOCK_TOWN_POSTBOX] = HintText::Sometimes({
             //obscure
-            Text{"a correspondence box contains", "un #boîte a correspondances# contient", "una caja de correspondencia contiene"}});
+            Text{"a #correspondence box# contains", "un #boîte a correspondances# contient", "una caja de correspondencia contiene"}});
     hintTable[S_CLOCK_TOWN_CLOCK_TOWER_ENTRANCE] = HintText::Sometimes({
             //obscure
-            Text{"the tower doors contains", "un #balcon ponctuel# recèle", "las puertas de la torre contienen"}});
+            Text{"the #tower doors# contain", "un #balcon ponctuel# recèle", "las puertas de la torre contienen"}});
     hintTable[S_CLOCK_TOWN_STRAW_ROOF_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a straw roof contains", "un #toit de paille# recèle", "un techo de paja contiene"}});
+            Text{"a #straw roof# contains", "un #toit de paille# recèle", "un techo de paja contiene"}});
     hintTable[S_CLOCK_TOWN_FINAL_DAY_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a carnival tower contains", "le #labeur des charpentiers# révèlent", "la torre del carnaval contiene"}});
+            Text{"a #carnival tower# contains", "le #labeur des charpentiers# révèlent", "la torre del carnaval contiene"}});
     hintTable[S_CLOCK_TOWN_BANK_REWARD_1] = HintText::Sometimes({
             //obscure
-            Text{"a keeper of wealth rewards", "un #début d'épargne# confère", "un guardián de riquezas recompensa con"}});
+            Text{"a #keeper of wealth# rewards", "un #début d'épargne# confère", "un guardián de riquezas recompensa con"}});
     hintTable[S_CLOCK_TOWN_BANK_REWARD_2] = HintText::Sometimes({
             //obscure
-            Text{"interest rewards", "#accumuler quatre chiffres# confère", "una comisión recompensa con"}});
+            Text{"#interest# rewards", "#accumuler quatre chiffres# confère", "una comisión recompensa con"}});
     hintTable[S_CLOCK_TOWN_BANK_REWARD_3] = HintText::Sometimes({
             //obscure
-            Text{"being rich rewards", "le #plafond de la fortune# confère", "ser rico recompensa con"}});
+            Text{"#being rich# rewards", "le #plafond de la fortune# confère", "ser rico recompensa con"}});
 //Snowhead
     hintTable[SNOWHEAD_GREAT_FAIRY] = HintText::Sometimes({
             //obscure
-            Text{"the fairy of power rewards", "la #fée de la force# prodigue", "la hada del poder recompensa con"}});
+            Text{"the #fairy of power# rewards", "la #fée de la force# prodigue", "la hada del poder recompensa con"}});
 //Southern Swamp
     hintTable[SOUTHERN_SWAMP_MUSIC_STATUE] = HintText::Exclude({
             //obscure
-            Text{"a guiding owl teaches", "un #sage hibou# enseigne", ""}});
+            Text{"a #guiding owl# teaches", "un #sage hibou# enseigne", ""}});
     hintTable[SOUTHERN_SWAMP_KOUME] = HintText::Sometimes({
             //obscure
-            Text{"a witch rewards", "une #sorcière soignée# octroie", "una bruja recompensa con"}});
+            Text{"a #witch# rewards", "une #sorcière soignée# octroie", "una bruja recompensa con"}});
     hintTable[SOUTHERN_SWAMP_KOTAKE] = HintText::Sometimes({
             //obscure
-            Text{"a sleeping witch rewards", "une #sorcière somnolente# confie", "una bruja durmiente recompensa con"}});
+            Text{"a #sleeping witch# rewards", "une #sorcière somnolente# confie", "una bruja durmiente recompensa con"}});
     hintTable[SOUTHERN_SWAMP_KOTAKE_IN_WOODS] = HintText::Sometimes({
             //obscure
-            Text{"a witch rewards", "une #sorcière inquiète# confie", "una bruja recompensa con"}});
+            Text{"a #witch# rewards", "une #sorcière inquiète# confie", "una bruja recompensa con"}});
     hintTable[SOUTHERN_SWAMP_SCRUB_TRADE] = HintText::Sometimes({
             //obscure
-            Text{"a southern merchant trades", "un #marchand austral# vend", "un mercader del sur intercambia por"}});
+            Text{"a #southern merchant# trades", "un #marchand austral# vend", "un mercader del sur intercambia por"}});
     hintTable[SOUTHERN_SWAMP_PICTOGRAPH_WINNER] = HintText::Sometimes({
             //obscure
-            Text{"a swamp game rewards", "gagner un #concours marécageux# octroie", "un juego del pantano recompensa con"}});
+            Text{"a #swamp game# rewards", "gagner un #concours marécageux# octroie", "un juego del pantano recompensa con"}});
     hintTable[SOUTHERN_SWAMP_BOAT_ARCHERY] = HintText::Sometimes({
             //obscure
-            Text{"a swamp game rewards", "#frôler un balai habilement# octroie", "un juego del pantano recompensa con"}});
+            Text{"a #swamp game# rewards", "#frôler un balai habilement# octroie", "un juego del pantano recompensa con"}});
     hintTable[SWAMP_TOURIST_CENTER_ROOF] = HintText::Sometimes({
             //obscure
-            Text{"a tourist center contains", "un #toit touristique# recèle", "un centro turístico contiene"}});
+            Text{"a #tourist center# contains", "un #toit touristique# recèle", "un centro turístico contiene"}});
     hintTable[SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a swampy cave contains", "une #grotte marécageuse# contient", "una cueva pantanosa contiene"}});
+            Text{"a #swampy cave# contains", "une #grotte marécageuse# contient", "una cueva pantanosa contiene"}});
     hintTable[SOUTHERN_SWAMP_SPIDER_HOUSE_REWARD] = HintText::Sometimes({
             //obscure
-            Text{"a swamp spider man rewards", "un #homme-araignée# est maudit par", "un hombre araña del pantano recompensa con"}});
+            Text{"a #swamp spider man# rewards", "un #homme-araignée# est maudit par", "un hombre araña del pantano recompensa con"}});
     hintTable[SOUTHERN_SWAMP_MYSTERY_WOODS_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a mystery cave contains", "une #grotte ponctuelle# contient", "una cueva misteriosa contiene"}});
+            Text{"a #mystery cave# contains", "une #grotte ponctuelle# contient", "una cueva misteriosa contiene"}});
     hintTable[SOUTHERN_SWAMP_KOTAKE_MUSHROOM_SALE] = HintText::Sometimes({
             //obscure
-            Text{"a sleeping witch rewards", "une #apothicaire# échange", "una bruja durmiente recompensa con"}});
+            Text{"a #sleeping witch# rewards", "une #apothicaire# échange", "una bruja durmiente recompensa con"}});
     //hintTable[SOUTHERN_SWAMP_PICTOGRAPH_STANDARD] = HintText::Sometimes({
     //        //obscure
     //        Text{"**ENGLISH**", "un #cliché banal# octroie", "una toma pantanosa recompensa con"}});
@@ -1487,873 +1486,873 @@ void HintTable_Init() {
     //        Text{"**ENGLISH**", "un #cliché convenable# octroie", "una toma pantanosa recompensa con"}});
     hintTable[SOUTHERN_SWAMP_SCRUB_PURCHASE] = HintText::Sometimes({
             //obscure
-            Text{"a southern merchant sells", "un #marchand austral# vend", "un mercader del sur vende"}});
+            Text{"a #southern merchant# sells", "un #marchand austral# vend", "un mercader del sur vende"}});
     hintTable[SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR] = HintText::Sometimes({
             //obscure
-            Text{"a southern merchant sells", "un #marchand austral# vend", "un mercader del sur vende"}});
+            Text{"a #southern merchant# sells", "un #marchand austral# vend", "un mercader del sur vende"}});
     hintTable[SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR] = HintText::Sometimes({
             //obscure
-            Text{"a southern merchant trades", "un #marchand austral# échange", "un mercader del sur intercambia por"}});
+            Text{"a #southern merchant# trades", "un #marchand austral# échange", "un mercader del sur intercambia por"}});
     hintTable[SWAMP_TOURIST_CENTER_ROOF_CLEAR] = HintText::Sometimes({
             //obscure
-            Text{"a tourist center contains", "un #toit touristique# recèle", "un centro turístico contiene"}});
+            Text{"a #tourist center# contains", "un #toit touristique# recèle", "un centro turístico contiene"}});
     hintTable[POTION_SHOP_ITEM_1] = HintText::Sometimes({
             //obscure
-            Text{"a potion maker sells", "une #apothicaire# vend", "una fabricante de pociones vende"}});
+            Text{"a #potion maker# sells", "une #apothicaire# vend", "una fabricante de pociones vende"}});
     hintTable[POTION_SHOP_ITEM_2] = HintText::Sometimes({
             //obscure
-            Text{"a potion maker sells", "une #apothicaire# vend", "una fabricante de pociones vende"}});
+            Text{"a #potion maker# sells", "une #apothicaire# vend", "una fabricante de pociones vende"}});
     hintTable[POTION_SHOP_ITEM_3] = HintText::Sometimes({
             //obscure
-            Text{"a potion maker sells", "une #apothicaire# vend", "una fabricante de pociones vende"}});
+            Text{"a #potion maker# sells", "une #apothicaire# vend", "una fabricante de pociones vende"}});
 //Stock Pot Inn
     hintTable[STOCKPOTINN_RESERVATION] = HintText::Sometimes({
             //obscure
-            Text{"checking-in rewards", "#à l'accueil#, M. @-goro recevra", "registrarse recompensa con"}});
+            Text{"#checking-in# rewards", "#à l'accueil#, M. @-goro recevra", "registrarse recompensa con"}});
     hintTable[STOCKPOTINN_MIDNIGHT_MEETING] = HintText::Sometimes({
             //obscure
-            Text{"a late meeting rewards", "un #rendez-vous nocturne# octroie", "una reunión tardía recompensa con"}});
+            Text{"a #late meeting# rewards", "un #rendez-vous nocturne# octroie", "una reunión tardía recompensa con"}});
     hintTable[STOCKPOTINN_TOILET_HAND] = HintText::Sometimes({
             //obscure
-            Text{"a strange palm rewards", "une #paume étrange# offre", "una palma extraña recompensa con"}});
+            Text{"a #strange palm# rewards", "une #paume étrange# offre", "una palma extraña recompensa con"}});
     hintTable[STOCKPOTINN_GRANDMA_SHORT_STORY] = HintText::Sometimes({
             //obscure
-            Text{"an old lady rewards", "#s'instruire sur les traditions# octroie", "una anciana recompensa con"}});
+            Text{"an #old lady# rewards", "#s'instruire sur les traditions# octroie", "una anciana recompensa con"}});
     hintTable[STOCKPOTINN_GRANDMA_LONG_STORY] = HintText::Sometimes({
             //obscure
-            Text{"an old lady rewards", "#s'instruire sur les traditions# octroie", "una anciana recompensa con"}});
+            Text{"an #old lady# rewards", "#s'instruire sur les traditions# octroie", "una anciana recompensa con"}});
     hintTable[STOCKPOTINN_ANJU_AND_KAFEI] = HintText::Sometimes({
             //obscure
-            Text{"a lovers' reunion rewards", "une #réunion d'amants# octroie", "una reunión de amantes recompensa con"}});
+            Text{"a #lovers' reunion# rewards", "une #réunion d'amants# octroie", "una reunión de amantes recompensa con"}});
     hintTable[STOCKPOTINN_STAFF_ROOM_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"an employee room contains", "les #employés# ont accès exclusif sur", "un cuarto de empleados contiene"}});
+            Text{"an #employee room# contains", "les #employés# ont accès exclusif sur", "un cuarto de empleados contiene"}});
     hintTable[STOCKPOTINN_GUEST_ROOM_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a guest bedroom contains", "une #chambre réservée# contient", "un cuarto de huéspedes contiene"}});
+            Text{"a #guest bedroom# contains", "une #chambre réservée# contient", "un cuarto de huéspedes contiene"}});
 //Stone Tower
     hintTable[STONE_TOWER_INVERTED_RIGHT_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a sky below contains", "le #ciel-sous-pied# cache", "un cielo por debajo contiene"}});
+            Text{"a #sky below# contains", "le #ciel-sous-pied# cache", "un cielo por debajo contiene"}});
     hintTable[STONE_TOWER_INVERTED_CENTER_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a sky below contains", "le #ciel-sous-pied# cache", "un cielo por debajo contiene"}});
+            Text{"a #sky below# contains", "le #ciel-sous-pied# cache", "un cielo por debajo contiene"}});
     hintTable[STONE_TOWER_INVERTED_LEFT_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a sky below contains", "le #ciel-sous-pied# cache", "un cielo por debajo contiene"}});
+            Text{"a #sky below# contains", "le #ciel-sous-pied# cache", "un cielo por debajo contiene"}});
 //Termina Field
     hintTable[TERMINA_FIELD_MOONS_TEAR] = HintText::Sometimes({
             //obscure
-            Text{"a falling star contains", "une #étoile filante# contient", "una estrella fugaz contiene"}});
+            Text{"a #falling star# contains", "une #étoile filante# contient", "una estrella fugaz contiene"}});
     hintTable[TERMINA_FIELD_GOSSIP_STONES] = HintText::Sometimes({
             //obscure
-            Text{"mysterious stones reward", "#mes congénères# offrent", "piedras misteriosas recompensan con"}});
+            Text{"#mysterious stones# reward", "#mes congénères# offrent", "piedras misteriosas recompensan con"}});
     hintTable[TERMINA_FIELD_BUSINESS_SCRUB] = HintText::Sometimes({
             //obscure
-            Text{"a hidden merchant sells", "un #marchand furtif# vend", "un mercader oculto vende"}});
+            Text{"a #hidden merchant# sells", "un #marchand furtif# vend", "un mercader oculto vende"}});
     hintTable[TERMINA_FIELD_PEAHAT_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a hollow ground contains", "vaincre des #feuilles qui tournent# octroie", "un suelo hueco contiene"}});
+            Text{"a #hollow ground# contains", "vaincre des #feuilles qui tournent# octroie", "un suelo hueco contiene"}});
     hintTable[TERMINA_FIELD_DODONGO_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a hollow ground contains", "exterminer des #lézards explosifs# octroie", "un suelo hueco contiene"}});
+            Text{"a #hollow ground# contains", "exterminer des #lézards explosifs# octroie", "un suelo hueco contiene"}});
     hintTable[TERMINA_FIELD_BIO_BABA_GROTTO_BEEHIVE] = HintText::Sometimes({
             //obscure
-            Text{"a beehive contains", "une #ruche# contient", "un panal contiene"}});
+            Text{"a #beehive# contains", "une #ruche# contient", "un panal contiene"}});
     hintTable[TERMINA_FIELD_KAMARO] = HintText::Sometimes({
             //obscure
-            Text{"a dancer rewards", "une #âme d'artiste# lègue", "un bailarín recompensa con"}});
+            Text{"a #dancer# rewards", "une #âme d'artiste# lègue", "un bailarín recompensa con"}});
     hintTable[TERMINA_FIELD_PILLAR_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a hollow pillar contains", "un #pilier creux# contient", "un pilar hueco"}});
+            Text{"a #hollow pillar# contains", "un #pilier creux# contient", "un pilar hueco"}});
     hintTable[TERMINA_FIELD_GRASS_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a grassy cave contains", "une #grotte sous des herbes# contient", "una cueva herbosa contiene"}});
+            Text{"a #grassy cave# contains", "une #grotte sous des herbes# contient", "una cueva herbosa contiene"}});
     hintTable[TERMINA_FIELD_UNDERWATER_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a sunken chest contains", "un #coffre inondé des plaines# contient", "un cofre hundido contiene"}});
+            Text{"a #sunken chest# contains", "un #coffre inondé des plaines# contient", "un cofre hundido contiene"}});
     hintTable[TERMINA_FIELD_GRASS_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a grassy chest contains", "un #coffre herbeux# contient", "un cofre herboso contiene"}});
+            Text{"a #grassy chest# contains", "un #coffre herbeux# contient", "un cofre herboso contiene"}});
     hintTable[TERMINA_FIELD_STUMP_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a tree chest contains", "un #coffre-sur-souche# contient", "un cofre en el árbol contiene"}});
+            Text{"a #tree chest# contains", "un #coffre-sur-souche# contient", "un cofre en el árbol contiene"}});
     hintTable[TERMINA_FIELD_GROTTO_COW1] = HintText::Sometimes({
             //obscure
-            Text{"a lost creature gives", "un #bovin des plaines# prodigue", "una criatura perdida da"}});
+            Text{"a #lost creature# gives", "un #bovin des plaines# prodigue", "una criatura perdida da"}});
     hintTable[TERMINA_FIELD_GROTTO_COW2] = HintText::Sometimes({
             //obscure
-            Text{"a lost creature gibes", "un #bovin des plaines# prodigue", "una criatura perdida da"}});
+            Text{"a #lost creature# gives", "un #bovin des plaines# prodigue", "una criatura perdida da"}});
 //Twin Islands
     hintTable[HOT_SPRING_WATER_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a steamy grotto contains", "un #sauna naturel# contient", "una gruta tórrida contiene"}});
+            Text{"a #steamy grotto# contains", "un #sauna naturel# contient", "una gruta tórrida contiene"}});
     hintTable[TWIN_ISLANDS_GORON_RACE] = HintText::Sometimes({
             //obscure
-            Text{"a sporting event rewards", "une #compétition épineuse# offre", "un evento deportivo recompensa con"}});
+            Text{"a #sporting event# rewards", "une #compétition épineuse# offre", "un evento deportivo recompensa con"}});
     hintTable[TWIN_ISLANDS_GORON_RACETRACK_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a hidden cave contains", "la #grotte du conifère solitaire# contient", "una cueva oculta contiene"}});
+            Text{"a #hidden cave# contains", "la #grotte du conifère solitaire# contient", "una cueva oculta contiene"}});
     hintTable[TWIN_ISLANDS_UNDERWATER_RAMP_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a spring treasure contains", "un #trésor printanier immergé# contient", "un tesoro de primavera contiene"}});
+            Text{"a #spring treasure# contains", "un #trésor printanier immergé# contient", "un tesoro de primavera contiene"}});
     hintTable[TWIN_ISLANDS_CAVE_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a sunken springtime treasure contains", "un #trésor printanier immergé# contient", "un tesoro de primavera hundido contiene"}});
+            Text{"a #sunken springtime treasure# contains", "un #trésor printanier immergé# contient", "un tesoro de primavera hundido contiene"}});
     hintTable[TWIN_ISLANDS_LULLABY_INTRO] = HintText::Sometimes({
             //obscure
-            Text{"a goron elder teaches", "un #ancien aux doigts froids# enseigne", "un anciano goron enseña"}});
+            Text{"a #goron elder# teaches", "un #ancien aux doigts froids# enseigne", "un anciano goron enseña"}});
     hintTable[TINGLE_TWIN_ISLANDS_SH] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells ", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells ", "un #cartographe# vend", "un cartógrafo vende"}});
     hintTable[TINGLE_TWIN_ISLANDS_RR] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells ", "un #cartographe# vend", "un cartógrafo vende"}});
     hintTable[TINGLE_TWIN_ISLANDS_SH_SPRING] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells ", "un #cartographe# vend", "un cartógrafo vende"}});
     hintTable[TINGLE_TWIN_ISLANDS_RR_SPRING] = HintText::Sometimes({
             //obscure
-            Text{"a map maker sells", "un #cartographe# vend", "un cartógrafo vende"}});
+            Text{"a #map maker# sells ", "un #cartographe# vend", "un cartógrafo vende"}});
 //W Clock Town
     hintTable[W_CLOCK_TOWN_BOMB_BAG_BUY] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "l'#artificier citadin# est contraint à vendre", "un mercader de la ciudad vende"}});
+            Text{"a #town merchant# sells", "l'#artificier citadin# est contraint à vendre", "un mercader de la ciudad vende"}});
     hintTable[W_CLOCK_TOWN_BIG_BOMB_BAG_BUY] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "l'#artificier citadin# compte vendre", "un mercader de la ciudad vende"}});
+            Text{"a #town merchant# sells", "l'#artificier citadin# compte vendre", "un mercader de la ciudad vende"}});
     hintTable[W_CLOCK_TOWN_POSTMANS_GAME] = HintText::Sometimes({
             //obscure
-            Text{"a delivery person rewards", "un #livreur concentré# offre", "un repartidor recompensa con"}});
+            Text{"a #delivery person# rewards", "un #livreur concentré# offre", "un repartidor recompensa con"}});
     hintTable[W_CLOCK_TOWN_ROSA_SISTERS] = HintText::Sometimes({
             //obscure
-            Text{"traveling sisters reward", "#prendre des disciples# octroie", "las hermanas viajeras recompensan con"}});
+            Text{"#traveling sisters# reward", "#prendre des disciples# octroie", "las hermanas viajeras recompensan con"}});
     hintTable[W_CLOCK_TOWN_SWORDSMANS_SCHOOL] = HintText::Sometimes({
             //obscure
-            Text{"a town game rewards", "les #fines lames# reçoivent", "un juego en la ciudad recompensa con"}});
+            Text{"a #town game# rewards", "les #fines lames# reçoivent", "un juego en la ciudad recompensa con"}});
     hintTable[W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY] = HintText::Sometimes({
             //obscure
-            Text{"a shady town merchant sells", "un #commerce suspect# vend", "un mercader sospechoso en la ciudad vende"}});
+            Text{"a #shady town merchant# sells", "un #commerce suspect# vend", "un mercader sospechoso en la ciudad vende"}});
     hintTable[W_CLOCK_TOWN_BOMB_SHOP_GORON] = HintText::Sometimes({
             //obscure
-            Text{"a town goron merchant sells", "les #gorons accrédités# peuvent acheter", "un mercader goron en la ciudad vende"}});
+            Text{"a #town goron merchant# sells", "les #gorons accrédités# peuvent acheter", "un mercader goron en la ciudad vende"}});
     hintTable[W_CLOCK_TOWN_CURIOSITY_BOMB_BAG] = HintText::Sometimes({
             //obscure
-            Text{"a shady town merchant sells", "un #commerce suspect# peut recevoir", "un mercader sospechoso en la ciudad vende"}});
+            Text{"a #shady town merchant# sells", "un #commerce suspect# peut recevoir", "un mercader sospechoso en la ciudad vende"}});
     //hintTable[W_CLOCK_TOWN_LOTTERY] = HintText::Sometimes({
     //        //obscure
-    //        Text{"**ENGLISH**", "un #numéro gagnant# octroie", "un juego de números de suerte en la ciudad recompensa con"}});
+    //        Text{"a #town lucky numbers# game", "un #numéro gagnant# octroie", "un juego de números de suerte en la ciudad recompensa con"}});
     hintTable[TRADING_POST_ITEM_1] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
+            Text{"a #town merchant# sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
     hintTable[TRADING_POST_ITEM_2] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
+            Text{"a #town merchant# sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
     hintTable[TRADING_POST_ITEM_3] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
+            Text{"a #town merchant# sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
     hintTable[TRADING_POST_ITEM_4] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
+            Text{"a #town merchant# sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
     hintTable[TRADING_POST_ITEM_5] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
+            Text{"a #town merchant# sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
     hintTable[TRADING_POST_ITEM_6] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
+            Text{"a #town merchant# sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
     hintTable[TRADING_POST_ITEM_7] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
+            Text{"a #town merchant# sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
     hintTable[TRADING_POST_ITEM_8] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
+            Text{"a #town merchant# sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende"}});
     hintTable[BOMB_SHOP_ITEM_1] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "l'#artificier citadin# vend", "un mercader en la ciudad vende"}});
+            Text{"a #town merchant# sells", "l'#artificier citadin# vend", "un mercader en la ciudad vende"}});
     hintTable[BOMB_SHOP_ITEM_2] = HintText::Sometimes({
             //obscure
-            Text{"a town merchant sells", "l'#artificier citadin# vend", "un mercader en la ciudad vende"}});
+            Text{"a #town merchant# sells", "l'#artificier citadin# vend", "un mercader en la ciudad vende"}});
     //hintTable[BOMB_SHOP_ITEM_3] = HintText::Sometimes({
     //        //obscure
-    //        Text{"a town merchant", "l'#artificier citadin# vend", "un mercader en la ciudad vende"}});
+    //        Text{"a #town merchant# sells", "l'#artificier citadin# vend", "un mercader en la ciudad vende"}});
 //Woodfall
     hintTable[WOODFALL_BRIDGE_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a swamp chest contains", "un #coffre gardé par une peste# contient", "un cofre en el pantano contiene"}});
+            Text{"a #swamp chest# contains", "un #coffre gardé par une peste# contient", "un cofre en el pantano contiene"}});
     hintTable[WOODFALL_BEHIND_OWL_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a swamp chest contains", "un #coffre qui surveille un hibou# contient", "un cofre en el pantano contiene"}});
+            Text{"a #swamp chest# contains", "un #coffre qui surveille un hibou# contient", "un cofre en el pantano contiene"}});
     hintTable[ENTRANCE_TO_WOODFALL_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a swamp chest contains", "un #coffre au ras du poison# contient", "un cofre en el pantano contiene"}});
+            Text{"a #swamp chest# contains", "un #coffre au ras du poison# contient", "un cofre en el pantano contiene"}});
     hintTable[WOODFALL_GREAT_FAIRY] = HintText::Sometimes({
             //obscure
-            Text{"the fairy of wisdom rewards", "la #fée de la sagesse# prodigue", "la hada de la sabiduría recompensa con"}});
+            Text{"the #fairy of wisdom# rewards", "la #fée de la sagesse# prodigue", "la hada de la sabiduría recompensa con"}});
 //Zora Cape
     hintTable[ZORA_CAPE_GREAT_FAIRY] = HintText::Sometimes({
             //obscure
-            Text{"the fairy of courage rewards", "la #fée du courage# prodigue", "la hada del valor recompensa con"}});
+            Text{"the #fairy of courage# rewards", "la #fée du courage# prodigue", "la hada del valor recompensa con"}});
     hintTable[ZORA_CAPE_BEAVER_RACE_1] = HintText::Sometimes({
             //obscure
-            Text{"a river dweller rewards", "de #gros rongeurs mouillés# détiennent", "un morador del río recompensa con"}});
+            Text{"a #river dweller# rewards", "de #gros rongeurs mouillés# détiennent", "un morador del río recompensa con"}});
     hintTable[ZORA_CAPE_BEAVER_RACE_2] = HintText::Sometimes({
             //obscure
-            Text{"a river dweller rewards", "de #gros rongeurs mouillés# détiennent", "un morador del río recompensa con"}});
+            Text{"a #river dweller# rewards", "de #gros rongeurs mouillés# détiennent", "un morador del río recompensa con"}});
     hintTable[ZORA_CAPE_LIKE_LIKE] = HintText::Sometimes({
             //obscure
-            Text{"a shield eater contains", "un #mange-écu# contient", "un devorador de escudos resguarda"}});
+            Text{"a #shield eater# contains", "un #mange-écu# contient", "un devorador de escudos resguarda"}});
     hintTable[ZORA_CAPE_LEDGE_NO_TREE] = HintText::Sometimes({
             //obscure
-            Text{"a high place contains", "#escalader une rivière# dévoile", "un lugar en lo alto contiene"}});
+            Text{"a #high place# contains", "#escalader une rivière# dévoile", "un lugar en lo alto contiene"}});
     hintTable[ZORA_CAPE_LEDGE_WITH_TREE] = HintText::Sometimes({
             //obscure
-            Text{"a high place contains", "#escalader une rivière# dévoile", "un lugar en lo alto contiene"}});
+            Text{"a #high place# contains", "#escalader une rivière# dévoile", "un lugar en lo alto contiene"}});
     hintTable[ZORA_CAPE_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a beach cave contains", "une #grotte de pêcheur# contient", "una cueva en la playa contiene"}});
+            Text{"a #beach cave# contains", "une #grotte de pêcheur# contient", "una cueva en la playa contiene"}});
     hintTable[ZORA_CAPE_UNDERWATER_CHEST] = HintText::Sometimes({
             //obscure
-            Text{"a sunken chest contains ", "un #coffre côtier submergé# contient", "un cofre hundido contiene"}});
+            Text{"a #sunken chest# contains ", "un #coffre côtier submergé# contient", "un cofre hundido contiene"}});
 //Zora Hall
     hintTable[ZORA_HALL_SCRUB_TRADE] = HintText::Sometimes({
             //obscure
-            Text{"a western merchant trades", "un #marchant occidental# échange", "un mercader del oeste intercambia por"}});
+            Text{"a #western merchant# trades", "un #marchant occidental# échange", "un mercader del oeste intercambia por"}});
     hintTable[ZORA_HALL_EVAN] = HintText::Sometimes({
             //obscure
-            Text{"a musician rewards", "#se faire voler une chanson# octroie", "un músico recompensa con"}});
+            Text{"a #musician# rewards", "#se faire voler une chanson# octroie", "un músico recompensa con"}});
     hintTable[ZORA_HALL_LULU_ROOM_LEDGE] = HintText::Sometimes({
             //obscure
-            Text{"the singer's room contains", "la #chambre d'une chanteuse# contient", "el cuarto de la cantante contiene"}});
+            Text{"the #singer's room# contains", "la #chambre d'une chanteuse# contient", "el cuarto de la cantante contiene"}});
     hintTable[ZORA_HALL_SCRUB_PURCHASE] = HintText::Sometimes({
             //obscure
-            Text{"a western merchant sells", "un #marchant occidental# vend", "un mercader del oeste vende"}});
+            Text{"a #western merchant# sells", "un #marchant occidental# vend", "un mercader del oeste vende"}});
     //hintTable[ZORA_HALL_STAGE_LIGHTS] = HintText::Sometimes({
     //        //obscure
-    //        Text{"a fan", "aider l'#équipe technique# octroie", "un fan"}});
+    //        Text{"a #tech crew# gives", "aider l'#équipe technique# octroie", "un fan"}});
     //hintTable[ZORA_HALL_BAD_PHOTO_LULU] = HintText::Sometimes({
     //        //obscure
-    //        Text{"a fan", "un #fan insatisfait# offre", "un fan"}});
+    //        Text{"a #fan# gives", "un #fan insatisfait# offre", "un fan"}});
     //hintTable[ZORA_HALL_GOOD_PHOTO_LULU] = HintText::Sometimes({
     //        //obscure
-    //        Text{"a fan", "un #fan satisfait# offre", "un fan"}});
+    //        Text{"a #fan# gives", "un #fan satisfait# offre", "un fan"}});
     hintTable[ZORA_SHOP_ITEM_1] = HintText::Sometimes({
             //obscure
-            Text{"a zora merchant sells", "une #boutique iodée# vend", "un mercader zora vende"}});
+            Text{"a #zora merchant# sells", "une #boutique iodée# vend", "un mercader zora vende"}});
     hintTable[ZORA_SHOP_ITEM_2] = HintText::Sometimes({
             //obscure
-            Text{"a zora merchant sells", "une #boutique iodée# vend", "un mercader zora vende"}});
+            Text{"a #zora merchant# sells", "une #boutique iodée# vend", "un mercader zora vende"}});
     hintTable[ZORA_SHOP_ITEM_3] = HintText::Sometimes({
             //obscure
-            Text{"a zora merchant sells", "une #boutique iodée# vend", "un mercader zora vende"}});
+            Text{"a #zora merchant# sells", "une #boutique iodée# vend", "un mercader zora vende"}});
 
     /*-------------------------
     |  DUNGEON LOCATION TEXT  |
     -------------------------*/
     hintTable[WOODFALL_TEMPLE_HEROS_BOW_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the sleeping temple contains", "le #temple endormi# contient", "el templo durmiente contiene"}});
+            Text{"the #sleeping temple# contains", "le #temple endormi# contient", "el templo durmiente contiene"}});
     hintTable[WOODFALL_TEMPLE_MAP_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the sleeping temple contains", "le #temple endormi# contient", "el templo durmiente contiene"}});
+            Text{"the #sleeping temple# contains", "le #temple endormi# contient", "el templo durmiente contiene"}});
     hintTable[WOODFALL_TEMPLE_COMPASS_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the sleeping temple contains", "le #temple endormi# contient", "el templo durmiente contiene"}});
+            Text{"the #sleeping temple# contains", "le #temple endormi# contient", "el templo durmiente contiene"}});
     hintTable[WOODFALL_TEMPLE_BOSS_KEY_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the sleeping temple contains", "le #temple endormi# contient", "el templo durmiente contiene"}});
+            Text{"the #sleeping temple# contains", "le #temple endormi# contient", "el templo durmiente contiene"}});
     hintTable[WOODFALL_TEMPLE_SMALL_KEY_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the sleeping temple contains", "le #temple endormi# contient", "el templo durmiente contiene"}});
+            Text{"the #sleeping temple# contains", "le #temple endormi# contient", "el templo durmiente contiene"}});
     hintTable[WOODFALL_TEMPLE_DEKU_PRINCESS] = HintText::Exclude({
             //obscure
-            Text{"the sleeping temple rewards", "le #temple endormi# détient", "el templo durmiente contiene"}});
+            Text{"the #sleeping temple# rewards", "le #temple endormi# détient", "el templo durmiente contiene"}});
     hintTable[WF_SF_ENTRANCE_FAIRY] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_ENTRANCE_PLATFORM] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_MAIN_ROOM_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_MAIN_ROOM_SWITCH] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_PRE_BOSS_LOWER_RIGHT_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_PRE_BOSS_UPPER_RIGHT_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_PRE_BOSS_UPPER_LEFT_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_PRE_BOSS_PILLAR_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_DEKU_BABA] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_DRAGONFLY_ROOM_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_SKULLTULA] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_DARK_ROOM] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_JAR_FAIRY] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_BRIDGE_ROOM_BEEHIVE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[WF_SF_PLATFORM_ROOM_BEEHIVE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée rose# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée rose# est", "una hada perdida es"}});
     hintTable[ODOLWA_HEART_CONTAINER] = HintText::Exclude({
             //obscure
-            Text{"a masked evil contains", "occire le #guerrier de la jungle# octroie", "un mal enmascarado contiene"}});
+            Text{"a #masked evil# contains", "occire le #guerrier de la jungle# octroie", "un mal enmascarado contiene"}});
     hintTable[GIANTS_OATH_TO_ORDER] = HintText::Exclude({
             //obscure
-            Text{"a gentile giant teaches", "un #gentil géant# enseigne", ""}});
+            Text{"a #gentile giant# teaches", "un #gentil géant# enseigne", ""}});
 //Snowhead Temple
     hintTable[SNOWHEAD_TEMPLE_FIRE_ARROW_CHEST] = HintText::Exclude({
             //obscure
-            Text{"an icy temple contains", "un #temple enneigé# contient", "un templo helado contiene"}});
+            Text{"an #icy temple# contains", "un #temple enneigé# contient", "un templo helado contiene"}});
     hintTable[SNOWHEAD_TEMPLE_MAP_CHEST] = HintText::Exclude({
             //obscure
-            Text{"an icy temple contains", "un #temple enneigé# contient", "un templo helado contiene"}});
+            Text{"an #icy temple# contains", "un #temple enneigé# contient", "un templo helado contiene"}});
     hintTable[SNOWHEAD_TEMPLE_COMPASS_CHEST] = HintText::Exclude({
             //obscure
-            Text{"an icy temple contains", "un #temple enneigé# contient", "un templo helado contiene"}});
+            Text{"an #icy temple# contains", "un #temple enneigé# contient", "un templo helado contiene"}});
     hintTable[SNOWHEAD_TEMPLE_BOSS_KEY_CHEST] = HintText::Exclude({
             //obscure
-            Text{"an icy temple contains", "un #temple enneigé# contient", "un templo helado contiene"}});
+            Text{"an #icy temple# contains", "un #temple enneigé# contient", "un templo helado contiene"}});
     hintTable[SNOWHEAD_TEMPLE_BLOCK_ROOM_CHEST] = HintText::Exclude({
             //obscure
-            Text{"an icy temple contains", "un #temple enneigé# contient", "un templo helado contiene"}});
+            Text{"an #icy temple# contains", "un #temple enneigé# contient", "un templo helado contiene"}});
     hintTable[SNOWHEAD_TEMPLE_ICICLE_ROOM_CHEST] = HintText::Exclude({
             //obscure
-            Text{"an icy temple contains", "un #temple enneigé# contient", "un templo helado contiene"}});
+            Text{"an #icy temple# contains", "un #temple enneigé# contient", "un templo helado contiene"}});
     hintTable[SNOWHEAD_TEMPLE_BRIDGE_ROOM_CHEST] = HintText::Exclude({
             //obscure
-            Text{"an icy temple contains", "un #temple enneigé# contient", "un templo helado contiene"}});
+            Text{"an #icy temple# contains", "un #temple enneigé# contient", "un templo helado contiene"}});
     hintTable[SH_SF_SNOW_ROOM_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_CEILING_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_DINOLFOS_1] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_DINOLFOS_2] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_BRIDGE_ROOM_LEDGE_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_BRIDGE_ROOM_PILLAR_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_MAP_ROOM_FAIRY] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_MAP_ROOM_LEDGE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_BASEMENT] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_TWIN_BLOCK] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_ICICLE_ROOM_WALL] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_MAIN_ROOM_WALL] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_PILLAR_FREEZARDS] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_ICE_PUZZLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[SH_SF_CRATE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée verte# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée verte# est", "una hada perdida es"}});
     hintTable[GOHT_HEART_CONTAINER] = HintText::Exclude({
             //obscure
-            Text{"a masked evil contains", "abattre un #gros taureau# détient", "un mal enmascarado contiene"}});
+            Text{"a #masked evil# contains", "abattre un #gros taureau# détient", "un mal enmascarado contiene"}});
 //Great bay Temple
     hintTable[GBT_ICE_ARROW_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the murky watered temple contains", "le #temple en eaux troubles# contient", "el templo de aguas turbias contiene"}});
+            Text{"the #murky watered temple# contains", "le #temple en eaux troubles# contient", "el templo de aguas turbias contiene"}});
     hintTable[GBT_MAP_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the murky watered temple contains", "le #temple en eaux troubles# contient", "el templo de aguas turbias contiene"}});
+            Text{"the #murky watered temple# contains", "le #temple en eaux troubles# contient", "el templo de aguas turbias contiene"}});
     hintTable[GBT_COMPASS_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the murky watered temple contains", "le #temple en eaux troubles# contient", "el templo de aguas turbias contiene"}});
+            Text{"the #murky watered temple# contains", "le #temple en eaux troubles# contient", "el templo de aguas turbias contiene"}});
     hintTable[GBT_BOSS_KEY_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the murky watered temple contains", "le #temple en eaux troubles# contient", "el templo de aguas turbias contiene"}});
+            Text{"the #murky watered temple# contains", "le #temple en eaux troubles# contient", "el templo de aguas turbias contiene"}});
     hintTable[GBT_SMALL_KEY_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the murky watered temple contains", "le #temple en eaux troubles# contient", "el templo de aguas turbias contiene"}});
+            Text{"the #murky watered temple# contains", "le #temple en eaux troubles# contient", "el templo de aguas turbias contiene"}});
     hintTable[GBT_SF_SKULLTULA] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_WATER_CONTROL_UNDERWATER_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_WATERWHEEL_ROOM_LOWER] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_WATERWHEEL_ROOM_UPPER] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_GREEN_VALVE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_SEESAW_ROOM] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_ENTRANCE_TORCHES] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_BIO_BABAS] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_UNDERWATER_BARREL] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_WHIRLPOOL_BARREL] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_WHIRLPOOL_JAR] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_DEXIHANDS_JAR] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_LEDGE_JAR] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_PRE_BOSS_ROOM_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GBT_SF_PRE_BOSS_ROOM_UNDERWATER_BUBBLE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée violette# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée violette# est", "una hada perdida es"}});
     hintTable[GYORG_HEART_CONTAINER] = HintText::Exclude({
             //obscure
-            Text{"a masked evil contains", "abattre un #énorme poisson# octroie", "un mal enmascarado contiene"}});
+            Text{"a #masked evil# contains", "abattre un #énorme poisson# octroie", "un mal enmascarado contiene"}});
 //Stone Tower Temple
     hintTable[STONE_TOWER_TEMPLE_MAP_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a rocky temple contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
+            Text{"a #rocky temple# contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
     hintTable[STONE_TOWER_TEMPLE_COMPASS_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a rocky temple contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
+            Text{"a #rocky temple# contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
     hintTable[STONE_TOWER_TEMPLE_BOSS_KEY_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a rocky temple contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
+            Text{"a #rocky temple# contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
     hintTable[STONE_TOWER_TEMPLE_ARMOS_ROOM_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a rocky temple contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
+            Text{"a #rocky temple# contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
     hintTable[STONE_TOWER_TEMPLE_BRIDGE_SWITCH_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a rocky temple contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
+            Text{"a #rocky temple# contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
     hintTable[STONE_TOWER_TEMPLE_UPDRAFT_ROOM_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a rocky temple contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
+            Text{"a #rocky temple# contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
     hintTable[STONE_TOWER_TEMPLE_DEATH_ARMOS_ROOM_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a rocky temple contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
+            Text{"a #rocky temple# contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
     hintTable[STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a rocky temple contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
+            Text{"a #rocky temple# contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
     hintTable[STONE_TOWER_TEMPLE_LIGHT_ARROW_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a rocky temple contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
+            Text{"a #rocky temple# contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
     hintTable[STONE_TOWER_TEMPLE_GIANTS_MASK_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a rocky temple contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
+            Text{"a #rocky temple# contains", "un #temple sens dessus dessous# contient", "un templo rocoso contiene"}});
     hintTable[ST_SF_MIRROR_SUN_BLOCK] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_LAVA_ROOM_LEDGE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_LAVA_ROOM_FIRE_RING] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_EYEGORE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_UPDRAFT_FIRE_RING] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_MIRROR_SUN_SWITCH] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_BOSS_WARP] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_WIZZROBE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_DEATH_ARMOS] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_UPDRAFT_FROZEN_EYE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_THIN_BRIDGE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_BASEMENT_LEDGE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_STATUE_EYE] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_UNDERWATER] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[ST_SF_BRIDGE_CRYSTAL] = HintText::Exclude({
             //obscure
-            Text{"a lost fairy is", "une #fée jaune# est", "una hada perdida es"}});
+            Text{"a #lost fairy# is", "une #fée jaune# est", "una hada perdida es"}});
     hintTable[TWINMOLD_HEART_CONTAINER] = HintText::Exclude({
             //obscure
-            Text{"a masked evil contains", "occire les #mille-pattes jumeaux# octroie", "un mal enmascarado contiene"}});
+            Text{"a #masked evil# contains", "occire les #mille-pattes jumeaux# octroie", "un mal enmascarado contiene"}});
 //Pirate Fortress
     hintTable[PF_INTERIOR_HOOKSHOT_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_INT_LOWER_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_INT_UPPER_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_INT_TANK_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_INT_GUARD_ROOM_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_CAGE_ROOM_SHALLOW_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_CAGE_ROOM_DEEP_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_MAZE_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_SEWER_CAGE] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_EXTERIOR_LOG_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_EXTERIOR_SAND_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_EXTERIOR_CORNER_CHEST] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_INT_INVISIBLE_SOLDIER] = HintText::Exclude({
             //obscure
-            Text{"the home of pirates contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
+            Text{"the #home of pirates# contains", "le #foyer des pirates# contient", "el hogar de las piratas contiene"}});
     hintTable[PF_INT_HOOKSHOT_ROOM_ZORA_EGG] = HintText::Exclude({
             //obscure
-            Text{"in the home of pirates rests", "le #foyer des pirates# héberge", "en el hogar de las piratas yace"}});
+            Text{"in the #home of pirates# rests", "le #foyer des pirates# héberge", "en el hogar de las piratas yace"}});
     hintTable[PF_INT_GUARD_ROOM_ZORA_EGG] = HintText::Exclude({
             //obscure
-            Text{"in the home of pirates rests", "le #foyer des pirates# héberge", "en el hogar de las piratas yace"}});
+            Text{"in the #home of pirates# rests", "le #foyer des pirates# héberge", "en el hogar de las piratas yace"}});
     hintTable[PF_INT_BARREL_MAZE_ZORA_EGG] = HintText::Exclude({
             //obscure
-            Text{"in the home of pirates rests", "le #foyer des pirates# héberge", "en el hogar de las piratas yace"}});
+            Text{"in the #home of pirates# rests", "le #foyer des pirates# héberge", "en el hogar de las piratas yace"}});
     hintTable[PF_INT_LAVA_ROOM_ZORA_EGG] = HintText::Exclude({
             //obscure
-            Text{"in the home of pirates rests", "le #foyer des pirates# héberge", "en el hogar de las piratas yace"}});
+            Text{"in the #home of pirates# rests", "le #foyer des pirates# héberge", "en el hogar de las piratas yace"}});
 //Beneath the Well
     hintTable[BENEATH_THE_WELL_MIRROR_SHIELD_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a frightful exchange contains", "le #marché des revenants# contient", "un intercambio espantoso contiene"}});
+            Text{"a #frightful exchange# contains", "le #marché des revenants# contient", "un intercambio espantoso contiene"}});
     hintTable[WELL_LEFT_PATH_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a frightful exchange contains", "le #marché des revenants# contient", "un intercambio espantoso contiene"}});
+            Text{"a #frightful exchange# contains", "le #marché des revenants# contient", "un intercambio espantoso contiene"}});
     hintTable[WELL_RIGHT_PATH_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a frightful exchange contains", "le #marché des revenants# contient", "un intercambio espantoso contiene"}});
+            Text{"a #frightful exchange# contains", "le #marché des revenants# contient", "un intercambio espantoso contiene"}});
     hintTable[BENEATH_THE_WELL_COW] = HintText::Exclude({
             //obscure
-            Text{"a lost creature contains", "la #source laitière des puits# prodigue", "una criatura perdida da"}});
+            Text{"a #lost creature# gives", "la #source laitière des puits# prodigue", "una criatura perdida da"}});
 //Ikana Castle
     hintTable[IKANA_CASTLE_PILLAR] = HintText::Exclude({
             //obscure
-            Text{"a fiery pilar contains", "un #pilier enflammé# garde", "un pilar en llamas contiene"}});
+            Text{"a #fiery pillar# contains", "un #pilier enflammé# garde", "un pilar en llamas contiene"}});
     hintTable[IKANA_CASTLE_IKANA_KING] = HintText::Exclude({
             //obscure
-            Text{"a fallen king teaches", "un #roi déchu# enseigne", "un rey caído enseña"}});
+            Text{"a #fallen king# teaches", "un #roi déchu# enseigne", "un rey caído enseña"}});
 //Secret Shrine
     hintTable[SECRET_SHRINE_DINOLFOS_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a secret place contains", "#deux fois deux cœurs# débloque", "un lugar secreto contiene"}});
+            Text{"a #secret place# contains", "#deux fois deux cœurs# débloque", "un lugar secreto contiene"}});
     hintTable[SECRET_SHRINE_WIZZROBE_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a secret place contains", "#huit cœurs# débloquent", "un lugar secreto contiene"}});
+            Text{"a #secret place# contains", "#huit cœurs# débloquent", "un lugar secreto contiene"}});
     hintTable[SECRET_SHRINE_WART_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a secret place contains", "une #douzaine de cœurs# débloquent", "un lugar secreto contiene"}});
+            Text{"a #secret place# contains", "une #douzaine de cœurs# débloquent", "un lugar secreto contiene"}});
     hintTable[SECRET_SHRINE_GARO_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a secret place contains", "#seize cœurs# débloquent", "un lugar secreto contiene"}});
+            Text{"a #secret place# contains", "#seize cœurs# débloquent", "un lugar secreto contiene"}});
     hintTable[SECRET_SHRINE_FINAL_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a secret place contains", "#triompher de moult revanches# octroie", "un lugar secreto contiene"}});
+            Text{"a #secret place# contains", "#triompher de moult revanches# octroie", "un lugar secreto contiene"}});
 //The Moon
     hintTable[THE_MOON_DEKU_TRIAL_BONUS] = HintText::Exclude({
             //obscure
-            Text{"a masked child's game contains", "un #cache-cache feuillu# recèle", "un juego de niños enmascarados contiene"}});
+            Text{"a #masked child's game# contains", "un #cache-cache feuillu# recèle", "un juego de niños enmascarados contiene"}});
     hintTable[THE_MOON_GORON_TRIAL_BONUS] = HintText::Exclude({
             //obscure
-            Text{"a masked child's game contains", "un #cache-cache roulant# recèle", "un juego de niños enmascarados contiene"}});
+            Text{"a #masked child's game# contains", "un #cache-cache roulant# recèle", "un juego de niños enmascarados contiene"}});
     hintTable[THE_MOON_ZORA_TRIAL_BONUS] = HintText::Exclude({
             //obscure
-            Text{"a masked child's game contains", "un #cache-cache aquatique# recèle", "un juego de niños enmascarados contiene"}});
+            Text{"a #masked child's game# contains", "un #cache-cache aquatique# recèle", "un juego de niños enmascarados contiene"}});
     hintTable[THE_MOON_LINK_TRIAL_BONUS] = HintText::Exclude({
             //obscure
-            Text{"a masked child's game contains", "un #cache-cache hostile# recèle", "un juego de niños enmascarados contiene"}});
+            Text{"a #masked child's game# contains", "un #cache-cache hostile# recèle", "un juego de niños enmascarados contiene"}});
     hintTable[THE_MOON_GARO_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a masked child's game contains", "un #cache-cache hostile# recèle", "un juego de niños enmascarados contiene"}});
+            Text{"a #masked child's game# contains", "un #cache-cache hostile# recèle", "un juego de niños enmascarados contiene"}});
     hintTable[THE_MOON_IRON_KNUCKLE_CHEST] = HintText::Exclude({
             //obscure
-            Text{"a masked child's game contains", "un #cache-cache hostile# recèle", "un juego de niños enmascarados contiene"}});
+            Text{"a #masked child's game# contains", "un #cache-cache hostile# recèle", "un juego de niños enmascarados contiene"}});
     hintTable[THE_MOON_MAJORA_CHILD] = HintText::Exclude({
             //obscure
-            Text{"the lonely child rewards", "l'#enfant isolé# décerne", "el niño solitario recompensa con"}});
+            Text{"the #lonely child# rewards", "l'#enfant isolé# décerne", "el niño solitario recompensa con"}});
 //Southern Swamp Skulltula House
     hintTable[SSH_MAIN_ROOM_NEAR_CEILING] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MAIN_ROOM_WATER] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MAIN_ROOM_LOWER_LEFT_SOIL] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MAIN_ROOM_LOWER_RIGHT_SOIL] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MAIN_ROOM_UPPER_SOIL] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MAIN_ROOM_PILLAR] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MAIN_ROOM_UPPER_PILLAR] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MAIN_ROOM_JAR] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MONUMENT_ROOM_CRATE_1] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MONUMENT_ROOM_CRATE_2] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MONUMENT_ROOM_TORCH] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MONUMENT_ROOM_ON_MONUMENT] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_MONUMENT_ROOM_LOWER_WALL] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_GOLD_ROOM_NEAR_CEILING] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_GOLD_ROOM_PILLAR] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_GOLD_ROOM_BEEHIVE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_GOLD_ROOM_WALL] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_POT_ROOM_JAR] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_POT_ROOM_POT_1] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_POT_ROOM_POT_2] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_POT_ROOM_BEHIND_VINES] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_POT_ROOM_WALL] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_POT_ROOM_BEEHIVE_1] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_POT_ROOM_BEEHIVE_2] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_TREE_ROOM_TREE_1] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_TREE_ROOM_TREE_2] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_TREE_ROOM_TREE_3] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_TREE_ROOM_GRASS_1] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_TREE_ROOM_GRASS_2] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
     hintTable[SSH_TREE_ROOM_BEEHIVE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
+            Text{"a #swampy gold spider# is", "une #âme d'or marécageuse# est", "una araña dorada es"}});
 //Oceanside spider House
     hintTable[OSH_ENTRANCE_LEFT_WALL] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_ENTRANCE_RIGHT_WALL] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_ENTRANCE_WEB] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_LIBRARY_HOLE_BEHIND_PICTURE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_LIBRARY_HOLE_BEHIND_CABINET] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_LIBRARY_ON_CORNER_BOOKSHELF] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_LIBRARY_CEILING_EDGE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_LIBRARY_BEHIND_BOOKCASE_1] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_LIBRARY_BEHIND_BOOKCASE_2] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_LIBRARY_BEHIND_PICTURE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_SECOND_ROOM_CEILING_EDGE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_SECOND_ROOM_CEILING_PLANK] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_SECOND_ROOM_JAR] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_SECOND_ROOM_WEBBED_HOLE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_SECOND_ROOM_WEBBED_POT] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_SECOND_ROOM_UPPER_POT] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_SECOND_ROOM_BEHIND_SKULL_1] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_SECOND_ROOM_BEHIND_SKULL_2] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_SECOND_ROOM_LOWER_POT] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_STORAGE_ROOM_CEILING_WEB] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_STORAGE_ROOM_BEHIND_CRATE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_STORAGE_ROOM_WALL] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_STORAGE_ROOM_CRATE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_STORAGE_ROOM_BARREL] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_COLORED_SKULLS_CEILING_EDGE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_COLORED_SKULLS_CHANDELIER_1] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_COLORED_SKULLS_CHANDELIER_2] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_COLORED_SKULLS_CHANDELIER_3] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_COLORED_SKULLS_BEHIND_PICTURE] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
     hintTable[OSH_COLORED_SKULLS_POT] = HintText::Exclude({
             //obscure
-            Text{"a gold spider is", "une #âme d'or côtière# est", "una araña dorada es"}});
+            Text{"a #coastal gold spider# is", "une #âme d'or côtière# est", "una araña dorada es"}});
 
     /*----------------------
     |   REGION HINT TEXT   |
     ----------------------*/
     hintTable[LINKS_POCKET] = HintText::Region({Text{"Your Pocket", "tes poches", ""}});
-    hintTable[N_CLOCK_TOWN] = HintText::Region({Text{"N Clock Town", "Cadranbourg-Nord", "Norte de la Ciudad Reloj", "", "le nord de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_FAIRY_FOUNTAIN] = HintText::Region({Text{"Clock Town Fairy Fountain", "la fontaine de fées de Cadranbourg", "Fuente de las hadas de Ciudad Reloj", "", "la fontaine de fées de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_DEKU_PLAYGROUND] = HintText::Region({Text{"Deku Playground", "l'aire de jeux des pestes mojo", "Campo de Juegos Deku"}});
-    hintTable[E_CLOCK_TOWN] = HintText::Region({Text{"E Clock Town", "Cadranbourg-Est", "Este de la Ciudad Reloj", "", "l'est de Bourg-Clocher", ""}});
-    hintTable[STOCKPOTINN] = HintText::Region({Text{"Stock Pot Inn", "l’Auberge de la Marmite", "Posada del Puchero", "", "l'auberge de Bourg-Clocher", ""}});
-    hintTable[STOCKPOTINN_GUEST_ROOM] = HintText::Region({Text{"Stock Pot Inn", "l’Auberge de la Marmite", "Posada del Puchero", "", "l'auberge de Bourg-Clocher", ""}});
-    hintTable[STOCKPOTINN_STAFF_ROOM] = HintText::Region({Text{"Stock Pot Inn", "l’Auberge de la Marmite", "Posada del Puchero", "", "l'auberge de Bourg-Clocher", ""}});
-    hintTable[STOCKPOTINN_GRANDMA_ROOM] = HintText::Region({Text{"Stock Pot Inn", "l’Auberge de la Marmite", "Posada del Puchero", "", "l'auberge de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_OBSERVATORY] = HintText::Region({Text{"Observatory", "l'observatoire céleste", "Observatorio Astronónico"}});
-    hintTable[CLOCK_TOWN_BAR] = HintText::Region({Text{"Milk Bar", "le bar laitier", "Bar Lácteo"}});
-    hintTable[CLOCK_TOWN_HONEY_DARLING] = HintText::Region({Text{"E Clock Town", "Cadranbourg-Est", "Este de la Ciudad Reloj", "", "l'est de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_TREASURE_CHEST_GAME] = HintText::Region({Text{"E Clock Town", "Cadranbourg-Est", "Este de la Ciudad Reloj", "", "l'est de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_ARCHERY] = HintText::Region({Text{"E Clock Town", "Cadranbourg-Est", "Este de la Ciudad Reloj", "", "l'est de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_MAYOR_HOUSE] = HintText::Region({Text{"E Clock Town", "Cadranbourg-Est", "Este de la Ciudad Reloj", "", "l'est de Bourg-Clocher", ""}});
-    hintTable[W_CLOCK_TOWN] = HintText::Region({Text{"W Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_SWORDSMANS_SCHOOL] = HintText::Region({Text{"W Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_POSTMAN_HOUSE] = HintText::Region({Text{"W Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_LOTTERY] = HintText::Region({Text{"W Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_BOMB_SHOP] = HintText::Region({Text{"W Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_TRADING_POST] = HintText::Region({Text{"W Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWN_CURIOSITY_SHOP] = HintText::Region({Text{"W Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
-    hintTable[S_CLOCK_TOWN] = HintText::Region({Text{"S Clock Town", "Cadranbourg-Sud", "Sur de la Ciudad Reloj", "", "le sud de Bourg-Clocher", ""}});
-    hintTable[CLOCK_TOWER] = HintText::Region({Text{"Clock Tower", "la tour du cadran", "Torre del Reloj", "", "la tour du clocher", ""}});
-    hintTable[CLOCK_TOWER_ROOF] = HintText::Region({Text{"Clock Tower Roof", "le toit de la tour du cadran", "Cima de la Torre del Reloj", "", "le toit de la tour du clocher", ""}});
-    hintTable[LAUNDRY_POOL] = HintText::Region({Text{"Laundry Pool", "le lavoir", "Lavadero"}});
-    hintTable[LAUNDRY_POOL_KAFEI_HIDEOUT] = HintText::Region({Text{"Laundry Pool", "le lavoir", "Lavadero"}});
+    hintTable[N_CLOCK_TOWN] = HintText::Region({Text{"North Clock Town", "Cadranbourg-Nord", "Norte de la Ciudad Reloj", "", "le nord de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_FAIRY_FOUNTAIN] = HintText::Region({Text{"Clock Town’s Fairy Fountain", "la fontaine de fées de Cadranbourg", "Fuente de las hadas de Ciudad Reloj", "", "la fontaine de fées de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_DEKU_PLAYGROUND] = HintText::Region({Text{"the Deku Playground", "l'aire de jeux des pestes mojo", "Campo de Juegos Deku"}});
+    hintTable[E_CLOCK_TOWN] = HintText::Region({Text{"East Clock Town", "Cadranbourg-Est", "Este de la Ciudad Reloj", "", "l'est de Bourg-Clocher", ""}});
+    hintTable[STOCKPOTINN] = HintText::Region({Text{"the Stock Pot Inn", "l’Auberge de la Marmite", "Posada del Puchero", "", "l'auberge de Bourg-Clocher", ""}});
+    hintTable[STOCKPOTINN_GUEST_ROOM] = HintText::Region({Text{"the Stock Pot Inn", "l’Auberge de la Marmite", "Posada del Puchero", "", "l'auberge de Bourg-Clocher", ""}});
+    hintTable[STOCKPOTINN_STAFF_ROOM] = HintText::Region({Text{"the Stock Pot Inn", "l’Auberge de la Marmite", "Posada del Puchero", "", "l'auberge de Bourg-Clocher", ""}});
+    hintTable[STOCKPOTINN_GRANDMA_ROOM] = HintText::Region({Text{"the Stock Pot Inn", "l’Auberge de la Marmite", "Posada del Puchero", "", "l'auberge de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_OBSERVATORY] = HintText::Region({Text{"the Astral Observatory", "l'observatoire céleste", "Observatorio Astronónico"}});
+    hintTable[CLOCK_TOWN_BAR] = HintText::Region({Text{"the Milk Bar", "le bar laitier", "Bar Lácteo"}});
+    hintTable[CLOCK_TOWN_HONEY_DARLING] = HintText::Region({Text{"East Clock Town", "Cadranbourg-Est", "Este de la Ciudad Reloj", "", "l'est de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_TREASURE_CHEST_GAME] = HintText::Region({Text{"East Clock Town", "Cadranbourg-Est", "Este de la Ciudad Reloj", "", "l'est de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_ARCHERY] = HintText::Region({Text{"East Clock Town", "Cadranbourg-Est", "Este de la Ciudad Reloj", "", "l'est de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_MAYOR_HOUSE] = HintText::Region({Text{"East Clock Town", "Cadranbourg-Est", "Este de la Ciudad Reloj", "", "l'est de Bourg-Clocher", ""}});
+    hintTable[W_CLOCK_TOWN] = HintText::Region({Text{"West Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_SWORDSMANS_SCHOOL] = HintText::Region({Text{"West Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_POSTMAN_HOUSE] = HintText::Region({Text{"West Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_LOTTERY] = HintText::Region({Text{"West Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_BOMB_SHOP] = HintText::Region({Text{"West Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_TRADING_POST] = HintText::Region({Text{"West Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWN_CURIOSITY_SHOP] = HintText::Region({Text{"West Clock Town", "Cadranbourg-Ouest", "Oeste de la Ciudad Reloj", "", "l'ouest de Bourg-Clocher", ""}});
+    hintTable[S_CLOCK_TOWN] = HintText::Region({Text{"South Clock Town", "Cadranbourg-Sud", "Sur de la Ciudad Reloj", "", "le sud de Bourg-Clocher", ""}});
+    hintTable[CLOCK_TOWER] = HintText::Region({Text{"the Clock Tower", "la tour du cadran", "Torre del Reloj", "", "la tour du clocher", ""}});
+    hintTable[CLOCK_TOWER_ROOF] = HintText::Region({Text{"the Clock Tower’s Roof", "le toit de la tour du cadran", "Cima de la Torre del Reloj", "", "le toit de la tour du clocher", ""}});
+    hintTable[LAUNDRY_POOL] = HintText::Region({Text{"the Laundry Pool", "le lavoir", "Lavadero"}});
+    hintTable[LAUNDRY_POOL_KAFEI_HIDEOUT] = HintText::Region({Text{"the Laundry Pool", "le lavoir", "Lavadero"}});
     hintTable[TERMINA_FIELD] = HintText::Region({Text{"Termina Field", "la plaine Termina", "Campo de Términa"}});
     hintTable[TERMINA_FIELD_PEAHAT_GROTTO] = HintText::Region({Text{"Termina Field", "la plaine Termina", "Campo de Términa"}});
     hintTable[TERMINA_FIELD_DODONGO_GROTTO] = HintText::Region({Text{"Termina Field", "la plaine Termina", "Campo de Términa"}});
@@ -2363,41 +2362,41 @@ void HintTable_Init() {
     hintTable[TERMINA_FIELD_BUSINESS_SCRUB_GROTTO] = HintText::Region({Text{"Termina Field", "la plaine Termina", "Campo de Términa"}});
     hintTable[TERMINA_FIELD_COW_GROTTO] = HintText::Region({Text{"Termina Field", "la plaine Termina", "Campo de Términa"}});
     hintTable[TERMINA_FIELD_GOSSIP_STONES_GROTTO] = HintText::Region({Text{"Termina Field", "la plaine Termina", "Campo de Términa"}});
-    hintTable[ROAD_TO_SOUTHERN_SWAMP] = HintText::Region({Text{"Road to Southern Swamp", "la route des marais du Sud", "Camino al Pantano del Sur"}});
-    hintTable[ROAD_TO_SOUTHERN_SWAMP_ARCHERY] = HintText::Region({Text{"Road to Southern Swamp", "la route des marais du Sud", "Camino al Pantano del Sur"}});
-    hintTable[ROAD_TO_SWAMP_GROTTO] = HintText::Region({Text{"Road to Southern Swamp", "la route des marais du Sud", "Camino al Pantano del Sur"}});
-    hintTable[SOUTHERN_SWAMP] = HintText::Region({Text{"Southern Swamp", "les marais du Sud", "Pantano del Sur"}});
-    hintTable[SWAMP_TOURIST_CENTER] = HintText::Region({Text{"Southern Swamp", "les marais du Sud", "Pantano del Sur"}});
-    hintTable[SOUTHERN_SWAMP_HAGS_POTION_SHOP] = HintText::Region({Text{"Southern Swamp", "les marais du Sud", "Pantano del Sur"}});
-    hintTable[MYSTERY_WOODS] = HintText::Region({Text{"Mystery Woods", "le boisé mystérieux", "Bosque Misterioso", "", "les bois-mystère", ""}});
-    hintTable[SOUTHERN_SWAMP_MYSTERY_WOODS_GROTTO] = HintText::Region({Text{"Mystery Woods", "le boisé mystérieux", "Bosque Misterioso", "", "les bois-mystère", ""}});
-    hintTable[SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO] = HintText::Region({Text{"Southern Swamp", "les marais du Sud", "Pantano del Sur"}});
-    hintTable[SOUTHERN_SWAMP_TOP] = HintText::Region({Text{"Southern Swamp", "les marais du Sud", "Pantano del Sur"}});
-    hintTable[DEKU_PALACE] = HintText::Region({Text{"Deku Palace", "le palais mojo", "Palacio Deku"}});
-    hintTable[DEKU_PALACE_INTERIOR] = HintText::Region({Text{"Deku Palace", "le palais mojo", "Palacio Deku"}});
-    hintTable[DEKU_PALACE_BEAN_GROTTO] = HintText::Region({Text{"Deku Palace", "le palais mojo", "Palacio Deku"}});
-    hintTable[DEKU_SHRINE] = HintText::Region({Text{"Deku Palace", "le palais mojo", "Palacio Deku"}});
+    hintTable[ROAD_TO_SOUTHERN_SWAMP] = HintText::Region({Text{"the Road to Southern Swamp", "la route des marais du Sud", "Camino al Pantano del Sur"}});
+    hintTable[ROAD_TO_SOUTHERN_SWAMP_ARCHERY] = HintText::Region({Text{"the Road to Southern Swamp", "la route des marais du Sud", "Camino al Pantano del Sur"}});
+    hintTable[ROAD_TO_SWAMP_GROTTO] = HintText::Region({Text{"the Road to Southern Swamp", "la route des marais du Sud", "Camino al Pantano del Sur"}});
+    hintTable[SOUTHERN_SWAMP] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur"}});
+    hintTable[SWAMP_TOURIST_CENTER] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur"}});
+    hintTable[SOUTHERN_SWAMP_HAGS_POTION_SHOP] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur"}});
+    hintTable[MYSTERY_WOODS] = HintText::Region({Text{"the Woods of Mystery", "le boisé mystérieux", "Bosque Misterioso", "", "les bois-mystère", ""}});
+    hintTable[SOUTHERN_SWAMP_MYSTERY_WOODS_GROTTO] = HintText::Region({Text{"the Woods of Mystery", "le boisé mystérieux", "Bosque Misterioso", "", "les bois-mystère", ""}});
+    hintTable[SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur"}});
+    hintTable[SOUTHERN_SWAMP_TOP] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur"}});
+    hintTable[DEKU_PALACE] = HintText::Region({Text{"the Deku Palace", "le palais mojo", "Palacio Deku"}});
+    hintTable[DEKU_PALACE_INTERIOR] = HintText::Region({Text{"the Deku Palace", "le palais mojo", "Palacio Deku"}});
+    hintTable[DEKU_PALACE_BEAN_GROTTO] = HintText::Region({Text{"the Deku Palace", "le palais mojo", "Palacio Deku"}});
+    hintTable[DEKU_SHRINE] = HintText::Region({Text{"the Deku Palace", "le palais mojo", "Palacio Deku"}});
     hintTable[WOODFALL] = HintText::Region({Text{"Woodfall", "Boisé-les-Cascades", "Bosque Catarata", "", "Bois-Cascade", ""}});
-    hintTable[WOODFALL_FAIRY_FOUNTAIN] = HintText::Region({Text{"Woodfall Fairy Foutain", "la fontaine des fées de Boisé-les-Cascades", "Fuente de las hadas del Bosque Catarata", "", "la fontaine des fées de Bois-Cascade", ""}});
-    hintTable[PATH_TO_MOUNTAIN_VILLAGE] = HintText::Region({Text{"Path to Mountain Vilage", "la route vers le village dans la montagne", "Camino al Pueblo de la Montaña"}});
-    hintTable[MOUNTAIN_VILLAGE] = HintText::Region({Text{"Mountain Village", "le village dans la montagne", "Pueblo de la Montaña"}});
-    hintTable[GORON_GRAVEYARD] = HintText::Region({Text{"Goron Graveyard", "le cimetière des Gorons", "Cementerio Goron"}});
-    hintTable[MOUNTAIN_SMITHY] = HintText::Region({Text{"Mountain Village", "le village dans la montagne", "Pueblo de la Montaña"}});
-    hintTable[MOUNTAIN_VILLAGE_SPRING_WATER_GROTTO] = HintText::Region({Text{"Mountain Village", "le village dans la montagne", "Pueblo de la Montaña"}});
-    hintTable[TWIN_ISLANDS] = HintText::Region({Text{"Twin Islands", "la route du village goron", "Islas Gemelas"}});
-    hintTable[GORON_RACETRACK] = HintText::Region({Text{"Goron Racetrack", "la course des Gorons", "Circuito de carreras Goron"}});
-    hintTable[TWIN_ISLANDS_GORON_RACETRACK_GROTTO] = HintText::Region({Text{"Twin Islands", "la route du village goron", "Islas Gemelas"}});
-    hintTable[TWIN_ISLANDS_SPRING_WATER_GROTTO] = HintText::Region({Text{"Twin Islands", "la route du village goron", "Islas Gemelas"}});
-    hintTable[GORON_VILLAGE] = HintText::Region({Text{"Goron Village", "le village goron", "Aldea Goron"}});
-    hintTable[GORON_VILLAGE_LENS_CAVE] = HintText::Region({Text{"Goron Village", "le village goron", "Aldea Goron"}});
-    hintTable[GORON_VILLAGE_INTERIOR] = HintText::Region({Text{"Goron Village", "le village goron", "Aldea Goron"}});
-    hintTable[GORON_VILLAGE_SHOP] = HintText::Region({Text{"Goron Village", "le village goron", "Aldea Goron"}});
-    hintTable[ROAD_TO_SNOWHEAD] = HintText::Region({Text{"Road to Snowhead", "la route du Pic des neiges", "Camino al Pico Nevado", "", "la route du pic des Neiges", ""}});
-    hintTable[ROAD_TO_SNOWHEAD_GROTTO] = HintText::Region({Text{"Road to Snowhead", "la route du Pic des neiges", "Camino al Pico Nevado", "", "la route du pic des Neiges", ""}});
+    hintTable[WOODFALL_FAIRY_FOUNTAIN] = HintText::Region({Text{"Woodfall’s Fairy Fountain", "la fontaine des fées de Boisé-les-Cascades", "Fuente de las hadas del Bosque Catarata", "", "la fontaine des fées de Bois-Cascade", ""}});
+    hintTable[PATH_TO_MOUNTAIN_VILLAGE] = HintText::Region({Text{"the road to Mountain Village", "la route vers le village dans la montagne", "Camino al Pueblo de la Montaña"}});
+    hintTable[MOUNTAIN_VILLAGE] = HintText::Region({Text{"the Mountain Village", "le village dans la montagne", "Pueblo de la Montaña"}});
+    hintTable[GORON_GRAVEYARD] = HintText::Region({Text{"the Goron Graveyard", "le cimetière des Gorons", "Cementerio Goron"}});
+    hintTable[MOUNTAIN_SMITHY] = HintText::Region({Text{"the Mountain Village", "le village dans la montagne", "Pueblo de la Montaña"}});
+    hintTable[MOUNTAIN_VILLAGE_SPRING_WATER_GROTTO] = HintText::Region({Text{"the Mountain Village", "le village dans la montagne", "Pueblo de la Montaña"}});
+    hintTable[TWIN_ISLANDS] = HintText::Region({Text{"the road to Goron Village", "la route du village goron", "Islas Gemelas"}});
+    hintTable[GORON_RACETRACK] = HintText::Region({Text{"the Goron Racetrack", "la course des Gorons", "Circuito de carreras Goron"}});
+    hintTable[TWIN_ISLANDS_GORON_RACETRACK_GROTTO] = HintText::Region({Text{"the road to Goron Village", "la route du village goron", "Islas Gemelas"}});
+    hintTable[TWIN_ISLANDS_SPRING_WATER_GROTTO] = HintText::Region({Text{"the road to Goron Village", "la route du village goron", "Islas Gemelas"}});
+    hintTable[GORON_VILLAGE] = HintText::Region({Text{"the Goron Village", "le village goron", "Aldea Goron"}});
+    hintTable[GORON_VILLAGE_LENS_CAVE] = HintText::Region({Text{"the Goron Village", "le village goron", "Aldea Goron"}});
+    hintTable[GORON_VILLAGE_INTERIOR] = HintText::Region({Text{"the Goron Village", "le village goron", "Aldea Goron"}});
+    hintTable[GORON_VILLAGE_SHOP] = HintText::Region({Text{"the Goron Village", "le village goron", "Aldea Goron"}});
+    hintTable[ROAD_TO_SNOWHEAD] = HintText::Region({Text{"the road to Snowhead", "la route du Pic des neiges", "Camino al Pico Nevado", "", "la route du pic des Neiges", ""}});
+    hintTable[ROAD_TO_SNOWHEAD_GROTTO] = HintText::Region({Text{"the road to Snowhead", "la route du Pic des neiges", "Camino al Pico Nevado", "", "la route du pic des Neiges", ""}});
     hintTable[SNOWHEAD] = HintText::Region({Text{"Snowhead", "le Pic des neiges", "Pico Nevado", "", "le pic des Neiges", ""}});
-    hintTable[SNOWHEAD_FAIRY_FOUNTAIN] = HintText::Region({Text{"Snowhead Fairy Fountain", "la fontaine de fées du Pic des neiges", "Fuente de las hadas del Pico Nevado", "", "la fontaine de fées du pic des Neiges", ""}});
+    hintTable[SNOWHEAD_FAIRY_FOUNTAIN] = HintText::Region({Text{"Snowhead’s Fairy Fountain", "la fontaine de fées du Pic des neiges", "Fuente de las hadas del Pico Nevado", "", "la fontaine de fées du pic des Neiges", ""}});
     hintTable[MILK_ROAD] = HintText::Region({Text{"Milk Road", "la route du lait", "Camino Lácteo"}});
-    hintTable[GORMAN_TRACK] = HintText::Region({Text{"Gorman Track", "la piste des Gorman", "Circuito de Gorman"}});
+    hintTable[GORMAN_TRACK] = HintText::Region({Text{"the Gorman Track", "la piste des Gorman", "Circuito de Gorman"}});
     hintTable[ROMANI_RANCH] = HintText::Region({Text{"Romani Ranch", "le ranch Romani", "Rancho Romani"}});
     hintTable[DOGGY_RACETRACK] = HintText::Region({Text{"Romani Ranch", "le ranch Romani", "Rancho Romani"}});
     hintTable[CUCCO_SHACK] = HintText::Region({Text{"Romani Ranch", "le ranch Romani", "Rancho Romani"}});
@@ -2411,7 +2410,7 @@ void HintTable_Init() {
     hintTable[PINNACLE_ROCK] = HintText::Region({Text{"Pinnacle Rock", "le Pic de pierre", "Roca Pináculo", "", "le puits de pierre", ""}});
     hintTable[ZORA_CAPE] = HintText::Region({Text{"Zora Cape", "le cap des Zoras", "Cabo Zora"}});
     hintTable[WATERFALL_RAPIDS] = HintText::Region({Text{"Zora Cape", "le cap des Zoras", "Cabo Zora"}});
-    hintTable[GREAT_BAY_FAIRY_FOUNTAIN] = HintText::Region({Text{"Zora Cape Fairy Fountain", "la fontaine des fées du cap des Zoras", "Fuente de las hadas de la Gran Bahía"}});
+    hintTable[GREAT_BAY_FAIRY_FOUNTAIN] = HintText::Region({Text{"Zora Cape’s Fairy Fountain", "la fontaine des fées du cap des Zoras", "Fuente de las hadas de la Gran Bahía"}});
     hintTable[ZORA_CAPE_GROTTO] = HintText::Region({Text{"Zora Cape", "le cap des Zoras", "Cabo Zora"}});
     hintTable[ZORA_HALL] = HintText::Region({Text{"Zora Hall", "le théâtre des Zoras", "Salón Zora"}});
     hintTable[ZORA_HALL_EVANS_ROOM] = HintText::Region({Text{"Zora Hall", "le théâtre des Zoras", "Salón Zora"}});
@@ -2420,8 +2419,8 @@ void HintTable_Init() {
     hintTable[ZORA_HALL_TIJOS_ROOM] = HintText::Region({Text{"Zora Hall", "le théâtre des Zoras", "Salón Zora"}});
     hintTable[ZORA_HALL_SHOP] = HintText::Region({Text{"Zora Hall", "le théâtre des Zoras", "Salón Zora"}});
     hintTable[ZORA_HALL_BACK_ENTRANCE] = HintText::Region({Text{"Zora Hall", "le théâtre des Zoras", "Salón Zora"}});
-    hintTable[ROAD_TO_IKANA] = HintText::Region({Text{"Road to Ikana", "la route d'Ikana", "Camino a Ikana"}});
-    hintTable[ROAD_TO_IKANA_GROTTO] = HintText::Region({Text{"Road to Ikana", "la route d'Ikana", "Camino a Ikana"}});
+    hintTable[ROAD_TO_IKANA] = HintText::Region({Text{"the road to Ikana", "la route d'Ikana", "Camino a Ikana"}});
+    hintTable[ROAD_TO_IKANA_GROTTO] = HintText::Region({Text{"the road to Ikana", "la route d'Ikana", "Camino a Ikana"}});
     hintTable[IKANA_GRAVEYARD] = HintText::Region({Text{"Ikana Graveyard", "le cimetière d'Ikana", "Cementerio de Ikana"}});
     hintTable[IKANA_GRAVEYARD_GROTTO] = HintText::Region({Text{"Ikana Graveyard", "le cimetière d'Ikana", "Cementerio de Ikana"}});
     hintTable[IKANA_GRAVEYARD_BELOW_GRAVE1] = HintText::Region({Text{"Ikana Graveyard", "le cimetière d'Ikana", "Cementerio de Ikana"}});
@@ -2438,7 +2437,7 @@ void HintTable_Init() {
     hintTable[SAKONS_HIDEOUT] = HintText::Region({Text{"Ikana Canyon", "le canyon d'Ikana", "Cañón de Ikana", "", "la vallée d'Ikana", ""}});
     hintTable[MUSIC_BOX_HOUSE] = HintText::Region({Text{"Ikana Canyon", "le canyon d'Ikana", "Cañón de Ikana", "", "la vallée d'Ikana", ""}});
     hintTable[IKANA_CANYON_POE_HUT] = HintText::Region({Text{"Ikana Canyon", "le canyon d'Ikana", "Cañón de Ikana", "", "la vallée d'Ikana", ""}});
-    hintTable[IKANA_CANYON_GREAT_FAIRY_FOUNTAIN] = HintText::Region({Text{"Ikana Canyon Fairy Foutain", "la fontaine des fées du canyon d'Ikana", "Fuente de las hadas del Cañón de Ikana", "", "la fontaine des fées de la vallée d'Ikana", ""}});
+    hintTable[IKANA_CANYON_GREAT_FAIRY_FOUNTAIN] = HintText::Region({Text{"Ikana Canyon’s Fairy Fountain", "la fontaine des fées du canyon d'Ikana", "Fuente de las hadas del Cañón de Ikana", "", "la fontaine des fées de la vallée d'Ikana", ""}});
     hintTable[IKANA_CANYON_SECRET_SHRINE_GROTTO] = HintText::Region({Text{"Ikana Canyon", "le canyon d'Ikana", "Cañón de Ikana", "", "la vallée d'Ikana", ""}});
     hintTable[STONE_TOWER] = HintText::Region({Text{"Stone Tower", "la forteresse de pierre", "Torre de Piedra"}});
     hintTable[INVERTED_STONE_TOWER] = HintText::Region({Text{"Stone Tower", "la forteresse de pierre", "Torre de Piedra"}});
@@ -2599,19 +2598,19 @@ void HintTable_Init() {
     -----------------------*/
     hintTable[ODOLWA] = HintText::Boss({
             //obscure
-            Text{"a masked jungle warrior holds", "un #guerrier de la jungle masqué# détient", "un guerrero salvaje enmascarado"}});
+            Text{"a #masked jungle warrior# holds", "un #guerrier de la jungle masqué# détient", "un guerrero salvaje enmascarado"}});
     hintTable[GOHT] = HintText::Boss({
             //obscure
-            Text{"a masked mechanical monster holds", "une #chimère mécanique masquée# détient", "un monstruo mecánico enmascarado"}});
+            Text{"a #masked mechanical monster# holds", "une #chimère mécanique masquée# détient", "un monstruo mecánico enmascarado"}});
     hintTable[GYORG] = HintText::Boss({
             //obscure
-            Text{"a gargantuan masked fish holds", "un #léviathan gargantuesque masqué# détient", "un pez colosal enmascarado"}});
+            Text{"a #gargantuan masked fish# holds", "un #léviathan gargantuesque masqué# détient", "un pez colosal enmascarado"}});
     hintTable[TWINMOLD] = HintText::Boss({
             //obscure
-            Text{"a giant masked insect holds", "un #double insecte géant masqué# détient", "un insecto gigante enmascarado"}});
+            Text{"a #giant masked insect# holds", "un #double insecte géant masqué# détient", "un insecto gigante enmascarado"}});
     hintTable[MAJORA] = HintText::Boss({
             //obscure
-            Text{"a cursed mask holds", "un #masque maléfique# détient", "una máscara maldita"}});
+            Text{"a #cursed mask# holds", "un #masque maléfique# détient", "una máscara maldita"}});
 
 
 }
