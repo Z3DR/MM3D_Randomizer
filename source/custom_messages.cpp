@@ -184,12 +184,12 @@ void CreateMessageFromTextObject(u16 textId, u16 field_2, u32 field_4, u32 flags
                    u16 sfx, bool instant, bool repeatSfx) {
     CreateMessage(textId, field_2, field_4, flags,
                 //      NaEnglish                     NaFrench                      NaSpanish
-                  {text.GetNAEnglish().c_str(), /*text.GetNAFrench().c_str(), text.GetNASpanish().c_str(),
+                  {text.GetNAEnglish().c_str(), text.GetNAFrench().c_str(), text.GetNASpanish().c_str(),
                 // Remember to update these alongside Text class when adding languages
                 //      EuGerman                      EuItalian                     Japanese
                 text.GetEUREnglish().c_str(), text.GetEUREnglish().c_str(), // text.GetNAEnglish().c_str(),
                 //      EuEnglish                     EuFrench                      EuSpanish
-                text.GetEUREnglish().c_str(), text.GetEURFrench().c_str(), text.GetEURSpanish().c_str()*/
+                text.GetEUREnglish().c_str(), text.GetEURFrench().c_str(), text.GetEURSpanish().c_str()
                 }, cols, icons, delays, sfx, instant, repeatSfx);
 }
 
