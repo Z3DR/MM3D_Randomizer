@@ -448,11 +448,11 @@ void CreateTingleHintText() {
         Text greatBayMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_GB)->GetPlacedItemKey()).GetName();
         Text ikanaMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName();
 
-        //               {"English", "French", "Spanish"}
-        Text priceFive = {"    ##5 Rupees#&", "    ##5 Rubis#&", "    ##5 rupias#&"};
-        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", "    ##20 rupias#&"};
-        Text priceForty = {"    ##40 Rupees#", "    ##40 Rubis#", "    ##40 rupias#"};
-        Text leaveShop = {"&#No thanks#", "&#Non merci#", "&#No, gracias#"};
+        //                 {"English",           "French",           "Spanish"          };      "German"            "Italian"
+        Text priceFive =   {"    ##5 Rupees#&",  "    ##5 Rubis#&",  "    ##5 rupias#&"}; // ,  " - ##5 Rubine#&",  "    ##5 rupie#&"
+        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", "    ##20 rupias#&"}; // , " - ##20 Rubine#&", "    ##20 rupie#&"
+        Text priceForty =  {"    ##40 Rupees#",  "    ##40 Rubis#",  "    ##40 rupias#"}; // ,  " - ##40 Rubine#",  "    ##40 rupie#"
+        Text leaveShop =   {"&#No thanks#",      "&#Non merci#",     "&#No, gracias#"}; // ,    "&#Nein, danke!#",  "&#No, grazie#"
 
         // Clock Town message
         CustomMessages::CreateMessageFromTextObject(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
@@ -504,9 +504,12 @@ static Text BuildDoorText(const ItemKey itemKey) {
 void CreateClockTowerDoorHints() {
   // Create hint text
   Text ocarinaHint = Text{
-    /*English*/"Hey, didn't you have some sort of #musical instrument#?&If I know the Skull Kid, I bet he hid it at ",
-    /*French */"Dis, t'avais pas un #instrument de musique#?&Je parie que Skull Kid, l'a caché vers ",
-    /*Spanish*/"**SPANISH** "
+    /*NaEnglish*/"Hey, didn't you have some sort of #musical instrument#?&If I know the Skull Kid, I bet he hid it at ",
+    /*NaFrench */"Dis, t'avais pas un &#instrument de musique#?&Je parie que Skull Kid, l'a caché vers ",
+    /*NaSpanish*/"**SPANISH** ",
+    /*EuEnglish*/"",
+    /*EuFrench */"Dis, t'avais pas un &#instrument de musique# ?&Je parie que Skull Kid, l'a caché vers ",
+    /*EuSpanish*/""
   }+BuildDoorText(OCARINA_OF_TIME);
   Text odolwaHint = Text{
     /*English*/"There's one with a #crown# and #jewellery# said to be found at ",
@@ -594,14 +597,33 @@ void CreateClockTowerDoorHints() {
 
   CustomMessages::CreateMessage(0x0630, (StartingOcarina.Value<u8>() == 0) ? 0x8000 : 0x8002, 0x3FFFFFFF, 0x0FF0211,
     {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
-    "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#"},
+    "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#",
+      // French
+      "Accès aux toits strictement&interdit jusqu'à #minuit#, la&#veille #du carnaval.^"
+      "#Notice d'activités du carnaval:#&Concours de performance musicale&Concours de masques singuliers&#Prix à la clé!#",
+      // Spanish
+      "Acceso al tejado.&¡Prohibida la entrada hasta&la #medianoche de la víspera&#del carnaval!^"
+      "**SPANISH**",
+      // // German
+      // "Zugang zum Dach&Betreten streng verboten!&(bis um #Mitternacht# am&Vorabend des #Karnevals#)^"
+      // "**GERMAN**",
+      // // Italian
+      // "Porta del tetto&Ingresso vietato fino alla&#mezzanotte# della #vigilia# del&carnevale.^"
+      // "**ITALIAN**",
+    },
     {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessageFromTextObject(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, ocarinaHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
   CustomMessages::CreateMessage(0x8001, 0x8003, 0x3FFFFFFF, 0x1FF0000,
-    {"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"},
+    {"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+      // French
+      "D'ailleurs, ce #concours de masques# me rappelle que j'ai entendu des rumeurs dans le coin sur des #masques très uniques#.",
+    },
     {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessage(0x8002, 0x8003, 0x3FFFFFFF, 0x1FF0000,
-    {"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"},
+    {"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+      // French
+      "Dis, ce #concours de masques# me rappelle que j'ai entendu des rumeurs dans le coin sur des #masques très uniques#.",
+    },
     {QM_RED, QM_RED}, {}, {}, 0x083E, false, false);
   CustomMessages::CreateMessageFromTextObject(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, odolwaHint, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessageFromTextObject(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, gohtHint, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
@@ -643,9 +665,12 @@ void CreateMoonChildHint() {
 
   // Add opening and closing textboxes to hint
   moonChildHint = Text{
-    /*English*/"You...^You don't have many masks...do you?",
-    /*French */"Toi...^Tu n'as pas beaucoup de masques... n'est-ce pas ?",
-    /*Spanish*/"**SPANISH**"
+    /*NaEnglish*/"You...^You don't have many masks...do you?",
+    /*NaFrench */"Toi...^Tu n'as pas beaucoup de masques... n'est-ce pas?",
+    /*NaSpanish*/"**SPANISH**",
+    /*EuEnglish*/"",
+    /*EuFrench */"Toi...^Tu n'as pas beaucoup de masques... n'est-ce pas ?",
+    /*EuSpanish*/""
   }+moonChildHint+Text{
     /*English*/"^Then we can play.",
     /*French */"^Alors, on pourra jouer.",
