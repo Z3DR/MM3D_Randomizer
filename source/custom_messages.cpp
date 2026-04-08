@@ -184,12 +184,12 @@ void CreateMessageFromTextObject(u16 textId, u16 field_2, u32 field_4, u32 flags
                    u16 sfx, bool instant, bool repeatSfx) {
     CreateMessage(textId, field_2, field_4, flags,
                 //      NaEnglish                     NaFrench                      NaSpanish
-                  {text.GetNAEnglish().c_str(), /*text.GetNAFrench().c_str(), text.GetNASpanish().c_str(),
+                  {text.GetNAEnglish().c_str(), text.GetNAFrench().c_str(), text.GetNASpanish().c_str(),
                 // Remember to update these alongside Text class when adding languages
                 //      EuGerman                      EuItalian                     Japanese
                 text.GetEUREnglish().c_str(), text.GetEUREnglish().c_str(), // text.GetNAEnglish().c_str(),
                 //      EuEnglish                     EuFrench                      EuSpanish
-                text.GetEUREnglish().c_str(), text.GetEURFrench().c_str(), text.GetEURSpanish().c_str()*/
+                text.GetEUREnglish().c_str(), text.GetEURFrench().c_str(), text.GetEURSpanish().c_str()
                 }, cols, icons, delays, sfx, instant, repeatSfx);
 }
 
@@ -206,105 +206,143 @@ void CreateBaselineCustomMessages() {
     delayData.push_back(0x3F);
     colParity = iconParity = delayParity = 1;
 
+    Text GITextIntroSKey =    {"You got a #small key# ",       "Vous obtenez une #petite clé# ",     "¡Has obtenido una #llave pequeña# "};
+    Text GITextIntroMap =     {"You found the #dungeon map# ", "Vous obtenez la #carte du donjon# ", "¡Has encontrado el #mapa de la mazmorra# "};
+    Text GITextIntroCompass = {"You got the #compass# ",       "Vous obtenez la #boussole# ",        "¡Has encontrado la #brújula# "};
+    Text GITextIntroBKey =    {"You got the #boss key# ",      "Vous obtenez la #grande clé# ",      "¡Has obtenido la #gran llave# "};
+
+    Text GITextDungeonWoodfall =   {"for #Woodfall Temple#!",    "du #temple de Boisé-les-Cascades#!",       "del templo del Bosque Catarata!",
+                                    "",                          "du #temple de Bois-Cascade# !",            ""};
+    Text GITextDungeonSnowhead =   {"for #Snowhead Temple#!",    "du #temple du Pic des neiges#!",           "del templo del Pico Nevado!",
+                                    "",                          "du #temple du pic des Neiges# !",          ""};
+    Text GITextDungeonGreatBay =   {"for #Great Bay Temple#!",   "du #temple de la Grande Baie#!",           "del templo de la Gran Bahía!",
+                                    "",                          "du #temple de la Grande Baie# !",          ""};
+    Text GITextDungeonStoneTower = {"for #Stone Tower Temple#!", "du #temple de la forteresse de pierre#!",  "del templo de la Torre de Piedra!",
+                                    "",                          "du #temple de la forteresse de pierre# !", ""};
+
+    Text GITextOutroSKey =    {
+        " Use it to open a locked door in that temple.", " Utilisez-la pour ouvrir une porte de ce donjon.", ""
+    };
+    Text GITextOutroCompass = {
+        " Now many of the dungeon's hidden things will appear on the map!", " Certains des secrets de ce donjon seront maintenant visibles sur la carte!",  "",
+        "",                                                                 " Certains des secrets de ce donjon seront maintenant visibles sur la carte !", ""
+    };
+    Text GITextOutroBKey =    {
+        " Now you can enter the chamber where the boss lurks!", " Vous pouvez maintenant pénétrer dans l'antre du boss!",  "",
+        "",                                                     " Vous pouvez maintenant pénétrer dans l'antre du boss !", ""
+    };
+
     // Small Keys
     // Woodfall
-    CreateMessage(0x6133, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got a #small key# for the #Woodfall Temple#! Use it to open a locked door in that temple."},
-    {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x6133, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroSKey + GITextDungeonWoodfall + GITextOutroSKey,
+        {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
     // Snowhead
-    CreateMessage(0x6134, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got a #small key# for the #Snowhead Temple#! Use it to open a locked door in that temple."},
-    {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x6134, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroSKey + GITextDungeonSnowhead + GITextOutroSKey,
+        {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
     // Great Bay
-    CreateMessage(0x6135, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got a #small key# for the #Great Bay Temple#! Use it to open a locked door in that temple."},
-    {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x6135, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroSKey + GITextDungeonGreatBay + GITextOutroSKey,
+        {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
     // Stone Tower
-    CreateMessage(0x6136, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got a #small key# for the #Stone Tower Temple#! Use it to open a locked door in that temple."},
-    {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x6136, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroSKey + GITextDungeonStoneTower + GITextOutroSKey,
+        {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
 
     // Maps
     // Woodfall
-    CreateMessage(0x6137, 0x003E, 0x3FFFFFFF, 0xFF0000, 
-    {"You found the #dungeon map# for the #Woodfall#!"},
-    {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x6137, 0x003E, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroMap + GITextDungeonWoodfall,
+        {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
 
     // Snowhead
-    CreateMessage(0x6138, 0x003E, 0x3FFFFFFF, 0xFF0000, 
-    {"You found the #dungeon map# for the #Snowhead#!"},
-    {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x6138, 0x003E, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroMap + GITextDungeonSnowhead,
+        {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
 
     // Great Bay
-    CreateMessage(0x6139, 0x003E, 0x3FFFFFFF, 0xFF0000, 
-    {"You found the #dungeon map# for the #Great Bay#!"},
-    {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x6139, 0x003E, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroMap + GITextDungeonGreatBay,
+        {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
 
     // Stone Tower
-    CreateMessage(0x613A, 0x003E, 0x3FFFFFFF, 0xFF0000, 
-    {"You found the #dungeon map# for the #Stone Tower#!"},
-    {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x613A, 0x003E, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroMap + GITextDungeonStoneTower,
+        {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
 
     // Compasses
     // Woodfall
-    CreateMessage(0x613B, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got the #compass# for the #Woodfall Temple#! Now many of the dungeon's hidden things will appear on the map!"},
-    {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x613B, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroCompass + GITextDungeonWoodfall + GITextOutroCompass,
+        {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
 
     // Snowhead
-    CreateMessage(0x613C, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got the #compass# for the #Snowhead Temple#! Now many of the dungeon's hidden things will appear on the map!"},
-    {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x613C, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroCompass + GITextDungeonSnowhead + GITextOutroCompass,
+        {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
 
     // Great Bay
-    CreateMessage(0x613D, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got the #compass# for the #Great Bay Temple#! Now many of the dungeon's hidden things will appear on the map!"},
-    {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x613D, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroCompass + GITextDungeonGreatBay + GITextOutroCompass,
+        {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
 
     // Stone Tower
-    CreateMessage(0x613E, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got the #compass# for the #Stone Tower Temple#! Now many of the dungeon's hidden things will appear on the map!"},
-    {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x613E, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroCompass + GITextDungeonStoneTower + GITextOutroCompass,
+        {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
 
     // Boss Keys
     // Woodfall
-    CreateMessage(0x613F, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got the #boss key# for the #Woodfall Temple#! Now you can enter the chamber where the boss lurks!"},
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x613F, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroBKey + GITextDungeonWoodfall + GITextOutroBKey,
+        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
 
     // Snowhead
-    CreateMessage(0x6140, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got the #boss key# for the #Snowhead Temple#! Now you can enter the chamber where the boss lurks!"},
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x6140, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroBKey + GITextDungeonSnowhead + GITextOutroBKey,
+        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
 
     // Great Bay
-    CreateMessage(0x6141, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got the #boss key# for the #Great Bay Temple#! Now you can enter the chamber where the boss lurks!"},
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x6141, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroBKey + GITextDungeonGreatBay + GITextOutroBKey,
+        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
 
     // Stone Tower
-    CreateMessage(0x6142, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got the #boss key# for the #Stone Tower Temple#! Now you can enter the chamber where the boss lurks!"},
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    CreateMessageFromTextObject(0x6142, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+        GITextIntroBKey + GITextDungeonStoneTower + GITextOutroBKey,
+        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
 
     // Kokiri Sword
-    CreateMessage(0x0037, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"You got the #Kokiri Sword!# The trusty sword you're familiar with. A treasure from Kokiri Forest."},
+    CreateMessage(0x0037, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+    {"You got the #Kokiri Sword!# The trusty sword you're familiar with. A treasure from Kokiri Forest.",
+        // French
+        "Vous obtenez l'#épée Kokiri#! Votre fidèle épée qui provient de le forêt Kokiri.",
+    },
     {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
 
     // Ice Trap
     CreateMessage(0x0012, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"          #FOOL!#"},
+    {"          #FOOL!#",
+        // French
+        "#IDIOT!#",
+    },
     {QM_RED}, {}, {}, 0x0, false, false);
 
     //Swamp Skulltula Tokens
     CreateMessage(0x0052, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
-    {"You got a #Swamp Skulltula Token#! &You have collected #=SSH#."},
+    {"You got a #Swamp Skulltula Token#! &You have collected #=SSH#.",
+        // French
+        "Vous obtenez l'#âme d'une skulltula d'or des marais#!&Vous en avez désormais #=SSH#.",
+    },
     {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
 
     //Ocean Skulltula Tokens
     CreateMessage(0x6143, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
-    {"You got an #Ocean Skulltula Token#! &You have collected #=OSH#."},
+    {"You got an #Ocean Skulltula Token#! &You have collected #=OSH#.",
+        // French
+        "Vous obtenez l'#âme d'une skulltula d'or de la côte#!&Vous en avez désormais #=OSH#.",
+    },
     {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false);
 
 }

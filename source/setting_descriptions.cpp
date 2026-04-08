@@ -638,16 +638,25 @@ string_view skipGiantCutsceneDesc   = "Skips the cutscene of the giants catching
 |        REGION OPTIONS        |                                                           //
 ------------------------------*/                                                           //
 string_view NARegionDesc            = "                 North America\n"                   //
-                                      "Currently only supports English Hints and Custom Text";
+                                      "All three languages are supported,\n"               //
+                                      "but Spanish Custom Text is incomplete,\n"           //
+                                      "and ingame Spoiler Log is English only";            //
 string_view EURegionDesc            = "                     Europe\n"                      //
-                                      "Currently only supports English Hints and Custom Text";
+                                      "Ingame Spoiler Log is English only\n\n"             //
+                                      "Hints and Custom Text currently only support\n"     //
+                                      "English, French, and Spanish\n\n"                   //
+                                      "Expect inaccuracies in Spanish Custom Text, since\n"//
+                                      "Latin Spanish (incomplete) is used instead";        //
 string_view VersionDesc             = "Due to patch size when using version 1.1 it can \n" //
                                       "take up to 30 seconds to launch the game, this is\n"//
                                       "expected and will not effect gameplay";             //
 string_view LanguageDesc            = "Selected region differs from console meaning a\n"   //
                                       "locale.txt file will need to be generated\n\n"      //
-                                      "Please select your preferred language\n"            //
-                                      "NOTE: custom text still only supports English";     //
+                                      "Please select your preferred language\n\n"          //
+                                      "NOTE: Custom Text and Hints don't \n"               //
+                                      "support German or Italian yet.\n"                   //
+                                      "Also, Spanish is incomplete and will currently \n"  //
+                                      "be Latin Spanish regardless of game region";        //
 /*------------------------------                                                           //
 |  REPEATABLE ITEMS ON TOKENS  |                                                           //
 ------------------------------*/                                                           //
@@ -656,7 +665,7 @@ string_view repeatItemsOnTokensDesc = "Allows items potentially needed more than
                                       "to be placed on gold skulltula drops";              //
 /*------------------------------                                                           //
 | MOON AND MAJORA REQUIREMENTS |                                                           //
-------------------------------*/                                                          //
+------------------------------*/                                                           //
 string_view MoonRemainsRequiredDesc = "Select the number of Boss Remains needed to \n"     //
                                       "enter the moon by playing Oath to Order on the roof";//
 string_view MajoraRemainsRequiredDesc="Select the number of Boss Remains needed to \n"     //
