@@ -1,24 +1,17 @@
 name: MM3DR Build Check
 
+env:
+  # These are used automatically by git
+  GIT_AUTHOR_NAME: ${{ github.actor }}
+  GIT_AUTHOR_EMAIL: ${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com
+  GIT_COMMITTER_NAME: GitHub Actions
+  GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+
+
 on:
   pull_request:
 
 jobs:
-  # format:
-  #   name: Verify Formatting
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #   - name: Checkout Project
-  #     uses: actions/checkout@v4
-
-#    - name: Format Project
-#      uses: DoozyX/clang-format-lint-action@v0.15
-#      with:
-#        source: "./code ./source"
-#        extensions: 'c,h,cpp,hpp'
-#        clangFormatVersion: 14
-
   build:
     name: Confirm Compilable
     runs-on: ubuntu-latest
@@ -28,10 +21,21 @@ jobs:
 
     steps:      
     - name: Checkout Project
-      uses: actions/checkout@v4.1.7
+      uses: actions/checkout@v6.0.2
       with:
         submodules: true
-
+    
+    - name: Set Env Vars
+      shell: bash
+      run: |
+        pr_number=$(echo ${{ github.ref }} | cut -d / -f 3)
+        echo pr_number="$pr_number" | tee -a $GITHUB_ENV
+        short_sha=${GITHUB_SHA::6}
+        echo short_sha="$short_sha" | tee -a $GITHUB_ENV
+        echo artifact_name=MM3D_Randomizer_PR"$pr_number"_"$short_sha" | tee -a $GITHUB_ENV
+      
     - name: Compile Project
       run: |
+        chmod +x write_version.sh
         make -j
+        mv -v MM3D_Randomizer.3dsx ${{ env.artifact_name }}.3dsx
