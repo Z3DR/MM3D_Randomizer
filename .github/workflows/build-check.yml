@@ -1,13 +1,5 @@
 name: MM3DR Build Check
 
-env:
-  # These are used automatically by git
-  GIT_AUTHOR_NAME: ${{ github.actor }}
-  GIT_AUTHOR_EMAIL: ${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com
-  GIT_COMMITTER_NAME: GitHub Actions
-  GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-
-
 on:
   pull_request:
 
@@ -15,9 +7,11 @@ jobs:
   build:
     name: Confirm Compilable
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     container:
       image: ghcr.io/z3dr/randotools:next
-      options: --user 1001
+    
 
     steps:      
     - name: Checkout Project
@@ -39,3 +33,9 @@ jobs:
         chmod +x write_version.sh
         make -j
         mv -v MM3D_Randomizer.3dsx ${{ env.artifact_name }}.3dsx
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: ${{ env.artifact_name }}
+        path: ${{ env.artifact_name }}.3dsx
