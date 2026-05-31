@@ -1,5 +1,12 @@
 name: MM3DR Build Script
 
+env:
+  # These are used automatically by git
+  GIT_AUTHOR_NAME: ${{ github.actor }}
+  GIT_AUTHOR_EMAIL: ${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com
+  GIT_COMMITTER_NAME: GitHub Actions
+  GIT_COMMITTER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+
 on:
   workflow_dispatch:
     inputs:
@@ -20,21 +27,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
       - name: Get Last Nightly Commit and Private Key
         id: nightly-version
         run: |
-          if [[ ${{ github.event.inputs.build_type == 'Nightly' }} == true ]]; then
-            echo "last_nightly=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV
-          else
-            echo "last_nightly=$(git describe --tags --match="v[0-9]*" HEAD --abbrev=0)" >> $GITHUB_ENV
-          fi
-          
+          echo "last_nightly=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV
       - name: Generate changelog
         id: changelog
-        uses: metcalfc/changelog-generator@v4.3.1
+        uses: metcalfc/changelog-generator@v4.7.0
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
           base-ref: ${{ env.last_nightly }}
@@ -46,77 +48,73 @@ jobs:
     needs: get-changelog
     name: Build CIA and 3DSX Files
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     container:
-      image: ghcr.io/z3dr/randotools:next
+      image: ghcr.io/z3dr/randotools:latest
       options: --user 1001
 
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v6.0.2
         with:
           submodules: true
-
-      - if: ${{ github.event.inputs.build_type == 'Nightly' }}
-        name: Run Build Script Nightly
+      
+      - name: Run Build Script
+        env:
+          GITHUB_BUILD_TYPE: ${{ github.event.inputs.build_type }}
+          GITHUB_INPUT_VERSION: ${{ github.event.inputs.version }}
         run: |
-          chmod +x linux_build_rando.sh
           ./linux_build_rando.sh
       
-      - if: ${{ github.event.inputs.build_type == 'Release' }}
-        name: Run Build Script Release
-        env:
-          url_tag: v${{ github.event.inputs.version }}
+      - name: Create QR codes
         run: |
-          chmod +x linux_build_rando.sh
-          ./linux_build_rando.sh
+          qrencode -ocia.png https://github.com/$GITHUB_REPOSITORY/releases/download/${{ env.tag_name }}/MM3D_Randomizer.cia
+          qrencode -o3dsx.png https://github.com/$GITHUB_REPOSITORY/releases/download/${{ env.tag_name }}/MM3D_Randomizer.3dsx
 
-      - name: Get shorthand commit.
-        id: vars
-        run: echo "sha_short=$(echo ${{ github.sha }} | cut -c1-6)" >> $GITHUB_ENV
 
       - if: ${{ github.event.inputs.build_type == 'Nightly' }}
         name: Create Pre-release
-        uses: ncipollo/release-action@v1.14.0
+        uses: ncipollo/release-action@v1.21.0
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           artifacts: "MM3D_Randomizer.cia,MM3D_Randomizer.3dsx,cia.png,3dsx.png"
           prerelease: true
           commit: "${{ github.sha }}"
-          tag: "Nightly-${{ env.sha_short }}"
-          name: "Nightly-${{ env.sha_short }}"
+          tag: "${{ env.tag_name }}"
+          name: "${{ env.tag_name }}"
           body: |
             Please note that these are DEVELOPMENT builds and may not be entirely stable.
             When reporting issues, please mention the six character commit listed in the randomizer menu.
             You can use the FBI homebrew application to install the randomizer using either of these QR codes.
             CIA QR Code:
-            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/Nightly-${{ env.sha_short }}/cia.png)
+            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/${{ env.tag_name }}/cia.png)
             3DSX QR Code:
-            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/Nightly-${{ env.sha_short }}/3dsx.png)
+            ![3DSX Download](https://github.com/${{ github.repository }}/releases/download/${{ env.tag_name }}/3dsx.png)
 
-            Changes Since [${{ needs.get-changelog.outputs.last-nightly }}](https://github.com/${{ github.repository }}/releases/tag/${{ needs.get-changelog.outputs.last-nightly }}) 🛠:  
+            Changes Since [${{ needs.get-changelog.outputs.last-nightly }}](https://github.com/${{ github.repository }}/releases/tag/${{ needs.get-changelog.outputs.last-nightly }}) 🛠:
             ${{ needs.get-changelog.outputs.changelog }}
-
 
       - if: ${{ github.event.inputs.build_type == 'Release' }}
         name: Create Release
-        uses: ncipollo/release-action@v1.14.0
+        uses: ncipollo/release-action@v1.21.0
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           artifacts: "MM3D_Randomizer.cia,MM3D_Randomizer.3dsx,cia.png,3dsx.png"
           prerelease: false
           commit: "${{ github.sha }}"
-          tag: "v${{ github.event.inputs.version }}"
-          name: "v${{ github.event.inputs.version }}"
+          tag: "${{ env.tag_name }}"
+          name: "${{ env.tag_name }}"
           body: |
-            ${{ github.event.inputs.version }} Changes 🛠:  
-            ${{ needs.get-changelog.outputs.changelog }}
-            
+            ${{ github.event.inputs.version }} Changes:
+            - Please check back later for a full list of changes.
+
             When reporting issues, please mention the six character commit listed in the randomizer menu.
             You can use the FBI homebrew application to install the randomizer using either of these QR codes.
             CIA QR Code:
-            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/v${{ github.event.inputs.version }}/cia.png)
+            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/${{ env.tag_name }}/cia.png)
             3DSX QR Code:
-            ![CIA Download](https://github.com/${{ github.repository }}/releases/download/v${{ github.event.inputs.version }}/3dsx.png)
+            ![3DSX Download](https://github.com/${{ github.repository }}/releases/download/${{ env.tag_name }}/3dsx.png)
 
   deploy-gist:
     needs: build-cia-3dsx
@@ -449,9 +447,16 @@ jobs:
           done
 
       - name: Deploy to Gist
-        uses: exuanbo/actions-deploy-gist@v1.1.4
-        with:
-          token: ${{ secrets.TOKEN }}
-          gist_id: a0bb911772800a7071eddf6298ff6e9f
-          gist_file_name: MM3DR.unistore
-          file_path: ./MM3DR.unistore
+        env:
+          GIST_ID: a0bb911772800a7071eddf6298ff6e9f
+          GIST_FILE_NAME: MM3DR.unistore
+          GIST_ACCESS_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          git clone https://$GIST_ACCESS_TOKEN@gist.github.com/$GIST_ID.git gist
+          cp ./$GIST_FILE_NAME ./gist/
+          cd gist
+          git add --all
+          if ! git diff --cached --quiet; then
+            git commit -m "Update UniStore"
+            git push
+          fi

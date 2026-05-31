@@ -176,6 +176,7 @@ all: $(BUILD) $(GFXBUILD) $(DEPSDIR) $(ROMFS_T3XFILES) $(T3XHFILES)
 $(BUILD):
 	@git submodule update --init
 	$(MAKE) -C Z3DR/code/
+	@$(TOPDIR)/write_version.sh
 	@mv Z3DR/code/basecode.ips $(ROMFS)/basecode.ips
 	@mv Z3DR/code/basecode1.1.ips $(ROMFS)/basecode1.1.ips
 	@mv Z3DR/source/patch_symbols.hpp $(CURDIR)/source/include/
