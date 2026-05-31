@@ -11,6 +11,7 @@ jobs:
       contents: write
     container:
       image: ghcr.io/z3dr/randotools:next
+      options: --user 1001
     
 
     steps:      

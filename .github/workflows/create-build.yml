@@ -52,6 +52,7 @@ jobs:
       contents: write
     container:
       image: ghcr.io/z3dr/randotools:latest
+      options: --user 1001
 
     steps:
       - name: Checkout Project
