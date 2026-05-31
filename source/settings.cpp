@@ -1637,30 +1637,36 @@ namespace Settings {
     }
     
     //Show or Hide Shuffle Song of Soaring / Song of Time if Song Shuffle is on / off
-    if (ShuffleSongs.Value<u8>() == 0) {
-      ShuffleSoaring.Hide();
-      ShuffleSongOfTime.Hide();
-    }
+     if (ShuffleSongs.Value<u8>() == 0) {
+       ShuffleSoaring.SetSelectedIndex(0);
+       ShuffleSoaring.Lock();
+       ShuffleSongOfTime.SetSelectedIndex(0);
+       ShuffleSongOfTime.Lock();
+     }
+     else {
+      ShuffleSoaring.Unlock();
+      ShuffleSongOfTime.Unlock();
+     }
     //if starting with Song of Soaring or Song of Time set settings to Vanilla and hide and lock
     if (StartingSongOfSoaring.Value<u8>() == 1) {
-      ShuffleSoaring.SetSelectedIndex(0);
+      //ShuffleSoaring.SetSelectedIndex(0);
       ShuffleSoaring.Lock();
-      ShuffleSoaring.Hide();
+      //ShuffleSoaring.Hide();
     }
-    else {
-      ShuffleSoaring.Unhide();
-      ShuffleSoaring.Unlock();
-    }
+    // else {
+    //   ShuffleSoaring.Unhide();
+    //   ShuffleSoaring.Unlock();
+    // }
     if (StartingSongOfTime.Value<u8>() == 1) {
-      ShuffleSongOfTime.SetSelectedIndex(0);
+      //ShuffleSongOfTime.SetSelectedIndex(0);
       ShuffleSongOfTime.Lock();
-      ShuffleSongOfTime.Hide();
+      //ShuffleSongOfTime.Hide();
     }
     //If not starting with Song of Soaring or Song of Time unlock and unhide them
-    else {
-      ShuffleSongOfTime.Unhide();
-      ShuffleSongOfTime.Unlock();
-    }
+    // else {
+    //   ShuffleSongOfTime.Unhide();
+    //   ShuffleSongOfTime.Unlock();
+    // }
 
     ResolveExcludedLocationConflicts();
   }
