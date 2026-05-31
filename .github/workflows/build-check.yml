@@ -30,7 +30,6 @@ jobs:
       
     - name: Compile Project
       run: |
-        chmod +x write_version.sh
         make -j
         mv -v MM3D_Randomizer.3dsx ${{ env.artifact_name }}.3dsx
 
