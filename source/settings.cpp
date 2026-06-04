@@ -1636,37 +1636,11 @@ namespace Settings {
         LanguageSelect.SetSelectedIndex(LANGUAGE_NONE);
     }
     
-    //Show or Hide Shuffle Song of Soaring / Song of Time if Song Shuffle is on / off
-     if (ShuffleSongs.Value<u8>() == 0) {
-       ShuffleSoaring.SetSelectedIndex(0);
-       ShuffleSoaring.Lock();
-       ShuffleSongOfTime.SetSelectedIndex(0);
-       ShuffleSongOfTime.Lock();
-     }
-     else {
-      ShuffleSoaring.Unlock();
-      ShuffleSongOfTime.Unlock();
-     }
-    //if starting with Song of Soaring or Song of Time set settings to Vanilla and hide and lock
-    if (StartingSongOfSoaring.Value<u8>() == 1) {
-      //ShuffleSoaring.SetSelectedIndex(0);
-      ShuffleSoaring.Lock();
-      //ShuffleSoaring.Hide();
-    }
-    // else {
-    //   ShuffleSoaring.Unhide();
-    //   ShuffleSoaring.Unlock();
-    // }
-    if (StartingSongOfTime.Value<u8>() == 1) {
-      //ShuffleSongOfTime.SetSelectedIndex(0);
-      ShuffleSongOfTime.Lock();
-      //ShuffleSongOfTime.Hide();
-    }
-    //If not starting with Song of Soaring or Song of Time unlock and unhide them
-    // else {
-    //   ShuffleSongOfTime.Unhide();
-    //   ShuffleSongOfTime.Unlock();
-    // }
+    //There was code here to force set Song of Soaring and Song of Time to off if the overarching SongSanity setting was set to off.
+    //I chose not to include it because it allows for the choice to randomize only those two songs outside of the other songs grouped
+    //into Songsanity since they are already coded in item_pool.cpp to be added to the pool separately based on these settings anyways
+    //so locking them out just removes that choice which is less fun than allowing it.
+   
 
     ResolveExcludedLocationConflicts();
   }
