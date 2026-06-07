@@ -283,6 +283,11 @@ static void WriteIngameSpoilerLog() {
         if (Location(key)->IsCategory(Category::cZoraEgg)) {
           continue;
         }
+        //Don't show the Stone Tower Upright Death Armos Room Chest as it is only created for no logic playthroughs incase the player does a Goron Missile to obtain the chest earlier than intended. 
+        //It contains the same item as the normal Stone Tower Temple Death Armos Room Chest so it does not need to be shown in the spoiler log.
+        if (key == STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST) {
+          continue;
+        }
             
             
 

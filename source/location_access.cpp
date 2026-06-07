@@ -597,7 +597,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(S_CLOCK_TOWN, {[]{return true;}}),
-		Entrance(THE_MOON_TREE_ROOM, {[]{return CanGoToMoon;}}),
+		Entrance(THE_MOON_TREE_ROOM, {[]{return CanGoToMoon && CanPlay(SongOfTime);}}),
 	});
 
 	areaTable[LAUNDRY_POOL] = Area("Laundry Pool", "Laundry Pool", LAUNDRY_POOL, {
