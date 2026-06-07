@@ -34,7 +34,7 @@ void PrintTopScreen()
 	consoleSelect(&topScreen);
 	consoleClear();
 	printf("\x1b[2;11H%sMajoras Mask 3D Randomizer%s", MEGANTA, RESET);
-	printf("\x1b[3;18H%s%s-%s%s",MEGANTA, RANDOMIZER_VERSION, COMMIT_NUMBER, RESET);
+	printf("\x1b[3;18H%s%s%s",MEGANTA, RANDOMIZER_VERSION, RESET);
 	printf("\x1b[4;10HA/B/D-pad: Navigate Menu\n");
 	printf("			Select: Exit to Homebrew Menu\n");
 	printf("				 Y: New Random Seed\n");

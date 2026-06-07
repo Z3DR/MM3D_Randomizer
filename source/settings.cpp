@@ -22,7 +22,7 @@ using namespace game::pad;
 
 namespace Settings {
   std::string seed;
-  std::string version = RANDOMIZER_VERSION "-" COMMIT_NUMBER;
+  std::string version = RANDOMIZER_VERSION;
   std::array<u8, 5> hashIconIndexes;
 
 
