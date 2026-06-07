@@ -99,6 +99,7 @@ namespace Settings {
   //Option LogicGrottosWithoutAgony         = LogicTrick(" Grotto Access\n   w/o Shard of Agony",       LogicGrottosWithoutAgonyDesc);
   std::vector<Option *> trickOptions = {
     &ToggleAllTricks
+
     //&LogicGrottosWithoutAgony,
    };
     /*To-Do Glitches*/
@@ -199,7 +200,7 @@ namespace Settings {
     &StartingNutCapacity,
   };
   std::vector<Option*> startingInventoryInventory = {
-    &StartingOcarina,
+    //&StartingOcarina,
     &StartingNotebook,
     &StartingBombBag,
     &StartingBombchus,
@@ -264,8 +265,8 @@ namespace Settings {
   };
 
   std::vector<Option*> startingInventoryUpgrades = {
-    &StartingKokiriSword,
-    &StartingShield,
+    //&StartingKokiriSword,
+    //&StartingShield,
     &StartingWallet,
     &StartingHealth,
     &StartingMagicMeter,
@@ -310,29 +311,58 @@ namespace Settings {
   Option ShuffleBombersNotebook = Option::Bool("Shuffle Notebook",      {"Off", "On"},                                       {shuffleBombersNotebookDesc});
   Option ShuffleMoonItems       = Option::Bool("Shuffle Moon Items",    {"Off", "On"},                                       {shuffleMoonItemsDesc});
   Option ShuffleFierceDeity     = Option::Bool("Shuffle Fierce Deity",  {"Off", "On"},                                       {shuffleFierceDeityDesc});
-  std::vector<Option*> shuffleItemOptions = {
-      &ShuffleMainInventory,
-      //&ShuffleKokiriSword, --redundant
-      //&ShuffleStartingShield, --redundant
-      &ShuffleMasks,
-      &ShuffleTransformation,
-      &ShufflePiecesOfHeart,
-      &ShuffleSongs,
-      &ShuffleSoaring,
-      &ShuffleSongOfTime,
-      //&Shopsanity,
-      &Tokensanity,
-      &ShuffleMerchants,
-      &ShuffleTradeItems,
-      &ShuffleGFRewards,
-      //&ShuffleCows,
-      //&ShuffleOcarinas,
-      &ShuffleTingleMaps,
-      //&ShuffleMagicBeans,
-      &ShuffleBombersNotebook,
-      &ShuffleMoonItems,
-      &ShuffleFierceDeity,
+  // std::vector<Option*> shuffleItemOptions = {
+  //     &ShuffleMainInventory,
+  //     //&ShuffleKokiriSword, --redundant
+  //     //&ShuffleStartingShield, --redundant
+  //     &ShuffleMasks,
+  //     &ShuffleTransformation,
+  //     &ShufflePiecesOfHeart,
+  //     &ShuffleSongs,
+  //     &ShuffleSoaring,
+  //     &ShuffleSongOfTime,
+  //     //&Shopsanity,
+  //     &Tokensanity,
+  //     &ShuffleMerchants,
+  //     &ShuffleTradeItems,
+  //     &ShuffleGFRewards,
+  //     //&ShuffleCows,
+  //     //&ShuffleOcarinas,
+  //     &ShuffleTingleMaps,
+  //     //&ShuffleMagicBeans,
+  //     &ShuffleBombersNotebook,
+  //     &ShuffleMoonItems,
+  //     &ShuffleFierceDeity,
+  // };
+
+  //New Menus - Splitting options for smaller menus
+  std::vector<Option*> shuffleMajorItems = {
+    &ShuffleMainInventory,
+    &ShuffleMasks,
+    &ShuffleTransformation,
+    &StartingKokiriSword,
+    &StartingShield,
+    &StartingOcarina,
+    &ShufflePiecesOfHeart,
+    &ShuffleSongs,
+    &ShuffleSoaring,
+    &ShuffleSongOfTime,
+    &Tokensanity,
+    //&Shopsanity,
+    &ShuffleGFRewards,
   };
+
+  std::vector<Option*> shuffleSideQuestItems = {
+    &ShuffleMerchants,
+    &ShuffleTradeItems,
+    &ShuffleTingleMaps,
+    &ShuffleBombersNotebook,
+    //&ShuffleCows,
+    //&ShuffleMagicBeans,
+    &ShuffleMoonItems,
+    &ShuffleFierceDeity,
+  };
+
   //Shuffle Dungeon Items
   Option RandomizeDungeon       = Option::U8("Randomize Settings", { "No","Yes"},                                                                      { dungeonRandomize},                                                                                                             OptionCategory::Toggle);
   Option MapsAndCompasses       = Option::U8("Maps/Compasses",     { "Vanilla", "Start With", "Own Dungeon", "Any Dungeon", "Overworld", "Anywhere" }, { mapCompassVanilla, mapCompassStartWith, mapCompassOwnDungeon, mapCompassAnyDungeon, mapCompassOverworld, mapCompassAnywhere }, OptionCategory::Setting, (u8)MapsAndCompassesSetting::MAPSANDCOMPASSES_VANILLA);
@@ -604,6 +634,17 @@ namespace Settings {
     &startingInventoryRemainsMenu,
     &startingInventoryTokensMenu,
   };
+  Menu shuffleMajorItemsMenu = Menu::SubMenu("Major Items", &shuffleMajorItems);
+  Menu shuffleSideQuestMenu = Menu::SubMenu("Side Quest Items", &shuffleSideQuestItems);
+  std::vector<Menu*> shuffleItemsMenu = {
+    &shuffleMajorItemsMenu,
+    &shuffleSideQuestMenu,
+    &shuffleDungeon,
+    &itemPool,
+    &startingInventory,
+
+  };
+
   //Menu mainSettings = Menu::SubMenu("Main Settings", &mainSettingsOptions);
   Menu comfort = Menu::SubMenu("Comfort Settings", &comfortOptions);
   Menu restorationSettings = Menu::SubMenu("Restoration Settings", &restorationOptions);
@@ -611,20 +652,21 @@ namespace Settings {
   Menu settingsPresets          = Menu::SubMenu("Settings Presets",           &settingsPresetItems);
   Menu cosmetics                = Menu::SubMenu("Cosmetic Settings",          &cosmeticOptions);
   Menu generateRandomizer       = Menu::Action ("Generate Randomizer",        GENERATE_MODE);
-  Menu shuffleItems             = Menu::SubMenu("Item Shuffle Settings",      &shuffleItemOptions);
+  Menu shuffleItems             = Menu::SubMenu("Item Shuffle Settings",      &shuffleItemsMenu, false);
   Menu shuffleDungeon           = Menu::SubMenu("Dungeon Settings",           &dungeonSettingsOptions);
   Menu itemPool                 = Menu::SubMenu("Item Pool Settings",         &itemPoolSettingsOptions);
   Menu detailLogic              = Menu::SubMenu("Detailed Logic Settings",    &detailLogicSettings);
   Menu customInputs             = Menu::SubMenu("Custom Button Mapping",      &customButtons);
+
 
   //adding a menu with no options crashes, might fix later
   std::vector<Menu *> mainMenu = {
     &logicSettings,
     &gameSettings,
     &shuffleItems,
-    &shuffleDungeon,
-    &itemPool,
-    &startingInventory,
+    //&shuffleDungeon,
+    //&itemPool,
+    //&startingInventory,
     &detailLogic,
     &comfort,
     &restorationSettings,
@@ -1095,7 +1137,10 @@ namespace Settings {
     for (auto op : glitchOptions) {
       op->SetToDefault();
     }
-    for (auto op : shuffleItemOptions) {
+    for (auto op : shuffleMajorItems) {
+        op->SetToDefault();
+    }
+    for (auto op : shuffleSideQuestItems) {
         op->SetToDefault();
     }
     for (auto op : otherSettingsOptions) {
@@ -1591,28 +1636,11 @@ namespace Settings {
         LanguageSelect.SetSelectedIndex(LANGUAGE_NONE);
     }
     
-    //Show or Hide Shuffle Song of Soaring / Song of Time if Song Shuffle is on / off
-    if (ShuffleSongs.Value<u8>() == u8(0)) {
-      ShuffleSoaring.Hide();
-      ShuffleSongOfTime.Hide();
-    }
-    else {
-      ShuffleSoaring.Unhide();
-      ShuffleSoaring.Unlock();
-      ShuffleSongOfTime.Unhide();
-      ShuffleSongOfTime.Unlock();
-    }
-    //if starting with Song of Soaring or Song of Time set settings to Vanilla and hide and lock
-    if (StartingSongOfSoaring.Value<u8>() == u8(1)) {
-      ShuffleSoaring.SetSelectedIndex(0);
-      ShuffleSoaring.Hide();
-      ShuffleSoaring.Lock();
-    }
-    if (StartingSongOfTime.Value<u8>() == u8(1)) {
-      ShuffleSongOfTime.SetSelectedIndex(0);
-      ShuffleSongOfTime.Hide();
-      ShuffleSongOfTime.Lock();
-    }
+    //There was code here to force set Song of Soaring and Song of Time to off if the overarching SongSanity setting was set to off.
+    //I chose not to include it because it allows for the choice to randomize only those two songs outside of the other songs grouped
+    //into Songsanity since they are already coded in item_pool.cpp to be added to the pool separately based on these settings anyways
+    //so locking them out just removes that choice which is less fun than allowing it.
+   
 
     ResolveExcludedLocationConflicts();
   }

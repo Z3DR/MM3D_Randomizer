@@ -1017,11 +1017,11 @@ void GenerateItemPool() {
 	else {
 		PlaceVanillaSongs();
 	}
-	
-	if (StartingSongOfHealing.Value<u8>() == u8(1)){//if starting with song of healing fill deku mask and notebook spots as they are unobtainable
-		PlaceItemInLocation(HMS_DEKU_MASK, GREEN_RUPEE);
-		PlaceItemInLocation(HMS_BOMBERS_NOTEBOOK, GREEN_RUPEE);
-	}
+	//No Longer Needed since Song of Healing is now randomized and the check is always obtainable even when starting with SoH
+	// if (StartingSongOfHealing.Value<u8>() == u8(1)){//if starting with song of healing fill deku mask and notebook spots as they are unobtainable
+	// 	PlaceItemInLocation(HMS_DEKU_MASK, GREEN_RUPEE);
+	// 	PlaceItemInLocation(HMS_BOMBERS_NOTEBOOK, GREEN_RUPEE);
+	// }
 	
 	//GREAT FAIRY SHUFFLE
 	if(ShuffleGFRewards.Is((u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA)){

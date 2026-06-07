@@ -569,6 +569,7 @@ namespace Settings {
   extern Menu gameSettings;
 
   extern Option RepeatableItemsOnTokens;
+  extern std::vector<Menu *> shuffleItemsMenu;
 
 }
   
