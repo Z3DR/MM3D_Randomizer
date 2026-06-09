@@ -874,12 +874,12 @@ int Fill() {
         RandomizeDungeonItems();
 
         CitraPrint("Trying to place songs");
+
         //Place Songs before inventory to prevent song locations from being used
-        
+        //get Songs in pool
+        std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
         //If Shuffled in Song Locations restrict location pool to only song locations
         //If Song of Time is shuffled do that first with a restricted location pool to prevent softlocks
-        //Also makes sure that Song of Time isn't fitered out of the pool by building the songs vector
-        //first as was done in older versions
         if (ShuffleSongOfTime) {
             std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
             std::vector<ItemKey> SoTItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetHintKey() == SONG_OF_TIME; });
@@ -897,11 +897,6 @@ int Fill() {
             AssumedFill(ocarinaItem, ocarinaLocations, true);
             NoRepeatOnTokens = false;
         }
-        
-        //get Songs in pool after placing Song of Time so it doesn't get placed
-        //in a location outside the cNoOcarinaStart category
-        std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
-
         //If Songs are at song locations get all song locations and place them there
         if (ShuffleSongs.Value<u8>() == u8(1)){
             std::vector<LocationKey> songLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSong);});
