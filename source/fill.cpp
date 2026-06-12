@@ -882,7 +882,8 @@ int Fill() {
         //If Song of Time is shuffled do that first with a restricted location pool to prevent softlocks
         if (ShuffleSongOfTime) {
             std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
-            std::vector<ItemKey> SoTItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetHintKey() == SONG_OF_TIME; });
+            //Pull Song of Time from songs pool instead of main pool so we actually get it placed first
+            std::vector<ItemKey> SoTItem = FilterAndEraseFromPool(songs, [](const ItemKey i) { return ItemTable(i).GetHintKey() == SONG_OF_TIME; });
             NoRepeatOnTokens = true;
             AssumedFill(SoTItem, ocarinaLocations, true);
             NoRepeatOnTokens = false;
