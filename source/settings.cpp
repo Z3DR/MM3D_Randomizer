@@ -419,7 +419,7 @@ namespace Settings {
       &HintDistribution,
       &CompassShowWoTH,
       &DamageMultiplier,
-      //&ChestAnimations,
+      &ChestAnimations,
       &ChestSize,
       //&ChangeOverworldItems,
       //&MenuOpeningButton,
