@@ -344,25 +344,23 @@ bool WriteAllPatches() {
   }
   CopyFile(sdmcArchive, (lumaSdDir + "/exheader.bin").c_str(), filePath);
 
-  /*--------------------------
-  |       custom assets      |
-  --------------------------*/
-
-  //Cosmetics::Color_RGB childTunicColor  = Cosmetics::HexStrToColorRGB(Settings::finalChildTunicColor);
-  
+  /*-------------------
+  | Custom Assets LZS |
+  -------------------*/
 
   // Delete assets if it exists
-  /*Handle assetsOut;
-  std::string assetsOutPath = lumaSdDir + "/romfs/actor/zelda_gi_melody.zar";
-  const char* assetsInPath = "romfs:/zelda_gi_melody.zar";
-  FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, assetsOutPath.c_str()));
-
+  Handle customAssetsOut;
+  const char *customAssetsInPath = "romfs:/zelda2_custom_data.gar.lzs";
+  std::string customAssetsOutPath = lumaSdDir + "/romfs/actors/zelda2_custom_data.gar.lzs";
+  FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, customAssetsOutPath.c_str()));
   // Open assets destination
-  if (!R_SUCCEEDED(res = FSUSER_OpenFile(&assetsOut, sdmcArchive, fsMakePath(PATH_ASCII, assetsOutPath.c_str()), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
+  if (!R_SUCCEEDED(res = FSUSER_OpenFile(&customAssetsOut, sdmcArchive, fsMakePath(PATH_ASCII, customAssetsOutPath.c_str()), FS_OPEN_WRITE | FS_OPEN_CREATE, 0)))
+  {
     return false;
   }
 
-  if (auto file = FILEPtr{std::fopen(assetsInPath, "r"), std::fclose}) {
+  if (auto file = FILEPtr{std::fopen(customAssetsInPath, "r"), std::fclose})
+  {
     // obtain assets size
     fseek(file.get(), 0, SEEK_END);
     const auto lSize = static_cast<size_t>(ftell(file.get()));
@@ -372,21 +370,14 @@ bool WriteAllPatches() {
     std::vector<char> buffer(lSize);
     fread(buffer.data(), 1, buffer.size(), file.get());
 
-    // edit assets as needed
-    //const size_t childTunicOffsetInZAR = 0x1E7FC;
-
-    //WriteFloatToBuffer(buffer, childTunicColor.r, childTunicOffsetInZAR + 0x70);
-    //WriteFloatToBuffer(buffer, childTunicColor.g, childTunicOffsetInZAR + 0x88);
-    //WriteFloatToBuffer(buffer, childTunicColor.b, childTunicOffsetInZAR + 0xA0);
-
     // Write the assets to final destination
-    if (!R_SUCCEEDED(res = FSFILE_Write(assetsOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
+    if (!R_SUCCEEDED(res = FSFILE_Write(customAssetsOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH)))
+    {
       return false;
     }
   }
-  FSFILE_Close(assetsOut);
 
-  //FSUSER_CloseArchive(sdmcArchive);*/
+  FSFILE_Close(customAssetsOut);
 
   /*-------------------
   |  TITLESCREEN LZS  |
