@@ -670,3 +670,27 @@ string_view MoonRemainsRequiredDesc = "Select the number of Boss Remains needed 
                                       "enter the moon by playing Oath to Order on the roof";//
 string_view MajoraRemainsRequiredDesc="Select the number of Boss Remains needed to \n"     //
                                       "Fight Majora";                                      //
+/*------------------------------                                                           //
+|     STARTING INVENTORY      |                                                            //
+------------------------------*/                                                           //
+string_view startingSwordNoneDesc     = "Start with NO sword.\n"                           //
+                                        "Starting with no sword will add 3\n"              //
+                                        "progressive sword upgrades to the item pool.";    //
+string_view startingSwordKokiriDesc   = "Start with the Kokiri Sword.\n"                   //
+                                        "Starting with the Kokiri Sword will add 2 \n"     //
+                                        "progressive sword upgrades to the item pool.";    //
+string_view startingSwordRazorDesc    = "Start with the Razor Sword.\n"                    //
+                                        "Starting with the Razor Sword will add 1 \n"      //
+                                        "progressive sword upgrade to the item pool.";     //
+string_view startingSwordGildedDesc   = "Start with the Gilded Sword.\n"                   //
+                                        "Starting with the Gilded Sword will add 0 \n"     //
+                                        "progressive sword upgrades to the item pool.";    //
+string_view startingShieldNoneDesc    = "Start with NO shield.\n"                          //
+                                        "Starting with no shield will add atleast 1 \n"    //
+                                        "Hero Shield and 1 Mirror Shield to the item pool.";//
+string_view startingShieldHerosDesc   = "Start with the Hero's Shield.\n"                  //
+                                        "Starting with the Hero's Shield will add 1 \n"    //
+                                        "Mirror Shield to the item pool.";                 //
+string_view startingShieldMirrorDesc  = "Start with the Mirror Shield.\n"                    //
+                                        "Starting with the Mirror Shield will not add any \n"//
+                                        "additional shields to the item pool.";            //

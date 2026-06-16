@@ -113,7 +113,7 @@ namespace Settings {
   Option StartingMaxRupees         = Option::Bool("Start with Max Rupees",  { "No",               "Yes" },                                                     { startWithMaxRupeesDesc });
   Option StartingInventoryToggle   = Option::U8("Inventory",                { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingNutCapacity       = Option::U8("Deku Nuts",                { "None",             "20 Deku Nuts",     "30 Deku Nuts",     "40 Deku Nuts" },    { "" });
-  Option StartingOcarina           = Option::U8("Ocarina",                  { "None",  "Ocarina of Time" },                                                    { ocarinasDesc }, OptionCategory::Setting, 1);
+  Option StartingOcarina           = Option::U8("Shuffle Ocarina",        { "No",  "Yes" },                                                                 { ocarinasDesc }, OptionCategory::Setting, 1);
   Option StartingNotebook          = Option::U8("Bomber's Notebook",      { "None",             "B. Notebook"},                                              { "" });
   Option StartingBombBag           = Option::U8("Bomb Bag",               { "None",             "Bomb Bag 20",      "Bomb Bag 30",      "Bomb Bag 40" },     { "" });
   Option StartingBombchus          = Option::U8("Bombchus",               { "None",             "Bombchus" },                                                { "" });
@@ -143,15 +143,15 @@ namespace Settings {
   Option StartingSongOfSoaring     = Option::U8("Song of Soaring",        { "None",             "Song of Soaring" },                                         { "" });
   Option StartingSongOfTime        = Option::U8("Song of Time",           { "None",             "Song of Time" },                                            { "" });
   Option StartingGoronIntro        = Option::U8("Goron Lullaby Intro",    { "None",             "Lullaby Intro" },                                           { "" });
-  Option StartingUpgradesToggle    = Option::U8("Equipment & Upgrades",     { "All Off",          "All On",           "Choose" },                              { "" });
-  Option StartingKokiriSword       = Option::U8("Sword",                  { "Kokiri Sword",     "Razor Sword", "Gilded Sword", "None" },                     { "" }, OptionCategory::Setting, (u8)StartingSwordSetting::STARTINGSWORD_KOKIRI);//1U = StartingSwordSetting::STARTINGSWORD_KOKIRI
+  Option StartingUpgradesToggle    = Option::U8("Equipment & Upgrades",   { "All Off",          "All On",           "Choose" },                              { "" });
+  Option StartingKokiriSword       = Option::U8("Starting Sword",         { "Kokiri Sword",     "Razor Sword", "Gilded Sword", "None" },                     { startingSwordKokiriDesc, startingSwordRazorDesc, startingSwordGildedDesc, startingSwordNoneDesc }, OptionCategory::Setting, (u8)StartingSwordSetting::STARTINGSWORD_KOKIRI);//1U = StartingSwordSetting::STARTINGSWORD_KOKIRI
   Option StartingGreatFairySword   = Option::U8("Great Fairy Sword",      { "None",             "G. F. S." },                                                { "" });
-  Option StartingShield            = Option::U8("Shield",                 { "Hero's Shield",    "Mirror Shield", "None" },                                   { "" }, OptionCategory::Setting, (u8)StartingSheildSetting::STARTINGSHIELD_HERO);//1U = StartingShieldSetting::STARTINGSHIELD_HERO
+  Option StartingShield            = Option::U8("Starting Shield",        { "Hero's Shield",    "Mirror Shield", "None" },                                   { startingShieldHerosDesc, startingShieldMirrorDesc, startingShieldNoneDesc }, OptionCategory::Setting, (u8)StartingSheildSetting::STARTINGSHIELD_HERO);//1U = StartingShieldSetting::STARTINGSHIELD_HERO
   Option StartingWallet            = Option::U8("Wallet Upgrade",         { "None",          "Adult's Wallet",   "Giant's Wallet"/*,  "Tycoon's Wallet"*/ }, { "" }, OptionCategory::Setting, (u8)StartingWalletSetting::STARTINGWALLET_NONE);
   Option StartingHealth            = Option::U8("Health",                 healthOptions,                                                                     { "" });
   Option StartingMagicMeter        = Option::U8("Magic Meter",            { "None",             "Single Magic",     "Double Magic" },                        { "" });
   Option StartingDoubleDefense     = Option::U8("Double Defense",         { "None",             "Double Defense" },                                          { "" });
-  Option StartingQuestToggle       = Option::U8("Quest Items",              { "All Off",          "All On",           "Choose" },                              { "" });
+  Option StartingQuestToggle       = Option::U8("Quest Items",            { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingOdolwaRemains     = Option::U8("Odolwa's Remains",       { "None",             "Odolwa's R." },                                             { "" });
   Option StartingGohtRemains       = Option::U8("Goht's Remains",         { "None",             "Goht's R." },                                               { "" });
   Option StartingGyorgRemains      = Option::U8("Gyorg's Remains",        { "None",             "Gyorg's R." },                                              { "" });
