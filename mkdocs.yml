@@ -1,0 +1,29 @@
+site_name: "The Legend of Zelda: Majora's Mask 3D Randomizer"
+site_url: https://z3dr.github.io/MM3D_Randomizer/
+theme:
+  name: material
+  palette:
+  # Palette toggle for dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - scheme: default
+      primary: deep purple
+      accent: indigo
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    
+  features:
+    - header.autohide
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  
