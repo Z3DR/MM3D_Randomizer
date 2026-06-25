@@ -35,21 +35,7 @@ Want to discuss the randomizer with others? Join our [Discord server](https://di
 
 ## Installation
 
-You can download the latest stable version of the randomizer Here. You can use either the ```MM3D_Randomizer.3dsx``` or ```MM3D_Randomizer.cia``` files provided to generate randomizer patches.
-
-Please ensure that you are playing on the USA version of Majora's Mask 3D, as it is the only version supported by the randomizer. You can use either the cartridge version or the installed digital version. In all instructions below, if a directory doesn't exist, just create it.
-
-### On 3DS Console with Luma3DS
-On your SD card, copy ```MM3D_Randomizer.3dsx``` to ```SD:/3ds/``` or copy ```MM3D_Randomizer.cia``` to ```SD:/cias/```. When using the ```.3dsx``` file, you will need to launch the randomzier app through the homebrew menu every time you wish to launch it. When using the ```.cia``` file, you will need to install the file using the FBI app, so that the randomizer app appears directly on the 3DS home menu. Alternatively, if your 3DS is connected to the internet, you can use FBI to scan the QR code for either the ```.3dsx``` file or the ```.cia``` file, and the randomizer will be downloaded and installed automatically.
-
-Power on your 3DS while holding the SELECT key to launch the Luma3DS menu. Make sure that ```Enable game patching``` is turned on, then press START to save and launch the home menu. You only have to do this once.
-
-To generate a playthrough, run Majora's Mask 3D Randomizer from the homebrew launcher. Navigate the menus to choose the settings for your playthrough, and finish by selecting ```Generate Randomizer```. When prompted, make sure to select that you are playing on a 3DS console. After the app has finished, launch Majora's Mask 3D from the home menu and enjoy your playthough!
-
-If the 3DS crashes when you launch the game, you probably need to update Luma3DS.
-
-### On Citra
-Use Citra to launch ```MM3D_Randomizer.3dsx```. Navigate the menus to choose the settings for your playthrough, and finish by selecting ```Generate Randomizer```. When prompted, make sure to select that you are playing on Citra emulator. After the app has finished, on the Citra window, click on ```File->Open Citra Folder```. From this folder, navigate to ```\sdmc\luma\titles\0004000000125500```, and you should find files called ```code.ips```, ```exheader.bin```, and a folder called ```romfs```. In the Citra window, right-click on the installed copy of Majora's Mask 3D, and choose ```Open Mods Location```. (If you haven't installed MM3D, you can go to ```File->Open Citra Folder``` and then open up ```\load\mods\0004000000125500```.) Copy ```code.ips```, ```exheader.bin```, and ```romfs``` into this folder. Now, launch Majora's Mask 3D and enjoy your playthrough!
+Setup and installation can be found on our [documentation site](https://z3dr.github.io/MM3D_Randomizer/)
 
 ### Save Files
 Right now, save files are shared between any playthroughs you create and the base game. This means that you are responsible for managing your own save files. If you are playing on a 3DS, check out [Checkpoint](https://github.com/FlagBrew/Checkpoint/releases), an easy-to-use homebrew save manager.
@@ -71,8 +57,8 @@ Install the 3DS packages from [devkitPro](https://devkitpro.org/wiki/Getting_Sta
 A small portion of this project is done in python. If you decide to use the Msys2 console from devkitpro, you can install python using the command `pacman -S python` within Msys2.
 
 
-In the root folder, use ```make``` to build ```MM3D_Randomizer.3dsx```. Use ```make debug=1``` for extra debugging features, including extra items when starting a new file. In the case of problems, try using a ```make clean```.
-When making changes to any code in the `code` directory, you must use `make clean` before recompiling if you want your changes to be picked up.
+In the root folder, use the script `./linux_build_rando.sh` to build `MM3D_Randomizer.3dsx` and `MM3D_Randomizer.cia`. Use ```make debug=1``` for extra debugging features, including extra items when starting a new file. In the case of problems, try using a `make clean`.
+When making changes to any code in the `Z3DR/code` directory, you must use `make clean` before recompiling if you want your changes to be picked up. Please note that line 177 in `Makefile` may have to be commented out to avoid the build scripts from resetting the subrepo.  
 For faster compilation using multiple threads, you can use `make -j4` (in this example, the `4` is the number of threads being used).
 
 ## Reporting Bugs
