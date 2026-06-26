@@ -1,0 +1,26 @@
+name: Deploy MKDocs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v6.0.2
+        
+      - name: Setup Python
+        uses: actions/setup-python@v6.3.0
+        with:
+          python-version: '3.x'
+
+      - run: pip install mkdocs mkdocs-material
+
+      - run: mkdocs gh-deploy --force
