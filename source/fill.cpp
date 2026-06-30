@@ -808,9 +808,9 @@ int VanillaFill() {
     //Finish up
     GeneratePlaythrough();
     printf("Done");
-    printf("\x1b[9;10HCalculating Playthrough..."); 
+    printf("\x1b[9;10HCalculating Playthrough...                        "); 
     PareDownPlaythrough();
-    printf("Done                                    ");
+    printf("Done");
     printf("\x1b[10;10HCalculating Way of the Hero..."); 
     CalculateWotH();
     printf("Done");
@@ -841,9 +841,9 @@ int NoLogicFill() {
     FastFill(remainingPool, GetAllEmptyLocations(), false);
     GeneratePlaythrough();
     printf("Done");
-    printf("\x1b[9;10HCalculating Playthrough..."); 
+    printf("\x1b[9;10HCalculating Playthrough...                        "); 
     PareDownPlaythrough();
-    printf("Done                           ");
+    printf("Done");
     printf("\x1b[10;10HCalculating Way of the Hero..."); 
     CalculateWotH();
     printf("Done");
@@ -1134,9 +1134,9 @@ int Fill() {
         //Successful placement, produced beatable result
         if (!placementFailure && playthroughBeatable ) {
             printf("Done");
-            printf("\x1b[9;10HCalculating Playthrough..."); 
+            printf("\x1b[9;10HCalculating Playthrough...                        "); 
             PareDownPlaythrough();
-            printf("Done                        ");
+            printf("Done");
             printf("\x1b[10;10HCalculating Way of the Hero..."); 
             CalculateWotH();
             printf("Done");
