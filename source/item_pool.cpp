@@ -868,7 +868,7 @@ void GenerateItemPool() {
 	  0x4A, //ProgressiveSword
 	};
 	//Check song shuffle and dungeon reward shuffle just for ice traps
-	/*
+
 	if (ShuffleSongs.Value<u8>() != 0) {
 		//Push item ids for songs
 		IceTrapModels.push_back(0x4B);
@@ -877,10 +877,13 @@ void GenerateItemPool() {
 		IceTrapModels.push_back(0x4E);
 		IceTrapModels.push_back(0x4F);
 		IceTrapModels.push_back(0x51);
+		IceTrapModels.push_back(0x53);
 		IceTrapModels.push_back(0x54);
-		IceTrapModels.push_back(0x53); // should be song of time but not included yet
+		IceTrapModels.push_back(0x6C);
+		IceTrapModels.push_back(0x72);
+		IceTrapModels.push_back(0x73);
 		//IceTrapModels.push_back(0xC6);
-	}*/
+	}
 	if (ShuffleRewards.Value<u8>() != 0) {
 		//Push item ids for dungeon rewards
 		IceTrapModels.push_back(0x55);
