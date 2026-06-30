@@ -694,3 +694,8 @@ string_view startingShieldHerosDesc   = "Start with the Hero's Shield.\n"       
 string_view startingShieldMirrorDesc  = "Start with the Mirror Shield.\n"                    //
                                         "Starting with the Mirror Shield will not add any \n"//
                                         "additional shields to the item pool.";            //
+/*------------------------------                                                           //
+|       POSTMAN HAT            |                                                           //
+------------------------------*/                                                           //
+string_view showPostmanItemDesc      = "If set, the Postman's Hat model will be replaced \n"//
+                                        "with the item model of the randomized item.";     //

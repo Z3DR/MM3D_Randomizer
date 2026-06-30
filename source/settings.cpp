@@ -568,6 +568,7 @@ namespace Settings {
 
   Option ColoredKeys =     Option::Bool("Colored Small Keys", {"Off", "On"}, {coloredKeysDesc}, OptionCategory::Cosmetic);
   Option ColoredBossKeys = Option::Bool("Colored Boss Keys",  {"Off", "On"}, {coloredBossKeysDesc},  OptionCategory::Cosmetic);
+  Option ShowPostmanItem = Option::Bool("Show Postman Item", {"Off", "On"}, {showPostmanItemDesc}, OptionCategory::Cosmetic);
 
   static std::vector<std::string> fanfareOptions = {"Off", "Only Fanfares", "Fanfares +\n                         Ocarina Music"};
   static std::vector<std::string_view> fanfareDescriptions = {fanfaresOffDesc, onlyFanfaresDesc, fanfaresOcarinaDesc};
@@ -579,14 +580,15 @@ namespace Settings {
   
 //TO-DO Heart Color, Magic Color, Tatl Color
   std::vector<Option *> cosmeticOptions = {
-    &CustomTunicColors,
-    &ChildTunicColor,
+    //&CustomTunicColors,
+    //&ChildTunicColor,
     &ColoredKeys,
-    &ColoredBossKeys,
- //   &ShuffleMusic,
- //   &ShuffleBGM,
- //   &ShuffleFanfares,
- //   &ShuffleOcaMusic,
+    //&ColoredBossKeys,
+    &ShowPostmanItem,
+    //&ShuffleMusic,
+    //&ShuffleBGM,
+    //&ShuffleFanfares,
+    //&ShuffleOcaMusic,
   };
 
  
@@ -673,7 +675,7 @@ namespace Settings {
     &cutsceneSettings,
     &otherSettings,
     &customInputs,
-    //&cosmetics,
+    &cosmetics,
     &settingsPresets,
     &generateRandomizer,
   };
@@ -772,6 +774,7 @@ namespace Settings {
     ctx.customTunicColors = (CustomTunicColors) ? 1 : 0;
     ctx.coloredKeys = (ColoredKeys) ? 1 : 0;
     ctx.coloredBossKeys = (ColoredBossKeys) ? 1 : 0;
+    ctx.showPostmanItem = (ShowPostmanItem) ? 1 : 0;
     //ctx.shuffleMusic = (ShuffleMusic)?1:0;
     //ctx.shuffleBGM = (ShuffleBGM)?1:0;
     //ctx.shuffleFanfare = ShuffleFanfares.Value<u8>();
