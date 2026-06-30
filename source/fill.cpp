@@ -810,7 +810,7 @@ int VanillaFill() {
     printf("Done");
     printf("\x1b[9;10HCalculating Playthrough..."); 
     PareDownPlaythrough();
-    printf("Done");
+    printf("Done                                    ");
     printf("\x1b[10;10HCalculating Way of the Hero..."); 
     CalculateWotH();
     printf("Done");
@@ -843,7 +843,7 @@ int NoLogicFill() {
     printf("Done");
     printf("\x1b[9;10HCalculating Playthrough..."); 
     PareDownPlaythrough();
-    printf("Done");
+    printf("Done                           ");
     printf("\x1b[10;10HCalculating Way of the Hero..."); 
     CalculateWotH();
     printf("Done");
@@ -909,7 +909,7 @@ int Fill() {
             AssumedFill(SoTItem, ocarinaLocations, true);
             NoRepeatOnTokens = false;
         }
-        //If Ocarina is shuffled place that first 
+        //If Ocarina is shuffled place that next
         if (StartingOcarina.Value<u8>() == 0) {
             //Get acceptable Ocarina Locations
             std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
@@ -1136,7 +1136,7 @@ int Fill() {
             printf("Done");
             printf("\x1b[9;10HCalculating Playthrough..."); 
             PareDownPlaythrough();
-            printf("Done");
+            printf("Done                        ");
             printf("\x1b[10;10HCalculating Way of the Hero..."); 
             CalculateWotH();
             printf("Done");

@@ -596,8 +596,8 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(S_CLOCK_TOWN, {[]{return true;}}),
-		Entrance(THE_MOON_TREE_ROOM, {[]{return CanGoToMoon && CanPlay(SongOfTime);}}),
+		Entrance(S_CLOCK_TOWN, {[]{return SongOfTime;}}),
+		Entrance(THE_MOON_TREE_ROOM, {[]{return CanGoToMoon && SongOfTime;}}),
 	});
 
 	areaTable[LAUNDRY_POOL] = Area("Laundry Pool", "Laundry Pool", LAUNDRY_POOL, {
@@ -3725,7 +3725,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(S_CLOCK_TOWN, {[]{return true;}}),
+		Entrance(S_CLOCK_TOWN, {[]{return CanPlay(SongOfTime);}}),
 		Entrance(THE_MOON_BOSS_ROOM, {[]{return RemainsForMajora;}}),
 		Entrance(THE_MOON_DEKU_TRIAL, {[]{return (TotalMaskCount() >= 1);}}),
 		Entrance(THE_MOON_GORON_TRIAL, {[]{return (TotalMaskCount() >= 2);}}),
@@ -3947,7 +3947,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(S_CLOCK_TOWN, {[]{return true;}}),//just play SoT
+		Entrance(S_CLOCK_TOWN, {[]{return CanPlay(SongOfTime);}}),//just play SoT
 	});
 
 
