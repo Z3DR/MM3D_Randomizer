@@ -1071,6 +1071,8 @@ std::set<ItemOverride, ItemOverride_Compare> overrides = {};
 std::vector<std::vector<LocationKey>> playthroughLocations;
 std::vector<LocationKey> wothLocations;
 bool playthroughBeatable = false;
+bool ocarinaObtainable = false;
+bool songOfTimeObtainable = false;
 bool allLocationsReachable = false;
 bool showItemProgress = false;
 
