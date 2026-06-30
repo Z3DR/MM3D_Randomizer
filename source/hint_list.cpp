@@ -331,7 +331,7 @@ void HintTable_Init() {
     );
     hintTable[GIANTS_MASK] = HintText::Item({
             //obscure
-            Text{"a growth spur", "une poussée de croissance", "un súbito crecimiento"}
+            Text{"a growth spurt", "une poussée de croissance", "un súbito crecimiento"}
         },  //clear
             Text{"the Giant's Mask", "le masque du géant", "la Máscara del gigante"}
     );

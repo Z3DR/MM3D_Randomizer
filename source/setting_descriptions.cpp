@@ -512,11 +512,11 @@ string_view shuffleCowsDesc           = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |       SHUFFLE OCARINAS       |                                                           //
 ------------------------------*/                                                           //
-string_view ocarinasDesc              = "Setting this to None shuffles the Ocarina of Time\n"//
+string_view ocarinasDesc              = "Setting this to No shuffles the Ocarina of Time\n"//
                                         "into the item pool."     					       //
                                         "\n"                                               //
                                         "This will require finding an Ocarina before being\n"
-                                        "able to play songs. or restart the days";         //
+                                        "able to play songs or restart the cycle";         //
 
 /*------------------------------                                                           //
 |        FREE SCARECROW        |                                                           //
