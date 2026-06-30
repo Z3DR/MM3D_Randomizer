@@ -145,8 +145,14 @@ bool LoadPreset(std::string_view presetName, OptionCategory category) {
       return false;
   }
 
+  // Do an additional check to see if the settings is a null element.
+  // This returns a null ptr so we can let it be known that it's an old
+  // template file from before cosmetics were being generated.
+  if (preset.FirstChildElement("settings")->GetText() == nullptr)
+    return false;
+
   XMLElement* curNode = rootNode->FirstChildElement();
-  
+
   for (Menu* menu : Settings::GetAllMenus()) {
     if (menu->mode != OPTION_SUB_MENU) {
       continue;
