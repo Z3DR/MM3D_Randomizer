@@ -1,8 +1,7 @@
 # Latest Nightly Changes  
 
 ## Features
-- None, small bug fixes only!
+- Add new models to ice traps when songsanity is enabled.
 
 ## Fixes
-- Adjust the XML loader to look for empty elementss before reading to avoid crashing.
-- Adjust Song of Time Logic to not run for No Logic seeds.
+- Properly draw ice traps and have no item overhead when retrieving said ice traps.
