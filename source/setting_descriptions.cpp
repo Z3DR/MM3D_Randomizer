@@ -512,11 +512,11 @@ string_view shuffleCowsDesc           = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |       SHUFFLE OCARINAS       |                                                           //
 ------------------------------*/                                                           //
-string_view ocarinasDesc              = "Setting this to None shuffles the Ocarina of Time\n"//
+string_view ocarinasDesc              = "Setting this to No shuffles the Ocarina of Time\n"//
                                         "into the item pool."     					       //
                                         "\n"                                               //
                                         "This will require finding an Ocarina before being\n"
-                                        "able to play songs. or restart the days";         //
+                                        "able to play songs or restart the cycle";         //
 
 /*------------------------------                                                           //
 |        FREE SCARECROW        |                                                           //
@@ -557,16 +557,15 @@ string_view chestSizeDesc             = "This option will change the appearance 
 /*------------------------------                                                           //
 |         COLORED KEYS         |                                                           //
 ------------------------------*/                                                           //
-string_view coloredKeysDesc           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "If set, small key models will be colored\n"       //
-                                        "differently depending on which dungeon they can be"
-                                        "used in. Forest Temple keys are green. Fire Temple"
-                                        "keys are red. etc.";                              //
+string_view coloredKeysDesc           = "If set, small key models will be colored\n"       //
+                                        "differently depending on which dungeon they\n"    //
+                                        "can be used in. Woodfall Temple keys are green.\n"//
+                                        "Snowhead Temple keys are pink. etc.";             //
 string_view coloredBossKeysDesc       = "**OPTION CURRENTLY WIP**\n"                       //
                                         "If set, boss key models will be colored\n"        //
                                         "differently depending on which dungeon they can be"
-                                        "used in. The Forest Temple boss key is green. The "
-                                        "Fire Temple boss key is red. etc.";               //
+                                        "used in. The Woodfall Temple boss key is green. The "
+                                        "Snowhead Temple boss key is pink. etc.";          //
 /*------------------------------                                                           //
 |        SHUFFLE MUSIC         |                                                           //
 ------------------------------*/                                                           //
@@ -694,3 +693,9 @@ string_view startingShieldHerosDesc   = "Start with the Hero's Shield.\n"       
 string_view startingShieldMirrorDesc  = "Start with the Mirror Shield.\n"                    //
                                         "Starting with the Mirror Shield will not add any \n"//
                                         "additional shields to the item pool.";            //
+/*------------------------------                                                           //
+|       POSTMAN HAT            |                                                           //
+------------------------------*/                                                           //
+string_view showPostmanItemDesc      = "Visually shows the reward for the \n"              //
+                                       "Postman's Freedom quest line \n"                   //
+                                       "above the Postman's head.";                        //

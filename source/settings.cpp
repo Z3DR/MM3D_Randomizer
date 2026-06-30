@@ -113,7 +113,7 @@ namespace Settings {
   Option StartingMaxRupees         = Option::Bool("Start with Max Rupees",  { "No",               "Yes" },                                                     { startWithMaxRupeesDesc });
   Option StartingInventoryToggle   = Option::U8("Inventory",                { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingNutCapacity       = Option::U8("Deku Nuts",                { "None",             "20 Deku Nuts",     "30 Deku Nuts",     "40 Deku Nuts" },    { "" });
-  Option StartingOcarina           = Option::U8("Shuffle Ocarina",        { "No",  "Yes" },                                                                 { ocarinasDesc }, OptionCategory::Setting, 1);
+  Option StartingOcarina           = Option::U8("Start With Ocarina",     { "No",  "Yes" },                                                                 { ocarinasDesc }, OptionCategory::Setting, 1);
   Option StartingNotebook          = Option::U8("Bomber's Notebook",      { "None",             "B. Notebook"},                                              { "" });
   Option StartingBombBag           = Option::U8("Bomb Bag",               { "None",             "Bomb Bag 20",      "Bomb Bag 30",      "Bomb Bag 40" },     { "" });
   Option StartingBombchus          = Option::U8("Bombchus",               { "None",             "Bombchus" },                                                { "" });
@@ -568,6 +568,7 @@ namespace Settings {
 
   Option ColoredKeys =     Option::Bool("Colored Small Keys", {"Off", "On"}, {coloredKeysDesc}, OptionCategory::Cosmetic);
   Option ColoredBossKeys = Option::Bool("Colored Boss Keys",  {"Off", "On"}, {coloredBossKeysDesc},  OptionCategory::Cosmetic);
+  Option ShowPostmanItem = Option::U8("Show Postman Item", {"Off", "On"}, {showPostmanItemDesc}, OptionCategory::Cosmetic);
 
   static std::vector<std::string> fanfareOptions = {"Off", "Only Fanfares", "Fanfares +\n                         Ocarina Music"};
   static std::vector<std::string_view> fanfareDescriptions = {fanfaresOffDesc, onlyFanfaresDesc, fanfaresOcarinaDesc};
@@ -579,14 +580,15 @@ namespace Settings {
   
 //TO-DO Heart Color, Magic Color, Tatl Color
   std::vector<Option *> cosmeticOptions = {
-    &CustomTunicColors,
-    &ChildTunicColor,
+    //&CustomTunicColors,
+    //&ChildTunicColor,
     &ColoredKeys,
-    &ColoredBossKeys,
- //   &ShuffleMusic,
- //   &ShuffleBGM,
- //   &ShuffleFanfares,
- //   &ShuffleOcaMusic,
+    //&ColoredBossKeys,
+    &ShowPostmanItem,
+    //&ShuffleMusic,
+    //&ShuffleBGM,
+    //&ShuffleFanfares,
+    //&ShuffleOcaMusic,
   };
 
  
@@ -673,7 +675,7 @@ namespace Settings {
     &cutsceneSettings,
     &otherSettings,
     &customInputs,
-    //&cosmetics,
+    &cosmetics,
     &settingsPresets,
     &generateRandomizer,
   };
@@ -772,6 +774,7 @@ namespace Settings {
     ctx.customTunicColors = (CustomTunicColors) ? 1 : 0;
     ctx.coloredKeys = (ColoredKeys) ? 1 : 0;
     ctx.coloredBossKeys = (ColoredBossKeys) ? 1 : 0;
+    ctx.showPostmanItem = (ShowPostmanItem) ? 1 : 0;
     //ctx.shuffleMusic = (ShuffleMusic)?1:0;
     //ctx.shuffleBGM = (ShuffleBGM)?1:0;
     //ctx.shuffleFanfare = ShuffleFanfares.Value<u8>();

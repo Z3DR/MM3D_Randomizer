@@ -246,3 +246,4 @@ extern string_view startingSwordGildedDesc;
 extern string_view startingShieldNoneDesc;
 extern string_view startingShieldHerosDesc;
 extern string_view startingShieldMirrorDesc;
+extern string_view showPostmanItemDesc;

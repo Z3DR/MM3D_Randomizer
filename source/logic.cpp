@@ -684,6 +684,7 @@ namespace Logic {
 	  OathToOrder = false;
 	  EponasSong = false;
 	  SongOfSoaring = false;
+	  SongOfTime = false;
 	//Remains
 	  OdolwaRemains = false;
 	  GohtRemains = false;
