@@ -557,16 +557,15 @@ string_view chestSizeDesc             = "This option will change the appearance 
 /*------------------------------                                                           //
 |         COLORED KEYS         |                                                           //
 ------------------------------*/                                                           //
-string_view coloredKeysDesc           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "If set, small key models will be colored\n"       //
-                                        "differently depending on which dungeon they can be"
-                                        "used in. Forest Temple keys are green. Fire Temple"
-                                        "keys are red. etc.";                              //
+string_view coloredKeysDesc           = "If set, small key models will be colored\n"       //
+                                        "differently depending on which dungeon they\n"    //
+                                        "can be used in. Woodfall Temple keys are green.\n"//
+                                        "Snowhead Temple keys are pink. etc.";             //
 string_view coloredBossKeysDesc       = "**OPTION CURRENTLY WIP**\n"                       //
                                         "If set, boss key models will be colored\n"        //
                                         "differently depending on which dungeon they can be"
-                                        "used in. The Forest Temple boss key is green. The "
-                                        "Fire Temple boss key is red. etc.";               //
+                                        "used in. The Woodfall Temple boss key is green. The "
+                                        "Snowhead Temple boss key is pink. etc.";          //
 /*------------------------------                                                           //
 |        SHUFFLE MUSIC         |                                                           //
 ------------------------------*/                                                           //
@@ -697,5 +696,6 @@ string_view startingShieldMirrorDesc  = "Start with the Mirror Shield.\n"       
 /*------------------------------                                                           //
 |       POSTMAN HAT            |                                                           //
 ------------------------------*/                                                           //
-string_view showPostmanItemDesc      = "If set, the Postman's Hat model will be replaced \n"//
-                                        "with the item model of the randomized item.";     //
+string_view showPostmanItemDesc      = "Visually shows the reward for the \n"              //
+                                       "Postman's Freedom quest line \n"                   //
+                                       "above the Postman's head.";                        //

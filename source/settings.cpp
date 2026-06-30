@@ -568,7 +568,7 @@ namespace Settings {
 
   Option ColoredKeys =     Option::Bool("Colored Small Keys", {"Off", "On"}, {coloredKeysDesc}, OptionCategory::Cosmetic);
   Option ColoredBossKeys = Option::Bool("Colored Boss Keys",  {"Off", "On"}, {coloredBossKeysDesc},  OptionCategory::Cosmetic);
-  Option ShowPostmanItem = Option::Bool("Show Postman Item", {"Off", "On"}, {showPostmanItemDesc}, OptionCategory::Cosmetic);
+  Option ShowPostmanItem = Option::U8("Show Postman Item", {"Off", "On"}, {showPostmanItemDesc}, OptionCategory::Cosmetic);
 
   static std::vector<std::string> fanfareOptions = {"Off", "Only Fanfares", "Fanfares +\n                         Ocarina Music"};
   static std::vector<std::string_view> fanfareDescriptions = {fanfaresOffDesc, onlyFanfaresDesc, fanfaresOcarinaDesc};
