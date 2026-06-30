@@ -1,7 +1,7 @@
 # Latest Nightly Changes  
 
 ## Features
-- Add new models to ice traps when songsanity is enabled.
+- N/A
 
 ## Fixes
-- Properly draw ice traps and have no item overhead when retrieving said ice traps.
+- Adjust item overrides to check for existence of lookalike items before using them.
