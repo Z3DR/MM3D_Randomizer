@@ -444,7 +444,9 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
         retries--;
         if (retries <= 0) {
             placementFailure = true;
+#ifdef ENABLE_DEBUG
             CitraPrint("Placement Failed");
+#endif
             return;
         }
 
@@ -578,7 +580,9 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
                 //the only situation we don't want is a non repeatable location with a reusable item
                 if ( !(Location(selectedLocation)->IsRepeatable()) && ItemTable(item).IsReusable() ){
                         //unsuccessfulPlacement = true;
-                        CitraPrint("Attemting to place repeatable item in non repeatable spot in AssumedFill");
+#ifdef ENABLE_DEBUG
+                        CitraPrint("Attempting to place repeatable item in non repeatable spot in AssumedFill");
+#endif
                         PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
                         itemsToPlace.push_back(item);
                     }
@@ -893,9 +897,9 @@ int Fill() {
 
         //Then place dungeon items that are assigned to restrictive location pools
         RandomizeDungeonItems();
-
+#ifdef ENABLE_DEBUG
         CitraPrint("Trying to place songs");
-
+#endif
         //Place Songs before inventory to prevent song locations from being used
         //get Songs in pool
         std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
@@ -922,7 +926,7 @@ int Fill() {
         // Ensure Ocarina and Song of Time are obtainable with the current placement.
         // If they are not reachable with currently placed items (Rewards, Keys, etc.),
         // we place additional advancement items from the pool to open paths until they are reachable.
-        if ((StartingOcarina.Value<u8>() == 0) || ShuffleSongOfTime) {
+        if (((StartingOcarina.Value<u8>() == 0) || ShuffleSongOfTime) && Settings::Logic.IsNot(LogicSetting::LOGIC_NONE)) {
             while (true) {
                 Logic::LogicReset();
                 std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
@@ -937,6 +941,9 @@ int Fill() {
                 DebugPrint("%s: needsOcarina=%d, needsSoT=%d\n", __func__, needsOcarina, needsSoT);
 
                 if (!needsOcarina && !needsSoT) {
+#ifdef ENABLE_DEBUG
+                    CitraPrint("Successfully placed Ocarina and Song of Time (if shuffled). Continuing with item placement...");
+#endif
                     break; // Critical items are reachable with current world state.
                 }
 
@@ -1013,7 +1020,6 @@ int Fill() {
             retries++;
             continue;
         }
-        CitraPrint("Successfully placed Ocarina and Song of Time (if shuffled). Continuing with item placement...");
         //If Songs are at song locations get all song locations and place them there
         if (ShuffleSongs.Value<u8>() == u8(1)){
             std::vector<LocationKey> songLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSong);});
