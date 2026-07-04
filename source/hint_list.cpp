@@ -440,6 +440,12 @@ void HintTable_Init() {
         },  //clear
             Text{"a progressive magic power", "une amélioration d'énergie magique", "un poder mágico progresivo"}
     );
+    hintTable[PROGRESSIVE_LULLABY] = HintText::Item({
+            //obscure
+            Text{"a progressive lullaby", "une berceuse progressive", "una canción de cuna progresiva"}
+        },  //clear
+            Text{"a progressive lullaby", "une berceuse progressive", "una canción de cuna progresiva"}
+    );
     //PROGRESSIVE_BOMBCHUS
 //BOTTLE ITEMS
     hintTable[EMPTY_BOTTLE] = HintText::Item({

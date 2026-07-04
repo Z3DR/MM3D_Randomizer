@@ -142,6 +142,7 @@ namespace Logic {
 	u8 ProgressiveWallet = 0;
 	u8 ProgressiveBombBag = 0;
 	u8 ProgressiveSword = 0;
+	u8 ProgressiveLullaby = 0;
 	//Keys
 	u8 WoodfallTempleKeys = 0;
 	u8 SnowheadTempleKeys = 0;
@@ -697,6 +698,7 @@ namespace Logic {
 	ProgressiveWallet = 0;
 	ProgressiveBombBag = 0;
 	ProgressiveSword = 0;
+	ProgressiveLullaby = 0;
 	//Keys
 	 WoodfallTempleKeys = 0;
 	 SnowheadTempleKeys = 0;
