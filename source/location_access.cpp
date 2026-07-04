@@ -793,7 +793,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(TERMINA_FIELD_GOSSIP_STONES, {[] {return (GoronMask && CanPlay(GoronsLullaby)) ||
+		LocationAccess(TERMINA_FIELD_GOSSIP_STONES, {[] {return (GoronMask && (ProgressiveLullaby >= 2)) ||
 																(DekuMask && CanPlay(SonataOfAwakening)) ||
 																(ZoraMask && CanPlay(NewWaveBossaNova));}}),
 		LocationAccess(TF_FOUR_STONE_GROTTO_1, {[] {return true;}}),
@@ -1267,11 +1267,11 @@ void AreaTable_Init() {
 	areaTable[GORON_VILLAGE_INTERIOR] = Area("Goron Village Interior", "Goron Village Interior", GORON_VILLAGE, {
 		//Events
 		EventAccess(&SpokeToBabyGoron, {[]{return true;}}),
-		EventAccess(&RockSirloin, {[]{return GoronMask && MagicMeter && (CanUse(FIRE_ARROWS) || (CanPlay(LullabyIntro) && HasFireSourceWithTorch));}}),
+		EventAccess(&RockSirloin, {[]{return GoronMask && MagicMeter && (CanUse(FIRE_ARROWS) || ((ProgressiveLullaby >= 1) && HasFireSourceWithTorch));}}),
 	},
 	{
 		//Locations
-		LocationAccess(GORON_VILLAGE_GORON_LULLABY, {[]{return GoronMask && CanPlay(LullabyIntro);}}),
+		LocationAccess(GORON_VILLAGE_GORON_LULLABY, {[]{return GoronMask && (ProgressiveLullaby >= 1);}}),
 	},
 	{
 		//Exits
@@ -1334,8 +1334,8 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(SNOWHEAD_TEMPLE_ENTRANCE, {[]{return GoronMask && MagicMeter && CanPlay(GoronsLullaby);}}),
-		Entrance(SNOWHEAD_FAIRY_FOUNTAIN, {[]{return GoronMask && MagicMeter && CanPlay(GoronsLullaby);}}),
+		Entrance(SNOWHEAD_TEMPLE_ENTRANCE, {[]{return GoronMask && MagicMeter && (ProgressiveLullaby >= 2);}}),
+		Entrance(SNOWHEAD_FAIRY_FOUNTAIN, {[]{return GoronMask && MagicMeter && (ProgressiveLullaby >= 2);}}),
 		Entrance(ROAD_TO_SNOWHEAD, {[]{return true;}}),
 	});
 

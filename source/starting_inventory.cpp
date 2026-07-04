@@ -84,7 +84,7 @@ void GenerateStartingInventory() {
   //AddItemToInventory(SONG_OF_TIME,              StartingSongOfTime.Value<u8>());
   AddItemToInventory(SONG_OF_STORMS,            StartingSongOfStorms.Value<u8>());
   AddItemToInventory(SONATA_OF_AWAKENING,       StartingSonataOfAwakening.Value<u8>());
-  AddItemToInventory(GORONS_LULLABY,            StartingGoronsLullaby.Value<u8>());
+  AddItemToInventory(PROGRESSIVE_LULLABY,       StartingGoronsLullaby.Value<u8>());
   AddItemToInventory(NEW_WAVE_BOSSA_NOVA,       StartingNewWaveBossaNova.Value<u8>());
   AddItemToInventory(ELEGY_OF_EMPTINESS,        StartingElegyOfEmptiness.Value<u8>());
   AddItemToInventory(SONG_OF_HEALING,           StartingSongOfHealing.Value<u8>());

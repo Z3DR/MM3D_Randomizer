@@ -139,6 +139,7 @@ namespace Logic {
 	extern u8 ProgressiveWallet;
 	extern u8 ProgressiveBombBag;
 	extern u8 ProgressiveSword;
+	extern u8 ProgressiveLullaby;
 	//Keys
 	extern u8 WoodfallTempleKeys;
 	extern u8 SnowheadTempleKeys;
