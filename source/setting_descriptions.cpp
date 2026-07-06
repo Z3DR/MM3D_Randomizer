@@ -657,12 +657,6 @@ string_view LanguageDesc            = "Selected region differs from console mean
                                       "Also, Spanish is incomplete and will currently \n"  //
                                       "be Latin Spanish regardless of game region";        //
 /*------------------------------                                                           //
-|  REPEATABLE ITEMS ON TOKENS  |                                                           //
-------------------------------*/                                                           //
-string_view repeatItemsOnTokensDesc = "Allows items potentially needed more than once \n"  // 
-                                      "such as Title Deeds and Anju & Kafei quest items \n"//
-                                      "to be placed on gold skulltula drops";              //
-/*------------------------------                                                           //
 | MOON AND MAJORA REQUIREMENTS |                                                           //
 ------------------------------*/                                                           //
 string_view MoonRemainsRequiredDesc = "Select the number of Boss Remains needed to \n"     //

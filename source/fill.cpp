@@ -405,7 +405,7 @@ static void FastFill(std::vector<ItemKey> items, std::vector<LocationKey> locati
 static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<LocationKey>& allowedLocations, bool setLocationsAsHintable = false) {
 
     if (items.size() > allowedLocations.size()) {
-        //If Tokensanity is on and RepeatableItemsOnTokens is off
+        //If NoRepeatOnTokens is on 
         //Don't display this message
         if (NoRepeatOnTokens) {
             //do nothing here to not display the message
@@ -444,9 +444,9 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
         retries--;
         if (retries <= 0) {
             placementFailure = true;
-#ifdef ENABLE_DEBUG
+        #ifdef ENABLE_DEBUG
             CitraPrint("Placement Failed");
-#endif
+        #endif
             return;
         }
 
@@ -509,9 +509,8 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             //retry if there are no more locations to place items
             if (accessibleLocations.empty()) {
 
-                //If Tokensanity is on and RepeatableItemsOnTokens is off 
-                //the item pool sent is much larger than the location pool
-                //in this case we just place 30 of the items and then move on
+                //If NoRepeatOnTokens is on then we don't want to retry, 
+                //because the item pool is much larger than the location pool by design
                 if (NoRepeatOnTokens) {
                     //put back the last item we picked up
                     itemsToPlace.push_back(item);
@@ -542,63 +541,50 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
 
             LocationKey selectedLocation = RandomElement(accessibleLocations);
 
-            //If Tokensanity is on and RepeatableItemsOnTokens is off
-            //Only place non repeatable items
-            if (Tokensanity && !RepeatableItemsOnTokens) {
-                //If the item is repeatable put it back and try again
-                if (ItemTable(item).IsReusable() ) {
-                    CitraPrint("Attempting to place Repeatable Item in SSH/OSH Location");
-                    PlacementLog_Msg("\n Attempted to place Repeatable Item in SSH/OSH Loaction");
-                    itemsToPlace.push_back(item);
-                }
-                else {
-                    //Else place it and keep going
-                    PlaceItemInLocation(selectedLocation, item);
-                    attemptedLocations.push_back(selectedLocation);
-                    //This tells us the location went through the randomization algorithm
-                    //to distinguish it from locations which did not or that the player already
-                    //knows
-                    if (setLocationsAsHintable) {
-                        Location(selectedLocation)->SetAsHintable();
-                    }
-    
-                    //If ALR is off, then we check beatability after placing the item.
-                    //If the game is beatable, then we can stop placing items with logic.
-                    if (!LocationsReachable) {
-                        playthroughBeatable = false;
-                        Logic::LogicReset();
-                        GetAccessibleLocations(allLocations, SearchMode::CheckBeatable);
-                        if (playthroughBeatable) {
-                            FastFill(itemsToPlace, GetAllEmptyLocations(), true);
-                            return;
-                        }
-                    }
-                }
+            //Else place it and keep going
+            PlaceItemInLocation(selectedLocation, item);
+            attemptedLocations.push_back(selectedLocation);
+            //This tells us the location went through the randomization algorithm
+            //to distinguish it from locations which did not or that the player already
+            //knows
+            if (setLocationsAsHintable) {
+            Location(selectedLocation)->SetAsHintable();
             }
-            else {
+    
+            //If ALR is off, then we check beatability after placing the item.
+            //If the game is beatable, then we can stop placing items with logic.
+            if (!LocationsReachable) {
+                playthroughBeatable = false;
+                Logic::LogicReset();
+                GetAccessibleLocations(allLocations, SearchMode::CheckBeatable);
+                if (playthroughBeatable) {
+                    FastFill(itemsToPlace, GetAllEmptyLocations(), true);
+                    return;
+                }
+                
                 //place the item within one of the allowed locations accounting for if this item needs to be able to be obtained more than once and if location allows that
                 //the only situation we don't want is a non repeatable location with a reusable item
                 if ( !(Location(selectedLocation)->IsRepeatable()) && ItemTable(item).IsReusable() ){
-                        //unsuccessfulPlacement = true;
-#ifdef ENABLE_DEBUG
-                        CitraPrint("Attempting to place repeatable item in non repeatable spot in AssumedFill");
-#endif
-                        PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
-                        itemsToPlace.push_back(item);
-                    }
-                else { 
+                    //unsuccessfulPlacement = true;
+                    #ifdef ENABLE_DEBUG
+                    CitraPrint("Attempting to place repeatable item in non repeatable spot in AssumedFill");
+                    #endif
+                    PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
+                    itemsToPlace.push_back(item);
+                }
+                else {
                     PlaceItemInLocation(selectedLocation, item); 
                     //PlacementLog_Msg("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
                     //CitraPrint("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
                     attemptedLocations.push_back(selectedLocation);
-    
+        
                     //This tells us the location went through the randomization algorithm
                     //to distinguish it from locations which did not or that the player already
                     //knows
                     if (setLocationsAsHintable) {
                         Location(selectedLocation)->SetAsHintable();
                     }
-    
+        
                     //If ALR is off, then we check beatability after placing the item.
                     //If the game is beatable, then we can stop placing items with logic.
                     if (!LocationsReachable) {
@@ -613,7 +599,8 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
                 }
             }
         }
-    } while (unsuccessfulPlacement);
+    } 
+    while (unsuccessfulPlacement);
 }
 
 //This function will specifically randomize dungeon rewards for the End of Dungeons
@@ -900,7 +887,6 @@ int Fill() {
 #ifdef ENABLE_DEBUG
         CitraPrint("Trying to place songs");
 #endif
-        //Place Songs before inventory to prevent song locations from being used
         //get Songs in pool
         std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
         //If Shuffled in Song Locations restrict location pool to only song locations
@@ -926,6 +912,7 @@ int Fill() {
         // Ensure Ocarina and Song of Time are obtainable with the current placement.
         // If they are not reachable with currently placed items (Rewards, Keys, etc.),
         // we place additional advancement items from the pool to open paths until they are reachable.
+        // but only if the logic setting is not set to "None" (No Logic).
         if (((StartingOcarina.Value<u8>() == 0) || ShuffleSongOfTime) && Settings::Logic.IsNot(LogicSetting::LOGIC_NONE)) {
             while (true) {
                 Logic::LogicReset();
@@ -1040,38 +1027,6 @@ int Fill() {
             std::vector<ItemKey> gfItems = FilterAndEraseFromPool(ItemPool, [gfLocations](const ItemKey i) { return ItemTable(i).GetItemType() == ITEMTYPE_GFAIRY;});
             
             AssumedFill(gfItems, gfLocations, true);
-        }
-        //Then if repeatable items on tokens is off -- fill token spots with nonrepeatable items
-        if (Tokensanity && !RepeatableItemsOnTokens){
-            //Set Variable to not mess with fill algorithm
-            NoRepeatOnTokens = true;
-            //Get SSH locations
-            std::vector<LocationKey> SwampSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSwampSkulltula);});
-            //Get NonRepeatItems
-            std::vector<ItemKey> NonRepeatItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return !ItemTable(i).IsReusable();});
-            //fill SSH spots with nonrepeatableitems
-            AssumedFill(NonRepeatItems, SwampSkullLocations, true);
-
-            //Get OSH locations
-            std::vector<LocationKey> OceanSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc1) {return Location(loc1)->IsCategory(Category::cOceanSkulltula);});
-            //Get NonRepeatItems
-            std::vector<ItemKey> NonRepeatItems2 = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return !ItemTable(i).IsReusable();});
-            //CitraPrint("Items in NonRepeatItems2:\n");
-            //fill OSH spots with NonRepeatableItems
-            AssumedFill(NonRepeatItems2, OceanSkullLocations, true);
-            //Set Variable back to false to go back to normal filling
-            NoRepeatOnTokens = false;
-
-            //Then Place Anju & Kafei Items in spots accessable on Day 1, this should prevent situations where you cant get an item in time for its use
-            //Do this before continuing as the pool of accessable locations is smaller after filling all skulltula locations
-            std::vector<LocationKey> day1Locations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cDayOne);});
-            std::vector<ItemKey> anjukafeiitems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_QUEST;});
-            AssumedFill(anjukafeiitems, day1Locations,true);
-
-            //get the rest of the repeatable items and fill them in -- may not be needed?
-            //std::vector<ItemKey> remainingRepeatItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsReusable();});
-            //CitraPrint("Starting Fill of remaining Repeat Items");
-            //AssumedFill(remainingRepeatItems, allLocations,true);
         }
                 
         //Place Main Inventory First

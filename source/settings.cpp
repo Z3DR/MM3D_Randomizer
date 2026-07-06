@@ -389,11 +389,9 @@ namespace Settings {
   //Item Pool Settings 
   Option ItemPoolValue          = Option::U8  ("Item Pool",             {"Plentiful", "Balanced", "Scarce", "Minimal" },   {itemPoolPlentiful, itemPoolBalanced, itemPoolScarce, itemPoolMinimal }, OptionCategory::Setting, (u8)ItemPoolSetting::ITEMPOOL_BALANCED);
   Option RemoveDoubleDefense    = Option::Bool("Remove Double Defense", {"No", "Yes"},                                     {removeDDDesc});
-  Option RepeatableItemsOnTokens= Option::Bool("Repeat Items on Tokens",{"No", "Yes"},                                     {repeatItemsOnTokensDesc});
   std::vector<Option*>itemPoolSettingsOptions = {
       &ItemPoolValue,
       &RemoveDoubleDefense,
-      &RepeatableItemsOnTokens,
   };
 
   Option GossipStoneHints     = Option::U8("Gossip Stone Hints",       { "No Hints", "Need Nothing", "Mask of Truth" },    { gossipStonesHintsDesc },                                                     OptionCategory::Setting, (u8)GossipStoneHintsSetting::HINTS_NEED_NOTHING);
