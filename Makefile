@@ -180,6 +180,7 @@ $(BUILD):
 	@mv Z3DR/code/basecode.ips $(ROMFS)/basecode.ips
 	@mv Z3DR/code/basecode1.1.ips $(ROMFS)/basecode1.1.ips
 	@mv Z3DR/source/patch_symbols.hpp $(CURDIR)/source/include/
+	@mv Z3DR/code/code.elf $(CURDIR)/mm3dr.elf
 	@mkdir -p $@
 
 ifneq ($(GFXBUILD),$(BUILD))
