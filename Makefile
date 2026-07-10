@@ -60,7 +60,7 @@ CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -fno-var-tracking-assignments -s
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= -lctru -lm
+LIBS	:= -lcitro2d -lcitro3d -lctru -lm
 
 debug_app ?= 0
 ifneq ($(debug_app),0)
