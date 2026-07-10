@@ -5,6 +5,7 @@
 #include <cstdio>
 #include <cstring>
 #include <ctime>
+#include <vector>
 
 #include "cosmetics.hpp"
 #include "menu.hpp"
@@ -15,51 +16,52 @@
 #include "spoiler_log.hpp"
 #include "location_access.hpp"
 #include "debug.hpp"
+#include "ui.hpp"
 
 using namespace Settings;
 
 namespace {
-  bool seedChanged;
-  u16 pastSeedLength;
   u16 settingBound = 0;
-  PrintConsole topScreen, bottomScreen;
   std::vector<std::string> presetEntries;
   std::vector<Menu*> menuList;
   Option* currentSetting;
   Menu* currentMenu;
+
+  // transient status message shown in the top-screen info panel
+  std::string toastMsg;
+  u32 toastColor;
+  // result of the last save-preset action, shown while in SAVE_PRESET mode
+  std::string savePresetMsg;
+  bool savePresetOk;
+  // scroll offset for plain item/preset lists
+  u16 listScroll = 0;
+
+  // ——— bottom screen layout ———
+  constexpr float HDR_H    = 26.0f;
+  constexpr float LIST_TOP = 30.0f;
+  constexpr float ROW_H    = 14.5f;
+  constexpr float FOOT_TOP = 221.0f;
+  constexpr int   LIST_VISIBLE = MAX_SUBMENU_SETTINGS_ON_SCREEN;
+  constexpr float TXT = 0.44f;
+
+  void SetToast(const std::string& msg, u32 color) {
+    toastMsg = msg;
+    toastColor = color;
+  }
 }
 
-void PrintTopScreen()
-{
-	consoleSelect(&topScreen);
-	consoleClear();
-	printf("\x1b[2;11H%sMajoras Mask 3D Randomizer%s", MEGANTA, RESET);
-	printf("\x1b[3;18H%s%s%s",MEGANTA, RANDOMIZER_VERSION, RESET);
-	printf("\x1b[4;10HA/B/D-pad: Navigate Menu\n");
-	printf("			Select: Exit to Homebrew Menu\n");
-	printf("				 Y: New Random Seed\n");
-	printf("				 X: Input Custom Seed\n");
-	printf("\x1b[11;7HCurrent Seed: %s", Settings::seed.c_str());
+void ClearDescription() {
+  toastMsg.clear();
 }
-
 
 void MenuInit() {
   Settings::InitSettings();
-
-  seedChanged = false;
-  pastSeedLength = Settings::seed.length();
-
-  settingBound = 0;
 
   Menu* main = new Menu("Main", MenuType::MainMenu, &Settings::mainMenu, MAIN_MENU);
   menuList.push_back(main);
   currentMenu = main;
 
   srand(time(NULL));
-  consoleInit(GFX_TOP,    &topScreen);
-  consoleInit(GFX_BOTTOM, &bottomScreen);
-
-  consoleSelect(&topScreen);
 
   // Create directories
   FS_Archive sdmcArchive;
@@ -69,17 +71,21 @@ void MenuInit() {
 
     FSUSER_CloseArchive(sdmcArchive);
   } else {
-    consoleClear();
-    printf("\x1b[10;10HFailed to create directories.");
-    printf("\x1b[11;10H- Spoiler logs won't be written.");
-    printf("\x1b[12;10H- Loading presets might crash.");
-    printf("\x1b[14;10HPress B to continue.");
-
     while (aptMainLoop()) {
       hidScanInput();
       if (hidKeysHeld() & KEY_B) {
         break;
       }
+      UI::FrameBegin();
+      UI::SceneTop();
+      UI::RectGradV(0, 0, UI::TopW, UI::TopH, UI::ColBgTop, UI::ColBgTopBot);
+      UI::Panel(30, 70, 340, 100);
+      UI::TextCentered("Failed to create directories.", 200, 82, 0.55f, UI::ColBad);
+      UI::TextCentered("Spoiler logs won't be written.", 200, 108, 0.45f, UI::ColText);
+      UI::TextCentered("Loading presets might crash.", 200, 124, 0.45f, UI::ColText);
+      UI::TextCentered(u8"Press  to continue.", 200, 146, 0.45f, UI::ColTextDim);
+      UI::SceneBottom();
+      UI::FrameEnd();
     }
   }
 
@@ -90,10 +96,8 @@ void MenuInit() {
   //Re-randomize them
   Settings::RandomizeAllSettings();
 
-  PrintTopScreen();
-
-  consoleSelect(&bottomScreen);
-  PrintMainMenu();
+  // repaint the whole frame whenever blocking logic code prints progress
+  UI::SetRedrawCallback(MenuDraw);
 }
 
 void MoveCursor(u32 kDown) {
@@ -145,8 +149,7 @@ void MoveCursor(u32 kDown) {
 }
 
 void MenuUpdate(u32 kDown) {
-  consoleSelect(&bottomScreen);
-  consoleClear();
+  toastMsg.clear();
 
   //Check for menu change
   //If user pressed A on a non-option, non-action menu, they're navigating to a new menu
@@ -164,14 +167,11 @@ void MenuUpdate(u32 kDown) {
     if (kDown & KEY_B && currentMenu->name == customInputs.name){
      if (!CheckCustomButtons())
      {
-       consoleSelect(&bottomScreen);
-       printf("\x1b[1;%dH\n\n\n\n\n\n\n\n\n\n\n\nYou Cannot Have Duplicate \nButton Combinations!", 1+(BOTTOM_WIDTH-18)/2);
+       SetToast("You cannot have duplicate button combinations!", UI::ColBad);
       //  CitraPrint("Checking Custom Button in Menus");
      }
-     else 
+     else
      {
-      consoleSelect(&topScreen);
-      PrintTopScreen();
       menuList.pop_back();
       currentMenu = menuList.back();
       ModeChangeInit();
@@ -180,13 +180,11 @@ void MenuUpdate(u32 kDown) {
     }
   //If they pressed B on any menu other than main, go backwards to the previous menu
   else if (kDown & KEY_B && currentMenu->mode != MAIN_MENU) {
-    
+
     //Want to reset generate menu when leaving
     if (currentMenu->mode == POST_GENERATE) {
       currentMenu->mode = GENERATE_MODE;
     }
-    consoleSelect(&topScreen);
-    PrintTopScreen();
     menuList.pop_back();
     currentMenu = menuList.back();
     ModeChangeInit();
@@ -197,52 +195,30 @@ void MenuUpdate(u32 kDown) {
 
     //New Random Seed
     if (kDown & KEY_Y) {
-      pastSeedLength = Settings::seed.length();
       Settings::seed = std::to_string(rand());
-      seedChanged = true;
     }
 
     //Input Custom Seed
-    
-    if (kDown & KEY_X) {
-      pastSeedLength = Settings::seed.length();
-      Settings::seed = GetInput("Enter Seed");
-      seedChanged = true;
-    }
 
-    //Reprint seed if it changed
-    if (seedChanged) {
-      std::string spaces = "";
-      spaces.append(pastSeedLength, ' ');
-      consoleSelect(&topScreen);
-      printf("\x1b[11;21H%s", spaces.c_str());
-      printf("\x1b[11;21H%s", Settings::seed.c_str());
-      seedChanged = false;
+    if (kDown & KEY_X) {
+      Settings::seed = GetInput("Enter Seed");
     }
   }
 
-  //Print current menu (if applicable)
-  consoleSelect(&bottomScreen);
+  //Update current menu (if applicable)
   MoveCursor(kDown); //Move cursor, if applicable
   if (currentMenu->mode == MAIN_MENU) {
-    PrintMainMenu();
     ClearDescription();
   } else if (currentMenu->mode == OPTION_SUB_MENU) {
     UpdateOptionSubMenu(kDown);
-    PrintOptionSubMenu();
   } else if (currentMenu->mode == LOAD_PRESET) {
     UpdatePresetsMenu(kDown);
-    PrintPresetsMenu();
   } else if (currentMenu->mode == DELETE_PRESET) {
     UpdatePresetsMenu(kDown);
-    PrintPresetsMenu();
   } else if (currentMenu->mode == RESET_TO_DEFAULTS) {
     UpdateResetToDefaultsMenu(kDown);
-    PrintResetToDefaultsMenu();
   } else if (currentMenu->mode == GENERATE_MODE) {
     UpdateGenerateMenu(kDown);
-  } else if (currentMenu->mode == SUB_MENU) {
-    PrintSubMenu();
   }
 }
 
@@ -257,11 +233,11 @@ void ModeChangeInit() {
   } else if (currentMenu->mode == SAVE_PRESET) {
     ClearDescription();
    if (SaveSpecifiedPreset(GetInput("Preset Name").substr(0, 19), OptionCategory::Setting)) {
-      printf("\x1b[24;5HPreset Saved!");
-      printf("\x1b[26;5HPress B to return to the preset menu.");
+      savePresetMsg = "Preset saved!";
+      savePresetOk = true;
     } else {
-      printf("\x1b[24;5HFailed to save preset.");
-      printf("\x1b[26;5HPress B to return to the preset menu.");
+      savePresetMsg = "Failed to save preset.";
+      savePresetOk = false;
     }
 
   } else if (currentMenu->mode == LOAD_PRESET || currentMenu->mode == DELETE_PRESET) {
@@ -301,14 +277,13 @@ void UpdateOptionSubMenu(u32 kDown) {
 }
 
 void UpdatePresetsMenu(u32 kDown) {
-  consoleSelect(&topScreen);
   //clear any potential message
   ClearDescription();
   if (kDown & KEY_A && currentMenu->mode == LOAD_PRESET && !presetEntries.empty()) {
     if (LoadPreset(presetEntries[currentMenu->menuIdx], OptionCategory::Setting)) {
-      printf("\x1b[24;5HPreset Loaded!");
+      SetToast("Preset loaded!", UI::ColGood);
     } else {
-      printf("\x1b[24;5HFailed to load preset.");
+      SetToast("Failed to load preset.", UI::ColBad);
     }
   } else if (kDown & KEY_A && currentMenu->mode == DELETE_PRESET && !presetEntries.empty()) {
     if (DeletePreset(presetEntries[currentMenu->menuIdx], OptionCategory::Setting)) {
@@ -316,189 +291,31 @@ void UpdatePresetsMenu(u32 kDown) {
       if(currentMenu->menuIdx == presetEntries.size()) { //Catch when last preset is deleted
         currentMenu->menuIdx--;
       }
-      printf("\x1b[24;5HPreset Deleted.");
+      SetToast("Preset deleted.", UI::ColGood);
     } else {
-      printf("\x1b[24;5HFailed to delete preset.");
+      SetToast("Failed to delete preset.", UI::ColBad);
     }
   }
 }
 
 void UpdateResetToDefaultsMenu(u32 kDown) {
-  consoleSelect(&topScreen);
   //clear any potential message
   ClearDescription();
   if (kDown & KEY_A) {
     Settings::SetDefaultSettings();
-    printf("\x1b[24;5HSettings have been reset to defaults.");
+    SetToast("Settings have been reset to defaults.", UI::ColGood);
   }
 }
-u16 menuIdx2;
+
 void UpdateGenerateMenu(u32 kDown) {
-        //consoleSelect(&bottomScreen);
-        //consoleClear();
         GenerateRandomizer();
         //This is just a dummy mode to stop the prompt from appearing again
         currentMenu->mode = POST_GENERATE;
         }
 
-void PrintMainMenu() {
-  printf("\x1b[0;%dHMain Settings", 1+(BOTTOM_WIDTH-13)/2);
-
-  for (u8 i = 0; i < MAX_MAINMENU_SETTINGS_ON_SCREEN; i++) {
-    if (i >= Settings::mainMenu.size()) break;
-
-    Menu* menu = Settings::mainMenu[i];
-
-    u8 row = 3 + i;
-    //make the current menu green
-    if (currentMenu->menuIdx == i) {
-      printf("\x1b[%d;%dH%s>",  row,  2, GREEN);
-      printf("\x1b[%d;%dH%s%s", row,  3, menu->name.c_str(), RESET);
-    } else {
-      printf("\x1b[%d;%dH%s",   row,  3, menu->name.c_str());
-    }
-  }
-}
-
-void PrintOptionSubMenu() {
-  //bounds checking incase settings go off screen
-  //this is complicated to account for hidden settings and there's probably a better way to do it
-  u16 hiddenSettings = 0;
-  u16 visibleSettings = 0;
-  for (u16 i = settingBound; visibleSettings < MAX_SUBMENU_SETTINGS_ON_SCREEN; i++) {
-    if (i >= currentMenu->settingsList->size()) {
-      break;
-    }
-    if (currentMenu->settingsList->at(i)->IsHidden()) {
-      hiddenSettings++;
-    } else {
-      visibleSettings++;
-    }
-  }
-  if (currentMenu->menuIdx >= settingBound + MAX_SUBMENU_SETTINGS_ON_SCREEN + hiddenSettings) {
-    settingBound = currentMenu->menuIdx;
-    u8 offset = 0;
-    //skip over hidden settings
-    while (offset < MAX_SUBMENU_SETTINGS_ON_SCREEN - 1) {
-      settingBound--;
-      if (settingBound == 0) {
-        break;
-      }
-      offset += currentMenu->settingsList->at(settingBound)->IsHidden() ? 0 : 1;
-    }
-  } else if (currentMenu->menuIdx < settingBound)  {
-    settingBound = currentMenu->menuIdx;
-  }
-
-  //print menu name
-  printf("\x1b[0;%dH%s", 1+(BOTTOM_WIDTH-currentMenu->name.length())/2, currentMenu->name.c_str());
-
-  //keep count of hidden settings to not make blank spaces appear in the list
-  hiddenSettings = 0;
-
-  for (u8 i = 0; i - hiddenSettings < MAX_SUBMENU_SETTINGS_ON_SCREEN; i++) {
-    //break if there are no more settings to print
-    if (i + settingBound >= currentMenu->settingsList->size()) break;
-
-    Option* setting = currentMenu->settingsList->at(i + settingBound);
-
-    u8 row = 3 + ((i - hiddenSettings) * 2);
-    //make the current setting green
-    if (currentMenu->menuIdx == i + settingBound) {
-      printf("\x1b[%d;%dH%s>",   row,  1, GREEN);
-      printf("\x1b[%d;%dH%s:",   row,  2, setting->GetName().data());
-      printf("\x1b[%d;%dH%s%s",  row, 26, setting->GetSelectedOptionText().data(), RESET);
-    //dim to make a locked setting grey
-    } else if (setting->IsLocked()) {
-      printf("\x1b[%d;%dH%s%s:", row,  2, DIM, setting->GetName().data());
-      printf("\x1b[%d;%dH%s%s",  row, 26, setting->GetSelectedOptionText().data(), RESET);
-    //don't display hidden settings
-    } else if (setting->IsHidden()) {
-      hiddenSettings++;
-      continue;
-    } else {
-      printf("\x1b[%d;%dH%s:",   row,  2, setting->GetName().data());
-      printf("\x1b[%d;%dH%s",    row, 26, setting->GetSelectedOptionText().data());
-    }
-  }
-
-  PrintOptionDescription();
-}
-
-void PrintSubMenu() {
-  printf("\x1b[0;%dH%s", 1+(BOTTOM_WIDTH-currentMenu->name.length())/2, currentMenu->name.c_str());
-
-  for (u8 i = 0; i < MAX_SUBMENU_SETTINGS_ON_SCREEN; i++) {
-    if (i >= currentMenu->itemsList->size()) break;
-
-    u8 row = 3 + i;
-    //make the current menu green
-    if (currentMenu->menuIdx == i) {
-      printf("\x1b[%d;%dH%s>",  row,  2, GREEN);
-      printf("\x1b[%d;%dH%s%s", row,  3, currentMenu->itemsList->at(i)->name.c_str(), RESET);
-    } else {
-      printf("\x1b[%d;%dH%s",   row,  3, currentMenu->itemsList->at(i)->name.c_str());
-    }
-  }
-}
-
-void PrintPresetsMenu() {
-  consoleSelect(&bottomScreen);
-  if (presetEntries.empty()) {
-    printf("\x1b[10;4HNo Presets Detected!");
-    printf("\x1b[12;4HPress B to return to the preset menu.");
-    return;
-  }
-
-  if(currentMenu->mode == LOAD_PRESET) {
-    printf("\x1b[0;%dHSelect a Preset to Load", 1+(BOTTOM_WIDTH-23)/2);
-  } else if (currentMenu->mode == DELETE_PRESET) {
-    printf("\x1b[0;%dHSelect a Preset to Delete", 1+(BOTTOM_WIDTH-25)/2);
-  }
-
-  for (u8 i = 0; i < MAX_SUBMENU_SETTINGS_ON_SCREEN; i++) {
-    if (i >= presetEntries.size()) break;
-
-    std::string preset = presetEntries[i];
-
-    u8 row = 3 + (i * 2);
-    //make the current preset green
-    if (currentMenu->menuIdx == i) {
-      printf("\x1b[%d;%dH%s>",  row, 14, GREEN);
-      printf("\x1b[%d;%dH%s%s", row, 15, preset.c_str(), RESET);
-    } else {
-      printf("\x1b[%d;%dH%s",   row, 15, preset.c_str());
-    }
-  }
-}
-
-void PrintResetToDefaultsMenu() {
-  consoleSelect(&bottomScreen);
-  printf("\x1b[10;4HPress A to reset to default settings.");
-  printf("\x1b[12;4HPress B to return to the preset menu.");
-}
-
-
-void ClearDescription() {
-  consoleSelect(&topScreen);
-
-  //clear the previous description
-  std::string spaces = "";
-  spaces.append(9 * TOP_WIDTH, ' ');
-  printf("\x1b[22;0H%s", spaces.c_str());
-}
-
-void PrintOptionDescription() {
-  ClearDescription();
-  std::string_view description = currentSetting->GetSelectedOptionDescription();
-
-  printf("\x1b[22;0H%s", description.data());
-}
-
 void GenerateRandomizer() {
 
-    consoleSelect(&topScreen);
-    consoleClear();
+    UI::ConsoleGridClear();
     printf("\x1b[6;10HCaching Settings...");
 
     //After choosing to generate, cache chosen settings for later
@@ -570,4 +387,326 @@ std::string GetInput(const char* hintText) {
   }
 
   return std::string(text);
+}
+
+// ————————————————————————————————————————————————————————————————
+// Rendering (citro2d) — pure functions of the menu state above.
+// ————————————————————————————————————————————————————————————————
+namespace {
+
+bool InGenerateView() {
+  return currentMenu->mode == GENERATE_MODE || currentMenu->mode == POST_GENERATE;
+}
+
+// Scroll window for plain item/preset lists; keeps the selection visible.
+u16 UpdateListScroll(size_t count) {
+  if (currentMenu->menuIdx < listScroll) {
+    listScroll = currentMenu->menuIdx;
+  }
+  if (currentMenu->menuIdx >= (u16)(listScroll + LIST_VISIBLE)) {
+    listScroll = currentMenu->menuIdx - LIST_VISIBLE + 1;
+  }
+  u16 maxScroll = count > (size_t)LIST_VISIBLE ? (u16)(count - LIST_VISIBLE) : 0;
+  if (listScroll > maxScroll) listScroll = maxScroll;
+  return listScroll;
+}
+
+// Original PrintOptionSubMenu window logic, kept verbatim: accounts for
+// hidden settings so the visible window always holds 13 selectable rows.
+void UpdateOptionBounds() {
+  u16 hiddenSettings = 0;
+  u16 visibleSettings = 0;
+  for (u16 i = settingBound; visibleSettings < MAX_SUBMENU_SETTINGS_ON_SCREEN; i++) {
+    if (i >= currentMenu->settingsList->size()) {
+      break;
+    }
+    if (currentMenu->settingsList->at(i)->IsHidden()) {
+      hiddenSettings++;
+    } else {
+      visibleSettings++;
+    }
+  }
+  if (currentMenu->menuIdx >= settingBound + MAX_SUBMENU_SETTINGS_ON_SCREEN + hiddenSettings) {
+    settingBound = currentMenu->menuIdx;
+    u8 offset = 0;
+    //skip over hidden settings
+    while (offset < MAX_SUBMENU_SETTINGS_ON_SCREEN - 1) {
+      settingBound--;
+      if (settingBound == 0) {
+        break;
+      }
+      offset += currentMenu->settingsList->at(settingBound)->IsHidden() ? 0 : 1;
+    }
+  } else if (currentMenu->menuIdx < settingBound)  {
+    settingBound = currentMenu->menuIdx;
+  }
+}
+
+// Indices of the settings currently on screen, top row first.
+std::vector<u16> VisibleOptionRows() {
+  UpdateOptionBounds();
+  std::vector<u16> rows;
+  u16 hiddenSettings = 0;
+  for (u16 i = 0; i - hiddenSettings < MAX_SUBMENU_SETTINGS_ON_SCREEN; i++) {
+    if (i + settingBound >= currentMenu->settingsList->size()) break;
+    Option* setting = currentMenu->settingsList->at(i + settingBound);
+    if (setting->IsHidden()) {
+      hiddenSettings++;
+      continue;
+    }
+    rows.push_back(i + settingBound);
+  }
+  return rows;
+}
+
+void DrawBottomHeader(const std::string& title) {
+  UI::Rect(0, 0, UI::BotW, HDR_H, UI::ColHeader);
+  UI::Rect(0, HDR_H - 1.5f, UI::BotW, 1.5f, UI::ColHeaderEdge);
+  UI::TextCentered(UI::FitToWidth(title, 0.52f, 300.0f), UI::BotW / 2, 4.0f, 0.52f, UI::ColText);
+}
+
+void DrawBottomFooter(const std::string& hints, bool backButton) {
+  UI::Rect(0, FOOT_TOP, UI::BotW, UI::BotH - FOOT_TOP, UI::ColHeader);
+  if (backButton) {
+    UI::Text(u8" Back", 8, FOOT_TOP + 2.0f, 0.40f, UI::ColTextDim);
+    UI::TextRight(hints, UI::BotW - 8, FOOT_TOP + 2.0f, 0.40f, UI::ColTextDim);
+  } else {
+    UI::TextCentered(hints, UI::BotW / 2, FOOT_TOP + 2.0f, 0.40f, UI::ColTextDim);
+  }
+}
+
+void DrawRowHighlight(int row) {
+  float y = LIST_TOP + row * ROW_H;
+  UI::Rect(0, y, UI::BotW, ROW_H, UI::ColSelBar);
+  UI::Rect(0, y, 3.0f, ROW_H, UI::ColSelNotch);
+}
+
+// A plain list of names (main menu, sub menus, presets).
+void DrawItemList(const std::vector<std::string>& names, u16 selected, bool accentLast) {
+  u16 scroll = UpdateListScroll(names.size());
+  for (int row = 0; row < LIST_VISIBLE; row++) {
+    size_t idx = scroll + row;
+    if (idx >= names.size()) break;
+    float y = LIST_TOP + row * ROW_H;
+    bool isSel = (idx == selected);
+    if (isSel) DrawRowHighlight(row);
+    u32 col = UI::ColText;
+    if (accentLast && idx == names.size() - 1) col = UI::ColAccent;
+    UI::Text(UI::FitToWidth(names[idx], TXT, 290.0f), 10, y + 1.0f, TXT, col);
+    if (isSel) UI::TextRight(u8"", UI::BotW - 10, y + 1.0f, TXT, UI::ColTextDim);
+  }
+  UI::ScrollBar(UI::BotW - 4, LIST_TOP, LIST_VISIBLE * ROW_H, names.size(), LIST_VISIBLE, scroll);
+}
+
+void DrawOptionList() {
+  std::vector<u16> rows = VisibleOptionRows();
+  for (size_t row = 0; row < rows.size(); row++) {
+    Option* setting = currentMenu->settingsList->at(rows[row]);
+    float y = LIST_TOP + row * ROW_H;
+    bool isSel = (rows[row] == currentMenu->menuIdx);
+    bool locked = setting->IsLocked();
+
+    if (isSel) DrawRowHighlight((int)row);
+
+    u32 nameCol = locked ? UI::ColTextLocked : UI::ColText;
+    u32 valCol  = locked ? UI::ColTextLocked : (isSel ? UI::ColValue : UI::ColTextDim);
+    UI::Text(UI::FitToWidth(setting->GetName(), TXT, 170.0f), 10, y + 1.0f, TXT, nameCol);
+
+    std::string value = UI::FitToWidth(setting->GetSelectedOptionText(), TXT, 112.0f);
+    if (isSel && !locked) {
+      UI::TextRight("<", 186, y + 1.0f, TXT, UI::ColAccent);
+      UI::Text(">", UI::BotW - 14, y + 1.0f, TXT, UI::ColAccent);
+      UI::TextCentered(value, (192 + UI::BotW - 18) / 2, y + 1.0f, TXT, valCol);
+    } else {
+      UI::TextRight(value, UI::BotW - 14, y + 1.0f, TXT, valCol);
+    }
+  }
+
+  // scrollbar over the non-hidden settings
+  size_t total = 0, first = 0;
+  for (size_t i = 0; i < currentMenu->settingsList->size(); i++) {
+    if (!currentMenu->settingsList->at(i)->IsHidden()) {
+      if (i < settingBound) first++;
+      total++;
+    }
+  }
+  UI::ScrollBar(UI::BotW - 4, LIST_TOP, LIST_VISIBLE * ROW_H, total, LIST_VISIBLE, first);
+}
+
+void DrawMessageCard(const std::string& line1, u32 col1, const std::string& line2) {
+  UI::Panel(20, 84, UI::BotW - 40, 72);
+  UI::TextCentered(line1, UI::BotW / 2, 98, 0.50f, col1);
+  UI::TextCentered(line2, UI::BotW / 2, 124, 0.42f, UI::ColTextDim);
+}
+
+void DrawBottomScreen() {
+  switch (currentMenu->mode) {
+    case MAIN_MENU: {
+      DrawBottomHeader("Main Settings");
+      std::vector<std::string> names;
+      for (Menu* m : *currentMenu->itemsList) names.push_back(m->name);
+      DrawItemList(names, currentMenu->menuIdx, /*accentLast=*/true);
+      DrawBottomFooter(u8" Open    New Seed    Enter Seed", false);
+      break;
+    }
+    case SUB_MENU: {
+      DrawBottomHeader(currentMenu->name);
+      std::vector<std::string> names;
+      for (Menu* m : *currentMenu->itemsList) names.push_back(m->name);
+      DrawItemList(names, currentMenu->menuIdx, false);
+      DrawBottomFooter(u8" Open", true);
+      break;
+    }
+    case OPTION_SUB_MENU: {
+      DrawBottomHeader(currentMenu->name);
+      DrawOptionList();
+      DrawBottomFooter(u8" Change", true);
+      break;
+    }
+    case LOAD_PRESET:
+    case DELETE_PRESET: {
+      bool loading = currentMenu->mode == LOAD_PRESET;
+      DrawBottomHeader(loading ? "Load Preset" : "Delete Preset");
+      if (presetEntries.empty()) {
+        DrawMessageCard("No presets detected!", UI::ColTextDim, u8" Return to the preset menu");
+      } else {
+        DrawItemList(presetEntries, currentMenu->menuIdx, false);
+      }
+      DrawBottomFooter(loading ? u8" Load" : u8" Delete", true);
+      break;
+    }
+    case SAVE_PRESET: {
+      DrawBottomHeader("Save Preset");
+      DrawMessageCard(savePresetMsg, savePresetOk ? UI::ColGood : UI::ColBad,
+                      u8" Return to the preset menu");
+      DrawBottomFooter("", true);
+      break;
+    }
+    case RESET_TO_DEFAULTS: {
+      DrawBottomHeader("Reset to Defaults");
+      DrawMessageCard(u8" Reset all settings to defaults", UI::ColText,
+                      u8" Return to the preset menu");
+      DrawBottomFooter(u8" Reset", true);
+      break;
+    }
+    case GENERATE_MODE:
+    case POST_GENERATE: {
+      DrawBottomHeader("Generate Randomizer");
+      DrawMessageCard("Output is shown on the top screen.", UI::ColText,
+                      u8" Back    SELECT Quit");
+      DrawBottomFooter("Hold L+R to launch MM3D (cartridge)", true);
+      break;
+    }
+  }
+}
+
+void DrawTopScreen() {
+  UI::RectGradV(0, 0, UI::TopW, UI::TopH, UI::ColBgTop, UI::ColBgTopBot);
+
+  // header
+  UI::Rect(0, 0, UI::TopW, 34, UI::ColHeader);
+  UI::Rect(0, 32.5f, UI::TopW, 1.5f, UI::ColHeaderEdge);
+  UI::TextCentered("Majora's Mask 3D Randomizer", UI::TopW / 2, 5.0f, 0.60f, UI::ColAccent);
+  UI::TextRight(RANDOMIZER_VERSION, UI::TopW - 6, 20.0f, 0.32f, UI::ColTextDim);
+
+  if (InGenerateView()) {
+    UI::DrawConsolePanel(8, 42, UI::TopW - 16, 190);
+    return;
+  }
+
+  // seed card
+  UI::Panel(8, 42, UI::TopW - 16, 28);
+  UI::Text("Seed", 18, 48, 0.45f, UI::ColTextDim);
+  if (Settings::seed.empty()) {
+    UI::Text("(random at generation)", 62, 48, 0.45f, UI::ColTextDim);
+  } else {
+    UI::Text(UI::FitToWidth(Settings::seed, 0.45f, 220.0f), 62, 48, 0.45f, UI::ColAccent);
+  }
+  UI::TextRight(u8" random    enter", UI::TopW - 16, 49, 0.38f, UI::ColTextDim);
+
+  // info / description panel
+  UI::Panel(8, 78, UI::TopW - 16, 138);
+  if (!toastMsg.empty()) {
+    UI::TextCentered(toastMsg, UI::TopW / 2, 86, 0.50f, toastColor);
+  } else if (currentMenu->mode == OPTION_SUB_MENU && currentSetting != nullptr) {
+    UI::Text(UI::FitToWidth(currentSetting->GetName(), 0.50f, 360.0f), 18, 84, 0.50f, UI::ColText);
+    UI::Rect(18, 101, 60, 1.0f, UI::ColPanelEdge);
+    UI::TextWrapped(std::string(currentSetting->GetSelectedOptionDescription()),
+                    18, 108, 0.44f, UI::ColTextDim, UI::TopW - 36);
+  } else {
+    UI::TextCentered("Pick a category and tune the settings,", UI::TopW / 2, 120, 0.45f, UI::ColTextDim);
+    UI::TextCentered("then select Generate Randomizer.", UI::TopW / 2, 136, 0.45f, UI::ColTextDim);
+  }
+
+  // legend
+  UI::TextCentered(u8" Navigate    Select    Back   SELECT Exit",
+                   UI::TopW / 2, 224, 0.38f, UI::ColTextDim);
+}
+
+}  // namespace
+
+void MenuDraw() {
+  UI::SceneTop();
+  DrawTopScreen();
+  UI::SceneBottom();
+  DrawBottomScreen();
+}
+
+// ————————————————————————————————————————————————————————————————
+// Touch input: taps synthesize the same button events the D-pad logic
+// already handles, so menu behavior stays identical.
+// ————————————————————————————————————————————————————————————————
+u32 MenuHandleTouch() {
+  if (!(hidKeysDown() & KEY_TOUCH)) return 0;
+  touchPosition t;
+  hidTouchRead(&t);
+
+  // footer back button (everywhere but the main menu)
+  if (t.py >= FOOT_TOP && t.px < 70 && currentMenu->mode != MAIN_MENU) {
+    return KEY_B;
+  }
+
+  // list area
+  if (t.py >= LIST_TOP && t.py < LIST_TOP + LIST_VISIBLE * ROW_H) {
+    int row = (int)((t.py - LIST_TOP) / ROW_H);
+
+    switch (currentMenu->mode) {
+      case OPTION_SUB_MENU: {
+        std::vector<u16> rows = VisibleOptionRows();
+        if (row >= (int)rows.size()) return 0;
+        u16 idx = rows[row];
+        Option* setting = currentMenu->settingsList->at(idx);
+        if (setting->IsLocked()) return 0;
+        if (idx == currentMenu->menuIdx) {
+          // tap the selected row again: left half = previous, right half = next
+          return (t.px >= UI::BotW / 2) ? KEY_DRIGHT : KEY_DLEFT;
+        }
+        currentMenu->menuIdx = idx;
+        currentSetting = setting;
+        return 0;
+      }
+      case MAIN_MENU:
+      case SUB_MENU: {
+        size_t idx = listScroll + row;
+        if (currentMenu->itemsList == nullptr || idx >= currentMenu->itemsList->size()) return 0;
+        if ((u16)idx == currentMenu->menuIdx) return KEY_A;
+        currentMenu->menuIdx = (u16)idx;
+        return 0;
+      }
+      case LOAD_PRESET:
+      case DELETE_PRESET: {
+        size_t idx = listScroll + row;
+        if (idx >= presetEntries.size()) return 0;
+        if ((u16)idx == currentMenu->menuIdx) return KEY_A;
+        currentMenu->menuIdx = (u16)idx;
+        return 0;
+      }
+      case RESET_TO_DEFAULTS:
+        return KEY_A;
+      default:
+        return 0;
+    }
+  }
+
+  return 0;
 }

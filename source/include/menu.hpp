@@ -18,6 +18,8 @@
 #define BOTTOM_WIDTH 40
 #define SCREEN_HEIGHT 30
 
+// ANSI color strings are still emitted by the logic code (fill, spoiler log,
+// ...) via printf; the UI layer captures stdout and renders them.
 #define RESET   "\x1b[0m"
 #define DIM     "\x1b[2m"
 
@@ -31,21 +33,17 @@
 #define WHITE   "\x1b[37m"
 
 void ModeChangeInit();
-void UpdateMainMenu(u32 kDown);
 void UpdateOptionSubMenu(u32 kDown);
-void UpdateSubMenu(u32 kDown);
 void UpdatePresetsMenu(u32 kdown);
 void UpdateResetToDefaultsMenu(u32 kdown);
 void UpdateGenerateMenu(u32 kDown);
-void PrintMainMenu();
-void PrintOptionSubMenu();
-void PrintSubMenu();
-void PrintPresetsMenu();
-void PrintResetToDefaultsMenu();
 void ClearDescription();
-void PrintOptionDescription();
 void GenerateRandomizer();
 std::string GetInput(const char* hintText);
 
 extern void MenuInit();
 extern void MenuUpdate(u32 kDown);
+
+// citro2d rendering + touch input (see menu.cpp / ui.cpp)
+void MenuDraw();
+u32 MenuHandleTouch();

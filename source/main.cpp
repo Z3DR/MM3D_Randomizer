@@ -4,6 +4,7 @@
 #include <3ds.h>
 
 #include "menu.hpp"
+#include "ui.hpp"
 #include "hint_list.hpp"
 #include "item_list.hpp"
 #include "item_location.hpp"
@@ -15,25 +16,14 @@
 #define TICKS_PER_SEC 268123480.0
 
 int main() {
-    gfxInitDefault();
-    // Register graphics to quit at exit. New to libctru update.
-    atexit(gfxExit);
+    UI::Init();
+    // Register graphics to quit at exit.
+    atexit(UI::Exit);
     HintTable_Init();
     ItemTable_Init();
     LocationTable_Init();
     MenuInit();
     SystemInfoInit();
-
-    /*CustomMessages::CreateMessage(0x0224, 0x8000, 0x3FFFFFFF, 0xFF0000,
-        "This is a test scrolling #custom message# with #multiple# #colours#, %d%e%l%a%y%s, and icons $ $ $^Let's also test filename:&#@#",
-        { QM_GREEN, QM_MAGENTA, QM_CYAN, QM_RED }, { ZL_BUTTON, MAJORA_ICON, ZR_BUTTON }, { 5, 10, 15, 20, 25, 30 },
-        0x0000, false, false
-    );
-    CustomMessages::CreateMessage(0x8000, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
-        "This is a test instant #custom message# with #multiple# #colours#, %d%e%l%a%y%s, and icons $ $ $^Let's also test filename:&#@#",
-        { QM_GREEN, QM_MAGENTA, QM_CYAN, QM_RED }, { ZL_BUTTON, MAJORA_ICON, ZR_BUTTON }, { 5, 10, 15, 20, 25, 30 },
-        0x0000, true, false
-    );*/
 
     u64 initialHoldTime = svcGetSystemTick();
     u64 intervalTime = initialHoldTime;
@@ -58,8 +48,11 @@ int main() {
             initialHoldTime = svcGetSystemTick();
         }
 
+        //taps synthesize the same button events the menu logic handles
+        kDown |= MenuHandleTouch();
+
         //send inputs off to the menu
-        if (kDown)
+        if (kDown & ~KEY_TOUCH)
             MenuUpdate(kDown);
 
         //launch MM3d directly by holding L and R (cartridge only)
@@ -68,13 +61,11 @@ int main() {
             break;
         }
 
-        // Flush and swap framebuffers
-        gfxFlushBuffers();
-        gfxSwapBuffers();
-
-        //Wait for VBlank
-        gspWaitForVBlank();
+        //render the frame
+        UI::FrameBegin();
+        MenuDraw();
+        UI::FrameEnd();
     }
-    
+
     return 0;
 }
