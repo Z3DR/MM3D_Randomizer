@@ -78,7 +78,7 @@ jobs:
         uses: ncipollo/release-action@v1.21.0
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
-          artifacts: "MM3D_Randomizer.cia,MM3D_Randomizer.3dsx,cia.png,3dsx.png"
+          artifacts: "MM3D_Randomizer.cia,MM3D_Randomizer.3dsx,cia.png,3dsx.png,mm3dr.elf,MM3D_Randomizer.elf"
           prerelease: true
           commit: "${{ github.sha }}"
           tag: "${{ env.tag_name }}"
@@ -100,7 +100,7 @@ jobs:
         uses: ncipollo/release-action@v1.21.0
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
-          artifacts: "MM3D_Randomizer.cia,MM3D_Randomizer.3dsx,cia.png,3dsx.png"
+          artifacts: "MM3D_Randomizer.cia,MM3D_Randomizer.3dsx,cia.png,3dsx.png,mm3dr.elf,MM3D_Randomizer.elf"
           prerelease: false
           commit: "${{ github.sha }}"
           tag: "${{ env.tag_name }}"
