@@ -136,13 +136,13 @@ namespace Settings {
   Option StartingEponasSong        = Option::U8("Epona's Song",           { "None",             "Epona's Song" },                                            { "" });
   Option StartingSongOfStorms      = Option::U8("Song of Storms",         { "None",             "Song of Storms" },                                          { "" });
   Option StartingSonataOfAwakening = Option::U8("Sonata of Awakening",    { "None",             "Sonata of A." },                                            { "" });
-  Option StartingGoronsLullaby     = Option::U8("Gorons Lullaby",         { "None",             "Gorons Lullaby" },                                          { "" });
+  Option StartingGoronsLullaby     = Option::U8("Gorons Lullaby",         { "None",             "Lullaby Intro", "Gorons Lullaby" },                         { "" });
   Option StartingNewWaveBossaNova  = Option::U8("New Wave Bossa Nova",    { "None",             "New Wave Bossa Nova" },                                     { "" });
   Option StartingElegyOfEmptiness  = Option::U8("Elegy of Emptiness",     { "None",             "Elegy of Emptiness" },                                      { "" });
   Option StartingSongOfHealing     = Option::U8("Song of Healing",        { "None",             "Song of Healing" },                                         { "" }, OptionCategory::Setting);
   Option StartingSongOfSoaring     = Option::U8("Song of Soaring",        { "None",             "Song of Soaring" },                                         { "" });
   Option StartingSongOfTime        = Option::U8("Song of Time",           { "None",             "Song of Time" },                                            { "" });
-  Option StartingGoronIntro        = Option::U8("Goron Lullaby Intro",    { "None",             "Lullaby Intro" },                                           { "" });
+//Option StartingGoronIntro        = Option::U8("Goron Lullaby Intro",    { "None",             "Lullaby Intro" },                                           { "" });
   Option StartingUpgradesToggle    = Option::U8("Equipment & Upgrades",   { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingKokiriSword       = Option::U8("Starting Sword",         { "Kokiri Sword",     "Razor Sword", "Gilded Sword", "None" },                     { startingSwordKokiriDesc, startingSwordRazorDesc, startingSwordGildedDesc, startingSwordNoneDesc }, OptionCategory::Setting, (u8)StartingSwordSetting::STARTINGSWORD_KOKIRI);//1U = StartingSwordSetting::STARTINGSWORD_KOKIRI
   Option StartingGreatFairySword   = Option::U8("Great Fairy Sword",      { "None",             "G. F. S." },                                                { "" });
@@ -256,7 +256,6 @@ namespace Settings {
     &StartingEponasSong,
     &StartingSongOfStorms,
     &StartingSonataOfAwakening,
-    &StartingGoronIntro,
     &StartingGoronsLullaby,
     &StartingNewWaveBossaNova,
     &StartingElegyOfEmptiness,
@@ -836,7 +835,7 @@ namespace Settings {
     ctx.startingSongOfSoaring = StartingSongOfSoaring.Value<u8>();
     ctx.startingSongOfHealing = StartingSongOfHealing.Value<u8>();
     ctx.startingSongOfTime = StartingSongOfTime.Value<u8>();
-    ctx.startingGoronIntro = StartingGoronIntro.Value<u8>();
+    //ctx.startingGoronIntro = StartingGoronIntro.Value<u8>();
     //Upgrades
     ctx.startingKokiriSword = StartingKokiriSword.Value<u8>();
     ctx.startingShield = StartingShield.Value<u8>();
