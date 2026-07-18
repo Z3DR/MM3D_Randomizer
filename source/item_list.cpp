@@ -74,19 +74,19 @@ void ItemTable_Init() {    //repeatable denotes that an item in a vanilla playth
 //Stray Fairies//
 
 //Clock Town Fairies
-    itemTable[CT_STRAY_FAIRY]                    = Item(true,  false, &ClockTownStrayFairy,         Text{"Clock Town Stray Fairy",       "Fée égarée de Cadranbourg",                       "Hada Extraviada de la Ciudad",                    "", "Fée égarée de Bourg-Clocher",             ""                        }, CT_STRAY_FAIRY,               (u32)GetItemID::GI_NONE,                    ITEMTYPE_STRAYFAIRY);
+    itemTable[CT_STRAY_FAIRY]                    = Item(true,  false, &ClockTownStrayFairy,         Text{"Clock Town Stray Fairy",       "Fée égarée de Cadranbourg",                       "Hada Extraviada de la Ciudad",                    "", "Fée égarée de Bourg-Clocher",             ""                        }, CT_STRAY_FAIRY,               0xBB,                    ITEMTYPE_STRAYFAIRY);
 
 //Woodfall Stray Fairies
-    itemTable[WF_STRAY_FAIRY]                    = Item(true,  false, &WoodfallStrayFairies,        Text{"Woodfall Stray Fairy",         "Fée égarée de Boisé-les-Cascades",                "Hada Extraviada del Bosque Catarata",             "", "Fée égarée de Bois-Cascade",              ""                        }, WF_STRAY_FAIRY,               (u32)GetItemID::GI_NONE,                    ITEMTYPE_STRAYFAIRY);
+    itemTable[WF_STRAY_FAIRY]                    = Item(true,  false, &WoodfallStrayFairies,        Text{"Woodfall Stray Fairy",         "Fée égarée de Boisé-les-Cascades",                "Hada Extraviada del Bosque Catarata",             "", "Fée égarée de Bois-Cascade",              ""                        }, WF_STRAY_FAIRY,               0xBC,                    ITEMTYPE_STRAYFAIRY);
 
 //Snowhead Stray Fairies
-    itemTable[SH_STRAY_FAIRY]                    = Item(true,  false, &SnowheadStrayFairies,        Text{"Snowhead Stray Fairy",         "Fée égarée du Pic des neiges",                    "Hada Extraviada del Pico Nevado",                 "", "Fée égarée du pic des Neiges",            ""                        }, SH_STRAY_FAIRY,               (u32)GetItemID::GI_NONE,                    ITEMTYPE_STRAYFAIRY);
+    itemTable[SH_STRAY_FAIRY]                    = Item(true,  false, &SnowheadStrayFairies,        Text{"Snowhead Stray Fairy",         "Fée égarée du Pic des neiges",                    "Hada Extraviada del Pico Nevado",                 "", "Fée égarée du pic des Neiges",            ""                        }, SH_STRAY_FAIRY,               0xBD,                    ITEMTYPE_STRAYFAIRY);
 
 //Great Bay Stray Fairies
-    itemTable[GBT_STRAY_FAIRY]                   = Item(true,  false, &GreatBayStrayFairies,        Text{"Great Bay Stray Fairy",        "Fée égarée de la Grande Baie",                    "Hada Extraviada de la Gran Bahía",                                                                                         }, GBT_STRAY_FAIRY,              (u32)GetItemID::GI_NONE,                    ITEMTYPE_STRAYFAIRY);
+    itemTable[GBT_STRAY_FAIRY]                   = Item(true,  false, &GreatBayStrayFairies,        Text{"Great Bay Stray Fairy",        "Fée égarée de la Grande Baie",                    "Hada Extraviada de la Gran Bahía",                                                                                         }, GBT_STRAY_FAIRY,              0xBE,                    ITEMTYPE_STRAYFAIRY);
 
 //Stone Tower Stray Fairies
-    itemTable[ST_STRAY_FAIRY]                    = Item(true,  false, &StoneTowerStrayFairies,      Text{"Stone Tower Stray Fairy",      "Fée égarée de la Forteresse de Pierre",           "Hada Extraviada de la Torre de Piedra",                                                                                    }, ST_STRAY_FAIRY,               (u32)GetItemID::GI_NONE,                    ITEMTYPE_STRAYFAIRY);
+    itemTable[ST_STRAY_FAIRY]                    = Item(true,  false, &StoneTowerStrayFairies,      Text{"Stone Tower Stray Fairy",      "Fée égarée de la Forteresse de Pierre",           "Hada Extraviada de la Torre de Piedra",                                                                                    }, ST_STRAY_FAIRY,               0xBF,                    ITEMTYPE_STRAYFAIRY);
 
 //Bottles
     itemTable[EMPTY_BOTTLE1]                     = Item(true,  false, &ArcheryBottle,               Text{"Empty Bottle",                 "Flacon vide",                                     "Botella vacía",                                                                                                            }, EMPTY_BOTTLE1,                (u32)GetItemID::GI_BOTTLE_EMPTY,            ITEMTYPE_ITEM);

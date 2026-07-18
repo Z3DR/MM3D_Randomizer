@@ -67,7 +67,7 @@ void DungeonInfo::PlaceVanillaBossKey() {
 	auto bossKeyLocation = FilterFromPool(dungeonLocations, [](const LocationKey loc) { return Location(loc)->IsCategory(Category::cVanillaBossKey); })[0];
 	PlaceItemInLocation(bossKeyLocation, bossKey);
 }
-/*
+
 void DungeonInfo::PlaceVanillaSwampToken() {
 	auto dungeonLocations = GetDungeonLocations();
 	auto tokenLocations = FilterFromPool(dungeonLocations, [](const LocationKey loc){return Location(loc)->IsCategory(Category::cSwampSkulltula);});
@@ -115,7 +115,7 @@ void DungeonInfo::PlaceVanillaSTStray() {
 		PlaceItemInLocation(location, ST_STRAY_FAIRY);
 	}
 }
-*/
+
 void DungeonInfo::PlaceVanillaSmallKeys() {
   if (smallKey == NONE) {
     return;
