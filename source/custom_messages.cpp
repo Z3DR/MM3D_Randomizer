@@ -345,6 +345,57 @@ void CreateBaselineCustomMessages() {
     },
     {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false);
 
+    //Bank Rewards
+    CreateMessage(0x045c, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+    {"What's this? You've already saved up #500 Rupees#!?! Well, little guy, here's your special gift. Take it!",
+        // French
+        "Vous avez déjà économisé #500 Rubis#?! Bon, petit, voici votre cadeau spécial. Prenez-le!",
+    },
+    {QM_RED}, {}, {}, 0x0, false, false);
+
+    CreateMessage(0x045d, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+    {"What's this? You've already saved up #1,000 Rupees#?! Well, little guy, I can't take any more deposits. Sorry, but this is all I can give you.",
+        // French
+        "Vous avez déjà économisé #1000 Rubis#?! Bon, petit, je ne peux plus accepter de dépôts. Désolé, mais c'est tout ce que je peux vous donner.",
+    },
+    {QM_RED}, {}, {}, 0x0, false, false);
+
+    //Stray Fairies
+    CreateMessage(0x06144, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+    {"You got the #Clock Town Stray Fairy#! Bring it to the Fairy Fountain in North Clock Town!",
+        // French
+        "Vous obtenez une #Fée Perdue de Clock Town#! Apporte-le à la Fontaine des Fées, dans le Quartier Nord de Bourg-Clocher!",
+    },
+    {QM_RED}, {}, {}, 0x0, false, false);
+
+    CreateMessage(0x06145, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+    {"You got a #Woodfall Stray Fairy#! &You have collected #=WFF#.",
+        // French
+        "Vous obtenez une #Fée Perdue de la forêt#!&Vous en avez désormais #=WFF#.",
+    },
+    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+
+    CreateMessage(0x06146, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+    {"You got a #Snowhead Stray Fairy#! &You have collected #=SHF#.",
+        // French
+        "Vous obtenez une #Fée Perdue des neiges#!&Vous en avez désormais #=SHF#.",
+    },
+    {QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
+
+    CreateMessage(0x06147, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+    {"You got a #Great Bay Stray Fairy#! &You have collected #=GBF#.",
+        // French
+        "Vous obtenez une #Fée Perdue de la baie#!&Vous en avez désormais #=GBF#.",
+    },
+    {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false);
+
+    CreateMessage(0x06148, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
+    {"You got a #Stone Tower Stray Fairy#! &You have collected #=STF#.",
+        // French
+        "Vous obtenez une #Fée Perdue d'Ikana#!&Vous en avez désormais #=STF#.",
+    },
+    {QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+
 }
 
 u32 NumMessages() {

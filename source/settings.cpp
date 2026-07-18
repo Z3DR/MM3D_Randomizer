@@ -378,7 +378,7 @@ namespace Settings {
     &MapsAndCompasses,
     &Keysanity,
     &BossKeysanity,
-    //&StrayFairysanity,
+    &StrayFairysanity,
     &ShuffleRewards,
     &ShuffleHeartContainers,
     &MoonRemainsRequired,

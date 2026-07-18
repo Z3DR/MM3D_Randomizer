@@ -641,15 +641,25 @@ static void PlaceVanillaBossKeys() {
 };
 
 static void PlaceVanillaStrayFairies() {
-	/*TO-DO::make simpler
 	for (auto dungeon : dungeonList) {
-		dungeon->PlaceVanillaWFStray();
-		dungeon->PlaceVanillaSHStray();
-		dungeon->PlaceVanillaGBTStray();
-		dungeon->PlaceVanillaSTStray();
-	}*/
+		switch (dungeon) {
+			case WoodfallTemple:
+				dungeon->PlaceVanillaWFStray();
+				break;
+			case SnowheadTemple:
+				dungeon->PlaceVanillaSHStray();
+				break;
+			case GreatBayTemple:
+				dungeon->PlaceVanillaGBTStray();
+				break;
+			case StoneTowerTemple:
+				dungeon->PlaceVanillaSTStray();
+				break;
+		}
+	}
 	//Clock Town
 	PlaceItemInLocation(LAUNDRY_POOL_SF, CT_STRAY_FAIRY);
+	/*
 	//Woodfall Temple
 	PlaceItemInLocation(WF_SF_ENTRANCE_FAIRY, WF_STRAY_FAIRY);
 	PlaceItemInLocation(WF_SF_ENTRANCE_PLATFORM, WF_STRAY_FAIRY);
@@ -714,14 +724,19 @@ static void PlaceVanillaStrayFairies() {
 	PlaceItemInLocation(ST_SF_STATUE_EYE, ST_STRAY_FAIRY);
 	PlaceItemInLocation(ST_SF_UNDERWATER, ST_STRAY_FAIRY);
 	PlaceItemInLocation(ST_SF_BRIDGE_CRYSTAL, ST_STRAY_FAIRY);
+	*/
 };
 
 static void PlaceVanillaSkulltulaTokens() {
-	/* TO-DO::make simpler
 	for (auto dungeon : dungeonList) {
-		dungeon->PlaceVanillaSwampToken();
-		dungeon->PlaceVanillaOceanToken();
-	}*/
+		switch (dungeon) {
+			case SwampSpiderHouse:
+				dungeon->PlaceVanillaSwampToken();
+			case OceansideSpiderHouse:
+				dungeon->PlaceVanillaOceanToken();
+		}
+	}
+	/*
 	//Swamp Skull Tokens
 	PlaceItemInLocation(SSH_MAIN_ROOM_NEAR_CEILING, SWAMP_SKULLTULA_TOKEN);
 	PlaceItemInLocation(SSH_MAIN_ROOM_WATER, SWAMP_SKULLTULA_TOKEN);
@@ -784,6 +799,7 @@ static void PlaceVanillaSkulltulaTokens() {
 	PlaceItemInLocation(OSH_COLORED_SKULLS_CHANDELIER_3, OCEANSIDE_SKULLTULA_TOKEN);
 	PlaceItemInLocation(OSH_COLORED_SKULLS_BEHIND_PICTURE, OCEANSIDE_SKULLTULA_TOKEN);
 	PlaceItemInLocation(OSH_COLORED_SKULLS_POT, OCEANSIDE_SKULLTULA_TOKEN);
+	*/
 };
 
 static void PlaceVanillaCowMilk() {
@@ -1022,11 +1038,6 @@ void GenerateItemPool() {
 	else {
 		PlaceVanillaSongs();
 	}
-	//No Longer Needed since Song of Healing is now randomized and the check is always obtainable even when starting with SoH
-	// if (StartingSongOfHealing.Value<u8>() == u8(1)){//if starting with song of healing fill deku mask and notebook spots as they are unobtainable
-	// 	PlaceItemInLocation(HMS_DEKU_MASK, GREEN_RUPEE);
-	// 	PlaceItemInLocation(HMS_BOMBERS_NOTEBOOK, GREEN_RUPEE);
-	// }
 	
 	//GREAT FAIRY SHUFFLE
 	if(ShuffleGFRewards.Is((u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA)){
@@ -1095,7 +1106,6 @@ void GenerateItemPool() {
 		PlaceItemInLocation(THE_MOON_GARO_CHEST, ARROWS_30);
 		PlaceItemInLocation(THE_MOON_IRON_KNUCKLE_CHEST, BOMBCHU_10);
 	}
-
 	
 	//TOKENSANITY
 	if(Tokensanity){
@@ -1107,8 +1117,6 @@ void GenerateItemPool() {
 	else {
 		PlaceVanillaSkulltulaTokens();
 	}
-
-	
 
 	//DEKU MERCHANT TRADE QUEST
 	if (ShuffleMerchants){//Merchants is Deku Scrub Trade Quest
@@ -1126,14 +1134,8 @@ void GenerateItemPool() {
 	if (ShuffleTradeItems){//TradeItems refers to Anju&Kafei Items
 		AddItemsToPool(ItemPool, anjuKafeiTradeItems);
 	} else {
-		//if(ShuffleMasks){ //-Kafei & Couples Mask part of A&K not masks
-		//	AddItemToMainPool(KAFEIS_MASK);
-		//	AddItemToMainPool(COUPLES_MASK);
-		//}
-		//else{
 		PlaceItemInLocation(E_CLOCK_TOWN_AROMA_IN_OFFICE, KAFEIS_MASK);
 		PlaceItemInLocation(STOCKPOTINN_ANJU_AND_KAFEI, COUPLES_MASK);
-		//}
 		PlaceItemInLocation(STOCKPOTINN_MIDNIGHT_MEETING, LETTER_KAFEI);
 		PlaceItemInLocation(LAUNDRY_POOL_CURIOSITY_SHOP_MAN_TWO, LETTER_MAMA);
 		PlaceItemInLocation(STOCKPOTINN_RESERVATION, ROOM_KEY);

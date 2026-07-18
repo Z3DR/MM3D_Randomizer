@@ -52,6 +52,14 @@ void GenerateStartingInventory() {
     AddItemToInventory(GBT_BOSS_KEY);
     AddItemToInventory(STONE_TOWER_TEMPLE_BOSS_KEY);
   }
+
+  if (StrayFairysanity.Value<u8>() == 1/*Start With*/) {
+    AddItemToInventory(CT_STRAY_FAIRY, 1);
+    AddItemToInventory(WF_STRAY_FAIRY, 15);
+    AddItemToInventory(SH_STRAY_FAIRY, 15);
+    AddItemToInventory(GBT_STRAY_FAIRY, 15);
+    AddItemToInventory(ST_STRAY_FAIRY, 15);
+  }
   
   //Starting Inventory Menu
   //Values are associated so that the count of items matches the index of

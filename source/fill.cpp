@@ -653,6 +653,11 @@ static void RandomizeOwnDungeon(const Dungeon::DungeonInfo* dungeon) {
         //}
         // true;
         });
+    if (ShuffleSongs.Value<u8>() == 1 /*Song Locations*/) {
+        std::vector<LocationKey> songLocations = FilterFromPool(allLocations, [](const LocationKey loc) { return Location(loc)->IsCategory(Category::cSong);});
+        std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
+        AssumedFill(songs, songLocations, true);
+    }
         /*
          PlacementLog_Msg("\nAllowed Locations are: \n"); 
             CitraPrint("Allowed Locations are:");
@@ -719,6 +724,38 @@ static void RandomizeDungeonItems() {
         else if (BossKeysanity.Is((u8)BossKeysanitySetting::BOSSKEYSANITY_OVERWORLD) && dungeon->GetBossKey() != NONE) {
             auto bossKey = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == dungeon->GetBossKey();});
             AddElementsToPool(overworldItems, bossKey);
+        }
+        if (StrayFairysanity.Value<u8>() == 2/*Any Dungeon*/) {
+            switch (dungeon) {
+                case WoodfallTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
+                    AddElementsToPool(anyDungeonItems, strayFairy);
+                case SnowheadTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
+                    AddElementsToPool(anyDungeonItems, strayFairy);
+                case GreatBayTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
+                    AddElementsToPool(anyDungeonItems, strayFairy);
+                case StoneTowerTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
+                    AddElementsToPool(anyDungeonItems, strayFairy);
+            }
+        }
+        else if (StrayFairysanity.Value<u8>() == 3/*Overworld*/) {
+            switch (dungeon) {
+                case WoodfallTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
+                    AddElementsToPool(overworldItems, strayFairy);
+                case SnowheadTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
+                    AddElementsToPool(overworldItems, strayFairy);
+                case GreatBayTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
+                    AddElementsToPool(overworldItems, strayFairy);
+                case StoneTowerTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
+                    AddElementsToPool(overworldItems, strayFairy);
+            }
         }
 
     }
@@ -817,40 +854,6 @@ int VanillaFill() {
      
     return 1;
 }
-
-int NoLogicFill() {
-    // CitraPrint("StartingNoLogicFill\n");
-    AreaTable_Init(); //Reset the world graph to intialize the proper locations
-    ItemReset(); //Reset shops incase of shopsanity random
-    GenerateLocationPool();
-    GenerateItemPool();
-    GenerateStartingInventory();
-    RemoveStartingItemsFromPool();
-    FillExcludedLocations();
-    RandomizeDungeonRewards();
-    std::vector<ItemKey> remainingPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return true;});
-    FastFill(remainingPool, GetAllEmptyLocations(), false);
-    GeneratePlaythrough();
-    printf("Done");
-    printf("\x1b[9;10HCalculating Playthrough...                        "); 
-    PareDownPlaythrough();
-    printf("Done");
-    printf("\x1b[10;10HCalculating Way of the Hero..."); 
-    CalculateWotH();
-    printf("Done");
-    // CitraPrint("Creating Item Overrides");
-    CreateItemOverrides();
-    // CreateEntranceOverrides();
-    // CreateAlwaysIncludedMessages();
-    if (GossipStoneHints.IsNot(rnd::GossipStoneHintsSetting::HINTS_NO_HINTS)) {
-        printf("\x1b[11;10HCreating Hints...");
-        CreateAllHints();
-        printf("Done");
-     }
-     
-     return 1;
-}
-   
 
 int Fill() {
     CustomMessages::CreateBaselineCustomMessages();
