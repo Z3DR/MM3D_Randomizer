@@ -135,7 +135,7 @@ public:
         else if (type == ItemLocationType::TempleReward) {key.type = ItemOverride_Type::OVR_TEMPLE;}
         //else if (type == ItemLocationType::Misc) {key.type = game::act::Type::Misc;}
         //TO-DO 
-        //else if (type == ItemLocationType::StrayFairy) {key.type = ItemOverride_Type::OVR_STRAY;}
+        else if (type == ItemLocationType::StrayFairy) {key.type = ItemOverride_Type::OVR_STRAY_FAIRY;}
         //else if (type == ItemLocationType::HintStone) {key.type = ItemOverride_Type::OVR_HINT;}
         //else if (type == ItemLocationType::OtherHint) {key.type = ItemOverride_Type::OVR_OTHER_HINT;}
         //key.type = type; //TODO make sure these match up
@@ -174,6 +174,8 @@ public:
         else if (type == ItemLocationType::GrottoScrub) {ovrtype = ItemOverride_Type::OVR_GROTTO_SCRUB;}
         else if (type == ItemLocationType::Delayed) {ovrtype = ItemOverride_Type::OVR_DELAYED;}
         else if (type == ItemLocationType::TempleReward) {ovrtype = ItemOverride_Type::OVR_TEMPLE;}
+        else if (type == ItemLocationType::StrayFairy) {ovrtype = ItemOverride_Type::OVR_STRAY_FAIRY;}
+
         return ovrtype;
     }
 
