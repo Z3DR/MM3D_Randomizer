@@ -47,6 +47,7 @@ extern string_view fairyOwnDungeon;
 extern string_view fairyAnyDungeon;
 extern string_view fairyOverworld;
 extern string_view fairyAnywhere;
+extern string_view shuffleCTStrayDesc;
 
 extern string_view shuffleRewardsEndOfDungeon;
 extern string_view shuffleRewardsAnyDungeon;

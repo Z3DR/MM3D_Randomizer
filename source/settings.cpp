@@ -372,6 +372,7 @@ namespace Settings {
   Option ShuffleHeartContainers = Option::Bool("Heart Containers", { "Vanilla", "Random"},                                                             { shuffleHeartContainersDesc });
   Option MoonRemainsRequired    = Option::U8("Moon Requirements",  {"Vanilla", "3", "2", "1", "0"},                                                    { MoonRemainsRequiredDesc },                                                                                                     OptionCategory::Setting);
   Option MajoraRemainsRequired  = Option::U8("Majora Requirements",{"Vanilla", "3", "2", "1", "0"},                                                    { MajoraRemainsRequiredDesc },                                                                                                   OptionCategory::Setting);
+  Option ShuffleCTStray         = Option::Bool("Clock Town Stray Fairy", { "Vanilla", "Anywhere" },                                              { shuffleCTStrayDesc });
 
   std::vector<Option*>dungeonSettingsOptions = {
     &RandomizeDungeon,
@@ -379,6 +380,7 @@ namespace Settings {
     &Keysanity,
     &BossKeysanity,
     &StrayFairysanity,
+    &ShuffleCTStray,
     &ShuffleRewards,
     &ShuffleHeartContainers,
     &MoonRemainsRequired,
@@ -1475,6 +1477,12 @@ namespace Settings {
       else {
         Unhide(strayFairies);
       }
+    if (!ShuffleCTStray) {
+      IncludeAndHide( {LAUNDRY_POOL_SF} );
+    }
+    else {
+      Unhide( {LAUNDRY_POOL_SF} );
+    }
       
   }
 
@@ -1769,6 +1777,7 @@ namespace Settings {
       MapsAndCompasses.SetSelectedIndex(0);
       BossKeysanity.SetSelectedIndex(0);
       StrayFairysanity.SetSelectedIndex(0);
+      ShuffleCTStray.SetSelectedIndex(0);
       ShuffleRewards.SetSelectedIndex(0);
       ShuffleHeartContainers.SetSelectedIndex(0);
       ShuffleMainInventory.SetSelectedIndex(0);
