@@ -485,6 +485,24 @@ void CreateTingleHintText() {
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
       }
 }
+
+void CreateOtherHints() {
+  // Create other hints for various texts
+
+  //Bank Reward 1 hint (Vanilla Wallet)
+  Text bankReward1Hint = Text{"For example, if you deposit 200 Rupees, you'll get #"+ItemTable(Location(S_CLOCK_TOWN_BANK_REWARD_1)->GetPlacedItemKey)->GetHint().GetText()+"#."};
+  CustomMessages::CreateMessageFromTextObject(0x44d, 0xFFFF, 0x3FF0A014, 0xFF1001,
+    bankReward1Hint,
+    {QM_RED}, {}, {}, 0x0, false, false);
+
+  //Termina Field Deku Salesman Heart Piece
+  Text dekuSalesmanHint = Text{" Please! I'll sell you a #"+ItemTable(Location(TERMINA_FIELD_BUSINESS_SCRUB)->GetPlacedItemKey).GetName()+"# if you just keep this place a secret..."};
+  CustomMessages::CreateMessageFromTextObject(0x1631, 0xFFFF, 0x3FF0A014, 0xFF1001,
+    dekuSalesmanHint,
+    {QM_RED}, {}, {}, 0x0, false, false);
+
+}
+
 //Find the location which has the given itemKey and create the generic altar text for the reward
 
 /*static Text BuildDungeonRewardText(ItemID itemID, const ItemKey itemKey) {
