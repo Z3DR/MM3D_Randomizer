@@ -642,17 +642,6 @@ static void RandomizeOwnDungeon(const Dungeon::DungeonInfo* dungeon) {
     std::vector<LocationKey> dungeonLocations = dungeon->GetDungeonLocations();
     std::vector<ItemKey> dungeonItems;
 
-    //filter out locations that may be required to have songs placed at them
-    
-    dungeonLocations = FilterFromPool(dungeonLocations, [](const LocationKey loc) {
-        //if (ShuffleSongs.Is(rnd::SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) {
-            return !(Location(loc)->IsCategory(Category::cSong)) && !(Location(loc)->IsCategory(Category::cDungeonReward));
-        //}
-        //if (ShuffleSongs.Is(rnd::SongShuffleSetting::SONGSHUFFLE_DUNGEON_REWARDS)) {
-           // return !(Location(loc)->IsCategory(Category::cDungeonReward));
-        //}
-        // true;
-        });
     if (ShuffleSongs.Value<u8>() == 1 /*Song Locations*/) {
         std::vector<LocationKey> songLocations = FilterFromPool(allLocations, [](const LocationKey loc) { return Location(loc)->IsCategory(Category::cSong);});
         std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
@@ -678,6 +667,23 @@ static void RandomizeOwnDungeon(const Dungeon::DungeonInfo* dungeon) {
         AddElementsToPool(dungeonItems, dungeonBossKey);
     }
 
+    if (StrayFairySanity.Value<u8>() == 3 /* Own Dungeon*/)
+    {
+        switch (dungeon) {
+                case WoodfallTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
+                    AddElementsToPool(dungeonItems, strayFairy);
+                case SnowheadTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
+                    AddElementsToPool(dungeonItems, strayFairy);
+                case GreatBayTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
+                    AddElementsToPool(dungeonItems, strayFairy);
+                case StoneTowerTemple:
+                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
+                    AddElementsToPool(dungeonItems, strayFairy);
+            }
+    }
     //randomize boss key and small keys together for even distribution
     AssumedFill(dungeonItems, dungeonLocations, true);
 
@@ -725,7 +731,7 @@ static void RandomizeDungeonItems() {
             auto bossKey = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == dungeon->GetBossKey();});
             AddElementsToPool(overworldItems, bossKey);
         }
-        if (StrayFairysanity.Value<u8>() == 2/*Any Dungeon*/) {
+        if (StrayFairysanity.Value<u8>() == 4/*Any Dungeon*/) {
             switch (dungeon) {
                 case WoodfallTemple:
                     auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
@@ -741,7 +747,7 @@ static void RandomizeDungeonItems() {
                     AddElementsToPool(anyDungeonItems, strayFairy);
             }
         }
-        else if (StrayFairysanity.Value<u8>() == 3/*Overworld*/) {
+        else if (StrayFairysanity.Value<u8>() == 5/*Overworld*/) {
             switch (dungeon) {
                 case WoodfallTemple:
                     auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
