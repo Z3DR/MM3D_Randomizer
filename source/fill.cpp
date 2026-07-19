@@ -667,25 +667,30 @@ static void RandomizeOwnDungeon(const Dungeon::DungeonInfo* dungeon) {
         AddElementsToPool(dungeonItems, dungeonBossKey);
     }
 
-    if (StrayFairySanity.Value<u8>() == 3 /* Own Dungeon*/)
+    if (StrayFairysanity.Value<u8>() == 2 /* Own Dungeon*/)
     {
-        switch (dungeon) {
-                case WoodfallTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
-                    AddElementsToPool(dungeonItems, strayFairy);
-                case SnowheadTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
-                    AddElementsToPool(dungeonItems, strayFairy);
-                case GreatBayTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
-                    AddElementsToPool(dungeonItems, strayFairy);
-                case StoneTowerTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
-                    AddElementsToPool(dungeonItems, strayFairy);
-            }
+        if (dungeon->GetName() == "Woodfall Temple") {
+            auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
+            AddElementsToPool(dungeonItems, strayFairy);
+        }
+        else if (dungeon->GetName() == "Snowhead Temple") {
+            auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
+            AddElementsToPool(dungeonItems, strayFairy);
+        }
+        else if (dungeon->GetName() == "Great Bay Temple") {
+            auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
+            AddElementsToPool(dungeonItems, strayFairy);
+        }
+        else if (dungeon->GetName() == "Stone Tower Temple") {
+            auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
+            AddElementsToPool(dungeonItems, strayFairy);
+        }
+            
     }
     //randomize boss key and small keys together for even distribution
+    NoRepeatOnTokens = true;
     AssumedFill(dungeonItems, dungeonLocations, true);
+    NoRepeatOnTokens = false;
 
     //randomize map and compass separately since they're not progressive
     if (MapsAndCompasses.Is((u8)MapsAndCompassesSetting::MAPSANDCOMPASSES_OWN_DUNGEON) && dungeon->GetMap() != NONE && dungeon->GetCompass() != NONE) {
@@ -731,39 +736,42 @@ static void RandomizeDungeonItems() {
             auto bossKey = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == dungeon->GetBossKey();});
             AddElementsToPool(overworldItems, bossKey);
         }
-        if (StrayFairysanity.Value<u8>() == 4/*Any Dungeon*/) {
-            switch (dungeon) {
-                case WoodfallTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
-                    AddElementsToPool(anyDungeonItems, strayFairy);
-                case SnowheadTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
-                    AddElementsToPool(anyDungeonItems, strayFairy);
-                case GreatBayTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
-                    AddElementsToPool(anyDungeonItems, strayFairy);
-                case StoneTowerTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
-                    AddElementsToPool(anyDungeonItems, strayFairy);
+        if (StrayFairysanity.Value<u8>() == 3/*Any Dungeon*/) {
+            if (dungeon->GetName() == "Woodfall Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
+                AddElementsToPool(anyDungeonItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Snowhead Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
+                AddElementsToPool(anyDungeonItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Great Bay Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
+                AddElementsToPool(anyDungeonItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Stone Tower Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
+                AddElementsToPool(anyDungeonItems, strayFairy);
             }
         }
-        else if (StrayFairysanity.Value<u8>() == 5/*Overworld*/) {
-            switch (dungeon) {
-                case WoodfallTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
-                    AddElementsToPool(overworldItems, strayFairy);
-                case SnowheadTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
-                    AddElementsToPool(overworldItems, strayFairy);
-                case GreatBayTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
-                    AddElementsToPool(overworldItems, strayFairy);
-                case StoneTowerTemple:
-                    auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
-                    AddElementsToPool(overworldItems, strayFairy);
+        else if (StrayFairysanity.Value<u8>() == 4/*Overworld*/) {
+            if (dungeon->GetName() == "Woodfall Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
+                AddElementsToPool(overworldItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Snowhead Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
+                AddElementsToPool(overworldItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Great Bay Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
+                AddElementsToPool(overworldItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Stone Tower Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
+                AddElementsToPool(overworldItems, strayFairy);
             }
         }
-
     }
 
     const std::array<ItemKey, 4> dungeonRewards = {
@@ -787,8 +795,10 @@ static void RandomizeDungeonItems() {
     }
 
     //Randomize Any Dungeon and Overworld pools
+    NoRepeatOnTokens = true;
     AssumedFill(anyDungeonItems, anyDungeonLocations, true);
     AssumedFill(overworldItems, overworldLocations, true);
+    NoRepeatOnTokens = false;
 
     //Randomize maps and compasses after since they're not advancement items
     for (auto dungeon : dungeonList) {

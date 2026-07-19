@@ -490,13 +490,42 @@ void CreateOtherHints() {
   // Create other hints for various texts
 
   //Bank Reward 1 hint (Vanilla Wallet)
-  Text bankReward1Hint = Text{"For example, if you deposit 200 Rupees, you'll get #"+ItemTable(Location(S_CLOCK_TOWN_BANK_REWARD_1)->GetPlacedItemKey)->GetHint().GetText()+"#."};
+  Text bankReward1Hint = Text{
+    Text{
+      /*NaEnglish*/"For example, if you deposit 200 Rupees, you'll get #",
+      /*NaFrench*/"Par exemple, si vous déposez 200 Rupees, vous obtiendrez #",
+      /*NaSpanish*/"Por ejemplo, si depositas 200 Rupees, obtendrás #",
+      /*EuEnglish*/"",
+      /*EuFrench*/"",
+      /*EuSpanish*/"",
+    }
+    +ItemTable(Location(S_CLOCK_TOWN_BANK_REWARD_1)->GetPlacedItemKey()).GetHint().GetText()
+    +Text{"#."}
+  };
   CustomMessages::CreateMessageFromTextObject(0x44d, 0xFFFF, 0x3FF0A014, 0xFF1001,
     bankReward1Hint,
     {QM_RED}, {}, {}, 0x0, false, false);
 
   //Termina Field Deku Salesman Heart Piece
-  Text dekuSalesmanHint = Text{" Please! I'll sell you a #"+ItemTable(Location(TERMINA_FIELD_BUSINESS_SCRUB)->GetPlacedItemKey).GetName()+"# if you just keep this place a secret..."};
+  Text dekuSalesmanHint = Text{
+    Text{
+      /*NaEnglish*/" Please! I'll sell you a #",
+      /*NaFrench*/" S'il te plaît, je te vendrai un #",
+      /*NaSpanish*/" Por favor, te venderé un #",
+      /*EuEnglish*/" Please! I'll sell you a #",
+      /*EuFrench*/" S'il te plaît, je te vendrai un #",
+      /*EuSpanish*/" Por favor, te venderé un #",
+    }
+    +ItemTable(Location(TERMINA_FIELD_BUSINESS_SCRUB)->GetPlacedItemKey()).GetName()
+    +Text{
+      /*NaEnglish*/"# if you just keep this place a secret...",
+    /*NaFrench*/"# si tu gardes ce lieu secret...",
+    /*NaSpanish*/"# si guardas este lugar en secreto...",
+    /*EuEnglish*/"# if you just keep this place a secret...",
+    /*EuFrench*/"# si tu gardes ce lieu secret...",
+    /*EuSpanish*/"# si guardas este lugar en secreto...",
+    }
+  };
   CustomMessages::CreateMessageFromTextObject(0x1631, 0xFFFF, 0x3FF0A014, 0xFF1001,
     dekuSalesmanHint,
     {QM_RED}, {}, {}, 0x0, false, false);

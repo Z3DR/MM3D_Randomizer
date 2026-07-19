@@ -182,24 +182,19 @@ string_view bossKeyAnywhere           = "Boss Keys can appear anywhere in the wo
 /*------------------------------                                                           //
 |       STRAY FAIRIES          |                                                           //
 ------------------------------*/                                                           //
-string_view fairyVanilla              = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Stray Fairies will appear in their \n"            //
+string_view fairyVanilla              = "Stray Fairies will appear in their \n"            //
                                         "vanilla locations.";                              //
-string_view fairyStartWith            = "**OPTION CURRENTLY WIP**\n"                       // 
-                                        "Stray Fairies are given to you from the start so \n"
+string_view fairyStartWith            = "Stray Fairies are given to you from the start so \n"
                                         "won't have to worry about collecting them.\n"     //
                                         "An easier mode.";                                 //
-string_view fairyOwnDungeon           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Stray Fairies can only appear in their respective\n"
+string_view fairyOwnDungeon           = "Stray Fairies can only appear in their respective\n"
                                         "dungeon.";                                        //
-string_view fairyAnyDungeon           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Stray Fairies can only appear inside of any dungeon\n"
+string_view fairyAnyDungeon           = "Stray Fairies can only appear inside of any dungeon\n"
                                         "but won't necessarily be in the dungeon that they\n"
                                         "are supposed to be found in.";                    //
-string_view fairyOverworld            = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Stray Fairies can only appear outside of dungeons";
-string_view fairyAnywhere             = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Stray Fairies can appear anywhere in the world."; //
+string_view fairyOverworld            = "Stray Fairies can only appear outside of dungeons";
+string_view fairyAnywhere             = "Stray Fairies can appear anywhere in the world."; //
+string_view shuffleCTStrayDesc        = "Shuffle the Clock Town Stray Fairy";              //
 /*------------------------------                                                           //
 |   SHUFFLE DUNGEON REWARDS    |                                                           //
 ------------------------------*/                                                           //

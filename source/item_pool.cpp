@@ -642,20 +642,10 @@ static void PlaceVanillaBossKeys() {
 
 static void PlaceVanillaStrayFairies() {
 	for (auto dungeon : dungeonList) {
-		switch (dungeon) {
-			case WoodfallTemple:
-				dungeon->PlaceVanillaWFStray();
-				break;
-			case SnowheadTemple:
-				dungeon->PlaceVanillaSHStray();
-				break;
-			case GreatBayTemple:
-				dungeon->PlaceVanillaGBTStray();
-				break;
-			case StoneTowerTemple:
-				dungeon->PlaceVanillaSTStray();
-				break;
-		}
+		dungeon->PlaceVanillaWFStray();
+		dungeon->PlaceVanillaSHStray();
+		dungeon->PlaceVanillaGBTStray();
+		dungeon->PlaceVanillaSTStray();
 	}
 	//Clock Town
 	PlaceItemInLocation(LAUNDRY_POOL_SF, CT_STRAY_FAIRY);
@@ -729,12 +719,8 @@ static void PlaceVanillaStrayFairies() {
 
 static void PlaceVanillaSkulltulaTokens() {
 	for (auto dungeon : dungeonList) {
-		switch (dungeon) {
-			case SwampSpiderHouse:
-				dungeon->PlaceVanillaSwampToken();
-			case OceansideSpiderHouse:
-				dungeon->PlaceVanillaOceanToken();
-		}
+		dungeon->PlaceVanillaSwampToken();
+		dungeon->PlaceVanillaOceanToken();
 	}
 	/*
 	//Swamp Skull Tokens
@@ -1254,11 +1240,18 @@ void GenerateItemPool() {
 		PlaceVanillaStrayFairies();
 	}
 	else {
-		AddItemToMainPool(CT_STRAY_FAIRY, 1); //if no selection or error ??
 		AddItemToMainPool(WF_STRAY_FAIRY, 15);
 		AddItemToMainPool(SH_STRAY_FAIRY, 15);
 		AddItemToMainPool(GBT_STRAY_FAIRY, 15);
 		AddItemToMainPool(ST_STRAY_FAIRY, 15);
+	}
+
+	//CLOCK TOWN STRAY FAIRY (Separated because it's not in a dungeon)
+	if (!ShuffleCTStray) {
+		PlaceItemInLocation(CT_STRAY_FAIRY, LAUNDRY_POOL_SF);
+	}
+	else {
+		AddItemToMainPool(CT_STRAY_FAIRY, 1);
 	}
 
 	//DungeonRewards
