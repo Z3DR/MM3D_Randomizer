@@ -1054,11 +1054,7 @@ int Fill() {
         //Then Place those to expand the amount of checks available
         AssumedFill(mainadvancementItems, allLocations,true);
         
-        //Then Place Anju & Kafei Items in spots accessable on Day 1, this should prevent situations where you cant get an item in time for its use
-        std::vector<LocationKey> day1Locations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cDayOne);});
-        std::vector<ItemKey> anjukafeiitems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_QUEST;});
-        AssumedFill(anjukafeiitems, day1Locations,true);
-
+        //Then place the rest of the repeatable items in locations marked as repeatable
         std::vector<LocationKey> repeatableItemLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsRepeatable();});
         std::vector<ItemKey> remainingRepeatItemPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsReusable();});
         AssumedFill(remainingRepeatItemPool, repeatableItemLocations, true);
@@ -1068,24 +1064,6 @@ int Fill() {
             std::vector<ItemKey> dekuTrades = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_TRADE;});
             AssumedFill(dekuTrades, allLocations);
         }   */
-        
-        //Then Place songs if song shuffle is set to specific locations
-        /*
-        if (ShuffleSongs.IsNot(SongShuffleSetting::SONGSHUFFLE_ANYWHERE)) {
-
-            //Get each song
-            std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
-
-            //Get each song location
-            std::vector<LocationKey> songLocations;
-            if (ShuffleSongs.Is(SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) {
-                songLocations = FilterFromPool(allLocations, [](const LocationKey loc) { return Location(loc)->IsCategory(Category::cSong);});
-            }
-            else if (ShuffleSongs.Is(SongShuffleSetting::SONGSHUFFLE_ANYWHERE)) {
-                songLocations = allLocations;
-            }
-            AssumedFill(songs, songLocations, true);
-        }*/
        
         //Then place Link's Pocket Item if it has to be an advancement item
         //Links Pocket is useless as there is no unobtainable check due to a certain time travel sword pedistal 
