@@ -254,7 +254,7 @@ void CreateBaselineCustomMessages() {
     // Woodfall
     CreateMessageFromTextObject(0x6137, 0x003E, 0x3FFFFFFF, 0xFF0000,
         GITextIntroMap + GITextDungeonWoodfall,
-        {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_WHITE}, {}, {}, 0x0, false, false);
 
     // Snowhead
     CreateMessageFromTextObject(0x6138, 0x003E, 0x3FFFFFFF, 0xFF0000,
