@@ -890,6 +890,7 @@ int Fill() {
         GenerateStartingInventory();
         RemoveStartingItemsFromPool();
         FillExcludedLocations();
+        PlaceItemInLocation(S_CLOCK_TOWN_CLOCK_TOWER_ENTRANCE, WOODFALL_TEMPLE_SMALL_KEY);
         
         showItemProgress = true;
 
