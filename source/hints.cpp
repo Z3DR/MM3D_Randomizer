@@ -503,8 +503,7 @@ void CreateOtherHints() {
     +Text{"#."}
   };
   CustomMessages::CreateMessageFromTextObject(0x44d, 0xFFFF, 0x3FF0A014, 0xFF1001,
-    bankReward1Hint,
-    {QM_RED}, {}, {}, 0x0, false, false);
+    bankReward1Hint, {QM_RED}, {}, {}, 0x0, false, false);
 
   //Termina Field Deku Salesman Heart Piece
   Text dekuSalesmanHint = Text{
@@ -527,8 +526,205 @@ void CreateOtherHints() {
     }
   };
   CustomMessages::CreateMessageFromTextObject(0x1631, 0xFFFF, 0x3FF0A014, 0xFF1001,
-    dekuSalesmanHint,
-    {QM_RED}, {}, {}, 0x0, false, false);
+    dekuSalesmanHint,{QM_RED}, {}, {}, 0x0, false, false);
+
+  //Beaver Hints
+  Text EmptyBottleHint = ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName();
+  Text beaverHint1 = Text{
+    Text{ 
+      /*NaEnglish*/"You want a #",
+      /*NaFrench*/"Tu veux une #",
+      /*NaSpanish*/"¿Quieres una #",
+      /*EuEnglish*/"You want an #",
+      /*EuFrench*/"Tu veux une #",
+      /*EuSpanish*/"¿Quieres una #",
+    }
+    +ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName()
+    +Text{
+      /*NaEnglish*/"#, don't you? You never learn your lesson!",
+      /*NaFrench*/"#, n'est-ce pas? Tu n'apprends jamais ta leçon!",
+      /*NaSpanish*/"#, ¿verdad? No aprendes tu lección...",
+      /*EuEnglish*/"#, don't you? You never learn your lesson!",
+      /*EuFrench*/"#, n'est-ce pas? Tu n'apprends jamais ta leçon!",
+      /*EuSpanish*/"#, ¿verdad? No aprendes tu lección...",
+    }
+  };
+  CustomMessages::CreateMessageFromTextObject(0x10cf, 0xFFFF, 0x3fffffff, 0xFF0000,
+    beaverHint1, {QM_RED}, {}, {}, 0x0, false, false);
+
+  Text beaverHint2 = Text{
+    Text{
+      /*NaEnglish*/"Koo, koo, koo. If you want an #",
+      /*NaFrench*/"Koo, koo, koo. Si tu veux une #",
+      /*NaSpanish*/"Koo, koo, koo. Si quieres una #",
+      /*EuEnglish*/"Koo, koo, koo. If you want an #",
+      /*EuFrench*/"Koo, koo, koo. Si tu veux une #",
+      /*EuSpanish*/"Koo, koo, koo. Si quieres una #",
+    }
+    +ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName()
+    +Text{
+      /*NaEnglish*/"#, I can give you one... But only if you can swim through all the rings in the river in under two minutes.",
+      /*NaFrench*/"#, je peux te donner une... Mais seulement si tu peux nager à travers tous les anneaux de la rivière en moins de deux minutes.",
+      /*NaSpanish*/"#, puedo darte una... Pero solo si puedes nadar a través de todos los anillos del río en menos de dos minutos.",
+      /*EuEnglish*/"#, I can give you one... But only if you can swim through all the rings in the river in under two minutes.",
+      /*EuFrench*/"#, je peux te donner une... Mais seulement si tu peux nager à travers tous les anneaux de la rivière en moins de deux minutes.",
+      /*EuSpanish*/"#, puedo darte una... Pero solo si puedes nadar a través de todos los anillos del río en menos de dos minutos.",
+    }
+  };
+  CustomMessages::CreateMessageFromTextObject(0x10d4, 0xFFFF, 0x3fffffff, 0xFF0000,
+    beaverHint2, {QM_RED}, {}, {}, 0x0, false, false);
+
+  Text beaverHint3 = Text{ 
+    Text{
+      /*NaEnglish*/"What? A #",
+      /*NaFrench*/"Quoi? Une #",
+      /*NaSpanish*/"¿Qué? Una #",
+      /*EuEnglish*/"What? A #", 
+      /*EuFrench*/"Quoi? Une #",
+      /*EuSpanish*/"¿Qué? Una #",
+    }
+    +ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName()
+    +Text{
+      /*NaEnglish*/"#?",
+      /*NaFrench*/"#?",
+      /*NaSpanish*/"#?",
+      /*EuEnglish*/"#?",
+      /*EuFrench*/"#?",
+      /*EuSpanish*/"#?",
+    }
+  };
+  CustomMessages::CreateMessageFromTextObject(0x10e0, 0xFFFF, 0x3fffffff, 0xFF0000,
+    beaverHint3, {QM_RED}, {}, {}, 0x0, false, false);
+
+  Text beaverHint4 = Text{
+    Text{
+      /*NaEnglish*/"Yeah... A #",
+      /*NaFrench*/"Oui... Une #",
+      /*NaSpanish*/"Sí... Una #",
+      /*EuEnglish*/"Yeah... A #",
+      /*EuFrench*/"Oui... Une #",
+      /*EuSpanish*/"Sí... Una #",
+    }
+    +ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName()
+    +Text{
+      /*NaEnglish*/"#.",
+      /*NaFrench*/"#.",
+      /*NaSpanish*/"#.",
+      /*EuEnglish*/"#.",
+      /*EuFrench*/"#.",
+      /*EuSpanish*/"#.",
+    }
+  };
+  CustomMessages::CreateMessageFromTextObject(0x10e1, 0xFFFF, 0x3fffffff, 0xFF0000,
+    beaverHint4, {QM_RED}, {}, {}, 0x0, false, false);
+  
+  Text beaverHint5 = Text{
+    Text{
+      /*NaEnglish*/"To you, it's just an #",
+      /*NaFrench*/"Pour toi, c'est juste une #",
+      /*NaSpanish*/"Para ti, es solo una #",
+      /*EuEnglish*/"To you, it's just an #",
+      /*EuFrench*/"Pour toi, c'est juste une #",
+      /*EuSpanish*/"Para ti, es solo una #",
+    }
+    +ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName()
+    +Text{
+      /*NaEnglish*/"# but to us it's a precious treasure. I can't give you one just because you beat my little brother.",
+      /*NaFrench*/"# mais pour nous c'est un trésor précieux. Je ne peux pas te donner une seule parce que tu as battu mon petit frère.",
+      /*NaSpanish*/"# pero para nosotros es un tesoro precioso. No puedo darte una solo porque venciste a mi hermano menor.",
+      /*EuEnglish*/"# but to us it's a precious treasure. I can't give you one just because you beat my little brother.",
+      /*EuFrench*/"# mais pour nous c'est un trésor précieux. Je ne peux pas te donner une seule parce que tu as battu mon petit frère.",
+      /*EuSpanish*/"# pero para nosotros es un tesoro precioso. No puedo darte una solo porque venciste a mi hermano menor.",
+    }
+  };
+  CustomMessages::CreateMessageFromTextObject(0x10e2, 0xFFFF, 0x3fffffff, 0xFF0000,
+    beaverHint5, {QM_RED}, {}, {}, 0x0, false, false);
+
+  Text beaverHint6 = Text{
+    Text{
+      /*NaEnglish*/"But we don't have any more #",
+      /*NaFrench*/"Mais nous n'avons plus aucune #",
+      /*NaSpanish*/"Pero no tenemos más #",
+      /*EuEnglish*/"But we don't have any more #",
+      /*EuFrench*/"Mais nous n'avons plus aucune #",
+      /*EuSpanish*/"Pero no tenemos más #",
+    }
+    +ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName()
+    +Text{
+      /*NaEnglish*/"#s...do we, Little Brother?",
+      /*NaFrench*/"#s...n'est-ce pas, petit frère?",
+      /*NaSpanish*/"#s...¿verdad, hermano menor?",
+      /*EuEnglish*/"#s...do we, Little Brother?",
+      /*EuFrench*/"#s...n'est-ce pas, petit frère?",
+      /*EuSpanish*/"#s...¿verdad, hermano menor?",
+    }
+  };
+  CustomMessages::CreateMessageFromTextObject(0x10f5, 0xFFFF, 0x3fffffff, 0xFF0000,
+    beaverHint6, {QM_RED}, {}, {}, 0x0, false, false);
+
+  Text beaverHint7 = Text{
+    Text{
+      /*NaEnglish*/"I told you that the beavers above the waterfall on the Zora Hall coast have #",
+      /*NaFrench*/"Je t'ai dit que les castors au-dessus de la cascade sur la côte du Château des Zora ont #",
+      /*NaSpanish*/"Te dije que los zorros encima de la cascada en la orilla del Palacio de los Zora tienen #",
+      /*EuEnglish*/"I told you that the beavers above the waterfall on the Zora Hall coast have #",
+      /*EuFrench*/"Je t'ai dit que les castors au-dessus de la cascade sur la côte du Château des Zora ont #",
+      /*EuSpanish*/"Te dije que los zorros encima de la cascada en la orilla del Palacio de los Zora tienen #",
+    }
+    +ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName()
+    +Text{
+    /*NaEnglish*/"#s, right? If you could nab a #",
+    /*NaFrench*/"#s, n'est-ce pas? Si tu pouvais t'emparer d'un #",
+    /*NaSpanish*/"#s, ¿verdad? Si pudieras pillar un #",
+    /*EuEnglish*/"#s, right? If you could nab a #",
+    /*EuFrench*/"#s, n'est-ce pas? Si tu pouvais t'emparer d'un #",
+    /*EuSpanish*/"#s, ¿verdad? Si pudieras pillar un #",
+    }
+    +ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName()
+    +Text{
+      /*NaEnglish*/"# from them...Ah, but you'd have to climb pretty high up to get to where they live, way up on top of the waterfall.",
+      /*NaFrench*/"# de eux... Ah, mais il faudrait grimper très haut pour atteindre leur domicile, bien en haut sur la cascade.",
+      /*NaSpanish*/"# de ellos... Ah, pero tendrías que escalar bastante alto para llegar a donde viven, muy arriba sobre la cascada.",
+      /*EuEnglish*/"# from them...Ah, but you'd have to climb pretty high up to get to where they live, way up on top of the waterfall.",
+      /*EuFrench*/"# de eux... Ah, mais il faudrait grimper très haut pour atteindre leur domicile, bien en haut sur la cascade.",
+      /*EuSpanish*/"# de ellos... Ah, pero tendrías que escalar bastante alto para llegar a donde viven, muy arriba sobre la cascada.",
+    }
+  };
+  CustomMessages::CreateMessageFromTextObject(0x1240, 0xFFFF, 0x3fffffff, 0xFF0000,
+    beaverHint7, {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
+
+  Text beaverHint8 = Text{
+    Text{
+      /*NaEnglish*/"I already told you the beavers above the waterfall have #",
+      /*NaFrench*/"Je t'ai déjà dit que les castors au-dessus de la cascade ont #",
+      /*NaSpanish*/"Te dije ya que los zorros encima de la cascada tienen #",
+      /*EuEnglish*/"I already told you the beavers above the waterfall have #",
+      /*EuFrench*/"Je t'ai déjà dit que les castors au-dessus de la cascade ont #",
+      /*EuSpanish*/"Te dije ya que los zorros encima de la cascada tienen #",
+    }
+    +ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName()
+    +Text{
+      /*NaEnglish*/"#s, didn't I? If you could nab a #",
+      /*NaFrench*/"#s, n'est-ce pas? Si tu pouvais t'emparer d'un #",
+      /*NaSpanish*/"#s, ¿verdad? Si pudieras pillar un #",
+      /*EuEnglish*/"#s, didn't I? If you could nab a #",
+      /*EuFrench*/"#s, n'est-ce pas? Si tu pouvais t'emparer d'un #",
+      /*EuSpanish*/"#s, ¿verdad? Si pudieras pillar un #",
+    }
+    +ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetName()
+    +Text{
+      /*NaEnglish*/"# from them... Ah, but you'd have to climb pretty high up to get to where they live, way up on top of the waterfall. The fisherman had an item that could latch on to trees and pull him toward them...but the pirates stole it. Isn't there anything you can do?",
+      /*NaFrench*/"# de eux... Ah, mais il faudrait grimper très haut pour atteindre leur domicile, bien en haut sur la cascade. Le pêcheur avait un objet qui pouvait s'agripper aux arbres et l'entraîner vers eux... mais les pirates l'ont volé. N'y a-t-il rien que tu puisses faire?",
+      /*NaSpanish*/"# de ellos... Ah, pero tendrías que escalar bastante alto para llegar a donde viven, muy arriba sobre la cascada. El pescador tenía un objeto que podía aferrarse a los árboles y jalarlo hacia ellos... pero los piratas lo robaron. ¿No hay nada que puedas hacer?",
+      /*EuEnglish*/"# from them... Ah, but you'd have to climb pretty high up to get to where they live, way up on top of the waterfall. The fisherman had an item that could latch on to trees and pull him toward them...but the pirates stole it. Isn't there anything you can do?",
+      /*EuFrench*/"# de eux... Ah, mais il faudrait grimper très haut pour atteindre leur domicile, bien en haut sur la cascade. Le pêcheur avait un objet qui pouvait s'agripper aux arbres et l'entraîner vers eux... mais les pirates l'ont volé. N'y a-t-il rien que tu puisses faire?",
+      /*EuSpanish*/"# de ellos... Ah, pero tendrías que escalar bastante alto para llegar a donde viven, muy arriba sobre la cascada. El pescador tenía un objeto que podía aferrarse a los árboles y jalarlo hacia ellos... pero los piratas lo robaron. ¿No hay nada que puedas hacer?",
+    }
+  };
+  CustomMessages::CreateMessageFromTextObject(0x1242, 0xFFFF, 0x3fffffff, 0xFF0000,
+    beaverHint8, {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
+  
+
 
 }
 
@@ -558,6 +754,14 @@ void CreateClockTowerDoorHints() {
     /*EuFrench */"Dis, t'avais pas un &#instrument de musique# ?&Je parie que Skull Kid, l'a caché vers ",
     /*EuSpanish*/""
   }+BuildDoorText(OCARINA_OF_TIME);
+  Text songTimeHint = Text{
+    /*NaEnglish*/"How could you forget the #Song of Time#?&We'll need to relearn it in ",
+    /*NaFrench */"Comment as-tu pu oublier la #Chanson du Temps#?&On devra l'apprendre dans ",
+    /*NaSpanish*/"¿Cómo pudiste olvidar la #Song of Time#?&Vamos a necesitar aprenderla en ",
+    /*EuEnglish*/"How could you forget the #Song of Time#?&We'll need to relearn it in ",
+    /*EuFrench */"Comment as-tu pu oublier la #Chanson du Temps#?&On devra l'apprendre dans ",
+    /*EuSpanish*/"¿Cómo pudiste olvidar la #Song of Time#?&Vamos a necesitar aprenderla en "
+  }+BuildDoorText(SONG_OF_TIME);
   Text odolwaHint = Text{
     /*English*/"There's one with a #crown# and #jewellery# said to be found at ",
     /*French */"Y'en a un avec une #couronne# et des #bijoux# situé vers ",
@@ -642,7 +846,24 @@ void CreateClockTowerDoorHints() {
       break;
   }
 
-  CustomMessages::CreateMessage(0x0630, (StartingOcarina.Value<u8>() == 0) ? 0x8000 : 0x8002, 0x3FFFFFFF, 0x0FF0211,
+  CustomMessages::CreateMessage(0x0630, (StartingOcarina.Value<u8>() == 0) ? 0x8000 : 0x8003, 0x3FFFFFFF, 0x0FF0211,
+    {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
+    "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#",
+      // French
+      "Accès aux toits strictement&interdit jusqu'à #minuit#, la&#veille #du carnaval.^"
+      "#Notice d'activités du carnaval:#&Concours de performance musicale&Concours de masques singuliers&#Prix à la clé!#",
+      // Spanish
+      "Acceso al tejado.&¡Prohibida la entrada hasta&la #medianoche de la víspera&#del carnaval!^"
+      "**SPANISH**",
+      // // German
+      // "Zugang zum Dach&Betreten streng verboten!&(bis um #Mitternacht# am&Vorabend des #Karnevals#)^"
+      // "**GERMAN**",
+      // // Italian
+      // "Porta del tetto&Ingresso vietato fino alla&#mezzanotte# della #vigilia# del&carnevale.^"
+      // "**ITALIAN**",
+    },
+    {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessage(0x0630, (ShuffleSongOfTime.Value<u8>() == 1) ? 0x8000 : 0x8003, 0x3FFFFFFF, 0x0FF0211,
     {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
     "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#",
       // French
@@ -660,23 +881,24 @@ void CreateClockTowerDoorHints() {
     },
     {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessageFromTextObject(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, ocarinaHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
-  CustomMessages::CreateMessage(0x8001, 0x8003, 0x3FFFFFFF, 0x1FF0000,
+  CustomMessages::CreateMessageFromTextObject(0x8001, 0x8002, 0x3FFFFFFF, 0x1000000, songTimeHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
+  CustomMessages::CreateMessage(0x8002, 0x8004, 0x3FFFFFFF, 0x1FF0000,
     {"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
       // French
       "D'ailleurs, ce #concours de masques# me rappelle que j'ai entendu des rumeurs dans le coin sur des #masques très uniques#.",
     },
     {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8002, 0x8003, 0x3FFFFFFF, 0x1FF0000,
+  CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x1FF0000,
     {"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
       // French
       "Dis, ce #concours de masques# me rappelle que j'ai entendu des rumeurs dans le coin sur des #masques très uniques#.",
     },
     {QM_RED, QM_RED}, {}, {}, 0x083E, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, odolwaHint, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, gohtHint, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, gyorgHint, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8006, 0x8007, 0x3FFFFFFF, 0x1600000, twinmoldHint, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8007, 0xFFFF, 0x3FFFFFFF, 0x0FF0000, remainsNeededHint, {QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8004, 0x8005, 0x3FFFFFFF, 0x15D0000, odolwaHint, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8005, 0x8006, 0x3FFFFFFF, 0x15E0000, gohtHint, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8006, 0x8007, 0x3FFFFFFF, 0x15F0000, gyorgHint, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8007, 0x8008, 0x3FFFFFFF, 0x1600000, twinmoldHint, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8008, 0xFFFF, 0x3FFFFFFF, 0x0FF0000, remainsNeededHint, {QM_RED}, {}, {}, 0x0, false, false);
 }
 
 void CreateMoonChildHint() {
