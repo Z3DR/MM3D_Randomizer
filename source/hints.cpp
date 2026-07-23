@@ -846,7 +846,12 @@ void CreateClockTowerDoorHints() {
       break;
   }
 
-  CustomMessages::CreateMessage(0x0630, (StartingOcarina.Value<u8>() == 0) ? 0x8000 : 0x8003, 0x3FFFFFFF, 0x0FF0211,
+  // Determine which hint to display first
+  u16 clockDoorFirstHint = 0x8003;
+  if (StartingOcarina.Value<u8>() == 0) clockDoorFirstHint = 0x8000;
+  else if (ShuffleSongOfTime) clockDoorFirstHint = 0x8001;
+
+  CustomMessages::CreateMessage(0x0630, clockDoorFirstHint, 0x3FFFFFFF, 0x0FF0211,
     {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
     "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#",
       // French
@@ -863,25 +868,8 @@ void CreateClockTowerDoorHints() {
       // "**ITALIAN**",
     },
     {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x0630, (ShuffleSongOfTime.Value<u8>() == 1) ? 0x8000 : 0x8003, 0x3FFFFFFF, 0x0FF0211,
-    {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
-    "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#",
-      // French
-      "Accès aux toits strictement&interdit jusqu'à #minuit#, la&#veille #du carnaval.^"
-      "#Notice d'activités du carnaval:#&Concours de performance musicale&Concours de masques singuliers&#Prix à la clé!#",
-      // Spanish
-      "Acceso al tejado.&¡Prohibida la entrada hasta&la #medianoche de la víspera&#del carnaval!^"
-      "**SPANISH**",
-      // // German
-      // "Zugang zum Dach&Betreten streng verboten!&(bis um #Mitternacht# am&Vorabend des #Karnevals#)^"
-      // "**GERMAN**",
-      // // Italian
-      // "Porta del tetto&Ingresso vietato fino alla&#mezzanotte# della #vigilia# del&carnevale.^"
-      // "**ITALIAN**",
-    },
-    {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8000, 0x8001, 0x3FFFFFFF, 0x1000000, ocarinaHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8001, 0x8002, 0x3FFFFFFF, 0x1000000, songTimeHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8000, ShuffleSongOfTime ? 0x8001 : 0x8002, 0x3FFFFFFF, 0x1000000, ocarinaHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8001, 0x8002, 0x3FFFFFFF, 0x1000000, songTimeHint, {QM_BLUE, QM_RED}, {}, {}, (clockDoorFirstHint == 0x8001) ? 0x083E : 0x0, false, false);
   CustomMessages::CreateMessage(0x8002, 0x8004, 0x3FFFFFFF, 0x1FF0000,
     {"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
       // French
