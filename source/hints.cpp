@@ -448,11 +448,11 @@ void CreateTingleHintText() {
         Text greatBayMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_GB)->GetPlacedItemKey()).GetName();
         Text ikanaMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName();
 
-        //                 {"English",           "French",           "Spanish"          };      "German"            "Italian"
-        Text priceFive =   {"    ##5 Rupees#&",  "    ##5 Rubis#&",  "    ##5 rupias#&"}; // ,  " - ##5 Rubine#&",  "    ##5 rupie#&"
-        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", "    ##20 rupias#&"}; // , " - ##20 Rubine#&", "    ##20 rupie#&"
-        Text priceForty =  {"    ##40 Rupees#",  "    ##40 Rubis#",  "    ##40 rupias#"}; // ,  " - ##40 Rubine#",  "    ##40 rupie#"
-        Text leaveShop =   {"&#No thanks#",      "&#Non merci#",     "&#No, gracias#"}; // ,    "&#Nein, danke!#",  "&#No, grazie#"
+        //                 {"English",           "French",           "Spanish"            "German"          };      "Italian"
+        Text priceFive =   {"    ##5 Rupees#&",  "    ##5 Rubis#&",  "    ##5 rupias#&",  " - ##5 Rubine#&" }; // , "    ##5 rupie#&"
+        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", "    ##20 rupias#&", " - ##20 Rubine#&"}; // , "    ##20 rupie#&"
+        Text priceForty =  {"    ##40 Rupees#",  "    ##40 Rubis#",  "    ##40 rupias#",  " - ##40 Rubine#" }; // , "    ##40 rupie#"
+        Text leaveShop =   {"&#No thanks#",      "&#Non merci#",     "&#No, gracias#",    "&#Nein, danke!#" }; // , "&#No, grazie#"
 
         // Clock Town message
         CustomMessages::CreateMessageFromTextObject(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
@@ -494,7 +494,7 @@ void CreateOtherHints() {
     /*English*/"For example, if you deposit #200 Rupees#, you'll get #",
     /*French*/"Par exemple, si tu déposes #200 rubis#, je te donnerai #",
     /*Spanish*/"Por ejemplo, si depositas #200 rupias#, te entregaré #",
-    // /*German ?*/"Wenn du zum Beispiel #200 Rubine# sparst, gebe ich dir #",
+    /*German ?*/"Wenn du zum Beispiel #200 Rubine# sparst, gebe ich dir #",
     // /*Italian?*/"Per esempio, se depositi #200 rupie#, otterrai #",
   }+ItemTable(Location(S_CLOCK_TOWN_BANK_REWARD_1)->GetPlacedItemKey()).GetHint().GetText()
   +"#.", {QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
@@ -504,13 +504,13 @@ void CreateOtherHints() {
     /*English*/"Please! I'll sell you #",
     /*French*/"OK, je te vends #",
     /*Spanish?*/"¡Por favor! Le venderé #",
-    // /*German ?*/"Oh, bitte! Ich verkaufe dir #",
+    /*German ?*/"Oh, bitte! Ich verkaufe dir #",
     // /*Italian?*/"Ti prego! Ti vendo #",
   }+ItemTable(Location(TERMINA_FIELD_BUSINESS_SCRUB)->GetPlacedItemKey()).GetHint().GetText()+Text{
     /*English*/"# if you just keep this place a secret...",
     /*French*/"# si tu gardes le secret de cet endroit.",
     /*Spanish*/"# si mantiene este lugar en secreto...",
-    // /*German ?*/"#, aber bitte behalte dieses Geheimnis für dich!",
+    /*German ?*/"#, aber bitte behalte dieses Geheimnis für dich!",
     // /*Italian?*/"# se mantieni il segreto su questo posto...",
   }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 
@@ -521,13 +521,13 @@ void CreateOtherHints() {
     /*English*/"You want #",
     /*French */"Tu veux #",
     /*Spanish?*/"Quieres #",
-    // /*German ?*/"Du willst doch #",
+    /*German ?*/"Du willst doch #",
     // /*Italian?*/"Vuoi #",
   }+beaverBottleHint+Text{
     /*NaEnglish*/"#, don't you? You never learn your lesson!",
     /*NaFrench */"#, c'est ça? Tu n'apprends jamais ta leçon!",
     /*NaSpanish?*/"#, ¿verdad? ¡Nunca aprenderás la lección!",
-    // /*EuGerman ?*/"#, nicht wahr? Hast du deine Lektion noch immer nicht gelernt?",
+    /*EuGerman ?*/"#, nicht wahr? Hast du deine Lektion noch immer nicht gelernt?",
     // /*EuItalian?*/"#, eh? Non impari mai!",
     /*EuEnglish*/"",
     /*EuFrench */"#, c'est ça ?&Tu ne retiens jamais la leçon !",
@@ -537,7 +537,7 @@ void CreateOtherHints() {
     /*English*/"Koo, koo, koo...&OK. But...",
     /*French */"Kii, kii, kii.&OK. Mais...",
     /*Spanish?*/"Cu, cu, cu.&Muy bien. Pero...",
-    // /*German ?*/"Quiek, quiek, quiek!&Okay. Aber...",
+    /*German ?*/"Quiek, quiek, quiek!&Okay. Aber...",
     // /*Italian?*/"Uh uh uh.&Va bene. Ma...",
   }, {}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
 
@@ -545,13 +545,13 @@ void CreateOtherHints() {
     /*English*/"Koo, koo, koo.&I can give you #",
     /*French */"Kii, kii, kii.&Je peux te donner #",
     /*Spanish?*/"Cu, cu, cu.&Puedo darte #",
-    // /*German ?*/"Quiek, quiek, quiek. Kann ich dir eine geben #",
+    /*German ?*/"Quiek, quiek, quiek. Kann ich dir eine geben #",
     // /*Italian?*/"Uh uh uh...&Posso dartela io #",
   }+beaverBottleHint+Text{
     /*English*/"#...^But only if you can swim through #all# the #rings# in the river in under #two minutes#.",
     /*French */"#...^Seulement si tu peux passer à&travers #tous# les #anneaux# sous la&rivière en moins de #deux minutes#.",
     /*Spanish?*/"#...^Pero solo si puedes nadar a&través de todos los #anillos# del río&en menos de #dos minutos#.",
-    // /*German ?*/"#...^Aber nur, wenn du es schaffst, in&weniger als #zwei Minuten# durch&alle #Ringe# im Fluss zu schwimmen.**",
+    /*German ?*/"#...^Aber nur, wenn du es schaffst, in&weniger als #zwei Minuten# durch&alle #Ringe# im Fluss zu schwimmen.**",
     // /*Italian?*/"#...^Ma solo se riesci a nuotare&attraverso tutti gli #anelli&#nel fiume #entro 2 minuti#.",
   }, {QM_RED, QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
 
@@ -568,7 +568,7 @@ void CreateOtherHints() {
     /*NaEnglish*/"What?&He wants #",
     /*NaFrench */"Quoi?&Il veut #",
     /*NaSpanish?*/"¿Qué?&¿#",
-    // /*EuGerman ?*/"Was?&#",
+    /*EuGerman ?*/"Was?&#",
     // /*EuItalian?*/"Cosa?&#",
     /*EuEnglish*/"",
     /*EuFrench */"Quoi ?&Il veut #",
@@ -577,7 +577,7 @@ void CreateOtherHints() {
     /*NaEnglish*/"#?",
     /*NaFrench */"#?",
     /*NaSpanish*/"#?",
-    // /*EuGerman */"#?",
+    /*EuGerman */"#?",
     // /*EuItalian*/"#?",
     /*EuEnglish*/"",
     /*EuFrench */"# ?",
@@ -587,7 +587,7 @@ void CreateOtherHints() {
     /*English*/"Yeah...&He Wants #",
     /*French */"Ouaip...&Il veut #",
     /*Spanish?*/"Sí...&#",
-    // /*German */"Ja...&#",
+    /*German */"Ja...&#",
     // /*Italian*/"Sì...&#",
   }+beaverBottleHint+"#.", {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessage(0x10E3, 0xFFFF, 0x3FFFFFFF, 0xFF0000, {
@@ -609,13 +609,13 @@ void CreateOtherHints() {
     /*English*/"This time, we only have #",
     /*French */"Cette fois, on n'a plus que #",
     /*Spanish?*/"This time, we only have #",
-    // /*German */"**GERMAN**#",
+    /*German ?*/"This time, we only have #",
     // /*Italian*/"**ITALIAN**#",
   }+ItemTable(Location(ZORA_CAPE_BEAVER_RACE_2)->GetPlacedItemKey()).GetHint().GetText()+Text{
     /*English*/"#... Right, Little Brother?",
     /*French */"#... Pas vrai, p'tit frère?",
     /*Spanish?*/"#... Right, Little Brother?",
-    // /*German */"#**GERMAN**",
+    /*German ?*/"#... Right, Little Brother?",
     // /*Italian*/"#**ITALIAN**",
   }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessage(0x10F6, 0xFFFF, 0x3FFFFFFF, 0xFF0000, {
@@ -630,7 +630,7 @@ void CreateOtherHints() {
     /*English*/"You know the #beavers# above the #waterfall# are the type to have #empty bottles#, right?^Lately, they've been braggin about #",
     /*French */"Je t'ai parlé des #castors# qui vivent en haut de la #cascade#, non? Ils adorent les #flacons vides#.^Mais ces temps-ci, leur truc c'est #",
     /*Spanish?*/"You know the #beavers# above the #waterfall# are the type to have #empty bottles#, right?^Lately, they've been braggin about #",
-    // /*German ?*/"You know the #beavers# above the #waterfall# are the type to have #empty bottles#, right?^Lately, they've been braggin about #",
+    /*German ?*/"You know the #beavers# above the #waterfall# are the type to have #empty bottles#, right?^Lately, they've been braggin about #",
     // /*Italian?*/"You know the #beavers# above the #waterfall# are the type to have #empty bottles#, right?^Lately, they've been braggin about #",
   }+beaverBottleHint
   +"#.", {QM_RED, QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENT);
@@ -639,7 +639,7 @@ void CreateOtherHints() {
     /*English*/"And remember what I told you about the #beavers# above the #waterfall#.^It seems like they have #",
     /*French */"Et rappelle toi ce que j'ai dit sur les #castors# qui vivent en haut de la #cascade#.^Il paraît qu'ils ont #",
     /*Spanish?*/"And remember what I told you about the #beavers# above the #waterfall#.^It seems like they have #",
-    // /*German */"**GERMAN**#",
+    /*German */"**GERMAN**#",
     // /*Italian*/"**ITALIAN**#",
   }+beaverBottleHint
   +"#.", {QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENT);
@@ -675,110 +675,127 @@ void CreateClockTowerDoorHints() {
     /*NaEnglish*/"Hey, didn't you have some sort of #musical instrument#?&If I know the Skull Kid, I bet he hid it at ",
     /*NaFrench */"Dis, t'avais pas un &#instrument de musique#?&Je parie que Skull Kid, l'a caché vers ",
     /*NaSpanish*/"**SPANISH** ",
+    /*EuGerman */"Hey, hast du nicht eine Art #Musikinstrument#?&Wenn ich das Horror-Kid kenne, würde ich wetten, er versteckt es bei ",
     /*EuEnglish*/"",
     /*EuFrench */"Dis, t'avais pas un &#instrument de musique# ?&Je parie que Skull Kid, l'a caché vers ",
-    /*EuSpanish*/""
+    /*EuSpanish*/"",
   }+BuildDoorText(OCARINA_OF_TIME);
   Text songTimeHint = Text{
     /*NaEnglish*/"How could you forget the #Song of Time#?&We'll need to relearn it in ",
     /*NaFrench */"T'as sérieusement oublié le #Chant du temps#?&Va falloir le réapprendre dans ",
     /*NaSpanish?*/"¿Cómo pudiste olvidar la #canción del tiempo#?&Vamos a necesitar aprenderla en ",
+    /*EuGerman ?*/"How could you forget the #Song of Time#?&We'll need to relearn it in ",
     /*EuEnglish*/"",
     /*EuFrench */"T'as sérieusement oublié le #Chant du temps# ?&Va falloir le réapprendre dans ",
-    /*EuSpanish*/""
+    /*EuSpanish*/"",
   }+BuildDoorText(SONG_OF_TIME);
   Text remainsPreHint = Text{
     /*English*/"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
     /*French */"D'ailleurs, ce #concours de masques# me rappelle que j'ai entendu des rumeurs dans le coin sur des #masques très uniques#.",
-    /*Spanish?*/"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"
+    /*Spanish?*/"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+    /*German */"Außerdem klingt dieser #Maskenwettbewerb# interessant! Ich habe Gerüchte über ziemlich #seltene Masken# hier in der Gegend gehört, echte Einzelstücke!",
   };
   if (clockDoorFirstHint == 0x8002) {
     remainsPreHint = Text{
       /*English*/"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
       /*French */"Dis, ce #concours de masques# me rappelle que j'ai entendu des rumeurs dans le coin sur des #masques très uniques#.",
-      /*Spanish?*/"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"
+      /*Spanish?*/"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+      /*German */"Hey, dieser #Maskenwettbewerb# klingt interessant! Ich habe Gerüchte über ziemlich #seltene Masken# hier in der Gegend gehört, echte Einzelstücke!",
     };
   }
   Text odolwaHint = Text{
     /*English*/"There's one with a #crown# and #jewellery# said to be found at ",
     /*French */"Y'en a un avec une #couronne# et des #bijoux# situé vers ",
-    /*Spanish*/"**SPANISH** "
+    /*Spanish*/"**SPANISH** ",
+    /*German */"Es gibt eine mit einer #Krone# und #Schmuck#, die man angeblich findet bei ",
   }+BuildDoorText(ODOLWAS_REMAINS);
   Text gohtHint = Text{
     /*English*/"Another #extremely sturdy# one with #huge horns# at ",
     /*French */"Un autre #très solide# avec des #cornes immenses# situé vers ",
-    /*Spanish*/"**SPANISH** "
+    /*Spanish*/"**SPANISH** ",
+    /*German */"Eine weitere #extrem robuste# mit #riesigen Hörnern# bei ",
   }+BuildDoorText(GOHTS_REMAINS);
   Text gyorgHint = Text{
     /*English*/"One with #giant fins# and #razor sharp teeth# at ",
     /*French */"Un qui a des #nageoires géantes# et #dents acérées# situé vers ",
-    /*Spanish*/"**SPANISH** "
+    /*Spanish*/"**SPANISH** ",
+    /*German */"Eine mit #riesigen Flossen# und #rasiermesserscharfen Zähnen# bei ",
   }+BuildDoorText(GYORGS_REMAINS);
   Text twinmoldHint = Text{
     /*English*/"And one with #three eyes# and #enormous mandibles# at ",
     /*French */"Et un avec #trois yeux# et d'#énormes mandibules# situé vers ",
-    /*Spanish*/"**SPANISH** "
+    /*Spanish*/"**SPANISH** ",
+    /*German */"Und eine mit #drei Augen# und #gewaltigen Mundwerkzeugen# bei ",
   }+BuildDoorText(TWINMOLDS_REMAINS);
   if (StartingOdolwaRemains.Value<u8>() == 1) {
     odolwaHint = Text{
       /*English*/"There's one with a #crown# and #jewellery# said to be found in ",
       /*French */"Y'en a un avec une #couronne# et des #bijoux# situé dans ",
-      /*Spanish*/"**SPANISH** "
+      /*Spanish*/"**SPANISH** ",
+      /*German */"Es gibt eine mit einer #Krone# und #Schmuck#, die man angeblich findet in ",
     }+BuildDoorText(ODOLWAS_REMAINS);
   }
   if (StartingGohtRemains.Value<u8>() == 1) {
     gohtHint = Text{
       /*English*/"Another #extremely sturdy# one with #huge horns# in ",
       /*French */"Un autre #très solide# avec des #cornes immenses# situé dans ",
-      /*Spanish*/"**SPANISH** "
+      /*Spanish*/"**SPANISH** ",
+      /*German */"Eine weitere #extrem robuste# mit #riesigen Hörnern# in ",
     }+BuildDoorText(GOHTS_REMAINS);
   }
   if (StartingGyorgRemains.Value<u8>() == 1) {
     gyorgHint = Text{
       /*English*/"One with #giant fins# and #razor sharp teeth# in ",
       /*French */"Un qui a des #nageoires géantes# et #dents acérées# situé dans ",
-      /*Spanish*/"**SPANISH** "
+      /*Spanish*/"**SPANISH** ",
+      /*German */"Eine mit #riesigen Flossen# und #rasiermesserscharfen Zähnen# in ",
     }+BuildDoorText(GYORGS_REMAINS);
   }
   if (StartingTwinmoldRemains.Value<u8>() == 1){
     twinmoldHint = Text{
       /*English*/"And one with #three eyes# and #enormous mandibles# in ",
       /*French */"Et un avec #trois yeux# et d'#énormes mandibules# situé dans ",
-      /*Spanish*/"**SPANISH** "
+      /*Spanish*/"**SPANISH** ",
+      /*German */"Und eine mit #drei Augen# und #gewaltigen Mundwerkzeugen# in ",
     }+BuildDoorText(TWINMOLDS_REMAINS);
   }
   Text remainsNeededHint = {
     /*English*/"The rumours say having #all four# causes something good to happen.",
     /*French */"D'après les rumeurs, si on a #les quatre#, un truc bien va se produire.",
-    /*Spanish*/"**SPANISH_4_REMAINS_NEEDED**"
+    /*Spanish*/"**SPANISH_4_REMAINS_NEEDED**",
+    /*German */"Den Gerüchten zufolge sorgen #alle vier# dafür, dass etwas Gutes passiert.",
     };
   switch (4 - MoonRemainsRequired.Value<u8>()) {
     case 0:
       remainsNeededHint = {
       /*English*/"I think collecting them would just be a #waste of time# though.",
       /*French */"Mais à mon avis, les collectionner ne serait qu'une #perte de temps#.",
-      /*Spanish*/"**SPANISH_0_REMAINS_NEEDED**"
+      /*Spanish*/"**SPANISH_0_REMAINS_NEEDED**",
+      /*German */"Ich denke aber, sie zu sammeln wäre nur #Zeitverschwendung#.",
       };
       break;
     case 1:
       remainsNeededHint = {
       /*English*/"The rumours say having #just one# is enough to make something good happen.",
       /*French */"D'après les rumeurs, il suffit d'en avoir #un seul# pour qu'un truc bien se produise.",
-      /*Spanish*/"**SPANISH_1_REMAINS_NEEDED**"
+      /*Spanish*/"**SPANISH_1_REMAINS_NEEDED**",
+      /*German */"Den Gerüchten zufolge reicht schon #eine einzige#, damit etwas Gutes passiert.",
       };
       break;
     case 2:
       remainsNeededHint = {
       /*English*/"The rumours say having #half of them# causes something good to happen.",
       /*French */"D'après les rumeurs, si on en a #la moitié#, un truc bien va se produire.",
-      /*Spanish*/"**SPANISH_2_REMAINS_NEEDED**"
+      /*Spanish*/"**SPANISH_2_REMAINS_NEEDED**",
+      /*German */"Den Gerüchten zufolge sorgt #die Hälfte von ihnen# dafür, dass etwas Gutes passiert.",
       };
       break;
     case 3:
       remainsNeededHint = {
       /*English*/"The rumours say having #three of them# causes something good to happen.",
       /*French */"D'après les rumeurs, si on en a #trois#, un truc bien va se produire.",
-      /*Spanish*/"**SPANISH_3_REMAINS_NEEDED**"
+      /*Spanish*/"**SPANISH_3_REMAINS_NEEDED**",
+      /*German */"Den Gerüchten zufolge sorgen #drei von ihnen# dafür, dass etwas Gutes passiert.",
       };
       break;
   }
@@ -792,9 +809,9 @@ void CreateClockTowerDoorHints() {
       // Spanish
       "Acceso al tejado.&¡Prohibida la entrada hasta&la #medianoche de la víspera&#del carnaval!^"
       "**SPANISH**",
-      // // German
-      // "Zugang zum Dach&Betreten streng verboten!&(bis um #Mitternacht# am&Vorabend des #Karnevals#)^"
-      // "**GERMAN**",
+      // German
+      "Zugang zum Dach&Betreten streng verboten!&(bis um #Mitternacht# am&Vorabend des #Karnevals#)^"
+      "#Hinweise zum Karnevalsprogramm:#&Musik-Wettbewerb&Wettbewerb: Die originellste Maske&#Tolle Preise zu gewinnen!#",
       // // Italian
       // "Porta del tetto&Ingresso vietato fino alla&#mezzanotte# della #vigilia# del&carnevale.^"
       // "**ITALIAN**",
@@ -815,28 +832,32 @@ void CreateMoonChildHint() {
   Text moonChildHint = {
     /*English*/"^Come back with &#four Bosses' Remains#...",
     /*French */"^Reviens avec les &#restes de quatre boss#...",
-    /*Spanish*/"^**SPANISH_4_REMAINS_NEEDED**"
+    /*Spanish*/"^**SPANISH_4_REMAINS_NEEDED**",
+    /*German */"^Komm wieder mit den &#Vermächtnissen von vier Endgegnern#...",
     };
   switch (4 - MajoraRemainsRequired.Value<u8>()) {
     case 1:
       moonChildHint = {
       /*English*/"^Come back with &#one Boss's Remains#...",
       /*French */"^Reviens avec les &#restes d'un boss#...",
-      /*Spanish*/"^**SPANISH_1_REMAINS_NEEDED**"
+      /*Spanish*/"^**SPANISH_1_REMAINS_NEEDED**",
+      /*German */"^Komm wieder mit dem &#Vermächtnis eines Endgegners#...",
       };
       break;
     case 2:
       moonChildHint = {
       /*English*/"^Come back with &#two Bosses' Remains#...",
       /*French */"^Reviens avec les &#restes de deux boss#...",
-      /*Spanish*/"^**SPANISH_2_REMAINS_NEEDED**"
+      /*Spanish*/"^**SPANISH_2_REMAINS_NEEDED**",
+      /*German */"^Komm wieder mit den &#Vermächtnissen von zwei Endgegnern#...",
       };
       break;
     case 3:
       moonChildHint = {
       /*English*/"^Come back with &#three Bosses' Remains#...",
       /*French */"^Reviens avec les &#restes de trois boss#...",
-      /*Spanish*/"^**SPANISH_3_REMAINS_NEEDED**"
+      /*Spanish*/"^**SPANISH_3_REMAINS_NEEDED**",
+      /*German */"^Komm wieder mit den &#Vermächtnissen von drei Endgegnern#...",
       };
       break;
   }
@@ -846,13 +867,15 @@ void CreateMoonChildHint() {
     /*NaEnglish*/"You...^You don't have many masks...do you?",
     /*NaFrench */"Toi...^Tu n'as pas beaucoup de masques... n'est-ce pas?",
     /*NaSpanish*/"**SPANISH**",
+    /*EuGerman */"Du...^Du hast nicht viele Masken... oder?",
     /*EuEnglish*/"",
     /*EuFrench */"Toi...^Tu n'as pas beaucoup de masques... n'est-ce pas ?",
-    /*EuSpanish*/""
+    /*EuSpanish*/"",
   }+moonChildHint+Text{
     /*English*/"^Then we can play.",
     /*French */"^Alors, on pourra jouer.",
-    /*Spanish*/"^**SPANISH**"
+    /*Spanish*/"^**SPANISH**",
+    /*German */"^Dann können wir spielen.",
   };
 
   CustomMessages::CreateMessageFromTextObject(0x6149, 0xFFFF, 0x3FFFFFFF, 0x0FF0020, moonChildHint, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);

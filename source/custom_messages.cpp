@@ -182,14 +182,14 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
 void CreateMessageFromTextObject(u16 textId, u16 field_2, u32 field_4, u32 flags, const Text& text,
                    const std::vector<colType>& cols, const std::vector<iconType>& icons, const std::vector<u8>& delays,
                    u16 sfx, bool instant, bool repeatSfx, u8 messageEndType) {
-    CreateMessage(textId, field_2, field_4, flags,
+    CreateMessage(textId, field_2, field_4, flags, {
                 //      NaEnglish                     NaFrench                      NaSpanish
-                  {text.GetNAEnglish().c_str(), text.GetNAFrench().c_str(), text.GetNASpanish().c_str(),
+                text.GetNAEnglish().c_str(),  text.GetNAFrench().c_str(),   text.GetNASpanish().c_str(),
                 // Remember to update these alongside Text class when adding languages
                 //      EuGerman                      EuItalian                     Japanese
-                text.GetEUREnglish().c_str(), text.GetEUREnglish().c_str(), // text.GetNAEnglish().c_str(),
+                text.GetEURGerman().c_str(),  text.GetEUREnglish().c_str(), // text.GetNAEnglish().c_str(),
                 //      EuEnglish                     EuFrench                      EuSpanish
-                text.GetEUREnglish().c_str(), text.GetEURFrench().c_str(), text.GetEURSpanish().c_str()
+                text.GetEUREnglish().c_str(), text.GetEURFrench().c_str(),  text.GetEURSpanish().c_str()
                 }, cols, icons, delays, sfx, instant, repeatSfx, messageEndType);
 }
 
@@ -206,31 +206,34 @@ void CreateBaselineCustomMessages() {
     delayData.push_back(0xFC);
     colParity = iconParity = delayParity = 1;
 
-    Text GITextIntroSKey =    {"You got a #Small Key# ",       "Vous obtenez une #petite clé# ",     "¡Has obtenido una #llave pequeña# "};
-    Text GITextIntroMap =     {"You found the #Dungeon Map# ", "Vous obtenez la #carte du donjon# ", "¡Has encontrado el #mapa de la mazmorra# "};
-    Text GITextIntroCompass = {"You got the #Compass# ",       "Vous obtenez la #boussole# ",        "¡Has encontrado la #brújula# "};
-    Text GITextIntroBKey =    {"You got the #Boss Key# ",      "Vous obtenez la #grande clé# ",      "¡Has obtenido la #gran llave# "};
-    // Text GITextIntroOneKey =  {"You got the #Small Key# ",     "Vous obtenez la #petite clé# ",      "¡Has obtenido la #llave pequeña# "};
-    // Text GITextIntroKeyring = {"You got the #Key Ring# ",      "Vous obtenez le #trousseau# ",       "¡Has encontrado el #llavero# "};
+    Text GITextIntroSKey =    {"You got a #Small Key# ",       "Vous obtenez une #petite clé# ",     "¡Has obtenido una #llave pequeña# ",        "Du erhältst einen #kleinen Schlüssel# "};
+    Text GITextIntroMap =     {"You found the #Dungeon Map# ", "Vous obtenez la #carte du donjon# ", "¡Has encontrado el #mapa de la mazmorra# ", "Du findest die #Labyrinth-Karte# "};
+    Text GITextIntroCompass = {"You got the #Compass# ",       "Vous obtenez la #boussole# ",        "¡Has encontrado la #brújula# ",             "Du erhieltst den #Kompass# "};
+    Text GITextIntroBKey =    {"You got the #Boss Key# ",      "Vous obtenez la #grande clé# ",      "¡Has obtenido la #gran llave# ",            "Du erhältst den #Master-Schlüssel# "};
+    // Text GITextIntroOneKey =  {"You got the #Small Key# ",     "Vous obtenez la #petite clé# ",      "¡Has obtenido la #llave pequeña# ",         "You got the #Small Key# "};
+    // Text GITextIntroKeyring = {"You got the #Key Ring# ",      "Vous obtenez le #trousseau# ",       "¡Has encontrado el #llavero# ",             "You got the #Key Ring# "};
 
-    Text GITextDungeonWoodfall =   {"for #Woodfall Temple#!",    "du #temple de Boisé-les-Cascades#!",       "del templo del Bosque Catarata!",
+    Text GITextDungeonWoodfall =   {"for #Woodfall Temple#!",    "du #temple de Boisé-les-Cascades#!",       "del templo del Bosque Catarata!",   "für den #Dämmerwald-Tempel#!",
                                     "",                          "du #temple de Bois-Cascade# !",            ""};
-    Text GITextDungeonSnowhead =   {"for #Snowhead Temple#!",    "du #temple du Pic des neiges#!",           "del templo del Pico Nevado!",
+    Text GITextDungeonSnowhead =   {"for #Snowhead Temple#!",    "du #temple du Pic des neiges#!",           "del templo del Pico Nevado!",       "für den #Pic-Hibernia-Tempel#!",
                                     "",                          "du #temple du pic des Neiges# !",          ""};
-    Text GITextDungeonGreatBay =   {"for #Great Bay Temple#!",   "du #temple de la Grande Baie#!",           "del templo de la Gran Bahía!",
+    Text GITextDungeonGreatBay =   {"for #Great Bay Temple#!",   "du #temple de la Grande Baie#!",           "del templo de la Gran Bahía!",      "für den #Schädelbucht-Tempel#!",
                                     "",                          "du #temple de la Grande Baie# !",          ""};
-    Text GITextDungeonStoneTower = {"for #Stone Tower Temple#!", "du #temple de la forteresse de pierre#!",  "del templo de la Torre de Piedra!",
+    Text GITextDungeonStoneTower = {"for #Stone Tower Temple#!", "du #temple de la forteresse de pierre#!",  "del templo de la Torre de Piedra!", "für den #Felsenturm-Tempel#!",
                                     "",                          "du #temple de la forteresse de pierre# !", ""};
 
     Text GITextOutroSKey =    {
-        " Use it to open a locked door in that temple.", " Utilisez-la pour ouvrir une porte de ce donjon.", ""
+        " Use it to open a locked door in that temple.", " Utilisez-la pour ouvrir une porte de ce donjon.", "",
+        " Verwende ihn, um eine verschlossene Tür innerhalb dieses Tempels zu öffnen."
     };
     Text GITextOutroCompass = {
         " Now many of the dungeon's hidden things will appear on the map!", " Certains des secrets de ce donjon seront maintenant visibles sur la carte!",  "",
+        " Nun werden viele versteckte Dinge des Tempels auf der Karte erscheinen.",
         "",                                                                 " Certains des secrets de ce donjon seront maintenant visibles sur la carte !", ""
     };
     Text GITextOutroBKey =    {
         " Now you can enter the chamber where the boss lurks!", " Vous pouvez maintenant pénétrer dans l'antre du boss!",  "",
+        " Nun kannst du den Raum betreten, in dem der Boss lauert!",
         "",                                                     " Vous pouvez maintenant pénétrer dans l'antre du boss !", ""
     };
     // Text GITextOutroKeyRing = {
@@ -323,6 +326,10 @@ void CreateBaselineCustomMessages() {
     {"You got the #Kokiri Sword!# The trusty sword you're familiar with. A treasure from Kokiri Forest.",
         // French
         "Vous obtenez l'#épée Kokiri#! Votre fidèle épée qui provient de le forêt Kokiri.",
+        // NOT Spanish
+        "You got the #Kokiri Sword!# The trusty sword you're familiar with. A treasure from Kokiri Forest.",
+        // German
+        "Du erhältst das #Kokiri-Schwert!# Das treue Schwert, mit dessen Umgang du vertraut bist. Ein Schatz aus dem Kokiri-Wald.",
     },
     {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
@@ -331,6 +338,10 @@ void CreateBaselineCustomMessages() {
     {"          #FOOL!#",
         // French
         "#IDIOT!#",
+        // NOT Spanish
+        "          #FOOL!#",
+        // German
+        "#NARR!#",
     },
     {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
@@ -339,6 +350,10 @@ void CreateBaselineCustomMessages() {
     {"You got a #Swamp Skulltula Token#! &You have collected #=SSH#.",
         // French
         "Vous obtenez l'#âme d'une skulltula d'or des marais#!&Vous en avez désormais #=SSH#.",
+        // NOT Spanish
+        "You got a #Swamp Skulltula Token#! &You have collected #=SSH#.",
+        // German
+        "Du erhältst ein #Sumpf-Skulltula-Symbol#! &Du hast bereits #=SSH# gesammelt.",
     },
     {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
@@ -347,6 +362,10 @@ void CreateBaselineCustomMessages() {
     {"You got an #Ocean Skulltula Token#! &You have collected #=OSH#.",
         // French
         "Vous obtenez l'#âme d'une skulltula d'or de la côte#!&Vous en avez désormais #=OSH#.",
+        // NOT Spanish
+        "You got an #Ocean Skulltula Token#! &You have collected #=OSH#.",
+        // German
+        "Du erhältst ein #Ozean-Skulltula-Symbol#! &Du hast bereits #=OSH# gesammelt.",
     },
     {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
