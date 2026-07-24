@@ -1,4 +1,4 @@
-# Latest Stable Release Changes (v1.4.4)
+# Version 1.4.4
 
 ## Features
 - Adds ability to start with a custom amount of Swamp or Ocean Skulltula Tokens
