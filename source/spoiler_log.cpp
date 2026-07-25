@@ -259,13 +259,6 @@ static void WriteIngameSpoilerLog() {
         if (!Settings::ShuffleTingleMaps && Location(key)->IsCategory(Category::cTingleMap)) {
           continue;
         }
-        // If Starting with Song of Healing hide Deku Mask and Bombers Notebook as they're unobtainable and junk
-        if (key == HMS_DEKU_MASK && (Settings::StartingSongOfHealing.Value<u8>() == u8(1) || !Settings::ShuffleTransformation)) {
-           continue;
-        }
-        if (key == HMS_BOMBERS_NOTEBOOK && (Settings::StartingSongOfHealing.Value<u8>() == u8(1) || !Settings::ShuffleBombersNotebook)) {
-           continue;
-        }
         // Always hide unreachable checks
         if (key == CLOCK_TOWER_OCARINA_OF_TIME && (Settings::StartingOcarina.Value<u8>() == u8(1))) {
           continue;
