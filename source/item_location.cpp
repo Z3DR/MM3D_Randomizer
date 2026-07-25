@@ -435,8 +435,8 @@ void LocationTable_Init() {
    -------------------------------*/
  
  //Clock Town Stray Fairy
- locationTable[LAUNDRY_POOL_SF]                                    = ItemLocation::StrayFairy (0x70, 0x7F, true,  "Laundry Pool SF",                                          CT_STRAY_FAIRY,                                 CT_STRAY_FAIRY,               {Category::cLaundryPool, Category::cVanillaStrayFairy, Category::cCTStray,Category::cDayOne, Category::cNoOcarinaStart},                                                                          SpoilerCollectionCheckGroup::GROUP_LAUNDRY_POOL);
- 
+ locationTable[LAUNDRY_POOL_SF]                                    = ItemLocation::StrayFairy (0x70, 0xFF, true,  "Laundry Pool SF",                                          CT_STRAY_FAIRY,                                 CT_STRAY_FAIRY,               {Category::cLaundryPool, Category::cVanillaStrayFairy, Category::cCTStray,Category::cDayOne, Category::cNoOcarinaStart},                                               SpoilerCollectionCheckGroup::GROUP_LAUNDRY_POOL);
+ locationTable[E_CLOCK_TOWN_SF]                                    = ItemLocation::StrayFairy (0x6C, 0xFF, true,  "East Clock Town SF",                                       CT_STRAY_FAIRY,                                 CT_STRAY_FAIRY,               {Category::cEastClockTown, Category::cVanillaStrayFairy, Category::cCTStray,Category::cDayOne, Category::cNoOcarinaStart},                                             SpoilerCollectionCheckGroup::GROUP_E_CLOCK_TOWN);
  
  //Woodfall Stray Faries
  locationTable[WF_SF_ENTRANCE_FAIRY]                               = ItemLocation::StrayFairy (0x1B, 0x2B, true,  "Woodfall Temple SF Entrance",                              WF_SF_ENTRANCE_FAIRY,                           WF_STRAY_FAIRY,               {Category::cWoodfall, Category::cWoodfallTemple, Category::cWFStray, Category::cVanillaStrayFairy,Category::cDayOne},                                                  SpoilerCollectionCheckGroup::GROUP_DUNGEON_WOODFALL_TEMPLE );
@@ -824,6 +824,7 @@ std::vector<LocationKey> overworldLocations = {
   //E_CLOCK_TOWN_TREASURE_CHEST_GAME_HUMAN,
   //E_CLOCK_TOWN_TREASURE_CHEST_GAME_ZORA,
   //E_CLOCK_TOWN_TREASURE_CHEST_GAME_DEKU,
+  E_CLOCK_TOWN_SF,
 //Goron Village
   GORON_VILLAGE_POWDER_KEG_CHALLENGE,
   GORON_VILLAGE_SCRUB_PURCHASE,
@@ -1241,6 +1242,8 @@ void CreateItemOverrides() {
  //Curiosity Shop Big Bomb Bag is same as Bomb Shop Big Bomb Bag
  auto loc24 = Location(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY);
  PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, loc24->GetPlacedItemKey());
+ auto loc25 = Location(LAUNDRY_POOL_SF);
+ PlaceItemInLocation(E_CLOCK_TOWN_SF, loc25->GetPlacedItemKey());
 
   for (LocationKey locKey : allLocations) {
     auto loc = Location(locKey);

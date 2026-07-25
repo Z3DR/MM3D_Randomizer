@@ -920,6 +920,7 @@ void GenerateItemPool() {
     PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, BLUE_RUPEE);
     PlaceItemInLocation(SWAMP_TOURIST_CENTER_ROOF_CLEAR, BLUE_RUPEE);
 	PlaceItemInLocation(STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST, BLUE_RUPEE);
+	PlaceItemInLocation(E_CLOCK_TOWN_SF, BLUE_RUPEE);
 	//Check Non Dungeon Settings
 
 	//OCARINA SHUFFLE
