@@ -201,9 +201,9 @@ void CreateBaselineCustomMessages() {
     delayData.clear();
 
     pushText("ERROR&&No message data");
-    colData.push_back(0xF);
-    iconData.push_back(0x3F);
-    delayData.push_back(0x3F);
+    colData.push_back(0xF0);
+    iconData.push_back(0xFC);
+    delayData.push_back(0xFC);
     colParity = iconParity = delayParity = 1;
 
     Text GITextIntroSKey =    {"You got a #small key# ",       "Vous obtenez une #petite clé# ",     "¡Has obtenido una #llave pequeña# "};
