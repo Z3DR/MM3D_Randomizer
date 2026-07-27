@@ -641,15 +641,15 @@ static void PlaceVanillaBossKeys() {
 };
 
 static void PlaceVanillaStrayFairies() {
-	/*TO-DO::make simpler
 	for (auto dungeon : dungeonList) {
 		dungeon->PlaceVanillaWFStray();
 		dungeon->PlaceVanillaSHStray();
 		dungeon->PlaceVanillaGBTStray();
 		dungeon->PlaceVanillaSTStray();
-	}*/
+	}
 	//Clock Town
 	PlaceItemInLocation(LAUNDRY_POOL_SF, CT_STRAY_FAIRY);
+	/*
 	//Woodfall Temple
 	PlaceItemInLocation(WF_SF_ENTRANCE_FAIRY, WF_STRAY_FAIRY);
 	PlaceItemInLocation(WF_SF_ENTRANCE_PLATFORM, WF_STRAY_FAIRY);
@@ -714,14 +714,15 @@ static void PlaceVanillaStrayFairies() {
 	PlaceItemInLocation(ST_SF_STATUE_EYE, ST_STRAY_FAIRY);
 	PlaceItemInLocation(ST_SF_UNDERWATER, ST_STRAY_FAIRY);
 	PlaceItemInLocation(ST_SF_BRIDGE_CRYSTAL, ST_STRAY_FAIRY);
+	*/
 };
 
 static void PlaceVanillaSkulltulaTokens() {
-	/* TO-DO::make simpler
 	for (auto dungeon : dungeonList) {
 		dungeon->PlaceVanillaSwampToken();
 		dungeon->PlaceVanillaOceanToken();
-	}*/
+	}
+	/*
 	//Swamp Skull Tokens
 	PlaceItemInLocation(SSH_MAIN_ROOM_NEAR_CEILING, SWAMP_SKULLTULA_TOKEN);
 	PlaceItemInLocation(SSH_MAIN_ROOM_WATER, SWAMP_SKULLTULA_TOKEN);
@@ -784,6 +785,7 @@ static void PlaceVanillaSkulltulaTokens() {
 	PlaceItemInLocation(OSH_COLORED_SKULLS_CHANDELIER_3, OCEANSIDE_SKULLTULA_TOKEN);
 	PlaceItemInLocation(OSH_COLORED_SKULLS_BEHIND_PICTURE, OCEANSIDE_SKULLTULA_TOKEN);
 	PlaceItemInLocation(OSH_COLORED_SKULLS_POT, OCEANSIDE_SKULLTULA_TOKEN);
+	*/
 };
 
 static void PlaceVanillaCowMilk() {
@@ -918,6 +920,7 @@ void GenerateItemPool() {
     PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, BLUE_RUPEE);
     PlaceItemInLocation(SWAMP_TOURIST_CENTER_ROOF_CLEAR, BLUE_RUPEE);
 	PlaceItemInLocation(STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST, BLUE_RUPEE);
+	PlaceItemInLocation(E_CLOCK_TOWN_SF, BLUE_RUPEE);
 	//Check Non Dungeon Settings
 
 	//OCARINA SHUFFLE
@@ -1022,11 +1025,6 @@ void GenerateItemPool() {
 	else {
 		PlaceVanillaSongs();
 	}
-	//No Longer Needed since Song of Healing is now randomized and the check is always obtainable even when starting with SoH
-	// if (StartingSongOfHealing.Value<u8>() == u8(1)){//if starting with song of healing fill deku mask and notebook spots as they are unobtainable
-	// 	PlaceItemInLocation(HMS_DEKU_MASK, GREEN_RUPEE);
-	// 	PlaceItemInLocation(HMS_BOMBERS_NOTEBOOK, GREEN_RUPEE);
-	// }
 	
 	//GREAT FAIRY SHUFFLE
 	if(ShuffleGFRewards.Is((u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA)){
@@ -1095,7 +1093,6 @@ void GenerateItemPool() {
 		PlaceItemInLocation(THE_MOON_GARO_CHEST, ARROWS_30);
 		PlaceItemInLocation(THE_MOON_IRON_KNUCKLE_CHEST, BOMBCHU_10);
 	}
-
 	
 	//TOKENSANITY
 	if(Tokensanity){
@@ -1107,8 +1104,6 @@ void GenerateItemPool() {
 	else {
 		PlaceVanillaSkulltulaTokens();
 	}
-
-	
 
 	//DEKU MERCHANT TRADE QUEST
 	if (ShuffleMerchants){//Merchants is Deku Scrub Trade Quest
@@ -1126,14 +1121,8 @@ void GenerateItemPool() {
 	if (ShuffleTradeItems){//TradeItems refers to Anju&Kafei Items
 		AddItemsToPool(ItemPool, anjuKafeiTradeItems);
 	} else {
-		//if(ShuffleMasks){ //-Kafei & Couples Mask part of A&K not masks
-		//	AddItemToMainPool(KAFEIS_MASK);
-		//	AddItemToMainPool(COUPLES_MASK);
-		//}
-		//else{
 		PlaceItemInLocation(E_CLOCK_TOWN_AROMA_IN_OFFICE, KAFEIS_MASK);
 		PlaceItemInLocation(STOCKPOTINN_ANJU_AND_KAFEI, COUPLES_MASK);
-		//}
 		PlaceItemInLocation(STOCKPOTINN_MIDNIGHT_MEETING, LETTER_KAFEI);
 		PlaceItemInLocation(LAUNDRY_POOL_CURIOSITY_SHOP_MAN_TWO, LETTER_MAMA);
 		PlaceItemInLocation(STOCKPOTINN_RESERVATION, ROOM_KEY);
@@ -1252,11 +1241,18 @@ void GenerateItemPool() {
 		PlaceVanillaStrayFairies();
 	}
 	else {
-		AddItemToMainPool(CT_STRAY_FAIRY, 1); //if no selection or error ??
 		AddItemToMainPool(WF_STRAY_FAIRY, 15);
 		AddItemToMainPool(SH_STRAY_FAIRY, 15);
 		AddItemToMainPool(GBT_STRAY_FAIRY, 15);
 		AddItemToMainPool(ST_STRAY_FAIRY, 15);
+	}
+
+	//CLOCK TOWN STRAY FAIRY (Separated because it's not in a dungeon)
+	if (!ShuffleCTStray) {
+		PlaceItemInLocation(CT_STRAY_FAIRY, LAUNDRY_POOL_SF);
+	}
+	else {
+		AddItemToMainPool(CT_STRAY_FAIRY, 1);
 	}
 
 	//DungeonRewards

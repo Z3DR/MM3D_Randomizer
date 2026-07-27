@@ -418,6 +418,7 @@ namespace Settings {
   extern Option ShuffleHeartContainers;
   extern Option MoonRemainsRequired;
   extern Option MajoraRemainsRequired;
+  extern Option ShuffleCTStray;
   extern std::vector<Option*> shuffleItemOptions;
 
   //ItemPool Settings

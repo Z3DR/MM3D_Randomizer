@@ -642,17 +642,11 @@ static void RandomizeOwnDungeon(const Dungeon::DungeonInfo* dungeon) {
     std::vector<LocationKey> dungeonLocations = dungeon->GetDungeonLocations();
     std::vector<ItemKey> dungeonItems;
 
-    //filter out locations that may be required to have songs placed at them
-    
-    dungeonLocations = FilterFromPool(dungeonLocations, [](const LocationKey loc) {
-        //if (ShuffleSongs.Is(rnd::SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) {
-            return !(Location(loc)->IsCategory(Category::cSong)) && !(Location(loc)->IsCategory(Category::cDungeonReward));
-        //}
-        //if (ShuffleSongs.Is(rnd::SongShuffleSetting::SONGSHUFFLE_DUNGEON_REWARDS)) {
-           // return !(Location(loc)->IsCategory(Category::cDungeonReward));
-        //}
-        // true;
-        });
+    if (ShuffleSongs.Value<u8>() == 1 /*Song Locations*/) {
+        std::vector<LocationKey> songLocations = FilterFromPool(allLocations, [](const LocationKey loc) { return Location(loc)->IsCategory(Category::cSong);});
+        std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
+        AssumedFill(songs, songLocations, true);
+    }
         /*
          PlacementLog_Msg("\nAllowed Locations are: \n"); 
             CitraPrint("Allowed Locations are:");
@@ -673,8 +667,30 @@ static void RandomizeOwnDungeon(const Dungeon::DungeonInfo* dungeon) {
         AddElementsToPool(dungeonItems, dungeonBossKey);
     }
 
+    if (StrayFairysanity.Value<u8>() == 2 /* Own Dungeon*/)
+    {
+        if (dungeon->GetName() == "Woodfall Temple") {
+            auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
+            AddElementsToPool(dungeonItems, strayFairy);
+        }
+        else if (dungeon->GetName() == "Snowhead Temple") {
+            auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
+            AddElementsToPool(dungeonItems, strayFairy);
+        }
+        else if (dungeon->GetName() == "Great Bay Temple") {
+            auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
+            AddElementsToPool(dungeonItems, strayFairy);
+        }
+        else if (dungeon->GetName() == "Stone Tower Temple") {
+            auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
+            AddElementsToPool(dungeonItems, strayFairy);
+        }
+            
+    }
     //randomize boss key and small keys together for even distribution
+    NoRepeatOnTokens = true;
     AssumedFill(dungeonItems, dungeonLocations, true);
+    NoRepeatOnTokens = false;
 
     //randomize map and compass separately since they're not progressive
     if (MapsAndCompasses.Is((u8)MapsAndCompassesSetting::MAPSANDCOMPASSES_OWN_DUNGEON) && dungeon->GetMap() != NONE && dungeon->GetCompass() != NONE) {
@@ -720,7 +736,42 @@ static void RandomizeDungeonItems() {
             auto bossKey = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == dungeon->GetBossKey();});
             AddElementsToPool(overworldItems, bossKey);
         }
-
+        if (StrayFairysanity.Value<u8>() == 3/*Any Dungeon*/) {
+            if (dungeon->GetName() == "Woodfall Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
+                AddElementsToPool(anyDungeonItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Snowhead Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
+                AddElementsToPool(anyDungeonItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Great Bay Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
+                AddElementsToPool(anyDungeonItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Stone Tower Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
+                AddElementsToPool(anyDungeonItems, strayFairy);
+            }
+        }
+        else if (StrayFairysanity.Value<u8>() == 4/*Overworld*/) {
+            if (dungeon->GetName() == "Woodfall Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == WF_STRAY_FAIRY;});
+                AddElementsToPool(overworldItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Snowhead Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == SH_STRAY_FAIRY;});
+                AddElementsToPool(overworldItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Great Bay Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == GBT_STRAY_FAIRY;});
+                AddElementsToPool(overworldItems, strayFairy);
+            }
+            else if (dungeon->GetName() == "Stone Tower Temple") {
+                auto strayFairy = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) {return i == ST_STRAY_FAIRY;});
+                AddElementsToPool(overworldItems, strayFairy);
+            }
+        }
     }
 
     const std::array<ItemKey, 4> dungeonRewards = {
@@ -744,8 +795,10 @@ static void RandomizeDungeonItems() {
     }
 
     //Randomize Any Dungeon and Overworld pools
+    NoRepeatOnTokens = true;
     AssumedFill(anyDungeonItems, anyDungeonLocations, true);
     AssumedFill(overworldItems, overworldLocations, true);
+    NoRepeatOnTokens = false;
 
     //Randomize maps and compasses after since they're not advancement items
     for (auto dungeon : dungeonList) {
@@ -818,40 +871,6 @@ int VanillaFill() {
     return 1;
 }
 
-int NoLogicFill() {
-    // CitraPrint("StartingNoLogicFill\n");
-    AreaTable_Init(); //Reset the world graph to intialize the proper locations
-    ItemReset(); //Reset shops incase of shopsanity random
-    GenerateLocationPool();
-    GenerateItemPool();
-    GenerateStartingInventory();
-    RemoveStartingItemsFromPool();
-    FillExcludedLocations();
-    RandomizeDungeonRewards();
-    std::vector<ItemKey> remainingPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return true;});
-    FastFill(remainingPool, GetAllEmptyLocations(), false);
-    GeneratePlaythrough();
-    printf("Done");
-    printf("\x1b[9;10HCalculating Playthrough...                        "); 
-    PareDownPlaythrough();
-    printf("Done");
-    printf("\x1b[10;10HCalculating Way of the Hero..."); 
-    CalculateWotH();
-    printf("Done");
-    // CitraPrint("Creating Item Overrides");
-    CreateItemOverrides();
-    // CreateEntranceOverrides();
-    // CreateAlwaysIncludedMessages();
-    if (GossipStoneHints.IsNot(rnd::GossipStoneHintsSetting::HINTS_NO_HINTS)) {
-        printf("\x1b[11;10HCreating Hints...");
-        CreateAllHints();
-        printf("Done");
-     }
-     
-     return 1;
-}
-   
-
 int Fill() {
     CustomMessages::CreateBaselineCustomMessages();
 
@@ -871,6 +890,7 @@ int Fill() {
         GenerateStartingInventory();
         RemoveStartingItemsFromPool();
         FillExcludedLocations();
+        PlaceItemInLocation(S_CLOCK_TOWN_CLOCK_TOWER_ENTRANCE, WOODFALL_TEMPLE_SMALL_KEY);
         
         showItemProgress = true;
 
@@ -1035,11 +1055,7 @@ int Fill() {
         //Then Place those to expand the amount of checks available
         AssumedFill(mainadvancementItems, allLocations,true);
         
-        //Then Place Anju & Kafei Items in spots accessable on Day 1, this should prevent situations where you cant get an item in time for its use
-        std::vector<LocationKey> day1Locations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cDayOne);});
-        std::vector<ItemKey> anjukafeiitems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_QUEST;});
-        AssumedFill(anjukafeiitems, day1Locations,true);
-
+        //Then place the rest of the repeatable items in locations marked as repeatable
         std::vector<LocationKey> repeatableItemLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsRepeatable();});
         std::vector<ItemKey> remainingRepeatItemPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsReusable();});
         AssumedFill(remainingRepeatItemPool, repeatableItemLocations, true);
@@ -1049,24 +1065,6 @@ int Fill() {
             std::vector<ItemKey> dekuTrades = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_TRADE;});
             AssumedFill(dekuTrades, allLocations);
         }   */
-        
-        //Then Place songs if song shuffle is set to specific locations
-        /*
-        if (ShuffleSongs.IsNot(SongShuffleSetting::SONGSHUFFLE_ANYWHERE)) {
-
-            //Get each song
-            std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
-
-            //Get each song location
-            std::vector<LocationKey> songLocations;
-            if (ShuffleSongs.Is(SongShuffleSetting::SONGSHUFFLE_SONG_LOCATIONS)) {
-                songLocations = FilterFromPool(allLocations, [](const LocationKey loc) { return Location(loc)->IsCategory(Category::cSong);});
-            }
-            else if (ShuffleSongs.Is(SongShuffleSetting::SONGSHUFFLE_ANYWHERE)) {
-                songLocations = allLocations;
-            }
-            AssumedFill(songs, songLocations, true);
-        }*/
        
         //Then place Link's Pocket Item if it has to be an advancement item
         //Links Pocket is useless as there is no unobtainable check due to a certain time travel sword pedistal 
