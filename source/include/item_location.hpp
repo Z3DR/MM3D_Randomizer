@@ -36,7 +36,8 @@ enum class ItemLocationType {
     TempleReward,
     HintStone,
     OtherHint,
-    Misc
+    Misc,
+    Cow
 };
 
 class SpoilerCollectionCheck {
@@ -101,6 +102,7 @@ public:
     static auto StrayFairy(u8 scene, u8 flag) {
         return SpoilerCollectionCheck(SpoilerCollectionCheckType::SPOILER_CHK_STRAY_FAIRY, scene, flag);
     }
+
 };
 class ItemLocation {
 public:
@@ -136,6 +138,7 @@ public:
         //else if (type == ItemLocationType::Misc) {key.type = game::act::Type::Misc;}
         //TO-DO 
         else if (type == ItemLocationType::StrayFairy) {key.type = ItemOverride_Type::OVR_STRAY_FAIRY;}
+        else if (type == ItemLocationType::Cow) {key.type = ItemOverride_Type::OVR_COW;}
         //else if (type == ItemLocationType::HintStone) {key.type = ItemOverride_Type::OVR_HINT;}
         //else if (type == ItemLocationType::OtherHint) {key.type = ItemOverride_Type::OVR_OTHER_HINT;}
         //key.type = type; //TODO make sure these match up
@@ -175,6 +178,7 @@ public:
         else if (type == ItemLocationType::Delayed) {ovrtype = ItemOverride_Type::OVR_DELAYED;}
         else if (type == ItemLocationType::TempleReward) {ovrtype = ItemOverride_Type::OVR_TEMPLE;}
         else if (type == ItemLocationType::StrayFairy) {ovrtype = ItemOverride_Type::OVR_STRAY_FAIRY;}
+        else if (type == ItemLocationType::Cow) {ovrtype = ItemOverride_Type::OVR_COW;}
 
         return ovrtype;
     }
@@ -282,10 +286,6 @@ public:
                     IsCategory(Category::cSnowheadTemple) ||
                     IsCategory(Category::cGreatBayTemple) ||
                     IsCategory(Category::cStoneTowerTemple));
-            /*
-            (type != ItemLocationType::OGSToken ||
-            type != ItemLocationType::SGSToken
-            );*/
     }
 
     bool IsOverworld() const {
@@ -400,6 +400,10 @@ public:
 
     static auto HintStone(u8 scene, u16 textID, bool repeatable, std::string&& name, std::vector<Category>&& categories) {
         return ItemLocation{ ItemLocationType::HintStone, scene, 0x0, repeatable, std::move(name), NONE, NONE, std::move(categories), NONE, SpoilerCollectionCheck(), rnd::GROUP_NO_GROUP, textID};
+    }
+
+    static auto Cow(u8 scene, u8 flag, bool repeatable, std::string&& name, const HintKey hintKey, const ItemKey vanillaItem, std::vector<Category>&& categories, SpoilerCollectionCheckGroup collectionCheckGroup = SpoilerCollectionCheckGroup::GROUP_NO_GROUP) {
+        return ItemLocation{ ItemLocationType::Cow, scene, flag, repeatable, std::move(name), hintKey, vanillaItem, std::move(categories), 0 , SpoilerCollectionCheck(SpoilerCollectionCheckType::SPOILER_CHK_COW,scene, flag), collectionCheckGroup};
     }
 
     void ResetVariables() {

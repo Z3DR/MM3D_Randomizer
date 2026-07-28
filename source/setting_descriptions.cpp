@@ -499,8 +499,7 @@ string_view scrubsRandomPrices        = "**OPTION CURRENTLY WIP**\n"            
 /*------------------------------                                                           //
 |         SHUFFLE COWS         |                                                           //
 ------------------------------*/                                                           //
-string_view shuffleCowsDesc           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Enabling this will let cows give you items upon\n"//
+string_view shuffleCowsDesc           = "Enabling this will let cows give you items upon\n"//
                                         "performing Epona's song in front of them. There\n"//
                                         "are 8 cows";                                      //
                                                                                            //
