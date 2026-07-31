@@ -745,6 +745,11 @@ static Text BuildDoorText(const ItemKey itemKey) {
 }
 
 void CreateClockTowerDoorHints() {
+  // Determine which hint to display first
+  u16 clockDoorFirstHint = 0x8002;
+  if (StartingOcarina.Value<u8>() == 0) clockDoorFirstHint = 0x8000;
+  else if (ShuffleSongOfTime) clockDoorFirstHint = 0x8001;
+
   // Create hint text
   Text ocarinaHint = Text{
     /*NaEnglish*/"Hey, didn't you have some sort of #musical instrument#?&If I know the Skull Kid, I bet he hid it at ",
@@ -762,6 +767,18 @@ void CreateClockTowerDoorHints() {
     /*EuFrench */"Comment as-tu pu oublier la #Chanson du Temps#?&On devra l'apprendre dans ",
     /*EuSpanish*/"¿Cómo pudiste olvidar la #Song of Time#?&Vamos a necesitar aprenderla en "
   }+BuildDoorText(SONG_OF_TIME);
+  Text remainsPreHint = Text{
+    /*English*/"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+    /*French */"D'ailleurs, ce #concours de masques# me rappelle que j'ai entendu des rumeurs dans le coin sur des #masques très uniques#.",
+    /*Spanish?*/"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"
+  };
+  if (clockDoorFirstHint == 0x8002) {
+    remainsPreHint = Text{
+      /*English*/"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
+      /*French */"Dis, ce #concours de masques# me rappelle que j'ai entendu des rumeurs dans le coin sur des #masques très uniques#.",
+      /*Spanish?*/"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!"
+    };
+  }
   Text odolwaHint = Text{
     /*English*/"There's one with a #crown# and #jewellery# said to be found at ",
     /*French */"Y'en a un avec une #couronne# et des #bijoux# situé vers ",
@@ -846,11 +863,6 @@ void CreateClockTowerDoorHints() {
       break;
   }
 
-  // Determine which hint to display first
-  u16 clockDoorFirstHint = 0x8003;
-  if (StartingOcarina.Value<u8>() == 0) clockDoorFirstHint = 0x8000;
-  else if (ShuffleSongOfTime) clockDoorFirstHint = 0x8001;
-
   CustomMessages::CreateMessage(0x0630, clockDoorFirstHint, 0x3FFFFFFF, 0x0FF0211,
     {"Rooftop access strictly prohibited!&(Enforceable until #midnight# on the&#eve# of the carnival.)^"
     "#Notice of carnival activities:#&Musical Performance Contest&Unique Mask Contest&#Prizes available!#",
@@ -870,23 +882,12 @@ void CreateClockTowerDoorHints() {
     {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
   CustomMessages::CreateMessageFromTextObject(0x8000, ShuffleSongOfTime ? 0x8001 : 0x8002, 0x3FFFFFFF, 0x1000000, ocarinaHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
   CustomMessages::CreateMessageFromTextObject(0x8001, 0x8002, 0x3FFFFFFF, 0x1000000, songTimeHint, {QM_BLUE, QM_RED}, {}, {}, (clockDoorFirstHint == 0x8001) ? 0x083E : 0x0, false, false);
-  CustomMessages::CreateMessage(0x8002, 0x8004, 0x3FFFFFFF, 0x1FF0000,
-    {"Also, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
-      // French
-      "D'ailleurs, ce #concours de masques# me rappelle que j'ai entendu des rumeurs dans le coin sur des #masques très uniques#.",
-    },
-    {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessage(0x8003, 0x8004, 0x3FFFFFFF, 0x1FF0000,
-    {"Hey, that #mask competition# sounds interesting! I've heard rumours of some pretty #rare masks# around here, truly one of a kind stuff!",
-      // French
-      "Dis, ce #concours de masques# me rappelle que j'ai entendu des rumeurs dans le coin sur des #masques très uniques#.",
-    },
-    {QM_RED, QM_RED}, {}, {}, 0x083E, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8004, 0x8005, 0x3FFFFFFF, 0x15D0000, odolwaHint, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8005, 0x8006, 0x3FFFFFFF, 0x15E0000, gohtHint, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8006, 0x8007, 0x3FFFFFFF, 0x15F0000, gyorgHint, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8007, 0x8008, 0x3FFFFFFF, 0x1600000, twinmoldHint, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8008, 0xFFFF, 0x3FFFFFFF, 0x0FF0000, remainsNeededHint, {QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8002, 0x8003, 0x3FFFFFFF, 0x1FF0000, remainsPreHint, {QM_RED, QM_RED}, {}, {}, (clockDoorFirstHint == 0x8002) ? 0x083E : 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, odolwaHint, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, gohtHint, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, gyorgHint, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8006, 0x8007, 0x3FFFFFFF, 0x1600000, twinmoldHint, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x8007, 0xFFFF, 0x3FFFFFFF, 0x0FF0000, remainsNeededHint, {QM_RED}, {}, {}, 0x0, false, false);
 }
 
 void CreateMoonChildHint() {
