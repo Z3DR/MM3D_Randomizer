@@ -1814,12 +1814,12 @@ void HintTable_Init() {
         },  //clear
             Text{"the #Romani Ranch cows# have", "une #vache du ranch Romani# a", "las vacas del rancho Romani tienen"}
     );
-    hintTable[ROMANI_RANCH_COW_3] = HintText::Sometimes({
-            //obscure
-            Text{"a #lost creature# gives", "#leur cible# prodigue", "una criatura perdida da"}
-        },  //clear
-            Text{"the #Romani Ranch cows# have", "une #vache du ranch Romani# a", "las vacas del rancho Romani tienen"}
-    );
+    // hintTable[ROMANI_RANCH_COW_3] = HintText::Sometimes({
+    //         //obscure
+    //         Text{"a #lost creature# gives", "#leur cible# prodigue", "una criatura perdida da"}
+    //     },  //clear
+    //         Text{"the #Romani Ranch cows# have", "une #vache du ranch Romani# a", "las vacas del rancho Romani tienen"}
+    // );
     hintTable[DOGGY_RACETRACK_ROOF_CHEST] = HintText::Sometimes({
             //obscure
             Text{"a #day at the races# contains", "les #courses sont surplombées# par", "un día en las carreras contiene"}

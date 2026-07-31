@@ -685,7 +685,7 @@ static void PlaceVanillaCowMilk() {
 	PlaceItemInLocation(GBC_GROTTO_COW2, MILK);
 	PlaceItemInLocation(ROMANI_RANCH_COW_1, MILK);
 	PlaceItemInLocation(ROMANI_RANCH_COW_2, MILK);
-	PlaceItemInLocation(ROMANI_RANCH_COW_3, MILK);
+	//PlaceItemInLocation(ROMANI_RANCH_COW_3, MILK);
 	PlaceItemInLocation(TERMINA_FIELD_GROTTO_COW1, MILK);
 	PlaceItemInLocation(TERMINA_FIELD_GROTTO_COW2, MILK);
 	PlaceItemInLocation(BENEATH_THE_WELL_COW, MILK);
