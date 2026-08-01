@@ -206,10 +206,12 @@ void CreateBaselineCustomMessages() {
     delayData.push_back(0xFC);
     colParity = iconParity = delayParity = 1;
 
-    Text GITextIntroSKey =    {"You got a #small key# ",       "Vous obtenez une #petite clé# ",     "¡Has obtenido una #llave pequeña# "};
-    Text GITextIntroMap =     {"You found the #dungeon map# ", "Vous obtenez la #carte du donjon# ", "¡Has encontrado el #mapa de la mazmorra# "};
-    Text GITextIntroCompass = {"You got the #compass# ",       "Vous obtenez la #boussole# ",        "¡Has encontrado la #brújula# "};
-    Text GITextIntroBKey =    {"You got the #boss key# ",      "Vous obtenez la #grande clé# ",      "¡Has obtenido la #gran llave# "};
+    Text GITextIntroSKey =    {"You got a #Small Key# ",       "Vous obtenez une #petite clé# ",     "¡Has obtenido una #llave pequeña# "};
+    Text GITextIntroMap =     {"You found the #Dungeon Map# ", "Vous obtenez la #carte du donjon# ", "¡Has encontrado el #mapa de la mazmorra# "};
+    Text GITextIntroCompass = {"You got the #Compass# ",       "Vous obtenez la #boussole# ",        "¡Has encontrado la #brújula# "};
+    Text GITextIntroBKey =    {"You got the #Boss Key# ",      "Vous obtenez la #grande clé# ",      "¡Has obtenido la #gran llave# "};
+    // Text GITextIntroOneKey =  {"You got the #Small Key# ",     "Vous obtenez la #petite clé# ",      "¡Has obtenido la #llave pequeña# "};
+    // Text GITextIntroKeyring = {"You got the #Key Ring# ",      "Vous obtenez le #trousseau# ",       "¡Has encontrado el #llavero# "};
 
     Text GITextDungeonWoodfall =   {"for #Woodfall Temple#!",    "du #temple de Boisé-les-Cascades#!",       "del templo del Bosque Catarata!",
                                     "",                          "du #temple de Bois-Cascade# !",            ""};
@@ -231,6 +233,9 @@ void CreateBaselineCustomMessages() {
         " Now you can enter the chamber where the boss lurks!", " Vous pouvez maintenant pénétrer dans l'antre du boss!",  "",
         "",                                                     " Vous pouvez maintenant pénétrer dans l'antre du boss !", ""
     };
+    // Text GITextOutroKeyRing = {
+    //     " Use it to open the locked doors in that temple.", " Utilisez-le pour ouvrir certaines portes de ce donjon.", ""
+    // };
 
     // Small Keys
     // Woodfall
@@ -347,16 +352,40 @@ void CreateBaselineCustomMessages() {
 
     //Bank Rewards
     CreateMessage(0x045c, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
-    {"What's this? You've already saved up #500 Rupees#!?! Well, little guy, here's your special gift. Take it!",
+    {"What's this? You've already&saved up #500 Rupees#!?!^Well, little guy, here's your&special gift. Take it!",
         // French
-        "Vous avez déjà économisé #500 Rubis#?! Bon, petit, voici votre cadeau spécial. Prenez-le!",
+        "Oh? Tu as déjà déposé&#500 rubis#?!^Je crois que je vais te donner ça&pour ta fidélité!",
+        // Spanish
+        "¿Qué ven mis ojos?&¿¡Ya has ahorrado #500 rupias#!?^Bien, jovencito. Aquí está tu regalo&especial. ¡Tómalo!",
+        // German
+        "Oh! Du hast bereits #500 Rubine&#gespart!?!^Nun denn, kleiner Mann, hier hast&du die versprochene Prämie!",
+        // Italian
+        "Ma guarda! Hai già depositato&#500 rupie#!^Ottimo, piccoletto. Toh, ecco&un regalo speciale per te!",
+        // EU English
+        "What's this? You've already&saved up #500 Rupees#!?!^Well, little guy, here's your&special gift. Take it!",
+        // EU French
+        "Oh ? Tu as déjà déposé&#500 rubis# ?!^Je crois que je vais te donner ça&pour ta fidélité !",
+        // EU Spanish
+        "¿Qué es esto? ¡¿Ya has ahorrado&#500 rupias#?!^Bien, jovencito. Aquí está tu regalo&especial. ¡Tómalo!",
     },
     {QM_RED}, {}, {}, 0x0, false, false);
 
     CreateMessage(0x045d, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
-    {"What's this? You've already saved up #1,000 Rupees#?! Well, little guy, I can't take any more deposits. Sorry, but this is all I can give you.",
+    {"What's this? You've already&saved up #1,000 Rupees#?!^Well, little guy, I can't take any more deposits. Sorry, but this is all I can give you.",
         // French
-        "Vous avez déjà économisé #1000 Rubis#?! Bon, petit, je ne peux plus accepter de dépôts. Désolé, mais c'est tout ce que je peux vous donner.",
+        "Mais... que...? Tu as économisé&#1000 rubis#!^Je suis désolé, jeune homme, mais&je ne peux plus prendre d'argent. &Mais, comme tu es un de mes plus &gros clients, voici un super cadeau!",
+        // Spanish
+        "¿Qué ven mis ojos?&¿¡Ya has ahorrado #1000 rupias#!?^Bien, jovencito. No puedo aceptar&más depósitos. Lo siento, pero&esto es todo lo que puedo darte.",
+        // German
+        "Oh! Du hast bereits #1000 Rubine&#gespart!?!^Nun denn, kleiner Mann, mehr kann&ich nicht aufbewahren, so leid es mir&tut.",
+        // Italian
+        "Ma guarda! Hai già raggiunto&#1000 rupie#!^Ottimo, piccoletto. Ma non puoi&depositare più di così. Spero&di farmi perdonare con questo.",
+        // EU English
+        "What's this? You've already&saved up #1,000 Rupees#?!^Well, little guy, I can't take any more&deposits. Sorry, but this is all I can&give you.",
+        // EU French
+        "Mais... que... ? Tu as économisé&#1 000 rubis# ?!^Je suis désolé, jeune homme, mais&je ne peux plus prendre d'argent. &Mais comme tu es un de mes plus &gros clients, voici un super cadeau !",
+        // EU Spanish
+        "¿Qué es esto? ¡¿Ya has ahorrado&#1000 rupias#?!^Bien, jovencito. No puedo aceptar&más depósitos. Lo siento, pero&esto es todo lo que puedo darte.",
     },
     {QM_RED}, {}, {}, 0x0, false, false);
 
@@ -364,35 +393,35 @@ void CreateBaselineCustomMessages() {
     CreateMessage(0x06144, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
     {"You got the #Clock Town Stray Fairy#! Bring it to the Fairy Fountain in North Clock Town!",
         // French
-        "Vous obtenez une #Fée Perdue de Clock Town#! Apporte-le à la Fontaine des Fées, dans le Quartier Nord de Bourg-Clocher!",
+        "Vous obtenez une #fée égarée de la ville#! Apportez-la à la fontaine des fées au nord de la ville!",
     },
     {QM_RED}, {}, {}, 0x0, false, false);
 
     CreateMessage(0x06145, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
     {"You got a #Woodfall Stray Fairy#! &You have collected #=WFF#.",
         // French
-        "Vous obtenez une #Fée Perdue de la forêt#!&Vous en avez désormais #=WFF#.",
+        "Vous obtenez une #fée égarée des marais#!&Vous en avez désormais #=WFF#.",
     },
     {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
 
     CreateMessage(0x06146, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
     {"You got a #Snowhead Stray Fairy#! &You have collected #=SHF#.",
         // French
-        "Vous obtenez une #Fée Perdue des neiges#!&Vous en avez désormais #=SHF#.",
+        "Vous obtenez une #fée égarée des neiges#!&Vous en avez désormais #=SHF#.",
     },
     {QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
 
     CreateMessage(0x06147, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
     {"You got a #Great Bay Stray Fairy#! &You have collected #=GBF#.",
         // French
-        "Vous obtenez une #Fée Perdue de la baie#!&Vous en avez désormais #=GBF#.",
+        "Vous obtenez une #fée égarée de la baie#!&Vous en avez désormais #=GBF#.",
     },
     {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false);
 
     CreateMessage(0x06148, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
     {"You got a #Stone Tower Stray Fairy#! &You have collected #=STF#.",
         // French
-        "Vous obtenez une #Fée Perdue d'Ikana#!&Vous en avez désormais #=STF#.",
+        "Vous obtenez une #fée égarée d'Ikana#!&Vous en avez désormais #=STF#.",
     },
     {QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
 
