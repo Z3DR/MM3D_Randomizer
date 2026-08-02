@@ -934,7 +934,7 @@ void CreateMoonChildHint() {
     /*Spanish*/"^**SPANISH**"
   };
 
-  CustomMessages::CreateMessageFromTextObject(0x6144, 0xFFFF, 0x3FFFFFFF, 0x0FF0020, moonChildHint, {QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x6149, 0xFFFF, 0x3FFFFFFF, 0x0FF0020, moonChildHint, {QM_RED}, {}, {}, 0x0, false, false);
 }
 
 //insert the required number into the hint and set the singular/plural form
