@@ -310,29 +310,6 @@ namespace Settings {
   Option ShuffleBombersNotebook = Option::Bool("Shuffle Notebook",      {"Off", "On"},                                       {shuffleBombersNotebookDesc});
   Option ShuffleMoonItems       = Option::Bool("Shuffle Moon Items",    {"Off", "On"},                                       {shuffleMoonItemsDesc});
   Option ShuffleFierceDeity     = Option::Bool("Shuffle Fierce Deity",  {"Off", "On"},                                       {shuffleFierceDeityDesc});
-  // std::vector<Option*> shuffleItemOptions = {
-  //     &ShuffleMainInventory,
-  //     //&ShuffleKokiriSword, --redundant
-  //     //&ShuffleStartingShield, --redundant
-  //     &ShuffleMasks,
-  //     &ShuffleTransformation,
-  //     &ShufflePiecesOfHeart,
-  //     &ShuffleSongs,
-  //     &ShuffleSoaring,
-  //     &ShuffleSongOfTime,
-  //     //&Shopsanity,
-  //     &Tokensanity,
-  //     &ShuffleMerchants,
-  //     &ShuffleTradeItems,
-  //     &ShuffleGFRewards,
-  //     //&ShuffleCows,
-  //     //&ShuffleOcarinas,
-  //     &ShuffleTingleMaps,
-  //     //&ShuffleMagicBeans,
-  //     &ShuffleBombersNotebook,
-  //     &ShuffleMoonItems,
-  //     &ShuffleFierceDeity,
-  // };
 
   //New Menus - Splitting options for smaller menus
   std::vector<Option*> shuffleMajorItems = {
@@ -356,7 +333,7 @@ namespace Settings {
     &ShuffleTradeItems,
     &ShuffleTingleMaps,
     &ShuffleBombersNotebook,
-    //&ShuffleCows,
+    &ShuffleCows,
     //&ShuffleMagicBeans,
     &ShuffleMoonItems,
     &ShuffleFierceDeity,

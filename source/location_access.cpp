@@ -1458,7 +1458,7 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(ROMANI_RANCH_COW_1, {[]{return CanPlay(EponasSong) && AnyBottle && PowderKeg && GoronMask;}}),
 		LocationAccess(ROMANI_RANCH_COW_2, {[]{return CanPlay(EponasSong) && AnyBottle && PowderKeg && GoronMask;}}),
-		LocationAccess(ROMANI_RANCH_COW_3, {[]{return CanPlay(EponasSong) && AnyBottle && PowderKeg && GoronMask;}}),
+		//LocationAccess(ROMANI_RANCH_COW_3, {[]{return CanPlay(EponasSong) && AnyBottle && PowderKeg && GoronMask;}}),
 	},
 	{
 		//Exits

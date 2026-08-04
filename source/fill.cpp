@@ -454,16 +454,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
         std::vector<ItemKey> itemsToPlace = items;
 
         //copy all not yet placed advancement items so that we can apply their effects for the fill algorithm
-        //std::vector<ItemKey> itemsToNotPlace = FilterFromPool(ItemPool, [](const ItemKey i) { 
-            //CitraPrint("Added item to itemsToNotPlace: ");
-            //CitraPrint(ItemTable(i).GetName().GetNAEnglish());
-          //  return ItemTable(i).IsAdvancement();});
         std::vector<ItemKey> itemsToNotPlace = ItemPool;
-        //PlacementLog_Msg("ItemsNotToPlace:\n");
-        //for (ItemKey items : itemsToNotPlace)
-        //{
-        //    PlacementLog_Msg(" " + ItemTable(items).GetName().GetNAEnglish() + "," );
-        //}
         //shuffle the order of items to place
         Shuffle(itemsToPlace);
 
@@ -474,8 +465,6 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
 
             //assume we have all unplaced items
             LogicReset();
-            //PlacementLog_Msg("\nCurrent item for placement is: " + ItemTable(item).GetName().GetNAEnglish());
-            //PlacementLog_Msg("\nitemsToPlace: ");
             for (ItemKey unplacedItem : itemsToPlace) {
                 ItemTable(unplacedItem).ApplyEffect();
                 //PlacementLog_Msg(" " + ItemTable(unplacedItem).GetName().GetNAEnglish() + ", ");
@@ -483,29 +472,10 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             for (ItemKey unplacedItem : itemsToNotPlace) {
                 ItemTable(unplacedItem).ApplyEffect();
             }
-            //Print allowed locations to view active list at this point
-            //PlacementLog_Msg("\nAllowed Locations are: \n"); 
-            //CitraPrint("Allowed Locations are:");
-            //for (LocationKey loc : allowedLocations)
-            //   {                
-            //      PlacementLog_Msg(Location(loc)->GetName());
-            //      PlacementLog_Msg("\n");
-            //      CitraPrint(Location(loc)->GetName());
-            //    }
-
+            
             //get all accessible locations that are allowed
-            //CitraPrint("Accessible Locations: ");
             const std::vector<LocationKey> accessibleLocations = GetAccessibleLocations(allowedLocations);
-            //print accessable locations to see what's accessable 
-            //CitraPrint("Accessable Locations are:");
-            //PlacementLog_Msg("\nAccessable Locations are: \n");
-            //for (LocationKey loc : accessibleLocations)
-            //    {                
-            //    PlacementLog_Msg(Location(loc)->GetName());
-            //    PlacementLog_Msg("\n");
-            //    //CitraPrint(Location(loc)->GetName());
-            //    }
-
+            
             //retry if there are no more locations to place items
             if (accessibleLocations.empty()) {
 
@@ -542,59 +512,38 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             LocationKey selectedLocation = RandomElement(accessibleLocations);
 
             //Else place it and keep going
-            PlaceItemInLocation(selectedLocation, item);
-            attemptedLocations.push_back(selectedLocation);
-            //This tells us the location went through the randomization algorithm
-            //to distinguish it from locations which did not or that the player already
-            //knows
-            if (setLocationsAsHintable) {
-            Location(selectedLocation)->SetAsHintable();
+            //place the item within one of the allowed locations accounting for if this item needs to be able to be obtained more than once and if location allows that
+            //the only situation we don't want is a non repeatable location with a reusable item
+            if ( !(Location(selectedLocation)->IsRepeatable()) && ItemTable(item).IsReusable() ){
+                //unsuccessfulPlacement = true;
+                #ifdef ENABLE_DEBUG
+                CitraPrint("Attempting to place repeatable item in non repeatable spot in AssumedFill");
+                #endif
+                PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
+                itemsToPlace.push_back(item);
             }
-    
-            //If ALR is off, then we check beatability after placing the item.
-            //If the game is beatable, then we can stop placing items with logic.
-            if (!LocationsReachable) {
-                playthroughBeatable = false;
-                Logic::LogicReset();
-                GetAccessibleLocations(allLocations, SearchMode::CheckBeatable);
-                if (playthroughBeatable) {
-                    FastFill(itemsToPlace, GetAllEmptyLocations(), true);
-                    return;
-                }
-                
-                //place the item within one of the allowed locations accounting for if this item needs to be able to be obtained more than once and if location allows that
-                //the only situation we don't want is a non repeatable location with a reusable item
-                if ( !(Location(selectedLocation)->IsRepeatable()) && ItemTable(item).IsReusable() ){
-                    //unsuccessfulPlacement = true;
-                    #ifdef ENABLE_DEBUG
-                    CitraPrint("Attempting to place repeatable item in non repeatable spot in AssumedFill");
-                    #endif
-                    PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
-                    itemsToPlace.push_back(item);
-                }
-                else {
-                    PlaceItemInLocation(selectedLocation, item); 
-                    //PlacementLog_Msg("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
-                    //CitraPrint("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
-                    attemptedLocations.push_back(selectedLocation);
+            else {
+                PlaceItemInLocation(selectedLocation, item); 
+                //PlacementLog_Msg("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
+                //CitraPrint("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
+                attemptedLocations.push_back(selectedLocation);
         
-                    //This tells us the location went through the randomization algorithm
-                    //to distinguish it from locations which did not or that the player already
-                    //knows
-                    if (setLocationsAsHintable) {
-                        Location(selectedLocation)->SetAsHintable();
-                    }
+                //This tells us the location went through the randomization algorithm
+                //to distinguish it from locations which did not or that the player already
+                //knows
+                if (setLocationsAsHintable) {
+                    Location(selectedLocation)->SetAsHintable();
+                }
         
-                    //If ALR is off, then we check beatability after placing the item.
-                    //If the game is beatable, then we can stop placing items with logic.
-                    if (!LocationsReachable) {
-                        playthroughBeatable = false;
-                        Logic::LogicReset();
-                        GetAccessibleLocations(allLocations, SearchMode::CheckBeatable);
-                        if (playthroughBeatable) {
-                            FastFill(itemsToPlace, GetAllEmptyLocations(), true);
-                            return;
-                        }
+                //If ALR is off, then we check beatability after placing the item.
+                //If the game is beatable, then we can stop placing items with logic.
+                if (!LocationsReachable) {
+                    playthroughBeatable = false;
+                    Logic::LogicReset();
+                    GetAccessibleLocations(allLocations, SearchMode::CheckBeatable);
+                    if (playthroughBeatable) {
+                        FastFill(itemsToPlace, GetAllEmptyLocations(), true);
+                        return;
                     }
                 }
             }
@@ -890,7 +839,6 @@ int Fill() {
         GenerateStartingInventory();
         RemoveStartingItemsFromPool();
         FillExcludedLocations();
-        PlaceItemInLocation(S_CLOCK_TOWN_CLOCK_TOWER_ENTRANCE, WOODFALL_TEMPLE_SMALL_KEY);
         
         showItemProgress = true;
 
@@ -904,9 +852,7 @@ int Fill() {
 
         //Then place dungeon items that are assigned to restrictive location pools
         RandomizeDungeonItems();
-#ifdef ENABLE_DEBUG
-        CitraPrint("Trying to place songs");
-#endif
+        
         //get Songs in pool
         std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
         //If Shuffled in Song Locations restrict location pool to only song locations
