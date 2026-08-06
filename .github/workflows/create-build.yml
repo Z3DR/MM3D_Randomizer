@@ -407,8 +407,8 @@ jobs:
           }
           EOF
           echo "Forgive me for this."
-          curl -sb -H "https://api.github.com/repos/Z3DR/MM3D_Randomizer/releases" | jq '.[0:8] | .[].assets | .[3] | (.browser_download_url + " " +.created_at)' | grep "Nightly" | head -n 5 >> ciaDownloads.txt
-          curl -sb -H "https://api.github.com/repos/Z3DR/MM3D_Randomizer/releases" | jq '.[0:8] | .[].assets | .[2] | (.browser_download_url + " " +.created_at)' | grep "Nightly" | head -n 5 >> 3dsxDownloads.txt
+          curl -sb -H "https://api.github.com/repos/Z3DR/MM3D_Randomizer/releases" | jq '.[0:8] | .[].assets | .[4] | (.browser_download_url + " " +.created_at)' | grep "Nightly" | head -n 5 >> ciaDownloads.txt
+          curl -sb -H "https://api.github.com/repos/Z3DR/MM3D_Randomizer/releases" | jq '.[0:8] | .[].assets | .[3] | (.browser_download_url + " " +.created_at)' | grep "Nightly" | head -n 5 >> 3dsxDownloads.txt
           STABLEVERSION=`curl -sb -H "https://api.github.com/repos/Z3DR/MM3D_Randomizer/releases/latest" | jq '.name'`
           STABLEMODIFIED=`curl -sb -H "https://api.github.com/repos/Z3DR/MM3D_Randomizer/releases/latest" | jq '.published_at'`
           STABLEVERSION=`sed -e 's/^"//' -e 's/"$//' <<<"$STABLEVERSION"`
