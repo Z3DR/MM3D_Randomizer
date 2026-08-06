@@ -1,4 +1,4 @@
-# Latest Nightly Changes  
+# Nightly D95DE6
 
 ## Features
 - Fairysanity
