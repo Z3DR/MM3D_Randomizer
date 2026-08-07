@@ -1141,7 +1141,7 @@ void GenerateItemPool() {
 
 	//CLOCK TOWN STRAY FAIRY (Separated because it's not in a dungeon)
 	if (!ShuffleCTStray) {
-		PlaceItemInLocation(CT_STRAY_FAIRY, LAUNDRY_POOL_SF);
+		PlaceItemInLocation(LAUNDRY_POOL_SF, CT_STRAY_FAIRY);
 	}
 	else {
 		AddItemToMainPool(CT_STRAY_FAIRY, 1);

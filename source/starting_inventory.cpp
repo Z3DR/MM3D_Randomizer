@@ -114,6 +114,10 @@ void GenerateStartingInventory() {
   AddItemToInventory(TWINMOLDS_REMAINS,         StartingTwinmoldRemains.Value<u8>());
   AddItemToInventory(SWAMP_SKULLTULA_TOKEN,     StartingSwampToken.Value<u8>());
   AddItemToInventory(OCEANSIDE_SKULLTULA_TOKEN, StartingOceanToken.Value<u8>());
+  AddItemToInventory(WF_STRAY_FAIRY,            StartingWoodfallStrays.Value<u8>());
+  AddItemToInventory(SH_STRAY_FAIRY,            StartingSnowheadStrays.Value<u8>());
+  AddItemToInventory(GBT_STRAY_FAIRY,           StartingGreatBayStrays.Value<u8>());
+  AddItemToInventory(ST_STRAY_FAIRY,            StartingStoneTowerStrays.Value<u8>());
 
   AddItemToInventory(DEKU_MASK,                 StartingDekuMask.Value<u8>());  
   AddItemToInventory(GORON_MASK,                StartingGoronMask.Value<u8>());

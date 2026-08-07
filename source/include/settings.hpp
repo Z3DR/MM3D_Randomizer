@@ -346,6 +346,10 @@ namespace Settings {
   extern Option StartingTwinmoldRemains;
   extern Option StartingSwampToken;
   extern Option StartingOceanToken;
+  extern Option StartingWoodfallStrays;
+  extern Option StartingSnowheadStrays;
+  extern Option StartingGreatBayStrays;
+  extern Option StartingStoneTowerStrays;
   extern Option StartingStickCapacity;
   extern Option StartingPowderKeg;
   extern Option StartingPictographBox;
