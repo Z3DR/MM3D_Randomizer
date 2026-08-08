@@ -22,11 +22,11 @@ typedef struct {
 } Language;
 void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Language& text,
                    const std::vector<colType>& cols, const std::vector<iconType>& icons, const std::vector<u8>& delays,
-                   u16 sfx, bool instant, bool repeatSfx);
+                   u16 sfx, bool instant, bool repeatSfx, u8 messageEndType);
 
 void CreateMessageFromTextObject(u16 textId, u16 field_2, u32 field_4, u32 flags, const Text& text,
                    const std::vector<colType>& cols, const std::vector<iconType>& icons, const std::vector<u8>& delays,
-                   u16 sfx, bool instant, bool repeatSfx);
+                   u16 sfx, bool instant, bool repeatSfx, u8 messageEndType);
 
 u32 NumMessages();
 

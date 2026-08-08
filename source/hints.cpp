@@ -168,7 +168,7 @@ static void AddHint(Text hint, const LocationKey gossipStone, const std::vector<
   if (hint.GetNAEnglish().find("$")) {
     icons.push_back(B_BUTTON);
   }
-  CustomMessages::CreateMessageFromTextObject(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, hint, colors, icons, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(messageId, 0xFFFF, 0x3FFFFFFF, 0xFF0020, hint, colors, icons, {}, 0x0, false, false, MESSAGE_END_NORMAL);
   //CreateMessageFromTextObject(messageId, 0, 2, 3, AddColorsAndFormat(hint, colors));
   //CreateMessageFromTextObject(sariaMessageId, 0, 2, 3, AddColorsAndFormat(hint + EVENT_TRIGGER(), colors));
 }
@@ -457,32 +457,32 @@ void CreateTingleHintText() {
         // Clock Town message
         CustomMessages::CreateMessageFromTextObject(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
           clockTownMap+priceFive+woodfallMap+priceForty+leaveShop,
-          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Woodfall message
         CustomMessages::CreateMessageFromTextObject(0x1D12, 0xFFFF, 0x3FF0A014, 0xFF1001,
           woodfallMap+priceTwenty+snowHeadMap+priceForty+leaveShop,
-          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Snowhead message
         CustomMessages::CreateMessageFromTextObject(0x1D13, 0xFFFF, 0x3FF0A014, 0xFF1001,
           snowHeadMap+priceTwenty+romaniMap+priceForty+leaveShop,
-          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Milk Road message
         CustomMessages::CreateMessageFromTextObject(0x1D14, 0xFFFF, 0x3FF0A014, 0xFF1001,
           romaniMap+priceTwenty+greatBayMap+priceForty+leaveShop,
-          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Great Bay message
         CustomMessages::CreateMessageFromTextObject(0x1D15, 0xFFFF, 0x3FF0A014, 0xFF1001,
           greatBayMap+priceTwenty+ikanaMap+priceForty+leaveShop,
-          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Ikana message
         CustomMessages::CreateMessageFromTextObject(0x1D16, 0xFFFF, 0x3FF0A014, 0xFF1001,
           ikanaMap+priceTwenty+clockTownMap+priceForty+leaveShop,
-          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false);
+          {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
       }
 }
 
@@ -497,7 +497,7 @@ void CreateOtherHints() {
     // /*German ?*/"Wenn du zum Beispiel #200 Rubine# sparst, gebe ich dir #",
     // /*Italian?*/"Per esempio, se depositi #200 rupie#, otterrai #",
   }+ItemTable(Location(S_CLOCK_TOWN_BANK_REWARD_1)->GetPlacedItemKey()).GetHint().GetText()
-  +"#.", {QM_RED, QM_RED}, {}, {}, 0x0, false, false);
+  +"#.", {QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 
   //Termina Field Deku Salesman Heart Piece
   CustomMessages::CreateMessageFromTextObject(0x1631, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
@@ -512,7 +512,7 @@ void CreateOtherHints() {
     /*Spanish*/"# si mantiene este lugar en secreto...",
     // /*German ?*/"#, aber bitte behalte dieses Geheimnis für dich!",
     // /*Italian?*/"# se mantieni il segreto su questo posto...",
-  }, {QM_RED}, {}, {}, 0x0, false, false);
+  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 
   //Beaver Hints
   Text beaverBottleHint = ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetHint().GetText();
@@ -532,14 +532,14 @@ void CreateOtherHints() {
     /*EuEnglish*/"",
     /*EuFrench */"#, c'est ça ?&Tu ne retiens jamais la leçon !",
     /*EuSpanish*/"",
-  }, {QM_RED}, {}, {}, 0x0, false, false);
+  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessageFromTextObject(0x10D0, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"Koo, koo, koo...&OK. But...",
     /*French */"Kii, kii, kii.&OK. Mais...",
     /*Spanish?*/"Cu, cu, cu.&Muy bien. Pero...",
     // /*German ?*/"Quiek, quiek, quiek!&Okay. Aber...",
     // /*Italian?*/"Uh uh uh.&Va bene. Ma...",
-  }, {}, {}, {}, 0x0, false, false);
+  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
 
   CustomMessages::CreateMessageFromTextObject(0x10D4, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"Koo, koo, koo.&I can give you #",
@@ -553,7 +553,7 @@ void CreateOtherHints() {
     /*Spanish?*/"#...^Pero solo si puedes nadar a&través de todos los #anillos# del río&en menos de #dos minutos#.",
     // /*German ?*/"#...^Aber nur, wenn du es schaffst, in&weniger als #zwei Minuten# durch&alle #Ringe# im Fluss zu schwimmen.**",
     // /*Italian?*/"#...^Ma solo se riesci a nuotare&attraverso tutti gli #anelli&#nel fiume #entro 2 minuti#.",
-  }, {QM_RED, QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false);
+  }, {QM_RED, QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
 
   CustomMessages::CreateMessageFromTextObject(0x10E0, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*NaEnglish*/"What?&He wants #",
@@ -573,28 +573,28 @@ void CreateOtherHints() {
     /*EuEnglish*/"",
     /*EuFrench */"# ?",
     /*EuSpanish*/"",
-  }, {QM_RED}, {}, {}, 0x0, false, false);
+  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessageFromTextObject(0x10E1, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"Yeah...&He Wants #",
     /*French */"Ouaip...&Il veut #",
     /*Spanish?*/"Sí...&#",
     // /*German */"Ja...&#",
     // /*Italian*/"Sì...&#",
-  }+beaverBottleHint+"#.", {QM_RED}, {}, {}, 0x0, false, false);
+  }+beaverBottleHint+"#.", {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessage(0x10E3, 0xFFFF, 0x3FFFFFFF, 0xFF0000, {
     /*English*/"Look. That's really precious to us, so just beating my little brother isn't enough.",
     /*French */"Écoute. On tient beaucoup à ça, alors une simple victoire ne suffira pas.",
     // /*Spanish*/"**SPANISH**",
     // /*German */"**GERMAN**",
     // /*Italian*/"**ITALIAN**",
-  }, {}, {}, {}, 0x0, false, false);
+  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessage(0x10E4, 0xFFFF, 0x3FFFFFFF, 0xFF0000, {
     /*English*/"It's not enough.",
     /*French */"Ça suffit pas.",
     // /*Spanish*/"**SPANISH**",
     // /*German */"**GERMAN**",
     // /*Italian*/"**ITALIAN**",
-  }, {}, {}, {}, 0x0, false, false);
+  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
 
   CustomMessages::CreateMessageFromTextObject(0x10F5, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"This time, we only have #",
@@ -608,14 +608,14 @@ void CreateOtherHints() {
     /*Spanish?*/"#... Right, Little Brother?",
     // /*German */"#**GERMAN**",
     // /*Italian*/"#**ITALIAN**",
-  }, {QM_RED}, {}, {}, 0x0, false, false);
+  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessage(0x10F6, 0xFFFF, 0x3FFFFFFF, 0xFF0000, {
     /*English*/"That's right, Big Brother...",
     /*French */"Ouaip, grand frère...",
     // /*Spanish*/"**SPANISH**",
     // /*German */"**GERMAN**",
     // /*Italian*/"**ITALIAN**",
-  }, {}, {}, {}, 0x0, false, false);
+  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
 
   CustomMessages::CreateMessageFromTextObject(0x1240, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"You know the #beavers# above the #waterfall# are the type to have #empty bottles#, right?^Lately, they've been braggin about #",
@@ -624,7 +624,7 @@ void CreateOtherHints() {
     // /*German ?*/"You know the #beavers# above the #waterfall# are the type to have #empty bottles#, right?^Lately, they've been braggin about #",
     // /*Italian?*/"You know the #beavers# above the #waterfall# are the type to have #empty bottles#, right?^Lately, they've been braggin about #",
   }+beaverBottleHint
-  +"#.", {QM_RED, QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false);
+  +"#.", {QM_RED, QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENT);
 
   CustomMessages::CreateMessageFromTextObject(0x1242, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"And remember what I told you about the #beavers# above the #waterfall#.^It seems like they have #",
@@ -633,7 +633,7 @@ void CreateOtherHints() {
     // /*German */"**GERMAN**#",
     // /*Italian*/"**ITALIAN**#",
   }+beaverBottleHint
-  +"#.", {QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false);
+  +"#.", {QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENT);
   
 
 
@@ -790,15 +790,15 @@ void CreateClockTowerDoorHints() {
       // "Porta del tetto&Ingresso vietato fino alla&#mezzanotte# della #vigilia# del&carnevale.^"
       // "**ITALIAN**",
     },
-    {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8000, ShuffleSongOfTime ? 0x8001 : 0x8002, 0x3FFFFFFF, 0x1000000, ocarinaHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8001, 0x8002, 0x3FFFFFFF, 0x1000000, songTimeHint, {QM_BLUE, QM_RED}, {}, {}, (clockDoorFirstHint == 0x8001) ? 0x083E : 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8002, 0x8003, 0x3FFFFFFF, 0x1FF0000, remainsPreHint, {QM_RED, QM_RED}, {}, {}, (clockDoorFirstHint == 0x8002) ? 0x083E : 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8003, 0x8004, 0x3FFFFFFF, 0x15D0000, odolwaHint, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8004, 0x8005, 0x3FFFFFFF, 0x15E0000, gohtHint, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8005, 0x8006, 0x3FFFFFFF, 0x15F0000, gyorgHint, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8006, 0x8007, 0x3FFFFFFF, 0x1600000, twinmoldHint, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
-  CustomMessages::CreateMessageFromTextObject(0x8007, 0xFFFF, 0x3FFFFFFF, 0x0FF0000, remainsNeededHint, {QM_RED}, {}, {}, 0x0, false, false);
+    {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
+  CustomMessages::CreateMessageFromTextObject(0x8000, ShuffleSongOfTime ? 0x8001 : 0x8002, 0x3FFFFFFF, 0x000000, ocarinaHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false, MESSAGE_END_PSEUDO);
+  CustomMessages::CreateMessageFromTextObject(0x8001, 0x8002, 0x3FFFFFFF, 0x000000, songTimeHint, {QM_BLUE, QM_RED}, {}, {}, (clockDoorFirstHint == 0x8001) ? 0x083E : 0x0, false, false, MESSAGE_END_PSEUDO);
+  CustomMessages::CreateMessageFromTextObject(0x8002, 0x8003, 0x3FFFFFFF, 0xFF0000, remainsPreHint, {QM_RED, QM_RED}, {}, {}, (clockDoorFirstHint == 0x8002) ? 0x083E : 0x0, false, false, MESSAGE_END_PSEUDO);
+  CustomMessages::CreateMessageFromTextObject(0x8003, 0x8004, 0x3FFFFFFF, 0x5D0000, odolwaHint, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_PSEUDO);
+  CustomMessages::CreateMessageFromTextObject(0x8004, 0x8005, 0x3FFFFFFF, 0x5E0000, gohtHint, {QM_MAGENTA, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_PSEUDO);
+  CustomMessages::CreateMessageFromTextObject(0x8005, 0x8006, 0x3FFFFFFF, 0x5F0000, gyorgHint, {QM_CYAN, QM_CYAN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_PSEUDO);
+  CustomMessages::CreateMessageFromTextObject(0x8006, 0x8007, 0x3FFFFFFF, 0x600000, twinmoldHint, {QM_YELLOW, QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_PSEUDO);
+  CustomMessages::CreateMessageFromTextObject(0x8007, 0xFFFF, 0x3FFFFFFF, 0xFF0000, remainsNeededHint, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 }
 
 void CreateMoonChildHint() {
@@ -846,7 +846,7 @@ void CreateMoonChildHint() {
     /*Spanish*/"^**SPANISH**"
   };
 
-  CustomMessages::CreateMessageFromTextObject(0x6149, 0xFFFF, 0x3FFFFFFF, 0x0FF0020, moonChildHint, {QM_RED}, {}, {}, 0x0, false, false);
+  CustomMessages::CreateMessageFromTextObject(0x6149, 0xFFFF, 0x3FFFFFFF, 0x0FF0020, moonChildHint, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 }
 
 //insert the required number into the hint and set the singular/plural form
