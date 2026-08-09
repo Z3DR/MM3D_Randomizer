@@ -30,7 +30,7 @@ u32 pushText(const char* data) {
 
 void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Language& text,
                    const std::vector<colType>& cols, const std::vector<iconType>& icons, const std::vector<u8>& delays,
-                   u16 sfx, bool instant, bool repeatSfx) {
+                   u16 sfx, bool instant, bool repeatSfx, u8 messageEndType) {
 #ifdef ENABLE_DEBUG
     static std::vector<u16> usedTextIds;
     if (messageEntries.empty()) {
@@ -48,8 +48,8 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
     newEntry.id = textId;
     newEntry.field_2 = field_2;
     newEntry.field_4 = field_4;
-    newEntry.flags = flags;
-    newEntry.sfxAndFlags = ((instant) ? 0x8000 : 0x0000) | ((repeatSfx) ? 0x4000 : 0x0000) | sfx;
+    newEntry.flags = (flags & 0xFFFFFF) | (messageEndType << 24);
+    newEntry.sfxAndFlags = (sfx & 0x0FFF) | (instant << 15) | (repeatSfx << 14);
 
     u32 offsetNaEn = 0, offsetNaFr = 0, offsetNaEs = 0, offsetEuEn = 0, offsetEuFr = 0, offsetEuEs = 0, offsetEuDe = 0, offsetEuIt = 0, offsetJpJp = 0;
     u32 offsetCol = 0, offsetIcon = 0, offsetDelay = 0;
@@ -181,7 +181,7 @@ void CreateMessage(u16 textId, u16 field_2, u32 field_4, u32 flags, const Langua
 
 void CreateMessageFromTextObject(u16 textId, u16 field_2, u32 field_4, u32 flags, const Text& text,
                    const std::vector<colType>& cols, const std::vector<iconType>& icons, const std::vector<u8>& delays,
-                   u16 sfx, bool instant, bool repeatSfx) {
+                   u16 sfx, bool instant, bool repeatSfx, u8 messageEndType) {
     CreateMessage(textId, field_2, field_4, flags,
                 //      NaEnglish                     NaFrench                      NaSpanish
                   {text.GetNAEnglish().c_str(), text.GetNAFrench().c_str(), text.GetNASpanish().c_str(),
@@ -190,7 +190,7 @@ void CreateMessageFromTextObject(u16 textId, u16 field_2, u32 field_4, u32 flags
                 text.GetEUREnglish().c_str(), text.GetEUREnglish().c_str(), // text.GetNAEnglish().c_str(),
                 //      EuEnglish                     EuFrench                      EuSpanish
                 text.GetEUREnglish().c_str(), text.GetEURFrench().c_str(), text.GetEURSpanish().c_str()
-                }, cols, icons, delays, sfx, instant, repeatSfx);
+                }, cols, icons, delays, sfx, instant, repeatSfx, messageEndType);
 }
 
 void CreateBaselineCustomMessages() {
@@ -241,82 +241,82 @@ void CreateBaselineCustomMessages() {
     // Woodfall
     CreateMessageFromTextObject(0x6133, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroSKey + GITextDungeonWoodfall + GITextOutroSKey,
-        {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
     // Snowhead
     CreateMessageFromTextObject(0x6134, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroSKey + GITextDungeonSnowhead + GITextOutroSKey,
-        {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
     // Great Bay
     CreateMessageFromTextObject(0x6135, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroSKey + GITextDungeonGreatBay + GITextOutroSKey,
-        {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
     // Stone Tower
     CreateMessageFromTextObject(0x6136, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroSKey + GITextDungeonStoneTower + GITextOutroSKey,
-        {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Maps
     // Woodfall
     CreateMessageFromTextObject(0x6137, 0x003E, 0x3FFFFFFF, 0xFF0000,
         GITextIntroMap + GITextDungeonWoodfall,
-        {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Snowhead
     CreateMessageFromTextObject(0x6138, 0x003E, 0x3FFFFFFF, 0xFF0000,
         GITextIntroMap + GITextDungeonSnowhead,
-        {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Great Bay
     CreateMessageFromTextObject(0x6139, 0x003E, 0x3FFFFFFF, 0xFF0000,
         GITextIntroMap + GITextDungeonGreatBay,
-        {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Stone Tower
     CreateMessageFromTextObject(0x613A, 0x003E, 0x3FFFFFFF, 0xFF0000,
         GITextIntroMap + GITextDungeonStoneTower,
-        {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Compasses
     // Woodfall
     CreateMessageFromTextObject(0x613B, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroCompass + GITextDungeonWoodfall + GITextOutroCompass,
-        {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Snowhead
     CreateMessageFromTextObject(0x613C, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroCompass + GITextDungeonSnowhead + GITextOutroCompass,
-        {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Great Bay
     CreateMessageFromTextObject(0x613D, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroCompass + GITextDungeonGreatBay + GITextOutroCompass,
-        {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_CYAN}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Stone Tower
     CreateMessageFromTextObject(0x613E, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroCompass + GITextDungeonStoneTower + GITextOutroCompass,
-        {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_YELLOW}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Boss Keys
     // Woodfall
     CreateMessageFromTextObject(0x613F, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroBKey + GITextDungeonWoodfall + GITextOutroBKey,
-        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Snowhead
     CreateMessageFromTextObject(0x6140, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroBKey + GITextDungeonSnowhead + GITextOutroBKey,
-        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Great Bay
     CreateMessageFromTextObject(0x6141, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroBKey + GITextDungeonGreatBay + GITextOutroBKey,
-        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Stone Tower
     CreateMessageFromTextObject(0x6142, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
         GITextIntroBKey + GITextDungeonStoneTower + GITextOutroBKey,
-        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+        {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Kokiri Sword
     CreateMessage(0x0037, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
@@ -324,7 +324,7 @@ void CreateBaselineCustomMessages() {
         // French
         "Vous obtenez l'#épée Kokiri#! Votre fidèle épée qui provient de le forêt Kokiri.",
     },
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     // Ice Trap
     CreateMessage(0x0012, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
@@ -332,7 +332,7 @@ void CreateBaselineCustomMessages() {
         // French
         "#IDIOT!#",
     },
-    {QM_RED}, {}, {}, 0x0, false, false);
+    {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     //Swamp Skulltula Tokens
     CreateMessage(0x0052, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
@@ -340,7 +340,7 @@ void CreateBaselineCustomMessages() {
         // French
         "Vous obtenez l'#âme d'une skulltula d'or des marais#!&Vous en avez désormais #=SSH#.",
     },
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     //Ocean Skulltula Tokens
     CreateMessage(0x6143, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
@@ -348,7 +348,7 @@ void CreateBaselineCustomMessages() {
         // French
         "Vous obtenez l'#âme d'une skulltula d'or de la côte#!&Vous en avez désormais #=OSH#.",
     },
-    {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     //Bank Rewards
     CreateMessage(0x045c, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
@@ -368,7 +368,7 @@ void CreateBaselineCustomMessages() {
         // EU Spanish
         "¿Qué es esto? ¡¿Ya has ahorrado&#500 rupias#?!^Bien, jovencito. Aquí está tu regalo&especial. ¡Tómalo!",
     },
-    {QM_RED}, {}, {}, 0x0, false, false);
+    {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENT);
 
     CreateMessage(0x045d, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
     {"What's this? You've already&saved up #1,000 Rupees#?!^Well, little guy, I can't take any more deposits. Sorry, but this is all I can give you.",
@@ -387,7 +387,7 @@ void CreateBaselineCustomMessages() {
         // EU Spanish
         "¿Qué es esto? ¡¿Ya has ahorrado&#1000 rupias#?!^Bien, jovencito. No puedo aceptar&más depósitos. Lo siento, pero&esto es todo lo que puedo darte.",
     },
-    {QM_RED}, {}, {}, 0x0, false, false);
+    {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENT);
 
     //Stray Fairies
     CreateMessage(0x06144, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
@@ -395,35 +395,35 @@ void CreateBaselineCustomMessages() {
         // French
         "Vous obtenez une #fée égarée de la ville#! Apportez-la à la fontaine des fées au nord de la ville!",
     },
-    {QM_RED}, {}, {}, 0x0, false, false);
+    {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     CreateMessage(0x06145, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
     {"You got a #Woodfall Stray Fairy#! &You have collected #=WFF#.",
         // French
         "Vous obtenez une #fée égarée des marais#!&Vous en avez désormais #=WFF#.",
     },
-    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     CreateMessage(0x06146, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
     {"You got a #Snowhead Stray Fairy#! &You have collected #=SHF#.",
         // French
         "Vous obtenez une #fée égarée des neiges#!&Vous en avez désormais #=SHF#.",
     },
-    {QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     CreateMessage(0x06147, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
     {"You got a #Great Bay Stray Fairy#! &You have collected #=GBF#.",
         // French
         "Vous obtenez une #fée égarée de la baie#!&Vous en avez désormais #=GBF#.",
     },
-    {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_BLUE, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
     CreateMessage(0x06148, 0xFFFF, 0x3FFFFFFF, 0xFF0000,
     {"You got a #Stone Tower Stray Fairy#! &You have collected #=STF#.",
         // French
         "Vous obtenez une #fée égarée d'Ikana#!&Vous en avez désormais #=STF#.",
     },
-    {QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false);
+    {QM_YELLOW, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 
 }
 
