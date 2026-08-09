@@ -555,6 +555,15 @@ void CreateOtherHints() {
     // /*Italian?*/"#...^Ma solo se riesci a nuotare&attraverso tutti gli #anelli&#nel fiume #entro 2 minuti#.",
   }, {QM_RED, QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
 
+  // Remove French mention of bottle
+  CustomMessages::CreateMessage(0x10DD, 0xFFFF, 0x3FFFFFFF, 0xFF0000, {
+    /*English*/"Uh... That was perfect.^That's not good...",
+    /*French */"Ooh... Tu as parfaitement réussi...^C'est pas bon...",
+    /*Spanish*/"Eh... Perfecto.^Esto no está bien...",
+    /*German */"Uh... Das war perfekt!^Das ist gar nicht gut...",
+    /*Italian*/"Uh... Sei stato perfetto.^Accidenti...",
+  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_EVENT);
+
   CustomMessages::CreateMessageFromTextObject(0x10E0, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*NaEnglish*/"What?&He wants #",
     /*NaFrench */"Quoi?&Il veut #",
@@ -562,7 +571,7 @@ void CreateOtherHints() {
     // /*EuGerman ?*/"Was?&#",
     // /*EuItalian?*/"Cosa?&#",
     /*EuEnglish*/"",
-    /*EuFrench */"Quoi ?&Il veut#",
+    /*EuFrench */"Quoi ?&Il veut #",
     /*EuSpanish*/"",
   }+beaverBottleHint+Text{
     /*NaEnglish*/"#?",
