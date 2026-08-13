@@ -556,7 +556,7 @@ void AreaTable_Init() {
 		LocationAccess(S_CLOCK_TOWN_FINAL_DAY_CHEST, {[] {return Hookshot || (DekuMask && MoonsTear);}}),
 		LocationAccess(S_CLOCK_TOWN_BANK_REWARD_1, {[] {return true;}}),
 		LocationAccess(S_CLOCK_TOWN_BANK_REWARD_2, {[] {return AnyWallet;}}),//Adult Wallet for lenience
-		LocationAccess(S_CLOCK_TOWN_BANK_REWARD_3, {[] {return (OceanWallet500 || ProgressiveWallet > 1);}}),//Giant Wallet for lenience
+		LocationAccess(S_CLOCK_TOWN_BANK_REWARD_3, {[] {return ProgressiveWallet > 1;}}),//Giant Wallet for lenience
 	},
 	{
 		//Exits

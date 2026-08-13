@@ -158,6 +158,10 @@ namespace Settings {
   Option StartingTwinmoldRemains   = Option::U8("Twinmold's Remains",     { "None",             "TwinMold's R." },                                           { "" });
   Option StartingSwampToken        = Option::U8("Swamp Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
   Option StartingOceanToken        = Option::U8("Ocean Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
+  Option StartingWoodfallStrays    = Option::U8("Woodfall Stray Fairies",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
+  Option StartingSnowheadStrays    = Option::U8("Snowhead Stray Fairies",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
+  Option StartingGreatBayStrays    = Option::U8("Great Bay Stray Fairies",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
+  Option StartingStoneTowerStrays  = Option::U8("Stone Tower Stray Fairies",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
   //Starting Masks 
   Option StartingMaskToggle        = Option::U8("Masks",                    { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingDekuMask          = Option::U8("Deku Mask",              { "None",             "Deku M." },                                                 { "" });
@@ -282,6 +286,10 @@ namespace Settings {
   std::vector<Option*> startingInventoryTokensFairys = {
 	  &StartingSwampToken,
     &StartingOceanToken,
+    &StartingWoodfallStrays,
+    &StartingSnowheadStrays,
+    &StartingGreatBayStrays,
+    &StartingStoneTowerStrays,
   };
 
   //Excluded Locations (Individual definitions made in ItemLocation class)
@@ -832,6 +840,11 @@ namespace Settings {
     //Tokens
     ctx.startingSwampTokens = StartingSwampToken.Value<u8>();
     ctx.startingOceanTokens = StartingOceanToken.Value<u8>();
+    //Stray Fairies
+    ctx.startingWoodfallStrays = StartingWoodfallStrays.Value<u8>();
+    ctx.startingSnowheadStrays = StartingSnowheadStrays.Value<u8>();
+    ctx.startingGreatBayStrays = StartingGreatBayStrays.Value<u8>();
+    ctx.startingStoneTowerStrays = StartingStoneTowerStrays.Value<u8>();
     //Masks
     ctx.startingDekuMask = StartingDekuMask.Value<u8>();
     ctx.startingGoronMask = StartingGoronMask.Value<u8>();
@@ -1059,9 +1072,18 @@ namespace Settings {
     for (int i = 0; i <= 30; i++) {
       OtokenOptions.push_back(std::to_string(i));
     }
+    std::vector<std::string> StrayOptions;
+    StrayOptions.reserve(16);
+    for (int i = 0; i <= 15; i++) {
+      StrayOptions.push_back(std::to_string(i));
+    }
 	  StartingSwampToken.SetOptions(StokenOptions);
     StartingOceanToken.SetOptions(OtokenOptions);
-    
+    StartingWoodfallStrays.SetOptions(StrayOptions);
+    StartingSnowheadStrays.SetOptions(StrayOptions);
+    StartingGreatBayStrays.SetOptions(StrayOptions);
+    StartingStoneTowerStrays.SetOptions(StrayOptions);
+
     //Create Location Exclude settings
     AddExcludedOptions();
 
