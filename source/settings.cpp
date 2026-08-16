@@ -132,16 +132,16 @@ namespace Settings {
   Option StartingBottle6           = Option::U8("Bottle Slot 6",          bottleOptions,                                                                     { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
   Option StartingBottle7           = Option::U8("Bottle Slot 7",          bottleOptions,                                                                     { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
   Option StartingSongsToggle       = Option::U8("Ocarina Songs",            { "All Off",          "All On",           "Choose" },                              { "" });
-  Option StartingOathToOrder       = Option::U8("Oath To Order",          { "None",             "Oath to Order" },                                           { "" });
-  Option StartingEponasSong        = Option::U8("Epona's Song",           { "None",             "Epona's Song" },                                            { "" });
-  Option StartingSongOfStorms      = Option::U8("Song of Storms",         { "None",             "Song of Storms" },                                          { "" });
-  Option StartingSonataOfAwakening = Option::U8("Sonata of Awakening",    { "None",             "Sonata of A." },                                            { "" });
-  Option StartingGoronsLullaby     = Option::U8("Gorons Lullaby",         { "None",             "Lullaby Intro", "Gorons Lullaby" },                         { "" });
-  Option StartingNewWaveBossaNova  = Option::U8("New Wave Bossa Nova",    { "None",             "New Wave Bossa Nova" },                                     { "" });
-  Option StartingElegyOfEmptiness  = Option::U8("Elegy of Emptiness",     { "None",             "Elegy of Emptiness" },                                      { "" });
-  Option StartingSongOfHealing     = Option::U8("Song of Healing",        { "None",             "Song of Healing" },                                         { "" }, OptionCategory::Setting);
-  Option StartingSongOfSoaring     = Option::U8("Song of Soaring",        { "None",             "Song of Soaring" },                                         { "" });
-  Option StartingSongOfTime        = Option::U8("Song of Time",           { "None",             "Song of Time" },                                            { "" });
+  Option StartingOathToOrder       = Option::U8("Oath To Order",          { "None",             "Oath" },                                           { "" });
+  Option StartingEponasSong        = Option::U8("Epona's Song",           { "None",             "Epona" },                                            { "" });
+  Option StartingSongOfStorms      = Option::U8("Song of Storms",         { "None",             "Storms" },                                          { "" });
+  Option StartingSonataOfAwakening = Option::U8("Sonata of Awakening",    { "None",             "Sonata" },                                            { "" });
+  Option StartingGoronsLullaby     = Option::U8("Gorons Lullaby",         { "None",             "Intro", "Full" },                         { "" });
+  Option StartingNewWaveBossaNova  = Option::U8("New Wave Bossa Nova",    { "None",             "N.W.B.N" },                                     { "" });
+  Option StartingElegyOfEmptiness  = Option::U8("Elegy of Emptiness",     { "None",             "Elegy" },                                      { "" });
+  Option StartingSongOfHealing     = Option::U8("Song of Healing",        { "None",             "Healing" },                                         { "" }, OptionCategory::Setting);
+  Option StartingSongOfSoaring     = Option::U8("Song of Soaring",        { "None",             "Soaring" },                                         { "" });
+  Option StartingSongOfTime        = Option::U8("Song of Time",           { "None",             "Time" },                                            { "" });
 //Option StartingGoronIntro        = Option::U8("Goron Lullaby Intro",    { "None",             "Lullaby Intro" },                                           { "" });
   Option StartingUpgradesToggle    = Option::U8("Equipment & Upgrades",   { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingKokiriSword       = Option::U8("Starting Sword",         { "Kokiri Sword",     "Razor Sword", "Gilded Sword", "None" },                     { startingSwordKokiriDesc, startingSwordRazorDesc, startingSwordGildedDesc, startingSwordNoneDesc }, OptionCategory::Setting, (u8)StartingSwordSetting::STARTINGSWORD_KOKIRI);//1U = StartingSwordSetting::STARTINGSWORD_KOKIRI
@@ -158,10 +158,10 @@ namespace Settings {
   Option StartingTwinmoldRemains   = Option::U8("Twinmold's Remains",     { "None",             "TwinMold's R." },                                           { "" });
   Option StartingSwampToken        = Option::U8("Swamp Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
   Option StartingOceanToken        = Option::U8("Ocean Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
-  Option StartingWoodfallStrays    = Option::U8("Woodfall Stray Fairies",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
-  Option StartingSnowheadStrays    = Option::U8("Snowhead Stray Fairies",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
-  Option StartingGreatBayStrays    = Option::U8("Great Bay Stray Fairies",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
-  Option StartingStoneTowerStrays  = Option::U8("Stone Tower Stray Fairies",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
+  Option StartingWoodfallStrays    = Option::U8("Woodfall Strays",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
+  Option StartingSnowheadStrays    = Option::U8("Snowhead Strays",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
+  Option StartingGreatBayStrays    = Option::U8("Great Bay Strays",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
+  Option StartingStoneTowerStrays  = Option::U8("Stone Tower Strays",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
   //Starting Masks 
   Option StartingMaskToggle        = Option::U8("Masks",                    { "All Off",          "All On",           "Choose" },                              { "" });
   Option StartingDekuMask          = Option::U8("Deku Mask",              { "None",             "Deku M." },                                                 { "" });
