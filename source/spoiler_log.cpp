@@ -467,7 +467,7 @@ static tinyxml2::XMLElement* CreateCollapseCheckbox(tinyxml2::XMLDocument& spoil
 static void WriteSettings(tinyxml2::XMLDocument& spoilerLog, const bool printAll = false) {
   auto parentNode = spoilerLog.NewElement("settings");
 
-  std::vector<Menu*> allMenus = Settings::GetAllMenus();
+  std::vector<Menu*> allMenus = Settings::GetAllOptionMenus();
 
   for (const Menu* menu : allMenus) {
     //This is a menu of settings, write them
@@ -488,14 +488,16 @@ static void WriteSettings(tinyxml2::XMLDocument& spoilerLog, const bool printAll
 static void WriteExcludedLocations(tinyxml2::XMLDocument& spoilerLog) {
   auto parentNode = spoilerLog.NewElement("excluded-locations");
 
-  for (const auto& location : Settings::excludeLocationsOptions) {
-    if (location->GetSelectedOptionIndex() == (u8)ExcludeLocationSetting::INCLUDE) {
-      continue;
+  for (size_t i = 1; i < Settings::excludeLocationsOptionsVector.size(); i++) {
+    for (const auto& location : Settings::excludeLocationsOptionsVector[i]) {
+      if (location->GetSelectedOptionIndex() == (u8)ExcludeLocationSetting::INCLUDE) {
+        continue;
+      }
+      
+      tinyxml2::XMLElement* node = spoilerLog.NewElement("location");
+      node->SetAttribute("name", SanitizedString(location->GetName()).c_str());
+      parentNode->InsertEndChild(node);
     }
-
-    tinyxml2::XMLElement* node = spoilerLog.NewElement("location");
-    node->SetAttribute("name", SanitizedString(location->GetName()).c_str());
-    parentNode->InsertEndChild(node);
   }
 
   if (!parentNode->NoChildren()) {

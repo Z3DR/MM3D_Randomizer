@@ -293,7 +293,77 @@ namespace Settings {
   };
 
   //Excluded Locations (Individual definitions made in ItemLocation class)
-  std::vector<Option*> excludeLocationsOptions = {};
+  std::vector<std::vector<Option*>> excludeLocationsOptionsVector(SPOILER_COLLECTION_GROUP_COUNT);
+  Menu excludeClockTower = Menu::SubMenu("Clock Tower", &excludeLocationsOptionsVector[GROUP_INSIDE_CLOCKTOWER]);
+  Menu excludeSClockTown = Menu::SubMenu("South Clock Town", &excludeLocationsOptionsVector[GROUP_S_CLOCK_TOWN]);
+  Menu excludeLaundryPool = Menu::SubMenu("Laundry Pool", &excludeLocationsOptionsVector[GROUP_LAUNDRY_POOL]);
+  Menu excludeEClockTown = Menu::SubMenu("East Clock Town", &excludeLocationsOptionsVector[GROUP_E_CLOCK_TOWN]);
+  Menu excludeStockpotinn = Menu::SubMenu("Stockpotinn", &excludeLocationsOptionsVector[GROUP_STOCKPOTINN]);
+  Menu excludeWClockTown = Menu::SubMenu("West Clock Town", &excludeLocationsOptionsVector[GROUP_W_CLOCK_TOWN]);
+  Menu excludeNClockTown = Menu::SubMenu("North Clock Town", &excludeLocationsOptionsVector[GROUP_N_CLOCK_TOWN]);
+  Menu excludeTerminaField = Menu::SubMenu("Termina Field", &excludeLocationsOptionsVector[GROUP_TERMINA_FIELD]);
+  Menu excludeSouthernSwamp = Menu::SubMenu("Southern Swamp", &excludeLocationsOptionsVector[GROUP_SOUTHERN_SWAMP]);
+  Menu excludeDekuPalace = Menu::SubMenu("Deku Palace", &excludeLocationsOptionsVector[GROUP_DEKU_PALACE]);
+  Menu excludeWoodfall = Menu::SubMenu("Woodfall", &excludeLocationsOptionsVector [GROUP_WOODFALL]);
+  Menu excludeSnowhead = Menu::SubMenu("Snowhead", &excludeLocationsOptionsVector[GROUP_SNOWHEAD]);
+  Menu excludeMountainVillage = Menu::SubMenu("Mountain Village", &excludeLocationsOptionsVector[GROUP_MOUNTAIN_VILLAGE]);
+  Menu excludeTwinIslands = Menu::SubMenu("Twin Islands", &excludeLocationsOptionsVector[GROUP_TWIN_ISLANDS]);
+  Menu excludeGoronVillage = Menu::SubMenu("Goron Village", &excludeLocationsOptionsVector[GROUP_GORON_VILLAGE]);
+  Menu excludeMilkRoad = Menu::SubMenu("Milk Road", &excludeLocationsOptionsVector[GROUP_MILK_ROAD]);
+  Menu excludeRomaniRanch = Menu::SubMenu("Romani Ranch", &excludeLocationsOptionsVector[GROUP_ROMANI_RANCH]);
+  Menu excludeGreatBayCoast = Menu::SubMenu("Great Bay Coast", &excludeLocationsOptionsVector[GROUP_GREAT_BAY_COAST]);
+  Menu excludePinnacleRock = Menu::SubMenu("Pinnacle Rock", &excludeLocationsOptionsVector[GROUP_PINNACLE_ROCK]);
+  Menu excludeZoraCape = Menu::SubMenu("Zora Cape", &excludeLocationsOptionsVector[GROUP_ZORA_CAPE]);
+  Menu excludeZoraHall = Menu::SubMenu("Zora Hall", &excludeLocationsOptionsVector[GROUP_ZORA_HALL]);
+  Menu excludeIkanaCanyon = Menu::SubMenu("Ikana Canyon", &excludeLocationsOptionsVector[GROUP_IKANA_CANYON]);
+  Menu excludeIkanaGraveyard = Menu::SubMenu("Ikana Graveyard", &excludeLocationsOptionsVector[GROUP_IKANA_GRAVEYARD]);
+  Menu excludeStoneTower = Menu::SubMenu("Stone Tower", &excludeLocationsOptionsVector[GROUP_STONE_TOWER]);
+  Menu excludeDungeonWoodfallTemple = Menu::SubMenu("Woodfall Temple", &excludeLocationsOptionsVector[GROUP_DUNGEON_WOODFALL_TEMPLE]);
+  Menu excludeDungeonSnowheadTemple = Menu::SubMenu("Snowhead Temple", &excludeLocationsOptionsVector[GROUP_DUNGEON_SNOWHEAD_TEMPLE]);
+  Menu excludeDungeonGreatBay = Menu::SubMenu("Great Bay Temple", &excludeLocationsOptionsVector[GROUP_DUNGEON_GREAT_BAY]);
+  Menu excludeDungeonStoneTower = Menu::SubMenu("Stone Tower Temple", &excludeLocationsOptionsVector[GROUP_DUNGEON_STONE_TOWER]);
+  Menu excludeDungeonPirateFortress = Menu::SubMenu("Pirate Fortress", &excludeLocationsOptionsVector[GROUP_DUNGEON_PIRATE_FORTRESS]);
+  Menu excludeDungeonBeneathTheWell = Menu::SubMenu("Beneath the Well", &excludeLocationsOptionsVector[GROUP_DUNGEON_BENEATH_THE_WELL]);
+  Menu excludeDungeonIkanaCastle = Menu::SubMenu("Ikana Castle", &excludeLocationsOptionsVector[GROUP_DUNGEON_IKANA_CASTLE]);
+  Menu excludeDungeonSecretShrine = Menu::SubMenu("Secret Shrine", &excludeLocationsOptionsVector[GROUP_DUNGEON_SECRET_SHRINE]);
+  Menu excludeDungeonTheMoon = Menu::SubMenu("The Moon", &excludeLocationsOptionsVector[GROUP_DUNGEON_THE_MOON]);
+  Menu excludeSwampSkulltulaHouse = Menu::SubMenu("Swamp Skulltula House", &excludeLocationsOptionsVector[GROUP_SWAMP_SKULLTULA_HOUSE]);
+  Menu excludeOceanSkulltulaHouse = Menu::SubMenu("Ocean Skulltula House", &excludeLocationsOptionsVector[GROUP_OCEAN_SKULLTULA_HOUSE]);
+  std::vector<Menu*> excludeLocationsMenu = {
+    &excludeClockTower,
+    &excludeSClockTown,
+    &excludeLaundryPool,
+    &excludeEClockTown,
+    &excludeStockpotinn,
+    &excludeWClockTown,
+    &excludeNClockTown,
+    &excludeTerminaField,
+    &excludeSouthernSwamp,
+    &excludeDekuPalace,
+    &excludeWoodfall,
+    &excludeSnowhead,
+    &excludeMountainVillage,
+    &excludeTwinIslands,
+    &excludeGoronVillage,
+    &excludeMilkRoad,
+    &excludeRomaniRanch,
+    &excludeGreatBayCoast,
+    &excludePinnacleRock,
+    &excludeZoraCape,
+    &excludeZoraHall,
+    &excludeIkanaCanyon,
+    &excludeIkanaGraveyard,
+    &excludeStoneTower,
+    &excludeDungeonWoodfallTemple,
+    &excludeDungeonSnowheadTemple,
+    &excludeDungeonGreatBay,
+    &excludeDungeonStoneTower,
+    &excludeDungeonPirateFortress,
+    &excludeDungeonBeneathTheWell,
+    &excludeDungeonIkanaCastle,
+    &excludeDungeonSecretShrine,
+    &excludeDungeonTheMoon,
+  };
 
   //Overworld Shuffle Settings
   Option ShuffleMainInventory   = Option::Bool("Shuffle Main Inventory",{"Off", "On"},                                       {shuffleMainInventoryDesc},                                             OptionCategory::Toggle,   1);
@@ -592,7 +662,7 @@ namespace Settings {
   Menu logicSettings    = Menu::SubMenu("Logic Options",     &logicOptions);
   Menu tricks = Menu::SubMenu("Logical Tricks", &trickOptions, false);
   Menu startingInventory = Menu::SubMenu("Starting Inventory", &startingInventoryMenu, false);
-  Menu excludeLocations = Menu::SubMenu("Exclude Locations", &excludeLocationsOptions, false);
+  Menu excludeLocations = Menu::SubMenu("Exclude Locations", &excludeLocationsMenu, false);
   Menu glitchSettings   = Menu::SubMenu("Glitch Options",    &glitchOptions, false);
   Menu otherSettings = Menu::SubMenu("Other Settings", &otherSettingsOptions, false);
   Menu gameSettings = Menu::SubMenu("Game Settings", &gameOptions);
@@ -1105,8 +1175,10 @@ namespace Settings {
       for (auto op : cosmeticOptions) {
           op->SetToDefault();
       }
-    for (auto op : excludeLocationsOptions) {
-      op->SetToDefault();
+    for (auto menu : excludeLocationsMenu) {
+      for (auto op : *menu->settingsList) {
+        op->SetToDefault();
+      }
     }
     for (auto op : startingInventoryOptions) {
       op->SetToDefault();
@@ -1162,14 +1234,13 @@ namespace Settings {
     for (auto op : customButtons) {
       op->SetToDefault();
     }
-    //Don't let users exclude these locations
-    //TODO: Make sure the defaults are set appropriately for these?
-	//Also TODO: make sure some checks cant be skpped?
-//    Location(HC_ZELDAS_LETTER)->GetExcludedOption()->Hide();
-//    Location(MARKET_BOMBCHU_BOWLING_BOMBCHUS)->GetExcludedOption()->Hide();
-    //Location(GANON)->GetExcludedOption()->Hide();
 
     SetDefaultCosmetics();
+
+    ResolveExcludedLocationConflicts();
+    for (Menu* menu : Settings::GetAllOptionMenus()) { 
+      menu->ResetMenuIndex();
+    }
   }
   
   //Include and Lock the desired locations
@@ -1215,7 +1286,7 @@ namespace Settings {
   //menu if the player's current settings would require non-junk to be placed
   //at those locations. Excluded locations will have junk placed at them.
   
-  static void ResolveExcludedLocationConflicts() {
+  void ResolveExcludedLocationConflicts() {
 
       //For now, just always hide shop locations, as not sure how to handle hiding them-
       //1-4 should always be hidden, while the others should be settings dependent, but random shopsanity makes that more complicated...
@@ -1825,7 +1896,7 @@ namespace Settings {
   }
 
   //Recursively look through each menu from the main menu to get all settings
-  const std::vector<Menu*> GetAllMenus() {
+  const std::vector<Menu*> GetAllOptionMenus() {
     std::vector<Menu*> allMenus;
     for (Menu* menu : Settings::mainMenu) {
       std::vector<Menu*> foundMenus = GetMenusRecursive(menu);
