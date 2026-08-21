@@ -59,6 +59,12 @@ void GenerateStartingInventory() {
     AddItemToInventory(GBT_STRAY_FAIRY, 15);
     AddItemToInventory(ST_STRAY_FAIRY, 15);
   }
+  else {
+    AddItemToInventory(WF_STRAY_FAIRY,            StartingWoodfallStrays.Value<u8>());
+    AddItemToInventory(SH_STRAY_FAIRY,            StartingSnowheadStrays.Value<u8>());
+    AddItemToInventory(GBT_STRAY_FAIRY,           StartingGreatBayStrays.Value<u8>());
+    AddItemToInventory(ST_STRAY_FAIRY,            StartingStoneTowerStrays.Value<u8>());
+  }
   
   //Starting Inventory Menu
   //Values are associated so that the count of items matches the index of
@@ -113,10 +119,6 @@ void GenerateStartingInventory() {
   AddItemToInventory(TWINMOLDS_REMAINS,         StartingTwinmoldRemains.Value<u8>());
   AddItemToInventory(SWAMP_SKULLTULA_TOKEN,     StartingSwampToken.Value<u8>());
   AddItemToInventory(OCEANSIDE_SKULLTULA_TOKEN, StartingOceanToken.Value<u8>());
-  AddItemToInventory(WF_STRAY_FAIRY,            StartingWoodfallStrays.Value<u8>());
-  AddItemToInventory(SH_STRAY_FAIRY,            StartingSnowheadStrays.Value<u8>());
-  AddItemToInventory(GBT_STRAY_FAIRY,           StartingGreatBayStrays.Value<u8>());
-  AddItemToInventory(ST_STRAY_FAIRY,            StartingStoneTowerStrays.Value<u8>());
 
   AddItemToInventory(DEKU_MASK,                 StartingDekuMask.Value<u8>());  
   AddItemToInventory(GORON_MASK,                StartingGoronMask.Value<u8>());
