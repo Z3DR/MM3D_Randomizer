@@ -774,7 +774,7 @@ namespace Settings {
     ctx.mapsAndCompasses = MapsAndCompasses.Value<u8>();
     ctx.keysanity = Keysanity.Value<u8>();
     ctx.bossKeysanity = BossKeysanity.Value<u8>();
-    //ctx.strayFairysanity = StrayFairysanity.Value<u8>();
+    ctx.strayFairysanity = StrayFairysanity.Value<u8>();
     ctx.shuffleRewards = ShuffleRewards.Value<u8>();
     //ctx.shuffleHeartContainers = (ShuffleHeartContainers) ? 1 : 0;
 

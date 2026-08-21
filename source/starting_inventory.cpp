@@ -54,7 +54,6 @@ void GenerateStartingInventory() {
   }
 
   if (StrayFairysanity.Value<u8>() == 1/*Start With*/) {
-    AddItemToInventory(CT_STRAY_FAIRY, 1);
     AddItemToInventory(WF_STRAY_FAIRY, 15);
     AddItemToInventory(SH_STRAY_FAIRY, 15);
     AddItemToInventory(GBT_STRAY_FAIRY, 15);
