@@ -911,10 +911,18 @@ namespace Settings {
     ctx.startingSwampTokens = StartingSwampToken.Value<u8>();
     ctx.startingOceanTokens = StartingOceanToken.Value<u8>();
     //Stray Fairies
-    ctx.startingWoodfallStrays = StartingWoodfallStrays.Value<u8>();
-    ctx.startingSnowheadStrays = StartingSnowheadStrays.Value<u8>();
-    ctx.startingGreatBayStrays = StartingGreatBayStrays.Value<u8>();
-    ctx.startingStoneTowerStrays = StartingStoneTowerStrays.Value<u8>();
+    if (StrayFairysanity.Value<u8>() == 1/*Start With*/) {
+      ctx.startingWoodfallStrays = 15;
+      ctx.startingSnowheadStrays = 15;
+      ctx.startingGreatBayStrays = 15;
+      ctx.startingStoneTowerStrays = 15;
+    }
+    else { /*Do whatever the starting values are*/
+      ctx.startingWoodfallStrays = StartingWoodfallStrays.Value<u8>();
+      ctx.startingSnowheadStrays = StartingSnowheadStrays.Value<u8>();
+      ctx.startingGreatBayStrays = StartingGreatBayStrays.Value<u8>();
+      ctx.startingStoneTowerStrays = StartingStoneTowerStrays.Value<u8>();
+    }
     //Masks
     ctx.startingDekuMask = StartingDekuMask.Value<u8>();
     ctx.startingGoronMask = StartingGoronMask.Value<u8>();
