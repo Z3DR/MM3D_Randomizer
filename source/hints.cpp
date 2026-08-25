@@ -441,49 +441,89 @@ void CreateTingleHintText() {
       if (Settings::ShuffleTingleMaps.Is(true)) {
         // Logic: Get item names from location.
         // Create custom message for each tingle location (6)
-        Text clockTownMap = Text{"#"}+ItemTable(Location(TINGLE_N_CLOCK_TOWN_CT)->GetPlacedItemKey()).GetName();
-        Text woodfallMap = Text{"#"}+ItemTable(Location(TINGLE_N_CLOCK_TOWN_WF)->GetPlacedItemKey()).GetName();
-        Text snowHeadMap = Text{"#"}+ItemTable(Location(TINGLE_TWIN_ISLANDS_SH)->GetPlacedItemKey()).GetName();
-        Text romaniMap = Text{"#"}+ItemTable(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey()).GetName();
-        Text greatBayMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_GB)->GetPlacedItemKey()).GetName();
-        Text ikanaMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName();
+        Text clockTownMap = ItemTable(Location(TINGLE_N_CLOCK_TOWN_CT)->GetPlacedItemKey()).GetName();
+        Text woodfallMap = ItemTable(Location(TINGLE_N_CLOCK_TOWN_WF)->GetPlacedItemKey()).GetName();
+        Text snowHeadMap = ItemTable(Location(TINGLE_TWIN_ISLANDS_SH)->GetPlacedItemKey()).GetName();
+        Text romaniMap = ItemTable(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey()).GetName();
+        Text greatBayMap = ItemTable(Location(TINGLE_GBC_GB)->GetPlacedItemKey()).GetName();
+        Text ikanaMap = ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName();
 
         //                 {"English",           "French",           "Spanish"            "German"          };      "Italian"
-        Text priceFive =   {"    ##5 Rupees#&",  "    ##5 Rubis#&",  "    ##5 rupias#&",  " - ##5 Rubine#&" }; // , "    ##5 rupie#&"
-        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", "    ##20 rupias#&", " - ##20 Rubine#&"}; // , "    ##20 rupie#&"
+        Text priceFive =   {"    ##5 Rupees#&#",  "    ##5 Rubis#&#",  "    ##5 rupias#&#",  " - ##5 Rubine#&#" }; // , "    ##5 rupie#&"
+        Text priceTwenty = {"    ##20 Rupees#&#", "    ##20 Rubis#&#", "    ##20 rupias#&#", " - ##20 Rubine#&#"}; // , "    ##20 rupie#&"
         Text priceForty =  {"    ##40 Rupees#",  "    ##40 Rubis#",  "    ##40 rupias#",  " - ##40 Rubine#" }; // , "    ##40 rupie#"
         Text leaveShop =   {"&#No thanks#",      "&#Non merci#",     "&#No, gracias#",    "&#Nein, danke!#" }; // , "&#No, grazie#"
 
         // Clock Town message
         CustomMessages::CreateMessageFromTextObject(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
-          clockTownMap+priceFive+woodfallMap+priceForty+leaveShop,
+          Text{">3#"}+clockTownMap+priceFive+woodfallMap+priceForty+leaveShop,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Woodfall message
         CustomMessages::CreateMessageFromTextObject(0x1D12, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          woodfallMap+priceTwenty+snowHeadMap+priceForty+leaveShop,
+          Text{">3#"}+woodfallMap+priceTwenty+snowHeadMap+priceForty+leaveShop,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Snowhead message
         CustomMessages::CreateMessageFromTextObject(0x1D13, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          snowHeadMap+priceTwenty+romaniMap+priceForty+leaveShop,
+          Text{">3#"}+snowHeadMap+priceTwenty+romaniMap+priceForty+leaveShop,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Milk Road message
         CustomMessages::CreateMessageFromTextObject(0x1D14, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          romaniMap+priceTwenty+greatBayMap+priceForty+leaveShop,
+          Text{">3#"}+romaniMap+priceTwenty+greatBayMap+priceForty+leaveShop,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Great Bay message
         CustomMessages::CreateMessageFromTextObject(0x1D15, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          greatBayMap+priceTwenty+ikanaMap+priceForty+leaveShop,
+          Text{">3#"}+greatBayMap+priceTwenty+ikanaMap+priceForty+leaveShop,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Ikana message
         CustomMessages::CreateMessageFromTextObject(0x1D16, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          ikanaMap+priceTwenty+clockTownMap+priceForty+leaveShop,
+          Text{">3#"}+ikanaMap+priceTwenty+clockTownMap+priceForty+leaveShop,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
       }
+}
+
+void CreateShopMessage(u16 messageID, ItemKey shopItem, u16 buyingPrice, bool isRepeatable) {
+  Text shopIntro = Text{"#"}+ItemTable(shopItem).GetName()+"&                                        "
+      +std::to_string(buyingPrice)+Text{
+        " Rupees#&", " rubis#&", " rupias#&", " Rubine#&",// " rupie#&"
+      };
+  if (isRepeatable) {
+    CustomMessages::CreateMessageFromTextObject(messageID, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF0301,
+      shopIntro+Text{
+        /*NaEnglish*/"Special deal!&Buy as many as you want!",
+        /*NaFrench */"Offre spéciale!&Achetez-en à volonté!",
+        /*NaSpanish*/"¡Oferta especial!&¡Compra todo lo que quieras!",
+        /*EuGerman */"Sonderangebot!&Kauft so viel ihr wollt!",
+        // /*EuItalian*/"Offerta speciale!&Compratene a volontà!",
+        /*EuEnglish*/"",
+        /*EuFrench */"Offre spéciale !&Achetez-en à volonté !",
+        /*EuSpanish*/"",
+      }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  } else {
+    CustomMessages::CreateMessageFromTextObject(messageID, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF0301,
+      shopIntro+Text{
+        /*NaEnglish*/"Special deal! ONE LEFT!&Get it while it lasts!",
+        /*NaFrench */"Offre spéciale! DERNIER EN STOCK!&Maintenant ou jamais!",
+        /*NaSpanish*/"¡Oferta especial! ¡SOLO QUEDA UNA UNIDAD!&¡Hazte con ella antes de que se agote!",
+        /*EuGerman */"Sonderangebot! NUR EINS AUF LAGER!&Schlagt zu solange ihr noch könnt!",
+        // /*EuItalian*/"Offerta speciale! ULTIMO PEZZO!&Affrettatevi ad aquistarlo!",
+        /*EuEnglish*/"",
+        /*EuFrench */"Offre spéciale ! DERNIER EN STOCK !&Maintenant ou jamais !",
+        /*EuSpanish*/"",
+      }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  }
+  CustomMessages::CreateMessageFromTextObject(messageID + 1, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF1301,
+    shopIntro+">2"+Text{
+      /*English*/"#Buy&Don't Buy#",
+      /*French */"#J'achète&J'achète pas#",
+      /*Spanish*/"#Comprar&No comprar#",
+      /*German */"#Kaufen!&Nicht kaufen!#",
+      // /*Italian*/"#Compra&Non comprare#",
+    }, {QM_WHITE, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 }
 
 void CreateOtherHints() {
