@@ -487,13 +487,25 @@ void CreateTingleHintText() {
 }
 
 void CreateShopMessage(u16 messageID, ItemKey shopItem, u16 buyingPrice, bool isRepeatable) {
-  Text shopIntro = Text{"#"}+ItemTable(shopItem).GetName()+"&                                        "
-      +std::to_string(buyingPrice)+Text{
-        " Rupees#&", " rubis#&", " rupias#&", " Rubine#&",// " rupie#&"
-      };
-  if (isRepeatable) {
-    CustomMessages::CreateMessageFromTextObject(messageID, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF0301,
-      shopIntro+Text{
+  Text itemName = ItemTable(shopItem).GetName();
+  Text shopIntro = Text{"#"}+itemName+Text{
+      "&>>"
+      // itemName.NAenglish.length()  <= 30 ?  ": " : "&>>",
+      // itemName.NAfrench.length()   <= 30 ? " : " : "&>>",
+      // itemName.NAspanish.length()  <= 30 ?  ": " : "&>>",
+      // itemName.EURgerman.length()  <= 30 ?  ": " : "&>>",
+      // // itemName.EURitalian.length() <= 30 ?  ": " : "&>>",
+      // itemName.EURenglish.length() <= 30 ?  ": " : "&>>",
+      // itemName.EURfrench.length()  <= 30 ? " : " : "&>>",
+      // itemName.EURspanish.length() <= 30 ?  ": " : "&>>",
+    }+std::to_string(buyingPrice)+Text{
+      " Rupees#&", " rubis#&", " rupias#&", " Rubine#&",// " rupie#&"
+    };
+  Text shopDescription = {"oops"};
+  if ((messageID < 0x06C9) || (messageID > 0x06D8)) {
+    // Regular shop
+    if (isRepeatable) {
+      shopDescription = {
         /*NaEnglish*/"Special deal!&Buy as many as you want!",
         /*NaFrench */"Offre spéciale!&Achetez-en à volonté!",
         /*NaSpanish*/"¡Oferta especial!&¡Compra todo lo que quieras!",
@@ -502,10 +514,9 @@ void CreateShopMessage(u16 messageID, ItemKey shopItem, u16 buyingPrice, bool is
         /*EuEnglish*/"",
         /*EuFrench */"Offre spéciale !&Achetez-en à volonté !",
         /*EuSpanish*/"",
-      }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
-  } else {
-    CustomMessages::CreateMessageFromTextObject(messageID, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF0301,
-      shopIntro+Text{
+      };
+    } else {
+      shopDescription = {
         /*NaEnglish*/"Special deal! ONE LEFT!&Get it while it lasts!",
         /*NaFrench */"Offre spéciale! DERNIER EN STOCK!&Maintenant ou jamais!",
         /*NaSpanish*/"¡Oferta especial! ¡SOLO QUEDA UNA UNIDAD!&¡Hazte con ella antes de que se agote!",
@@ -514,8 +525,47 @@ void CreateShopMessage(u16 messageID, ItemKey shopItem, u16 buyingPrice, bool is
         /*EuEnglish*/"",
         /*EuFrench */"Offre spéciale ! DERNIER EN STOCK !&Maintenant ou jamais !",
         /*EuSpanish*/"",
+      };
+    }
+  } else {
+    // Trading post part-timer
+    if (isRepeatable) {
+      shopDescription = {
+        /*English*/"Pretty sure we've got a bunch.&Oh and it's, like, a special deal.",
+        /*French */"On doit en avoir un tas dans le stock.&Ah oui, et c'est une offre spéciale.",
+        /*Spanish?*/"¡Oferta especial!&¡Compra todo lo que quieras!",
+        /*German ?*/"Sonderangebot!&Kauft so viel ihr wollt!",
+        // /*Italian?*/"Offerta speciale!&Compratene a volontà!",
+      };
+    } else {
+      shopDescription = {
+        /*English*/"This one's a special deal, and uh,&I think we only have the one...",
+        /*French */"C't'un genre d'offre spéciale, ouais.&Et j'crois qu'c'est tout ce qu'on a...",
+        /*Spanish?*/"¡Oferta especial! ¡SOLO QUEDA UNA UNIDAD!&¡Hazte con ella antes de que se agote!",
+        /*German ?*/"Sonderangebot! NUR EINS AUF LAGER!&Schlagt zu solange ihr noch könnt!",
+        // /*Italian?*/"Offerta speciale! ULTIMO PEZZO!&Affrettatevi ad aquistarlo!",
+      };
+    }
+  }
+
+  CustomMessages::CreateMessageFromTextObject(messageID, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF0301,
+    shopIntro+shopDescription, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  // Handle blue potion variant for mushroomless hag
+  // WILL OVERFLOW IN MOST LANGUAGES WHEN ITEM NAME TRIGGERS LINE BREAK
+  if (messageID == 0x0843) {
+    CustomMessages::CreateMessageFromTextObject(0x0880, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF0301,
+      shopIntro+Text{
+        /*NaEnglish*/"Actually, I can't get the ingredients&for this, so I'm sold out. Sorry.",
+        /*NaFrench */"En fait, je n'arrive pas à trouver&les ingrédients pour ça, alors je&n'en ai plus. Désolée.",
+        /*NaSpanish*/"No puedo conseguir los&ingredientes, así que está&agotada. Lo siento.",
+        /*EuGerman */"Leider habe ich nicht die passenden&Zutaten auf Lager, daher ist dieser&Artikel gerade nicht lieferbar.",
+        // /*EuItalian*/"In realtà, questa pozione è esaurita&e non ho gli ingredienti per&prepararne altra. Mi spiace.",
+        /*EuEnglish*/"",
+        /*EuFrench */"",
+        /*EuSpanish*/"En realidad, no puedo conseguir&los ingredientes para esto, así que&no me queda más. Lo siento.",
       }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
   }
+
   CustomMessages::CreateMessageFromTextObject(messageID + 1, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF1301,
     shopIntro+">2"+Text{
       /*English*/"#Buy&Don't Buy#",
