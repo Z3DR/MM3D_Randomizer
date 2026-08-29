@@ -225,7 +225,7 @@ public:
 
     void SetPlacedItem(const ItemKey item) {
         placedItem = item;
-        //SetPrice(ItemTable(placedItem).GetPrice());
+        SetPrice(ItemTable(placedItem).GetPrice());
     }
 
     //Saves an item to be set as placedItem later

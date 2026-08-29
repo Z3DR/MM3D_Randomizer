@@ -24,7 +24,7 @@ bool LocationAccess::ConditionsMet() const {
 		conditionsMet= true;
 	}
 	
-	return conditionsMet;// && CanBuy();
+	return conditionsMet && CanBuy();
 }
 
 bool LocationAccess::CanBuy() const {
@@ -36,13 +36,13 @@ bool LocationAccess::CanBuy() const {
 	//Check if current walet is large enough
 	bool SufficientWallet = true;
 	if (Location(location)->GetPrice() > 500) {
-		SufficientWallet = Logic::ProgressiveWallet >= 3;
-	}
-	else if (Location(location)->GetPrice() > 200) {
 		SufficientWallet = Logic::ProgressiveWallet >= 2;
 	}
-	else if (Location(location)->GetPrice() > 99) {
+	else if (Location(location)->GetPrice() > 200) {
 		SufficientWallet = Logic::ProgressiveWallet >= 1;
+	}
+	else if (Location(location)->GetPrice() > 99) {
+		SufficientWallet = Logic::ProgressiveWallet >= 0;
 	}
 
 	bool OtherCondition = true;

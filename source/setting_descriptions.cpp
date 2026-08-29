@@ -455,29 +455,9 @@ string_view linksPocketNothing        = "**OPTION CURRENTLY WIP**\n"            
 |         SHOPSANITY           |                                                           //
 ------------------------------*/                                                           //
 string_view shopsOff                  = "All shop items will be the same as vanilla.";     //
-string_view shopsZero                 = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops.";                                //
-string_view shopsOne                  = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops, and each shop will contain\n"    //
-                                        "one non-vanilla shop item.";                      //
-string_view shopsTwo                  = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops, and each shop will contain\n"    //
-                                        "two non-vanilla shop items.";                     //
-string_view shopsThree                = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops, and each shop will contain\n"    //
-                                        "three non-vanilla shop items.";                   //
-string_view shopsFour                 = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops, and each shop will contain\n"    //
-                                        "four non-vanilla shop items.";                    //
-string_view shopsRandom               = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops, and each shop will contain\n"    //
-                                        "1-4 non-vanilla shop items.";                     //
+string_view shopsOn                   = "Items in Shops will be randomized, this includes\n"//
+                                        "Trading Post, Bomb Shop, Swamp Potion Shop, Goron\n"//
+                                        "Village and Zora Hall Shops.";//
 /*------------------------------                                                           //
 |         TOKENSANITY          |                                                           //
 ------------------------------*/                                                           //
@@ -488,20 +468,14 @@ string_view tokensAllTokens           = "Effectively adds 60 new locations for i
 /*------------------------------                                                           //
 |        SCRUB SHUFFLE         |                                                           //
 ------------------------------*/                                                           //
-string_view scrubsOff                 = "Deku Scrub Salesmen will not be randomized";      //
-string_view scrubsAffordable          = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "All Scrub prices will be reduced to 10 rupees each";
-string_view scrubsExpensive           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "All Scrub prices will be their vanilla prices.\n";//
-string_view scrubsRandomPrices        = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "All Scrub prices will be between 0-95 rupees. This"
-                                        "will on average be very, very expensive overall.";//
+string_view scrubsOff                 = "Deku Scrub Purchases will not be randomized.";    //
+string_view scrubsOn                  = "Deku Scrub Purchases will be randomized.";        //
 /*------------------------------                                                           //
 |         SHUFFLE COWS         |                                                           //
 ------------------------------*/                                                           //
 string_view shuffleCowsDesc           = "Enabling this will let cows give you items upon\n"//
                                         "performing Epona's song in front of them. There\n"//
-                                        "are 7 cows";                                      //
+                                        "are 7 cows.";                                     //
                                                                                            //
 /*------------------------------                                                           //
 |       SHUFFLE OCARINAS       |                                                           //
@@ -509,7 +483,7 @@ string_view shuffleCowsDesc           = "Enabling this will let cows give you it
 string_view ocarinasDesc              = "Setting this to No shuffles the Ocarina of Time\n"//
                                         "into the item pool."     					       //
                                         "\n"                                               //
-                                        "This will require finding an Ocarina before being\n"
+                                        "This will require finding the Ocarina before being\n"
                                         "able to play songs or restart the cycle";         //
 
 /*------------------------------                                                           //
