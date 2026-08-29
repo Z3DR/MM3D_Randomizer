@@ -375,9 +375,9 @@ namespace Settings {
   Option ShuffleSongs           = Option::U8  ("Shuffle Songs",         {"Off", "Song Locations", "Anywhere"},               {songsVanilla, songsSongLocations, songsAllLocations},                  OptionCategory::Setting,  0);
   Option ShuffleSoaring         = Option::Bool("Shuffle Song of Soaring",{"Off", "On"},                                      {shuffleSoaringVanilla, shuffleSoaringRandom},                          OptionCategory::Setting,   0);
   Option ShuffleSongOfTime      = Option::Bool("Shuffle Song of Time",  {"Off", "On"},                                       {songTimeVanilla, songTimeRandom},                                      OptionCategory::Setting,   0);
-  Option Shopsanity             = Option::U8  ("Shopsanity",            {"Off", "0", "1", "2", "3", "4", "Random"},          {shopsOff, shopsZero, shopsOne, shopsTwo, shopsThree, shopsFour, shopsRandom});
-  Option Tokensanity            = Option::Bool("Tokensanity",           {"Off", "On"},                                       {tokensOff, tokensAllTokens});
-  Option Scrubsanity            = Option::U8  ("Shuffle Scrub Wares",   {"Off", "Affordable", "Expensive", "Random Prices"}, {scrubsOff, scrubsAffordable, scrubsExpensive, scrubsRandomPrices});
+  Option Shopsanity             = Option::Bool("Shopsanity",            {"Off", "On"},                                       {shopsOff, shopsOn},                                                    OptionCategory::Setting, 0);
+  Option Tokensanity            = Option::Bool("Tokensanity",           {"Off", "On"},                                       {tokensOff, tokensAllTokens},                                           OptionCategory::Setting, 0);
+  Option Scrubsanity            = Option::Bool("Shuffle Scrub Purchases",{"Off", "On"},                                      {scrubsOff, scrubsOn},                                                  OptionCategory::Toggle,   0);
   Option ShuffleMerchants       = Option::Bool("Shuffle Scrub Trades",  {"Off", "On"},                                       {shuffleMerchantsDesc});
   Option ShuffleTradeItems      = Option::Bool("Shuffle Anju and Kafei",{"Off", "On"},                                       {shuffleTradeItemsDesc});
   Option ShuffleGFRewards       = Option::U8  ("Shuffle Fairy Rewards", {"Off", "Great Fairies", "Anywhere" },               {shuffleGFVanilla, shuffleGFSelf, shuffleGFAnywhere},                   OptionCategory::Setting, (u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA);
@@ -402,7 +402,8 @@ namespace Settings {
     &ShuffleSoaring,
     &ShuffleSongOfTime,
     &Tokensanity,
-    //&Shopsanity,
+    &Shopsanity,
+    &Scrubsanity,
     &ShuffleGFRewards,
   };
 

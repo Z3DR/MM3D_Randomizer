@@ -123,12 +123,7 @@ extern string_view fastElegyStatuesDesc;
 extern string_view skipSongReplaysDesc;
 
 extern string_view shopsOff;
-extern string_view shopsZero;
-extern string_view shopsOne;
-extern string_view shopsTwo;
-extern string_view shopsThree;
-extern string_view shopsFour;
-extern string_view shopsRandom;
+extern string_view shopsOn;
 
 extern string_view tokensOff;
 extern string_view tokensDungeon;

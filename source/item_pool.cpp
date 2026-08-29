@@ -469,6 +469,13 @@ const std::array<ItemKey, 5> scrubTradeItems = {
 	OCEAN_TITLE,
 };
 
+const std::array<ItemKey, 4> scrubPurchases = {
+	MAGIC_BEAN,
+	PROGRESSIVE_BOMB_BAG,//BIGGEST_BOMB_BAG
+	BLUE_POTION_REFILL,
+	GREEN_POTION_REFILL,
+};
+
 const std::array<ItemKey, 6> anjuKafeiTradeItems = {
 	LETTER_KAFEI,
 	LETTER_MAMA,
@@ -603,74 +610,6 @@ static void PlaceVanillaStrayFairies() {
 		dungeon->PlaceVanillaGBTStray();
 		dungeon->PlaceVanillaSTStray();
 	}
-	//Clock Town
-	PlaceItemInLocation(LAUNDRY_POOL_SF, CT_STRAY_FAIRY);
-	/*
-	//Woodfall Temple
-	PlaceItemInLocation(WF_SF_ENTRANCE_FAIRY, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_ENTRANCE_PLATFORM, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_MAIN_ROOM_BUBBLE, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_MAIN_ROOM_SWITCH, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_PRE_BOSS_LOWER_RIGHT_BUBBLE, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_PRE_BOSS_UPPER_RIGHT_BUBBLE, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_PRE_BOSS_UPPER_LEFT_BUBBLE, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_PRE_BOSS_PILLAR_BUBBLE, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_DEKU_BABA, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_DRAGONFLY_ROOM_BUBBLE, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_SKULLTULA, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_DARK_ROOM, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_JAR_FAIRY, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_BRIDGE_ROOM_BEEHIVE, WF_STRAY_FAIRY);
-	PlaceItemInLocation(WF_SF_PLATFORM_ROOM_BEEHIVE, WF_STRAY_FAIRY);
-	//SnowheadTemple
-	PlaceItemInLocation(SH_SF_SNOW_ROOM_BUBBLE, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_CEILING_BUBBLE, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_DINOLFOS_1, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_DINOLFOS_2, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_BRIDGE_ROOM_LEDGE_BUBBLE, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_BRIDGE_ROOM_PILLAR_BUBBLE, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_MAP_ROOM_FAIRY, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_MAP_ROOM_LEDGE, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_BASEMENT, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_TWIN_BLOCK, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_ICICLE_ROOM_WALL, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_MAIN_ROOM_WALL, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_PILLAR_FREEZARDS, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_ICE_PUZZLE, SH_STRAY_FAIRY);
-	PlaceItemInLocation(SH_SF_CRATE, SH_STRAY_FAIRY);
-	//Great Bay Temple
-	PlaceItemInLocation(GBT_SF_SKULLTULA, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_WATER_CONTROL_UNDERWATER_BUBBLE, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_WATERWHEEL_ROOM_LOWER, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_WATERWHEEL_ROOM_UPPER, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_GREEN_VALVE, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_SEESAW_ROOM, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_ENTRANCE_TORCHES, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_BIO_BABAS, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_UNDERWATER_BARREL, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_WHIRLPOOL_JAR, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_WHIRLPOOL_BARREL, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_DEXIHANDS_JAR, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_LEDGE_JAR, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_PRE_BOSS_ROOM_BUBBLE, GBT_STRAY_FAIRY);
-	PlaceItemInLocation(GBT_SF_PRE_BOSS_ROOM_UNDERWATER_BUBBLE, GBT_STRAY_FAIRY);
-	//Stone Tower Temple
-	PlaceItemInLocation(ST_SF_MIRROR_SUN_BLOCK, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_LAVA_ROOM_LEDGE, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_LAVA_ROOM_FIRE_RING, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_EYEGORE, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_UPDRAFT_FIRE_RING, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_MIRROR_SUN_SWITCH, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_BOSS_WARP, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_WIZZROBE, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_DEATH_ARMOS, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_UPDRAFT_FROZEN_EYE, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_THIN_BRIDGE, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_BASEMENT_LEDGE, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_STATUE_EYE, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_UNDERWATER, ST_STRAY_FAIRY);
-	PlaceItemInLocation(ST_SF_BRIDGE_CRYSTAL, ST_STRAY_FAIRY);
-	*/
 };
 
 static void PlaceVanillaSkulltulaTokens() {
@@ -713,12 +652,15 @@ static void PlaceVanillaShopItems() {
 	PlaceItemInLocation(ZORA_SHOP_ITEM_1, BUY_HEROS_SHIELD);
 	PlaceItemInLocation(ZORA_SHOP_ITEM_2, BUY_ARROWS_10);
 	PlaceItemInLocation(ZORA_SHOP_ITEM_3, BUY_RED_POTION);
+	PlaceItemInLocation(MILK_ROAD_GORMAN_MILK_BUY, MILK);
+	//other 2 scrub sales handled in beans and main inventory
+};
+
+static void PlaceVanillaScrubPurchases() {	
 	PlaceItemInLocation(GORON_VILLAGE_SCRUB_PURCHASE, PROGRESSIVE_BOMB_BAG);
 	PlaceItemInLocation(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, PROGRESSIVE_BOMB_BAG);
 	PlaceItemInLocation(IKANA_CANYON_SCRUB_PURCHASE, BLUE_POTION_REFILL);
 	PlaceItemInLocation(ZORA_HALL_SCRUB_PURCHASE, GREEN_POTION_REFILL);
-	PlaceItemInLocation(MILK_ROAD_GORMAN_MILK_BUY, MILK);
-	//other 2 scrub sales handled in beans and main inventory
 };
 
 static void SetScarceItemPool() {
@@ -1021,15 +963,20 @@ void GenerateItemPool() {
 		PlaceItemInLocation(LAUNDRY_POOL_KAFEI,PENDANT_MEMORIES);
 	}
 
-	//TO-DO----SHOP SANITY
-	//for now... its all vanilla lol
-	//if (Settings::Shopsanity.Is(ShopsanitySetting::SHOPSANITY_OFF) || Settings::Shopsanity.Is(ShopsanitySetting::SHOPSANITY_ZERO)) {
-    AddItemsToPool(ItemPool, normalRupees);
-	PlaceVanillaShopItems();
- 	// } else { //Shopsanity 1-4, random
-    //AddItemsToPool(ItemPool, shopsanityRupees); //Shopsanity gets extra large rupees
-	//PlaceVanillaShopItems();
-  	//}
+	//SHOPSANITY
+	if (Shopsanity) {
+		AddItemsToPool(ItemPool, shopsanityRupees); //Shopsanity gets extra large rupees
+		AddItemsToPool(ItemPool, shopItems);
+	} else { 
+		AddItemsToPool(ItemPool, normalRupees);
+		PlaceVanillaShopItems();
+  	}
+	if (Scrubsanity) {
+		AddItemsToPool(ItemPool, scrubPurchases);
+	}
+	else {
+		PlaceVanillaScrubPurchases();
+	}
 
 	//Then Place Tingle Maps
 	if (ShuffleTingleMaps) {
