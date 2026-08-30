@@ -131,9 +131,7 @@ extern string_view tokensOverworld;
 extern string_view tokensAllTokens;
 
 extern string_view scrubsOff;
-extern string_view scrubsAffordable;
-extern string_view scrubsExpensive;
-extern string_view scrubsRandomPrices;
+extern string_view scrubsOn;
 
 extern string_view shuffleCowsDesc;
 

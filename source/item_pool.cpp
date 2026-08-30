@@ -504,6 +504,13 @@ std::array<ItemKey, 6> tingleMaps = {
 	ROMANI_RANCH_MAP,
 };
 
+std::array<ItemKey, 5> shopItems = { // Only include non junk items/potions/milk
+	HEROS_SHIELD,
+	HEROS_SHIELD,
+	MAGIC_BEAN,
+	PROGRESSIVE_BOMB_BAG,
+	PROGRESSIVE_BOMB_BAG,
+};
 void AddItemToPool(std::vector<ItemKey>& pool, ItemKey item, size_t count /*= 1*/) {
 	pool.insert(pool.end(), count, item);
 }
