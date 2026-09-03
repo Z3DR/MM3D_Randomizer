@@ -457,7 +457,9 @@ string_view linksPocketNothing        = "**OPTION CURRENTLY WIP**\n"            
 string_view shopsOff                  = "All shop items will be the same as vanilla.";     //
 string_view shopsOn                   = "Items in Shops will be randomized, this includes\n"//
                                         "Trading Post, Bomb Shop, Swamp Potion Shop, Goron\n"//
-                                        "Village and Zora Hall Shops.";//
+                                        "Village and Zora Hall Shops.";                    //
+string_view shopPricesRandom         = "Shop items will have random prices.";              //
+string_view shopPricesAffordable     = "Shop items will have affordable prices.";          //
 /*------------------------------                                                           //
 |         TOKENSANITY          |                                                           //
 ------------------------------*/                                                           //

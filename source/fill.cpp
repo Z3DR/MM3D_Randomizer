@@ -12,7 +12,7 @@
 #include "hints.hpp"
 #include "hint_list.hpp"
 #include "entrance.hpp"
-//#include "shops.hpp"
+#include "shops.hpp"
 #include "debug.hpp"
 
 #include <vector>

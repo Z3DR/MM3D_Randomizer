@@ -124,6 +124,8 @@ extern string_view skipSongReplaysDesc;
 
 extern string_view shopsOff;
 extern string_view shopsOn;
+extern string_view shopPricesRandom;
+extern string_view shopPricesAffordable;
 
 extern string_view tokensOff;
 extern string_view tokensDungeon;

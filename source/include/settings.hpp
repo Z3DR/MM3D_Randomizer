@@ -414,6 +414,7 @@ namespace Settings {
   extern Option ShuffleMagicBeans;
   extern Option ShuffleKokiriSword;
   extern Option Shopsanity;
+  extern Option ShopsanityPrices;
   extern Option Tokensanity;
   extern Option Scrubsanity;
   extern Option ShuffleCows;

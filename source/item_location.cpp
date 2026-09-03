@@ -3,7 +3,7 @@
 #include "dungeon.hpp"
 #include "settings.hpp"
 #include "spoiler_log.hpp"
-//#include "shops.hpp"
+#include "shops.hpp"
 #include "debug.hpp"
 #include "keys.hpp"
 #include "fill.hpp"
@@ -720,7 +720,6 @@ std::vector<std::vector<LocationKey>> ShopLocationLists = {
   SS_ShopLocations,
   GV_ShopLocations,
   ZH_ShopLocations,
-  TingleMapLocations,
 };
 
 //List of gossip stone locations for hints
