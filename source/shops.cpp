@@ -141,720 +141,711 @@ s16 GetRandomScrubPrice() {
 
 // Initialize the trick names table with 3 potential options, Easy, Medium, and Hard in each language
 void InitTrickNames() {
-    trickNameTable[(u32)GetItemID::GI_GREAT_FAIRY_SWORD] = { 
-        Text{"Biggoron's Sword", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"Fairy Blade", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"Rainbow Sword", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        //   NaEnglish                        NaFrench   NaSpanish  EuGerman   EuEnglish  EuFrench   EuSpanish
+    trickNameTable[(u32)GetItemID::GI_GREAT_FAIRY_SWORD] = {
+        Text{"Biggoron's Sword",              "",        "",        "", },
+        Text{"Fairy Blade",                   "",        "",        "", },
+        Text{"Rainbow Sword",                 "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_SHIELD_HERO] = {
-        Text{"Hylian Shield", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"Shield of the Hero", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"Legendary Shield", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Hylian Shield",                 "",        "",        "", },
+        Text{"Shield of the Hero",            "",        "",        "", },
+        Text{"Legendary Shield",              "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_STICKS_1] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Deku Branch",                   "",        "",        "", },
+        Text{"Stick",                         "",        "",        "", },
+        Text{"Deku's Stick",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_TOWN_TITLE_DEED] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Land Toilet Paper",             "",        "",        "", },
+        Text{"Land Title Deer",               "",        "",        "", },
+        Text{"Sand Title Deed",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_SWAMP_TITLE_DEED] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Swamp Toilet paper",            "",        "",        "", },
+        Text{"Swarm Title Deed",              "",        "",        "", },
+        Text{"Swap Title Deed",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MOUNTAIN_TITLE_DEED] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Mountain Toilet Paper",         "",        "",        "", },
+        Text{"Mustard Title Deed",            "",        "",        "", },
+        Text{"Mountain Title Deep",           "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_OCEAN_TITLE_DEED] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Ocean Toilet Paper",            "",        "",        "", },
+        Text{"Urchin Title Deed",             "",        "",        "", },
+        Text{"Ocean Tile Deed",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOMBERS_NOTEBOOK] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Bombers Calendar",              "",        "",        "", },
+        Text{"Bomber Notes Book",             "",        "",        "", },
+        Text{"Boomer's Notebook",             "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_ROOM_KEY] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Knife Chamber Key",             "",        "",        "", },
+        Text{"Inn Key",                       "",        "",        "", },
+        Text{"Root Key",                      "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_LETTER_TO_KAFEI] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Anju's Response Letter",        "",        "",        "", },
+        Text{"Kafei's Letter",                "",        "",        "", },
+        Text{"Letter for Kafei",              "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_PENDANT_OF_MEMORIES] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Kafei's Pendant",               "",        "",        "", },
+        Text{"Pendant of Gregory",            "",        "",        "", },
+        Text{"Pendant of Memorable",          "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_LETTER_TO_MAMA] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Priority Mail",                 "",        "",        "", },
+        Text{"Letter to Mommy",               "",        "",        "", },
+        Text{"Letter to Madame Aroma",        "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MOONS_TEAR] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Moon's Sweat",                  "",        "",        "", },
+        Text{"Moon's Tea",                    "",        "",        "", },
+        Text{"Noon's Tear",                   "",        "",        "", },
     };
     trickNameTable[0x2C] = { /*Spin Attack*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Spinning Slash",                "",        "",        "", },
+        Text{"Spit Attack",                   "",        "",        "", },
+        Text{"Spin Attach",                   "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_LENS_OF_TRUTH] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Good Glasses (Half)",           "",        "",        "", },
+        Text{"Lens of Dare",                  "",        "",        "", },
+        Text{"Lens of True",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_FIRE_ARROW] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Flaming Arrow",                 "",        "",        "", },
+        Text{"Fired Arrow",                   "",        "",        "", },
+        Text{"Ire Arrow",                     "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_ICE_ARROW] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Freezing Arrow",                "",        "",        "", },
+        Text{"Ice Trap Arrow",                "",        "",        "", },
+        Text{"Nice Arrow",                    "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_LIGHT_ARROW] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Silver Arrow",                  "",        "",        "", },
+        Text{"Lite Arrow",                    "",        "",        "", },
+        Text{"Might Arrow",                   "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_HOOKSHOT] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Grapling Hook",                 "",        "",        "", },
+        Text{"Longshot",                      "",        "",        "", },
+        Text{"Hookshort",                     "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MAGIC_BEAN] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Peapod",                        "",        "",        "", },
+        Text{"Tasty Beans",                   "",        "",        "", },
+        Text{"Magic Beam",                    "",        "",        "", },
     };
     trickNameTable[0xB2] = { /*Double Defense*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Doubloon Defense",              "",        "",        "", },
+        Text{"Double the Fence",              "",        "",        "", },
+        Text{"Double Defenestrate",           "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_OCARINA_OF_TIME] = {
-        Text{"Fairy Ocarina", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Fairy Ocarina",                 "",        "",        "", },
+        Text{"Flute",                         "",        "",        "", },
+        Text{"Ocarina",                       "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_PICTOGRAPH_BOX] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Camera",                        "",        "",        "", },
+        Text{"Pictogaffe Box",                "",        "",        "", },
+        Text{"Picograph Box",                 "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_POWDER_KEG] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Dangerous Barrel",              "",        "",        "", },
+        Text{"Powder Peg",                    "",        "",        "", },
+        Text{"Power Keg",                     "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_KEATON] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Fox Mask",                      "",        "",        "", },
+        Text{"Kafei's Mask",                  "",        "",        "", },
+        Text{"Kitsune Mask",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_BUNNY_HOOD] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Rabbit Ears",                   "",        "",        "", },
+        Text{"Bunny Mask",                    "",        "",        "", },
+        Text{"Funny Hood",                    "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_GORON] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Darmani Mask",                  "",        "",        "", },
+        Text{"Goron Soul",                    "",        "",        "", },
+        Text{"Gordon Mask",                   "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_ZORA] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Mikau Mask",                    "",        "",        "", },
+        Text{"Zora Soul",                     "",        "",        "", },
+        Text{"Zora Mark",                     "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_DEKU] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Sad Tree Mask",                 "",        "",        "", },
+        Text{"Deku Soul",                     "",        "",        "", },
+        Text{"Deku Scrub Mask",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_POSTMANS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Deliveryman's Uniform",         "",        "",        "", },
+        Text{"Postman's Hood",                "",        "",        "", },
+        Text{"Portman's Hat",                 "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_ALL_NIGHT] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Sleepless Mask",                "",        "",        "", },
+        Text{"All Right Mask",                "",        "",        "", },
+        Text{"All Might Mask",                "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_BLAST] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Big Sneeze Mask",               "",        "",        "", },
+        Text{"Bat Mask",                      "",        "",        "", },
+        Text{"Blast Mass",                    "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_STONE] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Dampé Mask",                    "",        "",        "", },
+        Text{"Stealth Mask",                  "",        "",        "", },
+        Text{"Stoat Mask",                    "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_GREAT_FAIRYS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Big Lady Mask",                 "",        "",        "", },
+        Text{"Great Ferry's Mask",            "",        "",        "", },
+        Text{"Great Fairly's Mask",           "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_BREMEN] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Flute Player's Mask",           "",        "",        "", },
+        Text{"Falco Mask",                    "",        "",        "", },
+        Text{"Broman Mask",                   "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_DON_GEROS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Head Frog",                     "",        "",        "", },
+        Text{"Don Ribbit's Mask",             "",        "",        "", },
+        Text{"Don Kero's Mask",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_OF_SCENTS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Pigma Dengar Mask",             "",        "",        "", },
+        Text{"Mask of Cents",                 "",        "",        "", },
+        Text{"Mask of Sense",                 "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_ROMANIS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Moo Moo Mask",                  "",        "",        "", },
+        Text{"Cow Mask",                      "",        "",        "", },
+        Text{"Romania Mask",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_TROUPE_LEADERS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Crying Mario Mask",             "",        "",        "", },
+        Text{"Circus Troupe Mask",            "",        "",        "", },
+        Text{"Troop Leader's Mask",           "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_KAFEIS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Shyguy Mask",                   "",        "",        "", },
+        Text{"Café's Mask",                   "",        "",        "", },
+        Text{"Kafai's Mask",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_COUPLES] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Face Shield",                   "",        "",        "", },
+        Text{"Coupled Mask",                  "",        "",        "", },
+        Text{"Coupler's Mask",                "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_KAMARAOS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Symbiotic Dancer",              "",        "",        "", },
+        Text{"Kaepora's Mask",                "",        "",        "", },
+        Text{"Kamamo's mask",                 "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_GIBDO] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Paper Mâché Mask",              "",        "",        "", },
+        Text{"Redead Mask",                   "",        "",        "", },
+        Text{"Mummy's Mask",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_GARO] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Ninja Mask",                    "",        "",        "", },
+        Text{"Garo Hood",                     "",        "",        "", },
+        Text{"Gero's Mask",                   "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_CAPTAINS_HAT] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Spooky Mask",                   "",        "",        "", },
+        Text{"Keeta Mask",                    "",        "",        "", },
+        Text{"Captain Mask",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_GIANTS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Growing Boy's Mask",            "",        "",        "", },
+        Text{"Giant's Masked",                "",        "",        "", },
+        Text{"Giant Mask",                    "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_FIERCE_DEITY] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Big Bad Deity Mask",            "",        "",        "", },
+        Text{"Fear's Deity Mask",             "",        "",        "", },
+        Text{"Fierce Ditty Mask",             "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MASK_OF_TRUTH] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Sheikah Mask",                  "",        "",        "", },
+        Text{"Mask of Troupe",                "",        "",        "", },
+        Text{"Mask of Tooth",                 "",        "",        "", },
     };
     trickNameTable[0xBA] = { /*Fishing Pass*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Fishing Voucher",               "",        "",        "", },
+        Text{"Finishing Pass",                "",        "",        "", },
+        Text{"Fishing Bass",                  "",        "",        "", },
     };
     trickNameTable[0x44] = { /*Swamp Skulltula Token*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Smelly Gold Skull",             "",        "",        "", },
+        Text{"Swamp Skullwalltula Token",     "",        "",        "", },
+        Text{"Swamp Skulltula Toucan",        "",        "",        "", },
     };
     trickNameTable[0x6D] = { /*Ocean Skulltula Token*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Musty Gold Skull",              "",        "",        "", },
+        Text{"Ocean Skullwalltula Token",     "",        "",        "", },
+        Text{"Ocean Skulltula Toucan",        "",        "",        "", },
     };
     trickNameTable[0xBB] = { /*Clock Town Stray Fairy*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Castle Town Stray Fairy",       "",        "",        "", },
+        Text{"Orange Stray Fairy",            "",        "",        "", },
+        Text{"Clock City Stray Fairy",        "",        "",        "", },
     };
     trickNameTable[0xBC] = { /*Woodfall Stray Fairy*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Forest Temple Stray Fairy",     "",        "",        "", },
+        Text{"Pink Stray Fairy",              "",        "",        "", },
+        Text{"Woodfall Lost Fairy",           "",        "",        "", },
     };
     trickNameTable[0xBD] = { /*Snowhead Stray Fairy*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Ice Cavern Stray Fairy",        "",        "",        "", },
+        Text{"Green Stray Fairy",             "",        "",        "", },
+        Text{"Snowhead Lost fairy",           "",        "",        "", },
     };
     trickNameTable[0xBE] = { /*Great Bay Stray Fairy*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Water Temple Stray Fairy",      "",        "",        "", },
+        Text{"Violet Stray Fairy",            "",        "",        "", },
+        Text{"Great Bay Lost Fairy",          "",        "",        "", },
     };
     trickNameTable[0xBF] = { /*Stone Tower Stray Fairy*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Spirit Temple Stray Fairy",     "",        "",        "", },
+        Text{"Yellow Stray Fairy",            "",        "",        "", },
+        Text{"Stone Tower Lost Fairy",        "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_EMPTY] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Empty Jar",                     "",        "",        "", },
+        Text{"Bottle",                        "",        "",        "", },
+        Text{"Emptied Bottle",                "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_MILK] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Lon Lon Milk",                  "",        "",        "", },
+        Text{"Bottle with Mirth",             "",        "",        "", },
+        Text{"Milky Bottle",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_POTION_RED] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Ketchup Bottle",                "",        "",        "", },
+        Text{"Health Potion",                 "",        "",        "", },
+        Text{"Red Syrup",                     "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_GOLD_DUST] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Flower Pollen",                 "",        "",        "", },
+        Text{"Good Dust",                     "",        "",        "", },
+        Text{"Golden Dust",                   "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_CHATEAU_ROMANI] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Chartreuse Romani",             "",        "",        "", },
+        Text{"Chaton Romani",                 "",        "",        "", },
+        Text{"Chàteau Romani",                "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_MYSTERY_MILK] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Gorman Track Milk",             "",        "",        "", },
+        Text{"Moldy Milk",                    "",        "",        "", },
+        Text{"Mysterious Milk",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_DEKU_PRINCESS_FAIRY] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Bottled Deku Figurine",         "",        "",        "", },
+        Text{"Flower Princess",               "",        "",        "", },
+        Text{"Deku Princes",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_POTION_GREEN] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Spinach Soup",                  "",        "",        "", },
+        Text{"Magic Potion",                  "",        "",        "", },
+        Text{"Green Potent",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_POTION_BLUE] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Magic Mushroom Juice",          "",        "",        "", },
+        Text{"Blue Drink",                    "",        "",        "", },
+        Text{"Indigo Potion",                 "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_FAIRY] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Extra Life",                    "",        "",        "", },
+        Text{"Trapped Fairy",                 "",        "",        "", },
+        Text{"Bottle with Ferry",             "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_BUG] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Creepy Crawlies",               "",        "",        "", },
+        Text{"Bottle with Insects",           "",        "",        "", },
+        Text{"Bottle with Bug",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_FISH] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Termina Loach",                 "",        "",        "", },
+        Text{"Fishie",                        "",        "",        "", },
+        Text{"Bottle with Fist",              "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_POE_TEXT] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Small Ghost",                   "",        "",        "", },
+        Text{"Bottle with Ghini",             "",        "",        "", },
+        Text{"Bottle with Foe",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_BIG_POE] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Big Ghost",                     "",        "",        "", },
+        Text{"Bottle with Composer Brother",  "",        "",        "", },
+        Text{"Bottle with Big Foe",           "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_SPRING_WATER] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Potable Water",                 "",        "",        "", },
+        Text{"Bottle of Fresh Water",         "",        "",        "", },
+        Text{"Bottle with Sprig Water",       "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_HOT_SPRING_WATER] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Warm Spring Water",             "",        "",        "", },
+        Text{"Hot Sprint Water",              "",        "",        "", },
+        Text{"Hot Spring Walter",             "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_ZORA_EGG] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Bottle with Eel's Egg",         "",        "",        "", },
+        Text{"Bottle with Lulu's Egg",        "",        "",        "", },
+        Text{"Bottle with Zoran Egg",         "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_MAGIC_MUSHROOM] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Pungent Mushroom",              "",        "",        "", },
+        Text{"Bottle with Much Room",         "",        "",        "", },
+        Text{"Bottle without Mushroom",       "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_SEAHORSE] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Sea Epona",                     "",        "",        "", },
+        Text{"Seas Horse",                    "",        "",        "", },
+        Text{"Seehorse",                      "",        "",        "", },
     };
     trickNameTable[0x53] = { /*Song of Time*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Zelda's Memory Song",           "",        "",        "", },
+        Text{"Sun's Song",                    "",        "",        "", },
+        Text{"Song of Tim",                   "",        "",        "", },
     };
     trickNameTable[0x73] = { /*Song of Storms*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Song of Bad Weather",           "",        "",        "", },
+        Text{"Song of Thunder",               "",        "",        "", },
+        Text{"Song of Storks",                "",        "",        "", },
     };
     trickNameTable[0x4B] = { /*Sonata of Awakening*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Morning Alarm Song",            "",        "",        "", },
+        Text{"Song of Awakening",             "",        "",        "", },
+        Text{"Sonata of Wakening",            "",        "",        "", },
     };
     trickNameTable[0x4E] = { /*New Wave Bossa Nova*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Ballad of the Wind Fish",       "",        "",        "", },
+        Text{"Newave Bossanova",              "",        "",        "", },
+        Text{"New Wavy Bossa Nova",           "",        "",        "", },
     };
     trickNameTable[0x4F] = { /*Elegy of Emptiness*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Elegy of Ben",                  "",        "",        "", },
+        Text{"Melody of Emptiness",           "",        "",        "", },
+        Text{"Elegy of Emptyness",            "",        "",        "", },
     };
     trickNameTable[0x51] = { /*Oath to Order*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Giant's Song",                  "",        "",        "", },
+        Text{"Oar to Order",                  "",        "",        "", },
+        Text{"Oath to Odour",                 "",        "",        "", },
     };
     trickNameTable[0x6C] = { /*Epona's Song*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
-    };
-    trickNameTable[0xC2] = { /*Inverted Song of Time*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
-    };
-    trickNameTable[0xC3] = { /*Song of Double Time*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Song of the Field",             "",        "",        "", },
+        Text{"Epony's Song",                  "",        "",        "", },
+        Text{"Epona Song",                    "",        "",        "", },
     };
     trickNameTable[0x54] = { /*Song of Healing*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Saria's Song",                  "",        "",        "", },
+        Text{"Healing Lullaby",               "",        "",        "", },
+        Text{"Song of Hearing",               "",        "",        "", },
     };
     trickNameTable[0x72] = { /*Song of Soaring*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Song of Fast travel",           "",        "",        "", },
+        Text{"Prelude of Light",              "",        "",        "", },
+        Text{"Song of Sorry",                 "",        "",        "", },
     };
     trickNameTable[0xAE] = { /*Woodfall Temple Map*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Forest Temple Map",             "",        "",        "", },
+        Text{"Deku Temple Map",               "",        "",        "", },
+        Text{"Goodfall Temple Map",           "",        "",        "", },
     };
     trickNameTable[0xAF] = { /*Snowhead Temple Map*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Ice Cavern Map",                "",        "",        "", },
+        Text{"Snorehead Temple Map",          "",        "",        "", },
+        Text{"Snowheap Temple Map",           "",        "",        "", },
     };
     trickNameTable[0xB0] = { /*Great Bay Temple Map*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Water Temple Map",              "",        "",        "", },
+        Text{"Great Fish Temple Map",         "",        "",        "", },
+        Text{"Great Ray Temple Map",          "",        "",        "", },
     };
     trickNameTable[0xB1] = { /*Stone Tower Temple Map*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Spirit Temple Map",             "",        "",        "", },
+        Text{"Storm Shower Temple Map",       "",        "",        "", },
+        Text{"Stoned Tower Temple Map",       "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MAP_OF_CLOCK_TOWN] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Castle Town Map",               "",        "",        "", },
+        Text{"Block Town Map",                "",        "",        "", },
+        Text{"Clock Town Nap",                "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MAP_OF_WOODFALL] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Faron Woods Map",               "",        "",        "", },
+        Text{"WoodFool Map",                  "",        "",        "", },
+        Text{"Woodfail Map",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MAP_OF_SNOWHEAD] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Hebra Mountain Map",            "",        "",        "", },
+        Text{"Snowpeak Map",                  "",        "",        "", },
+        Text{"Showhead Map",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MAP_OF_GREAT_BAY] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Great Sea Map",                 "",        "",        "", },
+        Text{"Zora Bay Map",                  "",        "",        "", },
+        Text{"Great Buy Map",                 "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MAP_OF_STONE_TOWER] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Clock Tower Map",               "",        "",        "", },
+        Text{"Ikana Valley Map",              "",        "",        "", },
+        Text{"Stone Power Map",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_MAP_OF_ROMANI_RANCH] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Lon Lon Ranch Map",             "",        "",        "", },
+        Text{"Romani Ranch Radar",            "",        "",        "", },
+        Text{"Romami Ranch Map",              "",        "",        "", },
     };
     trickNameTable[0xA7] = { /*Woodfall Temple Compass*/
-        Text{"Forest Temple Compass", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Forest Temple Compass",         "",        "",        "", },
+        Text{"Waterfall Temple Compass",      "",        "",        "", },
+        Text{"Woodfall Temple Compare",       "",        "",        "", },
     };
     trickNameTable[0xA8] = { /*Snowhead Temple Compass*/
-        Text{"Ice Cavern Compass", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Ice Cavern Compass",            "",        "",        "", },
+        Text{"Goron Temple Compass",          "",        "",        "", },
+        Text{"Snomhead Temple Compass",       "",        "",        "", },
     };
     trickNameTable[0xAC] = { /*Great Bay Temple Compass*/
-        Text{"Water Temple Compass", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Water Temple Compass",          "",        "",        "", },
+        Text{"Pirate Temple Compass",         "",        "",        "", },
+        Text{"Great Pay Temple Compass",      "",        "",        "", },
     };
     trickNameTable[0xAD] = { /*Stone Tower Temple Compass*/
-        Text{"Spirit Temple Compass", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Spirit Temple Compass",         "",        "",        "", },
+        Text{"Stone Tower Pimple Compass",    "",        "",        "", },
+        Text{"Stone Towee Temple Compass",    "",        "",        "", },
     };
     trickNameTable[0xA3] = { /*Woodfall Temple Boss Key*/
-        Text{"Forest Temple Boss Key", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Forest Temple Boss Key",        "",        "",        "", },
+        Text{"Swamp Temple Boss Key",         "",        "",        "", },
+        Text{"Snowhead Temple Boss Keese",    "",        "",        "", },
     };
     trickNameTable[0xA4] = { /*Snowhead Temple Boss Key*/
-        Text{"Ice Cavern Boss Key", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Ice Cavern Boss Key",           "",        "",        "", },
+        Text{"Mountain Temple Boss Key",      "",        "",        "", },
+        Text{"Snowhead Temple Toss Key",      "",        "",        "", },
     };
     trickNameTable[0xA5] = { /*Great Bay Temple Boss Key*/
-        Text{"Water Temple Boss Key", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Water Temple Boss Key",         "",        "",        "", },
+        Text{"Ocean Temple Boss Key",         "",        "",        "", },
+        Text{"Grand Bay Temple Boss Key",     "",        "",        "", },
     };
     trickNameTable[0xA6] = { /*Stone Tower Temple Boss Key*/
-        Text{"Spirit Temple Boss Key", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Spirit Temple Boss Key",        "",        "",        "", },
+        Text{"Ikana Temple Boss Key",         "",        "",        "", },
+        Text{"Stone Tower Temple Bass Key",   "",        "",        "", },
     };
     trickNameTable[0x76] = { /*Woodfall Temple Small Key*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Forest Temple Small Key",       "",        "",        "", },
+        Text{"Woodfall Dungeon Small Key",    "",        "",        "", },
+        Text{"Woodfell Temple Small Key",     "",        "",        "", },
     };
     trickNameTable[0x77] = { /*Snowhead Temple Small Key*/
-        Text{"Ice Cavern Small Key", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Ice Cavern Small Key",          "",        "",        "", },
+        Text{"Snowhead Dungeon Small Key",    "",        "",        "", },
+        Text{"Snowhead Temple Smell Key",     "",        "",        "", },
     };
     trickNameTable[0x90] = { /*Great Bay Temple Small Key*/
-        Text{"Water Temple Small Key", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Water Temple Small Key",        "",        "",        "", },
+        Text{"Great Bay Dungeon Small Key",   "",        "",        "", },
+        Text{"Grate Bay Temple Small Key",    "",        "",        "", },
     };
     trickNameTable[0xA2] = { /*Stone Tower Temple Small Key*/
-        Text{"Spirit Temple Small Key", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Spirit Temple Small Key",       "",        "",        "", },
+        Text{"Stone Tower Dungeon Small Key", "",        "",        "", },
+        Text{"Stone Tower Temper Small Key",  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_ODOLWAS_REMAINS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Odolwa Mask",                   "",        "",        "", },
+        Text{"Odolwa Remainings",             "",        "",        "", },
+        Text{"Owalda's Remains",              "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_GOHTS_REMAINS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Goht Mask",                     "",        "",        "", },
+        Text{"Goat Remains",                  "",        "",        "", },
+        Text{"Goth's Remains",                "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_GYORGS_REMAINS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Gyorg Mask",                    "",        "",        "", },
+        Text{"George's Remains",              "",        "",        "", },
+        Text{"Grog's Remains",                "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_TWINMOLDS_REMAINS] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Twinmold Mask",                 "",        "",        "", },
+        Text{"Twinbug's Remains",             "",        "",        "", },
+        Text{"Twinmoid's Remains",            "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_RECOVERY_HEART_SINGLE] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Healing Heart",                 "",        "",        "", },
+        Text{"Small Heart",                   "",        "",        "", },
+        Text{"Heart",                         "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_RUPEE_GREEN] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Green Rupoor",                  "",        "",        "", },
+        Text{"Rupee",                         "",        "",        "", },
+        Text{"Greg Rupee",                    "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_RUPEE_BLUE] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Blue Rupoor",                   "",        "",        "", },
+        Text{"Blur Rupee",                    "",        "",        "", },
+        Text{"Blue Rupy",                     "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_RUPEE_RED] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Red Rupoor",                    "",        "",        "", },
+        Text{"Read Rupee",                    "",        "",        "", },
+        Text{"Rupee (20)",                    "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_RUPEE_PURPLE] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Purple Rupoor",                 "",        "",        "", },
+        Text{"Pink Rupee",                    "",        "",        "", },
+        Text{"Purple Ruby",                   "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_RUPEE_GOLD] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Huge Rupoor",                   "",        "",        "", },
+        Text{"Gold Rupee",                    "",        "",        "", },
+        Text{"Hugh Rupee",                    "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_RUPEE_SILVER] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Silver Rupoor",                 "",        "",        "", },
+        Text{"Shiny Rupee",                   "",        "",        "", },
+        Text{"Sliver Rupee",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_HEART_PIECE] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Incomplete Health Upgrade",     "",        "",        "", },
+        Text{"Hurt Piece",                    "",        "",        "", },
+        Text{"Heart Peace",                   "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_HEART_CONTAINER] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Extra Heart",                   "",        "",        "", },
+        Text{"Hurt Container",                "",        "",        "", },
+        Text{"Heart Contained",               "",        "",        "", },
     };
     trickNameTable[0x92] = { /*Milk*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Lactose Liquid",                "",        "",        "", },
+        Text{"Mink",                          "",        "",        "", },
+        Text{"Miik",                          "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOMBS_5] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Cannonballs (5)",               "",        "",        "", },
+        Text{"Orbs (5)",                      "",        "",        "", },
+        Text{"Boom (5)",                      "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOMBS_10] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Cannonballs (10)",              "",        "",        "", },
+        Text{"Orbs (10)",                     "",        "",        "", },
+        Text{"Boom (10)",                     "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOMBS_20] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Cannonballs (20)",              "",        "",        "", },
+        Text{"Orbs (20)",                     "",        "",        "", },
+        Text{"Boom (20)",                     "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOMBCHUS_5] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Fake Bombchu (5)",              "",        "",        "", },
+        Text{"Bombtschüss (5)",               "",        "",        "", },
+        Text{"Bombshoes (5)",                 "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOMBCHUS_10] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Fake Bombchu (10)",             "",        "",        "", },
+        Text{"Bombtschüss (10)",              "",        "",        "", },
+        Text{"Bombshoes (10)",                "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOMBCHU_20] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Fake Bombchu (20)",             "",        "",        "", },
+        Text{"Bombtschüss (20)",              "",        "",        "", },
+        Text{"Bombshoes (20)",                "",        "",        "", },
     };
     trickNameTable[0x1E] = { /*Arrows (10)*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Bolts (10)",                    "",        "",        "", },
+        Text{"Errors (10)",                   "",        "",        "", },
+        Text{"Arrows (0)",                    "",        "",        "", },
     };
     trickNameTable[0x1F] = { /*Arrows (30)*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Bolts (30)",                    "",        "",        "", },
+        Text{"Errors (30)",                   "",        "",        "", },
+        Text{"Arrows (Enough)",               "",        "",        "", },
     };
     trickNameTable[0x20] = { /*Arrows (40)*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Bolts (40)",                    "",        "",        "", },
+        Text{"Errors (40)",                   "",        "",        "", },
+        Text{"Arrows (Several)",              "",        "",        "", },
     };
     trickNameTable[0x21] = { /*Arrows (50)*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Bolts (50)",                    "",        "",        "", },
+        Text{"Errors (50)",                   "",        "",        "", },
+        Text{"Arrows (Plenty)",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_NUTS_5] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Flashbangs (5)",                "",        "",        "", },
+        Text{"Deku Seeds (5)",                "",        "",        "", },
+        Text{"Deku Nest (5)",                 "",        "",        "", },
     };
-    trickNameTable[(u32)GetItemID::GI_NUTS_10] = { 
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+    trickNameTable[(u32)GetItemID::GI_NUTS_10] = {
+        Text{"Flashbangs (10)",               "",        "",        "", },
+        Text{"Deku Seeds (10)",               "",        "",        "", },
+        Text{"Deku Nest (10)",                "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_ARROWS_MEDIUM] = { /*Arrows (10) again?*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Bolts (10)",                    "",        "",        "", },
+        Text{"Errors (10)",                   "",        "",        "", },
+        Text{"Arrows (0)",                    "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_ARROWS_LARGE] = { /*Arrows (30)*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Bolts (30)",                    "",        "",        "", },
+        Text{"Errors (30)",                   "",        "",        "", },
+        Text{"Arrows (Enough)",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_FAIRY] = {
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Sprite",                        "",        "",        "", },
+        Text{"Fairy Refill",                  "",        "",        "", },
+        Text{"Fairie",                        "",        "",        "", },
     };
     trickNameTable[0x4A] = { /*Progressive Sword*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Progressive Knife",             "",        "",        "", },
+        Text{"Progressive Blade",             "",        "",        "", },
+        Text{"Progressive's Word",            "",        "",        "", },
     };
     trickNameTable[0x46] = { /*Progressive Bomb Bag*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Progressive Powder Pouch",      "",        "",        "", },
+        Text{"Progressive Bombad",            "",        "",        "", },
+        Text{"Progressive Bag of Bombs",      "",        "",        "", },
     };
     trickNameTable[0x47] = { /*Progressive Bow*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Progressive Slingshot",         "",        "",        "", },
+        Text{"Progressive Crossbow",          "",        "",        "", },
+        Text{"Pogessive Bow",                 "",        "",        "", },
     };
     trickNameTable[0x48] = { /*Progressive Wallet*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Progressive Piggybank",         "",        "",        "", },
+        Text{"Progressive Coin Purse",        "",        "",        "", },
+        Text{"Progressive Ballet",            "",        "",        "", },
     };
     trickNameTable[0x49] = { /*Progressive Magic*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Progressive Green Bar",         "",        "",        "", },
+        Text{"Progressive Stamina",           "",        "",        "", },
+        Text{"Progressive Maggie",            "",        "",        "", },
     };
     trickNameTable[0x45] = { /*Progressive Lullaby*/
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench", "NASpanish", "EUGerman", /*"Italian", "Japanese"*/ "EUEng", "EUFrench", "EUSpanish"},
-        Text{"", "NAFrench","NASpanish","EUGerman", /*"Italian","Japanese",*/"EUEng","EUFrench","EUSpanish"}
+        Text{"Progressive Sleepy Song",       "",        "",        "", },
+        Text{"Progressive Lab Ally",          "",        "",        "", },
+        Text{"Progressive Lullabye",          "",        "",        "", },
     };
 }
 
