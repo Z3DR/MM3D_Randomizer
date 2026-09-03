@@ -453,7 +453,7 @@ void LocationTable_Init();
 
 ItemLocation* Location(LocationKey locKey);
 
-//extern std::vector<std::vector<LocationKey>> ShopLocationLists;
+extern std::vector<std::vector<LocationKey>> ShopLocationLists;
 
 extern std::vector<LocationKey> gossipStoneLocations;
 

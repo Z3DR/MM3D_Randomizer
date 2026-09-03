@@ -3,7 +3,7 @@
 #include "cosmetics.hpp"
 #include "custom_messages.hpp"
 //#include "music.hpp"
-//#include "shops.hpp"
+#include "shops.hpp"
 #include "spoiler_log.hpp"
 //#include "entrance.hpp"
 #include "item_location.hpp"
