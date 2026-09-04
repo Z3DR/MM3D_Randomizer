@@ -564,7 +564,7 @@ string_view coloredBossKeysDesc       = "**OPTION CURRENTLY WIP**\n"            
 |        SHUFFLE MUSIC         |                                                           //
 ------------------------------*/                                                           //
 string_view musicRandoDesc           = "**OPTION CURRENTLY WIP**\n"                        //
-                                       "Randomize the music in the game";                  //
+                                       "Randomize the music, fanfare, and sounds in game"; //
 string_view shuffleBGMDesc           = "**OPTION CURRENTLY WIP**\n"                        //
                                        "Randomize area background music";                  //
 string_view fanfaresOffDesc          = "**OPTION CURRENTLY WIP**\n"                        //

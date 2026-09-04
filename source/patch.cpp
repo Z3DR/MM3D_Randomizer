@@ -2,7 +2,7 @@
 
 #include "cosmetics.hpp"
 #include "custom_messages.hpp"
-//#include "music.hpp"
+#include "music.hpp"
 //#include "shops.hpp"
 #include "spoiler_log.hpp"
 //#include "entrance.hpp"
@@ -312,14 +312,14 @@ bool WriteAllPatches() {
   /*--------------------------------
   |         rBGMOverrides          |
   --------------------------------*/
-/*
+
   patchOffset = V_TO_P(RBGMOVERRIDES_ADDR);
-  patchSize = sizeof(Music::seqOverrides);
-  if (!WritePatch(patchOffset, patchSize, (char*)Music::seqOverrides.data(), code, bytesWritten, totalRW, buf)) {
+  patchSize = sizeof(u32) * BGM_COUNT;
+  if (!WritePatch(patchOffset, patchSize, (char *)Music::seqOverridesMusic.data(),
+                  code, bytesWritten, totalRW, buf))
+  {
     return false;
   }
-
-  */
   /*--------------------------
   |           EOF            |
   --------------------------*/
