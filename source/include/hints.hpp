@@ -169,3 +169,4 @@ extern void CreateTingleHintText();
 extern void CreateClockTowerDoorHints();
 extern void CreateMoonChildHint();
 extern void CreateOtherHints();
+extern void CreateShopMessages();
