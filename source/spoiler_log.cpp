@@ -219,7 +219,7 @@ static void WriteIngameSpoilerLog() {
             continue;
         }
         // Shops
-        else if ((Settings::Shopsanity.Is(ShopsanitySetting::SHOPSANITY_OFF)) && loc->IsCategory(Category::cShop)){
+        else if (!Settings::Shopsanity && loc->IsCategory(Category::cShop)){
           continue;
         }
         // Stray Fairies
