@@ -12,6 +12,7 @@
 #include "custom_messages.hpp"
 //#include "trial.hpp"
 //#include "entrance.hpp"
+#include "shops.hpp"
 
 //using namespace CustomMessages;
 using namespace Logic;
@@ -486,8 +487,8 @@ void CreateTingleHintText() {
       }
 }
 
-void CreateShopMessage(u16 messageID, ItemKey shopItem, u16 buyingPrice, bool isRepeatable) {
-  Text itemName = ItemTable(shopItem).GetName();
+static Text CreateShopMessage(u16 messageID, const ItemKey itemKey, const u16 price) {
+  Text itemName = ItemTable(itemKey).GetName();
   Text shopIntro = Text{"#"}+itemName+Text{
       "&>>"
       // itemName.NAenglish.length()  <= 30 ?  ": " : "&>>",
@@ -498,13 +499,33 @@ void CreateShopMessage(u16 messageID, ItemKey shopItem, u16 buyingPrice, bool is
       // itemName.EURenglish.length() <= 30 ?  ": " : "&>>",
       // itemName.EURfrench.length()  <= 30 ? " : " : "&>>",
       // itemName.EURspanish.length() <= 30 ?  ": " : "&>>",
-    }+std::to_string(buyingPrice)+Text{
+    }+std::to_string(price)+Text{
       " Rupees#&", " rubis#&", " rupias#&", " Rubine#&",// " rupie#&"
     };
   Text shopDescription = {"oops"};
-  if ((messageID < 0x06C9) || (messageID > 0x06D8)) {
+  if ((messageID >= 0x06C9) && (messageID <= 0x06D8)) {
+    // Trading post part-timer
+    if (ItemTable(itemKey).IsReusable()) {
+      shopDescription = {
+        /*English*/"Pretty sure we've got a bunch.&Oh and it's, like, a special deal.",
+        /*French */"On doit en avoir un tas dans le stock.&Ah oui, et c'est une offre spéciale.",
+        /*Spanish?*/"¡Oferta especial!&¡Compra todo lo que quieras!",
+        /*German ?*/"Sonderangebot!&Kauft so viel ihr wollt!",
+        // /*Italian?*/"Offerta speciale!&Compratene a volontà!",
+      };
+    } else {
+      shopDescription = {
+        /*English*/"This one's a special deal, and uh,&I think we only have the one...",
+        /*French */"C't'un genre d'offre spéciale, ouais.&Et j'crois qu'c'est tout ce qu'on a...",
+        /*Spanish?*/"¡Oferta especial! ¡SOLO QUEDA UNA UNIDAD!&¡Hazte con ella antes de que se agote!",
+        /*German ?*/"Sonderangebot! NUR EINS AUF LAGER!&Schlagt zu solange ihr noch könnt!",
+        // /*Italian?*/"Offerta speciale! ULTIMO PEZZO!&Affrettatevi ad aquistarlo!",
+      };
+    }
+  }
+  else {
     // Regular shop
-    if (isRepeatable) {
+    if (ItemTable(itemKey).IsReusable()) {
       shopDescription = {
         /*NaEnglish*/"Special deal!&Buy as many as you want!",
         /*NaFrench */"Offre spéciale!&Achetez-en à volonté!",
@@ -527,33 +548,11 @@ void CreateShopMessage(u16 messageID, ItemKey shopItem, u16 buyingPrice, bool is
         /*EuSpanish*/"",
       };
     }
-  } else {
-    // Trading post part-timer
-    if (isRepeatable) {
-      shopDescription = {
-        /*English*/"Pretty sure we've got a bunch.&Oh and it's, like, a special deal.",
-        /*French */"On doit en avoir un tas dans le stock.&Ah oui, et c'est une offre spéciale.",
-        /*Spanish?*/"¡Oferta especial!&¡Compra todo lo que quieras!",
-        /*German ?*/"Sonderangebot!&Kauft so viel ihr wollt!",
-        // /*Italian?*/"Offerta speciale!&Compratene a volontà!",
-      };
-    } else {
-      shopDescription = {
-        /*English*/"This one's a special deal, and uh,&I think we only have the one...",
-        /*French */"C't'un genre d'offre spéciale, ouais.&Et j'crois qu'c'est tout ce qu'on a...",
-        /*Spanish?*/"¡Oferta especial! ¡SOLO QUEDA UNA UNIDAD!&¡Hazte con ella antes de que se agote!",
-        /*German ?*/"Sonderangebot! NUR EINS AUF LAGER!&Schlagt zu solange ihr noch könnt!",
-        // /*Italian?*/"Offerta speciale! ULTIMO PEZZO!&Affrettatevi ad aquistarlo!",
-      };
-    }
   }
-
-  CustomMessages::CreateMessageFromTextObject(messageID, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF0301,
-    shopIntro+shopDescription, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
-  // Handle blue potion variant for mushroomless hag
+  //Special message for the potion shop witch if you haven't given her a mushroom yet
   // WILL OVERFLOW IN MOST LANGUAGES WHEN ITEM NAME TRIGGERS LINE BREAK
   if (messageID == 0x0843) {
-    CustomMessages::CreateMessageFromTextObject(0x0880, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF0301,
+    CustomMessages::CreateMessageFromTextObject(0x0880, 0xFFFF, (0x3FFFFC00 | price), 0xFF0301,
       shopIntro+Text{
         /*NaEnglish*/"Actually, I can't get the ingredients&for this, so I'm sold out. Sorry.",
         /*NaFrench */"En fait, je n'arrive pas à trouver&les ingrédients pour ça, alors je&n'en ai plus. Désolée.",
@@ -565,8 +564,8 @@ void CreateShopMessage(u16 messageID, ItemKey shopItem, u16 buyingPrice, bool is
         /*EuSpanish*/"En realidad, no puedo conseguir&los ingredientes para esto, así que&no me queda más. Lo siento.",
       }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
   }
-
-  CustomMessages::CreateMessageFromTextObject(messageID + 1, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF1301,
+  //Create the message for the shopkeeper asking if you want to buy the item or not (MessageID + 1)
+  CustomMessages::CreateMessageFromTextObject(messageID + 1, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301,
     shopIntro+">2"+Text{
       /*English*/"#Buy&Don't Buy#",
       /*French */"#J'achète&J'achète pas#",
@@ -574,7 +573,105 @@ void CreateShopMessage(u16 messageID, ItemKey shopItem, u16 buyingPrice, bool is
       /*German */"#Kaufen!&Nicht kaufen!#",
       // /*Italian*/"#Compra&Non comprare#",
     }, {QM_WHITE, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+  Text ShopMessage = shopIntro + shopDescription;
+  return ShopMessage;
 }
+
+void CreateShopMessages() {
+  //Get the Items that are in the slots (for use if item is an ice trap)
+  ItemKey TPItem1 = Location(TRADING_POST_ITEM_1)->GetPlacedItemKey();
+  ItemKey TPItem2 = Location(TRADING_POST_ITEM_2)->GetPlacedItemKey();
+  ItemKey TPItem3 = Location(TRADING_POST_ITEM_3)->GetPlacedItemKey();
+  ItemKey TPItem4 = Location(TRADING_POST_ITEM_4)->GetPlacedItemKey();
+  ItemKey TPItem5 = Location(TRADING_POST_ITEM_5)->GetPlacedItemKey();
+  ItemKey TPItem6 = Location(TRADING_POST_ITEM_6)->GetPlacedItemKey();
+  ItemKey TPItem7 = Location(TRADING_POST_ITEM_7)->GetPlacedItemKey();
+  ItemKey TPItem8 = Location(TRADING_POST_ITEM_8)->GetPlacedItemKey();
+  ItemKey BSItem1 = Location(BOMB_SHOP_ITEM_1)->GetPlacedItemKey();
+  ItemKey BSItem2 = Location(BOMB_SHOP_ITEM_2)->GetPlacedItemKey();
+  ItemKey BSItem3 = Location(W_CLOCK_TOWN_BOMB_BAG_BUY)->GetPlacedItemKey();
+  ItemKey BSItem4 = Location(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY)->GetPlacedItemKey();
+  ItemKey PSItem1 = Location(POTION_SHOP_ITEM_1)->GetPlacedItemKey();
+  ItemKey PSItem2 = Location(POTION_SHOP_ITEM_2)->GetPlacedItemKey();
+  ItemKey PSItem3 = Location(POTION_SHOP_ITEM_3)->GetPlacedItemKey();
+  ItemKey GSItem1 = Location(GORON_SHOP_ITEM_1)->GetPlacedItemKey();
+  ItemKey GSItem2 = Location(GORON_SHOP_ITEM_2)->GetPlacedItemKey();
+  ItemKey GSItem3 = Location(GORON_SHOP_ITEM_3)->GetPlacedItemKey();
+  ItemKey ZSItem1 = Location(ZORA_SHOP_ITEM_1)->GetPlacedItemKey();
+  ItemKey ZSItem2 = Location(ZORA_SHOP_ITEM_2)->GetPlacedItemKey();
+  ItemKey ZSItem3 = Location(ZORA_SHOP_ITEM_3)->GetPlacedItemKey();
+
+  //Get the prices of the items in the slots
+  u16 TPPrice1 = Location(TRADING_POST_ITEM_1)->GetPrice();
+  u16 TPPrice2 = Location(TRADING_POST_ITEM_2)->GetPrice();
+  u16 TPPrice3 = Location(TRADING_POST_ITEM_3)->GetPrice();
+  u16 TPPrice4 = Location(TRADING_POST_ITEM_4)->GetPrice();
+  u16 TPPrice5 = Location(TRADING_POST_ITEM_5)->GetPrice();
+  u16 TPPrice6 = Location(TRADING_POST_ITEM_6)->GetPrice();
+  u16 TPPrice7 = Location(TRADING_POST_ITEM_7)->GetPrice();
+  u16 TPPrice8 = Location(TRADING_POST_ITEM_8)->GetPrice();
+  u16 BSPrice1 = Location(BOMB_SHOP_ITEM_1)->GetPrice();
+  u16 BSPrice2 = Location(BOMB_SHOP_ITEM_2)->GetPrice();
+  u16 BSPrice3 = Location(W_CLOCK_TOWN_BOMB_BAG_BUY)->GetPrice();
+  u16 BSPrice4 = Location(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY)->GetPrice();
+  u16 PSPrice1 = Location(POTION_SHOP_ITEM_1)->GetPrice();
+  u16 PSPrice2 = Location(POTION_SHOP_ITEM_2)->GetPrice();
+  u16 PSPrice3 = Location(POTION_SHOP_ITEM_3)->GetPrice();
+  u16 GSPrice1 = Location(GORON_SHOP_ITEM_1)->GetPrice();
+  u16 GSPrice2 = Location(GORON_SHOP_ITEM_2)->GetPrice();
+  u16 GSPrice3 = Location(GORON_SHOP_ITEM_3)->GetPrice();
+  u16 ZSPrice1 = Location(ZORA_SHOP_ITEM_1)->GetPrice();
+  u16 ZSPrice2 = Location(ZORA_SHOP_ITEM_2)->GetPrice();
+  u16 ZSPrice3 = Location(ZORA_SHOP_ITEM_3)->GetPrice();
+
+  //Create Messages for Shops
+  //Trading Post
+  CustomMessages::CreateMessageFromTextObject(0x06AC, 0xFFFF, (0x3FFFFC00 | TPPrice1), 0xFF1301, CreateShopMessage(0x06AC, TPItem1, TPPrice1), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06AE, 0xFFFF, (0x3FFFFC00 | TPPrice2), 0xFF1301, CreateShopMessage(0x06AE, TPItem2, TPPrice2), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06B0, 0xFFFF, (0x3FFFFC00 | TPPrice3), 0xFF1301, CreateShopMessage(0x06B0, TPItem3, TPPrice3), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06B2, 0xFFFF, (0x3FFFFC00 | TPPrice4), 0xFF1301, CreateShopMessage(0x06B2, TPItem4, TPPrice4), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06B4, 0xFFFF, (0x3FFFFC00 | TPPrice5), 0xFF1301, CreateShopMessage(0x06B4, TPItem5, TPPrice5), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06B6, 0xFFFF, (0x3FFFFC00 | TPPrice6), 0xFF1301, CreateShopMessage(0x06B6, TPItem6, TPPrice6), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06B8, 0xFFFF, (0x3FFFFC00 | TPPrice7), 0xFF1301, CreateShopMessage(0x06B8, TPItem7, TPPrice7), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06BA, 0xFFFF, (0x3FFFFC00 | TPPrice8), 0xFF1301, CreateShopMessage(0x06BA, TPItem8, TPPrice8), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  //Trading Post (Part-timer)
+  CustomMessages::CreateMessageFromTextObject(0x06C9, 0xFFFF, (0x3FFFFC00 | TPPrice1), 0xFF1301, CreateShopMessage(0x06C9, TPItem1, TPPrice1), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06CB, 0xFFFF, (0x3FFFFC00 | TPPrice2), 0xFF1301, CreateShopMessage(0x06CB, TPItem2, TPPrice2), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06CD, 0xFFFF, (0x3FFFFC00 | TPPrice3), 0xFF1301, CreateShopMessage(0x06CD, TPItem3, TPPrice3), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06CF, 0xFFFF, (0x3FFFFC00 | TPPrice4), 0xFF1301, CreateShopMessage(0x06CF, TPItem4, TPPrice4), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06D1, 0xFFFF, (0x3FFFFC00 | TPPrice5), 0xFF1301, CreateShopMessage(0x06D1, TPItem5, TPPrice5), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06D3, 0xFFFF, (0x3FFFFC00 | TPPrice6), 0xFF1301, CreateShopMessage(0x06D3, TPItem6, TPPrice6), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06D5, 0xFFFF, (0x3FFFFC00 | TPPrice7), 0xFF1301, CreateShopMessage(0x06D5, TPItem7, TPPrice7), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06D7, 0xFFFF, (0x3FFFFC00 | TPPrice8), 0xFF1301, CreateShopMessage(0x06D7, TPItem8, TPPrice8), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  //Bomb Shop
+  CustomMessages::CreateMessageFromTextObject(0x0650, 0xFFFF, (0x3FFFFC00 | BSPrice1), 0xFF1301, CreateShopMessage(0x0650, BSItem1, BSPrice1), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x0652, 0xFFFF, (0x3FFFFC00 | BSPrice2), 0xFF1301, CreateShopMessage(0x0652, BSItem2, BSPrice2), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x0654, 0xFFFF, (0x3FFFFC00 | BSPrice3), 0xFF1301, CreateShopMessage(0x0654, BSItem3, BSPrice3), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x0656, 0xFFFF, (0x3FFFFC00 | BSPrice4), 0xFF1301, CreateShopMessage(0x0656, BSItem4, BSPrice4), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  //Potion Shop
+  CustomMessages::CreateMessageFromTextObject(0x083F, 0xFFFF, (0x3FFFFC00 | PSPrice1), 0xFF1301, CreateShopMessage(0x083F, PSItem1, PSPrice1), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x0841, 0xFFFF, (0x3FFFFC00 | PSPrice2), 0xFF1301, CreateShopMessage(0x0841, PSItem2, PSPrice2), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x0843, 0xFFFF, (0x3FFFFC00 | PSPrice3), 0xFF1301, CreateShopMessage(0x0843, PSItem3, PSPrice3), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  //Goron Shop
+  CustomMessages::CreateMessageFromTextObject(0x0BC5, 0xFFFF, (0x3FFFFC00 | GSPrice1), 0xFF1301, CreateShopMessage(0x0BC5, GSItem1, GSPrice1), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x0BC7, 0xFFFF, (0x3FFFFC00 | GSPrice2), 0xFF1301, CreateShopMessage(0x0BC7, GSItem2, GSPrice2), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x0BC9, 0xFFFF, (0x3FFFFC00 | GSPrice3), 0xFF1301, CreateShopMessage(0x0BC9, GSItem3, GSPrice3), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  //Goron Shop (Spring Prices)
+  CustomMessages::CreateMessageFromTextObject(0x0BCB, 0xFFFF, (0x3FFFFC00 | GSPrice1), 0xFF1301, CreateShopMessage(0x0BCB, GSItem1, GSPrice1), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x0BCD, 0xFFFF, (0x3FFFFC00 | GSPrice2), 0xFF1301, CreateShopMessage(0x0BCD, GSItem2, GSPrice2), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x0BCF, 0xFFFF, (0x3FFFFC00 | GSPrice3), 0xFF1301, CreateShopMessage(0x0BCF, GSItem3, GSPrice3), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  //Zora Shop
+  CustomMessages::CreateMessageFromTextObject(0x12DB, 0xFFFF, (0x3FFFFC00 | ZSPrice1), 0xFF1301, CreateShopMessage(0x12DB, ZSItem1, ZSPrice1), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x12DD, 0xFFFF, (0x3FFFFC00 | ZSPrice2), 0xFF1301, CreateShopMessage(0x12DD, ZSItem2, ZSPrice2), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x12DF, 0xFFFF, (0x3FFFFC00 | ZSPrice3), 0xFF1301, CreateShopMessage(0x12DF, ZSItem3, ZSPrice3), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  // Curiosity Shop
+  // 0x29D9, 0x29DB,
+  // Curiosity Shop (Takkuri)
+  // 0x29F2, 0x29F4, 0x29F6, 0x29F8,
+};
+
+ // CustomMessages::CreateMessageFromTextObject(messageID, 0xFFFF, (0x3FFFFC00 | buyingPrice), 0xFF0301,
+  //  shopIntro+shopDescription, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
 
 void CreateOtherHints() {
   // Create other hints for various texts
