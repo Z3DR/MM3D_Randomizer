@@ -766,7 +766,7 @@ namespace Settings {
 
     ctx.shuffleSongs = ShuffleSongs.Value<u8>();
     //ctx.shuffleSoaring = (ShuffleSoaring) ? 1 : 0;
-    ctx.shopsanity = Shopsanity.Value<u8>();
+    // ctx.shopsanity = (Shopsanity);
     ctx.tokensanity          = (Tokensanity) ? 1:0;
     //ctx.cowsanity = (ShuffleCows) ? 1 : 0;
     ctx.shuffleKokiriSword = (ShuffleKokiriSword) ? 1 : 0;
@@ -774,7 +774,6 @@ namespace Settings {
     //ctx.shuffleTradeItems = (ShuffleTradeItems)?1:0;
     ctx.shuffleMerchants = (ShuffleMerchants) ? 1 : 0;
     //ctx.removeDoubleDefense = (RemoveDoubleDefense) ? 1 : 0;
-
     ctx.mapsAndCompasses = MapsAndCompasses.Value<u8>();
     ctx.keysanity = Keysanity.Value<u8>();
     ctx.bossKeysanity = BossKeysanity.Value<u8>();
