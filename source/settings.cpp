@@ -6,7 +6,7 @@
 #include "dungeon.hpp"
 #include "fill.hpp"
 #include "item_location.hpp"
-//#include "music.hpp"
+#include "music.hpp"
 #include "random.hpp"
 #include "version.hpp"
 #include "setting_descriptions.hpp"
@@ -627,19 +627,21 @@ namespace Settings {
   static std::vector<std::string> fanfareOptions = {"Off", "Only Fanfares", "Fanfares +\n                         Ocarina Music"};
   static std::vector<std::string_view> fanfareDescriptions = {fanfaresOffDesc, onlyFanfaresDesc, fanfaresOcarinaDesc};
   //TO-DO MUSIC RANDO
-//  Option ShuffleMusic =    Option::Bool("Shuffle Music",           {"Off", "On"},    {musicRandoDesc},                                                                                                                                                          OptionCategory::Cosmetic,               0); // Off
-//  Option ShuffleBGM =      Option::Bool("  Shuffle BGM",           {"Off", "On"},    {shuffleBGMDesc},                                                                                                                                                          OptionCategory::Cosmetic,               1); // On
-//  Option ShuffleFanfares = Option::U8  ("  Shuffle Fanfares",      {fanfareOptions}, {fanfareDescriptions},                                                                                                                                                     OptionCategory::Cosmetic,               1); // Fanfares only
-//  Option ShuffleOcaMusic = Option::Bool("  Shuffle Ocarina Music", {"Off", "On"},    {shuffleOcaMusicDesc},                                                                                                                                                     OptionCategory::Cosmetic,               1); // On
-  
-//TO-DO Heart Color, Magic Color, Tatl Color
+  Option ShuffleMusic = Option::U8("Shuffle Music",
+                                   {"Off", "Background Music", "Fanfares", "All"},
+                                   {musicRandoDesc}, OptionCategory::Cosmetic, 0);
+  //  Option ShuffleBGM =      Option::Bool("  Shuffle BGM",           {"Off", "On"},    {shuffleBGMDesc},                                                                                                                                                          OptionCategory::Cosmetic,               1); // On
+  //  Option ShuffleFanfares = Option::U8  ("  Shuffle Fanfares",      {fanfareOptions}, {fanfareDescriptions},                                                                                                                                                     OptionCategory::Cosmetic,               1); // Fanfares only
+  //  Option ShuffleOcaMusic = Option::Bool("  Shuffle Ocarina Music", {"Off", "On"},    {shuffleOcaMusicDesc},                                                                                                                                                     OptionCategory::Cosmetic,               1); // On
+
+  // TO-DO Heart Color, Magic Color, Tatl Color
   std::vector<Option *> cosmeticOptions = {
     //&CustomTunicColors,
     //&ChildTunicColor,
     &ColoredKeys,
     //&ColoredBossKeys,
     &ShowPostmanItem,
-    //&ShuffleMusic,
+    &ShuffleMusic,
     //&ShuffleBGM,
     //&ShuffleFanfares,
     //&ShuffleOcaMusic,
@@ -829,10 +831,7 @@ namespace Settings {
     ctx.coloredKeys = (ColoredKeys) ? 1 : 0;
     ctx.coloredBossKeys = (ColoredBossKeys) ? 1 : 0;
     ctx.showPostmanItem = (ShowPostmanItem) ? 1 : 0;
-    //ctx.shuffleMusic = (ShuffleMusic)?1:0;
-    //ctx.shuffleBGM = (ShuffleBGM)?1:0;
-    //ctx.shuffleFanfare = ShuffleFanfares.Value<u8>();
-    //ctx.shuffleOcaMusic = (ShuffleOcaMusic)?1:0;
+    ctx.shuffleMusic = ShuffleMusic.Value<u8>();
     
     //ctx.bombchusInLogic = (BombchusInLogic) ? 1 : 0;
     
@@ -1867,25 +1866,13 @@ namespace Settings {
       ShuffleMoonItems.SetSelectedIndex(0);
       GossipStoneHints.SetSelectedIndex(0);
     }
-    /*
-    InitMusicRandomizer();
+    Music::InitMusicRandomizer();
     if (ShuffleMusic) {
-      if (ShuffleBGM) {
-        ShuffleSequences(SeqType::SEQ_BGM);
-      }
-
-      if (ShuffleFanfares.Is(2)) {
-        ShuffleSequences(SeqType::SEQ_FANFARE | SeqType::SEQ_OCARINA);
-      } else {
-        if (ShuffleFanfares.Is(1)) {
-          ShuffleSequences(SeqType::SEQ_FANFARE);
-        }
-
-        if (ShuffleOcaMusic) {
-          ShuffleSequences(SeqType::SEQ_OCARINA);
-        }
-      }
-    }*/
+      Music::ShuffleSequences(rnd::SeqType::SEQ_BGM_WORLD | rnd::SeqType::SEQ_BGM_EVENT |
+                              rnd::SeqType::SEQ_BGM_BATTLE);
+      Music::ShuffleSequences(rnd::SeqType::SEQ_FANFARE);
+      Music::ShuffleSequences(rnd::SeqType::SEQ_OCARINA);
+    }
   }
   
   //If this is an option menu, return th options
