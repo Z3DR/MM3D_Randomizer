@@ -211,8 +211,8 @@ string_view shuffleRewardsAnywhere    = "Boss Remains can appear anywhere.\n";  
 |      SHUFFLE MAGIC BEANS     |                                                           //
 ------------------------------*/                                                           //
 string_view magicBeansDesc            = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Enabling this adds a pack of 10 beans to the item\n"
-                                        "pool and changes the Magic Bean Salesman to sell a"
+                                        "Enabling this adds a pack of 20 beans to the item\n"
+                                        "pool and changes the Magic Bean Salesman to sell a\n"
                                         "random item at a price of 60 rupees.";            //
 /*------------------------------                                                           //
 |     SHUFFLE KOKIRI SWORD     |                                                           //
