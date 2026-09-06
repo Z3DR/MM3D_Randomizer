@@ -627,12 +627,12 @@ void CreateShopMessages() {
   //Create Messages for Shops
   //Trading Post
   CustomMessages::CreateMessageFromTextObject(0x06AC, 0xFFFF, (0x3FFFFC00 | TPPrice1), 0xFF1301, CreateShopMessage(0x06AC, TPItem1, TPPrice1), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
-  CustomMessages::CreateMessageFromTextObject(0x06AE, 0xFFFF, (0x3FFFFC00 | TPPrice2), 0xFF1301, CreateShopMessage(0x06AE, TPItem2, TPPrice2), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
-  CustomMessages::CreateMessageFromTextObject(0x06B0, 0xFFFF, (0x3FFFFC00 | TPPrice3), 0xFF1301, CreateShopMessage(0x06B0, TPItem3, TPPrice3), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
-  CustomMessages::CreateMessageFromTextObject(0x06B2, 0xFFFF, (0x3FFFFC00 | TPPrice4), 0xFF1301, CreateShopMessage(0x06B2, TPItem4, TPPrice4), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06B2, 0xFFFF, (0x3FFFFC00 | TPPrice2), 0xFF1301, CreateShopMessage(0x06B2, TPItem2, TPPrice2), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06AE, 0xFFFF, (0x3FFFFC00 | TPPrice3), 0xFF1301, CreateShopMessage(0x06AE, TPItem3, TPPrice3), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06B6, 0xFFFF, (0x3FFFFC00 | TPPrice4), 0xFF1301, CreateShopMessage(0x06B6, TPItem4, TPPrice4), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
   CustomMessages::CreateMessageFromTextObject(0x06B4, 0xFFFF, (0x3FFFFC00 | TPPrice5), 0xFF1301, CreateShopMessage(0x06B4, TPItem5, TPPrice5), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
-  CustomMessages::CreateMessageFromTextObject(0x06B6, 0xFFFF, (0x3FFFFC00 | TPPrice6), 0xFF1301, CreateShopMessage(0x06B6, TPItem6, TPPrice6), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
-  CustomMessages::CreateMessageFromTextObject(0x06B8, 0xFFFF, (0x3FFFFC00 | TPPrice7), 0xFF1301, CreateShopMessage(0x06B8, TPItem7, TPPrice7), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06B8, 0xFFFF, (0x3FFFFC00 | TPPrice6), 0xFF1301, CreateShopMessage(0x06B8, TPItem6, TPPrice6), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x06B0, 0xFFFF, (0x3FFFFC00 | TPPrice7), 0xFF1301, CreateShopMessage(0x06B0, TPItem7, TPPrice7), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
   CustomMessages::CreateMessageFromTextObject(0x06BA, 0xFFFF, (0x3FFFFC00 | TPPrice8), 0xFF1301, CreateShopMessage(0x06BA, TPItem8, TPPrice8), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
   //Trading Post (Part-timer)
   CustomMessages::CreateMessageFromTextObject(0x06C9, 0xFFFF, (0x3FFFFC00 | TPPrice1), 0xFF1301, CreateShopMessage(0x06C9, TPItem1, TPPrice1), {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
