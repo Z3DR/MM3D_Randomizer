@@ -529,6 +529,9 @@ void CreateShopMessages() {
     u16 price = Location(shopEntries[i].second)->GetPrice();
     ItemKey itemKey = Location(shopEntries[i].second)->GetPlacedItemKey();
     Text itemName = ItemTable(itemKey).GetName();
+    if (itemKey == ICE_TRAP) {
+      itemName = GetIceTrapName(itemKey.Value().looksLikeItemId);
+    }
     Text shopIntro = Text{"#"}+itemName+Text{
       "&>>"
       // itemName.NAenglish.length()  <= 30 ?  ": " : "&>>",
