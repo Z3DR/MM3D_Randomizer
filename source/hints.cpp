@@ -530,7 +530,7 @@ void CreateShopMessages() {
     ItemKey itemKey = Location(shopEntries[i].second)->GetPlacedItemKey();
     Text itemName = ItemTable(itemKey).GetName();
     if (itemKey == ICE_TRAP) {
-      itemName = GetIceTrapName(itemKey.Value().looksLikeItemId);
+      itemName = GetIceTrapName(ItemTable(itemKey).Value().looksLikeItemId);
     }
     Text shopIntro = Text{"#"}+itemName+Text{
       "&>>"

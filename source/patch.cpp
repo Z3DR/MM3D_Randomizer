@@ -230,25 +230,6 @@ bool WriteAllPatches() {
     }
   }
   */
-  /*--------------------------------
-  |     rShopsanityPrices          |
-  --------------------------------*/
-/*
-  if (Settings::Shopsanity.IsNot(SHOPSANITY_OFF) && Settings::Shopsanity.IsNot(SHOPSANITY_ZERO)) {
-    //Get prices from shop item vector
-    std::array<s32, 32> rShopsanityPrices{};
-    for (i = 0; i < 32; i++) {
-      rShopsanityPrices[i] = NonShopItems[i].Price;
-    }
-
-    // Write shopsanity item prices to the patch
-    patchOffset = V_TO_P(RSHOPSANITYPRICES_ADDR);
-    patchSize = sizeof(rShopsanityPrices);
-    if (!WritePatch(patchOffset, patchSize, (char*)(&rShopsanityPrices), code, bytesWritten, totalRW, buf)) {
-      return false;
-    }
-  }
-  */
   /*---------------------------------
   |     rDungeonRewardOverrides     |
   ---------------------------------*/
