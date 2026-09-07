@@ -437,52 +437,59 @@ static std::vector<LocationKey> CalculateBarrenRegions() {
   return finalBarrenLocations;
 }
 
+Text GetShopItemName(ItemKey itemKey) {
+  if (itemKey == ICE_TRAP)
+    return GetIceTrapName(ItemTable(itemKey).Value().looksLikeItemId);
+  else
+    return ItemTable(itemKey).GetName();
+}
+
 void CreateTingleHintText() {
   // Create custom messages for Tingle items if we shuffled.
       if (Settings::ShuffleTingleMaps.Is(true)) {
         // Logic: Get item names from location.
         // Create custom message for each tingle location (6)
-        Text clockTownMap = ItemTable(Location(TINGLE_N_CLOCK_TOWN_CT)->GetPlacedItemKey()).GetName();
-        Text woodfallMap = ItemTable(Location(TINGLE_N_CLOCK_TOWN_WF)->GetPlacedItemKey()).GetName();
-        Text snowHeadMap = ItemTable(Location(TINGLE_TWIN_ISLANDS_SH)->GetPlacedItemKey()).GetName();
-        Text romaniMap = ItemTable(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey()).GetName();
-        Text greatBayMap = ItemTable(Location(TINGLE_GBC_GB)->GetPlacedItemKey()).GetName();
-        Text ikanaMap = ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName();
+        Text clockTownMap = GetShopItemName(Location(TINGLE_N_CLOCK_TOWN_CT)->GetPlacedItemKey());
+        Text woodfallMap  = GetShopItemName(Location(TINGLE_N_CLOCK_TOWN_WF)->GetPlacedItemKey());
+        Text snowHeadMap  = GetShopItemName(Location(TINGLE_TWIN_ISLANDS_SH)->GetPlacedItemKey());
+        Text romaniMap    = GetShopItemName(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey());
+        Text greatBayMap  = GetShopItemName(Location(TINGLE_GBC_GB)->GetPlacedItemKey());
+        Text ikanaMap     = GetShopItemName(Location(TINGLE_GBC_ST)->GetPlacedItemKey());
 
-        //                 {"English",           "French",           "Spanish"            "German"          };      "Italian"
-        Text priceFive =   {"    ##5 Rupees#&#",  "    ##5 Rubis#&#",  "    ##5 rupias#&#",  " - ##5 Rubine#&#" }; // , "    ##5 rupie#&"
-        Text priceTwenty = {"    ##20 Rupees#&#", "    ##20 Rubis#&#", "    ##20 rupias#&#", " - ##20 Rubine#&#"}; // , "    ##20 rupie#&"
-        Text priceForty =  {"    ##40 Rupees#",  "    ##40 Rubis#",  "    ##40 rupias#",  " - ##40 Rubine#" }; // , "    ##40 rupie#"
-        Text leaveShop =   {"&#No thanks#",      "&#Non merci#",     "&#No, gracias#",    "&#Nein, danke!#" }; // , "&#No, grazie#"
+        //               {"English",      "French",       "Spanish",        "German",        }; // "Italian"
+        Text tingSplit = {"    ##",       "    ##",       "    ##",         " - ##",         }; // "    ##"
+        Text tingNext  = {" Rupees#&#",   " Rubis#&#",    " rupias#&#",     " Rubine#&#",    }; // " rupie#&"
+        Text tingLeave = tingNext+
+                     Text{"No thanks#",   "Non merci#",   "No, gracias#",   "Nein, danke!#", }; // "&#No, grazie#"
 
         // Clock Town message
         CustomMessages::CreateMessageFromTextObject(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
-          Text{">3#"}+clockTownMap+priceFive+woodfallMap+priceForty+leaveShop,
+          Text{">3#"}+clockTownMap+tingSplit+"5"+tingNext+woodfallMap+tingSplit+"40"+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Woodfall message
         CustomMessages::CreateMessageFromTextObject(0x1D12, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          Text{">3#"}+woodfallMap+priceTwenty+snowHeadMap+priceForty+leaveShop,
+          Text{">3#"}+woodfallMap+tingSplit+"20"+tingNext+snowHeadMap+tingSplit+"40"+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Snowhead message
         CustomMessages::CreateMessageFromTextObject(0x1D13, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          Text{">3#"}+snowHeadMap+priceTwenty+romaniMap+priceForty+leaveShop,
+          Text{">3#"}+snowHeadMap+tingSplit+"20"+tingNext+romaniMap+tingSplit+"40"+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Milk Road message
         CustomMessages::CreateMessageFromTextObject(0x1D14, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          Text{">3#"}+romaniMap+priceTwenty+greatBayMap+priceForty+leaveShop,
+          Text{">3#"}+romaniMap+tingSplit+"20"+tingNext+greatBayMap+tingSplit+"40"+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Great Bay message
         CustomMessages::CreateMessageFromTextObject(0x1D15, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          Text{">3#"}+greatBayMap+priceTwenty+ikanaMap+priceForty+leaveShop,
+          Text{">3#"}+greatBayMap+tingSplit+"20"+tingNext+ikanaMap+tingSplit+"40"+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Ikana message
         CustomMessages::CreateMessageFromTextObject(0x1D16, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          Text{">3#"}+ikanaMap+priceTwenty+clockTownMap+priceForty+leaveShop,
+          Text{">3#"}+ikanaMap+tingSplit+"20"+tingNext+clockTownMap+tingSplit+"40"+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
       }
 }
@@ -528,10 +535,7 @@ void CreateShopMessages() {
     u32 messageID = shopEntries[i].first;
     u16 price = Location(shopEntries[i].second)->GetPrice();
     ItemKey itemKey = Location(shopEntries[i].second)->GetPlacedItemKey();
-    Text itemName = ItemTable(itemKey).GetName();
-    if (itemKey == ICE_TRAP) {
-      itemName = GetIceTrapName(ItemTable(itemKey).Value().looksLikeItemId);
-    }
+    Text itemName = GetShopItemName(itemKey);
     Text shopIntro = Text{"#"}+itemName+Text{
       "&>>"
       // itemName.NAenglish.length()  <= 30 ?  ": " : "&>>",
