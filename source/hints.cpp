@@ -586,19 +586,31 @@ void CreateShopMessages() {
 
     // Create display and purchase messages
     CustomMessages::CreateMessageFromTextObject(messageID    , 0xFFFF, (0x3FFFFC00 | price), 0xFF0301, shopIntro + shopDescription, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
-    CustomMessages::CreateMessageFromTextObject(messageID + 1, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301, shopIntro + buyPrompt, {QM_WHITE, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+    CustomMessages::CreateMessageFromTextObject(messageID + 1, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301, shopIntro + buyPrompt, {QM_DEFAULT, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
     // If Trading Post message, also generate part-timer version
     if ((0x06AC <= messageID) && (messageID <= 0x06BA)) {
       CustomMessages::CreateMessageFromTextObject(messageID + 0x1D, 0xFFFF, (0x3FFFFC00 | price), 0xFF0301, shopIntro + slopDescription, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
-      CustomMessages::CreateMessageFromTextObject(messageID + 0x1E, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301, shopIntro + buyPrompt, {QM_WHITE, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+      CustomMessages::CreateMessageFromTextObject(messageID + 0x1E, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301, shopIntro + buyPrompt, {QM_DEFAULT, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
     }
     // If Goron Shop message, also generate spring copy
     if ((0x0BC5 <= messageID) && (messageID <= 0x0BC9)) {
       CustomMessages::CreateMessageFromTextObject(messageID + 0x6, 0xFFFF, (0x3FFFFC00 | price), 0xFF0301, shopIntro + shopDescription, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
-      CustomMessages::CreateMessageFromTextObject(messageID + 0x7, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301, shopIntro + buyPrompt, {QM_WHITE, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+      CustomMessages::CreateMessageFromTextObject(messageID + 0x7, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301, shopIntro + buyPrompt, {QM_DEFAULT, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
     }
-    // Stolen Big Bomb Bag stuff goes here??
-
+    // If Big Bomb Bag write stolen variant (inelegantly)
+    if (messageID == 0x0656) {
+      shopIntro = Text{"#"}+itemName+"&>>"+std::to_string(1000)+Text{
+        " Rupees#&", " rubis#&", " rupias#&", " Rubine#&",// " rupie#&"
+      };
+      CustomMessages::CreateMessageFromTextObject(0x29DB, 0xFFFF, (0x3FFFFC00 | 1000), 0xFF0301, shopIntro+Text{
+        /*English*/"This is just between us, but this is&actually a Bomb Shop product.",
+        /*French */"Ça reste entre nous, mais c'est&un article de la boutique de bombes.",
+        /*Spanish*/"Esto es entre nosotros, pero&es el de la tienda de bombas.",
+        /*German */"Verrat's nicht weiter, aber die ist eigentlich Eigentum des Bomben-Shops.", // OVERFLOW RISK
+        // /*Italian*/"he resti tra noi, ma in realtà&questo articolo appartiene al&negozio delle bombe.", // OVERFLOW RISK
+      }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+      CustomMessages::CreateMessageFromTextObject(0x29DC, 0xFFFF, (0x3FFFFC00 | 1000), 0xFF1301, shopIntro + buyPrompt, {QM_DEFAULT, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+    }
     //Special message for the potion shop witch if you haven't given her a mushroom yet
     // WILL OVERFLOW IN MOST LANGUAGES WHEN ITEM NAME TRIGGERS LINE BREAK
     if (messageID == 0x0843) {
