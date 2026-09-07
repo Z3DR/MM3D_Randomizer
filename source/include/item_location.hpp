@@ -181,6 +181,7 @@ public:
         else if (type == ItemLocationType::TempleReward) {ovrtype = ItemOverride_Type::OVR_TEMPLE;}
         else if (type == ItemLocationType::StrayFairy) {ovrtype = ItemOverride_Type::OVR_STRAY_FAIRY;}
         else if (type == ItemLocationType::Cow) {ovrtype = ItemOverride_Type::OVR_COW;}
+        else if (type == ItemLocationType::Shop) {ovrtype = ItemOverride_Type::OVR_SHOP;}
 
         return ovrtype;
     }

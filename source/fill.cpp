@@ -840,6 +840,16 @@ int Fill() {
         RemoveStartingItemsFromPool();
         FillExcludedLocations();
         
+        //Temp place Shop things so i can figure shit out
+        PlaceItemInLocation(TRADING_POST_ITEM_1, GREEN_RUPEE);
+        PlaceItemInLocation(TRADING_POST_ITEM_2, BLUE_RUPEE);
+        PlaceItemInLocation(TRADING_POST_ITEM_3, RED_RUPEE);
+        PlaceItemInLocation(TRADING_POST_ITEM_4, SWAMP_SKULLTULA_TOKEN);
+        PlaceItemInLocation(TRADING_POST_ITEM_5, WOODFALL_TEMPLE_SMALL_KEY);
+        PlaceItemInLocation(TRADING_POST_ITEM_6, SNOWHEAD_TEMPLE_BOSS_KEY);
+        PlaceItemInLocation(TRADING_POST_ITEM_7, BOTTLE_WITH_RED_POTION);
+        PlaceItemInLocation(TRADING_POST_ITEM_8, WF_STRAY_FAIRY);
+
         showItemProgress = true;
 
         //Place dungeon rewards

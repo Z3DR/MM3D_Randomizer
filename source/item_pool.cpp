@@ -239,12 +239,6 @@ const std::array<ItemKey, 36> shopsanityRupees = {
 	RED_RUPEE,
 	PURPLE_RUPEE,
 };
-const std::array<ItemKey, 4> dekuScrubItems = {
-	HUGE_RUPEE,
-	BLUE_POTION_REFILL,
-	MAGIC_BEAN,
-	GREEN_POTION_REFILL,
-};
 
 const std::array<ItemKey, 8> chestItems = {
 	LENS_OF_TRUTH,
@@ -442,13 +436,6 @@ const std::array<ItemKey, 8> vanillaCows = {
 	MILK,
 	MILK,
 	MILK,	
-};
-
-const std::array<ItemKey,4> scrubPurchaseItems = {
-	MAGIC_BEAN,
-	PROGRESSIVE_BOMB_BAG,//BIGGEST_BOMB_BAG
-	GREEN_POTION_REFILL,
-	BLUE_POTION_REFILL,
 };
 
 const std::array<ItemKey, 4> moonItemList = {
@@ -1105,13 +1092,6 @@ void GenerateItemPool() {
 	AddItemsToPool(ItemPool, dungeonRewards);
 
 
-	// TO-DO ItemPool for extra items & Scarce and Minimal pools
-	//if (ItemPoolValue.Is(ITEMPOOL_PLENTIFUL)) {
-		//AddItemsToPool(ItemPool, easyItems);
-	//}
-	//else {
-		//AddItemsToPool(ItemPool, normalItems);
-	//}
 	if (ItemPoolValue.Is(ItemPoolSetting::ITEMPOOL_SCARCE)) {//TO DO 
 		SetScarceItemPool();
 	}
