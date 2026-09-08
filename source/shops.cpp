@@ -152,6 +152,11 @@ void InitTrickNames() {
         Text{"Shield of the Hero",            "",        "",        "", },
         Text{"Legendary Shield",              "",        "",        "", },
     };
+    trickNameTable[(u32)GetItemID::GI_SHIELD_MIRROR] = {
+        Text{"Scary Mirror",                  "",        "",        "", },
+        Text{"Shield Mirror",                 "",        "",        "", },
+        Text{"Minor Shield",                  "",        "",        "", },
+    };
     trickNameTable[(u32)GetItemID::GI_STICKS_1] = {
         Text{"Deku Branch",                   "",        "",        "", },
         Text{"Stick",                         "",        "",        "", },
@@ -233,7 +238,7 @@ void InitTrickNames() {
         Text{"Might Arrow",                   "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_HOOKSHOT] = {
-        Text{"Grapling Hook",                 "",        "",        "", },
+        Text{"Grappling Hook",                "",        "",        "", },
         Text{"Longshot",                      "",        "",        "", },
         Text{"Hookshort",                     "",        "",        "", },
     };

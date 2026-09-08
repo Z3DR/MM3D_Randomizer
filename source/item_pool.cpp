@@ -301,7 +301,7 @@ const std::array<ItemKey, 18> maskList = {
 	GIBDOS_MASK,
 	GAROS_MASK,
 	CAPTAINS_HAT,
-    GIANTS_MASK, 
+	GIANTS_MASK,
 	MASK_OF_TRUTH,
 };
 
@@ -692,38 +692,37 @@ void GenerateItemPool() {
 	  0x25, //GetItemID::GI_FIRE_ARROW,
 	  0x26, //GetItemID::GI_ICE_ARROW,
 	  0x27, //GetItemID::GI_LIGHT_ARROW,
-	  0xB8, //Double defense
+	  0xB2, //Double defense
 	  0x46, //Progressive bomb bag
 	  0x47, //Progressive bow
 	  0x48, //Progressive wallet
 	  0x49, //Progressive magic
-	  0x4A, //ProgressiveSword
+	  0x4A, //Progressive Sword
 	};
 	//Check song shuffle and dungeon reward shuffle just for ice traps
 
 	if (ShuffleSongs.Value<u8>() != 0) {
 		//Push item ids for songs
-		IceTrapModels.push_back(0x4B);
-		IceTrapModels.push_back(0x4C);
-		IceTrapModels.push_back(0x4D);
-		IceTrapModels.push_back(0x4E);
-		IceTrapModels.push_back(0x4F);
-		IceTrapModels.push_back(0x51);
-		IceTrapModels.push_back(0x53);
-		IceTrapModels.push_back(0x54);
-		IceTrapModels.push_back(0x6C);
-		IceTrapModels.push_back(0x72);
-		IceTrapModels.push_back(0x73);
-		//IceTrapModels.push_back(0xC6);
+		IceTrapModels.push_back(0x4B); //GI_SONATA_OF_AWAKENING
+		IceTrapModels.push_back(0x45); // Progressive Lullaby
+		IceTrapModels.push_back(0x4E); //GI_NEW_WAVE_BOSSA_NOVA
+		IceTrapModels.push_back(0x4F); //GI_ELEGY_OF_EMPTINESS
+		IceTrapModels.push_back(0x51); //GI_OATH_TO_ORDER
+		IceTrapModels.push_back(0x53); //GI_SONG_OF_TIME
+		IceTrapModels.push_back(0x54); // Song of Healing
+		IceTrapModels.push_back(0x6C); //GI_EPONAS_SONG
+		IceTrapModels.push_back(0x72); //GI_SONG_OF_SOARING
+		IceTrapModels.push_back(0x73); //GI_SONG_OF_STORMS
+		//IceTrapModels.push_back(0xC6); //?????
 	}
 	if (ShuffleRewards.Value<u8>() != 0) {
 		//Push item ids for dungeon rewards
-		IceTrapModels.push_back(0x55);
-		IceTrapModels.push_back(0x56);
-		IceTrapModels.push_back(0x57);
-		IceTrapModels.push_back(0x58);
+		IceTrapModels.push_back(0x55); // GI_ODOLWAS_REMAINS
+		IceTrapModels.push_back(0x56); // GI_GOHTS_REMAINS
+		IceTrapModels.push_back(0x57); // GI_GYORGS_REMAINS
+		IceTrapModels.push_back(0x58); // GI_TWINMOLDS_REMAINS
 	}
-     
+
 	//Fixed Item Locations
 	PlaceItemInLocation(MAJORA, MAJORAS_MASK, true);
 	PlaceItemInLocation(WOODFALL_TEMPLE_DEKU_PRINCESS, DEKU_PRINCESS);
@@ -754,6 +753,7 @@ void GenerateItemPool() {
 	//OCARINA SHUFFLE
 	if(StartingOcarina.Value<u8>() == 0) {//If starting without ocarina add it to pool
 		AddItemToMainPool(OCARINA_OF_TIME, 1);
+		IceTrapModels.push_back(0x4C); //GI_OCARINA_OF_TIME
 	}
 	else { //else place it vanilla cause we start with it 
 		PlaceItemInLocation(CLOCK_TOWER_OCARINA_OF_TIME, OCARINA_OF_TIME, true);
@@ -762,7 +762,6 @@ void GenerateItemPool() {
 	//KOKIRISWORD SHUFFLE
 	if(StartingKokiriSword.Value<u8>() == (u8)StartingSwordSetting::STARTINGSWORD_NONE) {//if starting with no sword we need to add an extra to the pool
 		AddItemToMainPool(PROGRESSIVE_SWORD, 1);
-		IceTrapModels.push_back(0x37);//GetItemID::GI_KOKIRI_SWORD
 		PlaceItemInLocation(HMS_STARTING_SWORD,GREEN_RUPEE);//Add Junk to this location because theres no way to get it otherwise
 	} else {
 		PlaceItemInLocation(HMS_STARTING_SWORD, KOKIRI_SWORD); //if starting with any sword place this here because this location is unobtainable
@@ -778,7 +777,8 @@ void GenerateItemPool() {
 	//SHUFFLE BOMBERS NOTEBOOK
 	if(ShuffleBombersNotebook){
 		AddItemToMainPool(BOMBERS_NOTEBOOK);
-		//PlaceItemInLocation(HMS_BOMBERS_NOTEBOOK, GREEN_RUPEE);//Need to add check if starting with Song of Healing 
+		IceTrapModels.push_back(0x50); //GI_BOMBERS_NOTEBOOK
+		//PlaceItemInLocation(HMS_BOMBERS_NOTEBOOK, GREEN_RUPEE);//Need to add check if starting with Song of Healing
 	}
 	else {PlaceItemInLocation(HMS_BOMBERS_NOTEBOOK, BOMBERS_NOTEBOOK);}
 
@@ -826,6 +826,24 @@ void GenerateItemPool() {
 	//NON TRANSFORM MASK SHUFFLE
 	if (ShuffleMasks) {
 		AddItemsToPool(ItemPool, maskList);
+		IceTrapModels.push_back(0x80); // GI_MASK_KEATON
+		IceTrapModels.push_back(0x7F); // GI_MASK_BUNNY_HOOD
+		IceTrapModels.push_back(0x84); // GI_MASK_POSTMANS
+		IceTrapModels.push_back(0x7E); // GI_MASK_ALL_NIGHT
+		IceTrapModels.push_back(0x8D); // GI_MASK_BLAST
+		IceTrapModels.push_back(0x8B); // GI_MASK_STONE
+		IceTrapModels.push_back(0x86); // GI_MASK_GREAT_FAIRYS
+		IceTrapModels.push_back(0x8C); // GI_MASK_BREMEN
+		IceTrapModels.push_back(0x88); // GI_MASK_DON_GEROS
+		IceTrapModels.push_back(0x8E); // GI_MASK_OF_SCENTS
+		IceTrapModels.push_back(0x82); // GI_MASK_ROMANIS
+		IceTrapModels.push_back(0x83); // GI_MASK_TROUPE_LEADERS
+		IceTrapModels.push_back(0x89); // GI_MASK_KAMARAOS
+		IceTrapModels.push_back(0x87); // GI_MASK_GIBDO
+		IceTrapModels.push_back(0x81); // GI_MASK_GARO
+		IceTrapModels.push_back(0x7C); // GI_MASK_CAPTAINS_HAT
+		IceTrapModels.push_back(0x7D); // GI_MASK_GIANTS
+		IceTrapModels.push_back(0x8A); // GI_MASK_OF_TRUTH
 	}
 	else {
 		PlaceVanillaMasks();
@@ -883,6 +901,9 @@ void GenerateItemPool() {
 		AddItemToMainPool(DEKU_MASK);
 		AddItemToMainPool(GORON_MASK);
 		AddItemToMainPool(ZORA_MASK);
+		IceTrapModels.push_back(0x78); // GI_MASK_DEKU
+		IceTrapModels.push_back(0x79); // GI_MASK_GORON
+		IceTrapModels.push_back(0x7A); // GI_MASK_ZORA
 	}
 	else { 
 		PlaceItemInLocation(HMS_DEKU_MASK,DEKU_MASK);
@@ -893,6 +914,7 @@ void GenerateItemPool() {
 	//FIERECE DEITY SHUFFLE
 	if(ShuffleFierceDeity){
 		AddItemToMainPool(FIERCE_DEITY_MASK);
+		IceTrapModels.push_back(0x7B); // GI_MASK_FIERCE_DEITY
 	}
 	else{
 		PlaceItemInLocation(THE_MOON_MAJORA_CHILD,FIERCE_DEITY_MASK);
@@ -926,6 +948,8 @@ void GenerateItemPool() {
 	if(Tokensanity){
 		AddItemToMainPool(SWAMP_SKULLTULA_TOKEN, 30);
 		AddItemToMainPool(OCEANSIDE_SKULLTULA_TOKEN, 30);
+		IceTrapModels.push_back(0x44); // Swamp Token
+		IceTrapModels.push_back(0x6D); // Ocean Token
 		std::vector<LocationKey> SwampSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSwampSkulltula);});
         std::vector<LocationKey> OceanSkullLocations = FilterFromPool(allLocations, [](const LocationKey loc1) {return Location(loc1)->IsCategory(Category::cOceanSkulltula);});
 	}
@@ -936,6 +960,11 @@ void GenerateItemPool() {
 	//DEKU MERCHANT TRADE QUEST
 	if (ShuffleMerchants){//Merchants is Deku Scrub Trade Quest
 		AddItemsToPool(ItemPool, scrubTradeItems);
+		IceTrapModels.push_back(0x96); // GI_MOONS_TEAR
+		IceTrapModels.push_back(0x97); // GI_TOWN_TITLE_DEED
+		IceTrapModels.push_back(0x98); // GI_SWAMP_TITLE_DEED
+		IceTrapModels.push_back(0x99); // GI_MOUNTAIN_TITLE_DEED
+		IceTrapModels.push_back(0x9A); // GI_OCEAN_TITLE_DEED
 	} else {
 		PlaceItemInLocation(TERMINA_FIELD_MOONS_TEAR, MOONS_TEAR);
 		PlaceItemInLocation(S_CLOCK_TOWN_SCRUB_TRADE, LAND_TITLE);
@@ -948,6 +977,11 @@ void GenerateItemPool() {
 	//ANJU AND KAFEI QUEST ITEMS
 	if (ShuffleTradeItems){//TradeItems refers to Anju&Kafei Items
 		AddItemsToPool(ItemPool, anjuKafeiTradeItems);
+		IceTrapModels.push_back(0x8F); // GI_MASK_KAFEIS
+		IceTrapModels.push_back(0x85); // GI_MASK_COUPLES
+		IceTrapModels.push_back(0xAA); // GI_LETTER_TO_KAFEI
+		IceTrapModels.push_back(0xA1); // GI_LETTER_TO_MAMA
+		IceTrapModels.push_back(0xA0); // GI_ROOM_KEY
 	} else {
 		PlaceItemInLocation(E_CLOCK_TOWN_AROMA_IN_OFFICE, KAFEIS_MASK);
 		PlaceItemInLocation(STOCKPOTINN_ANJU_AND_KAFEI, COUPLES_MASK);
@@ -976,6 +1010,12 @@ void GenerateItemPool() {
 	if (ShuffleTingleMaps) {
 		//Add the 6 maps
 		AddItemsToPool(ItemPool, tingleMaps);
+		IceTrapModels.push_back(0xB4); // GI_MAP_OF_CLOCK_TOWN = 0xB4
+		IceTrapModels.push_back(0xB5); // GI_MAP_OF_WOODFALL
+		IceTrapModels.push_back(0xB6); // GI_MAP_OF_SNOWHEAD
+		IceTrapModels.push_back(0xB7); // GI_MAP_OF_ROMANI_RANCH
+		IceTrapModels.push_back(0xB8); // GI_MAP_OF_GREAT_BAY
+		IceTrapModels.push_back(0xB9); // GI_MAP_OF_STONE_TOWER
 		//Place Junk in "Duplicate spots" so each map check contains the same item in both locations
 		PlaceItemInLocation(TINGLE_N_CLOCK_TOWN_WF, BLUE_RUPEE);
 		PlaceItemInLocation(TINGLE_ROAD_TO_SS_SH, BLUE_RUPEE);
