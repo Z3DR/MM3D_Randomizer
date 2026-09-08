@@ -663,3 +663,19 @@ string_view startingShieldMirrorDesc  = "Start with the Mirror Shield.\n"       
 string_view showPostmanItemDesc      = "Visually shows the reward for the \n"              //
                                        "Postman's Freedom quest line \n"                   //
                                        "above the Postman's head.";                        //
+
+/*------------------------------
+|       IN-GAME OPTIONS        |
+------------------------------*/
+string_view ingameLTargetingDesc      = "Sets the L-Targeting mode on a new file.\n"       //
+                                        "\"Vanilla\" is the game's default.";              //
+string_view ingameFirstPersonCameraDesc = "Sets the first person camera's inversion on a\n"//
+                                        "new file. \"Vanilla\" is the game's default.";    //
+string_view ingameFreeCameraDesc      = "Sets the free camera's inversion on a new\n"      //
+                                        "file. \"Vanilla\" is the game's default.";        //
+string_view ingameMotionControlsDesc  = "Enables or disables motion controls on a new\n"   //
+                                        "file. \"Vanilla\" is the game's default.";        //
+string_view ingameSwimmingControlsDesc = "Sets the Zora swimming control scheme on a new\n"//
+                                        "file. \"Vanilla\" is the game's default.";        //
+string_view ingameAdjustVolumeDesc    = "Sets the overall volume on a new file.\n"         //
+                                        "\"Vanilla\" is the game's default.";              //

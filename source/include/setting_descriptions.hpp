@@ -243,3 +243,10 @@ extern string_view startingShieldNoneDesc;
 extern string_view startingShieldHerosDesc;
 extern string_view startingShieldMirrorDesc;
 extern string_view showPostmanItemDesc;
+
+extern string_view ingameLTargetingDesc;
+extern string_view ingameFirstPersonCameraDesc;
+extern string_view ingameFreeCameraDesc;
+extern string_view ingameMotionControlsDesc;
+extern string_view ingameSwimmingControlsDesc;
+extern string_view ingameAdjustVolumeDesc;

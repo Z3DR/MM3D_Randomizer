@@ -494,6 +494,26 @@ namespace Settings {
   Option BombchusInLogic        = Option::U8("Bombchus In Logic",          { "Off", "On" },                                                      { bombchuInLogicDesc });
   Option FastMasks              = Option::Bool("Fast Mask Transform",      {"No", "Yes"},                                                        {fastMaskDesc});
   Option NotebookAnimations     = Option::Bool("Fast Notebook",            {"No", "Yes"},                                                        {disableBotebookAnimation});
+  // In-game options written into CommonDataSub1 when a new file is created. Index 0 is
+  // "Vanilla" throughout, which leaves the game's own default in place -- only the Adjust
+  // Volume encoding (0 Lower / 1 Normal / 2 Higher) is confirmed against the save data, so the
+  // rest are opt-in rather than applied silently.
+  Option IngameLTargeting        = Option::U8("L-Targeting",         {"Vanilla", "Switch", "Hold"},          {ingameLTargetingDesc});
+  Option IngameFirstPersonCamera = Option::U8("First Person Camera", {"Vanilla", "Normal", "Invert Y Axis", "Invert X Axis", "Invert Both"}, {ingameFirstPersonCameraDesc});
+  Option IngameFreeCamera        = Option::U8("Free Camera",         {"Vanilla", "Normal", "Invert Y Axis", "Invert X Axis", "Invert Both"}, {ingameFreeCameraDesc});
+  Option IngameMotionControls    = Option::U8("Motion Controls",     {"Vanilla", "On", "Off"},               {ingameMotionControlsDesc});
+  Option IngameSwimmingControls  = Option::U8("Swimming Controls",   {"Vanilla", "Normal", "Invert Y Axis"}, {ingameSwimmingControlsDesc});
+  Option IngameAdjustVolume      = Option::U8("Adjust Volume",       {"Vanilla", "Lower", "Normal", "Higher"}, {ingameAdjustVolumeDesc});
+
+  std::vector<Option*> ingameOptions = {
+    &IngameLTargeting,
+    &IngameFirstPersonCamera,
+    &IngameFreeCamera,
+    &IngameMotionControls,
+    &IngameSwimmingControls,
+    &IngameAdjustVolume,
+  };
+
   std::vector<Option*> comfortOptions = {
      
      &BlastMaskCooldown,
@@ -707,6 +727,7 @@ namespace Settings {
 
   //Menu mainSettings = Menu::SubMenu("Main Settings", &mainSettingsOptions);
   Menu comfort = Menu::SubMenu("Comfort Settings", &comfortOptions);
+  Menu ingameOptionsMenu = Menu::SubMenu("In-Game Options", &ingameOptions);
   Menu restorationSettings = Menu::SubMenu("Restoration Settings", &restorationOptions);
   Menu cutsceneSettings = Menu::SubMenu("Cutscene Settings", &cutsceneOptions);
   Menu settingsPresets          = Menu::SubMenu("Settings Presets",           &settingsPresetItems);
@@ -733,6 +754,7 @@ namespace Settings {
     &cutsceneSettings,
     &otherSettings,
     &customInputs,
+    &ingameOptionsMenu,
     &cosmetics,
     &settingsPresets,
     &generateRandomizer,
@@ -868,6 +890,13 @@ namespace Settings {
     ctx.startingLightArrows = StartingLightArrows.Value<u8>();
     ctx.startingLensOfTruth = StartingLensOfTruth.Value<u8>();
     ctx.startingMagicBean = StartingMagicBean.Value<u8>();
+
+    ctx.ingameLTargeting = IngameLTargeting.Value<u8>();
+    ctx.ingameFirstPersonCamera = IngameFirstPersonCamera.Value<u8>();
+    ctx.ingameFreeCamera = IngameFreeCamera.Value<u8>();
+    ctx.ingameMotionControls = IngameMotionControls.Value<u8>();
+    ctx.ingameSwimmingControls = IngameSwimmingControls.Value<u8>();
+    ctx.ingameAdjustVolume = IngameAdjustVolume.Value<u8>();
     ctx.startingPowderKeg = StartingPowderKeg.Value<u8>();
     ctx.startingPictographBox = StartingPictographBox.Value<u8>();
     ctx.startingGreatFairySword = StartingGreatFairySword.Value<u8>();
