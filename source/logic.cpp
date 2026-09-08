@@ -322,6 +322,10 @@ namespace Logic {
 	bool Milk = false;
 	bool SpokeToKafei = false;
 	bool PostedKafeiLetter = false;
+	bool CanTradeTownDeed = false;
+	bool CanTradeSwampDeed = false;
+	bool CanTradeMountainDeed = false;
+	bool CanTradeOceanDeed = false;
 
 	bool CanGoToMoon = false;
 	
@@ -879,7 +883,10 @@ namespace Logic {
 	Milk = false;
 	SpokeToKafei = false;
 	PostedKafeiLetter = false;
-
+	CanTradeTownDeed = false;
+	CanTradeSwampDeed = false;
+	CanTradeMountainDeed = false;
+	CanTradeOceanDeed = false;
 	
 	ZoraEgg = 0;
 	CanGoToMoon = false;

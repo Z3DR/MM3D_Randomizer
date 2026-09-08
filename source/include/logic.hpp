@@ -331,6 +331,10 @@ namespace Logic {
 	extern bool Milk;
 	extern bool SpokeToKafei;
 	extern bool PostedKafeiLetter;
+	extern bool CanTradeTownDeed;
+	extern bool CanTradeSwampDeed;
+	extern bool CanTradeMountainDeed;
+	extern bool CanTradeOceanDeed;
 	
 	extern bool CanGoToMoon;
 	extern bool RemainsForMoon;

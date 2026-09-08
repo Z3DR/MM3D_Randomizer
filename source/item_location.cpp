@@ -65,6 +65,8 @@ void LocationTable_Init() {
  locationTable[GORON_VILLAGE_SCRUB_PURCHASE_SPRING]                = ItemLocation::Base       (0x48, 0x1D, false, "GV Scrub Purchase (Spring)",                               GORON_VILLAGE_SCRUB_PURCHASE_SPRING,            PROGRESSIVE_BOMB_BAG,         {Category::cGoronVillage, Category::cDekuScrub,Category::cDayOne, Category::cShop, Category::cAlternateCheck, Category::cNoOcarinaStart},             SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_GORON_VILLAGE );
  locationTable[GORON_VILLAGE_SCRUB_TRADE_SPRING]                   = ItemLocation::Base       (0x48, 0x99, true,  "GV Deku Scrub Merchant Trade (Spring)",                    GORON_VILLAGE_SCRUB_TRADE_SPRING,               MOUNTAIN_TITLE,               {Category::cGoronVillage, Category::cDekuScrub,Category::cDayOne, Category::cAlternateCheck, Category::cNoOcarinaStart},                              SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_GORON_VILLAGE );
  locationTable[GORON_VILLAGE_LEDGE_SPRING]                         = ItemLocation::Collectable(0x48, 0x00, false, "GV Piece of Heart (Spring)",                               GORON_VILLAGE_LEDGE_SPRING,                     PIECE_OF_HEART,               {Category::cGoronVillage, Category::cVanillaHeartPiece,Category::cDayOne, Category::cAlternateCheck, Category::cNoOcarinaStart},                                                                  SpoilerCollectionCheckGroup::GROUP_GORON_VILLAGE );
+ locationTable[GORON_VILLAGE_ZORA_SCRUB_PURCHASE]                  = ItemLocation::Base       (0x4D, 0x5C, false, "GV Zora Scrub Purchase",                                   GORON_VILLAGE_ZORA_SCRUB_PURCHASE,              GREEN_POTION_REFILL,          {Category::cGoronVillage, Category::cDekuScrub,Category::cDayOne, Category::cShop, Category::cMainInventory},                                         SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_GORON_VILLAGE );
+ locationTable[GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING]           = ItemLocation::Base       (0x48, 0x5C, false, "GV Zora Scrub Purchase (Spring)",                          GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING,       GREEN_POTION_REFILL,          {Category::cGoronVillage, Category::cDekuScrub,Category::cDayOne, Category::cShop, Category::cAlternateCheck},                                     SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_GORON_VILLAGE );
    
  //Great Bay Coast
  locationTable[GBC_OCEAN_SPIDER_DAY1]                              = ItemLocation::Base       (0x28, 0x48, false, "OSH Reward",                                               GBC_OCEAN_SPIDER_DAY1,                          PROGRESSIVE_WALLET,           {Category::cGreatBayCoast ,Category::cDayOne, Category::cMainInventory},                                                                              SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_GREAT_BAY_COAST );
@@ -168,7 +170,8 @@ void LocationTable_Init() {
  locationTable[S_CLOCK_TOWN_BANK_REWARD_1]                         = ItemLocation::Base       (0x6F, 0x48, false, "SCT Bank Reward 1 (200)",                                  S_CLOCK_TOWN_BANK_REWARD_1,                     PROGRESSIVE_WALLET,           {Category::cSouthClockTown,Category::cDayOne, Category::cMainInventory, Category::cNoOcarinaStart},                                                   SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_S_CLOCK_TOWN );
  locationTable[S_CLOCK_TOWN_BANK_REWARD_2]                         = ItemLocation::Base       (0x6F, 0x03, false, "SCT Bank Reward 2 (500)",                                  S_CLOCK_TOWN_BANK_REWARD_2,                     BLUE_RUPEE,                   {Category::cSouthClockTown,Category::cDayOne},                                                                                                        SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_S_CLOCK_TOWN );
  locationTable[S_CLOCK_TOWN_BANK_REWARD_3]                         = ItemLocation::Base       (0x6F, 0x0C, false, "SCT Bank Reward 3 (1000)",                                 S_CLOCK_TOWN_BANK_REWARD_3,                     PIECE_OF_HEART,               {Category::cSouthClockTown, Category::cVanillaHeartPiece,Category::cDayOne},                                                                          SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_S_CLOCK_TOWN );
- 
+ locationTable[S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE]                  = ItemLocation::Base       (0x6F, 0x35, true,  "SCT Swamp Scrub Purchase",                                 S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE,              MAGIC_BEAN,                   {Category::cSouthClockTown, Category::cDekuScrub,Category::cDayOne, Category::cTradeItem, Category::cNoOcarinaStart},                                 SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_S_CLOCK_TOWN );
+
  //Snowhead
  locationTable[SNOWHEAD_GREAT_FAIRY]                               = ItemLocation::Base       (0x26, 0x2B, false, "SH Great Fairy",                                           SNOWHEAD_GREAT_FAIRY,                           PROGRESSIVE_MAGIC_METER,      {Category::cSnowhead, Category::cFairyFountain,Category::cDayOne},                                                                                    SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_SNOWHEAD );
  
@@ -191,6 +194,8 @@ void LocationTable_Init() {
  locationTable[SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR]                = ItemLocation::Base       (0x00, 0x35, true,  "SS Deku Scrub Merchant Purchase (Cleared)",                SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR,            MAGIC_BEAN,                   {Category::cSouthernSwamp, Category::cDekuScrub,Category::cDayOne, Category::cShop, Category::cAlternateCheck},                                       SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_SOUTHERN_SWAMP );
  locationTable[SWAMP_TOURIST_CENTER_ROOF_CLEAR]                    = ItemLocation::Collectable(0x00, 0x00, false, "SS Tourist Center Roof (Cleared)",                         SWAMP_TOURIST_CENTER_ROOF_CLEAR,                PIECE_OF_HEART,               {Category::cSouthernSwamp, Category::cVanillaHeartPiece,Category::cDayOne, Category::cAlternateCheck},                                                                                            SpoilerCollectionCheckGroup::GROUP_SOUTHERN_SWAMP );
  locationTable[SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR]                   = ItemLocation::Base       (0x00, 0x98, true,  "SS Deku Scrub Merchant Trade (Cleared)",                   SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR,               SWAMP_TITLE,                  {Category::cSouthernSwamp, Category::cDekuScrub,Category::cDayOne,Category::cTradeItem, Category::cAlternateCheck},                                   SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_SOUTHERN_SWAMP );
+ locationTable[SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE]                = ItemLocation::Base       (0x45, 0x1D, false, "SS Goron Scrub Merchant Purchase",                         SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE,            PROGRESSIVE_BOMB_BAG,         {Category::cSouthernSwamp, Category::cDekuScrub,Category::cDayOne, Category::cShop, Category::cAlternateCheck},                                       SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_SOUTHERN_SWAMP );
+ locationTable[SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR]          = ItemLocation::Base       (0x00, 0x1D, false, "SS Goron Scrub Merchant Purchase (Cleared)",               SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR,      PROGRESSIVE_BOMB_BAG,         {Category::cSouthernSwamp, Category::cDekuScrub,Category::cDayOne, Category::cShop, Category::cAlternateCheck},                                       SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_SOUTHERN_SWAMP );
 
  //Stock Pot Inn
  locationTable[STOCKPOTINN_RESERVATION]                            = ItemLocation::Base       (0x61, 0xA0, true,  "SPI Reservation",                                          STOCKPOTINN_RESERVATION,                        ROOM_KEY,                     {Category::cStockPotInn,Category::cDayOne, Category::cAnjuAndKafei},                                                       SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_STOCKPOTINN );
@@ -260,7 +265,7 @@ void LocationTable_Init() {
  //locationTable[ZORA_HALL_STAGE_LIGHTS]                             = ItemLocation::Base       (0x33, 0x00, true, "ZH Stage Lights",                                           ZORA_HALL_STAGE_LIGHTS,                         BLUE_RUPEE,                   {Category::cZoraHall},                                                                                                     SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_ZORA_HALL );
  //locationTable[ZORA_HALL_BAD_PHOTO_LULU]                           = ItemLocation::Base       (0x4C, 0x00, true, "ZH Bad Photograph of Lulu",                                 ZORA_HALL_SCRUB_TRADE,                          BLUE_RUPEE,                   {Category::cZoraHall, Category::cDekuScrub},                                                                               SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_ZORA_HALL );
  //locationTable[ZORA_HALL_GOOD_PHOTO_LULU]                          = ItemLocation::Base       (0x4C, 0x00, true, "ZH Good Photograph of Lulu",                                ZORA_HALL_SCRUB_TRADE,                          BLUE_RUPEE,                   {Category::cZoraHall, Category::cDekuScrub},                                                                               SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_ZORA_HALL );
- 
+ locationTable[ZORA_HALL_IKANA_SCRUB_PURCHASE]                     = ItemLocation::Base       (0x4C, 0x5D, true,  "ZH Deku Scrub Merchant Purchase (Ikana)",                  ZORA_HALL_IKANA_SCRUB_PURCHASE,                 BLUE_POTION_REFILL,           {Category::cZoraHall, Category::cDekuScrub,Category::cDayOne, Category::cShop},                                            SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_ZORA_HALL );
  
  /*-------------------
        --- DUNGEONS --
@@ -825,6 +830,7 @@ std::vector<LocationKey> overworldLocations = {
 //Goron Village
   GORON_VILLAGE_POWDER_KEG_CHALLENGE,
   GORON_VILLAGE_SCRUB_PURCHASE,
+  GORON_VILLAGE_ZORA_SCRUB_PURCHASE,
   GORON_VILLAGE_LENS_OF_TRUTH_CHEST,
   GORON_VILLAGE_SCRUB_TRADE,
   GORON_VILLAGE_LEDGE,
@@ -833,6 +839,7 @@ std::vector<LocationKey> overworldLocations = {
   LENS_CAVE_PURPLE_RUPEE,
   GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING,
   GORON_VILLAGE_SCRUB_PURCHASE_SPRING,
+  GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING,
   GORON_VILLAGE_SCRUB_TRADE_SPRING,
   GORON_VILLAGE_LEDGE_SPRING,
   GORON_SHOP_ITEM_1,
@@ -936,6 +943,7 @@ std::vector<LocationKey> overworldLocations = {
   DOGGY_RACETRACK_ROOF_CHEST,
 //S Clock Town
   S_CLOCK_TOWN_SCRUB_TRADE,
+  S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE,
   S_CLOCK_TOWN_POSTBOX,
   S_CLOCK_TOWN_CLOCK_TOWER_ENTRANCE,
   S_CLOCK_TOWN_STRAW_ROOF_CHEST,
@@ -961,7 +969,9 @@ std::vector<LocationKey> overworldLocations = {
   //SOUTHERN_SWAMP_PICTOGRAPH_STANDARD,
   //SOUTHERN_SWAMP_PICTOGRAPH_GOOD,
   SOUTHERN_SWAMP_SCRUB_PURCHASE,
+  SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE,
   SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR,
+  SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR,
   SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR,
   SWAMP_TOURIST_CENTER_ROOF_CLEAR,
   POTION_SHOP_ITEM_1,
@@ -1047,6 +1057,7 @@ std::vector<LocationKey> overworldLocations = {
   ZORA_HALL_EVAN,
   ZORA_HALL_LULU_ROOM_LEDGE,
   ZORA_HALL_SCRUB_PURCHASE,
+  ZORA_HALL_IKANA_SCRUB_PURCHASE,
   //ZORA_HALL_STAGE_LIGHTS,
   //ZORA_HALL_BAD_PHOTO_LULU,
   //ZORA_HALL_GOOD_PHOTO_LULU,
@@ -1241,6 +1252,17 @@ void CreateItemOverrides() {
  PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, loc24->GetPlacedItemKey());
  auto loc25 = Location(LAUNDRY_POOL_SF);
  PlaceItemInLocation(E_CLOCK_TOWN_SF, loc25->GetPlacedItemKey());
+ //Scrubsanity - make sure all scrubs have the same item in both locations
+ auto loc26 = Location(SOUTHERN_SWAMP_SCRUB_PURCHASE);
+ auto loc27 = Location(GORON_VILLAGE_SCRUB_PURCHASE);
+ auto loc28 = Location(ZORA_HALL_SCRUB_PURCHASE);
+ auto loc29 = Location(IKANA_CANYON_SCRUB_PURCHASE);
+ PlaceItemInLocation(S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE, loc26->GetPlacedItemKey());
+ PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE, loc27->GetPlacedItemKey());
+ PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR, loc27->GetPlacedItemKey());
+ PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE, loc28->GetPlacedItemKey());
+ PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING, loc28->GetPlacedItemKey());
+ PlaceItemInLocation(ZORA_HALL_IKANA_SCRUB_PURCHASE, loc29->GetPlacedItemKey());
 
   for (LocationKey locKey : allLocations) {
     auto loc = Location(locKey);

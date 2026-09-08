@@ -651,6 +651,7 @@ static void PlaceVanillaShopItems() {
 };
 
 static void PlaceVanillaScrubPurchases() {	
+	PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE, MAGIC_BEAN);
 	PlaceItemInLocation(GORON_VILLAGE_SCRUB_PURCHASE, PROGRESSIVE_BOMB_BAG);
 	PlaceItemInLocation(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, PROGRESSIVE_BOMB_BAG);
 	PlaceItemInLocation(IKANA_CANYON_SCRUB_PURCHASE, BLUE_POTION_REFILL);
@@ -729,9 +730,6 @@ void GenerateItemPool() {
 	PlaceItemInLocation(W_CLOCK_TOWN_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
 	PlaceItemInLocation(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
 	PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, PROGRESSIVE_BOMB_BAG);
-    	
-	//temp placement until shopsanity works
-	PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE, MAGIC_BEAN);
 
 	//Place Temp Items at alt locations so they don't get filled with important stuff - will be replaced later
 	PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_IN_WOODS, BLUE_RUPEE);
@@ -748,6 +746,13 @@ void GenerateItemPool() {
     PlaceItemInLocation(SWAMP_TOURIST_CENTER_ROOF_CLEAR, BLUE_RUPEE);
 	PlaceItemInLocation(STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST, BLUE_RUPEE);
 	PlaceItemInLocation(E_CLOCK_TOWN_SF, BLUE_RUPEE);
+	PlaceItemInLocation(S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE, BLUE_RUPEE);
+	PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE, BLUE_RUPEE);
+	PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR, BLUE_RUPEE);
+	PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE, BLUE_RUPEE);
+	PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING, BLUE_RUPEE);
+	PlaceItemInLocation(ZORA_HALL_IKANA_SCRUB_PURCHASE, BLUE_RUPEE);
+
 	//Check Non Dungeon Settings
 
 	//OCARINA SHUFFLE
@@ -999,6 +1004,7 @@ void GenerateItemPool() {
 		AddItemsToPool(ItemPool, normalRupees);
 		PlaceVanillaShopItems();
   	}
+	//SCRUBSANITY
 	if (Scrubsanity) {
 		AddItemsToPool(ItemPool, scrubPurchases);
 	}
