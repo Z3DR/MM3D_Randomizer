@@ -633,6 +633,42 @@ void CreateShopMessages() {
   }
 };
 
+void CreateBeanDaddyHint() {
+  CustomMessages::CreateMessageFromTextObject(0x92f, 0x930, 0x3FFFFFFF, 0xFF0000, Text{
+    /*NaEnglish*/"Do you need a #Mysterious Item#? ",
+    /*NaFrench */"",
+    /*NaSpanish*/"",
+    /*EuGerman */"",
+    // /*EuItalian*/"",
+    /*EuEnglish*/"",
+    /*EuFrench */"",
+    /*EuSpanish*/"",
+  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+};
+
+void CreateScrubPurchaseText() {
+  Text SwampScrubItem = ItemTable(Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText();
+  CustomMessages::CreateMessageFromTextObject(0x15e9, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
+    /*NaEnglish*/"Do you know what #" ,
+    /*NaFrench */"",
+    /*NaSpanish*/"",
+    /*EuGerman */"",
+    // /*EuItalian*/"",
+    /*EuEnglish*/"",
+    /*EuFrench */"",
+    /*EuSpanish*/"",} 
+    + SwampScrubItem + Text{
+      /*NaEnglish*/" are, sir? I'll sell you one for #20 Rupees#.",
+      /*NaFrench */"",
+      /*NaSpanish*/"",
+      /*EuGerman */"",
+      // /*EuItalian*/"",
+      /*EuEnglish*/"",
+      /*EuFrench */"",
+      /*EuSpanish*/"",
+    },{QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+};
+
 void CreateOtherHints() {
   // Create other hints for various texts
 
@@ -1044,6 +1080,9 @@ static Text BuildCountReq(const HintKey req, const Option& count) {
 void CreateAllHints() {
 
   //CreateGanonText();
+  if (Scrubsanity) {
+    CreateScrubPurchaseText();
+  }
 
   PlacementLog_Msg("\nNOW CREATING HINTS\n");
   const HintSetting& hintSetting = hintSettingTable[Settings::HintDistribution.Value<u8>()];

@@ -414,7 +414,7 @@ namespace Settings {
     &ShuffleTingleMaps,
     &ShuffleBombersNotebook,
     &ShuffleCows,
-    //&ShuffleMagicBeans,
+    &ShuffleMagicBeans,
     &ShuffleMoonItems,
     &ShuffleFierceDeity,
   };

@@ -326,6 +326,7 @@ namespace Logic {
 	bool CanTradeSwampDeed = false;
 	bool CanTradeMountainDeed = false;
 	bool CanTradeOceanDeed = false;
+	bool CanBuyBeans = false;
 
 	bool CanGoToMoon = false;
 	
@@ -520,12 +521,13 @@ namespace Logic {
 		HasExplosives = AnyBombBag || (BlastMask && AnyShield);//Shield required to use Blast Mask without killing the player
 		
 		//Item Helpers
-		AnyMagicBean = MagicBean || LimitlessBeans;
+		AnyMagicBean = (MagicBean && CanBuyBeans) || LimitlessBeans;
 		AnyWallet = Townwallet200 || OceanWallet500 || (ProgressiveWallet >= 1);
 		AnyBottle = WitchBottle || AlienBottle || BeaverRaceBottle || ArcheryBottle || GoronRaceBottle || ChateauBottle || UsableMysteryMilkBottle || HasBottle;
 		MagicMeter = (ProgressiveMagic >= 1) || MagicPower || ExtendedMagicPower;
 		Scarecrow = Hookshot && CanPlay(ScarecrowSong);
 		AnyPaper = (LandTitle || SwampTitle || OceanTitle || MountainTitle || LetterKafei || LetterMama);
+		CanBuyBeans = MagicBeanPack;
 		
 		//Bombs & Bombchus
 		AnyBombBag = (ProgressiveBombBag >= 1) || BombBag20 || TownBombBag || MountainBombBag;
@@ -887,6 +889,7 @@ namespace Logic {
 	CanTradeSwampDeed = false;
 	CanTradeMountainDeed = false;
 	CanTradeOceanDeed = false;
+	CanBuyBeans = false;
 	
 	ZoraEgg = 0;
 	CanGoToMoon = false;

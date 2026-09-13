@@ -876,12 +876,12 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(SOUTHERN_SWAMP_SCRUB_TRADE, {[] {return LandTitle;}}),
 		LocationAccess(SOUTHERN_SWAMP_SCRUB_PURCHASE, {[]{return DekuMask;}}),
-		LocationAccess(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE, {[] {return CanTradeSwampDeed;}}),
+		LocationAccess(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE, {[] {return CanTradeSwampDeed && LandTitle;}}),
 		LocationAccess(SOUTHERN_SWAMP_MUSIC_STATUE, {[] {return true;}}),
 		LocationAccess(SWAMP_TOURIST_CENTER_ROOF, {[] {return DekuMask && LandTitle;}}),
 		LocationAccess(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, {[] {return LandTitle && WoodfallClear;}}),
 		LocationAccess(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR, {[]{return DekuMask && WoodfallClear;}}),
-		LocationAccess(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR, {[] {return CanTradeSwampDeed && WoodfallClear;}}),
+		LocationAccess(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR, {[] {return CanTradeSwampDeed && LandTitle && WoodfallClear;}}),
 		LocationAccess(SWAMP_TOURIST_CENTER_ROOF_CLEAR, {[] {return DekuMask && LandTitle && WoodfallClear;}}),
 		//Gossip Stones
 		LocationAccess(SS_GOSSIP, {[] {return true;}}),
@@ -1023,7 +1023,7 @@ void AreaTable_Init() {
 
 	areaTable[DEKU_PALACE_BEAN_GROTTO] = Area("Deku Palace Bean Grotto", "Deku Palace Bean Grotto", NONE, {
 		//Events
-		EventAccess(&LimitlessBeans, {[]{return true;}}),
+		EventAccess(&LimitlessBeans, {[]{return CanBuyBeans;}}),
 		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
 		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
@@ -1240,14 +1240,14 @@ void AreaTable_Init() {
 		//Locations
 		LocationAccess(GORON_VILLAGE_POWDER_KEG_CHALLENGE, {[] {return GoronMask && (SnowheadClear || CanUse(FIRE_ARROWS));}}),
 		LocationAccess(GORON_VILLAGE_SCRUB_PURCHASE, {[] {return AnyWallet && GoronMask && (ProgressiveBombBag >= 2);}}),
-		LocationAccess(GORON_VILLAGE_ZORA_SCRUB_PURCHASE, {[] {return CanTradeMountainDeed;}}),
+		LocationAccess(GORON_VILLAGE_ZORA_SCRUB_PURCHASE, {[] {return CanTradeMountainDeed && SwampTitle;}}),
 		LocationAccess(GORON_VILLAGE_SCRUB_TRADE, {[] {return DekuMask && SwampTitle;}}),
 		LocationAccess(GORON_VILLAGE_LEDGE, {[] {return DekuMask && SwampTitle;}}),
 		LocationAccess(GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING, {[] {return GoronMask && (SnowheadClear || CanUse(FIRE_ARROWS));}}),
-		LocationAccess(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, {[] {return AnyWallet && GoronMask && (ProgressiveBombBag >= 2);}}),
-		LocationAccess(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING, {[] {return CanTradeMountainDeed;}}),
-		LocationAccess(GORON_VILLAGE_SCRUB_TRADE_SPRING, {[] {return DekuMask && SwampTitle;}}),
-		LocationAccess(GORON_VILLAGE_LEDGE_SPRING, {[] {return DekuMask && SwampTitle;}}),
+		LocationAccess(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, {[] {return AnyWallet && GoronMask && (ProgressiveBombBag >= 2) && SnowheadClear;}}),
+		LocationAccess(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING, {[] {return CanTradeMountainDeed && SwampTitle && SnowheadClear;}}),
+		LocationAccess(GORON_VILLAGE_SCRUB_TRADE_SPRING, {[] {return DekuMask && SwampTitle && SnowheadClear;}}),
+		LocationAccess(GORON_VILLAGE_LEDGE_SPRING, {[] {return DekuMask && SwampTitle && SnowheadClear;}}),
 	},
 	{
 		//Exits
@@ -1685,7 +1685,7 @@ void AreaTable_Init() {
 		LocationAccess(ZORA_HALL_SCRUB_TRADE, {[] {return GoronMask && MountainTitle;}}),
 		LocationAccess(ZORA_HALL_LULU_ROOM_LEDGE, {[] {return GoronMask && DekuMask && MountainTitle;}}),
 		LocationAccess(ZORA_HALL_SCRUB_PURCHASE, {[] {return ZoraMask;}}),
-		LocationAccess(ZORA_HALL_IKANA_SCRUB_PURCHASE, {[] {return HasBottle && CanTradeOceanDeed;}}),
+		LocationAccess(ZORA_HALL_IKANA_SCRUB_PURCHASE, {[] {return HasBottle && CanTradeOceanDeed && MountainTitle;}}),
 	},
 	{
 		//Exits

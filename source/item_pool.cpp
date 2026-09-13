@@ -797,26 +797,16 @@ void GenerateItemPool() {
 		PlaceVanillaCowMilk();
 	}
 
-	//MAGIC BEAN SHUFFLE--NEEDS WORK
-	PlaceItemInLocation(DEKU_PALACE_BEAN_SELLER, MAGIC_BEAN);//vanilla for now because replacing causes odd occurances where you cannot buy beans elsewhere
-	/*
-	if(ShuffleMagicBeans) { //does not shuffle bean salesman yet
-		AddItemToMainPool(MAGIC_BEAN);
+	//MAGIC BEAN SHUFFLE
+	if(ShuffleMagicBeans) {
+		AddItemToMainPool(MAGIC_BEAN_PACK);
 		if (ItemPoolValue.Is(ItemPoolSetting::ITEMPOOL_PLENTIFUL)){
-			AddItemToPool(PendingJunkPool, MAGIC_BEAN);
+			AddItemToPool(PendingJunkPool, MAGIC_BEAN_PACK);
 		}
 		IceTrapModels.push_back(0x75);
-
-		if(Shopsanity){
-			AddItemToMainPool(MAGIC_BEAN);
-			if (ItemPoolValue.Is(ItemPoolSetting::ITEMPOOL_PLENTIFUL)){
-			AddItemToPool(PendingJunkPool, MAGIC_BEAN);
-			}
-		}
 	} else {
-		PlaceItemInLocation(STONE_TOWER_INVERTED_LEFT_CHEST, MAGIC_BEAN);
-		if(!Shopsanity){PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE, MAGIC_BEAN);}
-	}*/
+		PlaceItemInLocation(DEKU_PALACE_BEAN_SELLER, MAGIC_BEAN_PACK);
+	}
 
 	//MAININVENTORY SHUFFLE
 	if(ShuffleMainInventory){

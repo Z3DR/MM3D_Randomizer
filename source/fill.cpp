@@ -522,6 +522,10 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
                 PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
                 itemsToPlace.push_back(item);
             }
+            else if (Location(selectedLocation)->IsCategory(Category::cShop) && (item == MAGIC_BEAN_PACK)) {
+                //Magic Bean Pack is what enables buying beans at shops so it cannot go into a shop itself
+                itemsToPlace.push_back(item);
+            }
             else {
                 PlaceItemInLocation(selectedLocation, item); 
                 //PlacementLog_Msg("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
