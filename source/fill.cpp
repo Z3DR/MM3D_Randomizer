@@ -1004,23 +1004,15 @@ int Fill() {
         if (Shopsanity){
             CitraPrint("Placing Shopsanity Items");
             ItemAndPrice init;
-            init.Name = Text{
-                /*NaEnglish*/"No Item",
-                /*NaFrench */"",
-                /*NaSpanish*/"",
-                /*EuGerman */"",
-                // /*EuItalian*/"",
-                /*EuEnglish*/"",
-                /*EuFrench */"",
-                /*EuSpanish*/"",
-            };
+            //                English    French         Spanish       German       Italian
+            init.Name = Text{"No Item", "Pas d'objet", "Sin objeto", "Kein Item", /*"Nessun Oggetto",*/ };
             init.Price = -1;
             init.Repurchaseable = false;
             NonShopItems.assign(21,init);
             for (size_t i = 0; i < ShopLocationLists.size(); i++) {
                 for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
                     int shopsanityPrice = GetShopPrice();
-                    NonShopItems[TransformShopIndex(i*8 + j)].Price = shopsanityPrice; //Set the price for the item to be passed
+                    NonShopItems[GetShopIndex(ShopLocationLists[i][j])].Price = shopsanityPrice; //Set the price for the item to be passed
                     Location(ShopLocationLists[i][j])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
                 }
             }

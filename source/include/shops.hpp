@@ -17,6 +17,5 @@ extern int GetShopPrice();
 extern s16 GetRandomScrubPrice();
 extern Text GetIceTrapName(u8 id);
 extern int GetShopIndex(LocationKey loc);
-extern int TransformShopIndex(int index);
 
 extern std::vector<ItemAndPrice> NonShopItems;

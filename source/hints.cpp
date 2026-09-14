@@ -535,7 +535,7 @@ void CreateShopMessages() {
     u32 messageID = shopEntries[i].first;
     u16 price = Location(shopEntries[i].second)->GetPrice();
     ItemKey itemKey = Location(shopEntries[i].second)->GetPlacedItemKey();
-    Text itemName = GetShopItemName(itemKey);
+    Text itemName = NonShopItems[GetShopIndex(shopEntries[i].second)].Name;
     Text shopIntro = Text{"#"}+itemName+Text{
       "&>>"
       // itemName.NAenglish.length()  <= 30 ?  ": " : "&>>",
@@ -636,13 +636,13 @@ void CreateShopMessages() {
 void CreateBeanDaddyHint() {
   CustomMessages::CreateMessageFromTextObject(0x92f, 0x930, 0x3FFFFFFF, 0xFF0000, Text{
     /*NaEnglish*/"Do you need a #Mysterious Item#? ",
-    /*NaFrench */"",
-    /*NaSpanish*/"",
-    /*EuGerman */"",
-    // /*EuItalian*/"",
-    /*EuEnglish*/"",
-    /*EuFrench */"",
-    /*EuSpanish*/"",
+    // /*NaFrench */"",
+    // /*NaSpanish*/"",
+    // /*EuGerman */"",
+    // // /*EuItalian*/"",
+    // /*EuEnglish*/"",
+    // /*EuFrench */"",
+    // /*EuSpanish*/"",
   }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 };
 
@@ -672,23 +672,23 @@ void CreateScrubPurchaseText() {
   Text SwampScrubItem = ItemTable(Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText();
   CustomMessages::CreateMessageFromTextObject(0x15e9, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*NaEnglish*/"Do you know what #" ,
-    /*NaFrench */"",
-    /*NaSpanish*/"",
-    /*EuGerman */"",
-    // /*EuItalian*/"",
-    /*EuEnglish*/"",
-    /*EuFrench */"",
-    /*EuSpanish*/"",} 
-    + SwampScrubItem + Text{
+    // /*NaFrench */"",
+    // /*NaSpanish*/"",
+    // /*EuGerman */"",
+    // // /*EuItalian*/"",
+    // /*EuEnglish*/"",
+    // /*EuFrench */"",
+    // /*EuSpanish*/"",
+  } + SwampScrubItem + Text{
       /*NaEnglish*/" are, sir? I'll sell you one for #",
-      /*NaFrench */"",
-      /*NaSpanish*/"",
-      /*EuGerman */"",
-      // /*EuItalian*/"",
-      /*EuEnglish*/"",
-      /*EuFrench */"",
-      /*EuSpanish*/"",} 
-      + Text{std::to_string(SwampPrice)} + RupeeText,{QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+      // /*NaFrench */"",
+      // /*NaSpanish*/"",
+      // /*EuGerman */"",
+      // // /*EuItalian*/"",
+      // /*EuEnglish*/"",
+      // /*EuFrench */"",
+      // /*EuSpanish*/"",
+  } + Text{std::to_string(SwampPrice)} + RupeeText,{QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 };
 
 void CreateOtherHints() {

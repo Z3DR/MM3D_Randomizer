@@ -1127,11 +1127,11 @@ void PlaceItemInLocation(LocationKey locKey, ItemKey item, bool applyEffectImmed
   }
 
   //If we're placing a non-shop item in a shop location, we want to record it for custom messages
- /* if (ItemTable(item).GetItemType() != ITEMTYPE_SHOP && loc->IsCategory(Category::cShop)) {
-    int index = TransformShopIndex(GetShopIndex(locKey));
+  if (ItemTable(item).GetItemType() != ITEMTYPE_SHOP && loc->IsCategory(Category::cShop)) {
+    int index = GetShopIndex(locKey);
     NonShopItems[index].Name = ItemTable(item).GetName();
     NonShopItems[index].Repurchaseable = ItemTable(item).GetItemType() == ITEMTYPE_REFILL || ItemTable(item).GetHintKey() == PROGRESSIVE_BOMBCHUS;
-  }*/
+  }
 
   loc->SetPlacedItem(item);
 }
@@ -1273,9 +1273,9 @@ void CreateItemOverrides() {
     auto loc = Location(locKey);
     ItemOverride_Value val = ItemTable(loc->GetPlacedItemKey()).Value();
     //If this is an ice trap in a shop, change the name based on what the model will look like
-    //if (loc->GetPlacedItemKey() == ICE_TRAP && loc->IsCategory(Category::cShop)) {
-      //NonShopItems[TransformShopIndex(GetShopIndex(locKey))].Name = GetIceTrapName(val.looksLikeItemId);
-    //}
+    if (loc->GetPlacedItemKey() == ICE_TRAP && loc->IsCategory(Category::cShop)) {
+      NonShopItems[GetShopIndex(locKey)].Name = GetIceTrapName(val.looksLikeItemId);
+    }
     overrides.insert({
       .key = loc->Key(),
       .value = val,
