@@ -9,6 +9,7 @@
 //#include "trial.hpp"
 #include "tinyxml2.h"
 #include "utils.hpp"
+#include "shops.hpp"
 
 #include <3ds.h>
 #include <cstdio>
@@ -302,12 +303,12 @@ static void WriteIngameSpoilerLog() {
         }
 
         auto locItem = loc->GetPlacedItemName().GetNAEnglish();
-        /*if (loc->IsCategory(Category::cShop)) {
+        if (loc->IsCategory(Category::cShop)) {
             if (loc->GetPlacedItemKey() == ICE_TRAP) {
                 locItem = NonShopItems[TransformShopIndex(GetShopIndex(key))].Name.GetNAEnglish();
             }
             locItem += ": " + std::to_string(loc->GetPrice()) + " Rupees";
-        }*/
+        }
         if (stringOffsetMap.find(locItem) == stringOffsetMap.end()) {
             if (spoilerStringOffset + locItem.size() + 1 >= SPOILER_STRING_DATA_SIZE) {
                 spoilerOutOfSpace = true;

@@ -8,7 +8,7 @@
 
 struct ItemAndPrice {
     Text Name;
-    int price;
+    int Price;
     bool Repurchaseable;
 };
 
