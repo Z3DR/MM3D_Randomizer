@@ -1027,7 +1027,7 @@ int Fill() {
             init.Repurchaseable = false;
             NonShopItems.assign(32,init);
             for (size_t i = 0; i < ShopLocationLists.size(); i++) {
-                for (int j = 0; j < ShopLocationLists[i].size(); j++) {
+                for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
                 int shopsanityPrice = GetShopPrice();
                 NonShopItems[TransformShopIndex(i*8 + j-1)].Price = shopsanityPrice; //Set the price for the item to be passed
                 Location(ShopLocationLists[i][j-1])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
