@@ -252,16 +252,12 @@ const std::array<ItemKey, 8> chestItems = {
 };
 
 const std::array<ItemKey, 9> songList = {
-	//SONG_OF_TIME,
-	//SONG_OF_DOUBLE_TIME,
-	//INVERTED_SONG_OF_TIME, //SoT not included yet
+	// Song of Soaring and Song of Time are not in this list
+	// As they are handled by different settings
 	SONG_OF_STORMS,
 	EPONAS_SONG,
 	SONG_OF_HEALING,
-	//SONG_OF_SOARING,
 	SONATA_OF_AWAKENING,
-	//LULLABY_INTRO,
-	//GORONS_LULLABY,
 	PROGRESSIVE_LULLABY,
 	PROGRESSIVE_LULLABY,
 	NEW_WAVE_BOSSA_NOVA,
@@ -491,12 +487,13 @@ std::array<ItemKey, 6> tingleMaps = {
 	ROMANI_RANCH_MAP,
 };
 
-std::array<ItemKey, 5> shopItems = { // Only include non junk items/potions/milk
+std::array<ItemKey, 6> shopItems = { // Only include non junk items/potions/milk
 	HEROS_SHIELD,
 	HEROS_SHIELD,
 	MAGIC_BEAN,
 	PROGRESSIVE_BOMB_BAG,
 	PROGRESSIVE_BOMB_BAG,
+	CHATEAU_ROMANI_REFILL,
 };
 void AddItemToPool(std::vector<ItemKey>& pool, ItemKey item, size_t count /*= 1*/) {
 	pool.insert(pool.end(), count, item);
@@ -636,6 +633,9 @@ static void PlaceVanillaShopItems() {
 	PlaceItemInLocation(TRADING_POST_ITEM_8, BUY_MAGIC_BEAN);
 	PlaceItemInLocation(BOMB_SHOP_ITEM_1, BUY_BOMBS_10);
 	PlaceItemInLocation(BOMB_SHOP_ITEM_2, BUY_BOMBCHU_10);	
+	PlaceItemInLocation(W_CLOCK_TOWN_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
+	PlaceItemInLocation(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
+	PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, PROGRESSIVE_BOMB_BAG);
 	PlaceItemInLocation(W_CLOCK_TOWN_BOMB_SHOP_GORON, POWDER_KEG);	
 	PlaceItemInLocation(POTION_SHOP_ITEM_1, BUY_BLUE_POTION);
 	PlaceItemInLocation(POTION_SHOP_ITEM_2, BUY_GREEN_POTION);
@@ -647,6 +647,8 @@ static void PlaceVanillaShopItems() {
 	PlaceItemInLocation(ZORA_SHOP_ITEM_2, BUY_ARROWS_10);
 	PlaceItemInLocation(ZORA_SHOP_ITEM_3, BUY_RED_POTION);
 	PlaceItemInLocation(MILK_ROAD_GORMAN_MILK_BUY, MILK);
+	PlaceItemInLocation(E_CLOCK_TOWN_MILK_BAR_MILK, MILK);
+	PlaceItemInLocation(E_CLOCK_TOWN_MILK_BAR_CHATEAU, CHATEAU_ROMANI_REFILL);
 	//other 2 scrub sales handled in beans and main inventory
 };
 
@@ -727,9 +729,6 @@ void GenerateItemPool() {
 	//Fixed Item Locations
 	PlaceItemInLocation(MAJORA, MAJORAS_MASK, true);
 	PlaceItemInLocation(WOODFALL_TEMPLE_DEKU_PRINCESS, DEKU_PRINCESS);
-	// PlaceItemInLocation(W_CLOCK_TOWN_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
-	// PlaceItemInLocation(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
-	// PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, PROGRESSIVE_BOMB_BAG);
 	PlaceItemInLocation(W_CLOCK_TOWN_BOMB_SHOP_GORON, POWDER_KEG);//Not Randomized for simplicity
 
 	//Place Temp Items at alt locations so they don't get filled with important stuff - will be replaced later
@@ -1043,12 +1042,7 @@ void GenerateItemPool() {
 
 	//DUNGEON STUFF 
 
-	//PlaceVanillaBossRemains(); //done in fill.cpp - RandomizeDungeonRewards()
-	//PlaceVanillaBossKeys(); //todo Keysanity settings
-	//PlaceVanillaSmallKeys(); // for now all vanilla
 	PlaceVanillaZoraEggs(); //for now all vanilla
-	//PlaceVanillaMapsAndCompasses();//for now all vanilla
-	//PlaceVanillaStrayFairies();//for now all vanilla
 
 	if(ShuffleHeartContainers) {
 		AddItemToMainPool(HEART_CONTAINER, 4);

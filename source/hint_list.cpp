@@ -1009,6 +1009,12 @@ void HintTable_Init() {
         },  //clear
             Text{"a Deku Stick", "un bâton mojo", "un palo Deku", "einen Deku-Stab"}
     );
+    hintTable[CHATEAU_ROMANI_REFILL] = HintText::Item({
+        //obscure
+        Text{"an adult beverage", "un breuvage adulte", "un trago para adultos", "ein Getränk für Erwachsene"}
+        }, //clear
+        Text{"Chateau Romani Refill", "de Cuvée Romani", "de Reserva Romani", "ein Chateau Romani"}
+    );
 
     /*----------------
     |   SHOP ITEMS   |
@@ -1177,18 +1183,18 @@ void HintTable_Init() {
         },  //clear
             Text{"the #postbox# contains", "la #boîte aux lettres# contient", "el buzón contiene", "der #Briefkasten# enthält"}
     );
-    //hintTable[E_CLOCK_TOWN_MILK_BAR_CHATEAU] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"**ENGLISH**", "un #spécialiste laitier# vend", "un lugar de copas vende", "ein #exklusives Getränk# entlohnt"}
-    //    },  //clear
-    //        Text{"the #Milk Bar# sells", "le #bar laitier# vend", "el Bar Lácteo vende", "die #Milchbar# verkauft"}
-    //);
-    //hintTable[E_CLOCK_TOWN_MILK_BAR_MILK] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"**ENGLISH**", "un #spécialiste laitier# vend", "un lugar de copas vende", "ein #Getränk# entlohnt"}
-    //    },  //clear
-    //        Text{"the #Milk Bar# sells", "le #bar laitier# vend", "el Bar Lácteo vende", "die #Milchbar# verkauft"}
-    //);
+    hintTable[E_CLOCK_TOWN_MILK_BAR_CHATEAU] = HintText::Sometimes({
+           //obscure
+           Text{"the #Bar# sells", "un #spécialiste laitier# vend", "un lugar de copas vende", "ein #exklusives Getränk# entlohnt"}
+       },  //clear
+           Text{"the #Milk Bar# sells", "le #bar laitier# vend", "el Bar Lácteo vende", "die #Milchbar# verkauft"}
+    );
+    hintTable[E_CLOCK_TOWN_MILK_BAR_MILK] = HintText::Sometimes({
+           //obscure
+           Text{"the #Bar# sells", "un #spécialiste laitier# vend", "un lugar de copas vende", "ein #Getränk# entlohnt"}
+       },  //clear
+           Text{"the #Milk Bar# sells", "le #bar laitier# vend", "el Bar Lácteo vende", "die #Milchbar# verkauft"}
+    );
     hintTable[GORMAN_TRACK_MYSTERY_MILK_QUEST] = HintText::Sometimes({
             //obscure
             Text{"an #upset stomach cure# rewards", "#soigner un mal de ventre# produit", "la cura a un mal estomacal recompensa con", "die #Heilung eines verstimmten Magens# entlohnt"}

@@ -869,6 +869,11 @@ void InitTrickNames() {
         Text{"Progressive Lab Ally",          "",        "",        "", },
         Text{"Progressive Lullabye",          "",        "",        "", },
     };
+    trickNameTable[0x92] = { /*Chateau Romani Refill*/
+        Text{"Fancy Milk",                    "",        "",        "", },
+        Text{"Adult Beverage",                "",        "",        "", },
+        Text{"Chateau LonLon",                "",        "",        "", },
+    };
 }
 
 // Generate a fake name for the ice trap based on the item it's displayed as

@@ -405,7 +405,6 @@ namespace Settings {
     &Tokensanity,
     &Shopsanity,
     &ShopsanityPrices,
-    &Scrubsanity,
     &ShuffleGFRewards,
   };
 
@@ -416,6 +415,7 @@ namespace Settings {
     &ShuffleBombersNotebook,
     &ShuffleCows,
     &ShuffleMagicBeans,
+    &Scrubsanity,
     &ShuffleMoonItems,
     &ShuffleFierceDeity,
   };

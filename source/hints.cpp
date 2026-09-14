@@ -631,6 +631,24 @@ void CreateShopMessages() {
         }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
     }
   }
+  // Custom Messages for Other Shops
+  // Milk Bar 
+  Text MilkBarMilkItem = GetShopItemName(Location(E_CLOCK_TOWN_MILK_BAR_MILK)->GetPlacedItemKey());
+  Text MilkBarChateauItem = GetShopItemName(Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->GetPlacedItemKey());
+  Location(E_CLOCK_TOWN_MILK_BAR_MILK)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 MilkBarMilkPrice = Location(E_CLOCK_TOWN_MILK_BAR_MILK)->GetPrice();
+  u16 MilkBarChateauPrice = Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->GetPrice();
+  //                  {"English",      "French",       "Spanish",        "German",        }; // "Italian"
+  Text MilkBarIntro = {"What'll it be?&", "",           "",               ""};
+  Text MilkSplit = {"    ##",       "    ##",       "    ##",         " - ##",         }; // "    ##"
+  Text MilkNext  = {" Rupees#&#",   " Rubis#&#",    " rupias#&#",     " Rubine#&#",    }; // " rupie#&"
+  Text MilkLeave = MilkNext + Text{"Nothing#",   "Non merci#",   "No, gracias#",   "Nein, danke!#", }; // "&#No, grazie#"
+
+  CustomMessages::CreateMessageFromTextObject(0x2b0b, 0xFFFF, 0x3fffffff, 0xff1001,
+  /*Text{">3#"}+*/MilkBarIntro+MilkBarMilkItem+MilkSplit+std::to_string(MilkBarMilkPrice)+MilkNext+MilkBarChateauItem+MilkSplit+std::to_string(MilkBarChateauPrice)+MilkLeave,
+  {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+  // Milk Road Gorman Bros Milk
 };
 
 void CreateBeanDaddyHint() {
@@ -648,13 +666,13 @@ void CreateBeanDaddyHint() {
 
 void CreateScrubPurchaseText() {
   //Set initial Scrub Prices
-  Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->SetShopsanityPrice(GetShopPrice());
+  Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
   u16 SwampPrice = Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPrice();
-  Location(GORON_VILLAGE_SCRUB_PURCHASE)->SetShopsanityPrice(GetShopPrice());
+  Location(GORON_VILLAGE_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
   u16 GoronPrice = Location(GORON_VILLAGE_SCRUB_PURCHASE)->GetPrice();
-  Location(ZORA_HALL_SCRUB_PURCHASE)->SetShopsanityPrice(GetShopPrice());
+  Location(ZORA_HALL_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
   u16 ZoraPrice = Location(ZORA_HALL_SCRUB_PURCHASE)->GetPrice();
-  Location(IKANA_CANYON_SCRUB_PURCHASE)->SetShopsanityPrice(GetShopPrice());
+  Location(IKANA_CANYON_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
   u16 IkanaPrice = Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPrice();
 
   Text RupeeText{" Rupees#&", " rubis#&", " rupias#&", " Rubine#&",/* " rupie#&"*/};

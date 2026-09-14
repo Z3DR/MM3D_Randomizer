@@ -382,8 +382,11 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(E_CLOCK_TOWN_GORMAN, {[] {return DekuMask && GoronMask && ZoraMask && RomanisMask;}}),
+		LocationAccess(E_CLOCK_TOWN_GORMAN, {[] {return DekuMask && GoronMask && ZoraMask && RomanisMask && Ocarina;}}),
 		LocationAccess(E_CLOCK_TOWN_AROMA_IN_BAR, {[] {return LetterMama && KafeisMask;}}),
+		LocationAccess(E_CLOCK_TOWN_MILK_BAR_MILK, {[] {return HasBottle;}}),
+		LocationAccess(E_CLOCK_TOWN_MILK_BAR_CHATEAU, {[] {return HasBottle;}}),
+
 	},
 	{
 		//Exits
