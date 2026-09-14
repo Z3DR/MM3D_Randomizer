@@ -647,6 +647,28 @@ void CreateBeanDaddyHint() {
 };
 
 void CreateScrubPurchaseText() {
+  //Set initial Scrub Prices
+  Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->SetShopsanityPrice(GetShopPrice());
+  u16 SwampPrice = Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPrice();
+  Location(GORON_VILLAGE_SCRUB_PURCHASE)->SetShopsanityPrice(GetShopPrice());
+  u16 GoronPrice = Location(GORON_VILLAGE_SCRUB_PURCHASE)->GetPrice();
+  Location(ZORA_HALL_SCRUB_PURCHASE)->SetShopsanityPrice(GetShopPrice());
+  u16 ZoraPrice = Location(ZORA_HALL_SCRUB_PURCHASE)->GetPrice();
+  Location(IKANA_CANYON_SCRUB_PURCHASE)->SetShopsanityPrice(GetShopPrice());
+  u16 IkanaPrice = Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPrice();
+
+  Text RupeeText{" Rupees#&", " rubis#&", " rupias#&", " Rubine#&",/* " rupie#&"*/};
+
+  //Set prices on moved Scrub locations
+  Location(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR)->SetShopsanityPrice(SwampPrice);
+  Location(S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE)->SetShopsanityPrice(SwampPrice);
+  Location(GORON_VILLAGE_SCRUB_PURCHASE_SPRING)->SetShopsanityPrice(GoronPrice);
+  Location(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE)->SetShopsanityPrice(GoronPrice);
+  Location(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR)->SetShopsanityPrice(GoronPrice);
+  Location(GORON_VILLAGE_ZORA_SCRUB_PURCHASE)->SetShopsanityPrice(ZoraPrice);
+  Location(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING)->SetShopsanityPrice(ZoraPrice);
+  Location(ZORA_HALL_IKANA_SCRUB_PURCHASE)->SetShopsanityPrice(IkanaPrice);
+
   Text SwampScrubItem = ItemTable(Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText();
   CustomMessages::CreateMessageFromTextObject(0x15e9, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*NaEnglish*/"Do you know what #" ,
@@ -658,15 +680,15 @@ void CreateScrubPurchaseText() {
     /*EuFrench */"",
     /*EuSpanish*/"",} 
     + SwampScrubItem + Text{
-      /*NaEnglish*/" are, sir? I'll sell you one for #20 Rupees#.",
+      /*NaEnglish*/" are, sir? I'll sell you one for #",
       /*NaFrench */"",
       /*NaSpanish*/"",
       /*EuGerman */"",
       // /*EuItalian*/"",
       /*EuEnglish*/"",
       /*EuFrench */"",
-      /*EuSpanish*/"",
-    },{QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+      /*EuSpanish*/"",} 
+      + Text{std::to_string(SwampPrice)} + RupeeText,{QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 };
 
 void CreateOtherHints() {

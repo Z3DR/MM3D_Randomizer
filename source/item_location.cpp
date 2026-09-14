@@ -1264,6 +1264,11 @@ void CreateItemOverrides() {
  PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING, loc28->GetPlacedItemKey());
  PlaceItemInLocation(ZORA_HALL_IKANA_SCRUB_PURCHASE, loc29->GetPlacedItemKey());
 
+ //Price adjustments for shopsanity - make sure shop prices are the same for both locations
+ u16 price1 = Location(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY)->GetPrice();
+ Location(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG)->SetPrice(price1);
+
+
   for (LocationKey locKey : allLocations) {
     auto loc = Location(locKey);
     ItemOverride_Value val = ItemTable(loc->GetPlacedItemKey()).Value();
