@@ -64,10 +64,10 @@ double CalculateCumulativeDistributionFunction(double input) {
 
 int GetShopPrice() {
     const int stepSize = 5;
-    if (Settings::ShopsanityPrices.Value<u8>() == 1) /*Affordable*/ {
+    if (Settings::ShopsanityPrices) /*Affordable*/ {
         // Affordable option is like affordable scrubs. All items cost 10 rupees.
         return 10;
-    } else if (Settings::ShopsanityPrices.Value<u8>() == 0) /*Random*/ {
+    } else if (!Settings::ShopsanityPrices) /*Random*/ {
         // "Original" Shopsanity price behaviour. Using the precomputed probability values from the ShopPriceProbability
         // array.
         double random = RandomDouble(); // Randomly generated probability value

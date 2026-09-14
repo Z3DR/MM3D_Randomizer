@@ -1012,6 +1012,7 @@ int Fill() {
         //Place Shop Items first
         NonShopItems = {};
         if (Shopsanity){
+            CitraPrint("Placing Shopsanity Items");
             ItemAndPrice init;
             init.Name = Text{
                 /*NaEnglish*/"No Item",
@@ -1025,12 +1026,12 @@ int Fill() {
             };
             init.Price = -1;
             init.Repurchaseable = false;
-            NonShopItems.assign(32,init);
+            NonShopItems.assign(21,init);
             for (size_t i = 0; i < ShopLocationLists.size(); i++) {
                 for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
-                int shopsanityPrice = GetShopPrice();
-                NonShopItems[TransformShopIndex(i*8 + j-1)].Price = shopsanityPrice; //Set the price for the item to be passed
-                Location(ShopLocationLists[i][j-1])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+                    int shopsanityPrice = GetShopPrice();
+                    NonShopItems[TransformShopIndex(i*8 + j)].Price = shopsanityPrice; //Set the price for the item to be passed
+                    Location(ShopLocationLists[i][j])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
                 }
             }
         }

@@ -404,6 +404,7 @@ namespace Settings {
     &ShuffleSongOfTime,
     &Tokensanity,
     &Shopsanity,
+    &ShopsanityPrices,
     &Scrubsanity,
     &ShuffleGFRewards,
   };

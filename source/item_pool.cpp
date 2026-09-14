@@ -727,9 +727,10 @@ void GenerateItemPool() {
 	//Fixed Item Locations
 	PlaceItemInLocation(MAJORA, MAJORAS_MASK, true);
 	PlaceItemInLocation(WOODFALL_TEMPLE_DEKU_PRINCESS, DEKU_PRINCESS);
-	PlaceItemInLocation(W_CLOCK_TOWN_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
-	PlaceItemInLocation(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
-	PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, PROGRESSIVE_BOMB_BAG);
+	// PlaceItemInLocation(W_CLOCK_TOWN_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
+	// PlaceItemInLocation(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY, PROGRESSIVE_BOMB_BAG);
+	// PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, PROGRESSIVE_BOMB_BAG);
+	PlaceItemInLocation(W_CLOCK_TOWN_BOMB_SHOP_GORON, POWDER_KEG);//Not Randomized for simplicity
 
 	//Place Temp Items at alt locations so they don't get filled with important stuff - will be replaced later
 	PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_IN_WOODS, BLUE_RUPEE);
