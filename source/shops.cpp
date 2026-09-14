@@ -15,6 +15,23 @@ using namespace Settings;
 
 std::vector<ItemAndPrice> NonShopItems = {};
 
+// Gives every shop slot a live "No Item" entry. Has to run before anything is placed: items reach shop
+// locations from GenerateItemPool onward, long before shopsanity assigns prices, and
+// PlaceItemInLocation records their names as they land.
+void ResetNonShopItems() {
+    ItemAndPrice init;
+    //                English    French         Spanish       German       Italian
+    init.Name = Text{"No Item", "Pas d'objet", "Sin objeto", "Kein Item", /*"Nessun Oggetto",*/ };
+    init.Price = -1;
+    init.Repurchaseable = false;
+
+    size_t slotCount = 0;
+    for (const auto& shopLocations : ShopLocationLists) {
+        slotCount += shopLocations.size();
+    }
+    NonShopItems.assign(slotCount, init);
+}
+
 static std::array<std::array<Text, 3>, 0xD5> trickNameTable; //Table of trick ice trap names
 bool initTrickNames = false; //indicates if trick ice trap names have been initialized yet
 
@@ -876,5 +893,5 @@ int GetShopIndex(LocationKey loc) {
                 n++;
         }
     }
-    return 0;
+    return -1;
 }

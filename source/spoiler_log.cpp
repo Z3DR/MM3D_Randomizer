@@ -304,8 +304,9 @@ static void WriteIngameSpoilerLog() {
 
         auto locItem = loc->GetPlacedItemName().GetNAEnglish();
         if (loc->IsCategory(Category::cShop)) {
-            if (loc->GetPlacedItemKey() == ICE_TRAP) {
-                locItem = NonShopItems[GetShopIndex(key)].Name.GetNAEnglish();
+            const int shopIndex = GetShopIndex(key);
+            if (loc->GetPlacedItemKey() == ICE_TRAP && shopIndex >= 0) {
+                locItem = NonShopItems[shopIndex].Name.GetNAEnglish();
             }
             locItem += ": " + std::to_string(loc->GetPrice()) + " Rupees";
         }

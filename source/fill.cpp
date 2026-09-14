@@ -785,6 +785,7 @@ static void RandomizeLinksPocket() {
 int VanillaFill() {
     //Perform minimum needed initialization
     // CitraPrint("Starting VanillaFill\n");
+    ResetNonShopItems();
     AreaTable_Init(); //Reset the world graph to intialize the proper locations
     ItemReset(); //Reset shops incase of shopsanity random
     GenerateLocationPool();
@@ -836,6 +837,7 @@ int Fill() {
         wothLocations.clear();
         ocarinaObtainable = false;
         songOfTimeObtainable = false;
+        ResetNonShopItems(); //Before any placement -- see ResetNonShopItems
         AreaTable_Init(); //Reset the world graph to intialize the proper locations
         ItemReset(); //Reset shops incase of shopsanity random
         GenerateLocationPool();
@@ -1000,15 +1002,9 @@ int Fill() {
         }
 
         //Place Shop Items first
-        NonShopItems = {};
+        //NonShopItems is already sized by ResetNonShopItems
         if (Shopsanity){
             CitraPrint("Placing Shopsanity Items");
-            ItemAndPrice init;
-            //                English    French         Spanish       German       Italian
-            init.Name = Text{"No Item", "Pas d'objet", "Sin objeto", "Kein Item", /*"Nessun Oggetto",*/ };
-            init.Price = -1;
-            init.Repurchaseable = false;
-            NonShopItems.assign(21,init);
             for (size_t i = 0; i < ShopLocationLists.size(); i++) {
                 for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
                     int shopsanityPrice = GetShopPrice();
