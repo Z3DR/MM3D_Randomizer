@@ -1131,7 +1131,7 @@ void PlaceItemInLocation(LocationKey locKey, ItemKey item, bool applyEffectImmed
     const int index = GetShopIndex(locKey);
     if (index >= 0) {
       NonShopItems[index].Name = ItemTable(item).GetName();
-      NonShopItems[index].Repurchaseable = ItemTable(item).GetItemType() == ITEMTYPE_REFILL || ItemTable(item).GetHintKey() == PROGRESSIVE_BOMBCHUS;
+      NonShopItems[index].Repurchaseable = ItemTable(item).GetItemType() == ITEMTYPE_REFILL;
     }
   }
 

@@ -533,8 +533,7 @@ void CreateShopMessages() {
 
   for (u8 i = 0; i < 21; i++) {
     u32 messageID = shopEntries[i].first;
-    u16 price = Location(shopEntries[i].second)->GetPrice();
-    ItemKey itemKey = Location(shopEntries[i].second)->GetPlacedItemKey();
+    u16 price = NonShopItems[GetShopIndex(shopEntries[i].second)].Price;
     Text itemName = NonShopItems[GetShopIndex(shopEntries[i].second)].Name;
     Text shopIntro = Text{"#"}+itemName+Text{
       "&>>"
@@ -550,7 +549,7 @@ void CreateShopMessages() {
       " Rupees#&", " rubis#&", " rupias#&", " Rubine#&",// " rupie#&"
     };
     // Descriptions when hovering over the item
-    if (ItemTable(itemKey).IsReusable()) {
+    if (NonShopItems[GetShopIndex(shopEntries[i].second)].Repurchaseable) {
       shopDescription = {
         /*NaEnglish*/"Special deal!&Buy as many as you want!",
         /*NaFrench */"Offre spéciale!&Achetez-en à volonté!",
