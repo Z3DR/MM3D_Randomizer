@@ -455,6 +455,9 @@ void CreateTingleHintText() {
         Text romaniMap    = GetShopItemName(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey());
         Text greatBayMap  = GetShopItemName(Location(TINGLE_GBC_GB)->GetPlacedItemKey());
         Text ikanaMap     = GetShopItemName(Location(TINGLE_GBC_ST)->GetPlacedItemKey());
+        u16 tingPriceTiny  =  5;
+        u16 tingPriceSmall = 20;
+        u16 tingPriceBig   = 40;
 
         //               {"English",      "French",       "Spanish",        "German",        }; // "Italian"
         Text tingSplit = {"    ##",       "    ##",       "    ##",         " - ##",         }; // "    ##"
@@ -463,33 +466,33 @@ void CreateTingleHintText() {
                      Text{"No thanks#",   "Non merci#",   "No, gracias#",   "Nein, danke!#", }; // "&#No, grazie#"
 
         // Clock Town message
-        CustomMessages::CreateMessageFromTextObject(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
-          Text{">3#"}+clockTownMap+tingSplit+"5"+tingNext+woodfallMap+tingSplit+"40"+tingLeave,
+        CustomMessages::CreateMessageFromTextObject(0x1D11, 0xFFFF, (0x3FF00000 | tingPriceTiny | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+clockTownMap+tingSplit+std::to_string(tingPriceTiny)+tingNext+woodfallMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Woodfall message
-        CustomMessages::CreateMessageFromTextObject(0x1D12, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          Text{">3#"}+woodfallMap+tingSplit+"20"+tingNext+snowHeadMap+tingSplit+"40"+tingLeave,
+        CustomMessages::CreateMessageFromTextObject(0x1D12, 0xFFFF, (0x3FF00000 | tingPriceSmall | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+woodfallMap+tingSplit+std::to_string(tingPriceSmall)+tingNext+snowHeadMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Snowhead message
-        CustomMessages::CreateMessageFromTextObject(0x1D13, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          Text{">3#"}+snowHeadMap+tingSplit+"20"+tingNext+romaniMap+tingSplit+"40"+tingLeave,
+        CustomMessages::CreateMessageFromTextObject(0x1D13, 0xFFFF, (0x3FF00000 | tingPriceSmall | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+snowHeadMap+tingSplit+std::to_string(tingPriceSmall)+tingNext+romaniMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Milk Road message
-        CustomMessages::CreateMessageFromTextObject(0x1D14, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          Text{">3#"}+romaniMap+tingSplit+"20"+tingNext+greatBayMap+tingSplit+"40"+tingLeave,
+        CustomMessages::CreateMessageFromTextObject(0x1D14, 0xFFFF, (0x3FF00000 | tingPriceSmall | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+romaniMap+tingSplit+std::to_string(tingPriceSmall)+tingNext+greatBayMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Great Bay message
-        CustomMessages::CreateMessageFromTextObject(0x1D15, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          Text{">3#"}+greatBayMap+tingSplit+"20"+tingNext+ikanaMap+tingSplit+"40"+tingLeave,
+        CustomMessages::CreateMessageFromTextObject(0x1D15, 0xFFFF, (0x3FF00000 | tingPriceSmall | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+greatBayMap+tingSplit+std::to_string(tingPriceSmall)+tingNext+ikanaMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Ikana message
-        CustomMessages::CreateMessageFromTextObject(0x1D16, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          Text{">3#"}+ikanaMap+tingSplit+"20"+tingNext+clockTownMap+tingSplit+"40"+tingLeave,
+        CustomMessages::CreateMessageFromTextObject(0x1D16, 0xFFFF, (0x3FF00000 | tingPriceSmall | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+ikanaMap+tingSplit+std::to_string(tingPriceSmall)+tingNext+clockTownMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
       }
 }
@@ -630,6 +633,7 @@ void CreateShopMessages() {
         }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
     }
   }
+
   // Custom Messages for Other Shops
   // Milk Bar 
   Text MilkBarMilkItem = GetShopItemName(Location(E_CLOCK_TOWN_MILK_BAR_MILK)->GetPlacedItemKey());
@@ -638,15 +642,21 @@ void CreateShopMessages() {
   Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
   u16 MilkBarMilkPrice = Location(E_CLOCK_TOWN_MILK_BAR_MILK)->GetPrice();
   u16 MilkBarChateauPrice = Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->GetPrice();
-  //                  {"English",      "French",       "Spanish",        "German",        }; // "Italian"
-  Text MilkBarIntro = {"What'll it be?&", "",           "",               ""};
-  Text MilkSplit = {"    ##",       "    ##",       "    ##",         " - ##",         }; // "    ##"
-  Text MilkNext  = {" Rupees#&#",   " Rubis#&#",    " rupias#&#",     " Rubine#&#",    }; // " rupie#&"
-  Text MilkLeave = MilkNext + Text{"Nothing#",   "Non merci#",   "No, gracias#",   "Nein, danke!#", }; // "&#No, grazie#"
+  //                  {"English",         "French",                 "Spanish",            "German",           }; // "Italian"
+  Text MilkBarIntro = {"What'll it be?&", "Qu'est-ce que ce s'ra?", "¿Qué quiere tomar?", "Was darf's sein?",    // "Cosa prendi?",
+                       "",                "",                       "¿Qué va a ser?",                         };
+  Text MilkSplit =    {": ##",            " : ##",                  ": ##",               ": ##",             }; // "    ##",
+  Text MilkNext  =    {" Rupees#&#",      " Rubis#&#",              " rupias#&#",         " Rubine#&#",       }; // " rupie#&#",
+  Text MilkLeave = MilkNext +
+                  Text{"Nothing#",        "Rien#",                  "Nada#",              "Nichts#",          }; // "Niente#",
 
-  CustomMessages::CreateMessageFromTextObject(0x2b0b, 0xFFFF, 0x3fffffff, 0xff1001,
-  /*Text{">3#"}+*/MilkBarIntro+MilkBarMilkItem+MilkSplit+std::to_string(MilkBarMilkPrice)+MilkNext+MilkBarChateauItem+MilkSplit+std::to_string(MilkBarChateauPrice)+MilkLeave,
-  {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+  CustomMessages::CreateMessageFromTextObject(0x2b0b, 0xFFFF, (0x3FF00000 | MilkBarMilkPrice | (MilkBarChateauPrice << 10)), 0xff1001,
+  MilkBarIntro+">3#"+MilkBarMilkItem+MilkSplit+std::to_string(MilkBarMilkPrice)+MilkNext+MilkBarChateauItem+MilkSplit+std::to_string(MilkBarChateauPrice)+MilkLeave,
+  {QM_GREEN, QM_MAGENTA, QM_GREEN, QM_MAGENTA, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+  // CustomMessages::CreateMessage(0x614A, 0xFFFF, (0x3FFFFFFF), 0xff0000,
+  // {"With all due respect, sir, I think you've had enough of that."},
+  // {}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL); // For refusing purchase
+
   // Milk Road Gorman Bros Milk
 };
 
@@ -674,7 +684,27 @@ void CreateScrubPurchaseText() {
   Location(IKANA_CANYON_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
   u16 IkanaPrice = Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPrice();
 
-  Text RupeeText{" Rupees#&", " rubis#&", " rupias#&", " Rubine#&",/* " rupie#&"*/};
+  Text RupeeText{" Rupees#.", " rubis#.", " rupias#.", " Rubine#.",/* " rupie#.",*/ };
+  Text ScrubSellTextOne = Text{
+    /*NaEnglish*/"So, I'll sell you #" ,
+    // /*NaFrench */"",
+    // /*NaSpanish*/"",
+    // /*EuGerman */"",
+    // // /*EuItalian*/"",
+    // /*EuEnglish*/"",
+    // /*EuFrench */"",
+    // /*EuSpanish*/"",
+  };
+  Text ScrubSellTextTwo = Text{
+      /*NaEnglish*/"# for #",
+      // /*NaFrench */"",
+      // /*NaSpanish*/"",
+      // /*EuGerman */"",
+      // // /*EuItalian*/"",
+      // /*EuEnglish*/"",
+      // /*EuFrench */"",
+      // /*EuSpanish*/"",
+  };
 
   //Set prices on moved Scrub locations
   Location(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR)->SetShopsanityPrice(SwampPrice);
@@ -686,26 +716,26 @@ void CreateScrubPurchaseText() {
   Location(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING)->SetShopsanityPrice(ZoraPrice);
   Location(ZORA_HALL_IKANA_SCRUB_PURCHASE)->SetShopsanityPrice(IkanaPrice);
 
-  Text SwampScrubItem = ItemTable(Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText();
-  CustomMessages::CreateMessageFromTextObject(0x15e9, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
-    /*NaEnglish*/"Do you know what #" ,
-    // /*NaFrench */"",
-    // /*NaSpanish*/"",
-    // /*EuGerman */"",
-    // // /*EuItalian*/"",
-    // /*EuEnglish*/"",
-    // /*EuFrench */"",
-    // /*EuSpanish*/"",
-  } + SwampScrubItem + Text{
-      /*NaEnglish*/" are, sir? I'll sell you one for #",
-      // /*NaFrench */"",
-      // /*NaSpanish*/"",
-      // /*EuGerman */"",
-      // // /*EuItalian*/"",
-      // /*EuEnglish*/"",
-      // /*EuFrench */"",
-      // /*EuSpanish*/"",
-  } + Text{std::to_string(SwampPrice)} + RupeeText,{QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  Text SwampScrubSellText = ScrubSellTextOne + ItemTable(Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
+                          + ScrubSellTextTwo + std::to_string(SwampPrice) + RupeeText;
+  CustomMessages::CreateMessageFromTextObject(0x15E9, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x15F3, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+
+  // This doesn't require bomb bag, right??
+  Text GoronScrubSellText = ScrubSellTextOne + ItemTable(Location(GORON_VILLAGE_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
+                          + ScrubSellTextTwo + std::to_string(GoronPrice) + RupeeText;
+  CustomMessages::CreateMessageFromTextObject(0x1600, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1606, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+
+  Text ZoraScrubSellText = ScrubSellTextOne + ItemTable(Location(ZORA_HALL_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
+                         + ScrubSellTextTwo + std::to_string(ZoraPrice) + RupeeText;
+  CustomMessages::CreateMessageFromTextObject(0x1612, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1617, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+
+  Text IkanaScrubSellText = ScrubSellTextOne + ItemTable(Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
+                          + ScrubSellTextTwo + std::to_string(IkanaPrice) + RupeeText;
+  CustomMessages::CreateMessageFromTextObject(0x1626, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x162D, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 };
 
 void CreateOtherHints() {
