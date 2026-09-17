@@ -603,7 +603,7 @@ string_view skipHMSCutsceneDesc     = "Skips the initial Happy Mask Salesman's c
 string_view skipDarmaniCutsceneDesc = "Skips the Song of Healing Cutscene for Darmani";    //
 string_view skipMikauCutsceneDesc   = "Skips the Song of Healing Cutscene for Mikau";      //
 string_view skipGiantCutsceneDesc   = "Skips the cutscene of the giants catching the moon";//
-string_view skipPiratesCutsceneDesc = "Skips the cutscene of the pirates attempting to enter\n"//
+string_view skipPirateCutsceneDesc = "Skips the cutscene of the pirates attempting to enter\n"//
                                       "Great Bay Temple after hookshotting onto the turtle";//
 /*------------------------------                                                           //
 |        REGION OPTIONS        |                                                           //

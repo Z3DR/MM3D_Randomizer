@@ -225,7 +225,7 @@ extern string_view skipHMSCutsceneDesc;
 extern string_view skipDarmaniCutsceneDesc;
 extern string_view skipMikauCutsceneDesc;
 extern string_view skipGiantCutsceneDesc;
-extern string_view skipPiratesCutsceneDesc;
+extern string_view skipPirateCutsceneDesc;
 extern string_view skipBombersMinigameDesc;
 extern string_view NARegionDesc;
 extern string_view EURegionDesc;

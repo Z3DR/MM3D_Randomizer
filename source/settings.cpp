@@ -582,7 +582,7 @@ namespace Settings {
   Option SkipDarmaniCutscenes = Option::Bool("Skip Darmani Cutscenes",  {"Don't Skip", "Skip"}, {skipDarmaniCutsceneDesc});
   Option SkipMikauCutscenes   = Option::Bool("Skip Mikau Cutscenes",  {"Don't Skip", "Skip"},   {skipMikauCutsceneDesc});
   Option SkipGiantCutscenes   = Option::Bool("Skip Giants Cutscene", {"Don't Skip", "Skip"}, {skipGiantCutsceneDesc});
-  Option SkipPirateCutscenes  = Option::Bool("Skip Pirate Cutscenes", {"Don't Skip", "Skip"}, {skipPirateCutscenesDesc});
+  Option SkipPirateCutscenes  = Option::Bool("Skip Pirate Cutscenes", {"Don't Skip", "Skip"}, {skipPirateCutsceneDesc});
   std::vector<Option *> cutsceneOptions = {
     &SkipHMSCutscenes,
     &SkipDarmaniCutscenes,
