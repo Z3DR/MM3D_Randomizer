@@ -404,7 +404,7 @@ void InitTrickNames() {
         Text{"Mask of Troupe",                "",        "",        "", },
         Text{"Mask of Tooth",                 "",        "",        "", },
     };
-    trickNameTable[0xBA] = { /*Fishing Pass*/
+    trickNameTable[(u32)GetItemID::GI_FISHING_HOLE_PASS] = {
         Text{"Fishing Voucher",               "",        "",        "", },
         Text{"Finishing Pass",                "",        "",        "", },
         Text{"Fishing Bass",                  "",        "",        "", },
@@ -759,7 +759,7 @@ void InitTrickNames() {
         Text{"Hurt Container",                "",        "",        "", },
         Text{"Heart Contained",               "",        "",        "", },
     };
-    trickNameTable[0x92] = { /*Milk*/
+    trickNameTable[(u32)GetItemID::GI_BOTTLE_MILK_REFILL] = {
         Text{"Lactose Liquid",                "",        "",        "", },
         Text{"Mink",                          "",        "",        "", },
         Text{"Miik",                          "",        "",        "", },
@@ -794,22 +794,22 @@ void InitTrickNames() {
         Text{"Bombtschüss (20)",              "",        "",        "", },
         Text{"Bombshoes (20)",                "",        "",        "", },
     };
-    trickNameTable[0x1E] = { /*Arrows (10)*/
+    trickNameTable[(u32)GetItemID::GI_ARROWS_SMALL] = { // (10)
         Text{"Bolts (10)",                    "",        "",        "", },
         Text{"Errors (10)",                   "",        "",        "", },
         Text{"Arrows (0)",                    "",        "",        "", },
     };
-    trickNameTable[0x1F] = { /*Arrows (30)*/
+    trickNameTable[(u32)GetItemID::GI_ARROWS_MEDIUM] = { // (30)
         Text{"Bolts (30)",                    "",        "",        "", },
         Text{"Errors (30)",                   "",        "",        "", },
         Text{"Arrows (Enough)",               "",        "",        "", },
     };
-    trickNameTable[0x20] = { /*Arrows (40)*/
+    trickNameTable[(u32)GetItemID::GI_ARROWS_LARGE] = { // (40)
         Text{"Bolts (40)",                    "",        "",        "", },
         Text{"Errors (40)",                   "",        "",        "", },
         Text{"Arrows (Several)",              "",        "",        "", },
     };
-    trickNameTable[0x21] = { /*Arrows (50)*/
+    trickNameTable[(u32)GetItemID::GI_ARROWS_LARGEST] = { // (50)
         Text{"Bolts (50)",                    "",        "",        "", },
         Text{"Errors (50)",                   "",        "",        "", },
         Text{"Arrows (Plenty)",               "",        "",        "", },
@@ -823,16 +823,6 @@ void InitTrickNames() {
         Text{"Flashbangs (10)",               "",        "",        "", },
         Text{"Deku Seeds (10)",               "",        "",        "", },
         Text{"Deku Nest (10)",                "",        "",        "", },
-    };
-    trickNameTable[(u32)GetItemID::GI_ARROWS_MEDIUM] = { /*Arrows (10) again?*/
-        Text{"Bolts (10)",                    "",        "",        "", },
-        Text{"Errors (10)",                   "",        "",        "", },
-        Text{"Arrows (0)",                    "",        "",        "", },
-    };
-    trickNameTable[(u32)GetItemID::GI_ARROWS_LARGE] = { /*Arrows (30)*/
-        Text{"Bolts (30)",                    "",        "",        "", },
-        Text{"Errors (30)",                   "",        "",        "", },
-        Text{"Arrows (Enough)",               "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_FAIRY] = {
         Text{"Sprite",                        "",        "",        "", },
@@ -869,10 +859,10 @@ void InitTrickNames() {
         Text{"Progressive Lab Ally",          "",        "",        "", },
         Text{"Progressive Lullabye",          "",        "",        "", },
     };
-    trickNameTable[0x92] = { /*Chateau Romani Refill*/
-        Text{"Fancy Milk",                    "",        "",        "", },
-        Text{"Adult Beverage",                "",        "",        "", },
-        Text{"Chateau LonLon",                "",        "",        "", },
+    trickNameTable[0x91] = { /*Chateau Romani Refill*/
+        Text{"Fancy Milk Refill",             "",        "",        "", },
+        Text{"Adult Beverage Refill",         "",        "",        "", },
+        Text{"Chateau LonLon Refill",         "",        "",        "", },
     };
 }
 
