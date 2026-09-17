@@ -680,6 +680,13 @@ void CreateShopMessages() {
   // {}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL); // For refusing purchase
 
   // Milk Road Gorman Bros Milk
+  u16 gormanMilkPrice = 50;
+  CustomMessages::CreateMessageFromTextObject(0x3466, 0xFFFF, (0x3FFFFC00 | gormanMilkPrice), 0xff1001, Text{"#"} + std::to_string(gormanMilkPrice) + Text{
+    " Rupees# for one #Mystery Item#&"
+  } + ">2" + Text{
+    "#I'll buy it&No thanks#"
+  }, {QM_MAGENTA, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+
 };
 
 void CreateBeanDaddyHint() {
