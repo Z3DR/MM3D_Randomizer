@@ -603,6 +603,8 @@ string_view skipHMSCutsceneDesc     = "Skips the initial Happy Mask Salesman's c
 string_view skipDarmaniCutsceneDesc = "Skips the Song of Healing Cutscene for Darmani";    //
 string_view skipMikauCutsceneDesc   = "Skips the Song of Healing Cutscene for Mikau";      //
 string_view skipGiantCutsceneDesc   = "Skips the cutscene of the giants catching the moon";//
+string_view skipPiratesCutsceneDesc = "Skips the cutscene of the pirates attempting to enter\n"//
+                                      "Great Bay Temple after hookshotting onto the turtle";//
 /*------------------------------                                                           //
 |        REGION OPTIONS        |                                                           //
 ------------------------------*/                                                           //
@@ -679,3 +681,12 @@ string_view ingameSwimmingControlsDesc = "Sets the Zora swimming control scheme 
                                         "file. \"Vanilla\" is the game's default.";        //
 string_view ingameAdjustVolumeDesc    = "Sets the overall volume on a new file.\n"         //
                                         "\"Vanilla\" is the game's default.";              //
+string_view ingameMuteSoundDesc       = "Enables or Disables Sound Effects on a new file.";//
+string_view ingameMuteBGMDesc         = "Enables or Disables Background Music on a new file.";//
+string_view ingameFastSongsDesc       = "Allows for Adjusting length of playback of songs.\n"//
+                                        "Don't Skip = Vanilla,\n"                          //
+                                        "Skip allows for faster movement after playing song\n"//
+                                        "With or without song audio playback.";            //
+string_view ingameShuffleSFXDesc      = "Shuffle Sound Effects: \n"                        //
+                                        "Categorical = SFX are shuffled amongst similar sounds\n"//
+                                        "Chaos = All SFX shuffled with no restrictions.";  //
