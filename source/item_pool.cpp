@@ -803,7 +803,7 @@ void GenerateItemPool() {
 		if (ItemPoolValue.Is(ItemPoolSetting::ITEMPOOL_PLENTIFUL)){
 			AddItemToPool(PendingJunkPool, MAGIC_BEAN_PACK);
 		}
-		IceTrapModels.push_back(0x75);
+		IceTrapModels.push_back(0x35); // GI_MAGIC_BEAN
 	} else {
 		PlaceItemInLocation(DEKU_PALACE_BEAN_SELLER, MAGIC_BEAN_PACK);
 	}
@@ -975,6 +975,7 @@ void GenerateItemPool() {
 		IceTrapModels.push_back(0x8F); // GI_MASK_KAFEIS
 		IceTrapModels.push_back(0x85); // GI_MASK_COUPLES
 		IceTrapModels.push_back(0xAA); // GI_LETTER_TO_KAFEI
+		IceTrapModels.push_back(0xAB); // GI_PENDANT_OF_MEMORIES
 		IceTrapModels.push_back(0xA1); // GI_LETTER_TO_MAMA
 		IceTrapModels.push_back(0xA0); // GI_ROOM_KEY
 	} else {
@@ -1109,6 +1110,10 @@ void GenerateItemPool() {
 		AddItemToMainPool(SH_STRAY_FAIRY, 15);
 		AddItemToMainPool(GBT_STRAY_FAIRY, 15);
 		AddItemToMainPool(ST_STRAY_FAIRY, 15);
+		IceTrapModels.push_back(0xBC); // Woodfall Stray
+		IceTrapModels.push_back(0xBD); // Snowhead Stray
+		IceTrapModels.push_back(0xBE); // Great Bay Stray
+		IceTrapModels.push_back(0xBF); // Ikana Stray
 	}
 
 	//CLOCK TOWN STRAY FAIRY (Separated because it's not in a dungeon)
@@ -1117,6 +1122,7 @@ void GenerateItemPool() {
 	}
 	else {
 		AddItemToMainPool(CT_STRAY_FAIRY, 1);
+		IceTrapModels.push_back(0xBB); // Clock Town Stray
 	}
 
 	//DungeonRewards

@@ -660,10 +660,10 @@ void CreateShopMessages() {
   // Milk Bar 
   Text MilkBarMilkItem = GetShopItemName(Location(E_CLOCK_TOWN_MILK_BAR_MILK)->GetPlacedItemKey());
   Text MilkBarChateauItem = GetShopItemName(Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->GetPlacedItemKey());
-  Location(E_CLOCK_TOWN_MILK_BAR_MILK)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
-  Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
-  u16 MilkBarMilkPrice = Location(E_CLOCK_TOWN_MILK_BAR_MILK)->GetPrice();
-  u16 MilkBarChateauPrice = Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->GetPrice();
+  // Location(E_CLOCK_TOWN_MILK_BAR_MILK)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  // Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 MilkBarMilkPrice = 20;// Location(E_CLOCK_TOWN_MILK_BAR_MILK)->GetPrice();
+  u16 MilkBarChateauPrice = 200;// Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->GetPrice();
   //                  {"English",         "French",                 "Spanish",            "German",           }; // "Italian"
   Text MilkBarIntro = {"What'll it be?&", "Qu'est-ce que ce s'ra?", "¿Qué quiere tomar?", "Was darf's sein?",    // "Cosa prendi?",
                        "",                "",                       "¿Qué va a ser?",                         };
@@ -697,14 +697,14 @@ void CreateBeanDaddyHint() {
 
 void CreateScrubPurchaseText() {
   //Set initial Scrub Prices
-  Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
-  u16 SwampPrice = Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPrice();
-  Location(GORON_VILLAGE_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
-  u16 GoronPrice = Location(GORON_VILLAGE_SCRUB_PURCHASE)->GetPrice();
-  Location(ZORA_HALL_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
-  u16 ZoraPrice = Location(ZORA_HALL_SCRUB_PURCHASE)->GetPrice();
-  Location(IKANA_CANYON_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
-  u16 IkanaPrice = Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPrice();
+  // Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 SwampPrice = 10;// Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPrice();
+  // Location(GORON_VILLAGE_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 GoronPrice = 200;// Location(GORON_VILLAGE_SCRUB_PURCHASE)->GetPrice();
+  // Location(ZORA_HALL_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 ZoraPrice = 40;// Location(ZORA_HALL_SCRUB_PURCHASE)->GetPrice();
+  // Location(IKANA_CANYON_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 IkanaPrice = 100;// Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPrice();
 
   Text RupeeText{" Rupees#.", " rubis#.", " rupias#.", " Rubine#.",/* " rupie#.",*/ };
   Text ScrubSellTextOne = Text{
