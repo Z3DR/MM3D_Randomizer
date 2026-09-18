@@ -255,3 +255,5 @@ extern string_view ingameMuteSoundDesc;
 extern string_view ingameMuteBGMDesc;
 extern string_view ingameFastSongsDesc;
 extern string_view ingameShuffleSFXDesc;
+extern string_view ingameShuffleFootstepsDesc;
+extern string_view ingameShuffleLinkVoiceDesc;

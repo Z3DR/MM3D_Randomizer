@@ -540,7 +540,9 @@ string_view coloredBossKeysDesc       = "**OPTION CURRENTLY WIP**\n"            
 |        SHUFFLE MUSIC         |                                                           //
 ------------------------------*/                                                           //
 string_view musicRandoDesc           = "**OPTION CURRENTLY WIP**\n"                        //
-                                       "Randomize the music, fanfare, and sounds in game"; //
+                                       "Randomize the music and fanfares in game. Tracks\n"//
+                                       "only trade with their own kind: area themes,\n"   //
+                                       "item fanfares, ocarina songs, ...";                //
 string_view shuffleBGMDesc           = "**OPTION CURRENTLY WIP**\n"                        //
                                        "Randomize area background music";                  //
 string_view fanfaresOffDesc          = "**OPTION CURRENTLY WIP**\n"                        //
@@ -687,8 +689,15 @@ string_view ingameFastSongsDesc       = "Allows for Adjusting length of playback
                                         "Don't Skip = Vanilla,\n"                          //
                                         "Skip allows for faster movement after playing song\n"//
                                         "With or without song audio playback.";            //
-string_view ingameShuffleSFXDesc      = "Shuffle Sound Effects: \n"                        //
-                                        "Categorical = SFX are shuffled amongst similar sounds\n"//
-                                        "Chaos = All SFX shuffled with no restrictions.\n"//
-                                        "Link Only = Only Link's actions, items and voice\n"//
-                                        "are shuffled, each among its own kind.";          //
+string_view ingameShuffleSFXDesc      = "Shuffle Sound Effects (Link's own sounds are\n"  //
+                                        "left alone, see the two options below):\n"        //
+                                        "Categorical = SFX are shuffled amongst similar\n"  //
+                                        "sounds: cries, footsteps, doors, ...\n"           //
+                                        "Chaos = All shuffled SFX in one pool.";            //
+string_view ingameShuffleFootstepsDesc = "Shuffle Link's footsteps, jumps, landings and\n" //
+                                        "moves such as the Deku spin among themselves\n"   //
+                                        "when Shuffle Sound Effects is on. Can be changed\n"//
+                                        "in the in-game menu.";                             //
+string_view ingameShuffleLinkVoiceDesc = "Shuffle Link's voice among his own lines when\n" //
+                                        "Shuffle Sound Effects is on. Each form keeps its\n"//
+                                        "own voice. Can be changed in the in-game menu.";  //

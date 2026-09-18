@@ -7,6 +7,7 @@
 #include "fill.hpp"
 #include "item_location.hpp"
 #include "music.hpp"
+#include "sound_effects.hpp"
 #include "random.hpp"
 #include "version.hpp"
 #include "setting_descriptions.hpp"
@@ -510,7 +511,9 @@ namespace Settings {
   Option IngameMuteBGM           = Option::Bool("Mute Background Music", {"Off", "On"},                                                          {ingameMuteBGMDesc});
   Option IngameFastSongs         = Option::U8("Fast Ocarina Songs",      {"Don't Skip", "Skip (No Audio)", "Skip (W/ Audio)"},                   {ingameFastSongsDesc});
   Option ShuffleMusic            = Option::U8("Shuffle Music",           {"Off", "BGM", "Fanfares", "All"},                                      {musicRandoDesc});
-  Option IngameShuffleSFX        = Option::U8("Shuffle Sound Effects",   {"Off", "Categorical", "Chaos", "Link Only"},                           {ingameShuffleSFXDesc});
+  Option IngameShuffleSFX        = Option::U8("Shuffle Sound Effects",   {"Off", "Categorical", "Chaos"},                                        {ingameShuffleSFXDesc});
+  Option IngameShuffleFootsteps  = Option::Bool("  Shuffle Footsteps",  {"Off", "On"},                                                          {ingameShuffleFootstepsDesc});
+  Option IngameShuffleLinkVoice  = Option::Bool("  Shuffle Link's Voice", {"Off", "On"},                                                        {ingameShuffleLinkVoiceDesc});
 
   std::vector<Option*> ingameOptions = {
     &IngameLTargeting,
@@ -524,6 +527,8 @@ namespace Settings {
     &IngameMuteBGM,
     &ShuffleMusic,
     &IngameShuffleSFX,
+    &IngameShuffleFootsteps,
+    &IngameShuffleLinkVoice,
   };
 
   std::vector<Option*> comfortOptions = {
@@ -1011,6 +1016,8 @@ namespace Settings {
     ctx.muteBackgroundMusic = (IngameMuteBGM) ? 1 : 0;
     ctx.shuffleMusic = ShuffleMusic.Value<u8>();
     ctx.shuffleSFX = IngameShuffleSFX.Value<u8>();
+    ctx.shuffleSFXFootsteps = (IngameShuffleFootsteps) ? 1 : 0;
+    ctx.shuffleSFXLinkVoice = (IngameShuffleLinkVoice) ? 1 : 0;
     
     //CustomButtons
     // CitraPrint("Adding Custom Inputs to SettingsContext");
@@ -1917,13 +1924,9 @@ namespace Settings {
       ShuffleMoonItems.SetSelectedIndex(0);
       GossipStoneHints.SetSelectedIndex(0);
     }
-    Music::InitMusicRandomizer();
-    if (ShuffleMusic) {
-      Music::ShuffleSequences(rnd::SeqType::SEQ_BGM_WORLD | rnd::SeqType::SEQ_BGM_EVENT |
-                              rnd::SeqType::SEQ_BGM_BATTLE);
-      Music::ShuffleSequences(rnd::SeqType::SEQ_FANFARE);
-      Music::ShuffleSequences(rnd::SeqType::SEQ_OCARINA);
-    }
+    
+    Music::ShuffleSequences();
+    SFX::ShuffleSoundEffects();
   }
   
   //If this is an option menu, return th options
