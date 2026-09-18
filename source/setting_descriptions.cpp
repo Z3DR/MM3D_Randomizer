@@ -689,4 +689,6 @@ string_view ingameFastSongsDesc       = "Allows for Adjusting length of playback
                                         "With or without song audio playback.";            //
 string_view ingameShuffleSFXDesc      = "Shuffle Sound Effects: \n"                        //
                                         "Categorical = SFX are shuffled amongst similar sounds\n"//
-                                        "Chaos = All SFX shuffled with no restrictions.";  //
+                                        "Chaos = All SFX shuffled with no restrictions.\n"//
+                                        "Link Only = Only Link's actions, items and voice\n"//
+                                        "are shuffled, each among its own kind.";          //

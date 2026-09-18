@@ -510,7 +510,7 @@ namespace Settings {
   Option IngameMuteBGM           = Option::Bool("Mute Background Music", {"Off", "On"},                                                          {ingameMuteBGMDesc});
   Option IngameFastSongs         = Option::U8("Fast Ocarina Songs",      {"Don't Skip", "Skip (No Audio)", "Skip (W/ Audio)"},                   {ingameFastSongsDesc});
   Option ShuffleMusic            = Option::U8("Shuffle Music",           {"Off", "BGM", "Fanfares", "All"},                                      {musicRandoDesc});
-  Option IngameShuffleSFX        = Option::U8("Shuffle Sound Effects",   {"Off", "Categorical", "Chaos"},                                        {ingameShuffleSFXDesc});
+  Option IngameShuffleSFX        = Option::U8("Shuffle Sound Effects",   {"Off", "Categorical", "Chaos", "Link Only"},                           {ingameShuffleSFXDesc});
 
   std::vector<Option*> ingameOptions = {
     &IngameLTargeting,
