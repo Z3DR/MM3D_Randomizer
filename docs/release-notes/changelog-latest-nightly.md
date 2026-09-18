@@ -39,7 +39,7 @@
   ([MM3D_Randomizer#204](https://github.com/Z3DR/MM3D_Randomizer/pull/204), [mm3dr#190](https://github.com/Z3DR/mm3dr/pull/190))
 - **Sound effect randomizer.** New in-game option **Shuffle Sound Effects**: *Off*, *Categorical* or *Chaos*.
   ([mm3dr#191](https://github.com/Z3DR/mm3dr/pull/191))
-- **Mute toggles.** New in-game options **Mute Sound Effects** and **Mute Background Music**. Muting sound effects leaves Link's own sounds playing.
+- **Mute toggles.** New in-game options **Mute Sound Effects** and **Mute Background Music**.
   ([mm3dr#189](https://github.com/Z3DR/mm3dr/pull/189))
 
 ### Ocarina
