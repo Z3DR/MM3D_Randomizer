@@ -713,7 +713,7 @@ void CreateScrubPurchaseText() {
   // Location(IKANA_CANYON_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
   u16 IkanaPrice = 100;// Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPrice();
 
-  Text RupeeText{" Rupees#.", " rubis#.", " rupias#.", " Rubine#.",/* " rupie#.",*/ };
+  Text RupeeText{" Rupees#", " rubis#", " rupias#", " Rubine#",/* " rupie#",*/ };
   Text ScrubSellTextOne = Text{
     /*NaEnglish*/"So, I'll sell you #" ,
     // /*NaFrench */"",
@@ -746,25 +746,25 @@ void CreateScrubPurchaseText() {
   Location(ZORA_HALL_IKANA_SCRUB_PURCHASE)->SetShopsanityPrice(IkanaPrice);
 
   Text SwampScrubSellText = ScrubSellTextOne + ItemTable(Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
-                          + ScrubSellTextTwo + std::to_string(SwampPrice) + RupeeText;
-  CustomMessages::CreateMessageFromTextObject(0x15E9, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
-  CustomMessages::CreateMessageFromTextObject(0x15F3, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+                          + ScrubSellTextTwo + std::to_string(SwampPrice) + RupeeText + Text{" if you know how to use #Magic Beans#."};
+  CustomMessages::CreateMessageFromTextObject(0x15E9, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x15F3, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 
   // This doesn't require bomb bag, right??
   Text GoronScrubSellText = ScrubSellTextOne + ItemTable(Location(GORON_VILLAGE_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
-                          + ScrubSellTextTwo + std::to_string(GoronPrice) + RupeeText;
-  CustomMessages::CreateMessageFromTextObject(0x1600, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
-  CustomMessages::CreateMessageFromTextObject(0x1606, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+                          + ScrubSellTextTwo + std::to_string(GoronPrice) + RupeeText + Text{" if you have a #Bomb Bag# that can hold #at least 30 bombs#."};
+  CustomMessages::CreateMessageFromTextObject(0x1600, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1606, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 
   Text ZoraScrubSellText = ScrubSellTextOne + ItemTable(Location(ZORA_HALL_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
-                         + ScrubSellTextTwo + std::to_string(ZoraPrice) + RupeeText;
-  CustomMessages::CreateMessageFromTextObject(0x1612, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
-  CustomMessages::CreateMessageFromTextObject(0x1617, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+                         + ScrubSellTextTwo + std::to_string(ZoraPrice) + RupeeText + Text{" if you have an #Empty Bottle#."};
+  CustomMessages::CreateMessageFromTextObject(0x1612, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1617, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 
   Text IkanaScrubSellText = ScrubSellTextOne + ItemTable(Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
-                          + ScrubSellTextTwo + std::to_string(IkanaPrice) + RupeeText;
-  CustomMessages::CreateMessageFromTextObject(0x1626, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
-  CustomMessages::CreateMessageFromTextObject(0x162D, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+                          + ScrubSellTextTwo + std::to_string(IkanaPrice) + RupeeText + Text{" if you have an #Empty Bottle#."};
+  CustomMessages::CreateMessageFromTextObject(0x1626, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x162D, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
 };
 
 void CreateOtherHints() {
@@ -1178,6 +1178,9 @@ static Text BuildCountReq(const HintKey req, const Option& count) {
 void CreateAllHints() {
 
   //CreateGanonText();
+  // if (Settings::ShuffleMagicBeans) {
+  //   CreateBeanDaddyHint();
+  // }
   if (Scrubsanity) {
     CreateScrubPurchaseText();
   }
