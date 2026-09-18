@@ -12,7 +12,7 @@
 #include "hints.hpp"
 #include "hint_list.hpp"
 #include "entrance.hpp"
-//#include "shops.hpp"
+#include "shops.hpp"
 #include "debug.hpp"
 
 #include <vector>
@@ -522,6 +522,10 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
                 PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
                 itemsToPlace.push_back(item);
             }
+            else if (Location(selectedLocation)->IsCategory(Category::cShop) && (item == MAGIC_BEAN_PACK)) {
+                //Magic Bean Pack is what enables buying beans at shops so it cannot go into a shop itself
+                itemsToPlace.push_back(item);
+            }
             else {
                 PlaceItemInLocation(selectedLocation, item); 
                 //PlacementLog_Msg("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
@@ -781,6 +785,7 @@ static void RandomizeLinksPocket() {
 int VanillaFill() {
     //Perform minimum needed initialization
     // CitraPrint("Starting VanillaFill\n");
+    ResetNonShopItems();
     AreaTable_Init(); //Reset the world graph to intialize the proper locations
     ItemReset(); //Reset shops incase of shopsanity random
     GenerateLocationPool();
@@ -832,6 +837,7 @@ int Fill() {
         wothLocations.clear();
         ocarinaObtainable = false;
         songOfTimeObtainable = false;
+        ResetNonShopItems(); //Before any placement -- see ResetNonShopItems
         AreaTable_Init(); //Reset the world graph to intialize the proper locations
         ItemReset(); //Reset shops incase of shopsanity random
         GenerateLocationPool();
@@ -839,7 +845,7 @@ int Fill() {
         GenerateStartingInventory();
         RemoveStartingItemsFromPool();
         FillExcludedLocations();
-        
+
         showItemProgress = true;
 
         //Place dungeon rewards
@@ -994,6 +1000,30 @@ int Fill() {
             
             AssumedFill(gfItems, gfLocations, true);
         }
+
+        //Place Shop Items first
+        //NonShopItems is already sized by ResetNonShopItems
+        if (Shopsanity){
+            CitraPrint("Placing Shopsanity Items");
+            for (size_t i = 0; i < ShopLocationLists.size(); i++) {
+                for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
+                    int shopsanityPrice = GetShopPrice();
+                    NonShopItems[GetShopIndex(ShopLocationLists[i][j])].Price = shopsanityPrice; //Set the price for the item to be passed
+                    Location(ShopLocationLists[i][j])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+                }
+            }
+        }
+        //Below may not be needed?
+        // //Get all locations and items that dont have a shopsanity price attached
+        // std::vector<LocationKey> shopLocations = {};
+        // for (size_t i = 0; i < ShopLocationLists.size(); i++){
+        //     for (int j = 0; j < ShopLocationLists[i].size(); j++){
+        //         LocationKey loc = ShopLocationLists[i][j];
+        //         if (!(Location(loc)->HasShopsanityPrice())) {
+        //             shopLocations.push_back(loc);
+        //         }
+        //     }
+        // }
                 
         //Place Main Inventory First
         //So first get all items in the pool + DekuMask,

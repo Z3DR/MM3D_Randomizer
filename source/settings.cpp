@@ -375,9 +375,10 @@ namespace Settings {
   Option ShuffleSongs           = Option::U8  ("Shuffle Songs",         {"Off", "Song Locations", "Anywhere"},               {songsVanilla, songsSongLocations, songsAllLocations},                  OptionCategory::Setting,  0);
   Option ShuffleSoaring         = Option::Bool("Shuffle Song of Soaring",{"Off", "On"},                                      {shuffleSoaringVanilla, shuffleSoaringRandom},                          OptionCategory::Setting,   0);
   Option ShuffleSongOfTime      = Option::Bool("Shuffle Song of Time",  {"Off", "On"},                                       {songTimeVanilla, songTimeRandom},                                      OptionCategory::Setting,   0);
-  Option Shopsanity             = Option::U8  ("Shopsanity",            {"Off", "0", "1", "2", "3", "4", "Random"},          {shopsOff, shopsZero, shopsOne, shopsTwo, shopsThree, shopsFour, shopsRandom});
-  Option Tokensanity            = Option::Bool("Tokensanity",           {"Off", "On"},                                       {tokensOff, tokensAllTokens});
-  Option Scrubsanity            = Option::U8  ("Shuffle Scrub Wares",   {"Off", "Affordable", "Expensive", "Random Prices"}, {scrubsOff, scrubsAffordable, scrubsExpensive, scrubsRandomPrices});
+  Option Shopsanity             = Option::Bool("Shopsanity",            {"Off", "On"},                                       {shopsOff, shopsOn},                                                    OptionCategory::Setting,  0);
+  Option ShopsanityPrices       = Option::Bool("Shopsanity Prices",     {"Random", "Affordable"},                            {shopPricesRandom, shopPricesAffordable},                               OptionCategory::Setting,  0);
+  Option Tokensanity            = Option::Bool("Tokensanity",           {"Off", "On"},                                       {tokensOff, tokensAllTokens},                                           OptionCategory::Setting,  0);
+  Option Scrubsanity            = Option::Bool("Shuffle Scrub Purchases",{"Off", "On"},                                      {scrubsOff, scrubsOn},                                                  OptionCategory::Setting,   0);
   Option ShuffleMerchants       = Option::Bool("Shuffle Scrub Trades",  {"Off", "On"},                                       {shuffleMerchantsDesc});
   Option ShuffleTradeItems      = Option::Bool("Shuffle Anju and Kafei",{"Off", "On"},                                       {shuffleTradeItemsDesc});
   Option ShuffleGFRewards       = Option::U8  ("Shuffle Fairy Rewards", {"Off", "Great Fairies", "Anywhere" },               {shuffleGFVanilla, shuffleGFSelf, shuffleGFAnywhere},                   OptionCategory::Setting, (u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA);
@@ -402,7 +403,8 @@ namespace Settings {
     &ShuffleSoaring,
     &ShuffleSongOfTime,
     &Tokensanity,
-    //&Shopsanity,
+    &Shopsanity,
+    &ShopsanityPrices,
     &ShuffleGFRewards,
   };
 
@@ -412,7 +414,8 @@ namespace Settings {
     &ShuffleTingleMaps,
     &ShuffleBombersNotebook,
     &ShuffleCows,
-    //&ShuffleMagicBeans,
+    &ShuffleMagicBeans,
+    &Scrubsanity,
     &ShuffleMoonItems,
     &ShuffleFierceDeity,
   };
@@ -492,6 +495,37 @@ namespace Settings {
   Option BombchusInLogic        = Option::U8("Bombchus In Logic",          { "Off", "On" },                                                      { bombchuInLogicDesc });
   Option FastMasks              = Option::Bool("Fast Mask Transform",      {"No", "Yes"},                                                        {fastMaskDesc});
   Option NotebookAnimations     = Option::Bool("Fast Notebook",            {"No", "Yes"},                                                        {disableBotebookAnimation});
+
+  // In-game options written into CommonDataSub1 when a new file is created. Index 0 is
+  // "Vanilla" throughout, which leaves the game's own default in place -- only the Adjust
+  // Volume encoding (0 Lower / 1 Normal / 2 Higher) is confirmed against the save data, so the
+  // rest are opt-in rather than applied silently.  
+  Option IngameLTargeting        = Option::U8("L-Targeting",             {"Vanilla", "Switch", "Hold"},                                          {ingameLTargetingDesc});
+  Option IngameFirstPersonCamera = Option::U8("First Person Camera",     {"Vanilla", "Normal", "Invert Y Axis", "Invert X Axis", "Invert Both"}, {ingameFirstPersonCameraDesc});
+  Option IngameFreeCamera        = Option::U8("Free Camera",             {"Vanilla", "Normal", "Invert Y Axis", "Invert X Axis", "Invert Both"}, {ingameFreeCameraDesc});
+  Option IngameMotionControls    = Option::U8("Motion Controls",         {"Vanilla", "On", "Off"},                                               {ingameMotionControlsDesc});
+  Option IngameSwimmingControls  = Option::U8("Swimming Controls",       {"Vanilla", "Normal", "Invert Y Axis"},                                 {ingameSwimmingControlsDesc});
+  Option IngameAdjustVolume      = Option::U8("Adjust Volume",           {"Vanilla", "Lower", "Normal", "Higher"},                               {ingameAdjustVolumeDesc});
+  Option IngameMuteSound         = Option::Bool("Mute Sound Effects",    {"Off", "On"},                                                          {ingameMuteSoundDesc});
+  Option IngameMuteBGM           = Option::Bool("Mute Background Music", {"Off", "On"},                                                          {ingameMuteBGMDesc});
+  Option IngameFastSongs         = Option::U8("Fast Ocarina Songs",      {"Don't Skip", "Skip (No Audio)", "Skip (W/ Audio)"},                   {ingameFastSongsDesc});
+  Option ShuffleMusic            = Option::U8("Shuffle Music",           {"Off", "BGM", "Fanfares", "All"},                                      {musicRandoDesc});
+  Option IngameShuffleSFX        = Option::U8("Shuffle Sound Effects",   {"Off", "Categorical", "Chaos", "Link Only"},                           {ingameShuffleSFXDesc});
+
+  std::vector<Option*> ingameOptions = {
+    &IngameLTargeting,
+    &IngameFirstPersonCamera,
+    &IngameFreeCamera,
+    &IngameMotionControls,
+    &IngameSwimmingControls,
+    &IngameAdjustVolume,
+    &IngameFastSongs,
+    &IngameMuteSound,
+    &IngameMuteBGM,
+    &ShuffleMusic,
+    &IngameShuffleSFX,
+  };
+
   std::vector<Option*> comfortOptions = {
      
      &BlastMaskCooldown,
@@ -514,7 +548,7 @@ namespace Settings {
   Option GoodDampeRNG        = Option::Bool("Good Dampe RNG",         { "No", "Yes" },                                       { goodDampeRNGDesc });
   Option IncreasePushSpeed   = Option::Bool("Increased Push Speed",   { "No", "Yes" },                                       { increasePushSpeedDesc });
   Option FastArrowSwitch     = Option::Bool("Fast Arrow Switching",   { "No", "Yes" },                                       { fastArrowSwitchDesc });
-  Option FastElegyStatues    = Option::Bool("Fast Elegy Statues",     { "No", "Yes" },                                       { fastElegyStatuesDesc });
+  //Option FastElegyStatues    = Option::Bool("Fast Elegy Statues",     { "No", "Yes" },                                       { fastElegyStatuesDesc });
   Option SkipSongReplays     = Option::U8("Skip Song Replays",        { "Don't Skip", "Skip (No SFX)", "Skip (Keep SFX)" },  {skipSongReplaysDesc});
   Option SkipEponaRace       = Option::Bool("Skip Epona Race",        { "No", "Yes" },                                       { skipEponaRaceDesc });
   Option OcarinaDive         = Option::Bool("Ocarina Dive",           { "No", "Yes" },                                       {ocarinaDiveDesc});
@@ -533,7 +567,7 @@ namespace Settings {
     //&GoodDampeRNG,
     //&IncreasePushSpeed,
     //&FastArrowSwitch,
-    &FastElegyStatues,
+    //&FastElegyStatues,
     &FastZoraSwim,
     &OcarinaDive,
     &DpadTransform,
@@ -548,11 +582,13 @@ namespace Settings {
   Option SkipDarmaniCutscenes = Option::Bool("Skip Darmani Cutscenes",  {"Don't Skip", "Skip"}, {skipDarmaniCutsceneDesc});
   Option SkipMikauCutscenes   = Option::Bool("Skip Mikau Cutscenes",  {"Don't Skip", "Skip"},   {skipMikauCutsceneDesc});
   Option SkipGiantCutscenes   = Option::Bool("Skip Giants Cutscene", {"Don't Skip", "Skip"}, {skipGiantCutsceneDesc});
+  Option SkipPirateCutscenes  = Option::Bool("Skip Pirate Cutscenes", {"Don't Skip", "Skip"}, {skipPirateCutsceneDesc});
   std::vector<Option *> cutsceneOptions = {
     &SkipHMSCutscenes,
     &SkipDarmaniCutscenes,
     &SkipMikauCutscenes,
-    &SkipGiantCutscenes
+    &SkipGiantCutscenes,
+    &SkipPirateCutscenes,
   };
 
   /*TRIAL SKIPS*/
@@ -627,9 +663,7 @@ namespace Settings {
   static std::vector<std::string> fanfareOptions = {"Off", "Only Fanfares", "Fanfares +\n                         Ocarina Music"};
   static std::vector<std::string_view> fanfareDescriptions = {fanfaresOffDesc, onlyFanfaresDesc, fanfaresOcarinaDesc};
   //TO-DO MUSIC RANDO
-  Option ShuffleMusic = Option::U8("Shuffle Music",
-                                   {"Off", "Background Music", "Fanfares", "All"},
-                                   {musicRandoDesc}, OptionCategory::Cosmetic, 0);
+  
   //  Option ShuffleBGM =      Option::Bool("  Shuffle BGM",           {"Off", "On"},    {shuffleBGMDesc},                                                                                                                                                          OptionCategory::Cosmetic,               1); // On
   //  Option ShuffleFanfares = Option::U8  ("  Shuffle Fanfares",      {fanfareOptions}, {fanfareDescriptions},                                                                                                                                                     OptionCategory::Cosmetic,               1); // Fanfares only
   //  Option ShuffleOcaMusic = Option::Bool("  Shuffle Ocarina Music", {"Off", "On"},    {shuffleOcaMusicDesc},                                                                                                                                                     OptionCategory::Cosmetic,               1); // On
@@ -641,7 +675,6 @@ namespace Settings {
     &ColoredKeys,
     //&ColoredBossKeys,
     &ShowPostmanItem,
-    &ShuffleMusic,
     //&ShuffleBGM,
     //&ShuffleFanfares,
     //&ShuffleOcaMusic,
@@ -705,6 +738,7 @@ namespace Settings {
 
   //Menu mainSettings = Menu::SubMenu("Main Settings", &mainSettingsOptions);
   Menu comfort = Menu::SubMenu("Comfort Settings", &comfortOptions);
+  Menu ingameOptionsMenu = Menu::SubMenu("In-Game Options", &ingameOptions);
   Menu restorationSettings = Menu::SubMenu("Restoration Settings", &restorationOptions);
   Menu cutsceneSettings = Menu::SubMenu("Cutscene Settings", &cutsceneOptions);
   Menu settingsPresets          = Menu::SubMenu("Settings Presets",           &settingsPresetItems);
@@ -731,6 +765,7 @@ namespace Settings {
     &cutsceneSettings,
     &otherSettings,
     &customInputs,
+    &ingameOptionsMenu,
     &cosmetics,
     &settingsPresets,
     &generateRandomizer,
@@ -764,7 +799,7 @@ namespace Settings {
 
     ctx.shuffleSongs = ShuffleSongs.Value<u8>();
     //ctx.shuffleSoaring = (ShuffleSoaring) ? 1 : 0;
-    ctx.shopsanity = Shopsanity.Value<u8>();
+    // ctx.shopsanity = (Shopsanity);
     ctx.tokensanity          = (Tokensanity) ? 1:0;
     //ctx.cowsanity = (ShuffleCows) ? 1 : 0;
     ctx.shuffleKokiriSword = (ShuffleKokiriSword) ? 1 : 0;
@@ -772,7 +807,6 @@ namespace Settings {
     //ctx.shuffleTradeItems = (ShuffleTradeItems)?1:0;
     ctx.shuffleMerchants = (ShuffleMerchants) ? 1 : 0;
     //ctx.removeDoubleDefense = (RemoveDoubleDefense) ? 1 : 0;
-
     ctx.mapsAndCompasses = MapsAndCompasses.Value<u8>();
     ctx.keysanity = Keysanity.Value<u8>();
     ctx.bossKeysanity = BossKeysanity.Value<u8>();
@@ -831,7 +865,6 @@ namespace Settings {
     ctx.coloredKeys = (ColoredKeys) ? 1 : 0;
     ctx.coloredBossKeys = (ColoredBossKeys) ? 1 : 0;
     ctx.showPostmanItem = (ShowPostmanItem) ? 1 : 0;
-    ctx.shuffleMusic = ShuffleMusic.Value<u8>();
     
     //ctx.bombchusInLogic = (BombchusInLogic) ? 1 : 0;
     
@@ -951,7 +984,7 @@ namespace Settings {
     //Restoration Features
     ctx.enableFastZoraSwim = (FastZoraSwim) ? 1 : 0;
     ctx.enableOcarinaDiving = (OcarinaDive) ? 1 : 0;
-    ctx.enableFastElegyStatues = (FastElegyStatues) ? 1 : 0;
+    //ctx.enableFastElegyStatues = (FastElegyStatues) ? 1 : 0;
     ctx.enableFastMaskTransform = (DpadTransform) ? 1 : 0;
     ctx.enableFastOcarina = (DpadOcarina) ? 1 : 0;
     ctx.enableFastArrowSwap = (DpadArrows) ? 1 : 0;
@@ -964,6 +997,20 @@ namespace Settings {
     ctx.skipDarmaniCutscene = (SkipDarmaniCutscenes) ? 1 : 0;
     ctx.skipMikauCutscene = (SkipMikauCutscenes) ? 1 : 0;
     ctx.skipGiantsCutscene = (SkipGiantCutscenes) ? 1 : 0;
+    ctx.skipPiratesCs = (SkipPirateCutscenes) ? 1 : 0;
+
+    // Ingame Options
+    ctx.ingameLTargeting = IngameLTargeting.Value<u8>();
+    ctx.ingameFirstPersonCamera = IngameFirstPersonCamera.Value<u8>();
+    ctx.ingameFreeCamera = IngameFreeCamera.Value<u8>();
+    ctx.ingameMotionControls = IngameMotionControls.Value<u8>();
+    ctx.ingameSwimmingControls = IngameSwimmingControls.Value<u8>();
+    ctx.ingameAdjustVolume = IngameAdjustVolume.Value<u8>();
+    ctx.skipSongReplays = IngameFastSongs.Value<u8>();
+    ctx.muteSoundEffects = (IngameMuteSound) ? 1 : 0;
+    ctx.muteBackgroundMusic = (IngameMuteBGM) ? 1 : 0;
+    ctx.shuffleMusic = ShuffleMusic.Value<u8>();
+    ctx.shuffleSFX = IngameShuffleSFX.Value<u8>();
     
     //CustomButtons
     // CitraPrint("Adding Custom Inputs to SettingsContext");
@@ -1231,6 +1278,10 @@ namespace Settings {
     }
 
     for (auto op : itemPoolSettingsOptions) {
+      op->SetToDefault();
+    }
+    
+    for (auto op : ingameOptions) {
       op->SetToDefault();
     }
 

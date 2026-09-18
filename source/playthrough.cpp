@@ -81,6 +81,9 @@ namespace Playthrough {
       CreateClockTowerDoorHints();
       CreateMoonChildHint();
       CreateOtherHints();
+      if (Settings::Shopsanity.Value<bool>()) {
+        CreateShopMessages();
+      }
 
       playthroughLocations.clear();
       wothLocations.clear();

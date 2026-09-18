@@ -37,7 +37,8 @@ enum class ItemLocationType {
     HintStone,
     OtherHint,
     Misc,
-    Cow
+    Cow,
+    Shop
 };
 
 class SpoilerCollectionCheck {
@@ -91,8 +92,8 @@ public:
         return SpoilerCollectionCheck(SpoilerCollectionCheckType::SPOILER_CHK_SCRUB, scene, bit);
     }
 
-    static auto ShopItem(u8 scene, u8 itemSlot) {
-        return SpoilerCollectionCheck(SpoilerCollectionCheckType::SPOILER_CHK_SHOP_ITEM, scene, itemSlot);
+    static auto Shop(u8 scene, u8 itemSlot) {
+        return SpoilerCollectionCheck(SpoilerCollectionCheckType::SPOILER_CHK_SHOP, scene, itemSlot);
     }
 
     static auto MagicBeans(u8 scene, u8 flag) {
@@ -139,6 +140,7 @@ public:
         //TO-DO 
         else if (type == ItemLocationType::StrayFairy) {key.type = ItemOverride_Type::OVR_STRAY_FAIRY;}
         else if (type == ItemLocationType::Cow) {key.type = ItemOverride_Type::OVR_COW;}
+        else if (type == ItemLocationType::Shop) {key.type = ItemOverride_Type::OVR_SHOP;}
         //else if (type == ItemLocationType::HintStone) {key.type = ItemOverride_Type::OVR_HINT;}
         //else if (type == ItemLocationType::OtherHint) {key.type = ItemOverride_Type::OVR_OTHER_HINT;}
         //key.type = type; //TODO make sure these match up
@@ -179,6 +181,7 @@ public:
         else if (type == ItemLocationType::TempleReward) {ovrtype = ItemOverride_Type::OVR_TEMPLE;}
         else if (type == ItemLocationType::StrayFairy) {ovrtype = ItemOverride_Type::OVR_STRAY_FAIRY;}
         else if (type == ItemLocationType::Cow) {ovrtype = ItemOverride_Type::OVR_COW;}
+        else if (type == ItemLocationType::Shop) {ovrtype = ItemOverride_Type::OVR_SHOP;}
 
         return ovrtype;
     }
@@ -225,7 +228,7 @@ public:
 
     void SetPlacedItem(const ItemKey item) {
         placedItem = item;
-        //SetPrice(ItemTable(placedItem).GetPrice());
+        SetPrice(ItemTable(placedItem).GetPrice());
     }
 
     //Saves an item to be set as placedItem later
@@ -406,6 +409,10 @@ public:
         return ItemLocation{ ItemLocationType::Cow, scene, flag, repeatable, std::move(name), hintKey, vanillaItem, std::move(categories), 0 , SpoilerCollectionCheck(SpoilerCollectionCheckType::SPOILER_CHK_COW,scene, flag), collectionCheckGroup};
     }
 
+    static auto Shop(u8 scene, u8 flag, bool repeatable, std::string&& name, const HintKey hintKey, const ItemKey vanillaItem, std::vector<Category>&& categories, SpoilerCollectionCheckGroup collectionCheckGroup = SpoilerCollectionCheckGroup::GROUP_NO_GROUP) {
+        return ItemLocation{ ItemLocationType::Shop, scene, flag, repeatable, std::move(name), hintKey, vanillaItem, std::move(categories), 0 , SpoilerCollectionCheck(SpoilerCollectionCheckType::SPOILER_CHK_SHOP,scene, flag), collectionCheckGroup};
+    }
+
     void ResetVariables() {
         checked = false;
         addedToPool = false;
@@ -453,7 +460,7 @@ void LocationTable_Init();
 
 ItemLocation* Location(LocationKey locKey);
 
-//extern std::vector<std::vector<LocationKey>> ShopLocationLists;
+extern std::vector<std::vector<LocationKey>> ShopLocationLists;
 
 extern std::vector<LocationKey> gossipStoneLocations;
 

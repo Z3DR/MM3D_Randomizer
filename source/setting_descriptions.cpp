@@ -211,8 +211,8 @@ string_view shuffleRewardsAnywhere    = "Boss Remains can appear anywhere.\n";  
 |      SHUFFLE MAGIC BEANS     |                                                           //
 ------------------------------*/                                                           //
 string_view magicBeansDesc            = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Enabling this adds a pack of 10 beans to the item\n"
-                                        "pool and changes the Magic Bean Salesman to sell a"
+                                        "Enabling this adds a pack of 20 beans to the item\n"
+                                        "pool and changes the Magic Bean Salesman to sell a\n"
                                         "random item at a price of 60 rupees.";            //
 /*------------------------------                                                           //
 |     SHUFFLE KOKIRI SWORD     |                                                           //
@@ -455,29 +455,11 @@ string_view linksPocketNothing        = "**OPTION CURRENTLY WIP**\n"            
 |         SHOPSANITY           |                                                           //
 ------------------------------*/                                                           //
 string_view shopsOff                  = "All shop items will be the same as vanilla.";     //
-string_view shopsZero                 = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops.";                                //
-string_view shopsOne                  = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops, and each shop will contain\n"    //
-                                        "one non-vanilla shop item.";                      //
-string_view shopsTwo                  = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops, and each shop will contain\n"    //
-                                        "two non-vanilla shop items.";                     //
-string_view shopsThree                = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops, and each shop will contain\n"    //
-                                        "three non-vanilla shop items.";                   //
-string_view shopsFour                 = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops, and each shop will contain\n"    //
-                                        "four non-vanilla shop items.";                    //
-string_view shopsRandom               = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Vanilla shop items will be shuffled among\n"      //
-                                        "different shops, and each shop will contain\n"    //
-                                        "1-4 non-vanilla shop items.";                     //
+string_view shopsOn                   = "Items in Shops will be randomized, this includes\n"//
+                                        "Trading Post, Bomb Shop, Swamp Potion Shop, Goron\n"//
+                                        "Village and Zora Hall Shops.";                    //
+string_view shopPricesRandom         = "Shop items will have random prices.";              //
+string_view shopPricesAffordable     = "Shop items will have affordable prices.";          //
 /*------------------------------                                                           //
 |         TOKENSANITY          |                                                           //
 ------------------------------*/                                                           //
@@ -488,20 +470,14 @@ string_view tokensAllTokens           = "Effectively adds 60 new locations for i
 /*------------------------------                                                           //
 |        SCRUB SHUFFLE         |                                                           //
 ------------------------------*/                                                           //
-string_view scrubsOff                 = "Deku Scrub Salesmen will not be randomized";      //
-string_view scrubsAffordable          = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "All Scrub prices will be reduced to 10 rupees each";
-string_view scrubsExpensive           = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "All Scrub prices will be their vanilla prices.\n";//
-string_view scrubsRandomPrices        = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "All Scrub prices will be between 0-95 rupees. This"
-                                        "will on average be very, very expensive overall.";//
+string_view scrubsOff                 = "Deku Scrub Purchases will not be randomized.";    //
+string_view scrubsOn                  = "Deku Scrub Purchases will be randomized.";        //
 /*------------------------------                                                           //
 |         SHUFFLE COWS         |                                                           //
 ------------------------------*/                                                           //
 string_view shuffleCowsDesc           = "Enabling this will let cows give you items upon\n"//
                                         "performing Epona's song in front of them. There\n"//
-                                        "are 7 cows";                                      //
+                                        "are 7 cows.";                                     //
                                                                                            //
 /*------------------------------                                                           //
 |       SHUFFLE OCARINAS       |                                                           //
@@ -509,7 +485,7 @@ string_view shuffleCowsDesc           = "Enabling this will let cows give you it
 string_view ocarinasDesc              = "Setting this to No shuffles the Ocarina of Time\n"//
                                         "into the item pool."     					       //
                                         "\n"                                               //
-                                        "This will require finding an Ocarina before being\n"
+                                        "This will require finding the Ocarina before being\n"
                                         "able to play songs or restart the cycle";         //
 
 /*------------------------------                                                           //
@@ -627,6 +603,8 @@ string_view skipHMSCutsceneDesc     = "Skips the initial Happy Mask Salesman's c
 string_view skipDarmaniCutsceneDesc = "Skips the Song of Healing Cutscene for Darmani";    //
 string_view skipMikauCutsceneDesc   = "Skips the Song of Healing Cutscene for Mikau";      //
 string_view skipGiantCutsceneDesc   = "Skips the cutscene of the giants catching the moon";//
+string_view skipPirateCutsceneDesc = "Skips the cutscene of the pirates attempting to enter\n"//
+                                      "Great Bay Temple after hookshotting onto the turtle";//
 /*------------------------------                                                           //
 |        REGION OPTIONS        |                                                           //
 ------------------------------*/                                                           //
@@ -687,3 +665,30 @@ string_view startingShieldMirrorDesc  = "Start with the Mirror Shield.\n"       
 string_view showPostmanItemDesc      = "Visually shows the reward for the \n"              //
                                        "Postman's Freedom quest line \n"                   //
                                        "above the Postman's head.";                        //
+
+/*------------------------------
+|       IN-GAME OPTIONS        |
+------------------------------*/
+string_view ingameLTargetingDesc      = "Sets the L-Targeting mode on a new file.\n"       //
+                                        "\"Vanilla\" is the game's default.";              //
+string_view ingameFirstPersonCameraDesc = "Sets the first person camera's inversion on a\n"//
+                                        "new file. \"Vanilla\" is the game's default.";    //
+string_view ingameFreeCameraDesc      = "Sets the free camera's inversion on a new\n"      //
+                                        "file. \"Vanilla\" is the game's default.";        //
+string_view ingameMotionControlsDesc  = "Enables or disables motion controls on a new\n"   //
+                                        "file. \"Vanilla\" is the game's default.";        //
+string_view ingameSwimmingControlsDesc = "Sets the Zora swimming control scheme on a new\n"//
+                                        "file. \"Vanilla\" is the game's default.";        //
+string_view ingameAdjustVolumeDesc    = "Sets the overall volume on a new file.\n"         //
+                                        "\"Vanilla\" is the game's default.";              //
+string_view ingameMuteSoundDesc       = "Enables or Disables Sound Effects on a new file.";//
+string_view ingameMuteBGMDesc         = "Enables or Disables Background Music on a new file.";//
+string_view ingameFastSongsDesc       = "Allows for Adjusting length of playback of songs.\n"//
+                                        "Don't Skip = Vanilla,\n"                          //
+                                        "Skip allows for faster movement after playing song\n"//
+                                        "With or without song audio playback.";            //
+string_view ingameShuffleSFXDesc      = "Shuffle Sound Effects: \n"                        //
+                                        "Categorical = SFX are shuffled amongst similar sounds\n"//
+                                        "Chaos = All SFX shuffled with no restrictions.\n"//
+                                        "Link Only = Only Link's actions, items and voice\n"//
+                                        "are shuffled, each among its own kind.";          //

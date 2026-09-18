@@ -43,7 +43,7 @@ void HintTable_Init() {
     );
     hintTable[GREAT_FAIRYS_SWORD] = HintText::Item({
             //obscure
-            Text{"A powerful fairy blade", "une lame féerique", "el poderoso acero de las hadas", "eine mächtige Feenklinge"}
+            Text{"a powerful fairy blade", "une lame féerique", "el poderoso acero de las hadas", "eine mächtige Feenklinge"}
         },  //clear
             Text{"the Great Fairy's Sword", "l'épée de la grande fée", "la Espada de la Gran Hada", "das Feenschwert", "", "la grande épée des fées", ""}
     );
@@ -115,7 +115,7 @@ void HintTable_Init() {
     );
     hintTable[LETTER_MAMA] = HintText::Item({
             //obscure
-            Text{"A special delivery", "une livraison spéciale", "una entrega especial", "eine besondere Zustellung"}
+            Text{"a special delivery", "une livraison spéciale", "una entrega especial", "eine besondere Zustellung"}
         },  //clear
             Text{"the Letter to Mama", "la lettre express pour Maman", "la Entrega especial a mamá", "die Eilpost an Mama", "", "la lettre express pour maman", ""}
     );
@@ -383,7 +383,7 @@ void HintTable_Init() {
             //obscure
             Text{"a lost fairy", "un fragment d'être", "una hada perdida", "eine verlorene Fee"}
         },  //clear
-            Text{"the Clock Town Stray Fairy", "la fée égarée de Cadranbourg", "la hada extraviada de la Ciudad", "eine verirrte Fee aus Unruh-Stadt", "", "la fée égarée de Bourg-Clocher", ""}
+            Text{"the Clock Town Stray Fairy", "la fée égarée de Cadranbourg", "la hada extraviada de la Ciudad", "die verirrte Fee aus Unruh-Stadt", "", "la fée égarée de Bourg-Clocher", ""}
     );
     hintTable[WF_STRAY_FAIRY] = HintText::Item({
             //obscure
@@ -426,7 +426,7 @@ void HintTable_Init() {
             //obscure
             Text{"a progressive bow", "une capacité de tir accrue", "un arco progresivo", "ein wachsender Bogen"}
         },  //clear
-            Text{"a progressive quiver", "un carquois progressif", "un carcaj progresivo", "ein Köcher-Upgrade"}
+            Text{"a progressive quiver", "un carquois progressif", "un carcaj progresivo", "ein Bogen-Upgrade"}
     );
     hintTable[PROGRESSIVE_WALLET] = HintText::Item({
             //obscure
@@ -442,9 +442,9 @@ void HintTable_Init() {
     );
     hintTable[PROGRESSIVE_LULLABY] = HintText::Item({
             //obscure
-            Text{"a progressive lullaby", "une fraction de mélodie", "una canción de cuna progresiva", ""}
+            Text{"a progressive lullaby", "une fraction de mélodie", "una canción de cuna progresiva", "ein unvollständiges Wiegenlied"}
         },  //clear
-            Text{"a progressive lullaby", "une berceuse progressive", "una canción de cuna progresiva", ""}
+            Text{"a progressive lullaby", "une berceuse progressive", "una canción de cuna progresiva", "ein Schlummerlied-Upgrade"}
     );
     //PROGRESSIVE_BOMBCHUS
 //BOTTLE ITEMS
@@ -587,7 +587,7 @@ void HintTable_Init() {
 //SONGS
     hintTable[SONG_OF_TIME] = HintText::Item({
             //obscure
-            Text{"song of time", "une boucle temporelle", "una canción temporal", "das Lied der Zeit"}
+            Text{"a timely melody", "une boucle temporelle", "una canción temporal", "das Lied der Zeit"}
         },  //clear
             Text{"the Song of Time", "le Chant du temps", "la canción del tiempo", "die Hymne der Zeit"}
     );
@@ -623,7 +623,7 @@ void HintTable_Init() {
     //);
     hintTable[EPONAS_SONG] = HintText::Item({
             //obscure
-            Text{"a horses song", "l'appel d'une partenaire", "una canción equina", "das Lied eines Pferdes"}
+            Text{"a horse's song", "l'appel d'une partenaire", "una canción equina", "das Lied eines Pferdes"}
         },  //clear
             Text{"Epona's Song", "le Chant d'Épona", "la canción de Epona", "Eponas Lied", "", "le Chant d'Epona", ""}
     );
@@ -814,25 +814,25 @@ void HintTable_Init() {
     //);
     hintTable[WOODFALL_TEMPLE_SMALL_KEY] = HintText::Item({
             //obscure
-            Text{"swampy small key", "une clé marécageuse", "una llave pantanosa", "ein sumpfiger Schlüssel"}
+            Text{"a swampy small key", "une clé marécageuse", "una llave pantanosa", "ein sumpfiger Schlüssel"}
         },  //clear
             Text{"the Woodfall Temple Small Key", "la petite clé du temple de Boisé-les-Cascades", "la llave pequeña del Templo del Bosque Catarata", "den Kleinen Schlüssel des Dämmerwald-Tempels", "", "la petite clé du temple de Bois-Cascade", ""}
     );
     hintTable[SNOWHEAD_TEMPLE_SMALL_KEY] = HintText::Item({
             //obscure
-            Text{"icy small key", "une clé glacée", "una llave helada", "ein eisiger Schlüssel"}
+            Text{"an icy small key", "une clé glacée", "una llave helada", "ein eisiger Schlüssel"}
         },  //clear
             Text{"a Snowhead Temple Small Key", "une petite clé du temple du Pic des neiges", "una llave pequeña del Templo del Pico Nevado", "einen Kleinen Schlüssel des Pic-Hibernia-Tempels", "", "une petite clé du temple du pic des Neiges", ""}
     );
     hintTable[GBT_SMALL_KEY] = HintText::Item({
             //obscure
-            Text{"ocean small key", "une clé marine", "una llave húmeda", "ein feuchter Schlüssel"}
+            Text{"an oceanic small key", "une clé marine", "una llave húmeda", "ein feuchter Schlüssel"}
         },  //clear
             Text{"the Great Bay Temple Small Key", "la petite clé du temple de la Grande Baie", "la llave pequeña del Templo de la Gran Bahía", "den Kleinen Schlüssel des Schädelbucht-Tempels"}
     );
     hintTable[STONE_TOWER_TEMPLE_SMALL_KEY] = HintText::Item({
             //obscure
-            Text{"rocky small key", "une clé rocheuse", "una llave rocosa", "ein steinerner Schlüssel"}
+            Text{"a rocky small key", "une clé rocheuse", "una llave rocosa", "ein steinerner Schlüssel"}
         },  //clear
             Text{"a Stone Tower Temple Small Key", "une petite clé du temple de la forteresse de pierre", "una llave pequeña del Templo de la Torre de Piedra", "einen Kleinen Schlüssel des Felsenturm-Tempels"}
     );
@@ -867,43 +867,43 @@ void HintTable_Init() {
     -----------------------*/
     hintTable[RECOVERY_HEART] = HintText::Item({
             //obscure
-            Text{"Recovery Heart", "un petit soin", "un pequeño corazón", "ein Herz zur Genesung"}
+            Text{"a small heal", "un petit soin", "un pequeño corazón", "ein Herz zur Genesung"}
         },  //clear
             Text{"a Recovery Heart", "un cœur de vie", "un corazón", "ein Herz"}
     );
     hintTable[GREEN_RUPEE] = HintText::Item({
             //obscure
-            Text{"Green rupee", "le début de la richesse", "una gema verdeante", "ein grüner Rubin"}
+            Text{"budding wealth", "le début de la richesse", "una gema verdeante", "ein grüner Rubin"}
         },  //clear
             Text{"a Green Rupee", "un rubis vert", "una rupia verde", "einen grünen Rubin"}
     );
     hintTable[BLUE_RUPEE] = HintText::Item({
             //obscure
-            Text{"Blue rupee", "une richesse azurée", "una gema cerúlea", "ein blauer Rubin"}
+            Text{"a blue gem", "une richesse azurée", "una gema cerúlea", "ein blauer Rubin"}
         },  //clear
             Text{"a Blue Rupee", "un rubis bleu", "una rupia azul", "einen blauen Rubin"}
     );
     hintTable[RED_RUPEE] = HintText::Item({
             //obscure
-            Text{"Red rupee", "une richesse écarlate", "una gema carmesí", "ein roter Rubin"}
+            Text{"a scarlet stone", "une richesse écarlate", "una gema carmesí", "ein roter Rubin"}
         },  //clear
             Text{"a Red Rupee", "un rubis rouge", "una rupia roja", "einen roten Rubin"}
     );
     hintTable[PURPLE_RUPEE] = HintText::Item({
             //obscure
-            Text{"Purple rupee", "une richesse violacée", "una gema cárdena", "ein violetter Rubin"}
+            Text{"a purple gem", "une richesse violacée", "una gema cárdena", "ein violetter Rubin"}
         },  //clear
             Text{"a Purple Rupee", "un rubis mauve", "una rupia púrpura", "einen violetten Rubin", "", "un rubis violet", ""}
     );
     hintTable[SILVER_RUPEE] = HintText::Item({
             //obscure
-            Text{"Silver rupee", "une richesse scintillante", "una gema argéntea", "ein silberner Rubin"}
+            Text{"shining wealth", "une richesse scintillante", "una gema argéntea", "ein silberner Rubin"}
         },  //clear
             Text{"a Silver Rupee", "un rubis argenté", "una rupia plateada", "einen silbernen Rubin"}
     );
     hintTable[HUGE_RUPEE] = HintText::Item({
             //obscure
-            Text{"Huge rupee", "une richesse écrasante", "una gema enorme", "ein riesiger Rubin"}
+            Text{"great wealth", "une richesse écrasante", "una gema enorme", "ein riesiger Rubin"}
         },  //clear
             Text{"a Huge Rupee", "un énorme rubis", "una rupia enorme", "einen goldenen Rubin"}
     );
@@ -1008,6 +1008,12 @@ void HintTable_Init() {
             Text{"1 stick", "une branche", "una rama", "1 Stock"}
         },  //clear
             Text{"a Deku Stick", "un bâton mojo", "un palo Deku", "einen Deku-Stab"}
+    );
+    hintTable[CHATEAU_ROMANI_REFILL] = HintText::Item({
+            //obscure
+            Text{"an adult beverage", "un breuvage adulte", "un trago para adultos", "ein Getränk für Erwachsene"}
+        },  //clear
+            Text{"some Chateau Romani", "de la Cuvée Romani", "un relleno de Reserva Romani", "ein Chateau Romani"}
     );
 
     /*----------------
@@ -1177,18 +1183,18 @@ void HintTable_Init() {
         },  //clear
             Text{"the #postbox# contains", "la #boîte aux lettres# contient", "el buzón contiene", "der #Briefkasten# enthält"}
     );
-    //hintTable[E_CLOCK_TOWN_MILK_BAR_CHATEAU] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"**ENGLISH**", "un #spécialiste laitier# vend", "un lugar de copas vende", "ein #exklusives Getränk# entlohnt"}
-    //    },  //clear
-    //        Text{"the #Milk Bar# sells", "le #bar laitier# vend", "el Bar Lácteo vende", "die #Milchbar# verkauft"}
-    //);
-    //hintTable[E_CLOCK_TOWN_MILK_BAR_MILK] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"**ENGLISH**", "un #spécialiste laitier# vend", "un lugar de copas vende", "ein #Getränk# entlohnt"}
-    //    },  //clear
-    //        Text{"the #Milk Bar# sells", "le #bar laitier# vend", "el Bar Lácteo vende", "die #Milchbar# verkauft"}
-    //);
+    hintTable[E_CLOCK_TOWN_MILK_BAR_CHATEAU] = HintText::Sometimes({
+            //obscure
+            Text{"an #exclusive establishment# sells", "un #spécialiste laitier# vend", "un lugar de copas vende", "ein #exklusives Getränk# entlohnt"}
+        },  //clear
+            Text{"the #Milk Bar# sells", "le #bar laitier# vend", "el Bar Lácteo vende", "die #Milchbar# verkauft"}
+    );
+    hintTable[E_CLOCK_TOWN_MILK_BAR_MILK] = HintText::Sometimes({
+            //obscure
+            Text{"an #exclusive establishment# sells", "un #spécialiste laitier# vend", "un lugar de copas vende", "ein #Getränk# entlohnt"}
+        },  //clear
+            Text{"the #Milk Bar# sells", "le #bar laitier# vend", "el Bar Lácteo vende", "die #Milchbar# verkauft"}
+    );
     hintTable[GORMAN_TRACK_MYSTERY_MILK_QUEST] = HintText::Sometimes({
             //obscure
             Text{"an #upset stomach cure# rewards", "#soigner un mal de ventre# produit", "la cura a un mal estomacal recompensa con", "die #Heilung eines verstimmten Magens# entlohnt"}
@@ -1363,7 +1369,7 @@ void HintTable_Init() {
             //obscure
             Text{"the #pirates' loot# teaches", "le #butin des pirates# enseigne", "el botín de los piratas enseña", "die #Piratenbeute# lehrt"}
         },  //clear
-            Text{"the #baby Zoras# have", "les #bébés zoras# ont", "los bebés Zora tienen", "die #Zora-Babys# haben"}
+            Text{"the #baby Zoras# have", "les #bébés zoras# ont", "los bebés Zora tienen", "die #geschlüpften Zora-Babys# haben"}
     );
     hintTable[GBC_GROTTO_CHEST] = HintText::Sometimes({
             //obscure
@@ -3853,7 +3859,7 @@ void HintTable_Init() {
             //obscure
             Text{"the home of pirates", "le foyer des pirates", "el hogar de las piratas", "die Heimat der Piraten"}
         },  //clear
-            Text{"the Pirates' Fortress", "la forteresse des pirates", "la Fortaleza Pirata", "die Piratenfestung"}
+            Text{"the Pirates' Fortress", "la forteresse des pirates", "la Fortaleza Pirata", "Piratenfestung"}
     );
     hintTable[BENEATH_THE_WELL] = HintText::DungeonName({
             //obscure
@@ -3877,13 +3883,13 @@ void HintTable_Init() {
             //obscure
             Text{"a home to muddy spiders", "un nid puant d'araignées", "un hogar para arañas lodosas", "ein Zuhause für schlammige Spinnen"}
         },  //clear
-            Text{"the Swamp Spider House", "la maison des araignées des marais", "la Casa de las Arañas del Pantano", "das Sumpf-Spinnenhaus"}
+            Text{"the Swamp Spider House", "la maison des araignées des marais", "la Casa de las Arañas del Pantano", "das Spinnenhaus im Sumpf"}
     );
     hintTable[OSH] = HintText::DungeonName({
             //obscure
             Text{"a home To swimming spiders", "un nid poussiéreux d'araignées", "un hogar para arañas nadadoras", "ein Zuhause für schwimmende Spinnen"}
         },  //clear
-            Text{"the Ocean Spider House", "la maison des araignées de la côte", "la Casa de las Arañas de la Playa", "das Meer-Spinnenhaus"}
+            Text{"the Ocean Spider House", "la maison des araignées de la côte", "la Casa de las Arañas de la Playa", "das Spinnenhaus am Meer"}
     );
     hintTable[THE_MOON] = HintText::DungeonName({
             //obscure

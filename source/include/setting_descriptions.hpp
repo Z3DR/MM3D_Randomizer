@@ -123,12 +123,9 @@ extern string_view fastElegyStatuesDesc;
 extern string_view skipSongReplaysDesc;
 
 extern string_view shopsOff;
-extern string_view shopsZero;
-extern string_view shopsOne;
-extern string_view shopsTwo;
-extern string_view shopsThree;
-extern string_view shopsFour;
-extern string_view shopsRandom;
+extern string_view shopsOn;
+extern string_view shopPricesRandom;
+extern string_view shopPricesAffordable;
 
 extern string_view tokensOff;
 extern string_view tokensDungeon;
@@ -136,9 +133,7 @@ extern string_view tokensOverworld;
 extern string_view tokensAllTokens;
 
 extern string_view scrubsOff;
-extern string_view scrubsAffordable;
-extern string_view scrubsExpensive;
-extern string_view scrubsRandomPrices;
+extern string_view scrubsOn;
 
 extern string_view shuffleCowsDesc;
 
@@ -230,6 +225,7 @@ extern string_view skipHMSCutsceneDesc;
 extern string_view skipDarmaniCutsceneDesc;
 extern string_view skipMikauCutsceneDesc;
 extern string_view skipGiantCutsceneDesc;
+extern string_view skipPirateCutsceneDesc;
 extern string_view skipBombersMinigameDesc;
 extern string_view NARegionDesc;
 extern string_view EURegionDesc;
@@ -248,3 +244,14 @@ extern string_view startingShieldNoneDesc;
 extern string_view startingShieldHerosDesc;
 extern string_view startingShieldMirrorDesc;
 extern string_view showPostmanItemDesc;
+
+extern string_view ingameLTargetingDesc;
+extern string_view ingameFirstPersonCameraDesc;
+extern string_view ingameFreeCameraDesc;
+extern string_view ingameMotionControlsDesc;
+extern string_view ingameSwimmingControlsDesc;
+extern string_view ingameAdjustVolumeDesc;
+extern string_view ingameMuteSoundDesc;
+extern string_view ingameMuteBGMDesc;
+extern string_view ingameFastSongsDesc;
+extern string_view ingameShuffleSFXDesc;

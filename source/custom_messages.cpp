@@ -335,13 +335,13 @@ void CreateBaselineCustomMessages() {
 
     // Ice Trap
     CreateMessage(0x0012, 0xFFFF, 0x3FFFFFFF, 0xFF0000, 
-    {"          #FOOL!#",
+    {"><#FOOL!#",
         // French
-        "#IDIOT!#",
+        "><#IDIOT!#",
         // NOT Spanish
-        "          #FOOL!#",
+        "><#FOOL!#",
         // German
-        "#NARR!#",
+        "><#NARR!#",
     },
     {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
 

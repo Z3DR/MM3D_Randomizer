@@ -24,7 +24,7 @@ bool LocationAccess::ConditionsMet() const {
 		conditionsMet= true;
 	}
 	
-	return conditionsMet;// && CanBuy();
+	return conditionsMet && CanBuy();
 }
 
 bool LocationAccess::CanBuy() const {
@@ -36,13 +36,13 @@ bool LocationAccess::CanBuy() const {
 	//Check if current walet is large enough
 	bool SufficientWallet = true;
 	if (Location(location)->GetPrice() > 500) {
-		SufficientWallet = Logic::ProgressiveWallet >= 3;
-	}
-	else if (Location(location)->GetPrice() > 200) {
 		SufficientWallet = Logic::ProgressiveWallet >= 2;
 	}
-	else if (Location(location)->GetPrice() > 99) {
+	else if (Location(location)->GetPrice() > 200) {
 		SufficientWallet = Logic::ProgressiveWallet >= 1;
+	}
+	else if (Location(location)->GetPrice() > 99) {
+		SufficientWallet = Logic::ProgressiveWallet >= 0;
 	}
 
 	bool OtherCondition = true;
@@ -382,8 +382,11 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(E_CLOCK_TOWN_GORMAN, {[] {return DekuMask && GoronMask && ZoraMask && RomanisMask;}}),
+		LocationAccess(E_CLOCK_TOWN_GORMAN, {[] {return DekuMask && GoronMask && ZoraMask && RomanisMask && Ocarina;}}),
 		LocationAccess(E_CLOCK_TOWN_AROMA_IN_BAR, {[] {return LetterMama && KafeisMask;}}),
+		LocationAccess(E_CLOCK_TOWN_MILK_BAR_MILK, {[] {return HasBottle;}}),
+		LocationAccess(E_CLOCK_TOWN_MILK_BAR_CHATEAU, {[] {return HasBottle;}}),
+
 	},
 	{
 		//Exits
@@ -550,6 +553,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(S_CLOCK_TOWN_SCRUB_TRADE, {[] {return MoonsTear;}}),
+		LocationAccess(S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE, {[] {return CanTradeTownDeed;}}),
 		LocationAccess(S_CLOCK_TOWN_POSTBOX, {[] {return PostmansHat;}}),
 		LocationAccess(S_CLOCK_TOWN_CLOCK_TOWER_ENTRANCE, {[] {return true;}}),
 		LocationAccess(S_CLOCK_TOWN_STRAW_ROOF_CHEST, {[] {return Hookshot || (DekuMask && MoonsTear);}}),
@@ -869,15 +873,18 @@ void AreaTable_Init() {
 		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
 		EventAccess(&SwampFrog, {[]{return DonGerosMask;}}),
 		EventAccess(&DekuBabaNuts, {[]{return Fighting;}}),
+		EventAccess(&CanTradeTownDeed, {[]{return LandTitle;}}),
 	},
 	{
 		//Locations
 		LocationAccess(SOUTHERN_SWAMP_SCRUB_TRADE, {[] {return LandTitle;}}),
 		LocationAccess(SOUTHERN_SWAMP_SCRUB_PURCHASE, {[]{return DekuMask;}}),
+		LocationAccess(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE, {[] {return CanTradeSwampDeed && LandTitle;}}),
 		LocationAccess(SOUTHERN_SWAMP_MUSIC_STATUE, {[] {return true;}}),
 		LocationAccess(SWAMP_TOURIST_CENTER_ROOF, {[] {return DekuMask && LandTitle;}}),
 		LocationAccess(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, {[] {return LandTitle && WoodfallClear;}}),
 		LocationAccess(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR, {[]{return DekuMask && WoodfallClear;}}),
+		LocationAccess(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR, {[] {return CanTradeSwampDeed && LandTitle && WoodfallClear;}}),
 		LocationAccess(SWAMP_TOURIST_CENTER_ROOF_CLEAR, {[] {return DekuMask && LandTitle && WoodfallClear;}}),
 		//Gossip Stones
 		LocationAccess(SS_GOSSIP, {[] {return true;}}),
@@ -1019,7 +1026,7 @@ void AreaTable_Init() {
 
 	areaTable[DEKU_PALACE_BEAN_GROTTO] = Area("Deku Palace Bean Grotto", "Deku Palace Bean Grotto", NONE, {
 		//Events
-		EventAccess(&LimitlessBeans, {[]{return true;}}),
+		EventAccess(&LimitlessBeans, {[]{return CanBuyBeans;}}),
 		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
 		EventAccess(&Mushroom, {[]{return false;}}),//Trick for obscure mushroom?
 		EventAccess(&Bugs, {[]{return AnyBottle;}}),
@@ -1230,17 +1237,20 @@ void AreaTable_Init() {
 	areaTable[GORON_VILLAGE] = Area("Goron Village", "Goron Village", GORON_VILLAGE, {
 		//Events
 		//Owl talk?
+		EventAccess(&CanTradeSwampDeed, {[]{return SwampTitle && DekuMask;}}),
 	},
 	{
 		//Locations
 		LocationAccess(GORON_VILLAGE_POWDER_KEG_CHALLENGE, {[] {return GoronMask && (SnowheadClear || CanUse(FIRE_ARROWS));}}),
 		LocationAccess(GORON_VILLAGE_SCRUB_PURCHASE, {[] {return AnyWallet && GoronMask && (ProgressiveBombBag >= 2);}}),
+		LocationAccess(GORON_VILLAGE_ZORA_SCRUB_PURCHASE, {[] {return CanTradeMountainDeed && SwampTitle;}}),
 		LocationAccess(GORON_VILLAGE_SCRUB_TRADE, {[] {return DekuMask && SwampTitle;}}),
 		LocationAccess(GORON_VILLAGE_LEDGE, {[] {return DekuMask && SwampTitle;}}),
 		LocationAccess(GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING, {[] {return GoronMask && (SnowheadClear || CanUse(FIRE_ARROWS));}}),
-		LocationAccess(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, {[] {return AnyWallet && GoronMask && (ProgressiveBombBag >= 2);}}),
-		LocationAccess(GORON_VILLAGE_SCRUB_TRADE_SPRING, {[] {return DekuMask && SwampTitle;}}),
-		LocationAccess(GORON_VILLAGE_LEDGE_SPRING, {[] {return DekuMask && SwampTitle;}}),
+		LocationAccess(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, {[] {return AnyWallet && GoronMask && (ProgressiveBombBag >= 2) && SnowheadClear;}}),
+		LocationAccess(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING, {[] {return CanTradeMountainDeed && SwampTitle && SnowheadClear;}}),
+		LocationAccess(GORON_VILLAGE_SCRUB_TRADE_SPRING, {[] {return DekuMask && SwampTitle && SnowheadClear;}}),
+		LocationAccess(GORON_VILLAGE_LEDGE_SPRING, {[] {return DekuMask && SwampTitle && SnowheadClear;}}),
 	},
 	{
 		//Exits
@@ -1671,12 +1681,14 @@ void AreaTable_Init() {
 
 	areaTable[ZORA_HALL_LULUS_ROOM] = Area("Zora Hall Lulu's Room", "Zora Hall Lulu's Room", NONE, {
 		//Events
+		EventAccess(&CanTradeMountainDeed, {[] {return MountainTitle && GoronMask;}}),
 	},
 	{
 		//Locations
 		LocationAccess(ZORA_HALL_SCRUB_TRADE, {[] {return GoronMask && MountainTitle;}}),
 		LocationAccess(ZORA_HALL_LULU_ROOM_LEDGE, {[] {return GoronMask && DekuMask && MountainTitle;}}),
 		LocationAccess(ZORA_HALL_SCRUB_PURCHASE, {[] {return ZoraMask;}}),
+		LocationAccess(ZORA_HALL_IKANA_SCRUB_PURCHASE, {[] {return HasBottle && CanTradeOceanDeed && MountainTitle;}}),
 	},
 	{
 		//Exits
@@ -1895,6 +1907,7 @@ void AreaTable_Init() {
 	areaTable[IKANA_CANYON] = Area("Lower Ikana Canyon", "Lower Ikana Canyon", IKANA_CANYON, {
 		//Events
 		EventAccess(&EnterSakonHideout, {[]{return SpokeToKafei;}}),//Sakon spawns if Kafei was met in Laundry Pool
+		EventAccess(&CanTradeOceanDeed, {[] {return OceanTitle && ZoraMask;}}),
 	},
 	{
 		//Locations

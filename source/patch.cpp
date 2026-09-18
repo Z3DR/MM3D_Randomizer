@@ -3,7 +3,7 @@
 #include "cosmetics.hpp"
 #include "custom_messages.hpp"
 #include "music.hpp"
-//#include "shops.hpp"
+#include "shops.hpp"
 #include "spoiler_log.hpp"
 //#include "entrance.hpp"
 #include "item_location.hpp"
@@ -226,25 +226,6 @@ bool WriteAllPatches() {
     patchOffset = V_TO_P(0x52236C); //this is the address of the base game's scrub textId table
     patchSize = sizeof(rScrubTextIdTable);
     if (!WritePatch(patchOffset, patchSize, (char*)(&rScrubTextIdTable), code, bytesWritten, totalRW, buf)) {
-      return false;
-    }
-  }
-  */
-  /*--------------------------------
-  |     rShopsanityPrices          |
-  --------------------------------*/
-/*
-  if (Settings::Shopsanity.IsNot(SHOPSANITY_OFF) && Settings::Shopsanity.IsNot(SHOPSANITY_ZERO)) {
-    //Get prices from shop item vector
-    std::array<s32, 32> rShopsanityPrices{};
-    for (i = 0; i < 32; i++) {
-      rShopsanityPrices[i] = NonShopItems[i].Price;
-    }
-
-    // Write shopsanity item prices to the patch
-    patchOffset = V_TO_P(RSHOPSANITYPRICES_ADDR);
-    patchSize = sizeof(rShopsanityPrices);
-    if (!WritePatch(patchOffset, patchSize, (char*)(&rShopsanityPrices), code, bytesWritten, totalRW, buf)) {
       return false;
     }
   }

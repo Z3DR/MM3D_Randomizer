@@ -12,6 +12,7 @@
 #include "custom_messages.hpp"
 //#include "trial.hpp"
 //#include "entrance.hpp"
+#include "shops.hpp"
 
 //using namespace CustomMessages;
 using namespace Logic;
@@ -436,55 +437,335 @@ static std::vector<LocationKey> CalculateBarrenRegions() {
   return finalBarrenLocations;
 }
 
+Text GetShopItemName(ItemKey itemKey) {
+  if (itemKey == ICE_TRAP)
+    return GetIceTrapName(ItemTable(itemKey).Value().looksLikeItemId);
+  else
+    return ItemTable(itemKey).GetName();
+}
+
 void CreateTingleHintText() {
   // Create custom messages for Tingle items if we shuffled.
       if (Settings::ShuffleTingleMaps.Is(true)) {
         // Logic: Get item names from location.
         // Create custom message for each tingle location (6)
-        Text clockTownMap = Text{"#"}+ItemTable(Location(TINGLE_N_CLOCK_TOWN_CT)->GetPlacedItemKey()).GetName();
-        Text woodfallMap = Text{"#"}+ItemTable(Location(TINGLE_N_CLOCK_TOWN_WF)->GetPlacedItemKey()).GetName();
-        Text snowHeadMap = Text{"#"}+ItemTable(Location(TINGLE_TWIN_ISLANDS_SH)->GetPlacedItemKey()).GetName();
-        Text romaniMap = Text{"#"}+ItemTable(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey()).GetName();
-        Text greatBayMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_GB)->GetPlacedItemKey()).GetName();
-        Text ikanaMap = Text{"#"}+ItemTable(Location(TINGLE_GBC_ST)->GetPlacedItemKey()).GetName();
+        Text clockTownMap = GetShopItemName(Location(TINGLE_N_CLOCK_TOWN_CT)->GetPlacedItemKey());
+        Text woodfallMap  = GetShopItemName(Location(TINGLE_N_CLOCK_TOWN_WF)->GetPlacedItemKey());
+        Text snowHeadMap  = GetShopItemName(Location(TINGLE_TWIN_ISLANDS_SH)->GetPlacedItemKey());
+        Text romaniMap    = GetShopItemName(Location(TINGLE_TWIN_ISLANDS_RR)->GetPlacedItemKey());
+        Text greatBayMap  = GetShopItemName(Location(TINGLE_GBC_GB)->GetPlacedItemKey());
+        Text ikanaMap     = GetShopItemName(Location(TINGLE_GBC_ST)->GetPlacedItemKey());
+        u16 tingPriceTiny  =  5;
+        u16 tingPriceSmall = 20;
+        u16 tingPriceBig   = 40;
 
-        //                 {"English",           "French",           "Spanish"            "German"          };      "Italian"
-        Text priceFive =   {"    ##5 Rupees#&",  "    ##5 Rubis#&",  "    ##5 rupias#&",  " - ##5 Rubine#&" }; // , "    ##5 rupie#&"
-        Text priceTwenty = {"    ##20 Rupees#&", "    ##20 Rubis#&", "    ##20 rupias#&", " - ##20 Rubine#&"}; // , "    ##20 rupie#&"
-        Text priceForty =  {"    ##40 Rupees#",  "    ##40 Rubis#",  "    ##40 rupias#",  " - ##40 Rubine#" }; // , "    ##40 rupie#"
-        Text leaveShop =   {"&#No thanks#",      "&#Non merci#",     "&#No, gracias#",    "&#Nein, danke!#" }; // , "&#No, grazie#"
+        //               {"English",      "French",       "Spanish",        "German",        }; // "Italian"
+        Text tingSplit = {"    ##",       "    ##",       "    ##",         " - ##",         }; // "    ##"
+        Text tingNext  = {" Rupees#&#",   " Rubis#&#",    " rupias#&#",     " Rubine#&#",    }; // " rupie#&"
+        Text tingLeave = tingNext+
+                     Text{"No thanks#",   "Non merci#",   "No, gracias#",   "Nein, danke!#", }; // "&#No, grazie#"
 
         // Clock Town message
-        CustomMessages::CreateMessageFromTextObject(0x1D11, 0xFFFF, 0x3FF0A005, 0xFF1001,
-          clockTownMap+priceFive+woodfallMap+priceForty+leaveShop,
+        CustomMessages::CreateMessageFromTextObject(0x1D11, 0xFFFF, (0x3FF00000 | tingPriceTiny | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+clockTownMap+tingSplit+std::to_string(tingPriceTiny)+tingNext+woodfallMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Woodfall message
-        CustomMessages::CreateMessageFromTextObject(0x1D12, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          woodfallMap+priceTwenty+snowHeadMap+priceForty+leaveShop,
+        CustomMessages::CreateMessageFromTextObject(0x1D12, 0xFFFF, (0x3FF00000 | tingPriceSmall | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+woodfallMap+tingSplit+std::to_string(tingPriceSmall)+tingNext+snowHeadMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Snowhead message
-        CustomMessages::CreateMessageFromTextObject(0x1D13, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          snowHeadMap+priceTwenty+romaniMap+priceForty+leaveShop,
+        CustomMessages::CreateMessageFromTextObject(0x1D13, 0xFFFF, (0x3FF00000 | tingPriceSmall | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+snowHeadMap+tingSplit+std::to_string(tingPriceSmall)+tingNext+romaniMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Milk Road message
-        CustomMessages::CreateMessageFromTextObject(0x1D14, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          romaniMap+priceTwenty+greatBayMap+priceForty+leaveShop,
+        CustomMessages::CreateMessageFromTextObject(0x1D14, 0xFFFF, (0x3FF00000 | tingPriceSmall | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+romaniMap+tingSplit+std::to_string(tingPriceSmall)+tingNext+greatBayMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Great Bay message
-        CustomMessages::CreateMessageFromTextObject(0x1D15, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          greatBayMap+priceTwenty+ikanaMap+priceForty+leaveShop,
+        CustomMessages::CreateMessageFromTextObject(0x1D15, 0xFFFF, (0x3FF00000 | tingPriceSmall | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+greatBayMap+tingSplit+std::to_string(tingPriceSmall)+tingNext+ikanaMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
         // Ikana message
-        CustomMessages::CreateMessageFromTextObject(0x1D16, 0xFFFF, 0x3FF0A014, 0xFF1001,
-          ikanaMap+priceTwenty+clockTownMap+priceForty+leaveShop,
+        CustomMessages::CreateMessageFromTextObject(0x1D16, 0xFFFF, (0x3FF00000 | tingPriceSmall | (tingPriceBig << 10)), 0xFF1001,
+          Text{">3#"}+ikanaMap+tingSplit+std::to_string(tingPriceSmall)+tingNext+clockTownMap+tingSplit+std::to_string(tingPriceBig)+tingLeave,
           {QM_GREEN, QM_RED, QM_GREEN, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
       }
 }
+
+void CreateShopMessages() {
+  //Create list of messages to create and their corresponding location
+  std::pair <u32, LocationKey> shopEntries[21] = {
+    //Trading Post
+    {0x06AC, TRADING_POST_ITEM_1}, {0x06B2, TRADING_POST_ITEM_2}, {0x06AE, TRADING_POST_ITEM_3}, {0x06B6, TRADING_POST_ITEM_4},
+    {0x06B4, TRADING_POST_ITEM_5}, {0x06B8, TRADING_POST_ITEM_6}, {0x06B0, TRADING_POST_ITEM_7}, {0x06BA, TRADING_POST_ITEM_8},
+    //Trading Post (Part-timer)
+    // {0x06C9, TRADING_POST_ITEM_1}, {0x06CF, TRADING_POST_ITEM_2}, {0x06CB, TRADING_POST_ITEM_3}, {0x06D3, TRADING_POST_ITEM_4},
+    // {0x06D1, TRADING_POST_ITEM_5}, {0x06D5, TRADING_POST_ITEM_6}, {0x06CD, TRADING_POST_ITEM_7}, {0x06D7, TRADING_POST_ITEM_8},
+    //Bomb Shop
+    {0x0650, BOMB_SHOP_ITEM_1}, {0x0652, BOMB_SHOP_ITEM_2}, {0x0654, W_CLOCK_TOWN_BOMB_BAG_BUY}, {0x0656, W_CLOCK_TOWN_BIG_BOMB_BAG_BUY},
+    //Potion Shop
+    {0x083F, POTION_SHOP_ITEM_1}, {0x0841, POTION_SHOP_ITEM_2}, {0x0843, POTION_SHOP_ITEM_3},
+    //Goron Shop
+    {0x0BC5, GORON_SHOP_ITEM_1}, {0x0BC7, GORON_SHOP_ITEM_2}, {0x0BC9, GORON_SHOP_ITEM_3},
+    //Goron Shop (Spring Prices)
+    // {0x0BCB, GORON_SHOP_ITEM_1}, {0x0BCD, GORON_SHOP_ITEM_2}, {0x0BCF, GORON_SHOP_ITEM_3},
+    //Zora Shop
+    {0x12DB, ZORA_SHOP_ITEM_1}, {0x12DD, ZORA_SHOP_ITEM_2}, {0x12DF, ZORA_SHOP_ITEM_3},
+    // Curiosity Shop
+    // {0x29D9, W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY}, {0x29DB, W_CLOCK_TOWN_CURIOSITY_BOMB_BAG},
+    // Curiosity Shop (Takkuri)
+    // {0x29F2}, {0x29F4}, {0x29F6}, {0x29F8},
+  };
+
+  Text shopDescription = {""};
+  Text slopDescription = {""};
+  Text buyPrompt = Text{">2"}+Text{
+    /*English*/"#Buy&Don't Buy#",
+    /*French */"#J'achète&J'achète pas#",
+    /*Spanish*/"#Comprar&No comprar#",
+    /*German */"#Kaufen!&Nicht kaufen!#",
+    // /*Italian*/"#Compra&Non comprare#",
+  };
+
+  //Generate Shop Message for every shopEntry
+
+  for (u8 i = 0; i < 21; i++) {
+    u32 messageID = shopEntries[i].first;
+    u16 price = NonShopItems[GetShopIndex(shopEntries[i].second)].Price;
+    Text itemName = NonShopItems[GetShopIndex(shopEntries[i].second)].Name;
+    Text shopIntro = Text{"#"}+itemName+Text{
+      "&>>"
+      // itemName.NAenglish.length()  <= 30 ?  ": " : "&>>",
+      // itemName.NAfrench.length()   <= 30 ? " : " : "&>>",
+      // itemName.NAspanish.length()  <= 30 ?  ": " : "&>>",
+      // itemName.EURgerman.length()  <= 30 ?  ": " : "&>>",
+      // // itemName.EURitalian.length() <= 30 ?  ": " : "&>>",
+      // itemName.EURenglish.length() <= 30 ?  ": " : "&>>",
+      // itemName.EURfrench.length()  <= 30 ? " : " : "&>>",
+      // itemName.EURspanish.length() <= 30 ?  ": " : "&>>",
+    }+std::to_string(price)+Text{
+      " Rupees#&", " rubis#&", " rupias#&", " Rubine#&",// " rupie#&"
+    };
+    // Descriptions when hovering over the item
+    if (NonShopItems[GetShopIndex(shopEntries[i].second)].Repurchaseable) {
+      shopDescription = {
+        /*NaEnglish*/"Special deal!&Buy as many as you want!",
+        /*NaFrench */"Offre spéciale!&Achetez-en à volonté!",
+        /*NaSpanish*/"¡Oferta especial!&¡Compra todo lo que quieras!",
+        /*EuGerman */"Sonderangebot!&Kauft so viel ihr wollt!",
+        // /*EuItalian*/"Offerta speciale!&Compratene a volontà!",
+        /*EuEnglish*/"",
+        /*EuFrench */"Offre spéciale !&Achetez-en à volonté !",
+        /*EuSpanish*/"",
+      };
+      slopDescription = {
+        /*English*/"Pretty sure we've got a bunch.&Oh and it's, like, a special deal.",
+        /*French */"On doit en avoir un tas dans le stock.&Ah oui, et c'est une offre spéciale.",
+        /*Spanish?*/"¡Oferta especial!&¡Compra todo lo que quieras!",
+        /*German ?*/"Sonderangebot!&Kauft so viel ihr wollt!",
+        // /*Italian?*/"Offerta speciale!&Compratene a volontà!",
+      };
+    } else {
+      shopDescription = {
+        /*NaEnglish*/"Special deal! ONE LEFT!&Get it while it lasts!",
+        /*NaFrench */"Offre spéciale! DERNIER EN STOCK!&Maintenant ou jamais!",
+        /*NaSpanish*/"¡Oferta especial! ¡SOLO QUEDA UNA UNIDAD!&¡Hazte con ella antes de que se agote!",
+        /*EuGerman */"Sonderangebot! NUR EINS AUF LAGER!&Schlagt zu solange ihr noch könnt!",
+        // /*EuItalian*/"Offerta speciale! ULTIMO PEZZO!&Affrettatevi ad aquistarlo!",
+        /*EuEnglish*/"",
+        /*EuFrench */"Offre spéciale ! DERNIER EN STOCK !&Maintenant ou jamais !",
+        /*EuSpanish*/"",
+      };
+      slopDescription = {
+        /*English*/"This one's a special deal, and uh,&I think we only have the one...",
+        /*French */"C't'un genre d'offre spéciale, ouais.&Et j'crois qu'c'est tout ce qu'on a...",
+        /*Spanish?*/"¡Oferta especial! ¡SOLO QUEDA UNA UNIDAD!&¡Hazte con ella antes de que se agote!",
+        /*German ?*/"Sonderangebot! NUR EINS AUF LAGER!&Schlagt zu solange ihr noch könnt!",
+        // /*Italian?*/"Offerta speciale! ULTIMO PEZZO!&Affrettatevi ad aquistarlo!",
+      };
+    }
+
+    // Create display and purchase messages
+    CustomMessages::CreateMessageFromTextObject(messageID    , 0xFFFF, (0x3FFFFC00 | price), 0xFF0301, shopIntro + shopDescription, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+    CustomMessages::CreateMessageFromTextObject(messageID + 1, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301, shopIntro + buyPrompt, {QM_DEFAULT, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+    // If Trading Post message, also generate part-timer version
+    if ((0x06AC <= messageID) && (messageID <= 0x06BA)) {
+      CustomMessages::CreateMessageFromTextObject(messageID + 0x1D, 0xFFFF, (0x3FFFFC00 | price), 0xFF0301, shopIntro + slopDescription, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+      CustomMessages::CreateMessageFromTextObject(messageID + 0x1E, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301, shopIntro + buyPrompt, {QM_DEFAULT, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+    }
+    // If Goron Shop message, also generate spring copy
+    if ((0x0BC5 <= messageID) && (messageID <= 0x0BC9)) {
+      CustomMessages::CreateMessageFromTextObject(messageID + 0x6, 0xFFFF, (0x3FFFFC00 | price), 0xFF0301, shopIntro + shopDescription, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+      CustomMessages::CreateMessageFromTextObject(messageID + 0x7, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301, shopIntro + buyPrompt, {QM_DEFAULT, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+    }
+    // If Big Bomb Bag write stolen variant (inelegantly) (Price is left unchanged... maybe someday?)
+    if (messageID == 0x0656) {
+      shopIntro = Text{"#"}+itemName+"&>>"+std::to_string(price)+Text{
+        " Rupees#&", " rubis#&", " rupias#&", " Rubine#&",// " rupie#&"
+      };
+      CustomMessages::CreateMessageFromTextObject(0x29DB, 0xFFFF, (0x3FFFFC00 | price), 0xFF0301, shopIntro+Text{
+        /*English*/"This is just between us, but this is&actually a Bomb Shop product.",
+        /*French */"Ça reste entre nous, mais c'est&un article de la boutique de bombes.",
+        /*Spanish*/"Esto es entre nosotros, pero&es el de la tienda de bombas.",
+        /*German */"Verrat's nicht weiter, aber die ist eigentlich Eigentum des Bomben-Shops.", // OVERFLOW RISK
+        // /*Italian*/"he resti tra noi, ma in realtà&questo articolo appartiene al&negozio delle bombe.", // OVERFLOW RISK
+      }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+      CustomMessages::CreateMessageFromTextObject(0x29DC, 0xFFFF, (0x3FFFFC00 | price), 0xFF1301, shopIntro + buyPrompt, {QM_DEFAULT, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+    }
+    //Special message for the potion shop witch if you haven't given her a mushroom yet
+    // WILL OVERFLOW IN MOST LANGUAGES WHEN ITEM NAME TRIGGERS LINE BREAK
+    if (messageID == 0x0843) {
+      CustomMessages::CreateMessageFromTextObject(0x0880, 0xFFFF, (0x3FFFFC00 | price), 0xFF0301,
+        shopIntro+Text{
+          /*NaEnglish*/"Actually, I can't get the ingredients&for this, so I'm sold out. Sorry.",
+          /*NaFrench */"En fait, je n'arrive pas à trouver&les ingrédients pour ça, alors je&n'en ai plus. Désolée.",
+          /*NaSpanish*/"No puedo conseguir los&ingredientes, así que está&agotada. Lo siento.",
+          /*EuGerman */"Leider habe ich nicht die passenden&Zutaten auf Lager, daher ist dieser&Artikel gerade nicht lieferbar.",
+          // /*EuItalian*/"In realtà, questa pozione è esaurita&e non ho gli ingredienti per&prepararne altra. Mi spiace.",
+          /*EuEnglish*/"",
+          /*EuFrench */"",
+          /*EuSpanish*/"En realidad, no puedo conseguir&los ingredientes para esto, así que&no me queda más. Lo siento.",
+        }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+    }
+  }
+
+  // Curiosity Shop dialogue !TEMPORARY!
+  Location(W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 allNightPrice = Location(W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY)->GetPrice();
+  Text csMaskIntro = Text{"#"}+GetShopItemName(Location(W_CLOCK_TOWN_ALL_NIGHT_MASK_BUY)->GetPlacedItemKey())+Text{
+    "&>>"
+    // itemName.NAenglish.length()  <= 30 ?  ": " : "&>>",
+    // itemName.NAfrench.length()   <= 30 ? " : " : "&>>",
+    // itemName.NAspanish.length()  <= 30 ?  ": " : "&>>",
+    // itemName.EURgerman.length()  <= 30 ?  ": " : "&>>",
+    // // itemName.EURitalian.length() <= 30 ?  ": " : "&>>",
+    // itemName.EURenglish.length() <= 30 ?  ": " : "&>>",
+    // itemName.EURfrench.length()  <= 30 ? " : " : "&>>",
+    // itemName.EURspanish.length() <= 30 ?  ": " : "&>>",
+  }+std::to_string(allNightPrice)+Text{
+    " Rupees#&", " rubis#&", " rupias#&", " Rubine#&",// " rupie#&"
+  };
+  CustomMessages::CreateMessageFromTextObject(0x29D9, 0xFFFF, (0x3FFFFC00 | allNightPrice), 0xFF0301, csMaskIntro + Text{
+      "Wait, is this what I was just talking about?"
+  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_ENDLESS);
+  CustomMessages::CreateMessageFromTextObject(0x29DA, 0xFFFF, (0x3FFFFC00 | allNightPrice), 0xFF1301, csMaskIntro + buyPrompt, {QM_DEFAULT, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+
+
+  // Custom Messages for Other Shops
+  // Milk Bar 
+  Text MilkBarMilkItem = GetShopItemName(Location(E_CLOCK_TOWN_MILK_BAR_MILK)->GetPlacedItemKey());
+  Text MilkBarChateauItem = GetShopItemName(Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->GetPlacedItemKey());
+  // Location(E_CLOCK_TOWN_MILK_BAR_MILK)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  // Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 MilkBarMilkPrice = 20;// Location(E_CLOCK_TOWN_MILK_BAR_MILK)->GetPrice();
+  u16 MilkBarChateauPrice = 200;// Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->GetPrice();
+  //                  {"English",         "French",                 "Spanish",            "German",           }; // "Italian"
+  Text MilkBarIntro = {"What'll it be?&", "Qu'est-ce que ce s'ra?", "¿Qué quiere tomar?", "Was darf's sein?",    // "Cosa prendi?",
+                       "",                "",                       "¿Qué va a ser?",                         };
+  Text MilkSplit =    {": ##",            " : ##",                  ": ##",               ": ##",             }; // "    ##",
+  Text MilkNext  =    {" Rupees#&#",      " Rubis#&#",              " rupias#&#",         " Rubine#&#",       }; // " rupie#&#",
+  Text MilkLeave = MilkNext +
+                  Text{"Nothing#",        "Rien#",                  "Nada#",              "Nichts#",          }; // "Niente#",
+
+  CustomMessages::CreateMessageFromTextObject(0x2b0b, 0xFFFF, (0x3FF00000 | MilkBarMilkPrice | (MilkBarChateauPrice << 10)), 0xff1001,
+  MilkBarIntro+">3#"+MilkBarMilkItem+MilkSplit+std::to_string(MilkBarMilkPrice)+MilkNext+MilkBarChateauItem+MilkSplit+std::to_string(MilkBarChateauPrice)+MilkLeave,
+  {QM_GREEN, QM_MAGENTA, QM_GREEN, QM_MAGENTA, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+  // CustomMessages::CreateMessage(0x614A, 0xFFFF, (0x3FFFFFFF), 0xff0000,
+  // {"With all due respect, sir, I think you've had enough of that."},
+  // {}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL); // For refusing purchase
+
+  // Milk Road Gorman Bros Milk
+  u16 gormanMilkPrice = 50;
+  CustomMessages::CreateMessageFromTextObject(0x3466, 0xFFFF, (0x3FFFFC00 | gormanMilkPrice), 0xff1001, Text{"#"} + std::to_string(gormanMilkPrice) + Text{
+    " Rupees# for one #Mystery Item#&"
+  } + ">2" + Text{
+    "#I'll buy it&No thanks#"
+  }, {QM_MAGENTA, QM_RED, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+
+};
+
+void CreateBeanDaddyHint() {
+  CustomMessages::CreateMessageFromTextObject(0x92f, 0x930, 0x3FFFFFFF, 0xFF0000, Text{
+    /*NaEnglish*/"Do you need a #Mysterious Item#? ",
+    // /*NaFrench */"",
+    // /*NaSpanish*/"",
+    // /*EuGerman */"",
+    // // /*EuItalian*/"",
+    // /*EuEnglish*/"",
+    // /*EuFrench */"",
+    // /*EuSpanish*/"",
+  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+};
+
+void CreateScrubPurchaseText() {
+  //Set initial Scrub Prices
+  // Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 SwampPrice = 10;// Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPrice();
+  // Location(GORON_VILLAGE_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 GoronPrice = 200;// Location(GORON_VILLAGE_SCRUB_PURCHASE)->GetPrice();
+  // Location(ZORA_HALL_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 ZoraPrice = 40;// Location(ZORA_HALL_SCRUB_PURCHASE)->GetPrice();
+  // Location(IKANA_CANYON_SCRUB_PURCHASE)->SetShopsanityPrice(static_cast<uint16_t>(GetShopPrice()));
+  u16 IkanaPrice = 100;// Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPrice();
+
+  Text RupeeText{" Rupees#", " rubis#", " rupias#", " Rubine#",/* " rupie#",*/ };
+  Text ScrubSellTextOne = Text{
+    /*NaEnglish*/"So, I'll sell you #" ,
+    // /*NaFrench */"",
+    // /*NaSpanish*/"",
+    // /*EuGerman */"",
+    // // /*EuItalian*/"",
+    // /*EuEnglish*/"",
+    // /*EuFrench */"",
+    // /*EuSpanish*/"",
+  };
+  Text ScrubSellTextTwo = Text{
+      /*NaEnglish*/"# for #",
+      // /*NaFrench */"",
+      // /*NaSpanish*/"",
+      // /*EuGerman */"",
+      // // /*EuItalian*/"",
+      // /*EuEnglish*/"",
+      // /*EuFrench */"",
+      // /*EuSpanish*/"",
+  };
+
+  //Set prices on moved Scrub locations
+  Location(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR)->SetShopsanityPrice(SwampPrice);
+  Location(S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE)->SetShopsanityPrice(SwampPrice);
+  Location(GORON_VILLAGE_SCRUB_PURCHASE_SPRING)->SetShopsanityPrice(GoronPrice);
+  Location(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE)->SetShopsanityPrice(GoronPrice);
+  Location(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR)->SetShopsanityPrice(GoronPrice);
+  Location(GORON_VILLAGE_ZORA_SCRUB_PURCHASE)->SetShopsanityPrice(ZoraPrice);
+  Location(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING)->SetShopsanityPrice(ZoraPrice);
+  Location(ZORA_HALL_IKANA_SCRUB_PURCHASE)->SetShopsanityPrice(IkanaPrice);
+
+  Text SwampScrubSellText = ScrubSellTextOne + ItemTable(Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
+                          + ScrubSellTextTwo + std::to_string(SwampPrice) + RupeeText + Text{" if you know how to use #Magic Beans#."};
+  CustomMessages::CreateMessageFromTextObject(0x15E9, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x15F3, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+
+  // This doesn't require bomb bag, right??
+  Text GoronScrubSellText = ScrubSellTextOne + ItemTable(Location(GORON_VILLAGE_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
+                          + ScrubSellTextTwo + std::to_string(GoronPrice) + RupeeText + Text{" if you have a #Bomb Bag# that can hold #at least 30 bombs#."};
+  CustomMessages::CreateMessageFromTextObject(0x1600, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1606, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+
+  Text ZoraScrubSellText = ScrubSellTextOne + ItemTable(Location(ZORA_HALL_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
+                         + ScrubSellTextTwo + std::to_string(ZoraPrice) + RupeeText + Text{" if you have an #Empty Bottle#."};
+  CustomMessages::CreateMessageFromTextObject(0x1612, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1617, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+
+  Text IkanaScrubSellText = ScrubSellTextOne + ItemTable(Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
+                          + ScrubSellTextTwo + std::to_string(IkanaPrice) + RupeeText + Text{" if you have an #Empty Bottle#."};
+  CustomMessages::CreateMessageFromTextObject(0x1626, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x162D, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+};
 
 void CreateOtherHints() {
   // Create other hints for various texts
@@ -897,6 +1178,12 @@ static Text BuildCountReq(const HintKey req, const Option& count) {
 void CreateAllHints() {
 
   //CreateGanonText();
+  // if (Settings::ShuffleMagicBeans) {
+  //   CreateBeanDaddyHint();
+  // }
+  if (Scrubsanity) {
+    CreateScrubPurchaseText();
+  }
 
   PlacementLog_Msg("\nNOW CREATING HINTS\n");
   const HintSetting& hintSetting = hintSettingTable[Settings::HintDistribution.Value<u8>()];

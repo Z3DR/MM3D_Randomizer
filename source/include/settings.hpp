@@ -414,6 +414,7 @@ namespace Settings {
   extern Option ShuffleMagicBeans;
   extern Option ShuffleKokiriSword;
   extern Option Shopsanity;
+  extern Option ShopsanityPrices;
   extern Option Tokensanity;
   extern Option Scrubsanity;
   extern Option ShuffleCows;
@@ -569,6 +570,13 @@ namespace Settings {
   //Custom Buttons
   extern Menu customInputs;
   extern std::vector<Option*> customButtons;
+  extern Option IngameLTargeting;
+  extern Option IngameFirstPersonCamera;
+  extern Option IngameFreeCamera;
+  extern Option IngameMotionControls;
+  extern Option IngameSwimmingControls;
+  extern Option IngameAdjustVolume;
+
   extern Option CustomMapButton;
   extern Option CustomItemsButton;
   extern Option CustomMasksButton;

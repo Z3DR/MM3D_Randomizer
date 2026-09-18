@@ -9,6 +9,7 @@
 //#include "trial.hpp"
 #include "tinyxml2.h"
 #include "utils.hpp"
+#include "shops.hpp"
 
 #include <3ds.h>
 #include <cstdio>
@@ -219,7 +220,7 @@ static void WriteIngameSpoilerLog() {
             continue;
         }
         // Shops
-        else if ((Settings::Shopsanity.Is(ShopsanitySetting::SHOPSANITY_OFF)) && loc->IsCategory(Category::cShop)){
+        else if (!Settings::Shopsanity && loc->IsCategory(Category::cShop)){
           continue;
         }
         // Stray Fairies
@@ -302,12 +303,13 @@ static void WriteIngameSpoilerLog() {
         }
 
         auto locItem = loc->GetPlacedItemName().GetNAEnglish();
-        /*if (loc->IsCategory(Category::cShop)) {
-            if (loc->GetPlacedItemKey() == ICE_TRAP) {
-                locItem = NonShopItems[TransformShopIndex(GetShopIndex(key))].Name.GetNAEnglish();
+        if (loc->IsCategory(Category::cShop)) {
+            const int shopIndex = GetShopIndex(key);
+            if (loc->GetPlacedItemKey() == ICE_TRAP && shopIndex >= 0) {
+                locItem = NonShopItems[shopIndex].Name.GetNAEnglish();
             }
             locItem += ": " + std::to_string(loc->GetPrice()) + " Rupees";
-        }*/
+        }
         if (stringOffsetMap.find(locItem) == stringOffsetMap.end()) {
             if (spoilerStringOffset + locItem.size() + 1 >= SPOILER_STRING_DATA_SIZE) {
                 spoilerOutOfSpace = true;
