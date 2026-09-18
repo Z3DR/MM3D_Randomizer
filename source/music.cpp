@@ -197,8 +197,12 @@ namespace Music {
   }
 
   void ShuffleSequences() {
+    // Separate loops on purpose. Together, GCC indexes musicSlots from BGM_BASE + i and stores a pointer
+    // 32 MB below the table, which Azahar's .3dsx loader rejects ("Failed to load ROM (Error 1)").
     for (size_t i = 0; i < BGM_COUNT; i++) {
       seqOverridesMusic[i] = BGM_BASE + i;
+    }
+    for (size_t i = 0; i < BGM_COUNT; i++) {
       seqFanfaresMusic[i] = IsFanfarePool(musicSlots[i].pool) ? 1 : 0;
     }
 
