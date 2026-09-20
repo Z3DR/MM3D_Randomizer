@@ -665,7 +665,7 @@ void CreateShopMessages() {
   u16 MilkBarMilkPrice = 20;// Location(E_CLOCK_TOWN_MILK_BAR_MILK)->GetPrice();
   u16 MilkBarChateauPrice = 200;// Location(E_CLOCK_TOWN_MILK_BAR_CHATEAU)->GetPrice();
   //                  {"English",         "French",                 "Spanish",            "German",           }; // "Italian"
-  Text MilkBarIntro = {"What'll it be?&", "Qu'est-ce que ce s'ra?", "¿Qué quiere tomar?", "Was darf's sein?",    // "Cosa prendi?",
+  Text MilkBarIntro = {"What'll it be?",  "Qu'est-ce que ce s'ra?", "¿Qué quiere tomar?", "Was darf's sein?",    // "Cosa prendi?",
                        "",                "",                       "¿Qué va a ser?",                         };
   Text MilkSplit =    {": ##",            " : ##",                  ": ##",               ": ##",             }; // "    ##",
   Text MilkNext  =    {" Rupees#&#",      " Rubis#&#",              " rupias#&#",         " Rubine#&#",       }; // " rupie#&#",
@@ -673,7 +673,7 @@ void CreateShopMessages() {
                   Text{"Nothing#",        "Rien#",                  "Nada#",              "Nichts#",          }; // "Niente#",
 
   CustomMessages::CreateMessageFromTextObject(0x2b0b, 0xFFFF, (0x3FF00000 | MilkBarMilkPrice | (MilkBarChateauPrice << 10)), 0xff1001,
-  MilkBarIntro+">3#"+MilkBarMilkItem+MilkSplit+std::to_string(MilkBarMilkPrice)+MilkNext+MilkBarChateauItem+MilkSplit+std::to_string(MilkBarChateauPrice)+MilkLeave,
+  MilkBarIntro+"&>3#"+MilkBarMilkItem+MilkSplit+std::to_string(MilkBarMilkPrice)+MilkNext+MilkBarChateauItem+MilkSplit+std::to_string(MilkBarChateauPrice)+MilkLeave,
   {QM_GREEN, QM_MAGENTA, QM_GREEN, QM_MAGENTA, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
   // CustomMessages::CreateMessage(0x614A, 0xFFFF, (0x3FFFFFFF), 0xff0000,
   // {"With all due respect, sir, I think you've had enough of that."},
