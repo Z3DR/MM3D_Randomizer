@@ -210,10 +210,12 @@ string_view shuffleRewardsAnywhere    = "Boss Remains can appear anywhere.\n";  
 /*------------------------------                                                           //
 |      SHUFFLE MAGIC BEANS     |                                                           //
 ------------------------------*/                                                           //
-string_view magicBeansDesc            = "**OPTION CURRENTLY WIP**\n"                       //
-                                        "Enabling this adds a pack of 20 beans to the item\n"
-                                        "pool and changes the Magic Bean Salesman to sell a\n"
-                                        "random item at a price of 60 rupees.";            //
+string_view magicBeansDesc            = //"**OPTION CURRENTLY WIP**\n"                       //
+                                        "Bean Seller's free sample bean will be randomized.\n\n"
+                                        "He will still sell refills, but only after\n"     //
+                                        "a randomized bean has been found.\n\n"            //
+                                        "Please note: every bean is worth 20 beans\n"      //
+                                        "regardless of this being enabled.";               //
 /*------------------------------                                                           //
 |     SHUFFLE KOKIRI SWORD     |                                                           //
 ------------------------------*/                                                           //
@@ -558,12 +560,18 @@ string_view shuffleOcaMusicDesc      = "**OPTION CURRENTLY WIP**\n"             
 /*------------------------------                                                           //
 |      RESTORATION OPTIONS     |                                                           //
 ------------------------------*/                                                           //
-string_view fastZoraSwimDesc         = "Enables Fast Zora Swimming without magic.";        //
+string_view fastZoraSwimDesc         = "Enables Fast Zora Swimming without magic.\n\n"     //
+                                       "Slow swimming can still by accessed by\n"          //
+                                       "pressing dpad up, dpad down, ZL, or holding ZR.";  //
 string_view ocarinaDiveDesc          = "Enables Ocarina Diving. This also patches\n"       //
                                        "walking with ocarina from gossip stones.";         //
 string_view dpadMaskDesc             = "Enables using the 3 D-Pad buttons to use\n"        //
                                        "transformation masks. This option will also\n"     //
-                                       "patch using Down A with Mask Storage.";            //
+                                       "patch using Down A with Mask Storage.\n\n"         //
+                                       "Down (south) = Deku\n"                             //
+                                       "Left (west)  = Zora\n"                             //
+                                       "Up   (north) = Goron\n"                            //
+                                       "ZR + Up (in boss room) = Fierce Deity";            //
 string_view dpadOcarinaDesc          = "Enables using D-Pad right to activate your\n"      //
                                        "ocarina.";                                         //
 string_view dpadArrowDesc            = "Enables using D-Pad up to change your current\n"   //
