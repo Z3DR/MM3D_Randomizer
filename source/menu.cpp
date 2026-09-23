@@ -21,9 +21,6 @@
 using namespace Settings;
 
 namespace {
-  bool seedChanged;
-  u16 pastSeedLength;
-  PrintConsole topScreen, bottomScreen;
   u16 settingBound = 0;
   std::vector<std::string> presetEntries;
   std::vector<Menu*> menuList;
@@ -59,9 +56,6 @@ void ClearDescription() {
 
 void MenuInit() {
   Settings::InitSettings();
-
-  seedChanged = false;
-  pastSeedLength = Settings::seed.length();
 
   Menu* main = new Menu("Main", MenuType::MainMenu, &Settings::mainMenu, MAIN_MENU);
   menuList.push_back(main);
@@ -293,11 +287,6 @@ void UpdatePresetsMenu(u32 kDown) {
   ClearDescription();
   if (kDown & KEY_A && currentMenu->mode == LOAD_PRESET && !presetEntries.empty()) {
     if (LoadPreset(presetEntries[currentMenu->menuIdx], OptionCategory::Setting)) {
-      Settings::ResolveExcludedLocationConflicts();
-      for (Menu* menu : Settings::GetAllOptionMenus()) {
-        menu->ResetMenuIndex();
-      }
-      printf("\x1b[24;5HPreset Loaded!");
       SetToast("Preset loaded!", UI::ColGood);
     } else {
       SetToast("Failed to load preset.", UI::ColBad);
@@ -329,161 +318,6 @@ void UpdateGenerateMenu(u32 kDown) {
         //This is just a dummy mode to stop the prompt from appearing again
         currentMenu->mode = POST_GENERATE;
         }
-
-void PrintMainMenu() {
-  printf("\x1b[0;%dHMain Settings", 1+(BOTTOM_WIDTH-13)/2);
-
-  for (u8 i = 0; i < MAX_SUBMENUS_ON_SCREEN; i++) {
-    if (i >= Settings::mainMenu.size()) break;
-
-    Menu* menu = Settings::mainMenu[i];
-
-    u8 row = 3 + i;
-    //make the current menu green
-    if (currentMenu->menuIdx == i) {
-      printf("\x1b[%d;%dH%s>",  row,  2, GREEN);
-      printf("\x1b[%d;%dH%s%s", row,  3, menu->name.c_str(), RESET);
-    } else {
-      printf("\x1b[%d;%dH%s",   row,  3, menu->name.c_str());
-    }
-  }
-}
-
-void PrintOptionSubMenu() {
-  //bounds checking incase settings go off screen
-  //this is complicated to account for hidden settings and there's probably a better way to do it
-  u16 hiddenSettings = 0;
-  u16 visibleSettings = 0;
-  for (u16 i = currentMenu->settingBound; visibleSettings < MAX_SUBMENU_SETTINGS_ON_SCREEN; i++) {
-    if (i >= currentMenu->settingsList->size()) {
-      break;
-    }
-    if (currentMenu->settingsList->at(i)->IsHidden()) {
-      hiddenSettings++;
-    } else {
-      visibleSettings++;
-    }
-  }
-  if (currentMenu->menuIdx >= currentMenu->settingBound + MAX_SUBMENU_SETTINGS_ON_SCREEN + hiddenSettings) {
-    currentMenu->settingBound = currentMenu->menuIdx;
-    u8 offset = 0;
-    //skip over hidden settings
-    while (offset < MAX_SUBMENU_SETTINGS_ON_SCREEN - 1) {
-      currentMenu->settingBound--; 
-      if (currentMenu->settingBound == 0) {
-        break;
-      }
-      offset += currentMenu->settingsList->at(currentMenu->settingBound)->IsHidden() ? 0 : 1;
-    }
-  } else if (currentMenu->menuIdx < currentMenu->settingBound)  {
-    currentMenu->settingBound = currentMenu->menuIdx;
-  }
-
-  //print menu name
-  printf("\x1b[0;%dH%s", 1+(BOTTOM_WIDTH-currentMenu->name.length())/2, currentMenu->name.c_str());
-
-  //keep count of hidden settings to not make blank spaces appear in the list
-  hiddenSettings = 0;
-
-  for (u8 i = 0; i - hiddenSettings < MAX_SUBMENU_SETTINGS_ON_SCREEN; i++) {
-    //break if there are no more settings to print
-    if (i + currentMenu->settingBound >= currentMenu->settingsList->size()) break;
-
-    Option* setting = currentMenu->settingsList->at(i + currentMenu->settingBound);
-
-    u8 row = 3 + ((i - hiddenSettings) * 2);
-    //make the current setting green
-    if (currentMenu->menuIdx == i + currentMenu->settingBound) {
-      printf("\x1b[%d;%dH%s>",   row,  1, GREEN);
-      printf("\x1b[%d;%dH%s:",   row,  2, setting->GetName().data());
-      printf("\x1b[%d;%dH%s%s",  row, 26, setting->GetSelectedOptionText().data(), RESET);
-    //dim to make a locked setting grey
-    } else if (setting->IsLocked()) {
-      printf("\x1b[%d;%dH%s%s:", row,  2, DIM, setting->GetName().data());
-      printf("\x1b[%d;%dH%s%s",  row, 26, setting->GetSelectedOptionText().data(), RESET);
-    //don't display hidden settings
-    } else if (setting->IsHidden()) {
-      hiddenSettings++;
-      continue;
-    } else {
-      printf("\x1b[%d;%dH%s:",   row,  2, setting->GetName().data());
-      printf("\x1b[%d;%dH%s",    row, 26, setting->GetSelectedOptionText().data());
-    }
-  }
-
-  PrintOptionDescription();
-}
-
-void PrintSubMenu() {
-  printf("\x1b[0;%dH%s", 1+(BOTTOM_WIDTH-currentMenu->name.length())/2, currentMenu->name.c_str());
-
-  for (u8 i = 0; i < MAX_SUBMENUS_ON_SCREEN; i++) {
-    if (i >= currentMenu->itemsList->size()) break;
-
-    u8 row = 3 + i;
-    //make the current menu green
-    if (currentMenu->menuIdx == currentMenu->settingBound + i) {
-      printf("\x1b[%d;%dH%s>",  row,  2, GREEN);
-      printf("\x1b[%d;%dH%s%s", row,  3, currentMenu->itemsList->at(currentMenu->settingBound + i)->name.c_str(), RESET);
-    } else {
-      printf("\x1b[%d;%dH%s",   row,  3, currentMenu->itemsList->at(currentMenu->settingBound + i)->name.c_str());
-    }
-  }
-}
-
-void PrintPresetsMenu() {
-  consoleSelect(&bottomScreen);
-  if (presetEntries.empty()) {
-    printf("\x1b[10;4HNo Presets Detected!");
-    printf("\x1b[12;4HPress B to return to the preset menu.");
-    return;
-  }
-
-  if(currentMenu->mode == LOAD_PRESET) {
-    printf("\x1b[0;%dHSelect a Preset to Load", 1+(BOTTOM_WIDTH-23)/2);
-  } else if (currentMenu->mode == DELETE_PRESET) {
-    printf("\x1b[0;%dHSelect a Preset to Delete", 1+(BOTTOM_WIDTH-25)/2);
-  }
-
-  for (u8 i = 0; i < MAX_SUBMENU_SETTINGS_ON_SCREEN; i++) {
-    if (i >= presetEntries.size()) break;
-
-    std::string preset = presetEntries[i];
-
-    u8 row = 3 + (i * 2);
-    //make the current preset green
-    if (currentMenu->menuIdx == i) {
-      printf("\x1b[%d;%dH%s>",  row, 14, GREEN);
-      printf("\x1b[%d;%dH%s%s", row, 15, preset.c_str(), RESET);
-    } else {
-      printf("\x1b[%d;%dH%s",   row, 15, preset.c_str());
-    }
-  }
-}
-
-void PrintResetToDefaultsMenu() {
-  consoleSelect(&bottomScreen);
-  printf("\x1b[10;4HPress A to reset to default settings.");
-  printf("\x1b[12;4HPress B to return to the preset menu.");
-}
-
-
-void ClearDescription() {
-  consoleSelect(&topScreen);
-
-  //clear the previous description
-  std::string spaces = "";
-  spaces.append(9 * TOP_WIDTH, ' ');
-  printf("\x1b[22;0H%s", spaces.c_str());
-}
-
-void PrintOptionDescription() {
-  ClearDescription();
-  std::string_view description = currentSetting->GetSelectedOptionDescription();
-
-  printf("\x1b[22;0H%s", description.data());
-}
-
 
 void GenerateRandomizer() {
 
