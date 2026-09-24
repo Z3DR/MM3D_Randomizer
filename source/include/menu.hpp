@@ -32,7 +32,16 @@
 #define MEGANTA "\x1b[35m"
 #define CYAN    "\x1b[36m"
 #define WHITE   "\x1b[37m"
-
+// --- PROJECT RESTORATION STYLE PALETTE ---
+#define COLOR_PR_TAB_BG        C2D_Color32(28, 32, 42, 255)    // Dark slate grey tab
+#define COLOR_PR_TAB_ACTIVE    C2D_Color32(20, 80, 160, 255)   // Bright blue active tab
+#define COLOR_PR_ROW_BG        C2D_Color32(18, 22, 30, 255)    // Dark row background
+#define COLOR_PR_BORDER        C2D_Color32(90, 95, 110, 255)   // Slate border
+#define COLOR_PR_YELLOW_GLOW   C2D_Color32(245, 220, 80, 255)  // Selected row yellow outline
+#define COLOR_PR_TOGGLE_OFF    C2D_Color32(120, 120, 120, 255) // Grey toggle track
+#define COLOR_PR_TOGGLE_ON     C2D_Color32(70, 210, 100, 255)  // Green toggle track
+#define COLOR_PR_KNOB          C2D_Color32(220, 215, 200, 255) // Toggle knob off-white
+#define COLOR_PR_DESC_BG       C2D_Color32(35, 12, 55, 240)    // Purple bottom description box
 void ModeChangeInit();
 void UpdateOptionSubMenu(u32 kDown);
 void UpdatePresetsMenu(u32 kdown);
