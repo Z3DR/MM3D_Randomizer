@@ -503,40 +503,88 @@ void DrawItemList(const std::vector<std::string>& names, u16 selected, bool acce
   }
   UI::ScrollBar(UI::BotW - 4, LIST_TOP, LIST_VISIBLE * ROW_H, names.size(), LIST_VISIBLE, scroll);
 }
+// Border & Double-Yellow Selection Helpers
+void DrawPRBox(float x, float y, float w, float h, u32 bgCol, u32 borderCol) {
+    UI::Rect(x, y, w, h, bgCol);
+    UI::Rect(x, y, w, 1.0f, borderCol);             // Top border
+    UI::Rect(x, y + h - 1.0f, w, 1.0f, borderCol);     // Bottom border
+    UI::Rect(x, y, 1.0f, h, borderCol);             // Left border
+    UI::Rect(x + w - 1.0f, y, 1.0f, h, borderCol);     // Right border
+}
 
+// Change 2: Majora Gold Double-Line Yellow Outline Around Bounding Box
+void DrawPRYellowGlow(float x, float y, float w, float h) {
+    // Drawn with thin inner offsets to stay inside screen bounds and prevent clipping
+    UI::Rect(x, y, w, 2.0f, UI::ColPRGlow);                 // Top
+    UI::Rect(x, y + h - 2.0f, w, 2.0f, UI::ColPRGlow);     // Bottom
+    UI::Rect(x, y, 2.0f, h, UI::ColPRGlow);                 // Left
+    UI::Rect(x + w - 2.0f, y, 2.0f, h, UI::ColPRGlow);     // Right
+}
+
+// Change 3: Pill-Style Toggle Switch
+void DrawPRToggle(float x, float y, bool state) {
+    float w = 32.0f;
+    float h = 13.0f;
+    u32 trackColor = state ? UI::ColPRToggleOn : UI::ColPRToggleOff;
+
+    // Track frame
+    DrawPRBox(x, y, w, h, trackColor, UI::ColPRBorder);
+
+    // Dynamic knob position: left when OFF, right when ON
+    float knobX = state ? (x + w - 11.0f) : (x + 1.0f);
+    UI::Rect(knobX, y + 1.0f, 10.0f, 11.0f, UI::ColPRKnob);
+}
+
+// Updated DrawOptionList incorporating ONLY Changes 2 & 3
 void DrawOptionList() {
-  std::vector<u16> rows = VisibleOptionRows();
-  for (size_t row = 0; row < rows.size(); row++) {
-    Option* setting = currentMenu->settingsList->at(rows[row]);
-    float y = LIST_TOP + row * ROW_H;
-    bool isSel = (rows[row] == currentMenu->menuIdx);
-    bool locked = setting->IsLocked();
+    std::vector<u16> rows = VisibleOptionRows();
+    float rowX = 2.0f;
+    float rowW = UI::BotW - 4.0f; // 316.0f
 
-    if (isSel) DrawRowHighlight((int)row);
+    for (size_t row = 0; row < rows.size(); row++) {
+        Option* setting = currentMenu->settingsList->at(rows[row]);
+        float y = LIST_TOP + row * ROW_H;
+        bool isSel = (rows[row] == currentMenu->menuIdx);
+        bool locked = setting->IsLocked();
 
-    u32 nameCol = locked ? UI::ColTextLocked : UI::ColText;
-    u32 valCol  = locked ? UI::ColTextLocked : (isSel ? UI::ColValue : UI::ColTextDim);
-    UI::Text(UI::FitToWidth(setting->GetName(), TXT, 170.0f), 10, y + 1.0f, TXT, nameCol);
+        // 1. Base option box background & border
+        DrawPRBox(rowX, y, rowW, ROW_H, UI::ColPRRowBg, UI::ColPRBorder);
 
-    std::string value = UI::FitToWidth(setting->GetSelectedOptionText(), TXT, 112.0f);
-    if (isSel && !locked) {
-      UI::TextRight("<", 186, y + 1.0f, TXT, UI::ColAccent);
-      UI::Text(">", UI::BotW - 14, y + 1.0f, TXT, UI::ColAccent);
-      UI::TextCentered(value, (192 + UI::BotW - 18) / 2, y + 1.0f, TXT, valCol);
-    } else {
-      UI::TextRight(value, UI::BotW - 14, y + 1.0f, TXT, valCol);
+        // 2. Yellow outline drawn AFTER base box so it doesn't get covered
+        if (isSel) {
+            DrawPRYellowGlow(rowX, y, rowW, ROW_H);
+        }
+
+        // Setting Name
+        u32 nameCol = locked ? UI::ColTextLocked : UI::ColText;
+        u32 valCol = locked ? UI::ColTextLocked : (isSel ? UI::ColValue : UI::ColTextDim);
+        UI::Text(UI::FitToWidth(setting->GetName(), TXT, 170.0f), rowX + 8.0f, y + 1.0f, TXT, nameCol);
+
+        std::string value = UI::FitToWidth(setting->GetSelectedOptionText(), TXT, 112.0f);
+
+        // 3. Pill Switch with updated toggle positioning
+        if (value == "On" || value == "Off" || value == "Enabled" || value == "Disabled") {
+            bool isOn = (value == "On" || value == "Enabled");
+            DrawPRToggle(rowX + rowW - 38.0f, y + 1.0f, isOn);
+        } else {
+            if (isSel && !locked) {
+                UI::TextRight("<", 186, y + 1.0f, TXT, UI::ColAccent);
+                UI::Text(">", UI::BotW - 14, y + 1.0f, TXT, UI::ColAccent);
+                UI::TextCentered(value, (192 + UI::BotW - 18) / 2, y + 1.0f, TXT, valCol);
+            } else {
+                UI::TextRight(value, UI::BotW - 14, y + 1.0f, TXT, valCol);
+            }
+        }
     }
-  }
 
-  // scrollbar over the non-hidden settings
-  size_t total = 0, first = 0;
-  for (size_t i = 0; i < currentMenu->settingsList->size(); i++) {
-    if (!currentMenu->settingsList->at(i)->IsHidden()) {
-      if (i < settingBound) first++;
-      total++;
+    size_t total = 0, first = 0;
+    for (size_t i = 0; i < currentMenu->settingsList->size(); i++) {
+        if (!currentMenu->settingsList->at(i)->IsHidden()) {
+            if (i < settingBound) first++;
+            total++;
+        }
     }
-  }
-  UI::ScrollBar(UI::BotW - 4, LIST_TOP, LIST_VISIBLE * ROW_H, total, LIST_VISIBLE, first);
+    UI::ScrollBar(UI::BotW - 4.0f, LIST_TOP, LIST_VISIBLE * ROW_H, total, LIST_VISIBLE, first);
 }
 
 void DrawMessageCard(const std::string& line1, u32 col1, const std::string& line2) {

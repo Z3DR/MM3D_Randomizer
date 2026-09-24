@@ -35,7 +35,12 @@ extern const u32 ColGood;         // success messages
 extern const u32 ColBad;          // error messages
 extern const u32 ColScrollTrack;
 extern const u32 ColScrollThumb;
-
+extern const u32 ColPRRowBg; // Deep purple row fill
+extern const u32 ColPRBorder; // Light purple frame border
+extern const u32 ColPRGlow; // Majora Gold double-line selection
+extern const u32 ColPRToggleOff; // Dark muted purple toggle track
+extern const u32 ColPRToggleOn; // Bright Clock Town mint green toggle track
+extern const u32 ColPRKnob; // Cream white knob
 constexpr float TopW = 400.0f, TopH = 240.0f;
 constexpr float BotW = 320.0f, BotH = 240.0f;
 

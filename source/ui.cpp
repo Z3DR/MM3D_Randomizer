@@ -8,9 +8,12 @@
 #include <cstring>
 #include <vector>
 
+// ============================================================================
+// SURGICAL REPLACEMENT: source/ui.cpp Palette Definitions
+// ============================================================================
+
 namespace UI {
 
-// ——— palette (Majora twilight purple + mask gold) ———
 const u32 ColBgTop       = C2D_Color32(0x16, 0x10, 0x22, 0xFF);
 const u32 ColBgTopBot    = C2D_Color32(0x21, 0x18, 0x33, 0xFF);
 const u32 ColBgBottom    = C2D_Color32(0x18, 0x12, 0x26, 0xFF);
@@ -24,11 +27,21 @@ const u32 ColAccent      = C2D_Color32(0xF0, 0xC4, 0x3C, 0xFF);
 const u32 ColText        = C2D_Color32(0xED, 0xE8, 0xF5, 0xFF);
 const u32 ColTextDim     = C2D_Color32(0x9A, 0x90, 0xB4, 0xFF);
 const u32 ColTextLocked  = C2D_Color32(0x5E, 0x56, 0x74, 0xFF);
-const u32 ColValue       = C2D_Color32(0x7F, 0xE3, 0xC8, 0xFF);
-const u32 ColGood        = C2D_Color32(0x86, 0xD9, 0x86, 0xFF);
-const u32 ColBad         = C2D_Color32(0xE0, 0x60, 0x60, 0xFF);
-const u32 ColScrollTrack = C2D_Color32(0x2E, 0x22, 0x48, 0xFF);
-const u32 ColScrollThumb = C2D_Color32(0x8A, 0x6C, 0xC8, 0xFF);
+const u32 ColValue      = C2D_Color32(245, 220, 80, 255);  // Value Yellow
+const u32 ColGood       = C2D_Color32(70, 210, 100, 255);  // Success Green
+const u32 ColBad        = C2D_Color32(220, 70, 70, 255);   // Danger Red
+const u32 ColScrollTrack= C2D_Color32(20, 24, 32, 255);
+const u32 ColScrollThumb= C2D_Color32(90, 95, 110, 255);
+
+// Majora's Mask Twilight Purple & Gold Palette
+const u32 ColPRRowBg    = C2D_Color32(0x24, 0x1A, 0x38, 0xFF); // Deep purple row fill
+const u32 ColPRBorder   = C2D_Color32(0x4E, 0x38, 0x78, 0xFF); // Light purple frame border
+const u32 ColPRGlow     = C2D_Color32(0xF0, 0xC4, 0x3C, 0xFF); // Majora Gold double-line selection
+const u32 ColPRToggleOff= C2D_Color32(0x4A, 0x3C, 0x62, 0xFF); // Dark muted purple toggle track
+const u32 ColPRToggleOn = C2D_Color32(0x7F, 0xE3, 0xC8, 0xFF); // Bright Clock Town mint green toggle track
+const u32 ColPRKnob     = C2D_Color32(0xED, 0xE8, 0xF5, 0xFF); // Cream white knob
+
+// ... keep remaining UI functions unchanged
 
 namespace {
 
