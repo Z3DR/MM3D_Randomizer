@@ -250,12 +250,9 @@ static void WriteIngameSpoilerLog() {
         if ((Settings::ShuffleSongs.Value<u8>() == u8(0)) && Location(key)->IsCategory(Category::cSong)) {
           continue;
         }
-        //if ((!Settings::ShuffleSongOfTime) && Location(key)->IsCategory(Category::cSong)) {
-        //  continue;
-        //}
-        //if ((!Settings::ShuffleSoaring) && Location(key)->IsCategory(Category::cSong)) {
-        //  continue;
-        //}
+        if ((!Settings::ShuffleSoaring) && key == SOUTHERN_SWAMP_MUSIC_STATUE) {
+          continue;
+        }
         // Tingle Maps
         if (!Settings::ShuffleTingleMaps && Location(key)->IsCategory(Category::cTingleMap)) {
           continue;
@@ -280,6 +277,10 @@ static void WriteIngameSpoilerLog() {
         //Don't show the Stone Tower Upright Death Armos Room Chest as it is only created for no logic playthroughs incase the player does a Goron Missile to obtain the chest earlier than intended. 
         //It contains the same item as the normal Stone Tower Temple Death Armos Room Chest so it does not need to be shown in the spoiler log.
         if (key == STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST) {
+          continue;
+        }
+        //Hide duplicate checks (Clear Swamp / Spring Snowhead / ETC.)
+        if (Location(key)->IsCategory(Category::cAlternateCheck)) {
           continue;
         }
             
