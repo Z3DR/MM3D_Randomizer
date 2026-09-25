@@ -38,6 +38,7 @@ Here is a comprehensive list of what is available in the Randomizer if you are u
 - Fierce Deity Anywhere
 - Damage Multiplier
 - Skip longer cutscenes (i.e. Giant's Cutscene on Rooftop, and Zora cutscene)
+- Custom Music (replace the game's music with your own `.bcstm` files)
 
 ## Project Restoration Implementation
 

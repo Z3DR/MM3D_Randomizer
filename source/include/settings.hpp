@@ -521,6 +521,8 @@ namespace Settings {
   extern Option ColoredKeys;
   extern Option ColoredBossKeys;
   extern Option ShuffleMusic;
+  extern Option CustomMusic;
+  extern Option CustomMusicOnly;
 //  extern Option ShuffleBGM;
 //  extern Option ShuffleFanfares;
 //  extern Option ShuffleOcaMusic;

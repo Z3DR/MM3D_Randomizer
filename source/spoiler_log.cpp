@@ -1,8 +1,10 @@
 #include "spoiler_log.hpp"
 
+#include "custom_music.hpp"
 #include "dungeon.hpp"
 #include "item_list.hpp"
 #include "item_location.hpp"
+#include "music_streams.hpp"
 //#include "entrance.hpp"
 #include "random.hpp"
 #include "settings.hpp"
@@ -581,6 +583,30 @@ static void WriteStartingInventory(tinyxml2::XMLDocument& spoilerLog, const bool
     spoilerLog.RootElement()->InsertEndChild(parentNode);
   }
 }
+
+static void WriteCustomMusic(tinyxml2::XMLDocument& spoilerLog, const bool collapsible = false) {
+  if (!Settings::CustomMusic) {
+    return;
+  }
+  auto parentNode = spoilerLog.NewElement("custom-music");
+
+  for (size_t i = 0; i < CustomMusic::assignments.size(); ++i) {
+    const std::string& song = CustomMusic::assignments[i];
+    if (song.empty()) {
+      continue;
+    }
+    auto node = parentNode->InsertNewChildElement("slot");
+    node->SetAttribute("name", Music::streamSlots[i].displayName);
+    node->SetAttribute("song", std::filesystem::path(song).stem().string().c_str());
+  }
+
+  if (!parentNode->NoChildren()) {
+    if (collapsible) {
+      spoilerLog.RootElement()->InsertEndChild(CreateCollapseCheckbox(spoilerLog));
+    }
+    spoilerLog.RootElement()->InsertEndChild(parentNode);
+  }
+}
 /*
 // Writes the enabled tricks to the spoiler log, if there are any.
 static void WriteEnabledTricks(tinyxml2::XMLDocument& spoilerLog) {
@@ -726,6 +752,7 @@ bool SpoilerLog_Write() {
   WriteExcludedLocations(spoilerLog);
   //WriteEnabledTricks(spoilerLog);
   WriteStartingInventory(spoilerLog, true);
+  WriteCustomMusic(spoilerLog, true);
   WritePlaythrough(spoilerLog, true);
   WriteWayOfTheHeroLocation(spoilerLog, true);
 

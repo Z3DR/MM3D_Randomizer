@@ -21,8 +21,6 @@ std::string SanitizedString(std::string s) {
   return s;
 }
 
-using FILEPtr = std::unique_ptr<FILE, decltype(&std::fclose)>;
-
 bool CopyFile(FS_Archive sdmcArchive, const char* dst, const char* src) {
   Result res = 0;
   Handle outFile;
@@ -54,4 +52,37 @@ bool CopyFile(FS_Archive sdmcArchive, const char* dst, const char* src) {
 
   FSFILE_Close(outFile);
   return true;
+}
+
+bool CopyFileChunked(FS_Archive sdmcArchive, const char* dst, const char* src) {
+  auto in = FILEPtr{std::fopen(src, "rb"), std::fclose};
+  if (!in) {
+    return false;
+  }
+
+  const FS_Path dstPath = fsMakePath(PATH_ASCII, dst);
+  FSUSER_DeleteFile(sdmcArchive, dstPath);
+  Handle out;
+  if (R_FAILED(FSUSER_OpenFile(&out, sdmcArchive, dstPath, FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
+    return false;
+  }
+
+  std::vector<char> buf(128 * 1024);
+  u64 offset = 0;
+  bool ok = true;
+  while (const size_t n = std::fread(buf.data(), 1, buf.size(), in.get())) {
+    u32 written = 0;
+    // No FS_WRITE_FLUSH per chunk -- that is what makes large copies slow. Flush once at the end.
+    if (R_FAILED(FSFILE_Write(out, &written, offset, buf.data(), n, 0)) || written != n) {
+      ok = false;
+      break;
+    }
+    offset += n;
+  }
+  ok = ok && !std::ferror(in.get()) && R_SUCCEEDED(FSFILE_Flush(out));
+  FSFILE_Close(out);
+  if (!ok) {
+    FSUSER_DeleteFile(sdmcArchive, dstPath);  // never leave a truncated stream behind
+  }
+  return ok;
 }
