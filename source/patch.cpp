@@ -185,7 +185,7 @@ bool WriteAllPatches() {
    patchOffset = V_TO_P(GSPOILERDATA_ADDR);
    patchSize = sizeof(SpoilerData);
   //Get the spoiler data
-  SpoilerData spoilerData = GetSpoilerData();
+  const SpoilerData& spoilerData = GetSpoilerData();
   if (!WritePatch(patchOffset, patchSize, (char*)(&spoilerData), code, bytesWritten, totalRW, buf)) {
     return false;
   }
