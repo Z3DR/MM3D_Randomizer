@@ -14,6 +14,10 @@
 
 #define TICKS_PER_SEC 268123480.0
 
+extern "C" {
+u32 __stacksize__ = 64 * 1024;
+}
+
 int main() {
     gfxInitDefault();
     // Register graphics to quit at exit. New to libctru update.
