@@ -37,6 +37,14 @@ void Shuffle(std::vector<T>& vector) {
         std::swap(vector[i], vector[Random(i, vector.size())]);
     }
 }
+
+template <typename T>
+void Derange(std::vector<T>& vector) {
+    for (std::size_t i = vector.size(); i > 1; i--)
+    {
+        std::swap(vector[i - 1], vector[Random(0, i - 1)]);
+    }
+}
 template <typename T, std::size_t size>
 void Shuffle(std::array<T, size>& arr) {
     for (std::size_t i = 0; i + 1 < arr.size(); i++)
