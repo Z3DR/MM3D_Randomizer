@@ -2,6 +2,7 @@
 
 #include "cosmetics.hpp"
 #include "custom_messages.hpp"
+#include "custom_music.hpp"
 #include "music.hpp"
 #include "shops.hpp"
 #include "sound_effects.hpp"
@@ -18,8 +19,6 @@
 #include <vector>
 
 // For specification on the IPS file format, visit: https://zerosoft.zophar.net/ips.php
-
-using FILEPtr = std::unique_ptr<FILE, decltype(&std::fclose)>;
 
 bool WritePatch(u32 patchOffset, s32 patchSize, char* patchDataPtr, Handle& code, u32& bytesWritten, u32& totalRW, char* buf) {
 
@@ -186,7 +185,7 @@ bool WriteAllPatches() {
    patchOffset = V_TO_P(GSPOILERDATA_ADDR);
    patchSize = sizeof(SpoilerData);
   //Get the spoiler data
-  SpoilerData spoilerData = GetSpoilerData();
+  const SpoilerData& spoilerData = GetSpoilerData();
   if (!WritePatch(patchOffset, patchSize, (char*)(&spoilerData), code, bytesWritten, totalRW, buf)) {
     return false;
   }
@@ -414,6 +413,12 @@ bool WriteAllPatches() {
   }
 
   FSFILE_Close(titleassetsOut);
+
+  /*-------------------
+  |   CUSTOM MUSIC    |
+  -------------------*/
+  // code.ips is already written, so a failure here only costs the custom songs, never the patch
+  CustomMusic::Place(sdmcArchive, lumaSdDir);
 
   /*-------------------
   | LOCALE EMULATION  |

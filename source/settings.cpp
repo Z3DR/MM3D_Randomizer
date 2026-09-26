@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 #include "cosmetics.hpp"
+#include "custom_music.hpp"
 #include "dungeon.hpp"
 #include "fill.hpp"
 #include "item_location.hpp"
@@ -664,6 +665,8 @@ namespace Settings {
   Option ColoredKeys =     Option::Bool("Colored Small Keys", {"Off", "On"}, {coloredKeysDesc}, OptionCategory::Cosmetic);
   Option ColoredBossKeys = Option::Bool("Colored Boss Keys",  {"Off", "On"}, {coloredBossKeysDesc},  OptionCategory::Cosmetic);
   Option ShowPostmanItem = Option::U8("Show Postman Item", {"Off", "On"}, {showPostmanItemDesc}, OptionCategory::Cosmetic);
+  Option CustomMusic     = Option::Bool("Custom Music",        {"Off", "On"}, {customMusicDesc},     OptionCategory::Cosmetic);
+  Option CustomMusicOnly = Option::Bool("  Custom Music Only", {"Off", "On"}, {customMusicOnlyDesc}, OptionCategory::Cosmetic, 0, true);
 
   static std::vector<std::string> fanfareOptions = {"Off", "Only Fanfares", "Fanfares +\n                         Ocarina Music"};
   static std::vector<std::string_view> fanfareDescriptions = {fanfaresOffDesc, onlyFanfaresDesc, fanfaresOcarinaDesc};
@@ -680,6 +683,8 @@ namespace Settings {
     &ColoredKeys,
     //&ColoredBossKeys,
     &ShowPostmanItem,
+    &CustomMusic,
+    &CustomMusicOnly,
     //&ShuffleBGM,
     //&ShuffleFanfares,
     //&ShuffleOcaMusic,
@@ -1731,6 +1736,12 @@ namespace Settings {
      }
 
     // Music
+    if (CustomMusic) {
+      CustomMusicOnly.Unhide();
+    } else {
+      CustomMusicOnly.Hide();
+      CustomMusicOnly.SetSelectedIndex(0);
+    }
 //    if (ShuffleMusic) {
 //      ShuffleBGM.Unhide();
 //      ShuffleFanfares.Unhide();
@@ -1924,9 +1935,13 @@ namespace Settings {
       ShuffleMoonItems.SetSelectedIndex(0);
       GossipStoneHints.SetSelectedIndex(0);
     }
-    
     Music::ShuffleSequences();
     SFX::ShuffleSoundEffects();
+
+    CustomMusic::Reset();
+    if (CustomMusic) {
+      CustomMusic::Assign(static_cast<bool>(CustomMusicOnly));
+    }
   }
   
   //If this is an option menu, return th options

@@ -161,6 +161,8 @@ extern string_view coloredKeysDesc;
 extern string_view coloredBossKeysDesc;
 
 extern string_view musicRandoDesc;
+extern string_view customMusicDesc;
+extern string_view customMusicOnlyDesc;
 extern string_view shuffleBGMDesc;
 extern string_view fanfaresOffDesc;
 extern string_view onlyFanfaresDesc;

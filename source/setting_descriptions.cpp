@@ -543,8 +543,16 @@ string_view coloredBossKeysDesc       = "**OPTION CURRENTLY WIP**\n"            
 ------------------------------*/                                                           //
 string_view musicRandoDesc           = "**OPTION CURRENTLY WIP**\n"                        //
                                        "Randomize the music and fanfares in game. Tracks\n"//
-                                       "only trade with their own kind: area themes,\n"   //
+                                       "only trade with their own kind: area themes,\n"    //
                                        "item fanfares, ocarina songs, ...";                //
+string_view customMusicDesc          = "**OPTION CURRENTLY WIP**\n"                        //
+                                       "Replace music with .bcstm files from\n"            //
+                                       "/MM3DR/Custom Music/. See the report file\n"       //
+                                       "there for what was placed or rejected.";           //
+string_view customMusicOnlyDesc      = "**OPTION CURRENTLY WIP**\n"                        //
+                                       "Songs may repeat so every slot with a valid\n"     //
+                                       "custom song gets one. Vanilla tracks are only\n"   //
+                                       "kept where no custom song fits.";                  //
 string_view shuffleBGMDesc           = "**OPTION CURRENTLY WIP**\n"                        //
                                        "Randomize area background music";                  //
 string_view fanfaresOffDesc          = "**OPTION CURRENTLY WIP**\n"                        //

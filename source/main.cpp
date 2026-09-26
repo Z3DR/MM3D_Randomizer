@@ -14,6 +14,7 @@
 
 #define TICKS_PER_SEC 268123480.0
 
+
 int main() {
     gfxInitDefault();
     // Register graphics to quit at exit. New to libctru update.

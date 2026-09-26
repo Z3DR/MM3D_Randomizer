@@ -7,6 +7,7 @@
 #include <ctime>
 
 #include "cosmetics.hpp"
+#include "custom_music.hpp"
 #include "menu.hpp"
 #include "patch.hpp"
 #include "preset.hpp"
@@ -63,6 +64,7 @@ void MenuInit() {
   if (R_SUCCEEDED(FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, "")))) {
     InitLogDirectories(sdmcArchive);
     CreatePresetDirectories(sdmcArchive);
+    CustomMusic::CreateDirectories(sdmcArchive);
 
     FSUSER_CloseArchive(sdmcArchive);
   } else {
