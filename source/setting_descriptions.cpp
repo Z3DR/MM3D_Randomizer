@@ -576,8 +576,7 @@ string_view fastZoraSwimDesc         = "Enables Fast Zora Swimming without magic
 string_view ocarinaDiveDesc          = "Enables Ocarina Diving. This also patches\n"       //
                                        "walking with ocarina from gossip stones.";         //
 string_view dpadMaskDesc             = "Enables using the 3 D-Pad buttons to use\n"        //
-                                       "transformation masks. This option will also\n"     //
-                                       "patch using Down A with Mask Storage.\n\n"         //
+                                       "transformation masks.\n\n"                         //
                                        "Down (south) = Deku\n"                             //
                                        "Left (west)  = Zora\n"                             //
                                        "Up   (north) = Goron\n"                            //
