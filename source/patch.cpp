@@ -4,6 +4,7 @@
 #include "custom_messages.hpp"
 #include "music.hpp"
 #include "shops.hpp"
+#include "sound_effects.hpp"
 #include "spoiler_log.hpp"
 //#include "entrance.hpp"
 #include "item_location.hpp"
@@ -299,6 +300,28 @@ bool WriteAllPatches() {
   if (!WritePatch(patchOffset, patchSize, (char *)Music::seqOverridesMusic.data(),
                   code, bytesWritten, totalRW, buf))
   {
+    return false;
+  }
+
+  /*--------------------------------
+  |          rBGMFanfares          |
+  --------------------------------*/
+
+  patchOffset = V_TO_P(RBGMFANFARES_ADDR);
+  patchSize = sizeof(u8) * BGM_COUNT;
+  if (!WritePatch(patchOffset, patchSize, (char *)Music::seqFanfaresMusic.data(),
+                  code, bytesWritten, totalRW, buf))
+  {
+    return false;
+  }
+
+  /*--------------------------------
+  |            rSfxData            |
+  --------------------------------*/
+
+  patchOffset = V_TO_P(RSFXDATA_ADDR);
+  patchSize = sizeof(rnd::SfxData);
+  if (!WritePatch(patchOffset, patchSize, (char *)&SFX::GetSfxData(), code, bytesWritten, totalRW, buf)) {
     return false;
   }
   /*--------------------------
