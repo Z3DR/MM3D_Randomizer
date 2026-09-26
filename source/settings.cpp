@@ -1935,15 +1935,9 @@ namespace Settings {
       ShuffleMoonItems.SetSelectedIndex(0);
       GossipStoneHints.SetSelectedIndex(0);
     }
-    Music::InitMusicRandomizer();
-    if (ShuffleMusic) {
-      Music::ShuffleSequences(rnd::SeqType::SEQ_BGM_WORLD | rnd::SeqType::SEQ_BGM_EVENT |
-                              rnd::SeqType::SEQ_BGM_BATTLE);
-      Music::ShuffleSequences(rnd::SeqType::SEQ_FANFARE);
-      Music::ShuffleSequences(rnd::SeqType::SEQ_OCARINA);
-    }
-    // Custom Music must stay after the shuffle above: the number of RNG calls depends on the user's
-    // library, and the RNG is re-seeded before fill, so neither Shuffle Music nor items can be affected.
+    Music::ShuffleSequences();
+    SFX::ShuffleSoundEffects();
+
     CustomMusic::Reset();
     if (CustomMusic) {
       CustomMusic::Assign(static_cast<bool>(CustomMusicOnly));

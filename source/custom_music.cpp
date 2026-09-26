@@ -118,8 +118,8 @@ namespace CustomMusic {
     return songs;
   }
 
-  static bool Fits(const Song& s, const StreamSlot& slot) {
-    return s.header.codec == 2 && s.header.channels == 2 && s.header.loops == slot.loops;
+  static bool Fits(const Song& song, const StreamSlot& slot) {
+    return song.header.codec == 2 && song.header.channels == slot.channels && s.header.loops == slot.loops;
   }
 
   // Explains why a song fits none of the given slots. `target` names them for the report,
@@ -129,11 +129,26 @@ namespace CustomMusic {
     if (h.codec != 2) {
       return "codec " + std::to_string(h.codec) + ", needs DSP-ADPCM";
     }
-    if (h.channels != 2) {
-      return std::to_string(h.channels) + (h.channels == 1 ? " channel" : " channels") + ", needs 2";
-    }
     if (slots.empty()) {
       return "no replaceable slot";
+    }
+
+    std::vector<u8> counts;
+    bool channelsMatch = false;
+    for (const size_t slot : slots) {
+      channelsMatch |= streamSlots[slot].channels == h.channels;
+      if (std::find(counts.begin(), counts.end(), streamSlots[slot].channels) == counts.end()) {
+        counts.push_back(streamSlots[slot].channels);
+      }
+    }
+    if (!channelsMatch) {
+      std::sort(counts.begin(), counts.end());
+      std::string needs;
+      for (size_t k = 0; k < counts.size(); k++) {
+        needs += (k == 0 ? "" : " or ") + std::to_string(counts[k]);
+      }
+      return std::to_string(h.channels) + (h.channels == 1 ? " channel (mono)" : " channels") + ", but " + target +
+             " needs " + needs;
     }
     return h.loops ? "loops, but " + target + " expects a one-shot"
                    : "does not loop, but " + target + " expects a looping song";
@@ -230,9 +245,10 @@ namespace CustomMusic {
 
   void CreateDirectories(FS_Archive sdmcArchive) {
     Handle dir;
-    if (R_SUCCEEDED(FSUSER_OpenDirectory(&dir, sdmcArchive, fsMakePath(PATH_ASCII, "/MM3DR/Custom Music")))) {
+    const bool firstRun =
+        R_FAILED(FSUSER_OpenDirectory(&dir, sdmcArchive, fsMakePath(PATH_ASCII, "/MM3DR/Custom Music")));
+    if (!firstRun) {
       FSDIR_Close(dir);
-      return;
     }
 
     std::vector<std::string> dirs = {"/MM3DR/", musicRoot};
@@ -246,6 +262,9 @@ namespace CustomMusic {
     }
 
     const auto printInfo = [&](size_t progress) {
+      if (!firstRun) {
+        return;
+      }
       consoleClear();
       printf("\x1b[10;10HCreating Custom Music Directories");
       printf("\x1b[11;10HProgress: %zu/%zu", progress, dirs.size());

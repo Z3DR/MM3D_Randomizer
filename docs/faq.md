@@ -19,11 +19,13 @@ Whichever nightly build begins with the characters in that location is the lates
 ## How do I use Custom Music?
 Turn on **Custom Music** in the Cosmetic Settings. The randomizer creates `/MM3DR/Custom Music/` on your SD card the first time it starts, with one folder per category (`Area Themes`, `Battle Themes`, `Event Themes`, `Fanfares`, `Ocarina Songs`) and a folder for each track inside them.
 
-1. Export your song as a **stereo** WAV, preferably at 32000 Hz.
+1. Export your song as a **stereo** WAV, preferably at 32000 Hz. The exceptions are **Shop**, **Milk Bar**, **Swamp Cruise** and **Shooting Gallery**, which are mono in the game and need a **mono** file (a stereo file there causes audio glitches and crashes, so the randomizer rejects it).
 2. Area and battle themes need loop points. Fanfares and ocarina songs must not loop.
 3. Convert it to `.bcstm` with the DSP-ADPCM codec, for example with [Looping Audio Converter](https://github.com/libertyernie/LoopingAudioConverter/releases).
 4. Put the file in `/MM3DR/Custom Music/<Category>/` to let it replace any track in that category, or in `/MM3DR/Custom Music/<Category>/<Track>/` to replace only that track. The filename doesn't matter.
 5. Generate a seed. Every generation writes `/MM3DR/Custom Music/custom_music_report.txt`, which lists what was placed and why any song was rejected.
+
+Alternatively, you may download BCSTM files from [Smash Custom Music](https://smashcustommusic.net/). But for mono tracks, such as Milk Bar and Shooting Gallery, please ensure that the tracks are mono, or else they will be rejected.
 
 By default each song is used at most once, and tracks without a song stay vanilla. With **Custom Music Only** on, songs may repeat so every track with a valid song gets one (this writes more to the SD card).
 
