@@ -119,7 +119,7 @@ namespace CustomMusic {
   }
 
   static bool Fits(const Song& song, const StreamSlot& slot) {
-    return song.header.codec == 2 && song.header.channels == slot.channels && s.header.loops == slot.loops;
+    return song.header.codec == 2 && song.header.channels == slot.channels && song.header.loops == slot.loops;
   }
 
   // Explains why a song fits none of the given slots. `target` names them for the report,
