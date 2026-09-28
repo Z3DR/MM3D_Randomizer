@@ -360,15 +360,16 @@ static void WriteIngameSpoilerLog() {
     spoilerData.ItemLocationsCount = spoilerTotalItems;
 
     if (Settings::IngameSpoilers) {
-        bool playthroughItemNotFound = false;
         // Write playthrough data to in-game spoiler log
         if (!spoilerOutOfSpace) {
+            u32 sphere = 0;
             for (u32 i = 0; i < playthroughLocations.size(); i++) {
-                if (i >= SPOILER_SPHERES_MAX) {
+                if (sphere >= SPOILER_SPHERES_MAX) {
                     spoilerOutOfSpace = true;
                     break;
                 }
-                spoilerData.Spheres[i].ItemLocationsOffset = spoilerSphereItemoffset;
+                spoilerData.Spheres[sphere].ItemLocationsOffset = spoilerSphereItemoffset;
+                spoilerData.Spheres[sphere].ItemCount = 0;
                 for (u32 loc = 0; loc < playthroughLocations[i].size(); ++loc) {
                     if (spoilerSphereItemoffset >= SPOILER_ITEMS_MAX) {
                         spoilerOutOfSpace = true;
@@ -378,15 +379,16 @@ static void WriteIngameSpoilerLog() {
                     const auto foundItemLoc = itemLocationsMap.find(playthroughLocations[i][loc]);
                     if (foundItemLoc != itemLocationsMap.end()) {
                         spoilerData.SphereItemLocations[spoilerSphereItemoffset++] = foundItemLoc->second;
-                    } else {
-                        playthroughItemNotFound = true;
-                    }
-                    ++spoilerData.Spheres[i].ItemCount;
+                    } 
+                    ++spoilerData.Spheres[sphere].ItemCount;
                 }
-                ++spoilerData.SphereCount;
+                if (spoilerData.Spheres[sphere].ItemCount > 0) {
+                  ++sphere;
+                }
             }
+            spoilerData.SphereCount = sphere;
         }
-        if (spoilerOutOfSpace || playthroughItemNotFound) {
+        if (spoilerOutOfSpace) {
             printf("%sError!%s ", YELLOW, WHITE);
         }
     }
