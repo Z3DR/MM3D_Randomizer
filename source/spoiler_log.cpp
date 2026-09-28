@@ -360,33 +360,41 @@ static void WriteIngameSpoilerLog() {
     spoilerData.ItemLocationsCount = spoilerTotalItems;
 
     if (Settings::IngameSpoilers) {
-        bool playthroughItemNotFound = false;
         // Write playthrough data to in-game spoiler log
         if (!spoilerOutOfSpace) {
-            for (u32 i = 0; i < playthroughLocations.size(); i++) {
-                if (i >= SPOILER_SPHERES_MAX) {
+            // Locations hidden from the item list above (vanilla tokens and stray fairies, alternate
+            // checks, ...) can still be in the playthrough. Leave them out here too; a sphere made only
+            // of hidden locations is dropped rather than shown empty.
+            u32 sphere = 0;
+            for (const std::vector<LocationKey>& sphereLocations : playthroughLocations) {
+                if (sphere >= SPOILER_SPHERES_MAX) {
                     spoilerOutOfSpace = true;
                     break;
                 }
-                spoilerData.Spheres[i].ItemLocationsOffset = spoilerSphereItemoffset;
-                for (u32 loc = 0; loc < playthroughLocations[i].size(); ++loc) {
+                spoilerData.Spheres[sphere].ItemLocationsOffset = spoilerSphereItemoffset;
+                spoilerData.Spheres[sphere].ItemCount = 0;
+                for (const LocationKey key : sphereLocations) {
                     if (spoilerSphereItemoffset >= SPOILER_ITEMS_MAX) {
                         spoilerOutOfSpace = true;
                         break;
                     }
 
-                    const auto foundItemLoc = itemLocationsMap.find(playthroughLocations[i][loc]);
+                    const auto foundItemLoc = itemLocationsMap.find(key);
                     if (foundItemLoc != itemLocationsMap.end()) {
                         spoilerData.SphereItemLocations[spoilerSphereItemoffset++] = foundItemLoc->second;
-                    } else {
-                        playthroughItemNotFound = true;
+                        ++spoilerData.Spheres[sphere].ItemCount;
                     }
-                    ++spoilerData.Spheres[i].ItemCount;
                 }
-                ++spoilerData.SphereCount;
+                if (spoilerData.Spheres[sphere].ItemCount > 0) {
+                    ++sphere;
+                }
+                if (spoilerOutOfSpace) {
+                    break;
+                }
             }
+            spoilerData.SphereCount = sphere;
         }
-        if (spoilerOutOfSpace || playthroughItemNotFound) {
+        if (spoilerOutOfSpace) {
             printf("%sError!%s ", YELLOW, WHITE);
         }
     }
