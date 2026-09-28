@@ -362,28 +362,34 @@ static void WriteIngameSpoilerLog() {
     if (Settings::IngameSpoilers) {
         // Write playthrough data to in-game spoiler log
         if (!spoilerOutOfSpace) {
+            // Locations hidden from the item list above (vanilla tokens and stray fairies, alternate
+            // checks, ...) can still be in the playthrough. Leave them out here too; a sphere made only
+            // of hidden locations is dropped rather than shown empty.
             u32 sphere = 0;
-            for (u32 i = 0; i < playthroughLocations.size(); i++) {
+            for (const std::vector<LocationKey>& sphereLocations : playthroughLocations) {
                 if (sphere >= SPOILER_SPHERES_MAX) {
                     spoilerOutOfSpace = true;
                     break;
                 }
                 spoilerData.Spheres[sphere].ItemLocationsOffset = spoilerSphereItemoffset;
                 spoilerData.Spheres[sphere].ItemCount = 0;
-                for (u32 loc = 0; loc < playthroughLocations[i].size(); ++loc) {
+                for (const LocationKey key : sphereLocations) {
                     if (spoilerSphereItemoffset >= SPOILER_ITEMS_MAX) {
                         spoilerOutOfSpace = true;
                         break;
                     }
 
-                    const auto foundItemLoc = itemLocationsMap.find(playthroughLocations[i][loc]);
+                    const auto foundItemLoc = itemLocationsMap.find(key);
                     if (foundItemLoc != itemLocationsMap.end()) {
                         spoilerData.SphereItemLocations[spoilerSphereItemoffset++] = foundItemLoc->second;
-                    } 
-                    ++spoilerData.Spheres[sphere].ItemCount;
+                        ++spoilerData.Spheres[sphere].ItemCount;
+                    }
                 }
                 if (spoilerData.Spheres[sphere].ItemCount > 0) {
-                  ++sphere;
+                    ++sphere;
+                }
+                if (spoilerOutOfSpace) {
+                    break;
                 }
             }
             spoilerData.SphereCount = sphere;
