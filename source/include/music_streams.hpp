@@ -15,7 +15,8 @@ namespace Music {
     u8 linkedTo;              // kNoLink, or the slot whose song this file must mirror
     // Replacement's channel count must equal this. It is fixed per stream by JokerStreaming.bcsar
     // (allocChannelCount): a file with more channels than the archive reserves causes audio bugs and
-    // crashes. Only Swamp Cruise, Milk Bar, Shop and Shooting Gallery are mono.
+    // crashes. Only Swamp Cruise, Milk Bar Performance (0x3C), Shop and Shooting Gallery are mono;
+    // the Milk Bar's regular music (0x56, MILK_BAR_DUMMY) is stereo.
     u8 channels = 2;
   };
 
