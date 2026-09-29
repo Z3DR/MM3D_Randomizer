@@ -88,7 +88,7 @@ namespace Music {
       /* 53 */ {"083NA_BGM_FACEMASK.dspadpcm.bcstm",           "Bremen March",                  rnd::SEQ_BGM_EVENT, true, kNoLink},
       /* 54 */ {"084NA_BGM_QUARTET.dspadpcm.bcstm",            "Ballad of the Wind Fish",       rnd::SEQ_NOSHUFFLE, false, kNoLink},
       /* 55 */ {"085NA_BGM_WING_WARP.dspadpcm.bcstm",          "Song of Soaring",               rnd::SEQ_NOSHUFFLE, false, kNoLink},
-      /* 56 */ {"086NA_BGM_MILK_BAR_DUMMY.dspadpcm.bcstm",     "Milk Bar Duplicate",            rnd::SEQ_NOSHUFFLE, true, kNoLink},
+      /* 56 */ {"086NA_BGM_MILK_BAR_DUMMY.dspadpcm.bcstm",     "Milk Bar (pointer)",            rnd::SEQ_NOSHUFFLE, true, 0x3C, 1},
       /* 57 */ {"087NA_BGM_TIME_LIMIT.dspadpcm.bcstm",         "Final Hours",                   rnd::SEQ_NOSHUFFLE, true, kNoLink},
       /* 58 */ {"088NA_BGM_MIKAU_LIFF.dspadpcm.bcstm",         "Mikau Riff",                    rnd::SEQ_BGM_EVENT, true, kNoLink},
       /* 59 */ {"089NA_BGM_MIKAU_FIN.dspadpcm.bcstm",          "Mikau Finale",                  rnd::SEQ_BGM_EVENT, false, kNoLink},
