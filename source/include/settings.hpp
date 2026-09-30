@@ -583,7 +583,7 @@ namespace Settings {
   extern Option IngameMuteBGM;
   extern Option IngameShuffleSFX;
   extern Option IngameShuffleFootsteps;
-  extern Option ingameShuffleLinkVoice;
+  extern Option IngameShuffleLinkVoice;
 
   extern Option CustomMapButton;
   extern Option CustomItemsButton;
