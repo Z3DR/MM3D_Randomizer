@@ -24,7 +24,7 @@ using namespace Settings;
 namespace {
   bool seedChanged;
   u16 pastSeedLength;
-  PrintConsole topScreen, bottomScreen;
+  PrintConsole /* topScreen, */ bottomScreen;
   u16 settingBound = 0;
   std::vector<std::string> presetEntries;
   std::vector<Menu*> menuList;
@@ -470,14 +470,14 @@ void PrintResetToDefaultsMenu() {
 }
 
 
-void ClearDescription() {
-  consoleSelect(&topScreen);
+// void ClearDescription() {
+//   consoleSelect(&topScreen);
 
-  //clear the previous description
-  std::string spaces = "";
-  spaces.append(9 * TOP_WIDTH, ' ');
-  printf("\x1b[22;0H%s", spaces.c_str());
-}
+//   //clear the previous description
+//   std::string spaces = "";
+//   spaces.append(9 * TOP_WIDTH, ' ');
+//   printf("\x1b[22;0H%s", spaces.c_str());
+// }
 
 void PrintOptionDescription() {
   ClearDescription();

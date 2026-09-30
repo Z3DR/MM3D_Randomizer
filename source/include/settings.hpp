@@ -577,7 +577,13 @@ namespace Settings {
   extern Option IngameFreeCamera;
   extern Option IngameMotionControls;
   extern Option IngameSwimmingControls;
+  extern Option IngameFastSongs;
   extern Option IngameAdjustVolume;
+  extern Option IngameMuteSound;
+  extern Option IngameMuteBGM;
+  extern Option IngameShuffleSFX;
+  extern Option IngameShuffleFootsteps;
+  extern Option ingameShuffleLinkVoice;
 
   extern Option CustomMapButton;
   extern Option CustomItemsButton;

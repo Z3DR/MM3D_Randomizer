@@ -49,6 +49,7 @@ void UpdateResetToDefaultsMenu(u32 kdown);
 void UpdateGenerateMenu(u32 kDown);
 void ClearDescription();
 void GenerateRandomizer();
+void PrintOptionDescription();
 std::string GetInput(const char* hintText);
 
 extern void MenuInit();
