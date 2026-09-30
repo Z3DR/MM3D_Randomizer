@@ -8,10 +8,6 @@
 #include <cstring>
 #include <vector>
 
-// ============================================================================
-// SURGICAL REPLACEMENT: source/ui.cpp Palette Definitions
-// ============================================================================
-
 namespace UI {
 
 const u32 ColBgTop       = C2D_Color32(0x16, 0x10, 0x22, 0xFF);
@@ -34,14 +30,12 @@ const u32 ColScrollTrack= C2D_Color32(20, 24, 32, 255);
 const u32 ColScrollThumb= C2D_Color32(90, 95, 110, 255);
 
 // Majora's Mask Twilight Purple & Gold Palette
-const u32 ColPRRowBg    = C2D_Color32(0x24, 0x1A, 0x38, 0xFF); // Deep purple row fill
-const u32 ColPRBorder   = C2D_Color32(0x4E, 0x38, 0x78, 0xFF); // Light purple frame border
-const u32 ColPRGlow     = C2D_Color32(0xF0, 0xC4, 0x3C, 0xFF); // Majora Gold double-line selection
-const u32 ColPRToggleOff= C2D_Color32(0x4A, 0x3C, 0x62, 0xFF); // Dark muted purple toggle track
-const u32 ColPRToggleOn = C2D_Color32(0x7F, 0xE3, 0xC8, 0xFF); // Bright Clock Town mint green toggle track
-const u32 ColPRKnob     = C2D_Color32(0xED, 0xE8, 0xF5, 0xFF); // Cream white knob
-
-// ... keep remaining UI functions unchanged
+const u32 ColRowBg    = C2D_Color32(0x24, 0x1A, 0x38, 0xFF); // Deep purple row fill
+const u32 ColBorder   = C2D_Color32(0x4E, 0x38, 0x78, 0xFF); // Light purple frame border
+const u32 ColGlow     = C2D_Color32(0xF0, 0xC4, 0x3C, 0xFF); // Majora Gold double-line selection
+const u32 ColToggleOff= C2D_Color32(0x4A, 0x3C, 0x62, 0xFF); // Dark muted purple toggle track
+const u32 ColToggleOn = C2D_Color32(0x7F, 0xE3, 0xC8, 0xFF); // Bright Clock Town mint green toggle track
+const u32 ColKnob     = C2D_Color32(0xED, 0xE8, 0xF5, 0xFF); // Cream white knob
 
 namespace {
 
@@ -51,10 +45,6 @@ C2D_TextBuf textBuf;
 bool inFrame = false;
 DrawFn redrawFn = nullptr;
 
-// ————————————————————————————————————————————————
-// Virtual console: captures stdout so the untouched logic code's
-// ANSI-positioned printf progress can be rendered by the new UI.
-// ————————————————————————————————————————————————
 constexpr int ConRows = 32;
 constexpr int ConCols = 64;
 
@@ -63,7 +53,6 @@ u8   conColor[ConRows][ConCols];
 int  conRow = 0, conCol = 0;
 u8   curColor = 7;  // white
 
-// ANSI SGR color indices → render colors
 u32 AnsiColor(u8 idx) {
     switch (idx) {
         case 1:  return ColTextDim;                              // dim
@@ -136,7 +125,6 @@ void AnsiFinish(char final) {
     } else if (final == 'J') {
         GridClear();
     }
-    // anything else (K, A/B/C/D, ...) is ignored — the codebase doesn't use it
 }
 
 void ConsoleFeed(const char* ptr, size_t len) {
@@ -163,7 +151,6 @@ void ConsoleFeed(const char* ptr, size_t len) {
     }
 }
 
-// Repaint the screen from inside blocking logic code (throttled).
 constexpr u64 TICKS_PER_MSEC = 268123;
 u64 lastRedrawTick = 0;
 
@@ -177,7 +164,6 @@ void MaybeRedraw() {
     FrameEnd();
 }
 
-// stdout/stderr devoptab hook
 ssize_t UiWrite(struct _reent* r, void* fd, const char* ptr, size_t len) {
     (void)r; (void)fd;
     ConsoleFeed(ptr, len);
@@ -208,9 +194,6 @@ bool ParseText(C2D_Text* out, const std::string& s) {
 
 }  // namespace
 
-// ————————————————————————————————————————————————
-// lifecycle
-// ————————————————————————————————————————————————
 bool Init() {
     gfxInitDefault();
     C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
@@ -249,9 +232,6 @@ void SceneBottom() { C2D_SceneBegin(botTarget); }
 
 void SetRedrawCallback(DrawFn fn) { redrawFn = fn; }
 
-// ————————————————————————————————————————————————
-// text
-// ————————————————————————————————————————————————
 float TextWidth(const std::string& s, float scale) {
     C2D_Text t;
     if (!ParseText(&t, s)) return 0.0f;
@@ -293,9 +273,6 @@ std::string FitToWidth(const std::string& s, float scale, float maxWidth) {
     return out + "…";
 }
 
-// ————————————————————————————————————————————————
-// shapes
-// ————————————————————————————————————————————————
 void Rect(float x, float y, float w, float h, u32 color) {
     C2D_DrawRectSolid(x, y, 0.0f, w, h, color);
 }
@@ -318,9 +295,6 @@ void ScrollBar(float x, float y, float h, size_t total, size_t visible, size_t f
     Rect(x, y + t * (h - thumbH), 3.0f, thumbH, ColScrollThumb);
 }
 
-// ————————————————————————————————————————————————
-// captured console rendering
-// ————————————————————————————————————————————————
 void ConsoleGridClear() { GridClear(); }
 
 void DrawConsolePanel(float x, float y, float w, float h) {

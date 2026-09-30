@@ -563,9 +563,6 @@ std::string GetInput(const char* hintText) {
   return std::string(text);
 }
 
-// ————————————————————————————————————————————————————————————————
-// Rendering (citro2d) — pure functions of the menu state above.
-// ————————————————————————————————————————————————————————————————
 namespace {
 
 bool InGenerateView() {
@@ -672,7 +669,7 @@ void DrawItemList(const std::vector<std::string>& names, u16 selected, bool acce
   UI::ScrollBar(UI::BotW - 4, LIST_TOP, LIST_VISIBLE * ROW_H, names.size(), LIST_VISIBLE, scroll);
 }
 // Border & Double-Yellow Selection Helpers
-void DrawPRBox(float x, float y, float w, float h, u32 bgCol, u32 borderCol) {
+void DrawBox(float x, float y, float w, float h, u32 bgCol, u32 borderCol) {
     UI::Rect(x, y, w, h, bgCol);
     UI::Rect(x, y, w, 1.0f, borderCol);             // Top border
     UI::Rect(x, y + h - 1.0f, w, 1.0f, borderCol);     // Bottom border
@@ -680,27 +677,27 @@ void DrawPRBox(float x, float y, float w, float h, u32 bgCol, u32 borderCol) {
     UI::Rect(x + w - 1.0f, y, 1.0f, h, borderCol);     // Right border
 }
 
-// Change 2: Majora Gold Double-Line Yellow Outline Around Bounding Box
-void DrawPRYellowGlow(float x, float y, float w, float h) {
+// Double-Line Yellow Outline Around Bounding Box
+void DrawYellowGlow(float x, float y, float w, float h) {
     // Drawn with thin inner offsets to stay inside screen bounds and prevent clipping
-    UI::Rect(x, y, w, 2.0f, UI::ColPRGlow);                 // Top
-    UI::Rect(x, y + h - 2.0f, w, 2.0f, UI::ColPRGlow);     // Bottom
-    UI::Rect(x, y, 2.0f, h, UI::ColPRGlow);                 // Left
-    UI::Rect(x + w - 2.0f, y, 2.0f, h, UI::ColPRGlow);     // Right
+    UI::Rect(x, y, w, 2.0f, UI::ColGlow);                 // Top
+    UI::Rect(x, y + h - 2.0f, w, 2.0f, UI::ColGlow);     // Bottom
+    UI::Rect(x, y, 2.0f, h, UI::ColGlow);                 // Left
+    UI::Rect(x + w - 2.0f, y, 2.0f, h, UI::ColGlow);     // Right
 }
 
-// Change 3: Pill-Style Toggle Switch
-void DrawPRToggle(float x, float y, bool state) {
+// Toggle Switch
+void DrawToggle(float x, float y, bool state) {
     float w = 32.0f;
     float h = 13.0f;
-    u32 trackColor = state ? UI::ColPRToggleOn : UI::ColPRToggleOff;
+    u32 trackColor = state ? UI::ColToggleOn : UI::ColToggleOff;
 
     // Track frame
-    DrawPRBox(x, y, w, h, trackColor, UI::ColPRBorder);
+    DrawBox(x, y, w, h, trackColor, UI::ColBorder);
 
     // Dynamic knob position: left when OFF, right when ON
     float knobX = state ? (x + w - 11.0f) : (x + 1.0f);
-    UI::Rect(knobX, y + 1.0f, 10.0f, 11.0f, UI::ColPRKnob);
+    UI::Rect(knobX, y + 1.0f, 10.0f, 11.0f, UI::ColKnob);
 }
 
 // Updated DrawOptionList incorporating ONLY Changes 2 & 3
@@ -716,11 +713,11 @@ void DrawOptionList() {
         bool locked = setting->IsLocked();
 
         // 1. Base option box background & border
-        DrawPRBox(rowX, y, rowW, ROW_H, UI::ColPRRowBg, UI::ColPRBorder);
+        DrawBox(rowX, y, rowW, ROW_H, UI::ColRowBg, UI::ColBorder);
 
         // 2. Yellow outline drawn AFTER base box so it doesn't get covered
         if (isSel) {
-            DrawPRYellowGlow(rowX, y, rowW, ROW_H);
+            DrawYellowGlow(rowX, y, rowW, ROW_H);
         }
 
         // Setting Name
@@ -731,9 +728,9 @@ void DrawOptionList() {
         std::string value = UI::FitToWidth(setting->GetSelectedOptionText(), TXT, 112.0f);
 
         // 3. Pill Switch with updated toggle positioning
-        if (value == "On" || value == "Off" || value == "Enabled" || value == "Disabled") {
-            bool isOn = (value == "On" || value == "Enabled");
-            DrawPRToggle(rowX + rowW - 38.0f, y + 1.0f, isOn);
+        if (value == "On" || value == "Off" || value == "Include" || value == "Exclude") {
+            bool isOn = (value == "On" || value == "Include");
+            DrawToggle(rowX + rowW - 38.0f, y + 1.0f, isOn);
         } else {
             if (isSel && !locked) {
                 UI::TextRight("<", 186, y + 1.0f, TXT, UI::ColAccent);
