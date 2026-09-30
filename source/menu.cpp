@@ -281,6 +281,9 @@ void UpdateOptionSubMenu(u32 kDown) {
   if ((kDown & KEY_DLEFT) != 0) {
     currentSetting->PrevOptionIndex();
   }
+  if ((kDown & KEY_A) != 0) {
+    currentSetting->NextOptionIndex();
+  }
 
   // Bounds checking
   currentSetting->SanitizeSelectedOptionIndex();
