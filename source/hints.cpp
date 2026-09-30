@@ -699,7 +699,7 @@ void CreateBeanDaddyHint() {
     // /*EuEnglish*/"",
     // /*EuFrench */"",
     // /*EuSpanish*/"",
-  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  }, {QM_RED}, {}, {}, 0x960, false, false, MESSAGE_END_EVENTNEXT);
 };
 
 void CreateScrubPurchaseText() {
@@ -747,24 +747,27 @@ void CreateScrubPurchaseText() {
 
   Text SwampScrubSellText = ScrubSellTextOne + ItemTable(Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
                           + ScrubSellTextTwo + std::to_string(SwampPrice) + RupeeText + Text{" if you know how to use #Magic Beans#."};
-  CustomMessages::CreateMessageFromTextObject(0x15E9, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
-  CustomMessages::CreateMessageFromTextObject(0x15F3, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x15E9, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x73B, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x15F3, 0xFFFF, 0x3FFFFFFF, 0xFF0000, SwampScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x73B, false, false, MESSAGE_END_EVENTNEXT);
 
   // This doesn't require bomb bag, right??
   Text GoronScrubSellText = ScrubSellTextOne + ItemTable(Location(GORON_VILLAGE_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
                           + ScrubSellTextTwo + std::to_string(GoronPrice) + RupeeText + Text{" if you have a #Bomb Bag# that can hold #at least 30 bombs#."};
-  CustomMessages::CreateMessageFromTextObject(0x1600, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
-  CustomMessages::CreateMessageFromTextObject(0x1606, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1600, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA, QM_RED, QM_RED}, {}, {}, 0x4e9, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1606, 0xFFFF, 0x3FFFFFFF, 0xFF0000, GoronScrubSellText, {QM_RED, QM_MAGENTA, QM_RED, QM_RED}, {}, {}, 0x4e9, false, false, MESSAGE_END_EVENTNEXT);
 
   Text ZoraScrubSellText = ScrubSellTextOne + ItemTable(Location(ZORA_HALL_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
                          + ScrubSellTextTwo + std::to_string(ZoraPrice) + RupeeText + Text{" if you have an #Empty Bottle#."};
-  CustomMessages::CreateMessageFromTextObject(0x1612, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
-  CustomMessages::CreateMessageFromTextObject(0x1617, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1612, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x5f4, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1617, 0xFFFF, 0x3FFFFFFF, 0xFF0000, ZoraScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x5f4, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessage              (0x1618, 0xFFFF, 0x3FFFFFFF, 0xFF1001, {
+    "D-do you wanna b-buy?&#>2Yes&No#",
+  }, {QM_GREEN}, {}, {}, 0x4e9, false, false, MESSAGE_END_NULL);
 
   Text IkanaScrubSellText = ScrubSellTextOne + ItemTable(Location(IKANA_CANYON_SCRUB_PURCHASE)->GetPlacedItemKey()).GetHint().GetText()
                           + ScrubSellTextTwo + std::to_string(IkanaPrice) + RupeeText + Text{" if you have an #Empty Bottle#."};
-  CustomMessages::CreateMessageFromTextObject(0x1626, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
-  CustomMessages::CreateMessageFromTextObject(0x162D, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x1626, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x73B, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessageFromTextObject(0x162D, 0xFFFF, 0x3FFFFFFF, 0xFF0000, IkanaScrubSellText, {QM_RED, QM_MAGENTA, QM_RED}, {}, {}, 0x5f4, false, false, MESSAGE_END_EVENTNEXT);
 };
 
 void CreateOtherHints() {
@@ -793,7 +796,21 @@ void CreateOtherHints() {
     /*Spanish*/"# si mantiene este lugar en secreto...",
     /*German ?*/"#, aber bitte behalte dieses Geheimnis für dich!",
     // /*Italian?*/"# se mantieni il segreto su questo posto...",
-  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  }, {QM_RED}, {}, {}, 0x73B, false, false, MESSAGE_END_EVENTNEXT);
+  CustomMessages::CreateMessage(0x1632, 0xFFFF, 0x3FFFFC96, 0xFF1001, {
+    /*English*/"#150 Rupees#.&#>2I'll buy&No thanks#",
+    /*French */"#150 rubis#.&#>2J'achète&Non merci#",
+    /*Spanish?*/"#150 rupias#.&#>2La compraré&No, graciasi#",
+    /*German ?*/"#150 Rubine#.&#>2Ich kaufe es!&Nein, danke!#",
+    // /*Italian?*/"#150 rupie#.&#>2Va bene&No, grazie#",
+  }, {QM_MAGENTA, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
+  CustomMessages::CreateMessage(0x1634, 0xFFFF, 0x3FFFFC64, 0xFF1001, {
+    /*English*/"#100 Rupees#. Last offer.&#>2I'll buy&No thanks#",
+    /*French */"#100 rubis#. Dernière offre.&#>2J'achète&Non merci#",
+    /*Spanish?*/"#100 rupias#.&#>2La compraré&No, gracias#",
+    /*German ?*/"#100 Rubine#.&#>2Ich kaufe es!&Nein, danke!#",
+    // /*Italian?*/"#100 rupie#.&#>2Va bene&No, grazie#",
+  }, {QM_MAGENTA, QM_GREEN}, {}, {}, 0x0, false, false, MESSAGE_END_NULL);
 
   //Beaver Hints
   Text beaverBottleHint = ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetHint().GetText();
@@ -813,14 +830,14 @@ void CreateOtherHints() {
     /*EuEnglish*/"",
     /*EuFrench */"#, c'est ça ?&Tu ne retiens jamais la leçon !",
     /*EuSpanish*/"",
-  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
+  }, {QM_RED}, {}, {}, 0x370, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessageFromTextObject(0x10D0, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"Koo, koo, koo...&OK. But...",
     /*French */"Kii, kii, kii.&OK. Mais...",
     /*Spanish?*/"Cu, cu, cu.&Muy bien. Pero...",
     /*German ?*/"Quiek, quiek, quiek!&Okay. Aber...",
     // /*Italian?*/"Uh uh uh.&Va bene. Ma...",
-  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
+  }, {}, {}, {}, 0x370, false, false, MESSAGE_END_NEXT);
 
   CustomMessages::CreateMessageFromTextObject(0x10D4, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"Koo, koo, koo.&I can give you #",
@@ -834,7 +851,7 @@ void CreateOtherHints() {
     /*Spanish?*/"#...^Pero solo si puedes nadar a&través de todos los #anillos# del río&en menos de #dos minutos#.",
     /*German ?*/"#...^Aber nur, wenn du es schaffst, in&weniger als #zwei Minuten# durch&alle #Ringe# im Fluss zu schwimmen.**",
     // /*Italian?*/"#...^Ma solo se riesci a nuotare&attraverso tutti gli #anelli&#nel fiume #entro 2 minuti#.",
-  }, {QM_RED, QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
+  }, {QM_RED, QM_RED, QM_RED, QM_RED}, {}, {}, 0x370, false, false, MESSAGE_END_NEXT);
 
   // Remove French mention of bottle
   CustomMessages::CreateMessage(0x10DD, 0xFFFF, 0x3FFFFFFF, 0xFF0000, {
@@ -843,7 +860,7 @@ void CreateOtherHints() {
     /*Spanish*/"Eh... Perfecto.^Esto no está bien...",
     /*German */"Uh... Das war perfekt!^Das ist gar nicht gut...",
     /*Italian*/"Uh... Sei stato perfetto.^Accidenti...",
-  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_EVENT);
+  }, {}, {}, {}, 0x370, false, false, MESSAGE_END_EVENT);
 
   CustomMessages::CreateMessageFromTextObject(0x10E0, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*NaEnglish*/"What?&He wants #",
@@ -863,7 +880,7 @@ void CreateOtherHints() {
     /*EuEnglish*/"",
     /*EuFrench */"# ?",
     /*EuSpanish*/"",
-  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
+  }, {QM_RED}, {}, {}, 0x36F, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessageFromTextObject(0x10E1, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"Yeah...&He Wants #",
     /*French */"Ouaip...&Il veut #",
@@ -877,14 +894,26 @@ void CreateOtherHints() {
     // /*Spanish*/"**SPANISH**",
     // /*German */"**GERMAN**",
     // /*Italian*/"**ITALIAN**",
-  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
+  }, {}, {}, {}, 0x36F, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessage(0x10E4, 0xFFFF, 0x3FFFFFFF, 0xFF0000, {
     /*English*/"It's not enough.",
     /*French */"Ça suffit pas.",
     // /*Spanish*/"**SPANISH**",
     // /*German */"**GERMAN**",
     // /*Italian*/"**ITALIAN**",
-  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
+  }, {}, {}, {}, 0x370, false, false, MESSAGE_END_NEXT);
+    CustomMessages::CreateMessage(0x10E5, 0xFFFF, 0x3FFFFFFF, 0xFF1000, {
+    /*English*/"You'll get that after you race once more, this time against me.^"
+               "So, will you try?&#>2Sure&No thanks#",
+    /*French */"C'est à toi si tu gagnes une deuxième course contre moi.^"
+               "Veux-tu essayer?&#>2Pourquoi pas&En fait, non#",
+    // /*Spanish?*/"^",
+    //             "Así que, ¿lo intentarás?&#>2Por supuesto&No, gracias#"
+    // /*German ?*/"^"
+    //             "Willst du es versuchen?&#>2Natürlich!&Nein, danke!#",
+    // /*Italian?*/"^"
+    //             "Vuoi provare?&#>2Certo&No, grazie#",
+  }, {QM_GREEN}, {}, {}, 0x36F, false, false, MESSAGE_END_NULL);
 
   CustomMessages::CreateMessageFromTextObject(0x10F5, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"This time, we only have #",
@@ -898,14 +927,15 @@ void CreateOtherHints() {
     /*Spanish?*/"#... Right, Little Brother?",
     /*German ?*/"#... Right, Little Brother?",
     // /*Italian*/"#**ITALIAN**",
-  }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
+  }, {QM_RED}, {}, {}, 0x36F, false, false, MESSAGE_END_NEXT);
   CustomMessages::CreateMessage(0x10F6, 0xFFFF, 0x3FFFFFFF, 0xFF0000, {
     /*English*/"That's right, Big Brother...",
     /*French */"Ouaip, grand frère...",
     // /*Spanish*/"**SPANISH**",
     // /*German */"**GERMAN**",
     // /*Italian*/"**ITALIAN**",
-  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_NEXT);
+  }, {}, {}, {}, 0x370, false, false, MESSAGE_END_NEXT);
+
 
   CustomMessages::CreateMessageFromTextObject(0x1240, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text{
     /*English*/"You know the #beavers# above the #waterfall# are the type to have #empty bottles#, right?^Lately, they've been braggin about #",
@@ -920,7 +950,7 @@ void CreateOtherHints() {
     /*English*/"And remember what I told you about the #beavers# above the #waterfall#.^It seems like they have #",
     /*French */"Et rappelle toi ce que j'ai dit sur les #castors# qui vivent en haut de la #cascade#.^Il paraît qu'ils ont #",
     /*Spanish?*/"And remember what I told you about the #beavers# above the #waterfall#.^It seems like they have #",
-    /*German */"**GERMAN**#",
+    /*German ?*/"And remember what I told you about the #beavers# above the #waterfall#.^It seems like they have #",
     // /*Italian*/"**ITALIAN**#",
   }+beaverBottleHint
   +"#.", {QM_RED, QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENT);
