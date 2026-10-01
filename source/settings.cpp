@@ -1491,10 +1491,6 @@ namespace Settings {
       //Force Include Zora Eggs
       std::vector<LocationKey> eggLocations = GetLocations(everyPossibleLocation, Category::cZoraEgg);
       IncludeAndHide(eggLocations);
-      
-      //Hide alternate check locations
-      std::vector<LocationKey> altLocations = GetLocations(everyPossibleLocation, Category::cAlternateCheck);
-      IncludeAndHide(altLocations);
 
       //Force Include Great Fairy
       std::vector<LocationKey> gfLocations = GetLocations(everyPossibleLocation, Category::cFairyFountain);
@@ -1623,6 +1619,10 @@ namespace Settings {
     else {
       Unhide( {LAUNDRY_POOL_SF} );
     }
+    
+    //Hide alternate check locations
+    std::vector<LocationKey> altLocations = GetLocations(everyPossibleLocation, Category::cAlternateCheck);
+    IncludeAndHide(altLocations);
       
   }
 
