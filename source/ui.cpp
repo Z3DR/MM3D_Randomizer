@@ -265,9 +265,13 @@ void TextWrapped(const std::string& s, float x, float y, float scale, u32 color,
 }
 
 std::string FitToWidth(const std::string& s, float scale, float maxWidth) {
-    if (TextWidth(s, scale) <= maxWidth) return s;
-    std::string out = s;
-    while (out.length() > 1 && TextWidth(out + "…", scale) > maxWidth) {
+    std::string cleanStr = s;
+    // Erase '\n' characters entirely to avoid adding extra space
+    cleanStr.erase(std::remove(cleanStr.begin(), cleanStr.end(), '\n'), cleanStr.end());
+
+    if (TextWidth(cleanStr, 1.0f) * scale <= maxWidth) return cleanStr;
+    std::string out = cleanStr;
+    while (out.length() > 1 && TextWidth(out + "…", 1.0f) * scale > maxWidth) {
         out.pop_back();
     }
     return out + "…";
@@ -336,6 +340,12 @@ void DrawConsolePanel(float x, float y, float w, float h) {
         }
         ty += lineH;
     }
+}
+
+std::string StripNewlines(const std::string& s) {
+    std::string result = s;
+    std::replace(result.begin(), result.end(), '\n', ' ');
+    return result;
 }
 
 }  // namespace UI

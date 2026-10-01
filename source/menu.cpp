@@ -723,10 +723,10 @@ void DrawOptionList() {
             DrawYellowGlow(rowX, y, rowW, ROW_H);
         }
 
-        // Setting Name
+        // Setting Name - FitToWidth will now strip newlines and fit up to 260px
         u32 nameCol = locked ? UI::ColTextLocked : UI::ColText;
         u32 valCol = locked ? UI::ColTextLocked : (isSel ? UI::ColValue : UI::ColTextDim);
-        UI::Text(UI::FitToWidth(setting->GetName(), TXT, 170.0f), rowX + 8.0f, y + 1.0f, TXT, nameCol);
+        UI::Text(UI::FitToWidth(setting->GetName(), TXT, 260.0f), rowX + 8.0f, y + 1.0f, TXT, nameCol);
 
         std::string value = UI::FitToWidth(setting->GetSelectedOptionText(), TXT, 112.0f);
 
@@ -851,11 +851,15 @@ void DrawTopScreen() {
   if (!toastMsg.empty()) {
     UI::TextCentered(toastMsg, UI::TopW / 2, 86, 0.50f, toastColor);
   } else if (currentMenu->mode == OPTION_SUB_MENU && currentSetting != nullptr) {
-    UI::Text(UI::FitToWidth(currentSetting->GetName(), 0.50f, 360.0f), 18, 84, 0.50f, UI::ColText);
-    UI::Rect(18, 101, 60, 1.0f, UI::ColPanelEdge);
+    // Erase '\n' completely instead of replacing with a space
+    std::string titleName = std::string(currentSetting->GetName());
+    titleName.erase(std::remove(titleName.begin(), titleName.end(), '\n'), titleName.end());
+
+    UI::Text(UI::FitToWidth(titleName, 0.50f, 364.0f), 18, 84, 0.50f, UI::ColText);
+    UI::Rect(18, 101, UI::TopW - 36, 1.0f, UI::ColPanelEdge);
     UI::TextWrapped(std::string(currentSetting->GetSelectedOptionDescription()),
                     18, 108, 0.44f, UI::ColTextDim, UI::TopW - 36);
-  } else {
+} else {
     UI::TextCentered("Pick a category and tune the settings,", UI::TopW / 2, 120, 0.45f, UI::ColTextDim);
     UI::TextCentered("then select Generate Randomizer.", UI::TopW / 2, 136, 0.45f, UI::ColTextDim);
   }

@@ -64,4 +64,6 @@ void ConsoleGridClear();
 
 void DrawConsolePanel(float x, float y, float w, float h);
 
+std::string StripNewlines(const std::string& s);
+
 }  // namespace UI
