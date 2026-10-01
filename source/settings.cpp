@@ -505,7 +505,7 @@ namespace Settings {
   Option IngameLTargeting        = Option::U8("L-Targeting",             {"Vanilla", "Switch", "Hold"},                                          {ingameLTargetingDesc});
   Option IngameFirstPersonCamera = Option::U8("First Person Camera",     {"Vanilla", "Normal", "Invert Y Axis", "Invert X Axis", "Invert Both"}, {ingameFirstPersonCameraDesc});
   Option IngameFreeCamera        = Option::U8("Free Camera",             {"Vanilla", "Normal", "Invert Y Axis", "Invert X Axis", "Invert Both"}, {ingameFreeCameraDesc});
-  Option IngameMotionControls    = Option::U8("Motion Controls",         {"Vanilla", "Enabled", "Disabled"},                                               {ingameMotionControlsDesc});
+  Option IngameMotionControls    = Option::U8("Motion Controls",         {"Vanilla", "Enabled", "Disabled"},                                     {ingameMotionControlsDesc});
   Option IngameSwimmingControls  = Option::U8("Swimming Controls",       {"Vanilla", "Normal", "Invert Y Axis"},                                 {ingameSwimmingControlsDesc});
   Option IngameAdjustVolume      = Option::U8("Adjust Volume",           {"Vanilla", "Lower", "Normal", "Higher"},                               {ingameAdjustVolumeDesc});
   Option IngameMuteSound         = Option::Bool("Mute Sound Effects",    {"Off", "On"},                                                          {ingameMuteSoundDesc});
