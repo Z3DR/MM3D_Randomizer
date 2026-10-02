@@ -34,7 +34,7 @@ bool LocationAccess::CanBuy() const {
 	}
 
 	//Check if current walet is large enough
-	bool SufficientWallet = false;
+	bool SufficientWallet = true;
 	if (Location(location)->GetPrice() > 500) {
 		SufficientWallet = Logic::ProgressiveWallet >= 3;
 	}

@@ -474,7 +474,14 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             }
             
             //get all accessible locations that are allowed
-            const std::vector<LocationKey> accessibleLocations = GetAccessibleLocations(allowedLocations);
+            std::vector<LocationKey> accessibleLocations = GetAccessibleLocations(allowedLocations);
+            //Drop the ones this item can't go in. Redrawing until a valid one comes up never ends when there is none.
+            //A reusable item needs a repeatable location, and the Magic Bean Pack is what enables buying beans at
+            //shops so it cannot go into a shop itself
+            erase_if(accessibleLocations, [item](const LocationKey loc) {
+                return (ItemTable(item).IsReusable() && !Location(loc)->IsRepeatable()) ||
+                       (item == MAGIC_BEAN_PACK && Location(loc)->IsCategory(Category::cShop));
+            });
             
             //retry if there are no more locations to place items
             if (accessibleLocations.empty()) {
@@ -512,21 +519,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             LocationKey selectedLocation = RandomElement(accessibleLocations);
 
             //Else place it and keep going
-            //place the item within one of the allowed locations accounting for if this item needs to be able to be obtained more than once and if location allows that
-            //the only situation we don't want is a non repeatable location with a reusable item
-            if ( !(Location(selectedLocation)->IsRepeatable()) && ItemTable(item).IsReusable() ){
-                //unsuccessfulPlacement = true;
-                #ifdef ENABLE_DEBUG
-                CitraPrint("Attempting to place repeatable item in non repeatable spot in AssumedFill");
-                #endif
-                PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
-                itemsToPlace.push_back(item);
-            }
-            else if (Location(selectedLocation)->IsCategory(Category::cShop) && (item == MAGIC_BEAN_PACK)) {
-                //Magic Bean Pack is what enables buying beans at shops so it cannot go into a shop itself
-                itemsToPlace.push_back(item);
-            }
-            else {
+            {
                 PlaceItemInLocation(selectedLocation, item); 
                 //PlacementLog_Msg("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
                 //CitraPrint("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
@@ -908,12 +901,11 @@ int Fill() {
                 // Check if the requirements for the Ocarina and Song of Time are met.
                 bool needsOcarina = (StartingOcarina.Value<u8>() == 0 && !ocarinaObtainable);
                 bool needsSoT     = (ShuffleSongOfTime && !songOfTimeObtainable);
-#ifdef ENABLE_DEBUG
+
                 CitraPrint("Checking if Ocarina and Song of Time are reachable with current placements...");
                 CitraPrint(needsOcarina ? "Ocarina is not reachable." : "Ocarina is reachable.");
                 CitraPrint(needsSoT ? "Song of Time is not reachable." : "Song of Time is reachable.");
                 DebugPrint("%s: needsOcarina=%d, needsSoT=%d\n", __func__, needsOcarina, needsSoT);
-#endif
 
                 if (!needsOcarina && !needsSoT) {
 #ifdef ENABLE_DEBUG
@@ -978,10 +970,16 @@ int Fill() {
                 if (it != ItemPool.end()) {
                   ItemPool.erase(it);
                 }
+                const size_t poolSizeWithoutHelper = ItemPool.size();
 
                 NoRepeatOnTokens = true;
                 AssumedFill({itemToHelp}, ocarinaLocations, true);
                 NoRepeatOnTokens = false;
+                // With NoRepeatOnTokens, AssumedFill puts an item it couldn't place back into the pool without
+                // flagging a failure. Nothing changed then, so looping again would pick the same helper forever.
+                if (ItemPool.size() > poolSizeWithoutHelper) {
+                  placementFailure = true;
+                }
                 if (placementFailure) break;
             }
         }
