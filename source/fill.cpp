@@ -1005,25 +1005,45 @@ int Fill() {
         //NonShopItems is already sized by ResetNonShopItems
         if (Shopsanity){
             CitraPrint("Placing Shopsanity Items");
+            ItemAndPrice init;
+            init.Name = Text{
+                /*NaEnglish*/"No Item",
+                /*NaFrench */"",
+                /*NaSpanish*/"",
+                /*EuGerman */"",
+                // /*EuItalian*/"",
+                /*EuEnglish*/"",
+                /*EuFrench */"",
+                /*EuSpanish*/"",
+            };
+            init.Price = -1;
+            init.Repurchaseable = false;
+            NonShopItems.assign(32,init);
             for (size_t i = 0; i < ShopLocationLists.size(); i++) {
-                for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
-                    int shopsanityPrice = GetShopPrice();
-                    NonShopItems[GetShopIndex(ShopLocationLists[i][j])].Price = shopsanityPrice; //Set the price for the item to be passed
-                    Location(ShopLocationLists[i][j])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+                for (int j = 0; j < ShopLocationLists[i].size(); j++) {
+                int shopsanityPrice = GetShopPrice();
+                NonShopItems[TransformShopIndex(i*8 + j-1)].Price = shopsanityPrice; //Set the price for the item to be passed
+                Location(ShopLocationLists[i][j-1])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
                 }
             }
+            // Get all locations and items that don't have a shopsanity price attached
+            std::vector<LocationKey> shopLocations = {};
+            // Get as many vanilla shop items as the total number of shop items minus the number of
+            // replaced items So shopsanity 0 will get all 64 vanilla items, shopsanity 4 will get 32,
+            // etc.
+            std::vector<ItemKey> shopItems = GetMinVanillaShopItems(total_replaced);
+
+            for (size_t i = 0; i < ShopLocationLists.size(); i++) {
+                for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
+                    LocationKey loc = ShopLocationLists[i][j];
+                    if (!(Location(loc)->HasShopsanityPrice())) {
+                        shopLocations.push_back(loc);
+                    }
+                }
+            }
+            // Place the shop items which will still be at shop locations
+            AssumedFill(shopItems, shopLocations);
         }
-        //Below may not be needed?
-        // //Get all locations and items that dont have a shopsanity price attached
-        // std::vector<LocationKey> shopLocations = {};
-        // for (size_t i = 0; i < ShopLocationLists.size(); i++){
-        //     for (int j = 0; j < ShopLocationLists[i].size(); j++){
-        //         LocationKey loc = ShopLocationLists[i][j];
-        //         if (!(Location(loc)->HasShopsanityPrice())) {
-        //             shopLocations.push_back(loc);
-        //         }
-        //     }
-        // }
                 
         //Place Main Inventory First
         //So first get all items in the pool + DekuMask,
