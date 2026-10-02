@@ -908,10 +908,12 @@ int Fill() {
                 // Check if the requirements for the Ocarina and Song of Time are met.
                 bool needsOcarina = (StartingOcarina.Value<u8>() == 0 && !ocarinaObtainable);
                 bool needsSoT     = (ShuffleSongOfTime && !songOfTimeObtainable);
+#ifdef ENABLE_DEBUG
                 CitraPrint("Checking if Ocarina and Song of Time are reachable with current placements...");
                 CitraPrint(needsOcarina ? "Ocarina is not reachable." : "Ocarina is reachable.");
                 CitraPrint(needsSoT ? "Song of Time is not reachable." : "Song of Time is reachable.");
                 DebugPrint("%s: needsOcarina=%d, needsSoT=%d\n", __func__, needsOcarina, needsSoT);
+#endif
 
                 if (!needsOcarina && !needsSoT) {
 #ifdef ENABLE_DEBUG
