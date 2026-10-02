@@ -937,7 +937,7 @@ void AreaTable_Init() {
 		//Events
 		EventAccess(&SpokeToKoume, {[]{return true;}}),
 		EventAccess(&Mushroom, {[]{return MaskOfScents && AnyBottle;}}),//Base logic expects mushrooms from SS or Woods
-		EventAccess(&KoumeSaved, {[]{return AnyBottle;}}),//Add Red Potion requirement for shuffle shops
+		EventAccess(&KoumeSaved, {[]{return WitchBottle || (AnyBottle && RedOrBluePotionAccess);}}),//Koume needs a Red or Blue Potion: the Bottle with Red Potion, or a bottle and a potion to buy or find
 	},
 	{
 		//Locations
