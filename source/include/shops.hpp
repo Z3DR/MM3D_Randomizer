@@ -15,6 +15,7 @@ struct ItemAndPrice {
 extern void PlaceVanillaShopItems();
 extern std::vector<ItemKey> GetMinVanillaShopItems();
 extern int GetShopPrice();
+extern void ResetNonShopItems();
 extern s16 GetRandomScrubPrice();
 extern int GetShopsanityReplaceAmount();
 extern Text GetIceTrapName(u8 id);

@@ -78,6 +78,20 @@ double CalculateCumulativeDistributionFunction(double input) {
     return 2.5 * (1 - 0.6 * input) * pow(input, 1.5);
 }
 
+void ResetNonShopItems() {
+    ItemAndPrice init;
+    //                English    French         Spanish       German       Italian
+    init.Name = Text{"No Item", "Pas d'objet", "Sin objeto", "Kein Item", /*"Nessun Oggetto",*/ };
+    init.Price = -1;
+    init.Repurchaseable = false;
+
+    size_t slotCount = 0;
+    for (const auto& shopLocations : ShopLocationLists) {
+        slotCount += shopLocations.size();
+    }
+    NonShopItems.assign(slotCount, init);
+}
+
 int GetShopPrice() {
     const int stepSize = 5;
     if (Settings::ShopsanityPrices) /*Affordable*/ {

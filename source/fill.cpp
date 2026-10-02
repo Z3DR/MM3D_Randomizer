@@ -785,6 +785,7 @@ static void RandomizeLinksPocket() {
 int VanillaFill() {
     //Perform minimum needed initialization
     // CitraPrint("Starting VanillaFill\n");
+    ResetNonShopItems();
     AreaTable_Init(); //Reset the world graph to intialize the proper locations
     ItemReset(); //Reset shops incase of shopsanity random
     GenerateLocationPool();
@@ -836,6 +837,7 @@ int Fill() {
         wothLocations.clear();
         ocarinaObtainable = false;
         songOfTimeObtainable = false;
+        ResetNonShopItems();
         AreaTable_Init(); //Reset the world graph to intialize the proper locations
         ItemReset(); //Reset shops incase of shopsanity random
         GenerateLocationPool();
@@ -1002,27 +1004,8 @@ int Fill() {
         //Place Shop Items first
         //NonShopItems is already sized by ResetNonShopItems
         
-        size_t slotCount = 0;
         if (Shopsanity){
             CitraPrint("Placing Shopsanity Items");
-            ItemAndPrice init;
-            init.Name = Text{
-                /*NaEnglish*/"No Item",
-                /*NaFrench */"",
-                /*NaSpanish*/"",
-                /*EuGerman */"",
-                // /*EuItalian*/"",
-                /*EuEnglish*/"",
-                /*EuFrench */"",
-                /*EuSpanish*/"",
-            };
-            init.Price = -1;
-            init.Repurchaseable = false;
-            // Calculate the total number of shop slots across all shops
-            for (const auto& shopLocations : ShopLocationLists) {
-                slotCount += shopLocations.size();
-            }
-            NonShopItems.assign(slotCount, init);
 
             // Collect all shop locations into a single vector
             std::vector<LocationKey> ShopLocations = {};
