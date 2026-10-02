@@ -785,7 +785,6 @@ static void RandomizeLinksPocket() {
 int VanillaFill() {
     //Perform minimum needed initialization
     // CitraPrint("Starting VanillaFill\n");
-    ResetNonShopItems();
     AreaTable_Init(); //Reset the world graph to intialize the proper locations
     ItemReset(); //Reset shops incase of shopsanity random
     GenerateLocationPool();
@@ -837,7 +836,6 @@ int Fill() {
         wothLocations.clear();
         ocarinaObtainable = false;
         songOfTimeObtainable = false;
-        ResetNonShopItems(); //Before any placement -- see ResetNonShopItems
         AreaTable_Init(); //Reset the world graph to intialize the proper locations
         ItemReset(); //Reset shops incase of shopsanity random
         GenerateLocationPool();
@@ -1003,6 +1001,8 @@ int Fill() {
 
         //Place Shop Items first
         //NonShopItems is already sized by ResetNonShopItems
+        
+        size_t slotCount = 0;
         if (Shopsanity){
             CitraPrint("Placing Shopsanity Items");
             ItemAndPrice init;
@@ -1018,31 +1018,61 @@ int Fill() {
             };
             init.Price = -1;
             init.Repurchaseable = false;
-            NonShopItems.assign(32,init);
-            for (size_t i = 0; i < ShopLocationLists.size(); i++) {
-                for (int j = 0; j < ShopLocationLists[i].size(); j++) {
-                int shopsanityPrice = GetShopPrice();
-                NonShopItems[TransformShopIndex(i*8 + j-1)].Price = shopsanityPrice; //Set the price for the item to be passed
-                Location(ShopLocationLists[i][j-1])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
-                }
+            // Calculate the total number of shop slots across all shops
+            for (const auto& shopLocations : ShopLocationLists) {
+                slotCount += shopLocations.size();
             }
-            // Get all locations and items that don't have a shopsanity price attached
-            std::vector<LocationKey> shopLocations = {};
-            // Get as many vanilla shop items as the total number of shop items minus the number of
-            // replaced items So shopsanity 0 will get all 64 vanilla items, shopsanity 4 will get 32,
-            // etc.
-            std::vector<ItemKey> shopItems = GetMinVanillaShopItems(total_replaced);
+            NonShopItems.assign(slotCount, init);
 
+            // Collect all shop locations into a single vector
+            std::vector<LocationKey> ShopLocations = {};
             for (size_t i = 0; i < ShopLocationLists.size(); i++) {
                 for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
-                    LocationKey loc = ShopLocationLists[i][j];
-                    if (!(Location(loc)->HasShopsanityPrice())) {
-                        shopLocations.push_back(loc);
-                    }
+                    ShopLocations.push_back(ShopLocationLists[i][j]);
                 }
             }
-            // Place the shop items which will still be at shop locations
-            AssumedFill(shopItems, shopLocations);
+
+            // Iterate through all shop locations and set their shopsanity prices
+            for (size_t i = 0; i < ShopLocations.size(); i++) {
+                LocationKey loc = ShopLocations[i];
+                int shopsanityPrice = GetShopPrice();
+                NonShopItems[GetShopIndex(loc)].Price = shopsanityPrice; //Set the price for the item to be passed
+                Location(loc)->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+            }
+
+
+        //     std::vector<int> indices;
+
+        //     // Overwrite appropriate number of shop items
+        //     for (size_t i=0; i < ShopLocationLists.size(); i++) {
+        //         for (size_t i=0; i < ShopLocationLists[i].size(); i++) {
+        //             indices.resize(static_cast<int>(ShopLocationLists[i].size())); // Set the number of indices for the current shop
+        //             int num_to_replace = ShopLocationLists[i].size(); //Get current number of shop items to replace
+        //             for (int j = 0; j < num_to_replace; j++) {
+        //                 int itemIndex = indices[j];
+        //                 int shopsanityPrice = GetShopPrice();
+        //                 NonShopItems[GetShopIndex(ind)].Price = shopsanityPrice; //Set the price for the item to be passed
+        //                 Location(ShopLocationLists[i][itemIndex-1])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+        //             }
+        //         }
+        //     }
+        // }
+        // std::vector<LocationKey> ShopLocations = {};
+        //     for (size_t i = 0; i < ShopLocationLists.size(); i++) {
+        //         for (size_t i = 0; i < ShopLocationLists.size(); i++) {
+        //             for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
+        //                 LocationKey loc = ShopLocationLists[i][j];
+        //                 if (!(Location(loc)->HasShopsanityPrice())) {
+        //                     ShopLocations.push_back(loc);
+        //                 }
+        //             }
+        //         }
+        //     }
+            // Place the random items at shop locations 
+            std::vector<ItemKey> currentPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return true;});
+            NoRepeatOnTokens = true;
+            AssumedFill(currentPool, ShopLocations);
+            NoRepeatOnTokens = false;
         }
                 
         //Place Main Inventory First

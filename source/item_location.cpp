@@ -1131,7 +1131,14 @@ void PlaceItemInLocation(LocationKey locKey, ItemKey item, bool applyEffectImmed
     const int index = GetShopIndex(locKey);
     if (index >= 0) {
       NonShopItems[index].Name = ItemTable(item).GetName();
-      NonShopItems[index].Repurchaseable = ItemTable(item).GetItemType() == ITEMTYPE_REFILL;
+      // Determine if the item is repurchaseable based on its type
+      bool isRepurchaseable = false;
+      if (ItemTable(item).GetItemType() == ITEMTYPE_REFILL)
+      {
+        isRepurchaseable = true;
+      }
+      NonShopItems[index].Repurchaseable = isRepurchaseable;
+      
     }
   }
 

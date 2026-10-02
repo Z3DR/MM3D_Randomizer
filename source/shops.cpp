@@ -15,23 +15,6 @@ using namespace Settings;
 
 std::vector<ItemAndPrice> NonShopItems = {};
 
-// Gives every shop slot a live "No Item" entry. Has to run before anything is placed: items reach shop
-// locations from GenerateItemPool onward, long before shopsanity assigns prices, and
-// PlaceItemInLocation records their names as they land.
-void ResetNonShopItems() {
-    ItemAndPrice init;
-    //                English    French         Spanish       German       Italian
-    init.Name = Text{"No Item", "Pas d'objet", "Sin objeto", "Kein Item", /*"Nessun Oggetto",*/ };
-    init.Price = -1;
-    init.Repurchaseable = false;
-
-    size_t slotCount = 0;
-    for (const auto& shopLocations : ShopLocationLists) {
-        slotCount += shopLocations.size();
-    }
-    NonShopItems.assign(slotCount, init);
-}
-
 static std::array<std::array<Text, 3>, 0xD5> trickNameTable; //Table of trick ice trap names
 bool initTrickNames = false; //indicates if trick ice trap names have been initialized yet
 
@@ -43,6 +26,22 @@ void PlaceVanillaShopItems() {
             Location(ShopLocationLists[i][j])->PlaceVanillaItem();
         }
     }
+}
+// These are the vanilla shop items,
+std::vector<ItemKey> GetMinVanillaShopItems() {
+    std::vector<ItemKey> minShopItems = {
+        //Trading Post
+        RED_POTION_REFILL, GREEN_POTION_REFILL, BLUE_POTION_REFILL, BOTTLE_WITH_FAIRY, DEKU_STICK, ARROWS_30, DEKU_NUTS_10, MAGIC_BEAN, 
+        //Bomb Shop
+        BOMBS_10, BOMBCHU_10, PROGRESSIVE_BOMB_BAG, PROGRESSIVE_BOMB_BAG, 
+        //Potion Shop
+        BLUE_POTION_REFILL, GREEN_POTION_REFILL, RED_POTION_REFILL, 
+        //Goron Shop
+        BOMBS_10, ARROWS_10, RED_POTION_REFILL, 
+        //Zora Shop
+        HEROS_SHIELD, ARROWS_10, RED_POTION_REFILL
+    };
+    return minShopItems;
 }
 // This table contains a cumulative probability for each possible shop price based on
 //  a beta distribution with alpha = 1.5, beta = 2, and the result of the distribution, a float in [0.0, 1.0),
@@ -889,4 +888,12 @@ int GetShopIndex(LocationKey loc) {
         }
     }
     return -1;
+}// Without this transformed index, shop-related tables and arrays would need 64 entries- But only half of that is needed
+// for shopsanity So we use this transformation to map only important indices to an array with 32 entries in the
+// following manner: Shop index:  4  5  6  7 12 13 14 15 20 21 22 23... Transformed: 0  1  2  3  4  5  6  7  8  9
+// 10 11... So we first divide the shop index by 4, then by 2 which basically tells us the index of the shop it's in,
+// then multiply by 4 since there are 4 items per shop
+// And finally we use a modulo by 4 to get the index within the "shop" of 4 items, and add
+int TransformShopIndex(int index) {
+    return 4 * ((index / 4) / 2) + index % 4;
 }
