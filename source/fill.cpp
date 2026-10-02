@@ -168,7 +168,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
                 LocationKey loc = locPair.GetLocation();
                 ItemLocation* location = Location(loc);
 
-                if ((!location->IsAddedToPool())  && (locPair.GetConditionsMet())) {
+                if ((!location->IsAddedToPool()) && locPair.GetConditionsMet() && locPair.CanBuy()) {
 
                     location->AddToPool();
 
@@ -846,6 +846,20 @@ int Fill() {
         RemoveStartingItemsFromPool();
         FillExcludedLocations();
 
+        //Shop prices have to exist before anything is placed: logic checks them (CanBuy) from the
+        //first fill on, so an item placed in a shop early can't end up behind a price nobody can pay.
+        //NonShopItems is already sized by ResetNonShopItems
+        if (Shopsanity){
+            for (size_t i = 0; i < ShopLocationLists.size(); i++) {
+                for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
+                    const LocationKey loc = ShopLocationLists[i][j];
+                    int shopsanityPrice = GetShopPrice();
+                    NonShopItems[GetShopIndex(loc)].Price = shopsanityPrice; //Set the price for the item to be passed
+                    Location(loc)->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+                }
+            }
+        }
+
         showItemProgress = true;
 
         //Place dungeon rewards
@@ -1002,7 +1016,7 @@ int Fill() {
         }
 
         //Place Shop Items first
-        //NonShopItems is already sized by ResetNonShopItems
+        //Prices were already set right after FillExcludedLocations
         
         if (Shopsanity){
             CitraPrint("Placing Shopsanity Items");
@@ -1013,14 +1027,6 @@ int Fill() {
                 for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
                     ShopLocations.push_back(ShopLocationLists[i][j]);
                 }
-            }
-
-            // Iterate through all shop locations and set their shopsanity prices
-            for (size_t i = 0; i < ShopLocations.size(); i++) {
-                LocationKey loc = ShopLocations[i];
-                int shopsanityPrice = GetShopPrice();
-                NonShopItems[GetShopIndex(loc)].Price = shopsanityPrice; //Set the price for the item to be passed
-                Location(loc)->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
             }
 
 
