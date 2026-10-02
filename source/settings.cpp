@@ -76,7 +76,7 @@ namespace Settings {
   };
 
   //Game Settings
-  Option GenerateSpoilerLog   = Option::Bool("Generate Spoiler Log",   { "No", "Yes" },                                                         { genSpoilerLogDesc },                                                                        OptionCategory::Setting, 1); // On
+  Option GenerateSpoilerLog   = Option::Bool("Generate Spoiler Log",   { "Off", "On" },                                                         { genSpoilerLogDesc },                                                                        OptionCategory::Setting, 1); // On
   Option IngameSpoilers       = Option::Bool("Ingame Spoilers",        { "Hide", "Show" },                                                      { ingameSpoilersHideDesc, ingameSpoilersShowDesc });
   Option RegionSelect         = Option::Bool("Game Region",            { "NA", "EU" },                                                          { NARegionDesc, EURegionDesc });
   Option PlayOption           = Option::U8  ("Console/Emulator",       { "Console", "Emulator" },                                               { "How will you Play?" });
@@ -111,93 +111,93 @@ namespace Settings {
   };
 
   //Starting Inventory Toggles
-  Option StartingConsumables       = Option::Bool("Start with Consumables", { "No",               "Yes" },                                                     { startWithConsumablesDesc });
-  Option StartingMaxRupees         = Option::Bool("Start with Max Rupees",  { "No",               "Yes" },                                                     { startWithMaxRupeesDesc });
-  Option StartingInventoryToggle   = Option::U8("Inventory",                { "All Off",          "All On",           "Choose" },                              { "" });
-  Option StartingNutCapacity       = Option::U8("Deku Nuts",                { "None",             "20 Deku Nuts",     "30 Deku Nuts",     "40 Deku Nuts" },    { "" });
-  Option StartingOcarina           = Option::U8("Start With Ocarina",     { "No",  "Yes" },                                                                 { ocarinasDesc }, OptionCategory::Setting, 1);
-  Option StartingNotebook          = Option::U8("Bomber's Notebook",      { "None",             "B. Notebook"},                                              { "" });
-  Option StartingBombBag           = Option::U8("Bomb Bag",               { "None",             "Bomb Bag 20",      "Bomb Bag 30",      "Bomb Bag 40" },     { "" });
-  Option StartingBombchus          = Option::U8("Bombchus",               { "None",             "Bombchus" },                                                { "" });
-  Option StartingHookshot          = Option::U8("Hookshot",               { "None",             "Hookshot" },                                                { "" });
-  Option StartingBow               = Option::U8("Bow",                    { "None",             "Bow + Quiver 30",  "Bow + Quiver 40",  "Bow + Quiver 50" }, { "" });
-  Option StartingFireArrows        = Option::U8("Fire Arrow",             { "None",             "Fire Arrow" },                                              { "" });
-  Option StartingIceArrows         = Option::U8("Ice Arrow",              { "None",             "Ice Arrow" },                                               { "" });
-  Option StartingLightArrows       = Option::U8("Light Arrow",            { "None",             "Light Arrow" },                                             { "" });
-  Option StartingLensOfTruth       = Option::U8("Lens of Truth",          { "None",             "Lens of Truth" },                                           { "" });
-  Option StartingMagicBean         = Option::U8("Magic Beans",            { "None",             "Magic Beans" },                                             { "" });
-  Option StartingBottle1           = Option::U8("Bottle Slot 1",          bottleOptions,                                                                     { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
-  Option StartingBottle2           = Option::U8("Bottle Slot 2",          bottleOptions,                                                                     { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
-  Option StartingBottle3           = Option::U8("Bottle Slot 3",          bottleOptions,                                                                     { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
-  Option StartingBottle4           = Option::U8("Bottle Slot 4",          bottleOptions,                                                                     { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
-  Option StartingBottle5           = Option::U8("Bottle Slot 5",          bottleOptions,                                                                     { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
-  Option StartingBottle6           = Option::U8("Bottle Slot 6",          bottleOptions,                                                                     { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
-  Option StartingBottle7           = Option::U8("Bottle Slot 7",          bottleOptions,                                                                     { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
-  Option StartingSongsToggle       = Option::U8("Ocarina Songs",            { "All Off",          "All On",           "Choose" },                              { "" });
-  Option StartingOathToOrder       = Option::U8("Oath To Order",          { "None",             "Oath" },                                           { "" });
-  Option StartingEponasSong        = Option::U8("Epona's Song",           { "None",             "Epona" },                                            { "" });
-  Option StartingSongOfStorms      = Option::U8("Song of Storms",         { "None",             "Storms" },                                          { "" });
-  Option StartingSonataOfAwakening = Option::U8("Sonata of Awakening",    { "None",             "Sonata" },                                            { "" });
-  Option StartingGoronsLullaby     = Option::U8("Gorons Lullaby",         { "None",             "Intro", "Full" },                         { "" });
-  Option StartingNewWaveBossaNova  = Option::U8("New Wave Bossa Nova",    { "None",             "N.W.B.N" },                                     { "" });
-  Option StartingElegyOfEmptiness  = Option::U8("Elegy of Emptiness",     { "None",             "Elegy" },                                      { "" });
-  Option StartingSongOfHealing     = Option::U8("Song of Healing",        { "None",             "Healing" },                                         { "" }, OptionCategory::Setting);
-  Option StartingSongOfSoaring     = Option::U8("Song of Soaring",        { "None",             "Soaring" },                                         { "" });
-  Option StartingSongOfTime        = Option::U8("Song of Time",           { "None",             "Time" },                                            { "" });
-//Option StartingGoronIntro        = Option::U8("Goron Lullaby Intro",    { "None",             "Lullaby Intro" },                                           { "" });
-  Option StartingUpgradesToggle    = Option::U8("Equipment & Upgrades",   { "All Off",          "All On",           "Choose" },                              { "" });
-  Option StartingKokiriSword       = Option::U8("Starting Sword",         { "Kokiri Sword",     "Razor Sword", "Gilded Sword", "None" },                     { startingSwordKokiriDesc, startingSwordRazorDesc, startingSwordGildedDesc, startingSwordNoneDesc }, OptionCategory::Setting, (u8)StartingSwordSetting::STARTINGSWORD_KOKIRI);//1U = StartingSwordSetting::STARTINGSWORD_KOKIRI
-  Option StartingGreatFairySword   = Option::U8("Great Fairy Sword",      { "None",             "G. F. S." },                                                { "" });
-  Option StartingShield            = Option::U8("Starting Shield",        { "Hero's Shield",    "Mirror Shield", "None" },                                   { startingShieldHerosDesc, startingShieldMirrorDesc, startingShieldNoneDesc }, OptionCategory::Setting, (u8)StartingSheildSetting::STARTINGSHIELD_HERO);//1U = StartingShieldSetting::STARTINGSHIELD_HERO
-  Option StartingWallet            = Option::U8("Wallet Upgrade",         { "None",          "Adult's Wallet",   "Giant's Wallet"/*,  "Tycoon's Wallet"*/ }, { "" }, OptionCategory::Setting, (u8)StartingWalletSetting::STARTINGWALLET_NONE);
-  Option StartingHealth            = Option::U8("Health",                 healthOptions,                                                                     { "" });
-  Option StartingMagicMeter        = Option::U8("Magic Meter",            { "None",             "Single Magic",     "Double Magic" },                        { "" });
-  Option StartingDoubleDefense     = Option::U8("Double Defense",         { "None",             "Double Defense" },                                          { "" });
-  Option StartingQuestToggle       = Option::U8("Quest Items",            { "All Off",          "All On",           "Choose" },                              { "" });
-  Option StartingOdolwaRemains     = Option::U8("Odolwa's Remains",       { "None",             "Odolwa's R." },                                             { "" });
-  Option StartingGohtRemains       = Option::U8("Goht's Remains",         { "None",             "Goht's R." },                                               { "" });
-  Option StartingGyorgRemains      = Option::U8("Gyorg's Remains",        { "None",             "Gyorg's R." },                                              { "" });
-  Option StartingTwinmoldRemains   = Option::U8("Twinmold's Remains",     { "None",             "TwinMold's R." },                                           { "" });
-  Option StartingSwampToken        = Option::U8("Swamp Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
-  Option StartingOceanToken        = Option::U8("Ocean Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
-  Option StartingWoodfallStrays    = Option::U8("Woodfall Strays",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
-  Option StartingSnowheadStrays    = Option::U8("Snowhead Strays",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
-  Option StartingGreatBayStrays    = Option::U8("Great Bay Strays",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
-  Option StartingStoneTowerStrays  = Option::U8("Stone Tower Strays",   {/*Options 0-15 defined in InitSettings()*/ },                                     { "" }, OptionCategory::Setting, 0);
+  Option StartingConsumables       = Option::Bool("Start with Consumables", { "Off",               "On" },                                                       { startWithConsumablesDesc });
+  Option StartingMaxRupees         = Option::Bool("Start with Max Rupees",  { "Off",               "On" },                                                       { startWithMaxRupeesDesc });
+  Option StartingInventoryToggle   = Option::U8("Inventory",                { "All Off",          "All On",           "Choose" },                                { "" });
+  Option StartingNutCapacity       = Option::U8("Deku Nuts",                { "None",             "20 Deku Nuts",     "30 Deku Nuts",     "40 Deku Nuts" },      { "" });
+  Option StartingOcarina           = Option::U8("Start With Ocarina",       { "Off",  "On" },                                                                    { ocarinasDesc }, OptionCategory::Setting, 1);
+  Option StartingNotebook          = Option::U8("Bomber's Notebook",        { "Off",             "On"},                                                          { "" });
+  Option StartingBombBag           = Option::U8("Bomb Bag",                 { "None",             "Bomb Bag 20",      "Bomb Bag 30",      "Bomb Bag 40" },       { "" });
+  Option StartingBombchus          = Option::U8("Bombchus",                 { "Off",             "On" },                                                         { "" });
+  Option StartingHookshot          = Option::U8("Hookshot",                 { "Off",             "On" },                                                         { "" });
+  Option StartingBow               = Option::U8("Bow",                      { "None",             "Bow + Quiver 30",  "Bow + Quiver 40",  "Bow + Quiver 50" },   { "" });
+  Option StartingFireArrows        = Option::U8("Fire Arrow",               { "Off",             "On" },                                                         { "" });
+  Option StartingIceArrows         = Option::U8("Ice Arrow",                { "Off",             "On" },                                                         { "" });
+  Option StartingLightArrows       = Option::U8("Light Arrow",              { "Off",             "On" },                                                         { "" });
+  Option StartingLensOfTruth       = Option::U8("Lens of Truth",            { "Off",             "On" },                                                         { "" });
+  Option StartingMagicBean         = Option::U8("Magic Beans",              { "Off",             "On" },                                                         { "" });
+  Option StartingBottle1           = Option::U8("Bottle Slot 1",            bottleOptions,                                                                       { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
+  Option StartingBottle2           = Option::U8("Bottle Slot 2",            bottleOptions,                                                                       { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
+  Option StartingBottle3           = Option::U8("Bottle Slot 3",            bottleOptions,                                                                       { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
+  Option StartingBottle4           = Option::U8("Bottle Slot 4",            bottleOptions,                                                                       { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
+  Option StartingBottle5           = Option::U8("Bottle Slot 5",            bottleOptions,                                                                       { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
+  Option StartingBottle6           = Option::U8("Bottle Slot 6",            bottleOptions,                                                                       { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
+  Option StartingBottle7           = Option::U8("Bottle Slot 7",            bottleOptions,                                                                       { "" }, OptionCategory::Setting, (u8)StartingBottleSetting::STARTINGBOTTLE_NONE);
+  Option StartingSongsToggle       = Option::U8("Ocarina Songs",            { "All Off",          "All On",           "Choose" },                                { "" });
+  Option StartingOathToOrder       = Option::U8("Oath To Order",            { "Off",             "On" },                                                         { "" });
+  Option StartingEponasSong        = Option::U8("Epona's Song",             { "Off",             "On" },                                                         { "" });
+  Option StartingSongOfStorms      = Option::U8("Song of Storms",           { "Off",             "On" },                                                         { "" });
+  Option StartingSonataOfAwakening = Option::U8("Sonata of Awakening",      { "Off",             "On" },                                                         { "" });
+  Option StartingGoronsLullaby     = Option::U8("Gorons Lullaby",           { "None",             "Intro", "Full" },                                             { "" });
+  Option StartingNewWaveBossaNova  = Option::U8("New Wave Bossa Nova",      { "Off",             "On" },                                                         { "" });
+  Option StartingElegyOfEmptiness  = Option::U8("Elegy of Emptiness",       { "Off",             "On" },                                                         { "" });
+  Option StartingSongOfHealing     = Option::U8("Song of Healing",          { "Off",             "On" },                                                         { "" }, OptionCategory::Setting);
+  Option StartingSongOfSoaring     = Option::U8("Song of Soaring",          { "Off",             "On" },                                                         { "" });
+  Option StartingSongOfTime        = Option::U8("Song of Time",             { "Off",             "On" },                                                         { "" }, OptionCategory::Setting, 1);
+//Option StartingGoronIntro        = Option::U8("Goron Lullaby Intro",      { "Off",             "Lullaby Intro" },                                              { "" });
+  Option StartingUpgradesToggle    = Option::U8("Equipment & Upgrades",     { "All Off",          "All On",           "Choose" },                                { "" });
+  Option StartingKokiriSword       = Option::U8("Starting Sword",           { "Kokiri Sword",     "Razor Sword", "Gilded Sword", "None" },                       { startingSwordKokiriDesc, startingSwordRazorDesc, startingSwordGildedDesc, startingSwordNoneDesc }, OptionCategory::Setting, (u8)StartingSwordSetting::STARTINGSWORD_KOKIRI);//1U = StartingSwordSetting::STARTINGSWORD_KOKIRI
+  Option StartingGreatFairySword   = Option::U8("Great Fairy Sword",        { "Off",             "On" },                                                         { "" });
+  Option StartingShield            = Option::U8("Starting Shield",          { "Hero's Shield",    "Mirror Shield", "None" },                                     { startingShieldHerosDesc, startingShieldMirrorDesc, startingShieldNoneDesc }, OptionCategory::Setting, (u8)StartingSheildSetting::STARTINGSHIELD_HERO);//1U = StartingShieldSetting::STARTINGSHIELD_HERO
+  Option StartingWallet            = Option::U8("Wallet Upgrade",           { "None",          "Adult's Wallet",   "Giant's Wallet"/*,  "Tycoon's Wallet"*/ },   { "" }, OptionCategory::Setting, (u8)StartingWalletSetting::STARTINGWALLET_NONE);
+  Option StartingHealth            = Option::U8("Health",                   healthOptions,                                                                       { "" });
+  Option StartingMagicMeter        = Option::U8("Magic Meter",              { "None",             "Single Magic",     "Double Magic" },                          { "" });
+  Option StartingDoubleDefense     = Option::U8("Double Defense",           { "Off",             "On" },                                                         { "" });
+  Option StartingQuestToggle       = Option::U8("Quest Items",              { "All Off",          "All On",           "Choose" },                                { "" });
+  Option StartingOdolwaRemains     = Option::U8("Odolwa's Remains",         { "Off",             "On" },                                                         { "" });
+  Option StartingGohtRemains       = Option::U8("Goht's Remains",           { "Off",             "On" },                                                         { "" });
+  Option StartingGyorgRemains      = Option::U8("Gyorg's Remains",          { "Off",             "On" },                                                         { "" });
+  Option StartingTwinmoldRemains   = Option::U8("Twinmold's Remains",       { "Off",             "On" },                                                         { "" });
+  Option StartingSwampToken        = Option::U8("Swamp Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                       { "" }, OptionCategory::Setting, 0);
+  Option StartingOceanToken        = Option::U8("Ocean Skulltula Tokens",   {/*Options 0-30 defined in InitSettings()*/ },                                       { "" }, OptionCategory::Setting, 0);
+  Option StartingWoodfallStrays    = Option::U8("Woodfall Strays",          {/*Options 0-15 defined in InitSettings()*/ },                                       { "" }, OptionCategory::Setting, 0);
+  Option StartingSnowheadStrays    = Option::U8("Snowhead Strays",          {/*Options 0-15 defined in InitSettings()*/ },                                       { "" }, OptionCategory::Setting, 0);
+  Option StartingGreatBayStrays    = Option::U8("Great Bay Strays",         {/*Options 0-15 defined in InitSettings()*/ },                                       { "" }, OptionCategory::Setting, 0);
+  Option StartingStoneTowerStrays  = Option::U8("Stone Tower Strays",       {/*Options 0-15 defined in InitSettings()*/ },                                       { "" }, OptionCategory::Setting, 0);
   //Starting Masks 
-  Option StartingMaskToggle        = Option::U8("Masks",                    { "All Off",          "All On",           "Choose" },                              { "" });
-  Option StartingDekuMask          = Option::U8("Deku Mask",              { "None",             "Deku M." },                                                 { "" });
-  Option StartingGoronMask         = Option::U8("Goron Mask",             { "None",             "Goron M." },                                                { "" });
-  Option StartingZoraMask          = Option::U8("Zora Mask",              { "None",             "Zora M." },                                                 { "" });
-  Option StartingBunnyHood         = Option::U8("Bunny Hood",             { "None",             "Bunny H." },                                                { "" });
-  Option StartingKeatonMask        = Option::U8("Keaton Mask",            { "None",             "Keaton M." },                                               { "" });
-  Option StartingPostmanHat        = Option::U8("Postman's Hat",          { "None",             "Postman's H." },                                            { "" });
-  Option StartingAllNightMask      = Option::U8("All-Night Mask",         { "None",             "All-Night M." },                                            { "" });
-  Option StartingBlastMask         = Option::U8("Blast Mask",             { "None",             "Blast M." },                                                { "" });
-  Option StartingStoneMask         = Option::U8("Stone Mask",             { "None",             "Stone M." },                                                { "" });
-  Option StartingGreatFairyMask    = Option::U8("Great Fairys Mask",      { "None",             "G.F M." },                                                  { "" });
-  Option StartingBremenMask        = Option::U8("Bremen Mask",            { "None",             "Bremen M." },                                               { "" });
-  Option StartingDonGeroMask       = Option::U8("Don Gero's Mask",        { "None",             "DonGero M." },                                              { "" });
-  Option StartingMaskOfScents      = Option::U8("Mask of Scents",         { "None",             "Scents M." },                                               { "" });
-  Option StartingRomanisMask       = Option::U8("Romani's Mask",          { "None",             "Romani M." },                                               { "" });
-  Option StartingCircusLeaderMask  = Option::U8("Circus Leader's Mask",   { "None",             "T.L M." },                                                  { "" });
-  Option StartingKafeiMask         = Option::U8("Kafei Mask",             { "None",             "Kafei M." },                                                { "" });
-  Option StartingCouplesMask       = Option::U8("Couples Mask",           { "None",             "Couples M." },                                              { "" });
-  Option StartingKamarosMask       = Option::U8("Kamaro's Mask",          { "None",             "Kamaros M." },                                              { "" });
-  Option StartingGibdosMask        = Option::U8("Gibdos Mask",            { "None",             "Gibdos M." },                                               { "" });
-  Option StartingGaroMask          = Option::U8("Garo Mask",              { "None",             "Garo M."},                                                  { "" });
-  Option StartingCaptainsHat       = Option::U8("Captain's Mask",         { "None",             "Captains M." },                                             { "" });
-  Option StartingGiantsMask        = Option::U8("Giants Mask",            { "None",             "Giants M." },                                               { "" });
-  Option StartingFierceDeityMask   = Option::U8("Fierce Deity Mask",      { "None",             "F.D M." },                                                  { "" });
-  Option StartingMaskOfTruth       = Option::U8("Mask of Truth",          { "None",             "Truth M." },                                                { "" });
-  Option StartingStickCapacity     = Option::U8("Stick Capacity",         { "None", "10 Sticks", "20 Sticks", "30 Sticks" },                                 { "" });
-  Option StartingPictographBox     = Option::U8("Pictograph Box",         { "None",             "PictoBox" },                                                { "" });
-  Option StartingPowderKeg         = Option::U8("Powder Keg",             { "None",             "Powder Keg" },                                              { "" });
-  //Option StartingRazorSword = Option::U8(" Razor Sword", { "None", "R. Sword" }, { "" });
-  //Option StartingGildedSword = Option::U8(" Gilded Sword", { "None", "G. Sword" }, { "" });
-//  Option StartingInvertedSong = Option::U8("  Inverted Song of Time", { "None",             "I. Song of Time" }, { "" });
-//  Option StartingDoubleSong = Option::U8("  Song of Double Time", { "None",             "Song of D. Time" }, { "" });
-//  Option StartingSongOfTime = Option::U8("  Song of Time", { "None",             "Song of Time" }, { "" });
+  Option StartingMaskToggle        = Option::U8("Masks",                    { "All Off",          "All On",           "Choose" },                                { "" });
+  Option StartingDekuMask          = Option::U8("Deku Mask",                { "Off",             "On" },                                                         { "" });
+  Option StartingGoronMask         = Option::U8("Goron Mask",               { "Off",             "On" },                                                         { "" });
+  Option StartingZoraMask          = Option::U8("Zora Mask",                { "Off",             "On" },                                                         { "" });
+  Option StartingBunnyHood         = Option::U8("Bunny Hood",               { "Off",             "On" },                                                         { "" });
+  Option StartingKeatonMask        = Option::U8("Keaton Mask",              { "Off",             "On" },                                                         { "" });
+  Option StartingPostmanHat        = Option::U8("Postman's Hat",            { "Off",             "On" },                                                         { "" });
+  Option StartingAllNightMask      = Option::U8("All-Night Mask",           { "Off",             "On" },                                                         { "" });
+  Option StartingBlastMask         = Option::U8("Blast Mask",               { "Off",             "On" },                                                         { "" });
+  Option StartingStoneMask         = Option::U8("Stone Mask",               { "Off",             "On" },                                                         { "" });
+  Option StartingGreatFairyMask    = Option::U8("Great Fairys Mask",        { "Off",             "On" },                                                         { "" });
+  Option StartingBremenMask        = Option::U8("Bremen Mask",              { "Off",             "On" },                                                         { "" });
+  Option StartingDonGeroMask       = Option::U8("Don Gero's Mask",          { "Off",             "On" },                                                         { "" });
+  Option StartingMaskOfScents      = Option::U8("Mask of Scents",           { "Off",             "On" },                                                         { "" });
+  Option StartingRomanisMask       = Option::U8("Romani's Mask",            { "Off",             "On" },                                                         { "" });
+  Option StartingCircusLeaderMask  = Option::U8("Circus Leader's Mask",     { "Off",             "On" },                                                         { "" });
+  Option StartingKafeiMask         = Option::U8("Kafei Mask",               { "Off",             "On" },                                                         { "" });
+  Option StartingCouplesMask       = Option::U8("Couples Mask",             { "Off",             "On" },                                                         { "" });
+  Option StartingKamarosMask       = Option::U8("Kamaro's Mask",            { "Off",             "On" },                                                         { "" });
+  Option StartingGibdosMask        = Option::U8("Gibdos Mask",              { "Off",             "On" },                                                         { "" });
+  Option StartingGaroMask          = Option::U8("Garo Mask",                { "Off",             "On"},                                                          { "" });
+  Option StartingCaptainsHat       = Option::U8("Captain's Mask",           { "Off",             "On" },                                                         { "" });
+  Option StartingGiantsMask        = Option::U8("Giants Mask",              { "Off",             "On" },                                                         { "" });
+  Option StartingFierceDeityMask   = Option::U8("Fierce Deity Mask",        { "Off",             "On" },                                                         { "" });
+  Option StartingMaskOfTruth       = Option::U8("Mask of Truth",            { "Off",             "On" },                                                         { "" });
+  Option StartingStickCapacity     = Option::U8("Stick Capacity",           { "None", "10 Sticks", "20 Sticks", "30 Sticks" },                                   { "" });
+  Option StartingPictographBox     = Option::U8("Pictograph Box",           { "Off",             "On" },                                                         { "" });
+  Option StartingPowderKeg         = Option::U8("Powder Keg",               { "Off",             "On" },                                                         { "" });
+  //Option StartingRazorSword = Option::U8(" Razor Sword", { "Off", "R. Sword" }, { "" });
+  //Option StartingGildedSword = Option::U8(" Gilded Sword", { "Off", "G. Sword" }, { "" });
+//  Option StartingInvertedSong = Option::U8("  Inverted Song of Time", { "Off",             "I. Song of Time" }, { "" });
+//  Option StartingDoubleSong = Option::U8("  Song of Double Time", { "Off",             "Song of D. Time" }, { "" });
+//  Option StartingSongOfTime = Option::U8("  Song of Time", { "Off",             "Song of Time" }, { "" });
   
   std::vector<Option*> startingInventoryOptions = {
 	  &StartingConsumables,
@@ -372,9 +372,9 @@ namespace Settings {
   Option ShuffleKokiriSword     = Option::Bool("Shuffle Kokiri Sword",  {"Off", "On"},                                       {kokiriSwordDesc});
   Option ShuffleStartingShield  = Option::Bool("Starting Shield",       {"Off", "On"},                                       {shuffleStartShield});
   Option ShuffleMasks           = Option::Bool("Shuffle Masks",         {"Off", "On"},                                       {shuffleMasksVanilla, shuffleMasksRandom},                              OptionCategory::Toggle,   1);
-  Option ShuffleTransformation  = Option::Bool("Shuffle Transformation",{"Off", "On"},                                       {shuffleTransformationDesc});
+  Option ShuffleTransformation  = Option::Bool("Shuffle Transformation",{"Off", "On"},                                       {shuffleTransformationDesc},                                            OptionCategory::Toggle, 1);
   Option ShufflePiecesOfHeart   = Option::Bool("Shuffle Piece of Heart",{"Off", "On"},                                       {shufflePiecesOfHeartDesc },                                            OptionCategory::Toggle,   1);
-  Option ShuffleSongs           = Option::U8  ("Shuffle Songs",         {"Off", "Song Locations", "Anywhere"},               {songsVanilla, songsSongLocations, songsAllLocations},                  OptionCategory::Setting,  0);
+  Option ShuffleSongs           = Option::U8  ("Shuffle Songs",         {"No", "Song Locations", "Anywhere"},               {songsVanilla, songsSongLocations, songsAllLocations},                  OptionCategory::Setting,  0);
   Option ShuffleSoaring         = Option::Bool("Shuffle Song of Soaring",{"Off", "On"},                                      {shuffleSoaringVanilla, shuffleSoaringRandom},                          OptionCategory::Setting,   0);
   Option ShuffleSongOfTime      = Option::Bool("Shuffle Song of Time",  {"Off", "On"},                                       {songTimeVanilla, songTimeRandom},                                      OptionCategory::Setting,   0);
   Option Shopsanity             = Option::Bool("Shopsanity",            {"Off", "On"},                                       {shopsOff, shopsOn},                                                    OptionCategory::Setting,  0);
@@ -383,9 +383,9 @@ namespace Settings {
   Option Scrubsanity            = Option::Bool("Shuffle Scrub Purchases",{"Off", "On"},                                      {scrubsOff, scrubsOn},                                                  OptionCategory::Setting,   0);
   Option ShuffleMerchants       = Option::Bool("Shuffle Scrub Trades",  {"Off", "On"},                                       {shuffleMerchantsDesc});
   Option ShuffleTradeItems      = Option::Bool("Shuffle Anju and Kafei",{"Off", "On"},                                       {shuffleTradeItemsDesc});
-  Option ShuffleGFRewards       = Option::U8  ("Shuffle Fairy Rewards", {"Off", "Great Fairies", "Anywhere" },               {shuffleGFVanilla, shuffleGFSelf, shuffleGFAnywhere},                   OptionCategory::Setting, (u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA);
+  Option ShuffleGFRewards       = Option::U8  ("Shuffle Fairy Rewards", {"No", "Great Fairies", "Anywhere" },               {shuffleGFVanilla, shuffleGFSelf, shuffleGFAnywhere},                   OptionCategory::Setting, (u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_VANILLA);
   Option ShuffleCows            = Option::Bool("Shuffle Cows",          {"Off", "On"},                                       {shuffleCowsDesc});
-  Option ShuffleOcarinas        = Option::Bool("Shuffle Ocarina",       {"Off", "On"},                                       {ocarinasDesc});
+  Option ShuffleOcarinas        = Option::Bool("Shuffle Ocarina",       {"Off", "On"},                                       {ocarinasDesc}, OptionCategory::Toggle, 0);
   Option ShuffleTingleMaps      = Option::Bool("Shuffle Tingle Maps",   {"Off", "On"},                                       {shuffleTingleMapsDesc});
   Option ShuffleMagicBeans      = Option::Bool("Shuffle Magic Beans",   {"Off", "On"},                                       {magicBeansDesc});
   Option ShuffleBombersNotebook = Option::Bool("Shuffle Notebook",      {"Off", "On"},                                       {shuffleBombersNotebookDesc});
@@ -429,10 +429,10 @@ namespace Settings {
   Option BossKeysanity          = Option::U8("Boss Keys",          { "Vanilla", "Start With", "Own Dungeon", "Any Dungeon", "Overworld", "Anywhere" }, { bossKeyVanilla, bossKeyStartWith, bossKeyOwnDungeon, bossKeyAnyDungeon, bossKeyOverworld, bossKeyAnywhere },                   OptionCategory::Setting, (u8)BossKeysanitySetting::BOSSKEYSANITY_VANILLA);
   Option StrayFairysanity       = Option::U8("Stray Fairies",      { "Vanilla", "Start With", "Own Dungeon", "Any Dungeon", "Overworld", "Anywhere" }, { fairyVanilla, fairyStartWith, fairyOwnDungeon, fairyAnyDungeon, fairyOverworld, fairyAnywhere },                               OptionCategory::Setting, (u8)StrayFairySanitySetting::STRAYFAIRYSANITY_VANILLA);
   Option ShuffleRewards         = Option::U8("Dungeon Rewards",    { "Vanilla", "Any Dungeon", "Overworld", "Anywhere" },                              { shuffleRewardsEndOfDungeon, shuffleRewardsAnyDungeon, shuffleRewardsOverworld, shuffleRewardsAnywhere });
-  Option ShuffleHeartContainers = Option::Bool("Heart Containers", { "Vanilla", "Random"},                                                             { shuffleHeartContainersDesc });
+  Option ShuffleHeartContainers = Option::Bool("Heart Containers", { "Vanilla", "Random"},                                                             { shuffleHeartContainersDesc }, OptionCategory::Toggle, 1);
   Option MoonRemainsRequired    = Option::U8("Moon Requirements",  {"Vanilla", "3", "2", "1", "0"},                                                    { MoonRemainsRequiredDesc },                                                                                                     OptionCategory::Setting);
   Option MajoraRemainsRequired  = Option::U8("Majora Requirements",{"Vanilla", "3", "2", "1", "0"},                                                    { MajoraRemainsRequiredDesc },                                                                                                   OptionCategory::Setting);
-  Option ShuffleCTStray         = Option::Bool("Clock Town Stray Fairy", { "Vanilla", "Anywhere" },                                              { shuffleCTStrayDesc });
+  Option ShuffleCTStray         = Option::Bool("Clock Town Stray Fairy", { "Vanilla", "Anywhere" },                                                    { shuffleCTStrayDesc });
 
   std::vector<Option*>dungeonSettingsOptions = {
     &RandomizeDungeon,
@@ -448,15 +448,15 @@ namespace Settings {
   };
 
   //Item Pool Settings 
-  Option ItemPoolValue          = Option::U8  ("Item Pool",             {"Plentiful", "Balanced", "Scarce", "Minimal" },   {itemPoolPlentiful, itemPoolBalanced, itemPoolScarce, itemPoolMinimal }, OptionCategory::Setting, (u8)ItemPoolSetting::ITEMPOOL_BALANCED);
-  Option RemoveDoubleDefense    = Option::Bool("Remove Double Defense", {"No", "Yes"},                                     {removeDDDesc});
+  Option ItemPoolValue          = Option::U8  ("Item Pool",             {"Plentiful", "Balanced", "Scarce", "Minimal" },    {itemPoolPlentiful, itemPoolBalanced, itemPoolScarce, itemPoolMinimal },      OptionCategory::Setting, (u8)ItemPoolSetting::ITEMPOOL_BALANCED);
+  Option RemoveDoubleDefense    = Option::Bool("Remove Double Defense", {"Off", "On"},                                      {removeDDDesc});
   std::vector<Option*>itemPoolSettingsOptions = {
       &ItemPoolValue,
       &RemoveDoubleDefense,
   };
 
-  Option GossipStoneHints     = Option::U8("Gossip Stone Hints",       { "No Hints", "Need Nothing", "Mask of Truth" },    { gossipStonesHintsDesc },                                                     OptionCategory::Setting, (u8)GossipStoneHintsSetting::HINTS_NEED_NOTHING);
-  Option ClearerHints         = Option::Bool("  Clearer Hints",        { "Off", "On" },                                    { clearerHintsDesc });
+  Option GossipStoneHints     = Option::U8("Gossip Stone Hints",       { "No Hints", "Need Nothing", "Mask of Truth" },     { gossipStonesHintsDesc },                                                     OptionCategory::Setting, (u8)GossipStoneHintsSetting::HINTS_NEED_NOTHING);
+  Option ClearerHints         = Option::Bool("  Clearer Hints",        { "Off", "On" },                                     { clearerHintsDesc });
   Option HintDistribution     = Option::U8("  Hint Distribution",      { "Useless", "Balanced", "Strong", "Very Strong" },  { uselessHintsDesc, balancedHintsDesc, strongHintsDesc, veryStrongHintsDesc }, OptionCategory::Setting, 1); // Balanced
   Option DamageMultiplier     = Option::U8("Damage Multiplier",        { "x1/2", "x1", "x2", "x4", "x8", "x16", "OHKO"},    {damageMultiDesc},                                                             OptionCategory::Setting,   (u8)DamageMultiplierSetting::DAMAGEMULTIPLIER_DEFAULT);
   Option ChestAnimations      = Option::Bool("Chest Animations",       { "Always Fast", "Match Contents"},                  {chestAnimDesc});
@@ -465,7 +465,7 @@ namespace Settings {
   //Option MenuOpeningButton    = Option::U8("Open Info Menu with",      { "Select","Start","D-Pad Up","D-Pad Down","D-Pad Right","D-Pad Left", }, { menuButtonDesc });
   Option RandomTrapDmg        = Option::U8("Random Trap Damage",       { "Off", "Basic", "Advanced" },                      { randomTrapDmgDesc, basicTrapDmgDesc, advancedTrapDmgDesc });
   Option RsDurability         = Option::U8("Razor Sword Durability",   { "Vanilla", "Infinite" },                           { rsDurabilityVanilla, rsDurabilityInf});
-  Option IceTrapValue         = Option::U8("Ice Traps",                { "Off", "Extra", "Mayhem", "Onslaught" },           { iceTrapsOff, iceTrapsExtra, iceTrapsMayhem, iceTrapsOnslaught }, OptionCategory::Setting, (u8)IceTrapSetting::ICETRAPS_OFF);
+  Option IceTrapValue         = Option::U8("Ice Traps",                { "None", "Extra", "Mayhem", "Onslaught" },           { iceTrapsOff, iceTrapsExtra, iceTrapsMayhem, iceTrapsOnslaught },             OptionCategory::Setting, (u8)IceTrapSetting::ICETRAPS_OFF);
   Option CompassShowWoTH      = Option::Bool("Compasses Show WotH",    {"Off", "On"},                                       { compassShowWotHDesc});
   Option SkipBombersMinigame  = Option::Bool("Skip Bombers' Minigame", {"Off", "On"},                                       { skipBombersMinigameDesc});
 
@@ -488,15 +488,15 @@ namespace Settings {
   /*COMFORT*/
 
   Option BlastMaskCooldown      = Option::U8("Blast Mask Cooldown",        {"Default", "Short", "Very Short", "Instant"},                        { blastDefault, blastShort, blastVeryShort, blastInstant });
-  Option UnderwaterOcarina      = Option::Bool("Underwater Ocarina",       { "No","Yes" },                                                       { underwaterOcarinaDesc },                                                         OptionCategory::Toggle);
-  Option FierceDeityAnywhere    = Option::Bool("Fierce Deity Anywhere",    { "No","Yes" },                                                       { fierceDeityAnywhereDesc });
+  Option UnderwaterOcarina      = Option::Bool("Underwater Ocarina",       { "Off","On" },                                                       { underwaterOcarinaDesc },                                                         OptionCategory::Toggle);
+  Option FierceDeityAnywhere    = Option::Bool("Fierce Deity Anywhere",    { "Off","On" },                                                       { fierceDeityAnywhereDesc });
   Option ProgressiveGildedSword = Option::Bool("Progressive Gilded Sword", { "Off", "On" },                                                      { progressiveGildedSwordDesc });
   Option StartingSpin           = Option::Bool("Starting Spin",            { "Vanilla", "Upgraded" },                                            { startingSpinDesc });
   Option AmmoDrops              = Option::U8("Ammo Drops",                 { "Off", "On" },                                                      { ammoDropDesc });
   Option HeartDropRefills       = Option::U8("Heart Drops",                { "Off", "On" },                                                      { heartDropDesc });
   Option BombchusInLogic        = Option::U8("Bombchus In Logic",          { "Off", "On" },                                                      { bombchuInLogicDesc });
-  Option FastMasks              = Option::Bool("Fast Mask Transform",      {"No", "Yes"},                                                        {fastMaskDesc});
-  Option NotebookAnimations     = Option::Bool("Fast Notebook",            {"No", "Yes"},                                                        {disableBotebookAnimation});
+  Option FastMasks              = Option::Bool("Fast Mask Transform",      {"Off", "On"},                                                        {fastMaskDesc},             OptionCategory::Toggle, 1);
+  Option NotebookAnimations     = Option::Bool("Fast Notebook",            {"Off", "On"},                                                        {disableBotebookAnimation}, OptionCategory::Toggle, 1);
 
   // In-game options written into CommonDataSub1 when a new file is created. Index 0 is
   // "Vanilla" throughout, which leaves the game's own default in place -- only the Adjust
@@ -505,16 +505,16 @@ namespace Settings {
   Option IngameLTargeting        = Option::U8("L-Targeting",             {"Vanilla", "Switch", "Hold"},                                          {ingameLTargetingDesc});
   Option IngameFirstPersonCamera = Option::U8("First Person Camera",     {"Vanilla", "Normal", "Invert Y Axis", "Invert X Axis", "Invert Both"}, {ingameFirstPersonCameraDesc});
   Option IngameFreeCamera        = Option::U8("Free Camera",             {"Vanilla", "Normal", "Invert Y Axis", "Invert X Axis", "Invert Both"}, {ingameFreeCameraDesc});
-  Option IngameMotionControls    = Option::U8("Motion Controls",         {"Vanilla", "On", "Off"},                                               {ingameMotionControlsDesc});
+  Option IngameMotionControls    = Option::U8("Motion Controls",         {"Vanilla", "Enabled", "Disabled"},                                     {ingameMotionControlsDesc});
   Option IngameSwimmingControls  = Option::U8("Swimming Controls",       {"Vanilla", "Normal", "Invert Y Axis"},                                 {ingameSwimmingControlsDesc});
   Option IngameAdjustVolume      = Option::U8("Adjust Volume",           {"Vanilla", "Lower", "Normal", "Higher"},                               {ingameAdjustVolumeDesc});
   Option IngameMuteSound         = Option::Bool("Mute Sound Effects",    {"Off", "On"},                                                          {ingameMuteSoundDesc});
   Option IngameMuteBGM           = Option::Bool("Mute Background Music", {"Off", "On"},                                                          {ingameMuteBGMDesc});
   Option IngameFastSongs         = Option::U8("Fast Ocarina Songs",      {"Don't Skip", "Skip (No Audio)", "Skip (W/ Audio)"},                   {ingameFastSongsDesc});
-  Option ShuffleMusic            = Option::U8("Shuffle Music",           {"Off", "BGM", "Fanfares", "All"},                                      {musicRandoDesc});
-  Option IngameShuffleSFX        = Option::U8("Shuffle Sound Effects",   {"Off", "Categorical", "Chaos"},                                        {ingameShuffleSFXDesc});
-  Option IngameShuffleFootsteps  = Option::Bool("  Shuffle Footsteps",  {"Off", "On"},                                                          {ingameShuffleFootstepsDesc});
-  Option IngameShuffleLinkVoice  = Option::Bool("  Shuffle Link's Voice", {"Off", "On"},                                                        {ingameShuffleLinkVoiceDesc});
+  Option ShuffleMusic            = Option::U8("Shuffle Music",           {"None", "BGM", "Fanfares", "All"},                                      {musicRandoDesc});
+  Option IngameShuffleSFX        = Option::U8("Shuffle Sound Effects",   {"None", "Categorical", "Chaos", "Link Only"},                           {ingameShuffleSFXDesc});
+  Option IngameShuffleFootsteps  = Option::Bool("Shuffle Footsteps",  {"Off", "On"},                                                          {ingameShuffleFootstepsDesc});
+  Option IngameShuffleLinkVoice  = Option::Bool("Shuffle Link's Voice", {"Off", "On"},                                                        {ingameShuffleLinkVoiceDesc});
 
   std::vector<Option*> ingameOptions = {
     &IngameLTargeting,
@@ -548,21 +548,21 @@ namespace Settings {
  
   //Restoration Settings
   Option SkipMinigamePhases  = Option::Bool("Minigames repetitions",  {"Don't Skip", "Skip"},                                {skipMinigamePhasesDesc});
-  Option FastLabFish         = Option::Bool("Fast Lab Fish",          { "No", "Yes" },                                       { fastLabFishDesc });
-  Option FastBank            = Option::Bool("Fast Bank Rewards",      { "No", "Yes" },                                       { fastBankDesc });
-  Option FastDogRace         = Option::Bool("Fast Dog Race",          { "No", "Yes" },                                       { fastDogRaceDesc });
-  Option GoodDampeRNG        = Option::Bool("Good Dampe RNG",         { "No", "Yes" },                                       { goodDampeRNGDesc });
-  Option IncreasePushSpeed   = Option::Bool("Increased Push Speed",   { "No", "Yes" },                                       { increasePushSpeedDesc });
-  Option FastArrowSwitch     = Option::Bool("Fast Arrow Switching",   { "No", "Yes" },                                       { fastArrowSwitchDesc });
-  //Option FastElegyStatues    = Option::Bool("Fast Elegy Statues",     { "No", "Yes" },                                       { fastElegyStatuesDesc });
+  Option FastLabFish         = Option::Bool("Fast Lab Fish",          { "Off", "On" },                                       { fastLabFishDesc });
+  Option FastBank            = Option::Bool("Fast Bank Rewards",      { "Off", "On" },                                       { fastBankDesc });
+  Option FastDogRace         = Option::Bool("Fast Dog Race",          { "Off", "On" },                                       { fastDogRaceDesc });
+  Option GoodDampeRNG        = Option::Bool("Good Dampe RNG",         { "Off", "On" },                                       { goodDampeRNGDesc });
+  Option IncreasePushSpeed   = Option::Bool("Increased Push Speed",   { "Off", "On" },                                       { increasePushSpeedDesc });
+  Option FastArrowSwitch     = Option::Bool("Fast Arrow Switching",   { "Off", "On" },                                       { fastArrowSwitchDesc });
+  //Option FastElegyStatues    = Option::Bool("Fast Elegy Statues",     { "Off", "On" },                                       { fastElegyStatuesDesc });
   Option SkipSongReplays     = Option::U8("Skip Song Replays",        { "Don't Skip", "Skip (No SFX)", "Skip (Keep SFX)" },  {skipSongReplaysDesc});
-  Option SkipEponaRace       = Option::Bool("Skip Epona Race",        { "No", "Yes" },                                       { skipEponaRaceDesc });
-  Option OcarinaDive         = Option::Bool("Ocarina Dive",           { "No", "Yes" },                                       {ocarinaDiveDesc});
-  Option FastZoraSwim        = Option::Bool("Fast Zora Swimming",     { "No", "Yes" },                                       {fastZoraSwimDesc});
-  Option DpadTransform       = Option::Bool("DPad Transformation",    { "No", "Yes" },                                       {dpadMaskDesc});
-  Option DpadOcarina         = Option::Bool("DPad Ocarina",           { "No", "Yes" },                                       {dpadOcarinaDesc});
-  Option DpadArrows          = Option::Bool("Dpad Arrow Swap",        { "No", "Yes" },                                       {dpadArrowDesc});
-  Option TwinmoldRestoration = Option::Bool("Twinmold Restoration",   { "No", "Yes" },                                       {twinmoldRestorationDesc});
+  Option SkipEponaRace       = Option::Bool("Skip Epona Race",        { "Off", "On" },                                       { skipEponaRaceDesc });
+  Option OcarinaDive         = Option::Bool("Ocarina Dive",           { "Off", "On" },                                       {ocarinaDiveDesc});
+  Option FastZoraSwim        = Option::Bool("Fast Zora Swimming",     { "Off", "On" },                                       {fastZoraSwimDesc},        OptionCategory::Toggle,  1);
+  Option DpadTransform       = Option::Bool("DPad Transformation",    { "Off", "On" },                                       {dpadMaskDesc});
+  Option DpadOcarina         = Option::Bool("DPad Ocarina",           { "Off", "On" },                                       {dpadOcarinaDesc});
+  Option DpadArrows          = Option::Bool("Dpad Arrow Swap",        { "Off", "On" },                                       {dpadArrowDesc});
+  Option TwinmoldRestoration = Option::Bool("Twinmold Restoration",   { "Off", "On" },                                       {twinmoldRestorationDesc}, OptionCategory::Toggle, 1);
 
 
   std::vector<Option *> restorationOptions = {
@@ -584,11 +584,11 @@ namespace Settings {
   };
 
   //Cutscene Skips
-  Option SkipHMSCutscenes     = Option::Bool("Skip HMS Cutscenes",  {"Don't Skip", "Skip"},     {skipHMSCutsceneDesc});
-  Option SkipDarmaniCutscenes = Option::Bool("Skip Darmani Cutscenes",  {"Don't Skip", "Skip"}, {skipDarmaniCutsceneDesc});
-  Option SkipMikauCutscenes   = Option::Bool("Skip Mikau Cutscenes",  {"Don't Skip", "Skip"},   {skipMikauCutsceneDesc});
-  Option SkipGiantCutscenes   = Option::Bool("Skip Giants Cutscene", {"Don't Skip", "Skip"}, {skipGiantCutsceneDesc});
-  Option SkipPirateCutscenes  = Option::Bool("Skip Pirate Cutscenes", {"Don't Skip", "Skip"}, {skipPirateCutsceneDesc});
+  Option SkipHMSCutscenes     = Option::Bool("Skip HMS Cutscenes",  {"Off", "On"},     {skipHMSCutsceneDesc},     OptionCategory::Toggle, 1);
+  Option SkipDarmaniCutscenes = Option::Bool("Skip Darmani Cutscenes",  {"Off", "On"}, {skipDarmaniCutsceneDesc}, OptionCategory::Toggle, 1);
+  Option SkipMikauCutscenes   = Option::Bool("Skip Mikau Cutscenes",  {"Off", "On"},   {skipMikauCutsceneDesc},   OptionCategory::Toggle, 1);
+  Option SkipGiantCutscenes   = Option::Bool("Skip Giants Cutscene", {"Off", "On"},    {skipGiantCutsceneDesc},   OptionCategory::Toggle, 1);
+  Option SkipPirateCutscenes  = Option::Bool("Skip Pirate Cutscenes", {"Off", "On"},   {skipPirateCutsceneDesc},  OptionCategory::Toggle, 1);
   std::vector<Option *> cutsceneOptions = {
     &SkipHMSCutscenes,
     &SkipDarmaniCutscenes,
@@ -598,10 +598,10 @@ namespace Settings {
   };
 
   /*TRIAL SKIPS*/
-  Option OdolwaTrialSkip = Option::Bool("Odolwa Trial Skip", { "Don't Skip", "Skip" }, { odolwaTrialSkipDesc });
-  Option GohtTrialSkip = Option::Bool("Goht Trial Skip", { "Don't Skip", "Skip" }, { gohtTrialSkipDesc });
-  Option GyorgTrialSkip = Option::Bool("Gyorg Trial Skip", { "Don't Skip", "Skip" }, { gyorgTrialSkipDesc });
-  Option TwinmoldTrialSkip = Option::Bool("Twinmold Trial Skip", { "Don't Skip", "Skip" }, { twinmoldTrialSkipDesc });
+  Option OdolwaTrialSkip = Option::Bool("Odolwa Trial Skip", { "Off", "On" },     { odolwaTrialSkipDesc },   OptionCategory::Toggle, 1);
+  Option GohtTrialSkip = Option::Bool("Goht Trial Skip", { "Off", "On" },         { gohtTrialSkipDesc },     OptionCategory::Toggle, 1);
+  Option GyorgTrialSkip = Option::Bool("Gyorg Trial Skip", { "Off", "On" },       { gyorgTrialSkipDesc },    OptionCategory::Toggle, 1);
+  Option TwinmoldTrialSkip = Option::Bool("Twinmold Trial Skip", { "Off", "On" }, { twinmoldTrialSkipDesc }, OptionCategory::Toggle, 1);
 
   std::vector<Option *> trialSkipOptions = {
       &OdolwaTrialSkip,
@@ -659,12 +659,12 @@ namespace Settings {
   };
 
   Option CustomTunicColors          = Option::Bool("Custom Tunic Colors",    {"Off", "On"},   {""},  OptionCategory::Cosmetic);
-  Option ChildTunicColor = Option::U8("   Tunic Color", { tunicOptions }, cosmeticDescriptions, OptionCategory::Cosmetic, 3); // Kokiri Green
+  Option ChildTunicColor = Option::U8("   Tunic Color", { tunicOptions }, cosmeticDescriptions,      OptionCategory::Cosmetic, 3); // Kokiri Green
   std::string finalChildTunicColor      = ChildTunicColor.GetSelectedOptionText();
 
-  Option ColoredKeys =     Option::Bool("Colored Small Keys", {"Off", "On"}, {coloredKeysDesc}, OptionCategory::Cosmetic);
-  Option ColoredBossKeys = Option::Bool("Colored Boss Keys",  {"Off", "On"}, {coloredBossKeysDesc},  OptionCategory::Cosmetic);
-  Option ShowPostmanItem = Option::U8("Show Postman Item", {"Off", "On"}, {showPostmanItemDesc}, OptionCategory::Cosmetic);
+  Option ColoredKeys =     Option::Bool("Colored Small Keys", {"Off", "On"}, {coloredKeysDesc},      OptionCategory::Cosmetic, 1);
+  Option ColoredBossKeys = Option::Bool("Colored Boss Keys",  {"Off", "On"}, {coloredBossKeysDesc},  OptionCategory::Cosmetic, 1);
+  Option ShowPostmanItem = Option::U8("Show Postman Item", {"Off", "On"}, {showPostmanItemDesc},     OptionCategory::Cosmetic, 1);
   Option CustomMusic     = Option::Bool("Custom Music",        {"Off", "On"}, {customMusicDesc},     OptionCategory::Cosmetic);
   Option CustomMusicOnly = Option::Bool("  Custom Music Only", {"Off", "On"}, {customMusicOnlyDesc}, OptionCategory::Cosmetic, 0, true);
 
@@ -1491,10 +1491,6 @@ namespace Settings {
       //Force Include Zora Eggs
       std::vector<LocationKey> eggLocations = GetLocations(everyPossibleLocation, Category::cZoraEgg);
       IncludeAndHide(eggLocations);
-      
-      //Hide alternate check locations
-      std::vector<LocationKey> altLocations = GetLocations(everyPossibleLocation, Category::cAlternateCheck);
-      IncludeAndHide(altLocations);
 
       //Force Include Great Fairy
       std::vector<LocationKey> gfLocations = GetLocations(everyPossibleLocation, Category::cFairyFountain);
@@ -1623,6 +1619,10 @@ namespace Settings {
     else {
       Unhide( {LAUNDRY_POOL_SF} );
     }
+    
+    //Hide alternate check locations
+    std::vector<LocationKey> altLocations = GetLocations(everyPossibleLocation, Category::cAlternateCheck);
+    IncludeAndHide(altLocations);
       
   }
 

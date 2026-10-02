@@ -78,6 +78,9 @@ public:
 
     bool ConditionsMet() const;
 
+    //Makes sure shop locations are buyable with the current wallet (and bottle/bomb bag for refills)
+    bool CanBuy() const;
+
     LocationKey GetLocation() const {
         return location;
     }
@@ -85,9 +88,6 @@ public:
 private:
     LocationKey location;
     std::vector<ConditionFn> conditions_met;
-
-    //Makes sure shop locations are buyable
-    bool CanBuy() const;
 };
 
 class Entrance;

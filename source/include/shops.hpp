@@ -13,10 +13,13 @@ struct ItemAndPrice {
 };
 
 extern void PlaceVanillaShopItems();
+extern std::vector<ItemKey> GetMinVanillaShopItems();
 extern int GetShopPrice();
+extern void ResetNonShopItems();
 extern s16 GetRandomScrubPrice();
+extern int GetShopsanityReplaceAmount();
 extern Text GetIceTrapName(u8 id);
 extern int GetShopIndex(LocationKey loc);
-extern void ResetNonShopItems();
+extern int TransformShopIndex(int index);
 
 extern std::vector<ItemAndPrice> NonShopItems;

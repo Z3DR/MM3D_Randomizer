@@ -1,41 +1,67 @@
-# Latest Nightly Changes  
+# Latest Nightly Changes
 
 ## Features
 
-### Custom Music
-- **Custom Music.** New cosmetic options **Custom Music** and **Custom Music Only**. Put `.bcstm` files in `/MM3DR/Custom Music/` on the SD card and the randomizer places them over the game's music when a seed is generated. The folder is created on first launch, with one folder per category (*Area Themes*, *Battle Themes*, *Event Themes*, *Fanfares*, *Ocarina Songs*) and one per track inside them. A song in a category folder can replace any track in that category; a song in a track's folder replaces only that track.
-- Songs are checked before they are used, such as track channel count (for mono files).
-- **Shop**, **Milk Bar**, **Swamp Cruise** and **Shooting Gallery** are mono in the game and take mono files. Every other track takes stereo files.
-- **Custom Music Only** lets songs repeat so every track with a valid song gets one. With it off, each song is used at most once and the remaining tracks stay vanilla.
-- Every generation writes `/MM3DR/Custom Music/custom_music_report.txt`, listing what was placed and why any song was rejected. The spoiler log lists the songs placed.
-- Works alongside **Shuffle Music**. Turning Custom Music off and generating again restores the vanilla tracks. Files you placed in the game's `romfs` folder yourself are never touched.
-- See the [FAQ](https://z3dr.github.io/MM3D_Randomizer/faq/) for how to make and install songs.
+### New menu
+- **Rewritten randomizer menu.** The app now draws its own interface instead of a text console:
+  colored panels, a highlighted selection outline, and **toggle switches** for every On/Off setting.
+  Settings with more than two choices still show as text. **A** now moves to the next option, the
+  same as D-pad Right. Long location names fit on one line instead of wrapping.
+- **New default settings.** These now start **On** (or *Random*): Shuffle Transformation, Heart
+  Containers (*Random*), Fast Mask Transform, Fast Notebook, Fast Zora Swimming, Twinmold
+  Restoration, all five cutscene skips (Happy Mask Salesman, Darmani, Mikau, Giants, Pirates), all
+  four boss trial skips, Colored Small Keys, Colored Boss Keys and Show Postman Item. Saved presets
+  and cached settings keep whatever they had.
 
-### Music and sound
-- **Link's sounds in Shuffle Sound Effects.** New options **Shuffle Footsteps** and **Shuffle Link's Voice**, in the generator and the in-game Options menu. Footsteps, jumps, landings and moves such as the Deku spin shuffle among themselves, and Link's voice shuffles among his own lines, with each form keeping its own voice. They replace the old *Link Only* mode of Shuffle Sound Effects.
-- **Categorical sound shuffle reworked.** Sounds now trade with ones of the same kind: cries, footsteps, attacks, doors, explosions, water and so on. The shuffle tables are built by the generator, so each seed has its own.
-- **Shuffle Music reworked.** Tracks are grouped by what they are (area themes, battle themes, item fanfares, clear fanfares, ocarina songs, ...) and every shuffled track moves. Clock Town Day 1, 2 and 3 are now shuffled too. Both the music and sound effect tables are always generated, so these options can be switched on from the in-game menu even if they were off when the seed was made.
+### Locations
+- **Shorter location names.** Location names now use the same region abbreviations everywhere
+  (e.g. *Road to Snowhead Pillar* → *RS Pillar*), in the menus and the spoiler log.
+- Alternate copies of a check (spring Goron Village, the cleared swamp, the moved Deku scrubs) are
+  no longer listed in the **Exclude Locations** menu, since excluding them did nothing.
 
 ## Bug Fixes
 
-### Item placement
-- Fixed an item occasionally disappearing from the seed when **Shopsanity** and **Shuffle Main Inventory** were both on. The item was placed at the Curiosity Shop's Bomb Bag, which is then overwritten to match the Bomb Shop's Big Bomb Bag, so it never appeared in game or in the spoiler log.
-- The in-game spoiler log now tracks Deku Merchant purchases and the Big Bomb Bag correctly where one check has more than one location.
+### Item placement and logic
+- **Shop prices are now part of logic.** With **Shopsanity**, an item could be placed behind a price
+  the player's wallet couldn't cover yet, leaving the seed stuck. Logic now requires the Adult Wallet
+  for prices over 99 and the Giant's Wallet for prices over 200, and shop prices are set before any
+  item is placed.
+- **Shopsanity places shop items with logic.** Items in shop slots are now placed by the logic fill
+  instead of being dropped in at random.
+- **Saving Koume needs a potion.** Logic only required a bottle to save Koume in the Woods of
+  Mystery. It now requires a Red or Blue Potion: the Bottle with Red Potion, or a bottle and a Red
+  or Blue Potion to buy or find. Blue Potion Refills can now be placed as required items.
+- **Refills no longer count as bottles.** Milk, Chateau Romani refills and Green/Blue Potion and
+  Fairy refills counted as owning a bottle in logic, even though without one they turn into a Green
+  Rupee in game.
+- **Generation no longer freezes.** Generating could hang at *Placing Items.* when a trade item or
+  the Magic Bean Pack had no valid spot left early in the fill. It now retries instead.
 
-### Music and sound
-- **Fanfare modes.** The *Background Music* and *Fanfares* modes of Shuffle Music now know which tracks are fanfares from the generator, and the music hook moved to the point where the stream is
-  actually played. The game still sees the original track, so Clock Town's day changes and "already playing" checks behave as vanilla.
-- Stopping a shuffled sound now also stops the sound it was swapped for, fixing a crash caused by a sound outliving the object that played it. Held sounds (like Link sliding) keep playing correctly while shuffled.
+### Spoiler log
+- Fixed the in-game spoiler log printing **Error!** when the playthrough went through locations the
+  in-game list hides (vanilla Skulltula tokens and stray fairies, alternate checks). Its playthrough
+  also showed the wrong items after such a location; hidden locations are now left out cleanly.
 
-### Ocarina
-- Skipping a song replay with **Fast Ocarina Songs** no longer makes the next song fail with a red X.
-- Song of Storms grows magic beans again when the replay is skipped.
+### Custom Music
+- The Milk Bar's regular background music can now be replaced, with a **stereo** file in
+  *Area Themes/Milk Bar/*. The mono track is the Milk Bar **performance**, now in its own
+  *Milk Bar Performance* folder.
 
-### Crashes
-- Fixed a crash at the Milk Bar with Shopsanity on.
+### Items and songs
+- Green and Blue Potions are only given when you have an empty bottle; otherwise you get a Green
+  Rupee.
+- Fixed the Goron Lullaby intro and full song being tracked incorrectly, which could give the wrong
+  song or cause you to skip one.
+- Talking to the Goron Elder no longer depends on the order the Goron Lullaby checks were done in;
+  it now checks whether you've met the Goron Elder's son.
+- Entering a shop no longer marks sword upgrades as received; the progressive sword is only
+  recorded when you actually get a sword.
 
-### Controls
-- **Down A** works again with D-pad transformation masks enabled.
+### Giants
+- The giant's chamber after a boss now plays the right cutscene when bosses are beaten out of order:
+  the first giant (who teaches Oath to Order) plays until Oath to Order is given, and the later
+  giants after that. Freeing more than four giants no longer gives extra Oaths.
 
 ## Other Changes
-- The spoiler log no longer lists alternate copies of a check (spring Goron Village, the cleared swamp, the moved Deku scrubs), and no longer lists the Southern Swamp music statue when Song of Soaring isn't shuffled.
+
+- **D-pad Transformation Masks** description updated: Down A is no longer patched out when it's on.

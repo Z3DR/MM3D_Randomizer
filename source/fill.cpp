@@ -168,7 +168,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
                 LocationKey loc = locPair.GetLocation();
                 ItemLocation* location = Location(loc);
 
-                if ((!location->IsAddedToPool())  && (locPair.GetConditionsMet())) {
+                if ((!location->IsAddedToPool()) && locPair.GetConditionsMet() && locPair.CanBuy()) {
 
                     location->AddToPool();
 
@@ -474,7 +474,14 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             }
             
             //get all accessible locations that are allowed
-            const std::vector<LocationKey> accessibleLocations = GetAccessibleLocations(allowedLocations);
+            std::vector<LocationKey> accessibleLocations = GetAccessibleLocations(allowedLocations);
+            //Drop the ones this item can't go in. Redrawing until a valid one comes up never ends when there is none.
+            //A reusable item needs a repeatable location, and the Magic Bean Pack is what enables buying beans at
+            //shops so it cannot go into a shop itself
+            erase_if(accessibleLocations, [item](const LocationKey loc) {
+                return (ItemTable(item).IsReusable() && !Location(loc)->IsRepeatable()) ||
+                       (item == MAGIC_BEAN_PACK && Location(loc)->IsCategory(Category::cShop));
+            });
             
             //retry if there are no more locations to place items
             if (accessibleLocations.empty()) {
@@ -512,21 +519,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             LocationKey selectedLocation = RandomElement(accessibleLocations);
 
             //Else place it and keep going
-            //place the item within one of the allowed locations accounting for if this item needs to be able to be obtained more than once and if location allows that
-            //the only situation we don't want is a non repeatable location with a reusable item
-            if ( !(Location(selectedLocation)->IsRepeatable()) && ItemTable(item).IsReusable() ){
-                //unsuccessfulPlacement = true;
-                #ifdef ENABLE_DEBUG
-                CitraPrint("Attempting to place repeatable item in non repeatable spot in AssumedFill");
-                #endif
-                PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
-                itemsToPlace.push_back(item);
-            }
-            else if (Location(selectedLocation)->IsCategory(Category::cShop) && (item == MAGIC_BEAN_PACK)) {
-                //Magic Bean Pack is what enables buying beans at shops so it cannot go into a shop itself
-                itemsToPlace.push_back(item);
-            }
-            else {
+            {
                 PlaceItemInLocation(selectedLocation, item); 
                 //PlacementLog_Msg("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
                 //CitraPrint("Placed " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(selectedLocation)->GetName());
@@ -837,7 +830,7 @@ int Fill() {
         wothLocations.clear();
         ocarinaObtainable = false;
         songOfTimeObtainable = false;
-        ResetNonShopItems(); //Before any placement -- see ResetNonShopItems
+        ResetNonShopItems();
         AreaTable_Init(); //Reset the world graph to intialize the proper locations
         ItemReset(); //Reset shops incase of shopsanity random
         GenerateLocationPool();
@@ -845,6 +838,20 @@ int Fill() {
         GenerateStartingInventory();
         RemoveStartingItemsFromPool();
         FillExcludedLocations();
+
+        //Shop prices have to exist before anything is placed: logic checks them (CanBuy) from the
+        //first fill on, so an item placed in a shop early can't end up behind a price nobody can pay.
+        //NonShopItems is already sized by ResetNonShopItems
+        if (Shopsanity){
+            for (size_t i = 0; i < ShopLocationLists.size(); i++) {
+                for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
+                    const LocationKey loc = ShopLocationLists[i][j];
+                    int shopsanityPrice = GetShopPrice();
+                    NonShopItems[GetShopIndex(loc)].Price = shopsanityPrice; //Set the price for the item to be passed
+                    Location(loc)->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+                }
+            }
+        }
 
         showItemProgress = true;
 
@@ -894,6 +901,7 @@ int Fill() {
                 // Check if the requirements for the Ocarina and Song of Time are met.
                 bool needsOcarina = (StartingOcarina.Value<u8>() == 0 && !ocarinaObtainable);
                 bool needsSoT     = (ShuffleSongOfTime && !songOfTimeObtainable);
+
                 CitraPrint("Checking if Ocarina and Song of Time are reachable with current placements...");
                 CitraPrint(needsOcarina ? "Ocarina is not reachable." : "Ocarina is reachable.");
                 CitraPrint(needsSoT ? "Song of Time is not reachable." : "Song of Time is reachable.");
@@ -962,10 +970,16 @@ int Fill() {
                 if (it != ItemPool.end()) {
                   ItemPool.erase(it);
                 }
+                const size_t poolSizeWithoutHelper = ItemPool.size();
 
                 NoRepeatOnTokens = true;
                 AssumedFill({itemToHelp}, ocarinaLocations, true);
                 NoRepeatOnTokens = false;
+                // With NoRepeatOnTokens, AssumedFill puts an item it couldn't place back into the pool without
+                // flagging a failure. Nothing changed then, so looping again would pick the same helper forever.
+                if (ItemPool.size() > poolSizeWithoutHelper) {
+                  placementFailure = true;
+                }
                 if (placementFailure) break;
             }
         }
@@ -1002,28 +1016,53 @@ int Fill() {
         }
 
         //Place Shop Items first
-        //NonShopItems is already sized by ResetNonShopItems
+        //Prices were already set right after FillExcludedLocations
+        
         if (Shopsanity){
             CitraPrint("Placing Shopsanity Items");
+
+            // Collect all shop locations into a single vector
+            std::vector<LocationKey> ShopLocations = {};
             for (size_t i = 0; i < ShopLocationLists.size(); i++) {
                 for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
-                    int shopsanityPrice = GetShopPrice();
-                    NonShopItems[GetShopIndex(ShopLocationLists[i][j])].Price = shopsanityPrice; //Set the price for the item to be passed
-                    Location(ShopLocationLists[i][j])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+                    ShopLocations.push_back(ShopLocationLists[i][j]);
                 }
             }
-        }
-        //Below may not be needed?
-        // //Get all locations and items that dont have a shopsanity price attached
-        // std::vector<LocationKey> shopLocations = {};
-        // for (size_t i = 0; i < ShopLocationLists.size(); i++){
-        //     for (int j = 0; j < ShopLocationLists[i].size(); j++){
-        //         LocationKey loc = ShopLocationLists[i][j];
-        //         if (!(Location(loc)->HasShopsanityPrice())) {
-        //             shopLocations.push_back(loc);
+
+
+        //     std::vector<int> indices;
+
+        //     // Overwrite appropriate number of shop items
+        //     for (size_t i=0; i < ShopLocationLists.size(); i++) {
+        //         for (size_t i=0; i < ShopLocationLists[i].size(); i++) {
+        //             indices.resize(static_cast<int>(ShopLocationLists[i].size())); // Set the number of indices for the current shop
+        //             int num_to_replace = ShopLocationLists[i].size(); //Get current number of shop items to replace
+        //             for (int j = 0; j < num_to_replace; j++) {
+        //                 int itemIndex = indices[j];
+        //                 int shopsanityPrice = GetShopPrice();
+        //                 NonShopItems[GetShopIndex(ind)].Price = shopsanityPrice; //Set the price for the item to be passed
+        //                 Location(ShopLocationLists[i][itemIndex-1])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+        //             }
         //         }
         //     }
         // }
+        // std::vector<LocationKey> ShopLocations = {};
+        //     for (size_t i = 0; i < ShopLocationLists.size(); i++) {
+        //         for (size_t i = 0; i < ShopLocationLists.size(); i++) {
+        //             for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
+        //                 LocationKey loc = ShopLocationLists[i][j];
+        //                 if (!(Location(loc)->HasShopsanityPrice())) {
+        //                     ShopLocations.push_back(loc);
+        //                 }
+        //             }
+        //         }
+        //     }
+            // Place the random items at shop locations 
+            std::vector<ItemKey> currentPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return true;});
+            NoRepeatOnTokens = true;
+            AssumedFill(currentPool, ShopLocations);
+            NoRepeatOnTokens = false;
+        }
                 
         //Place Main Inventory First
         //So first get all items in the pool + DekuMask,

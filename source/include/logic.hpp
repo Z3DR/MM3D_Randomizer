@@ -34,6 +34,7 @@ namespace Logic {
 	extern bool SpinAttack;
 	extern bool Epona;
 	extern bool WitchBottle;
+	extern bool RedOrBluePotionAccess;
 	extern bool AlienBottle;
 	extern bool GoronRaceBottle;
 	extern bool BeaverRaceBottle;

@@ -42,6 +42,7 @@ namespace Logic {
 	bool SpinAttack = false;
 	bool Epona = false;
 	bool WitchBottle = false;
+	bool RedOrBluePotionAccess = false;
 	bool AlienBottle = false;
 	bool GoronRaceBottle = false;
 	bool BeaverRaceBottle = false;
@@ -603,6 +604,7 @@ namespace Logic {
 	  SpinAttack = false;
 	  Epona = false;
 	  WitchBottle = false;
+	  RedOrBluePotionAccess = false;
 	  AlienBottle = false;
 	  GoronRaceBottle = false;
 	  BeaverRaceBottle = false;
