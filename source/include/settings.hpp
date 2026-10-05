@@ -515,8 +515,12 @@ namespace Settings {
   //Cosmetics
   
   extern Option CustomTunicColors;
-  extern Option ChildTunicColor;
-  //extern std::string finalChildTunicColor;
+  extern Option HumanTunicColor;
+  extern Option DekuTunicColor;
+  extern Option GoronTunicColor;
+  extern Option ZoraTunicColor;
+  bool IsTunicColorOption(const Option* option);
+  bool TunicColorPreview(const Option* option, std::string& hexStr);
 
   extern Option ColoredKeys;
   extern Option ColoredBossKeys;

@@ -1,6 +1,7 @@
 #include <dirent.h>
 
 #include <algorithm>
+#include <cctype>
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
@@ -263,25 +264,36 @@ void ModeChangeInit() {
 
 }
 
-void UpdateCustomCosmeticColors(u32 kDown) {
-  if (kDown & KEY_A) {
-    if (currentSetting->GetSelectedOptionText().compare(0, 8, Cosmetics::CUSTOM_COLOR_PREFIX) == 0) {
-      std::string newColor = GetInput("Enter a 6 digit hex color").substr(0, 6);
-      if (Cosmetics::ValidHexString(newColor)) {
-        currentSetting->SetSelectedOptionText(Cosmetics::CustomColorOptionText(newColor));
-      }
-    }
+static bool IsCustomColorSelected() {
+  return currentSetting->GetSelectedOptionText().compare(0, 8, Cosmetics::CUSTOM_COLOR_PREFIX) == 0;
+}
+
+static void EnterCustomCosmeticColor() {
+  std::string newColor = GetInput("Enter a 6 digit hex color, e.g. C23333");
+  if (newColor.empty()) {
+    return;  // cancelled
   }
+  if (newColor[0] == '#') {
+    newColor.erase(0, 1);
+  }
+  if (!Cosmetics::ValidHexString(newColor)) {
+    SetToast("\"" + newColor.substr(0, 12) + "\" isn't a color: enter 6 hex digits", UI::ColBad);
+    return;
+  }
+  std::transform(newColor.begin(), newColor.end(), newColor.begin(), ::toupper);
+  currentSetting->SetSelectedOptionText(Cosmetics::CustomColorOptionText(newColor));
 }
 
 void UpdateOptionSubMenu(u32 kDown) {
+  const bool editColor = (kDown & KEY_A) != 0 && IsCustomColorSelected();
+
   if ((kDown & KEY_DRIGHT) != 0) {
     currentSetting->NextOptionIndex();
   }
   if ((kDown & KEY_DLEFT) != 0) {
     currentSetting->PrevOptionIndex();
   }
-  if ((kDown & KEY_A) != 0) {
+  if ((kDown & KEY_A) != 0 && !editColor) {
     currentSetting->NextOptionIndex();
   }
 
@@ -290,7 +302,9 @@ void UpdateOptionSubMenu(u32 kDown) {
 
   currentSetting->SetVariable();
   Settings::ForceChange(kDown, currentSetting);
-  UpdateCustomCosmeticColors(kDown);
+  if (editColor) {
+    EnterCustomCosmeticColor();
+  }
 }
 
 void UpdatePresetsMenu(u32 kDown) {
@@ -690,6 +704,13 @@ void DrawYellowGlow(float x, float y, float w, float h) {
 }
 
 // Toggle Switch
+// A tunic color option's color, with a border so dark colors still show.
+void DrawColorSwatch(float x, float y, float w, float h, const std::string& hexStr) {
+  const u32 rgb = std::strtoul(hexStr.c_str(), nullptr, 16);
+  UI::Rect(x, y, w, h, UI::ColBorder);
+  UI::Rect(x + 1.0f, y + 1.0f, w - 2.0f, h - 2.0f, C2D_Color32((rgb >> 16) & 0xFF, (rgb >> 8) & 0xFF, rgb & 0xFF, 0xFF));
+}
+
 void DrawToggle(float x, float y, bool state) {
     float w = 32.0f;
     float h = 13.0f;
@@ -741,6 +762,10 @@ void DrawOptionList() {
                 UI::TextCentered(value, (192 + UI::BotW - 18) / 2, y + 1.0f, TXT, valCol);
             } else {
                 UI::TextRight(value, UI::BotW - 14, y + 1.0f, TXT, valCol);
+            }
+            std::string hexStr;
+            if (Settings::IsTunicColorOption(setting) && Settings::TunicColorPreview(setting, hexStr)) {
+                DrawColorSwatch(164.0f, y + 2.5f, 10.0f, 10.0f, hexStr);
             }
         }
     }
