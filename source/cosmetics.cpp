@@ -29,21 +29,6 @@ namespace Cosmetics {
     return str.substr(str.length() - 6);
   }
 
-  const std::array<std::string_view, 13> gauntletColors = {
-    "FFFFFF", //Silver
-    "FECF0F", //Gold
-    "000006", //Black
-    "025918", //Green
-    "06025A", //Blue
-    "600602", //Bronze
-    "FF0000", //Red
-    "025DB0", //Sky Blue
-    "FA6A90", //Pink
-    "FF00FF", //Magenta
-    "D83A00", //Orange
-    "5B8A06", //Lime
-    "800080", //Purple
-  };
   const std::array<std::string_view, 31> tunicColors = {
     "168A0E", //Kokiri Green
     "96000E", //Goron Red
