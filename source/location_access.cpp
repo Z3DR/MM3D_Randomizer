@@ -925,7 +925,7 @@ void AreaTable_Init() {
 		LocationAccess(SOUTHERN_SWAMP_KOTAKE_MUSHROOM_SALE, {[] {return Mushroom;}}),
 		LocationAccess(POTION_SHOP_ITEM_1, {[]{return AnyBottle;}}),
 		LocationAccess(POTION_SHOP_ITEM_2, {[]{return AnyBottle;}}),
-		LocationAccess(POTION_SHOP_ITEM_3, {[]{return AnyBottle;}}),
+		LocationAccess(POTION_SHOP_ITEM_3, {[]{return AnyBottle && Mushroom;}}),
 		
 	},
 	{
