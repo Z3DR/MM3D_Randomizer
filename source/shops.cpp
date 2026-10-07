@@ -463,41 +463,41 @@ void InitTrickNames() {
         Text{"Emptied Bottle",                "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_MILK] = {
-        Text{"Lon Lon Milk",                  "",        "",        "", },
+        Text{"Bottle with Lon Lon Milk",      "",        "",        "", },
         Text{"Bottle with Mirth",             "",        "",        "", },
         Text{"Milky Bottle",                  "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_POTION_RED] = {
         Text{"Ketchup Bottle",                "",        "",        "", },
-        Text{"Health Potion",                 "",        "",        "", },
-        Text{"Red Syrup",                     "",        "",        "", },
+        Text{"Bottle with Health Potion",     "",        "",        "", },
+        Text{"Bottle with Red Syrup",         "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_GOLD_DUST] = {
         Text{"Flower Pollen",                 "",        "",        "", },
-        Text{"Good Dust",                     "",        "",        "", },
-        Text{"Golden Dust",                   "",        "",        "", },
+        Text{"Bottle with Good Dust",         "",        "",        "", },
+        Text{"Bottle with Golden Dust",       "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_CHATEAU_ROMANI] = {
-        Text{"Chartreuse Romani",             "",        "",        "", },
-        Text{"Chaton Romani",                 "",        "",        "", },
-        Text{"Chàteau Romani",                "",        "",        "", },
+        Text{"Bottle with Chartreuse Romani", "",        "",        "", },
+        Text{"Bottle with Chaton Romani",     "",        "",        "", },
+        Text{"Bottle with Chàteau Romani",    "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_MYSTERY_MILK] = {
-        Text{"Gorman Track Milk",             "",        "",        "", },
-        Text{"Moldy Milk",                    "",        "",        "", },
-        Text{"Mysterious Milk",               "",        "",        "", },
+        Text{"Bottle with Gorman Track Milk", "",        "",        "", },
+        Text{"Bottle with Moldy Milk",        "",        "",        "", },
+        Text{"Bottle with Mysterious Milk",   "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_DEKU_PRINCESS_FAIRY] = {
-        Text{"Bottled Deku Figurine",         "",        "",        "", },
+        Text{"Deku Figurine",                 "",        "",        "", },
         Text{"Flower Princess",               "",        "",        "", },
         Text{"Deku Princes",                  "",        "",        "", },
     };
-    trickNameTable[(u32)GetItemID::GI_POTION_GREEN] = {
+    trickNameTable[(u32)GetItemID::GI_POTION_GREEN] = { // Refill?
         Text{"Spinach Soup",                  "",        "",        "", },
         Text{"Magic Potion",                  "",        "",        "", },
         Text{"Green Potent",                  "",        "",        "", },
     };
-    trickNameTable[(u32)GetItemID::GI_POTION_BLUE] = {
+    trickNameTable[(u32)GetItemID::GI_POTION_BLUE] = { // Refill?
         Text{"Magic Mushroom Juice",          "",        "",        "", },
         Text{"Blue Drink",                    "",        "",        "", },
         Text{"Indigo Potion",                 "",        "",        "", },
@@ -533,9 +533,9 @@ void InitTrickNames() {
         Text{"Bottle with Sprig Water",       "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_HOT_SPRING_WATER] = {
-        Text{"Warm Spring Water",             "",        "",        "", },
-        Text{"Hot Sprint Water",              "",        "",        "", },
-        Text{"Hot Spring Walter",             "",        "",        "", },
+        Text{"Bottle with Warm Spring Water", "",        "",        "", },
+        Text{"Bottle with Hot Sprint Water",  "",        "",        "", },
+        Text{"Bottle with Hot Spring Walter", "",        "",        "", },
     };
     trickNameTable[(u32)GetItemID::GI_BOTTLE_ZORA_EGG] = {
         Text{"Bottle with Eel's Egg",         "",        "",        "", },
