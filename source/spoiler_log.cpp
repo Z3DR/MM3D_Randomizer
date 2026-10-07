@@ -282,7 +282,7 @@ static void WriteIngameSpoilerLog() {
           continue;
         }
         //Hide duplicate checks (Clear Swamp / Spring Snowhead / ETC.)
-        if (Location(key)->IsCategory(Category::cAlternateCheck)) {
+        if (Location(key)->IsCategory(Category::cAlternateCheck) && !(ItemTable(Location(key)->GetPlacedItemKey()).IsPlaythrough())) {
           continue;
         }
             
