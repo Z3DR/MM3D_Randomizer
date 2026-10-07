@@ -13,8 +13,8 @@ void HintTable_Init() {
     --------------------------*/
     hintTable[NONE]            = HintText::Exclude({Text{"No Hint",                     "INDICE MANQUANT",              "",                             "Kein Hinweis"}});
     hintTable[PREFIX]          = HintText::Exclude({Text{"They say that ",              "Selon moi, ",                  "Según dicen, ",                "Man erzählt sich, "}});
-    hintTable[WAY_OF_THE_HERO] = HintText::Exclude({Text{" is on the way of the hero.", " est sur le chemin du héros.", " está en la senda del héroe.", " verlaufe der Weg des Helden."}});
-    hintTable[PLUNDERING]      = HintText::Exclude({Text{"plundering ",                 "explorer ",                    "inspeccionar ",                "zu plündern "}});
+    hintTable[WAY_OF_THE_HERO] = HintText::Exclude({Text{" is on the way of the hero.", " est sur le chemin du héros.", " está en la senda del héroe.", " läge auf dem Weg des Helden."}});
+    hintTable[PLUNDERING]      = HintText::Exclude({Text{"plundering ",                 "explorer ",                    "inspeccionar ",                "die Plünderung von "}});
     hintTable[FOOLISH]         = HintText::Exclude({Text{" is a foolish choice.",       " est futile.",                 " es una mala decisión.",       " sei eine närrische Wahl."}});
     hintTable[CAN_BE_FOUND_AT] = HintText::Exclude({Text{"can be found at",             "se trouve dans",               "se encuentra en",              "findet man beim"}});
     hintTable[HOARDS]          = HintText::Exclude({Text{"hoards",                      "recèle",                       "atesora",                      "hortet"}});
@@ -321,7 +321,7 @@ void HintTable_Init() {
             //obscure
             Text{"the mask of spies", "une cagoule d'espion", "el símbolo de espionaje", "die Maske der Spione"}
         },  //clear
-            Text{"Garo's Mask", "la cagoule garo", "la Máscara de Garo", "die Garo-Maske"}
+            Text{"the Garo's Mask", "la cagoule garo", "la Máscara de Garo", "die Garo-Maske"}
     );
     hintTable[CAPTAINS_HAT] = HintText::Item({
             //obscure
@@ -911,73 +911,73 @@ void HintTable_Init() {
             //obscure
             Text{"5 nuts", "un paquet de flashs", "5 nueces", "5 Nüsse"}
         },  //clear
-            Text{"Deku Nuts (5 pieces)", "une demi-dizaine de noix mojos", "Nueces deku (5)", "5 Deku-Nüsse", "", "une demi-dizaine de noix mojo", ""}
+            Text{"5 Deku Nuts", "une demi-dizaine de noix mojos", "Nueces deku (5)", "5 Deku-Nüsse", "", "une demi-dizaine de noix mojo", ""}
     );
     hintTable[DEKU_NUTS_10] = HintText::Item({
             //obscure
             Text{"10 nuts", "un paquet de flashs", "10 nueces", "10 Nüsse"}
         },  //clear
-            Text{"Deku Nuts (10 pieces)", "une dizaine de noix mojos", "Nueces deku (10)", "10 Deku-Nüsse", "", "une dizaine de noix mojo", ""}
+            Text{"10 Deku Nuts", "une dizaine de noix mojos", "Nueces deku (10)", "10 Deku-Nüsse", "", "une dizaine de noix mojo", ""}
     );
     hintTable[BOMBS_5] = HintText::Item({
             //obscure
             Text{"5 explosive orbs", "un paquet d'explosifs", "5 explosiones", "5 explosive Kugeln"}
         },  //clear
-            Text{"Bombs (5 pieces)", "une demi-dizaine de bombes", "Bombas (5)", "5 Bomben"}
+            Text{"5 Bombs", "une demi-dizaine de bombes", "Bombas (5)", "5 Bomben"}
     );
     hintTable[BOMBS_10] = HintText::Item({
             //obscure
             Text{"10 explosive orbs", "un paquet d'explosifs", "10 explosiones", "10 explosive Kugeln"}
         },  //clear
-            Text{"Bombs (10 pieces)", "une dizaine de bombes", "Bombas (10)", "10 Bomben"}
+            Text{"10 Bombs", "une dizaine de bombes", "Bombas (10)", "10 Bomben"}
     );
     hintTable[BOMBS_20] = HintText::Item({
             //obscure
             Text{"20 explosive orbs", "un paquet d'explosifs", "20 explosiones", "20 explosive Kugeln"}
         },  //clear
-            Text{"Bombs (20 pieces)", "une vingtaine de bombes", "Bombas (20)", "20 Bomben"}
+            Text{"20 Bombs", "une vingtaine de bombes", "Bombas (20)", "20 Bomben"}
     );
     hintTable[BOMBCHU_5] = HintText::Item({
             //obscure
             Text{"5 explosive mice", "un paquet d'explosifs", "5 ratones explosivos", "5 explosive Mäuse"}
         },  //clear
-            Text{"Bombchu (5 pieces)", "une demi-dizaine de bombchu", "Bombchus (5)", "5 Krabbelminen", "", "une demi-dizaine de missiles teigneux", ""}
+            Text{"5 Bombchu", "une demi-dizaine de bombchu", "Bombchus (5)", "5 Krabbelminen", "", "une demi-dizaine de missiles teigneux", ""}
     );
     hintTable[BOMBCHU_10] = HintText::Item({
             //obscure
             Text{"10 explosive mice", "un paquet d'explosifs", "10 ratones explosivos", "10 explosive Mäuse"}
         },  //clear
-            Text{"Bombchu (10 pieces)", "une dizaine de bombchu", "Bombchus (10)", "10 Krabbelminen", "", "une dizaine de missiles teigneux", ""}
+            Text{"10 Bombchu", "une dizaine de bombchu", "Bombchus (10)", "10 Krabbelminen", "", "une dizaine de missiles teigneux", ""}
     );
     hintTable[BOMBCHU_20] = HintText::Item({
             //obscure
             Text{"20 explosive mice", "un paquet d'explosifs", "20 ratones explosivos", "20 explosive Mäuse"}
         },  //clear
-            Text{"Bombchu (20 pieces)", "une vingtaine de bombchu", "Bombchus (20)", "20 Krabbelminen", "", "une vingtaine de missiles teigneux", ""}
+            Text{"20 Bombchu", "une vingtaine de bombchu", "Bombchus (20)", "20 Krabbelminen", "", "une vingtaine de missiles teigneux", ""}
     );
     hintTable[ARROWS_10] = HintText::Item({
             //obscure
             Text{"10 projectile sticks", "un paquet d'aiguilles", "10 palos proyectiles", "10 spitze Stäbe"}
         },  //clear
-            Text{"Arrow (10 pieces)", "une dizaine de flèches", "Flechas (10)", "10 Pfeile"}
+            Text{"a bundle of 10 arrows", "une dizaine de flèches", "Flechas (10)", "10 Pfeile"}
     );
     hintTable[ARROWS_30] = HintText::Item({
             //obscure
             Text{"30 projectile sticks", "un paquet d'aiguilles", "30 palos proyectiles", "30 spitze Stäbe"}
         },  //clear
-            Text{"Arrow (30 pieces)", "une trentaine de flèches", "Flechas (30)", "30 Pfeile"}
+            Text{"a bundle of 30 arrows", "une trentaine de flèches", "Flechas (30)", "30 Pfeile"}
     );
     hintTable[ARROWS_40] = HintText::Item({
             //obscure
             Text{"40 projectile sticks", "un paquet d'aiguilles", "40 palos proyectiles", "40 spitze Stäbe"}
         },  //clear
-            Text{"Arrow (40 pieces)", "une quarantaine de flèches", "Flechas (40)", "40 Pfeile"}
+            Text{"a bundle of 40 arrows", "une quarantaine de flèches", "Flechas (40)", "40 Pfeile"}
     );
     hintTable[ARROWS_50] = HintText::Item({
             //obscure
             Text{"50 projectile sticks", "un paquet d'aiguilles", "50 palos proyectiles", "50 spitze Stäbe"}
         },  //clear
-            Text{"Arrow (50 pieces)", "une cinquantaine de flèches", "Flechas (50)", "50 Pfeile"}
+            Text{"a bundle of 50 arrows", "une cinquantaine de flèches", "Flechas (50)", "50 Pfeile"}
     );
     hintTable[BLUE_POTION_REFILL] = HintText::Item({
             //obscure
