@@ -387,6 +387,7 @@ static void FastFill(std::vector<ItemKey> items, std::vector<LocationKey> locati
         else {
             Location(loc)->SetAsHintable();
             PlaceItemInLocation(loc, item);
+            MultiLocationCheck(loc);
             if (items.empty() && !endOnItemsEmpty) {
                 items.push_back(GetJunkItem());
             }
@@ -531,6 +532,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
                 if (setLocationsAsHintable) {
                     Location(selectedLocation)->SetAsHintable();
                 }
+                MultiLocationCheck(selectedLocation);
         
                 //If ALR is off, then we check beatability after placing the item.
                 //If the game is beatable, then we can stop placing items with logic.
@@ -910,6 +912,108 @@ static void EnsureOcarinaAndSongOfTimeObtainable() {
             }
 }
 
+void MultiLocationCheck(LocationKey key) {
+    auto loc = Location(key);
+    // Kotake In Woods Red Potion
+    if (loc == Location(SOUTHERN_SWAMP_KOTAKE)) {
+        PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_IN_WOODS, loc->GetPlacedItemKey());
+    }
+    // Postbox Locations
+    if (loc == Location(S_CLOCK_TOWN_POSTBOX)) {
+        PlaceItemInLocation(N_CLOCK_TOWN_POSTBOX, loc->GetPlacedItemKey());
+        PlaceItemInLocation(E_CLOCK_TOWN_POSTBOX, loc->GetPlacedItemKey());
+    }
+    // Tingle Maps
+    // NCT > IKANA CANYON CT
+    if (loc == Location(TINGLE_N_CLOCK_TOWN_CT)) {
+        PlaceItemInLocation(TINGLE_IKANA_CANYON_CT, loc->GetPlacedItemKey());
+    }
+    // Road to Southern Swamp WF > NCT WF
+    if (loc == Location(TINGLE_ROAD_TO_SS_WF)) {
+        PlaceItemInLocation(TINGLE_N_CLOCK_TOWN_WF, loc->GetPlacedItemKey());
+    }
+    // Twin Islands SH > Road to Southern Swamp SH
+    if (loc == Location(TINGLE_TWIN_ISLANDS_SH)) {
+        PlaceItemInLocation(TINGLE_ROAD_TO_SS_SH, loc->GetPlacedItemKey());
+    }
+    // Twin Islands SH > Twin Islands SH Spring
+    if (loc == Location(TINGLE_TWIN_ISLANDS_SH)) {
+        PlaceItemInLocation(TINGLE_TWIN_ISLANDS_SH_SPRING, loc->GetPlacedItemKey());
+    }
+    // Milk Road RR > Twin Islands RR
+    if (loc == Location(TINGLE_MILK_ROAD_RR)) {
+        PlaceItemInLocation(TINGLE_TWIN_ISLANDS_RR, loc->GetPlacedItemKey());
+        PlaceItemInLocation(TINGLE_TWIN_ISLANDS_RR_SPRING, loc->GetPlacedItemKey());
+    }
+    // GBC RR > RR GBC
+    if (loc == Location(TINGLE_GBC_GB)) {
+        PlaceItemInLocation(TINGLE_MILK_ROAD_GB, loc->GetPlacedItemKey());
+    }
+    // Ikana Canyon ST > GBC ST
+    if (loc == Location(TINGLE_IKANA_CANYON_ST)) {
+        PlaceItemInLocation(TINGLE_GBC_ST, loc->GetPlacedItemKey());
+    }
+    // Keaton Quiz
+    if (loc == Location(N_CLOCK_TOWN_KEATON_QUIZ)) {
+        PlaceItemInLocation(MILK_ROAD_KEATON_QUIZ, loc->GetPlacedItemKey());
+        PlaceItemInLocation(MOUNTAIN_VILLAGE_KEATON_QUIZ, loc->GetPlacedItemKey());
+    }
+    // Spring time Goron Village
+    if (loc == Location(GORON_VILLAGE_POWDER_KEG_CHALLENGE)) {
+        PlaceItemInLocation(GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(GORON_VILLAGE_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(GORON_VILLAGE_SCRUB_TRADE)) {
+        PlaceItemInLocation(GORON_VILLAGE_SCRUB_TRADE_SPRING, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(GORON_VILLAGE_LEDGE)) {
+        PlaceItemInLocation(GORON_VILLAGE_LEDGE_SPRING, loc->GetPlacedItemKey());
+    }
+    // Cleared Southern Swamp
+    if (loc == Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(SOUTHERN_SWAMP_SCRUB_TRADE)) {
+        PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(SWAMP_TOURIST_CENTER_ROOF)) {
+        PlaceItemInLocation(SWAMP_TOURIST_CENTER_ROOF_CLEAR, loc->GetPlacedItemKey());
+    }
+    // Upright Stone Tower Temple Death Armos Room Chest
+    if (loc == Location(STONE_TOWER_TEMPLE_DEATH_ARMOS_ROOM_CHEST)) {
+        PlaceItemInLocation(STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST, loc->GetPlacedItemKey());
+    }
+    // Big Bomb Bag
+    if (loc == Location(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY)) {
+        PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, loc->GetPlacedItemKey());
+    }
+    // Clock Town Stray Fairy
+    if (loc == Location(LAUNDRY_POOL_SF)) {
+        PlaceItemInLocation(E_CLOCK_TOWN_SF, loc->GetPlacedItemKey());
+    }
+    // Scrubsanity 
+    if (loc == Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(GORON_VILLAGE_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE, loc->GetPlacedItemKey());
+        PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(ZORA_HALL_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE, loc->GetPlacedItemKey());
+        PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(IKANA_CANYON_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(ZORA_HALL_IKANA_SCRUB_PURCHASE, loc->GetPlacedItemKey());
+    }
+    // Kotake Mushroom Sale
+    if (loc == Location(POTION_SHOP_ITEM_3)) {
+        PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_MUSHROOM_SALE, loc->GetPlacedItemKey());
+    }
+}
+
 int Fill() {
     CustomMessages::CreateBaselineCustomMessages();
 
@@ -1134,8 +1238,8 @@ int Fill() {
         }
         //Unsuccessful placement
         if (retries < 4) {
-            //LogicReset();
-            //GetAccessibleLocations(allLocations, SearchMode::AllLocationsReachable);
+            LogicReset();
+            GetAccessibleLocations(allLocations, SearchMode::AllLocationsReachable);
             printf("\x1b[9;10HFailed. Retrying... %d", retries + 2);
             // CitraPrint("Failed. Retrying...");
             Areas::ResetAllLocations();
