@@ -818,81 +818,7 @@ int VanillaFill() {
     return 1;
 }
 
-int Fill() {
-    CustomMessages::CreateBaselineCustomMessages();
-
-    retries = 0;
-    while (retries < 5) {
-        placementFailure = false;
-        showItemProgress = false;
-        playthroughLocations.clear();
-        playthroughEntrances.clear();
-        wothLocations.clear();
-        ocarinaObtainable = false;
-        songOfTimeObtainable = false;
-        ResetNonShopItems();
-        AreaTable_Init(); //Reset the world graph to intialize the proper locations
-        ItemReset(); //Reset shops incase of shopsanity random
-        GenerateLocationPool();
-        GenerateItemPool();
-        GenerateStartingInventory();
-        RemoveStartingItemsFromPool();
-        FillExcludedLocations();
-
-        //Shop prices have to exist before anything is placed: logic checks them (CanBuy) from the
-        //first fill on, so an item placed in a shop early can't end up behind a price nobody can pay.
-        //NonShopItems is already sized by ResetNonShopItems
-        if (Shopsanity){
-            for (size_t i = 0; i < ShopLocationLists.size(); i++) {
-                for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
-                    const LocationKey loc = ShopLocationLists[i][j];
-                    int shopsanityPrice = GetShopPrice();
-                    NonShopItems[GetShopIndex(loc)].Price = shopsanityPrice; //Set the price for the item to be passed
-                    Location(loc)->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
-                }
-            }
-        }
-
-        showItemProgress = true;
-
-        //Place dungeon rewards
-        RandomizeDungeonRewards();
-        
-        //Place dungeon items restricted to their Own Dungeon
-        for (auto dungeon : Dungeon::dungeonList) {
-            RandomizeOwnDungeon(dungeon);
-        }
-
-        //Then place dungeon items that are assigned to restrictive location pools
-        RandomizeDungeonItems();
-        
-        //get Songs in pool
-        std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
-        //If Shuffled in Song Locations restrict location pool to only song locations
-        //If Song of Time is shuffled do that first with a restricted location pool to prevent softlocks
-        if (ShuffleSongOfTime) {
-            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
-            //Pull Song of Time from songs pool instead of main pool so we actually get it placed first
-            std::vector<ItemKey> SoTItem = FilterAndEraseFromPool(songs, [](const ItemKey i) { return ItemTable(i).GetHintKey() == SONG_OF_TIME; });
-            NoRepeatOnTokens = true;
-            AssumedFill(SoTItem, ocarinaLocations, true);
-            NoRepeatOnTokens = false;
-        }
-        //If Ocarina is shuffled place that next
-        if (StartingOcarina.Value<u8>() == 0) {
-            //Get acceptable Ocarina Locations
-            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
-            std::vector<ItemKey> ocarinaItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemId()==(u32)GetItemID::GI_OCARINA_OF_TIME; });
-            //reuse NoRepeatOnTokens variable because making a new one is stupid
-            NoRepeatOnTokens = true;
-            AssumedFill(ocarinaItem, ocarinaLocations, true);
-            NoRepeatOnTokens = false;
-        }
-        // Ensure Ocarina and Song of Time are obtainable with the current placement.
-        // If they are not reachable with currently placed items (Rewards, Keys, etc.),
-        // we place additional advancement items from the pool to open paths until they are reachable.
-        // but only if the logic setting is not set to "None" (No Logic).
-        if (((StartingOcarina.Value<u8>() == 0) || ShuffleSongOfTime) && Settings::Logic.IsNot(LogicSetting::LOGIC_NONE)) {
+static void EnsureOcarinaAndSongOfTimeObtainable() {
             while (true) {
                 Logic::LogicReset();
                 std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
@@ -982,8 +908,85 @@ int Fill() {
                 }
                 if (placementFailure) break;
             }
+}
+
+int Fill() {
+    CustomMessages::CreateBaselineCustomMessages();
+
+    retries = 0;
+    while (retries < 5) {
+        placementFailure = false;
+        showItemProgress = false;
+        playthroughLocations.clear();
+        playthroughEntrances.clear();
+        wothLocations.clear();
+        ocarinaObtainable = false;
+        songOfTimeObtainable = false;
+        ResetNonShopItems();
+        AreaTable_Init(); //Reset the world graph to intialize the proper locations
+        ItemReset(); //Reset shops incase of shopsanity random
+        GenerateLocationPool();
+        GenerateItemPool();
+        GenerateStartingInventory();
+        RemoveStartingItemsFromPool();
+        FillExcludedLocations();
+
+        //Shop prices have to exist before anything is placed: logic checks them (CanBuy) from the
+        //first fill on, so an item placed in a shop early can't end up behind a price nobody can pay.
+        //NonShopItems is already sized by ResetNonShopItems
+        if (Shopsanity){
+            for (size_t i = 0; i < ShopLocationLists.size(); i++) {
+                for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
+                    const LocationKey loc = ShopLocationLists[i][j];
+                    int shopsanityPrice = GetShopPrice();
+                    NonShopItems[GetShopIndex(loc)].Price = shopsanityPrice; //Set the price for the item to be passed
+                    Location(loc)->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+                }
+            }
         }
 
+        showItemProgress = true;
+
+        //Place dungeon rewards
+        RandomizeDungeonRewards();
+        
+        //Place dungeon items restricted to their Own Dungeon
+        for (auto dungeon : Dungeon::dungeonList) {
+            RandomizeOwnDungeon(dungeon);
+        }
+
+        //Then place dungeon items that are assigned to restrictive location pools
+        RandomizeDungeonItems();
+        
+        //get Songs in pool
+        std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
+        //If Shuffled in Song Locations restrict location pool to only song locations
+        //If Song of Time is shuffled do that first with a restricted location pool to prevent softlocks
+        if (ShuffleSongOfTime) {
+            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
+            //Pull Song of Time from songs pool instead of main pool so we actually get it placed first
+            std::vector<ItemKey> SoTItem = FilterAndEraseFromPool(songs, [](const ItemKey i) { return ItemTable(i).GetHintKey() == SONG_OF_TIME; });
+            NoRepeatOnTokens = true;
+            AssumedFill(SoTItem, ocarinaLocations, true);
+            NoRepeatOnTokens = false;
+        }
+        //If Ocarina is shuffled place that next
+        if (StartingOcarina.Value<u8>() == 0) {
+            //Get acceptable Ocarina Locations
+            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
+            std::vector<ItemKey> ocarinaItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemId()==(u32)GetItemID::GI_OCARINA_OF_TIME; });
+            //reuse NoRepeatOnTokens variable because making a new one is stupid
+            NoRepeatOnTokens = true;
+            AssumedFill(ocarinaItem, ocarinaLocations, true);
+            NoRepeatOnTokens = false;
+        }
+        // Ensure Ocarina and Song of Time are obtainable with the current placement.
+        // If they are not reachable with currently placed items (Rewards, Keys, etc.),
+        // we place additional advancement items from the pool to open paths until they are reachable.
+        // but only if the logic setting is not set to "None" (No Logic).
+        if (((StartingOcarina.Value<u8>() == 0) || ShuffleSongOfTime) && Settings::Logic.IsNot(LogicSetting::LOGIC_NONE)) {
+            EnsureOcarinaAndSongOfTimeObtainable();
+        }
         if (placementFailure) {
             if (retries < 4) {
                 printf("\x1b[9;10HEarly Item Reachability Failed. Retrying... %d", retries + 2);
@@ -993,6 +996,7 @@ int Fill() {
             retries++;
             continue;
         }
+
         //If Songs are at song locations get all song locations and place them there
         if (ShuffleSongs.Value<u8>() == u8(1)){
             std::vector<LocationKey> songLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSong);});
