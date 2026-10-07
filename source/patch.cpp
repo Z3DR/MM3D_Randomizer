@@ -414,6 +414,38 @@ bool WriteAllPatches() {
 
   FSFILE_Close(titleassetsOut);
 
+   /*-------------------
+  |  CUSTOM TUNIC LZS  |
+  -------------------*/
+
+  // Delete assets if it exists
+  Handle tunicassetsOut;
+  const char* tunicassetsInPath = "romfs:/zelda2_tunic_tint.gar.lzs";
+  std::string tunicassetsOutPath = lumaSdDir + "/romfs/actors/zelda2_tunic_tint.gar.lzs";
+  FSUSER_DeleteFile(sdmcArchive, fsMakePath(PATH_ASCII, tunicassetsOutPath.c_str()));
+  // Open assets destination
+  if (!R_SUCCEEDED(res = FSUSER_OpenFile(&tunicassetsOut, sdmcArchive, fsMakePath(PATH_ASCII, tunicassetsOutPath.c_str()), FS_OPEN_WRITE | FS_OPEN_CREATE, 0))) {
+    return false;
+  }
+
+  if (auto file = FILEPtr{std::fopen(tunicassetsInPath, "r"), std::fclose}) {
+    // obtain assets size
+    fseek(file.get(), 0, SEEK_END);
+    const auto lSize = static_cast<size_t>(ftell(file.get()));
+    rewind(file.get());
+
+    // copy assets into the buffer
+    std::vector<char> buffer(lSize);
+    fread(buffer.data(), 1, buffer.size(), file.get());
+
+    // Write the assets to final destination
+    if (!R_SUCCEEDED(res = FSFILE_Write(tunicassetsOut, &bytesWritten, 0, buffer.data(), buffer.size(), FS_WRITE_FLUSH))) {
+      return false;
+    }
+  }
+
+  FSFILE_Close(tunicassetsOut);
+
   /*-------------------
   |   CUSTOM MUSIC    |
   -------------------*/
