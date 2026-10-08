@@ -20,3 +20,4 @@
 ## Other Changes
 
 - The spoiler log now lists an alternate copy of a check (spring Goron Village, the cleared swamp, etc) when it holds a WOTH item on the playthrough, so the route through it is visible.
+- Bottled contents are now marked as small chests for items such as potions.
