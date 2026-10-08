@@ -1,11 +1,13 @@
 #include <dirent.h>
 
 #include <algorithm>
+#include <cctype>
 #include <cstdlib>
 #include <cstdio>
 #include <cstring>
 #include <ctime>
 #include <vector>
+#include <cmath>
 
 #include "cosmetics.hpp"
 #include "custom_music.hpp"
@@ -263,25 +265,257 @@ void ModeChangeInit() {
 
 }
 
-void UpdateCustomCosmeticColors(u32 kDown) {
-  if (kDown & KEY_A) {
-    if (currentSetting->GetSelectedOptionText().compare(0, 8, Cosmetics::CUSTOM_COLOR_PREFIX) == 0) {
-      std::string newColor = GetInput("Enter a 6 digit hex color").substr(0, 6);
-      if (Cosmetics::ValidHexString(newColor)) {
-        currentSetting->SetSelectedOptionText(Cosmetics::CustomColorOptionText(newColor));
-      }
+static bool IsCustomColorSelected() {
+  return currentSetting->GetSelectedOptionText().compare(0, 8, Cosmetics::CUSTOM_COLOR_PREFIX) == 0;
+}
+
+static void EnterCustomCosmeticColor() {
+    // 1. Initial RGB/HSV math setup
+    std::string currentHex = "";
+    float hue = 0.0f;        // 0.0 to 360.0
+    float saturation = 1.0f; // 0.0 to 1.0
+    float value = 1.0f;      // 0.0 to 1.0
+
+    // Extract initial color if current setting holds a valid custom hex
+    if (Settings::TunicColorPreview(currentSetting, currentHex) && currentHex.length() == 6) {
+        u32 initialRgb = std::strtoul(currentHex.c_str(), nullptr, 16);
+        float r = ((initialRgb >> 16) & 0xFF) / 255.0f;
+        float g = ((initialRgb >> 8) & 0xFF) / 255.0f;
+        float b = (initialRgb & 0xFF) / 255.0f;
+
+        float cmax = std::max({r, g, b});
+        float cmin = std::min({r, g, b});
+        float diff = cmax - cmin;
+
+        value = cmax;
+        saturation = (cmax == 0.0f) ? 0.0f : (diff / cmax);
+
+        if (diff > 0.00001f) {
+            if (cmax == r)      hue = 60.0f * fmodf(((g - b) / diff), 6.0f);
+            else if (cmax == g) hue = 60.0f * (((b - r) / diff) + 2.0f);
+            else if (cmax == b) hue = 60.0f * (((r - g) / diff) + 4.0f);
+            if (hue < 0.0f)     hue += 360.0f;
+        }
     }
-  }
+
+    // Touch layout bounds on the 3DS Bottom Screen (320x240)
+    constexpr float wheelX = 20.0f;
+    constexpr float wheelY = 35.0f;
+    constexpr float wheelW = 200.0f;
+    constexpr float wheelH = 150.0f;
+
+    constexpr float barX = 235.0f;
+    constexpr float barY = 35.0f;
+    constexpr float barW = 25.0f;
+    constexpr float barH = 150.0f;
+
+    bool confirmed = false;
+    bool cancelled = false;
+
+    // Helper lambda for HSV -> RGB color conversion
+    auto HSVtoRGB = [](float h, float s, float v) -> u32 {
+        float c = v * s;
+        float x = c * (1.0f - std::fabs(fmodf(h / 60.0f, 2.0f) - 1.0f));
+        float m = v - c;
+
+        float r = 0, g = 0, b = 0;
+        if (h >= 0 && h < 60)        { r = c; g = x; b = 0; }
+        else if (h >= 60 && h < 120)  { r = x; g = c; b = 0; }
+        else if (h >= 120 && h < 180) { r = 0; g = c; b = x; }
+        else if (h >= 180 && h < 240) { r = 0; g = x; b = c; }
+        else if (h >= 240 && h < 300) { r = x; g = 0; b = c; }
+        else                         { r = c; g = 0; b = x; }
+
+        u8 finalR = static_cast<u8>((r + m) * 255.0f);
+        u8 finalG = static_cast<u8>((g + m) * 255.0f);
+        u8 finalB = static_cast<u8>((b + m) * 255.0f);
+
+        return C2D_Color32(finalR, finalG, finalB, 0xFF);
+    };
+
+    // Helper lambda for generating a random color
+    auto GenerateRandomColor = [&]() {
+        hue = (float)(std::rand() % 360);
+        saturation = 0.2f + ((float)(std::rand() % 81) / 100.0f); // 0.2 to 1.0
+        value = 0.3f + ((float)(std::rand() % 71) / 100.0f);      // 0.3 to 1.0
+    };
+
+    // Helper lambda for drawing outlined box panels directly via UI::Rect
+    auto DrawBoxLocal = [](float x, float y, float w, float h, u32 bgColor, u32 borderColor) {
+        if (bgColor != 0) {
+            UI::Rect(x, y, w, h, bgColor);
+        }
+        UI::Rect(x, y, w, 1.0f, borderColor);                 // Top border
+        UI::Rect(x, y + h - 1.0f, w, 1.0f, borderColor);      // Bottom border
+        UI::Rect(x, y, 1.0f, h, borderColor);                 // Left border
+        UI::Rect(x + w - 1.0f, y, 1.0f, h, borderColor);      // Right border
+    };
+
+    // 2. Interactive Input and Rendering Loop
+    while (aptMainLoop() && !confirmed && !cancelled) {
+        hidScanInput();
+        u32 kDown = hidKeysDown();
+        u32 kHeld = hidKeysHeld();
+
+        if (kDown & KEY_B) {
+            cancelled = true;
+            break;
+        }
+        if (kDown & KEY_A) {
+            confirmed = true;
+            break;
+        }
+
+        // --- Press Y to Generate Random Color ---
+        if (kDown & KEY_Y) {
+            GenerateRandomColor();
+        }
+
+        // --- Circle Pad Controls (Move Hue/Saturation Selector) ---
+        circlePosition cpos;
+        hidCircleRead(&cpos);
+
+        // Deadzone check for Circle Pad
+        if (std::abs(cpos.dx) > 15 || std::abs(cpos.dy) > 15) {
+            constexpr float circleSpeed = 1.5f; // Adjustment sensitivity
+
+            // Move Hue horizontally
+            hue += (cpos.dx / 156.0f) * circleSpeed;
+            if (hue < 0.0f) hue += 360.0f;
+            if (hue >= 360.0f) hue -= 360.0f;
+
+            // Move Saturation vertically (Up increases saturation)
+            saturation += (cpos.dy / 156.0f) * (circleSpeed / 100.0f);
+            saturation = std::clamp(saturation, 0.0f, 1.0f);
+        }
+
+        // --- D-Pad Controls (Adjust Brightness/Value) ---
+        constexpr float dpadValueSpeed = 0.015f;
+        if (kHeld & KEY_DUP) {
+            value = std::min(1.0f, value + dpadValueSpeed);
+        }
+        if (kHeld & KEY_DDOWN) {
+            value = std::max(0.0f, value - dpadValueSpeed);
+        }
+
+        // --- Touch Position Handling ---
+        if (kHeld & KEY_TOUCH) {
+            touchPosition touch;
+            hidTouchRead(&touch);
+
+            // Tapping inside the Hue/Saturation Palette Box
+            if (touch.px >= wheelX && touch.px <= (wheelX + wheelW) &&
+                touch.py >= wheelY && touch.py <= (wheelY + wheelH)) {
+                hue = ((touch.px - wheelX) / wheelW) * 360.0f;
+                saturation = 1.0f - ((touch.py - wheelY) / wheelH);
+            }
+            // Tapping inside the Value/Brightness Bar
+            else if (touch.px >= barX && touch.px <= (barX + barW) &&
+                     touch.py >= barY && touch.py <= (barY + barH)) {
+                value = 1.0f - ((touch.py - barY) / barH);
+            }
+            // OK Button bounds: X[10..105], Y[195..225]
+            else if ((kDown & KEY_TOUCH) && touch.px >= 10.0f && touch.px <= 105.0f && touch.py >= 195.0f && touch.py <= 225.0f) {
+                confirmed = true;
+            }
+            // Cancel Button bounds: X[112..207], Y[195..225]
+            else if ((kDown & KEY_TOUCH) && touch.px >= 112.0f && touch.px <= 207.0f && touch.py >= 195.0f && touch.py <= 225.0f) {
+                cancelled = true;
+            }
+            // Random Button bounds: X[215..310], Y[195..225]
+            else if ((kDown & KEY_TOUCH) && touch.px >= 215.0f && touch.px <= 310.0f && touch.py >= 195.0f && touch.py <= 225.0f) {
+                GenerateRandomColor();
+            }
+        }
+
+        u32 selectedColor = HSVtoRGB(hue, saturation, value);
+
+        // Render Frame
+        UI::FrameBegin();
+
+        // Custom Bottom Screen Color Picker Scene
+        UI::SceneBottom();
+
+        // Render Top Header Banner (Height: 25px)
+        UI::Rect(0.0f, 0.0f, 320.0f, 25.0f, UI::ColHeader);
+        UI::Rect(0.0f, 24.0f, 320.0f, 1.0f, UI::ColHeaderEdge);
+        UI::TextCentered("Select Custom Color", 160.0f, 4.0f, 0.5f, UI::ColText);
+
+        // Render 2D Spectrum Box (X: Hue 0->360, Y: Saturation 1->0)
+        constexpr float stepX = 5.0f;
+        constexpr float stepY = 5.0f;
+        for (float x = 0; x < wheelW; x += stepX) {
+            float sampleH = (x / wheelW) * 360.0f;
+            for (float y = 0; y < wheelH; y += stepY) {
+                float sampleS = 1.0f - (y / wheelH);
+                u32 col = HSVtoRGB(sampleH, sampleS, value);
+                UI::Rect(wheelX + x, wheelY + y, stepX, stepY, col);
+            }
+        }
+        DrawBoxLocal(wheelX - 1.0f, wheelY - 1.0f, wheelW + 2.0f, wheelH + 2.0f, 0, UI::ColBorder);
+
+        // Marker indicator on Hue/Saturation Spectrum Box
+        float cursorX = wheelX + (hue / 360.0f) * wheelW;
+        float cursorY = wheelY + (1.0f - saturation) * wheelH;
+        UI::Rect(cursorX - 3.0f, cursorY - 3.0f, 6.0f, 6.0f, C2D_Color32(0, 0, 0, 255));
+        UI::Rect(cursorX - 2.0f, cursorY - 2.0f, 4.0f, 4.0f, C2D_Color32(255, 255, 255, 255));
+
+        // Render Brightness/Value Gradient Bar
+        constexpr float barStepY = 3.0f;
+        for (float y = 0; y < barH; y += barStepY) {
+            float sampleV = 1.0f - (y / barH);
+            u32 col = HSVtoRGB(hue, saturation, sampleV);
+            UI::Rect(barX, barY + y, barW, barStepY, col);
+        }
+        DrawBoxLocal(barX - 1.0f, barY - 1.0f, barW + 2.0f, barH + 2.0f, 0, UI::ColBorder);
+
+        // Brightness indicator line
+        float barCursorY = barY + (1.0f - value) * barH;
+        UI::Rect(barX - 3.0f, barCursorY - 1.0f, barW + 6.0f, 3.0f, C2D_Color32(255, 255, 255, 255));
+
+        // Live Selected Color Preview Box
+        DrawBoxLocal(270.0f, 35.0f, 35.0f, 150.0f, selectedColor, UI::ColBorder);
+
+        // Touch Control Buttons at Bottom
+        // OK Button
+        DrawBoxLocal(10.0f, 195.0f, 95.0f, 30.0f, UI::ColHeader, UI::ColBorder);
+        UI::TextCentered("OK (A)", 57.5f, 202.0f, 0.42f, UI::ColGood);
+
+        // Cancel Button
+        DrawBoxLocal(112.0f, 195.0f, 95.0f, 30.0f, UI::ColHeader, UI::ColBorder);
+        UI::TextCentered("Cancel (B)", 159.5f, 202.0f, 0.42f, UI::ColBad);
+
+        // Random Button
+        DrawBoxLocal(215.0f, 195.0f, 95.0f, 30.0f, UI::ColHeader, UI::ColBorder);
+        UI::TextCentered("Random (Y)", 262.5f, 202.0f, 0.42f, UI::ColAccent);
+
+        UI::FrameEnd();
+    }
+
+    // 3. Save Selected Color back to Setting Option Text
+    if (confirmed) {
+        u32 finalRgb = HSVtoRGB(hue, saturation, value);
+        u8 r = (finalRgb) & 0xFF;
+        u8 g = (finalRgb >> 8) & 0xFF;
+        u8 b = (finalRgb >> 16) & 0xFF;
+
+        char hexBuf[7];
+        std::sprintf(hexBuf, "%02X%02X%02X", r, g, b);
+
+        currentSetting->SetSelectedOptionText(Cosmetics::CustomColorOptionText(std::string(hexBuf)));
+    }
 }
 
 void UpdateOptionSubMenu(u32 kDown) {
+  const bool editColor = (kDown & KEY_A) != 0 && IsCustomColorSelected();
+
   if ((kDown & KEY_DRIGHT) != 0) {
     currentSetting->NextOptionIndex();
   }
   if ((kDown & KEY_DLEFT) != 0) {
     currentSetting->PrevOptionIndex();
   }
-  if ((kDown & KEY_A) != 0) {
+  if ((kDown & KEY_A) != 0 && !editColor) {
     currentSetting->NextOptionIndex();
   }
 
@@ -290,7 +524,9 @@ void UpdateOptionSubMenu(u32 kDown) {
 
   currentSetting->SetVariable();
   Settings::ForceChange(kDown, currentSetting);
-  UpdateCustomCosmeticColors(kDown);
+  if (editColor) {
+    EnterCustomCosmeticColor();
+  }
 }
 
 void UpdatePresetsMenu(u32 kDown) {
@@ -690,6 +926,14 @@ void DrawYellowGlow(float x, float y, float w, float h) {
 }
 
 // Toggle Switch
+
+// A tunic color option's color, with a border so dark colors still show.
+void DrawColorSwatch(float x, float y, float w, float h, const std::string& hexStr) {
+  const u32 rgb = std::strtoul(hexStr.c_str(), nullptr, 16);
+  UI::Rect(x, y, w, h, UI::ColBorder);
+  UI::Rect(x + 1.0f, y + 1.0f, w - 2.0f, h - 2.0f, C2D_Color32((rgb >> 16) & 0xFF, (rgb >> 8) & 0xFF, rgb & 0xFF, 0xFF));
+}
+
 void DrawToggle(float x, float y, bool state) {
     float w = 32.0f;
     float h = 13.0f;
@@ -859,6 +1103,20 @@ void DrawTopScreen() {
     UI::Rect(18, 101, UI::TopW - 36, 1.0f, UI::ColPanelEdge);
     UI::TextWrapped(std::string(currentSetting->GetSelectedOptionDescription()),
                     18, 108, 0.44f, UI::ColTextDim, UI::TopW - 36);
+    if (titleName == "   Human Tunic" || "   Deku Tunic" || "Goron Tunic" || "Zora Tunic") {
+      std::string hexStr;
+      // Draw a color swatch 
+      float swatchX = 50;
+      float swatchY = 175;
+      float swatchW = 300;
+      float swatchH = 35;
+
+      if (Settings::IsTunicColorOption(currentSetting) && Settings::TunicColorPreview(currentSetting, hexStr)) {
+        // Draw a subtle border frame around the larger swatch
+        UI::Rect(swatchX - 2.0f, swatchY - 2.0f, swatchW + 4.0f, swatchH + 4.0f, UI::ColBorder);
+        DrawColorSwatch(swatchX, swatchY, swatchW, swatchH, hexStr);
+      }
+    }
 } else {
     UI::TextCentered("Pick a category and tune the settings,", UI::TopW / 2, 120, 0.45f, UI::ColTextDim);
     UI::TextCentered("then select Generate Randomizer.", UI::TopW / 2, 136, 0.45f, UI::ColTextDim);

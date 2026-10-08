@@ -387,6 +387,7 @@ static void FastFill(std::vector<ItemKey> items, std::vector<LocationKey> locati
         else {
             Location(loc)->SetAsHintable();
             PlaceItemInLocation(loc, item);
+            MultiLocationCheck(loc);
             if (items.empty() && !endOnItemsEmpty) {
                 items.push_back(GetJunkItem());
             }
@@ -531,6 +532,7 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
                 if (setLocationsAsHintable) {
                     Location(selectedLocation)->SetAsHintable();
                 }
+                MultiLocationCheck(selectedLocation);
         
                 //If ALR is off, then we check beatability after placing the item.
                 //If the game is beatable, then we can stop placing items with logic.
@@ -818,81 +820,7 @@ int VanillaFill() {
     return 1;
 }
 
-int Fill() {
-    CustomMessages::CreateBaselineCustomMessages();
-
-    retries = 0;
-    while (retries < 5) {
-        placementFailure = false;
-        showItemProgress = false;
-        playthroughLocations.clear();
-        playthroughEntrances.clear();
-        wothLocations.clear();
-        ocarinaObtainable = false;
-        songOfTimeObtainable = false;
-        ResetNonShopItems();
-        AreaTable_Init(); //Reset the world graph to intialize the proper locations
-        ItemReset(); //Reset shops incase of shopsanity random
-        GenerateLocationPool();
-        GenerateItemPool();
-        GenerateStartingInventory();
-        RemoveStartingItemsFromPool();
-        FillExcludedLocations();
-
-        //Shop prices have to exist before anything is placed: logic checks them (CanBuy) from the
-        //first fill on, so an item placed in a shop early can't end up behind a price nobody can pay.
-        //NonShopItems is already sized by ResetNonShopItems
-        if (Shopsanity){
-            for (size_t i = 0; i < ShopLocationLists.size(); i++) {
-                for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
-                    const LocationKey loc = ShopLocationLists[i][j];
-                    int shopsanityPrice = GetShopPrice();
-                    NonShopItems[GetShopIndex(loc)].Price = shopsanityPrice; //Set the price for the item to be passed
-                    Location(loc)->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
-                }
-            }
-        }
-
-        showItemProgress = true;
-
-        //Place dungeon rewards
-        RandomizeDungeonRewards();
-        
-        //Place dungeon items restricted to their Own Dungeon
-        for (auto dungeon : Dungeon::dungeonList) {
-            RandomizeOwnDungeon(dungeon);
-        }
-
-        //Then place dungeon items that are assigned to restrictive location pools
-        RandomizeDungeonItems();
-        
-        //get Songs in pool
-        std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
-        //If Shuffled in Song Locations restrict location pool to only song locations
-        //If Song of Time is shuffled do that first with a restricted location pool to prevent softlocks
-        if (ShuffleSongOfTime) {
-            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
-            //Pull Song of Time from songs pool instead of main pool so we actually get it placed first
-            std::vector<ItemKey> SoTItem = FilterAndEraseFromPool(songs, [](const ItemKey i) { return ItemTable(i).GetHintKey() == SONG_OF_TIME; });
-            NoRepeatOnTokens = true;
-            AssumedFill(SoTItem, ocarinaLocations, true);
-            NoRepeatOnTokens = false;
-        }
-        //If Ocarina is shuffled place that next
-        if (StartingOcarina.Value<u8>() == 0) {
-            //Get acceptable Ocarina Locations
-            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
-            std::vector<ItemKey> ocarinaItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemId()==(u32)GetItemID::GI_OCARINA_OF_TIME; });
-            //reuse NoRepeatOnTokens variable because making a new one is stupid
-            NoRepeatOnTokens = true;
-            AssumedFill(ocarinaItem, ocarinaLocations, true);
-            NoRepeatOnTokens = false;
-        }
-        // Ensure Ocarina and Song of Time are obtainable with the current placement.
-        // If they are not reachable with currently placed items (Rewards, Keys, etc.),
-        // we place additional advancement items from the pool to open paths until they are reachable.
-        // but only if the logic setting is not set to "None" (No Logic).
-        if (((StartingOcarina.Value<u8>() == 0) || ShuffleSongOfTime) && Settings::Logic.IsNot(LogicSetting::LOGIC_NONE)) {
+static void EnsureOcarinaAndSongOfTimeObtainable() {
             while (true) {
                 Logic::LogicReset();
                 std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
@@ -982,8 +910,187 @@ int Fill() {
                 }
                 if (placementFailure) break;
             }
+}
+
+void MultiLocationCheck(LocationKey key) {
+    auto loc = Location(key);
+    // Kotake In Woods Red Potion
+    if (loc == Location(SOUTHERN_SWAMP_KOTAKE)) {
+        PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_IN_WOODS, loc->GetPlacedItemKey());
+    }
+    // Postbox Locations
+    if (loc == Location(S_CLOCK_TOWN_POSTBOX)) {
+        PlaceItemInLocation(N_CLOCK_TOWN_POSTBOX, loc->GetPlacedItemKey());
+        PlaceItemInLocation(E_CLOCK_TOWN_POSTBOX, loc->GetPlacedItemKey());
+    }
+    // Tingle Maps
+    // NCT > IKANA CANYON CT
+    if (loc == Location(TINGLE_N_CLOCK_TOWN_CT)) {
+        PlaceItemInLocation(TINGLE_IKANA_CANYON_CT, loc->GetPlacedItemKey());
+    }
+    // Road to Southern Swamp WF > NCT WF
+    if (loc == Location(TINGLE_ROAD_TO_SS_WF)) {
+        PlaceItemInLocation(TINGLE_N_CLOCK_TOWN_WF, loc->GetPlacedItemKey());
+    }
+    // Twin Islands SH > Road to Southern Swamp SH
+    if (loc == Location(TINGLE_TWIN_ISLANDS_SH)) {
+        PlaceItemInLocation(TINGLE_ROAD_TO_SS_SH, loc->GetPlacedItemKey());
+    }
+    // Twin Islands SH > Twin Islands SH Spring
+    if (loc == Location(TINGLE_TWIN_ISLANDS_SH)) {
+        PlaceItemInLocation(TINGLE_TWIN_ISLANDS_SH_SPRING, loc->GetPlacedItemKey());
+    }
+    // Milk Road RR > Twin Islands RR
+    if (loc == Location(TINGLE_MILK_ROAD_RR)) {
+        PlaceItemInLocation(TINGLE_TWIN_ISLANDS_RR, loc->GetPlacedItemKey());
+        PlaceItemInLocation(TINGLE_TWIN_ISLANDS_RR_SPRING, loc->GetPlacedItemKey());
+    }
+    // GBC RR > RR GBC
+    if (loc == Location(TINGLE_GBC_GB)) {
+        PlaceItemInLocation(TINGLE_MILK_ROAD_GB, loc->GetPlacedItemKey());
+    }
+    // Ikana Canyon ST > GBC ST
+    if (loc == Location(TINGLE_IKANA_CANYON_ST)) {
+        PlaceItemInLocation(TINGLE_GBC_ST, loc->GetPlacedItemKey());
+    }
+    // Keaton Quiz
+    if (loc == Location(N_CLOCK_TOWN_KEATON_QUIZ)) {
+        PlaceItemInLocation(MILK_ROAD_KEATON_QUIZ, loc->GetPlacedItemKey());
+        PlaceItemInLocation(MOUNTAIN_VILLAGE_KEATON_QUIZ, loc->GetPlacedItemKey());
+    }
+    // Spring time Goron Village
+    if (loc == Location(GORON_VILLAGE_POWDER_KEG_CHALLENGE)) {
+        PlaceItemInLocation(GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(GORON_VILLAGE_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(GORON_VILLAGE_SCRUB_TRADE)) {
+        PlaceItemInLocation(GORON_VILLAGE_SCRUB_TRADE_SPRING, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(GORON_VILLAGE_LEDGE)) {
+        PlaceItemInLocation(GORON_VILLAGE_LEDGE_SPRING, loc->GetPlacedItemKey());
+    }
+    // Cleared Southern Swamp
+    if (loc == Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(SOUTHERN_SWAMP_SCRUB_TRADE)) {
+        PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(SWAMP_TOURIST_CENTER_ROOF)) {
+        PlaceItemInLocation(SWAMP_TOURIST_CENTER_ROOF_CLEAR, loc->GetPlacedItemKey());
+    }
+    // Upright Stone Tower Temple Death Armos Room Chest
+    if (loc == Location(STONE_TOWER_TEMPLE_DEATH_ARMOS_ROOM_CHEST)) {
+        PlaceItemInLocation(STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST, loc->GetPlacedItemKey());
+    }
+    // Big Bomb Bag
+    if (loc == Location(W_CLOCK_TOWN_BIG_BOMB_BAG_BUY)) {
+        PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, loc->GetPlacedItemKey());
+    }
+    // Clock Town Stray Fairy
+    if (loc == Location(LAUNDRY_POOL_SF)) {
+        PlaceItemInLocation(E_CLOCK_TOWN_SF, loc->GetPlacedItemKey());
+    }
+    // Scrubsanity 
+    if (loc == Location(SOUTHERN_SWAMP_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(GORON_VILLAGE_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE, loc->GetPlacedItemKey());
+        PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(ZORA_HALL_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE, loc->GetPlacedItemKey());
+        PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING, loc->GetPlacedItemKey());
+    }
+    if (loc == Location(IKANA_CANYON_SCRUB_PURCHASE)) {
+        PlaceItemInLocation(ZORA_HALL_IKANA_SCRUB_PURCHASE, loc->GetPlacedItemKey());
+    }
+    // Kotake Mushroom Sale
+    if (loc == Location(POTION_SHOP_ITEM_3)) {
+        PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_MUSHROOM_SALE, loc->GetPlacedItemKey());
+    }
+}
+
+int Fill() {
+    CustomMessages::CreateBaselineCustomMessages();
+
+    retries = 0;
+    while (retries < 5) {
+        placementFailure = false;
+        showItemProgress = false;
+        playthroughLocations.clear();
+        playthroughEntrances.clear();
+        wothLocations.clear();
+        ocarinaObtainable = false;
+        songOfTimeObtainable = false;
+        ResetNonShopItems();
+        AreaTable_Init(); //Reset the world graph to intialize the proper locations
+        ItemReset(); //Reset shops incase of shopsanity random
+        GenerateLocationPool();
+        GenerateItemPool();
+        GenerateStartingInventory();
+        RemoveStartingItemsFromPool();
+        FillExcludedLocations();
+
+        //Shop prices have to exist before anything is placed: logic checks them (CanBuy) from the
+        //first fill on, so an item placed in a shop early can't end up behind a price nobody can pay.
+        //NonShopItems is already sized by ResetNonShopItems
+        if (Shopsanity){
+            for (size_t i = 0; i < ShopLocationLists.size(); i++) {
+                for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
+                    const LocationKey loc = ShopLocationLists[i][j];
+                    int shopsanityPrice = GetShopPrice();
+                    NonShopItems[GetShopIndex(loc)].Price = shopsanityPrice; //Set the price for the item to be passed
+                    Location(loc)->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
+                }
+            }
         }
 
+        showItemProgress = true;
+
+        //Place dungeon rewards
+        RandomizeDungeonRewards();
+        
+        //Place dungeon items restricted to their Own Dungeon
+        for (auto dungeon : Dungeon::dungeonList) {
+            RandomizeOwnDungeon(dungeon);
+        }
+
+        //Then place dungeon items that are assigned to restrictive location pools
+        RandomizeDungeonItems();
+        
+        //get Songs in pool
+        std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
+        //If Shuffled in Song Locations restrict location pool to only song locations
+        //If Song of Time is shuffled do that first with a restricted location pool to prevent softlocks
+        if (ShuffleSongOfTime) {
+            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
+            //Pull Song of Time from songs pool instead of main pool so we actually get it placed first
+            std::vector<ItemKey> SoTItem = FilterAndEraseFromPool(songs, [](const ItemKey i) { return ItemTable(i).GetHintKey() == SONG_OF_TIME; });
+            NoRepeatOnTokens = true;
+            AssumedFill(SoTItem, ocarinaLocations, true);
+            NoRepeatOnTokens = false;
+        }
+        //If Ocarina is shuffled place that next
+        if (StartingOcarina.Value<u8>() == 0) {
+            //Get acceptable Ocarina Locations
+            std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
+            std::vector<ItemKey> ocarinaItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemId()==(u32)GetItemID::GI_OCARINA_OF_TIME; });
+            //reuse NoRepeatOnTokens variable because making a new one is stupid
+            NoRepeatOnTokens = true;
+            AssumedFill(ocarinaItem, ocarinaLocations, true);
+            NoRepeatOnTokens = false;
+        }
+        // Ensure Ocarina and Song of Time are obtainable with the current placement.
+        // If they are not reachable with currently placed items (Rewards, Keys, etc.),
+        // we place additional advancement items from the pool to open paths until they are reachable.
+        // but only if the logic setting is not set to "None" (No Logic).
+        if (((StartingOcarina.Value<u8>() == 0) || ShuffleSongOfTime) && Settings::Logic.IsNot(LogicSetting::LOGIC_NONE)) {
+            EnsureOcarinaAndSongOfTimeObtainable();
+        }
         if (placementFailure) {
             if (retries < 4) {
                 printf("\x1b[9;10HEarly Item Reachability Failed. Retrying... %d", retries + 2);
@@ -993,6 +1100,7 @@ int Fill() {
             retries++;
             continue;
         }
+
         //If Songs are at song locations get all song locations and place them there
         if (ShuffleSongs.Value<u8>() == u8(1)){
             std::vector<LocationKey> songLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSong);});
@@ -1130,8 +1238,8 @@ int Fill() {
         }
         //Unsuccessful placement
         if (retries < 4) {
-            //LogicReset();
-            //GetAccessibleLocations(allLocations, SearchMode::AllLocationsReachable);
+            LogicReset();
+            GetAccessibleLocations(allLocations, SearchMode::AllLocationsReachable);
             printf("\x1b[9;10HFailed. Retrying... %d", retries + 2);
             // CitraPrint("Failed. Retrying...");
             Areas::ResetAllLocations();

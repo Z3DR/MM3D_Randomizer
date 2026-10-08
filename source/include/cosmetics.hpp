@@ -9,10 +9,12 @@ namespace Cosmetics {
   constexpr std::string_view RANDOM_COLOR_STR  = "Random Color";
   constexpr std::string_view CUSTOM_COLOR_STR  = "Custom #FFFFFF";
   constexpr std::string_view CUSTOM_COLOR_PREFIX = "Custom #";
+  constexpr std::string_view SAME_AS_HUMAN_STR = "Same as Human";
 
   constexpr std::string_view RANDOM_CHOICE_DESC = "A random color from the list of colors will be\nchosen.";
-  constexpr std::string_view RANDOM_COLOR_DESC  = "A completely random color will be chosen.";
-  constexpr std::string_view CUSTOM_COLOR_DESC  = "Press A and type in a custom 6 digit hex color.";
+  constexpr std::string_view RANDOM_COLOR_DESC  = "A completely random color will be chosen on seed generation.";
+  constexpr std::string_view CUSTOM_COLOR_DESC  = "Press A to open the Color Picker to choose a custom color.\nPress Y on the Color Picker to get a random color.";
+  constexpr std::string_view SAME_AS_HUMAN_DESC = "This form's tunic will be the same color as Human\nLink's.";
 
   enum CosmeticSettings {
     RANDOM_CHOICE,
@@ -28,8 +30,8 @@ namespace Cosmetics {
     float a;
   };
 
-  extern const std::array<std::string_view, 13> gauntletColors;
   extern const std::array<std::string_view, 31> tunicColors;
+  extern const std::array<std::string_view, 31> tunicColorNames;
 
   bool ValidHexString(std::string_view hexStr);
   Color_RGB HexStrToColorRGB(const std::string& hexStr);

@@ -1,5 +1,6 @@
 #include "cosmetics.hpp"
 #include "random.hpp"
+#include <iomanip>
 #include <sstream>
 #include <3ds.h>
 
@@ -28,21 +29,6 @@ namespace Cosmetics {
     return str.substr(str.length() - 6);
   }
 
-  const std::array<std::string_view, 13> gauntletColors = {
-    "FFFFFF", //Silver
-    "FECF0F", //Gold
-    "000006", //Black
-    "025918", //Green
-    "06025A", //Blue
-    "600602", //Bronze
-    "FF0000", //Red
-    "025DB0", //Sky Blue
-    "FA6A90", //Pink
-    "FF00FF", //Magenta
-    "D83A00", //Orange
-    "5B8A06", //Lime
-    "800080", //Purple
-  };
   const std::array<std::string_view, 31> tunicColors = {
     "168A0E", //Kokiri Green
     "96000E", //Goron Red
@@ -77,10 +63,22 @@ namespace Cosmetics {
     "0F50BC", //Lumen
   };
 
+  // Names of tunicColors, in the same order.
+  const std::array<std::string_view, 31> tunicColorNames = {
+    "Kokiri Green", "Goron Red",    "Zora Blue",    "Black",        "White",      "Azure Blue", "Vivid Cyan",
+    "Light Red",    "Fuchsia",      "Purple",       "Majora Purple", "Twitch Purple", "Magenta", "Violet",
+    "Persian Rose", "Dirty Yellow", "Blush Pink",   "Hot Pink",     "Rose Pink",  "Orange",     "Gray",
+    "Yellow",       "Silver",       "Beige",        "Teal",         "Blood Red",  "Blood Orange", "Royal Blue",
+    "NES Green",    "Dark Green",   "Lumen",
+  };
+
   //Generate random hex color
   std::string RandomColor() {
     std::ostringstream color;
-    color << std::hex << (rand() % 0x1000000); //use default rand to not interfere with main settings
+    //use default rand to not interfere with main settings
+    // Uppercase and setfill to ensure that we have a full 6 hexadecimal value.
+    color << std::uppercase << std::hex << std::setw(6) << std::setfill('0') << (rand() % 0x1000000);
     return color.str();
   }
+
 } //namespace Cosmetics

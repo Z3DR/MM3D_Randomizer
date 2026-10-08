@@ -615,52 +615,49 @@ namespace Settings {
 
   /*COSMETICS*/
 
-  static std::vector<std::string> tunicOptions = {
-    std::string(RANDOM_CHOICE_STR),
-    std::string(RANDOM_COLOR_STR),
-    std::string(CUSTOM_COLOR_STR),
-    "Kokiri Green",
-    "Goron Red",
-    "Zora Blue",
-    "Black",
-    "White",
-    "Azure Blue",
-    "Vivid Cyan",
-    "Light Red",
-    "Fuchsia",
-    "Purple",
-    "Majora Purple",
-    "Twitch Purple",
-    "Magenta",
-    "Violet",
-    "Persian Rose",
-    "Dirty Yellow",
-    "Blush Pink",
-    "Hot Pink",
-    "Rose Pink",
-    "Orange",
-    "Gray",
-    "Yellow",
-    "Silver",
-    "Beige",
-    "Teal",
-    "Blood Red",
-    "Blood Orange",
-    "Royal Blue",
-    "NES Green",
-    "Dark Green",
-    "Lumen",
-  };
-  static std::vector<std::string_view> cosmeticDescriptions = {
-    RANDOM_CHOICE_DESC,
-    RANDOM_COLOR_DESC,
-    CUSTOM_COLOR_DESC,
-    "This will only affect the color on Link's model.",
-  };
+  static std::vector<std::string> TunicOptions(bool sameAsHuman) {
+    std::vector<std::string> options = {
+      std::string(RANDOM_CHOICE_STR),
+      std::string(RANDOM_COLOR_STR),
+      std::string(CUSTOM_COLOR_STR),
+    };
+    for (std::string_view name : tunicColorNames) {
+      options.emplace_back(name);
+    }
+    // Last, so the random and custom choices keep their indexes.
+    if (sameAsHuman) {
+      options.emplace_back(SAME_AS_HUMAN_STR);
+    }
+    return options;
+  }
 
-  Option CustomTunicColors          = Option::Bool("Custom Tunic Colors",    {"Off", "On"},   {""},  OptionCategory::Cosmetic);
-  Option ChildTunicColor = Option::U8("   Tunic Color", { tunicOptions }, cosmeticDescriptions,      OptionCategory::Cosmetic, 3); // Kokiri Green
-  std::string finalChildTunicColor      = ChildTunicColor.GetSelectedOptionText();
+  static std::vector<std::string_view> TunicDescriptions(bool sameAsHuman) {
+    std::vector<std::string_view> descriptions = {RANDOM_CHOICE_DESC, RANDOM_COLOR_DESC, CUSTOM_COLOR_DESC};
+    for (size_t i = 0; i < tunicColorNames.size(); i++) {
+      descriptions.push_back("The tunic color for this form, unless changed\nin game from the menu.");
+    }
+    if (sameAsHuman) {
+      descriptions.push_back(SAME_AS_HUMAN_DESC);
+    }
+    return descriptions;
+  }
+
+  constexpr u8 TUNIC_KOKIRI_GREEN = NON_COLOR_COUNT;
+  constexpr u8 TUNIC_SAME_AS_HUMAN = NON_COLOR_COUNT + std::tuple_size_v<decltype(tunicColorNames)>;
+
+  Option CustomTunicColors = Option::Bool("Custom Tunic Colors", {"Off", "On"}, {""}, OptionCategory::Cosmetic);
+  Option HumanTunicColor   = Option::U8("   Human Tunic", TunicOptions(false), TunicDescriptions(false),
+                                        OptionCategory::Cosmetic, TUNIC_KOKIRI_GREEN);
+  Option DekuTunicColor    = Option::U8("   Deku Tunic",  TunicOptions(true),  TunicDescriptions(true),
+                                        OptionCategory::Cosmetic, TUNIC_SAME_AS_HUMAN);
+  Option GoronTunicColor   = Option::U8("   Goron Tunic", TunicOptions(true),  TunicDescriptions(true),
+                                        OptionCategory::Cosmetic, TUNIC_SAME_AS_HUMAN);
+  Option ZoraTunicColor    = Option::U8("   Zora Tunic",  TunicOptions(true),  TunicDescriptions(true),
+                                        OptionCategory::Cosmetic, TUNIC_SAME_AS_HUMAN);
+  // In the patch's TunicForm order.
+  static std::array<Option*, 4> tunicColorOptions = {&HumanTunicColor, &DekuTunicColor, &GoronTunicColor,
+                                                     &ZoraTunicColor};
+  static std::array<std::string, 4> finalTunicColors;
 
   Option ColoredKeys =     Option::Bool("Colored Small Keys", {"Off", "On"}, {coloredKeysDesc},      OptionCategory::Cosmetic, 1);
   Option ColoredBossKeys = Option::Bool("Colored Boss Keys",  {"Off", "On"}, {coloredBossKeysDesc},  OptionCategory::Cosmetic, 1);
@@ -678,8 +675,11 @@ namespace Settings {
 
   // TO-DO Heart Color, Magic Color, Tatl Color
   std::vector<Option *> cosmeticOptions = {
-    //&CustomTunicColors,
-    //&ChildTunicColor,
+    &CustomTunicColors,
+    &HumanTunicColor,
+    &DekuTunicColor,
+    &GoronTunicColor,
+    &ZoraTunicColor,
     &ColoredKeys,
     //&ColoredBossKeys,
     &ShowPostmanItem,
@@ -872,6 +872,9 @@ namespace Settings {
     ctx.shuffleDungeonEntrances = (ShuffleDungeonEntrances) ? 1 : 0;
     
     ctx.customTunicColors = (CustomTunicColors) ? 1 : 0;
+    for (size_t i = 0; i < finalTunicColors.size(); i++) {
+      ctx.seedTunicColors[i] = (CustomTunicColors) ? std::strtoul(finalTunicColors[i].c_str(), nullptr, 16) : 0;
+    }
     ctx.coloredKeys = (ColoredKeys) ? 1 : 0;
     ctx.coloredBossKeys = (ColoredBossKeys) ? 1 : 0;
     ctx.showPostmanItem = (ShowPostmanItem) ? 1 : 0;
@@ -1727,13 +1730,14 @@ namespace Settings {
 
 
     //Tunic Colors
-    if (CustomTunicColors) {
-      ChildTunicColor.Unhide();
-      
-    } else {
-      ChildTunicColor.Hide();
-      ChildTunicColor.SetSelectedIndex(3);  //Kokiri Green
-     }
+    for (Option* tunicColor : tunicColorOptions) {
+      if (CustomTunicColors) {
+        tunicColor->Unhide();
+      } else {
+        tunicColor->Hide();
+        tunicColor->SetSelectedIndex(tunicColor == &HumanTunicColor ? TUNIC_KOKIRI_GREEN : TUNIC_SAME_AS_HUMAN);
+      }
+    }
 
     // Music
     if (CustomMusic) {
@@ -1889,11 +1893,36 @@ namespace Settings {
   }
 
   //Function to update cosmetics options depending on choices
-  /*static void UpdateCosmetics() {
-
-    ChooseFinalColor(ChildTunicColor, finalChildTunicColor, tunicColors);
+  static void UpdateCosmetics() {
+    // Human first, for the forms that use the same color.
+    for (size_t i = 0; i < tunicColorOptions.size(); i++) {
+      if (tunicColorOptions[i]->Is(TUNIC_SAME_AS_HUMAN)) {
+        finalTunicColors[i] = finalTunicColors[0];
+      } else {
+        ChooseFinalColor(*tunicColorOptions[i], finalTunicColors[i], tunicColors);
+      }
     }
-  */
+  }
+
+  bool IsTunicColorOption(const Option* option) {
+    return std::find(tunicColorOptions.begin(), tunicColorOptions.end(), option) != tunicColorOptions.end();
+  }
+
+  // The color a tunic color option shows, or false when it's picked at random.
+  bool TunicColorPreview(const Option* option, std::string& hexStr) {
+    if (option->Is(TUNIC_SAME_AS_HUMAN)) {
+      option = &HumanTunicColor;
+    }
+    if (option->Is(RANDOM_CHOICE) || option->Is(RANDOM_COLOR)) {
+      return false;
+    }
+    if (option->Is(CUSTOM_COLOR)) {
+      hexStr = GetCustomColor(option->GetSelectedOptionText());
+    } else {
+      hexStr = tunicColors[option->GetSelectedOptionIndex() - NON_COLOR_COUNT];
+    }
+    return true;
+  }
   //Function to set flags depending on settings
   void UpdateSettings() {
 
@@ -1907,7 +1936,7 @@ namespace Settings {
             dungeonOptions[i]->Value<u8>());
         }
     }*/
-	//UpdateCosmetics();
+    UpdateCosmetics();
 
     //If vanilla logic, we want to set all settings which unnecessarily modify vanilla behavior to off
     if (Logic.Is((u8)LogicSetting::LOGIC_VANILLA)) {
