@@ -1008,10 +1008,6 @@ void MultiLocationCheck(LocationKey key) {
     if (loc == Location(IKANA_CANYON_SCRUB_PURCHASE)) {
         PlaceItemInLocation(ZORA_HALL_IKANA_SCRUB_PURCHASE, loc->GetPlacedItemKey());
     }
-    // Kotake Mushroom Sale
-    if (loc == Location(POTION_SHOP_ITEM_3)) {
-        PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_MUSHROOM_SALE, loc->GetPlacedItemKey());
-    }
 }
 
 int Fill() {
