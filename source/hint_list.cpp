@@ -1207,24 +1207,24 @@ void HintTable_Init() {
     //    },  //clear
     //        Text{"#Honey and Darling's Shop's daily reward# is", "le #prix quotidien de l’arcade des amoureux# est", "la recompensa diaria en el juego de Honey y Darling es", "die tägliche Belohnung vom #Spielecenter Liebling und Schätzchen# ist", "", "le #prix quotidien du manège des amoureux# est", ""}
     //);
-    //hintTable[E_CLOCK_TOWN_TREASURE_CHEST_GAME_HUMAN] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"**ENGLISH**", "une #partie à 20 rubis# offre", "un juego del tesoro recompensa con", "ein #Menschenschatzspiel# entlohnt"}
-    //    },  //clear
-    //        Text{"the #Treasure Chest Game's reward for Hylians# is", "le #prix pour humains du Coffre au trésor# est", "la recompensa para Hylianos en el juego del Cofre del Tesoro es", "die Belohnung beim #Truhenspiel für Hylianer# ist", "", "le #prix pour humains de la chasse au trésors# est", ""}
-    //);
-    //hintTable[E_CLOCK_TOWN_TREASURE_CHEST_GAME_ZORA] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"**ENGLISH**", "une #partie à 10 rubis# offre", "un juego del tesoro recompensa con", "ein #Zora-Schatzspiel# entlohnt"}
-    //    },  //clear
-    //        Text{"the #Treasure Chest Game's reward for Zoras# is", "le #prix pour zoras du Coffre au trésor# est", "la recompensa para Zoras en el juego del Cofre del Tesoro es", "die Belohnung beim #Truhenspiel für Zoras# ist", "", "le #prix pour zoras de la chasse au trésors# est", ""}
-    //);
-    //hintTable[E_CLOCK_TOWN_TREASURE_CHEST_GAME_DEKU] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"**ENGLISH**", "une #partie à 5 rubis# offre", "un juego del tesoro recompensa con", "ein #Deku-Schatzspiel# entlohnt"}
-    //    },  //clear
-    //        Text{"the #Treasure Chest Game's reward for Dekus# is", "le #prix pour pestes mojo du Coffre au trésor# est", "la recompensa para Dekus en el juego del Cofre del Tesoro es", "die Belohnung beim #Truhenspiel für Dekus# ist", "", "le #prix pour pestes mojo de la chasse au trésors# est", ""}
-    //);
+    hintTable[E_CLOCK_TOWN_TREASURE_CHEST_GAME_HUMAN] = HintText::Sometimes({
+            //obscure
+            Text{"a #20-rupee treasure game# rewards", "une #partie à 20 rubis# offre", "un juego del tesoro recompensa con", "ein #Menschenschatzspiel# entlohnt"}
+        },  //clear
+            Text{"the #Treasure Chest Game's reward for Hylians# is", "le #prix pour humains du Coffre au trésor# est", "la recompensa para Hylianos en el juego del Cofre del Tesoro es", "die Belohnung beim #Truhenspiel für Hylianer# ist", "", "le #prix pour humains de la chasse au trésors# est", ""}
+    );
+    hintTable[E_CLOCK_TOWN_TREASURE_CHEST_GAME_ZORA] = HintText::Sometimes({
+            //obscure
+            Text{"a #10-rupee treasure game# rewards", "une #partie à 10 rubis# offre", "un juego del tesoro recompensa con", "ein #Zora-Schatzspiel# entlohnt"}
+        },  //clear
+            Text{"the #Treasure Chest Game's reward for Zoras# is", "le #prix pour zoras du Coffre au trésor# est", "la recompensa para Zoras en el juego del Cofre del Tesoro es", "die Belohnung beim #Truhenspiel für Zoras# ist", "", "le #prix pour zoras de la chasse au trésors# est", ""}
+    );
+    hintTable[E_CLOCK_TOWN_TREASURE_CHEST_GAME_DEKU] = HintText::Sometimes({
+            //obscure
+            Text{"a #5-rupee treasure game# rewards", "une #partie à 5 rubis# offre", "un juego del tesoro recompensa con", "ein #Deku-Schatzspiel# entlohnt"}
+        },  //clear
+            Text{"the #Treasure Chest Game's reward for Dekus# is", "le #prix pour pestes mojo du Coffre au trésor# est", "la recompensa para Dekus en el juego del Cofre del Tesoro es", "die Belohnung beim #Truhenspiel für Dekus# ist", "", "le #prix pour pestes mojo de la chasse au trésors# est", ""}
+    );
 //Goron Village
     hintTable[GORON_VILLAGE_POWDER_KEG_CHALLENGE] = HintText::Sometimes({
             //obscure
