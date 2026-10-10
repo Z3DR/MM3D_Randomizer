@@ -681,6 +681,33 @@ static void SetMinimalItemPool(){
 	//ReplaceMaxItem(HEART_CONTAINER, 2);
 };
 
+void FillAltLocations() {
+	// Fill in Alt Locations with Blue Rupees so Logic doesn't place items there. These will be replaced in Fill() 
+	// With whatever item is placed in the earliest accessible location related to that Alt Location.
+	// This is done to stay consistent with vanilla where the same item can be obtained in multiple locations.
+	PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_IN_WOODS, BLUE_RUPEE);
+	PlaceItemInLocation(N_CLOCK_TOWN_POSTBOX, BLUE_RUPEE);
+	PlaceItemInLocation(E_CLOCK_TOWN_POSTBOX, BLUE_RUPEE);
+	PlaceItemInLocation(MILK_ROAD_KEATON_QUIZ, BLUE_RUPEE);
+	PlaceItemInLocation(MOUNTAIN_VILLAGE_KEATON_QUIZ, BLUE_RUPEE);
+	PlaceItemInLocation(GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING, BLUE_RUPEE);
+    PlaceItemInLocation(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, BLUE_RUPEE);
+    PlaceItemInLocation(GORON_VILLAGE_SCRUB_TRADE_SPRING, BLUE_RUPEE);
+    PlaceItemInLocation(GORON_VILLAGE_LEDGE_SPRING, BLUE_RUPEE);
+    PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR, BLUE_RUPEE);
+    PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, BLUE_RUPEE);
+    PlaceItemInLocation(SWAMP_TOURIST_CENTER_ROOF_CLEAR, BLUE_RUPEE);
+	PlaceItemInLocation(STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST, BLUE_RUPEE);
+	PlaceItemInLocation(E_CLOCK_TOWN_SF, BLUE_RUPEE);
+	PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, BLUE_RUPEE);
+	PlaceItemInLocation(S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE, BLUE_RUPEE);
+	PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE, BLUE_RUPEE);
+	PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR, BLUE_RUPEE);
+	PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE, BLUE_RUPEE);
+	PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING, BLUE_RUPEE);
+	PlaceItemInLocation(ZORA_HALL_IKANA_SCRUB_PURCHASE, BLUE_RUPEE);
+}
+ 
 void GenerateItemPool() {
 	
 	ItemPool.clear();//start fresh
@@ -731,28 +758,8 @@ void GenerateItemPool() {
 	PlaceItemInLocation(WOODFALL_TEMPLE_DEKU_PRINCESS, DEKU_PRINCESS);
 	PlaceItemInLocation(W_CLOCK_TOWN_BOMB_SHOP_GORON, POWDER_KEG);//Not Randomized for simplicity
 
-	//Place Temp Items at alt locations so they don't get filled with important stuff - will be replaced later
-	PlaceItemInLocation(SOUTHERN_SWAMP_KOTAKE_IN_WOODS, BLUE_RUPEE);
-	PlaceItemInLocation(N_CLOCK_TOWN_POSTBOX, BLUE_RUPEE);
-	PlaceItemInLocation(E_CLOCK_TOWN_POSTBOX, BLUE_RUPEE);
-	PlaceItemInLocation(MILK_ROAD_KEATON_QUIZ, BLUE_RUPEE);
-	PlaceItemInLocation(MOUNTAIN_VILLAGE_KEATON_QUIZ, BLUE_RUPEE);
-	PlaceItemInLocation(GORON_VILLAGE_POWDER_KEG_CHALLENGE_SPRING, BLUE_RUPEE);
-    PlaceItemInLocation(GORON_VILLAGE_SCRUB_PURCHASE_SPRING, BLUE_RUPEE);
-    PlaceItemInLocation(GORON_VILLAGE_SCRUB_TRADE_SPRING, BLUE_RUPEE);
-    PlaceItemInLocation(GORON_VILLAGE_LEDGE_SPRING, BLUE_RUPEE);
-    PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_PURCHASE_CLEAR, BLUE_RUPEE);
-    PlaceItemInLocation(SOUTHERN_SWAMP_SCRUB_TRADE_CLEAR, BLUE_RUPEE);
-    PlaceItemInLocation(SWAMP_TOURIST_CENTER_ROOF_CLEAR, BLUE_RUPEE);
-	PlaceItemInLocation(STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST, BLUE_RUPEE);
-	PlaceItemInLocation(E_CLOCK_TOWN_SF, BLUE_RUPEE);
-	PlaceItemInLocation(W_CLOCK_TOWN_CURIOSITY_BOMB_BAG, BLUE_RUPEE);
-	PlaceItemInLocation(S_CLOCK_TOWN_SWAMP_SCRUB_PURCHASE, BLUE_RUPEE);
-	PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE, BLUE_RUPEE);
-	PlaceItemInLocation(SOUTHERN_SWAMP_GORON_SCRUB_PURCHASE_CLEAR, BLUE_RUPEE);
-	PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE, BLUE_RUPEE);
-	PlaceItemInLocation(GORON_VILLAGE_ZORA_SCRUB_PURCHASE_SPRING, BLUE_RUPEE);
-	PlaceItemInLocation(ZORA_HALL_IKANA_SCRUB_PURCHASE, BLUE_RUPEE);
+	//Place Temp Items at alt locations so they don't get filled with important stuff
+	FillAltLocations();
 
 	//Check Non Dungeon Settings
 
@@ -890,8 +897,6 @@ void GenerateItemPool() {
 		ReplaceMaxItem(DOUBLE_DEFENSE, 0);
 	}
 	
-	
-	
 	//DEKU/GORON/ZORA MAASK SHUFFLE
 	if(ShuffleTransformation){
 		AddItemToMainPool(DEKU_MASK);
@@ -996,6 +1001,7 @@ void GenerateItemPool() {
 		AddItemsToPool(ItemPool, normalRupees);
 		PlaceVanillaShopItems();
   	}
+
 	//SCRUBSANITY
 	if (Scrubsanity) {
 		AddItemsToPool(ItemPool, scrubPurchases);
@@ -1026,20 +1032,32 @@ void GenerateItemPool() {
 	}
 	else {
 		//Place Vanilla Maps
-	PlaceItemInLocation(TINGLE_N_CLOCK_TOWN_CT, CLOCK_TOWN_MAP);
-	PlaceItemInLocation(TINGLE_N_CLOCK_TOWN_WF, WOODFALL_MAP);
-	PlaceItemInLocation(TINGLE_ROAD_TO_SS_WF, WOODFALL_MAP);
-	PlaceItemInLocation(TINGLE_ROAD_TO_SS_SH, SNOWHEAD_MAP);
-	PlaceItemInLocation(TINGLE_TWIN_ISLANDS_SH, SNOWHEAD_MAP);
-	PlaceItemInLocation(TINGLE_TWIN_ISLANDS_RR, ROMANI_RANCH_MAP);
-	PlaceItemInLocation(TINGLE_TWIN_ISLANDS_SH_SPRING, SNOWHEAD_MAP);
-	PlaceItemInLocation(TINGLE_TWIN_ISLANDS_RR_SPRING, ROMANI_RANCH_MAP);
-	PlaceItemInLocation(TINGLE_MILK_ROAD_RR, ROMANI_RANCH_MAP);
-	PlaceItemInLocation(TINGLE_MILK_ROAD_GB, GREAT_BAY_MAP);
-	PlaceItemInLocation(TINGLE_GBC_GB, GREAT_BAY_MAP);
-	PlaceItemInLocation(TINGLE_GBC_ST, STONE_TOWER_MAP);
-	PlaceItemInLocation(TINGLE_IKANA_CANYON_ST, STONE_TOWER_MAP);
-	PlaceItemInLocation(TINGLE_IKANA_CANYON_CT, CLOCK_TOWN_MAP);
+		PlaceItemInLocation(TINGLE_N_CLOCK_TOWN_CT, CLOCK_TOWN_MAP);
+		PlaceItemInLocation(TINGLE_N_CLOCK_TOWN_WF, WOODFALL_MAP);
+		PlaceItemInLocation(TINGLE_ROAD_TO_SS_WF, WOODFALL_MAP);
+		PlaceItemInLocation(TINGLE_ROAD_TO_SS_SH, SNOWHEAD_MAP);
+		PlaceItemInLocation(TINGLE_TWIN_ISLANDS_SH, SNOWHEAD_MAP);
+		PlaceItemInLocation(TINGLE_TWIN_ISLANDS_RR, ROMANI_RANCH_MAP);
+		PlaceItemInLocation(TINGLE_TWIN_ISLANDS_SH_SPRING, SNOWHEAD_MAP);
+		PlaceItemInLocation(TINGLE_TWIN_ISLANDS_RR_SPRING, ROMANI_RANCH_MAP);
+		PlaceItemInLocation(TINGLE_MILK_ROAD_RR, ROMANI_RANCH_MAP);
+		PlaceItemInLocation(TINGLE_MILK_ROAD_GB, GREAT_BAY_MAP);
+		PlaceItemInLocation(TINGLE_GBC_GB, GREAT_BAY_MAP);
+		PlaceItemInLocation(TINGLE_GBC_ST, STONE_TOWER_MAP);
+		PlaceItemInLocation(TINGLE_IKANA_CANYON_ST, STONE_TOWER_MAP);
+		PlaceItemInLocation(TINGLE_IKANA_CANYON_CT, CLOCK_TOWN_MAP);
+	}
+
+	// Extra Minigames
+	if (!ExtraMinigames) { 
+		// If Extra Minigames is off, place the items in their vanilla locations
+		// H & D
+		PlaceItemInLocation(E_CLOCK_TOWN_HONEY_DARLING_DAY_1, FISHING_PASS);
+		PlaceItemInLocation(E_CLOCK_TOWN_HONEY_DARLING_DAY_2, FISHING_PASS);
+		// Treasure Chest Shop
+		PlaceItemInLocation(E_CLOCK_TOWN_TREASURE_CHEST_GAME_ZORA, RED_RUPEE);
+		PlaceItemInLocation(E_CLOCK_TOWN_TREASURE_CHEST_GAME_DEKU, DEKU_NUTS_10);
+		PlaceItemInLocation(E_CLOCK_TOWN_TREASURE_CHEST_GAME_HUMAN, PURPLE_RUPEE);
 	}
 
 	//DUNGEON STUFF 

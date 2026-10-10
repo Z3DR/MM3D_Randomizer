@@ -391,6 +391,7 @@ namespace Settings {
   Option ShuffleBombersNotebook = Option::Bool("Shuffle Notebook",      {"Off", "On"},                                       {shuffleBombersNotebookDesc});
   Option ShuffleMoonItems       = Option::Bool("Shuffle Moon Items",    {"Off", "On"},                                       {shuffleMoonItemsDesc});
   Option ShuffleFierceDeity     = Option::Bool("Shuffle Fierce Deity",  {"Off", "On"},                                       {shuffleFierceDeityDesc});
+  Option ExtraMinigames         = Option::Bool("Extra Minigames",       {"Off", "On"},                                       {extraMinigamesDesc});
 
   //New Menus - Splitting options for smaller menus
   std::vector<Option*> shuffleMajorItems = {
@@ -418,6 +419,7 @@ namespace Settings {
     &ShuffleCows,
     &ShuffleMagicBeans,
     &Scrubsanity,
+    &ExtraMinigames,
     &ShuffleMoonItems,
     &ShuffleFierceDeity,
   };
