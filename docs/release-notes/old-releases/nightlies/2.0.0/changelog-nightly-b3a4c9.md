@@ -65,3 +65,7 @@
 ## Other Changes
 
 - **D-pad Transformation Masks** description updated: Down A is no longer patched out when it's on.
+
+
+[Previous Nightly](./changelog-nightly-38b6cb.md)  
+[Next Nightly](./changelog-nightly-8a1e90.md)

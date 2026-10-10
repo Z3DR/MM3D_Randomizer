@@ -39,3 +39,7 @@
 
 ## Other Changes
 - The spoiler log no longer lists alternate copies of a check (spring Goron Village, the cleared swamp, the moved Deku scrubs), and no longer lists the Southern Swamp music statue when Song of Soaring isn't shuffled.
+
+
+[Previous Nightly](./changelog-nightly-c6d2a9.md)  
+[Next Nightly](./changelog-nightly-b3a4c9.md)

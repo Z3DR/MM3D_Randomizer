@@ -7,3 +7,6 @@
 - Adjust Skulltula Tokens to be always repeatable if the item has been removed from your inventory.
 - Adjust OI glitches for Goron Lullaby check to ensure that the item is still given even if you don't have the Ocarina.
 - Adjust Marine Lab HP check to ensure that the item is still overridden properly given its behaviour.
+
+[Previous Nightly](./changelog-nightly-e8e340.md)  
+[Next Nightly](../../versions/changelog-version-1.5.0.md)

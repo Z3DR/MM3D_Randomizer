@@ -1,4 +1,4 @@
-# Latest Nightly Changes  
+# Nightly B00E39
 
 ## Features
 
@@ -101,3 +101,7 @@
   (mm3dr `8f9f13e` (shopsanity))
 - New ingame options are ready to have generator settings added.
   (mm3dr `34a5e15`)
+
+
+[Previous Nightly](./changelog-nightly-08cefa.md)  
+[Next Nightly](./changelog-nightly-c6d2a9.md)

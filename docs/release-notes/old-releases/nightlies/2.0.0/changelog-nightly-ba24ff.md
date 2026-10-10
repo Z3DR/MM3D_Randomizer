@@ -1,4 +1,4 @@
-# Latest Nightly Changes  
+# Nightly BA24FF
 
 ## Features
 - Excluded Locations Menu is now split into separate areas instead of one big list for ease of use
@@ -11,3 +11,6 @@
 - Fixes Heart Piece message being +1 to current count when obtained from a stray fairy
 - Adjusts text in Starting Inventory Menu for Stray Fairies so they no longer overflow
 - Adjusts text on other parts of Starting Inventory for similar isues issues
+
+[Previous Nightly](./changelog-nightly-f098e2.md)  
+[Next Nightly](./changelog-nightly-08cefa.md)

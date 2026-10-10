@@ -1,4 +1,4 @@
-# Nightly-f098e2
+# Nightly F098E2
 
 ## Features
 - Include a new option for a specific starting amount of stray fairies
@@ -9,3 +9,6 @@
 - Adjust specific end type messages for custom messages.
 - Ensure stray fairy in clock town doesn't give repeatable items unless the item is missing from inventory.\
 - Trade items are no longer removed from inventory when given to NPCs - this is to avoid any logic issues where a trade item may appear on a non-repeatable check.
+
+[Previous Nightly](./changelog-nightly-14a13d.md)  
+[Next Nightly](./changelog-nightly-ba24ff.md)

@@ -20,3 +20,5 @@
 - Adds descriptions for and changes the name of the Sword/Shield/Ocarina settings in the Item = Shuffle Menu to better describe what those settings do
 - Fixes Stone Tower Upright Chest from being the only item in sphere 1
 - Fixes Song of Time is not being placed in the restricted location pool. Thanks @ScAr_wlvrne!
+
+[Next Nightly](./changelog-nightly-807511.md)

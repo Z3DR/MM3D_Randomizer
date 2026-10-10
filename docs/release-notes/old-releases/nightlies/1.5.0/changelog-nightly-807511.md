@@ -18,3 +18,6 @@
 - Leaving the moon without meeting victory requirements (missing SoT or missing required number of masks) will now reset the cycle instead of returning you at the current time. This should fix any issues of giving moon children your masks and not getting them back.
 - Hint text for Giant's Mask had its spelling adjusted.
 - Description for Shuffled Ocarina is now accurate to what it does.
+
+[Previous Nightly](./changelog-nightly-e0ee25.md)  
+[Next Nightly](./changelog-nightly-a4e9c3.md)
