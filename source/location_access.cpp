@@ -409,6 +409,9 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(E_CLOCK_TOWN_TREASURE_CHEST_GAME_GORON, {[] {return GoronMask;}}),
+		LocationAccess(E_CLOCK_TOWN_TREASURE_CHEST_GAME_ZORA, {[] {return ZoraMask;}}),
+		LocationAccess(E_CLOCK_TOWN_TREASURE_CHEST_GAME_DEKU, {[] {return DekuMask;}}),
+		LocationAccess(E_CLOCK_TOWN_TREASURE_CHEST_GAME_HUMAN, {[] {return true;}}),
 	},
 	{
 		//Exits
