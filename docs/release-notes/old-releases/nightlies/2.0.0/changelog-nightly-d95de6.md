@@ -18,3 +18,5 @@
 - Refactor multi-area checks internally so they are easier to maintain (Thanks Nessy!)
 - Add some hardcoded text continues for specific messages to avoid softlocks.
 - Adjust moon child to specifically check for custom messages to avoid having an automatic A button press (fix the hacky fix).
+
+[Next Nightly](./changelog-nightly-14a13d.md)
