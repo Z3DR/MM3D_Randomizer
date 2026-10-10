@@ -50,7 +50,8 @@ void LocationTable_Init() {
  locationTable[E_CLOCK_TOWN_CHEST]                                 = ItemLocation::Chest      (0x6C, 0x0A, true,  "ECT Chest",                                                E_CLOCK_TOWN_CHEST,                             SILVER_RUPEE,                 {Category::cEastClockTown, Category::cChest ,Category::cDayOne, Category::cNoOcarinaStart},                                                                                                       SpoilerCollectionCheckGroup::GROUP_E_CLOCK_TOWN );
  locationTable[E_CLOCK_TOWN_MILK_BAR_CHATEAU]                      = ItemLocation::Base       (0x15, 0x91, true,  "Milk Bar Chateau Buy",                                     E_CLOCK_TOWN_MILK_BAR_CHATEAU,                  CHATEAU_ROMANI_REFILL,        {Category::cEastClockTown, Category::cDayOne, Category::cShop},                                                                                       SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_E_CLOCK_TOWN );
  locationTable[E_CLOCK_TOWN_MILK_BAR_MILK]                         = ItemLocation::Base       (0x15, 0x92, true,  "Milk Bar Milk Buy",                                        E_CLOCK_TOWN_MILK_BAR_MILK,                     MILK,                         {Category::cEastClockTown, Category::cDayOne, Category::cShop},                                                                                       SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_E_CLOCK_TOWN );
- //locationTable[E_CLOCK_TOWN_HONEY_DARLING_ANY_DAY]                 = ItemLocation::Base       (0x11, 0x00, true, "Honey and Darling Any Day",                                 E_CLOCK_TOWN_HONEY_DARLING_ANY_DAY,             PURPLE_RUPEE,                 {Category::cEClockTown,Category::cMinigame},                                                                                                        SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_E_CLOCK_TOWN );
+ locationTable[E_CLOCK_TOWN_HONEY_DARLING_DAY_1]                   = ItemLocation::MiniGame   (0x11, 0x01, false, "ECT Honey and Darling Day 1",                              E_CLOCK_TOWN_HONEY_DARLING_DAY_1,               FISHING_PASS,                 {Category::cEastClockTown, Category::cMinigame, Category::cDayOne, Category::cNoOcarinaStart},                                                        SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_E_CLOCK_TOWN );
+ locationTable[E_CLOCK_TOWN_HONEY_DARLING_DAY_2]                   = ItemLocation::MiniGame   (0x11, 0x02, false, "ECT Honey and Darling Day 2",                              E_CLOCK_TOWN_HONEY_DARLING_DAY_2,               FISHING_PASS,                 {Category::cEastClockTown, Category::cMinigame, Category::cDayTwo, Category::cNoOcarinaStart},                                                        SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_E_CLOCK_TOWN );
  locationTable[E_CLOCK_TOWN_POSTBOX]                               = ItemLocation::Base       (0x6C, 0xBA, false, "ECT Postbox",                                              E_CLOCK_TOWN_POSTBOX,                           PIECE_OF_HEART,               {Category::cEastClockTown, Category::cVanillaHeartPiece,Category::cDayOne, Category::cNoOcarinaStart, Category::cAlternateCheck},                     SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_E_CLOCK_TOWN );
  
  //Goron Village
@@ -823,7 +824,8 @@ std::vector<LocationKey> overworldLocations = {
   E_CLOCK_TOWN_MILK_BAR_CHATEAU,
   E_CLOCK_TOWN_MILK_BAR_MILK,
   GORMAN_TRACK_MYSTERY_MILK_QUEST,
-  //E_CLOCK_TOWN_HONEY_DARLING_ANY_DAY,
+  E_CLOCK_TOWN_HONEY_DARLING_DAY_1,
+  E_CLOCK_TOWN_HONEY_DARLING_DAY_2,
   E_CLOCK_TOWN_TREASURE_CHEST_GAME_HUMAN,
   E_CLOCK_TOWN_TREASURE_CHEST_GAME_ZORA,
   E_CLOCK_TOWN_TREASURE_CHEST_GAME_DEKU,

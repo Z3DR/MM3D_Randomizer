@@ -1201,12 +1201,18 @@ void HintTable_Init() {
         },  //clear
             Text{"the #Gorman Brothers cheer up their brother# with", "le #\"lait guérit-tout\" des frères Gorman# est en fait", "Los hermanos Gorman animan a su hermano con", "die #Gorman-Brüder muntern ihren Bruder auf# mit", "", "le #\"lait de cuite\" des frères Gorman# est en fait", ""}
     );
-    //hintTable[E_CLOCK_TOWN_HONEY_DARLING_ANY_DAY] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"**ENGLISH**", "un #jeu d'amants# offre quotidiennement", "un juego de amantes recompensa con", "ein #tägliches Spiel der Verliebten# entlohnt"}
-    //    },  //clear
-    //        Text{"#Honey and Darling's Shop's daily reward# is", "le #prix quotidien de l’arcade des amoureux# est", "la recompensa diaria en el juego de Honey y Darling es", "die tägliche Belohnung vom #Spielecenter Liebling und Schätzchen# ist", "", "le #prix quotidien du manège des amoureux# est", ""}
-    //);
+    hintTable[E_CLOCK_TOWN_HONEY_DARLING_DAY_1] = HintText::Sometimes({
+            //obscure
+            Text{"a #lovers game on the first day# rewards", "un #jeu d'amants# offre quotidiennement", "un juego de amantes recompensa con", "ein #tägliches Spiel der Verliebten# entlohnt"}
+        },  //clear
+            Text{"#Honey and Darling's Shop's first-day reward# is", "le #prix quotidien de l’arcade des amoureux# est", "la recompensa diaria en el juego de Honey y Darling es", "die tägliche Belohnung vom #Spielecenter Liebling und Schätzchen# ist", "", "le #prix quotidien du manège des amoureux# est", ""}
+    );
+    hintTable[E_CLOCK_TOWN_HONEY_DARLING_DAY_2] = HintText::Sometimes({
+            //obscure
+            Text{"a #lovers game on the second day# rewards", "un #jeu d'amants# offre quotidiennement", "un juego de amantes recompensa con", "ein #tägliches Spiel der Verliebten# entlohnt"}
+        },  //clear
+            Text{"#Honey and Darling's Shop's second-day reward# is", "le #prix quotidien de l’arcade des amoureux# est", "la recompensa diaria en el juego de Honey y Darling es", "die tägliche Belohnung vom #Spielecenter Liebling und Schätzchen# ist", "", "le #prix quotidien du manège des amoureux# est", ""}
+    );
     hintTable[E_CLOCK_TOWN_TREASURE_CHEST_GAME_HUMAN] = HintText::Sometimes({
             //obscure
             Text{"a #20-rupee treasure game# rewards", "une #partie à 20 rubis# offre", "un juego del tesoro recompensa con", "ein #Menschenschatzspiel# entlohnt"}
