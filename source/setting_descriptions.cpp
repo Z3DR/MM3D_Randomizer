@@ -288,8 +288,11 @@ string_view songsAllLocations         = "Songs can appear in any location.";    
 string_view songsVanilla              = "Songs will not be randomized";                    // 
 string_view shuffleSoaringVanilla     = "Sets Song of Soaring to its Vanilla Location";    //
 string_view shuffleSoaringRandom      = "Randomizes Song of Soaring";                      //
-string_view songTimeVanilla           = "Sets Song of Time to its Vanilla Location";       //
-string_view songTimeRandom            = "Randomizes Song of Time";                         //
+string_view songTimeVanilla           = "Start With Song of Time. \n"                      //
+                                        "The Song of Time Location not be randomized.";    //
+string_view songTimeRandom            = "Shuffles the Song of Time into the item pool.\n"  //
+                                        "This will require finding the song before being\n"//
+                                        "able to restart the cycle";                       //
 /*------------------------------                                                           //
 |     GOSSIP STONE HINTS       |                                                           //
 ------------------------------*/                                                           //

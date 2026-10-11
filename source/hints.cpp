@@ -948,8 +948,8 @@ static Text BuildDoorText(const ItemKey itemKey) {
 void CreateClockTowerDoorHints() {
   // Determine which hint to display first
   u16 clockDoorFirstHint = 0x8002;
-  if (StartingOcarina.Value<u8>() == 0) clockDoorFirstHint = 0x8000;
-  else if (ShuffleSongOfTime) clockDoorFirstHint = 0x8001;
+  if (StartingOcarina.Value<u8>() == u8(0)) {clockDoorFirstHint = 0x8000;}
+  else if (StartingSongOfTime.Value<u8>() == u8(0)) {clockDoorFirstHint = 0x8001;}
 
   // Create hint text
   Text ocarinaHint = Text{
@@ -1098,7 +1098,7 @@ void CreateClockTowerDoorHints() {
       // "**ITALIAN**",
     },
     {QM_RED, QM_RED, QM_RED, QM_MAGENTA}, {}, {}, 0x0, false, false, MESSAGE_END_NORMAL);
-  CustomMessages::CreateMessageFromTextObject(0x8000, ShuffleSongOfTime ? 0x8001 : 0x8002, 0x3FFFFFFF, 0x000000, ocarinaHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false, MESSAGE_END_PSEUDO);
+  CustomMessages::CreateMessageFromTextObject(0x8000, static_cast<bool>(StartingSongOfTime.Value<u8>())  ? 0x8002 : 0x8001, 0x3FFFFFFF, 0x000000, ocarinaHint, {QM_BLUE, QM_RED}, {}, {}, 0x083E, false, false, MESSAGE_END_PSEUDO);
   CustomMessages::CreateMessageFromTextObject(0x8001, 0x8002, 0x3FFFFFFF, 0x000000, songTimeHint, {QM_BLUE, QM_RED}, {}, {}, (clockDoorFirstHint == 0x8001) ? 0x083E : 0x0, false, false, MESSAGE_END_PSEUDO);
   CustomMessages::CreateMessageFromTextObject(0x8002, 0x8003, 0x3FFFFFFF, 0xFF0000, remainsPreHint, {QM_RED, QM_RED}, {}, {}, (clockDoorFirstHint == 0x8002) ? 0x083E : 0x0, false, false, MESSAGE_END_PSEUDO);
   CustomMessages::CreateMessageFromTextObject(0x8003, 0x8004, 0x3FFFFFFF, 0x5D0000, odolwaHint, {QM_GREEN, QM_GREEN, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_PSEUDO);

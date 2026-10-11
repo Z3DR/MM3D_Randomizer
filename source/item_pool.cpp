@@ -857,7 +857,7 @@ void GenerateItemPool() {
 	if (ShuffleSongs.Value<u8>() != u8(0)) {
 		AddItemsToPool(ItemPool, songList);
 		//If Song of Time is shuffled add it to the pool
-		if (ShuffleSongOfTime) {
+		if (StartingSongOfTime.Value<u8>() == u8(0)) {
 			AddItemToMainPool(SONG_OF_TIME);
 		}
 		else {
