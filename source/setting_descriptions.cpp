@@ -124,8 +124,9 @@ string_view shuffleFierceDeityDesc    = "Shuffles Fierce Deity Mask";           
 string_view shuffleMoonItemsDesc      = "Shuffles Items from the Moon into the pool\n"     //
                                         "Includes 4 Pieces of Heart, and 2 junk items";    //
 string_view extraMinigamesDesc        = "Adds Extra Minigame checks to the pool\n"         //
-                                        "Includes Honey and Darling Days 1 and 2,\n"       // /*and Deku Playground*/
-                                        "and all forms in Treasure Chest Shop.";           //
+                                        "Includes Honey and Darling , Deku Playground\n"   //
+                                        "Days 1 and 2, and all forms in Treasure Chest\n"  //
+                                        "Shop.";                                           //
 /*------------------------------                                                           //
 |      MAPS AND COMPASSES      |                                                           //
 ------------------------------*/                                                           //

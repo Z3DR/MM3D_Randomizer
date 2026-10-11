@@ -130,7 +130,8 @@ void LocationTable_Init() {
  locationTable[N_CLOCK_TOWN_TREE]                                  = ItemLocation::Collectable(0x6E, 0x00, false, "NCT Tree",                                                 N_CLOCK_TOWN_TREE,                              PIECE_OF_HEART,               {Category::cNorthClockTown, Category::cVanillaHeartPiece,Category::cDayOne, Category::cNoOcarinaStart},                                                                                           SpoilerCollectionCheckGroup::GROUP_N_CLOCK_TOWN );
  locationTable[N_CLOCK_TOWN_OLD_LADY]                              = ItemLocation::Base       (0x6E, 0x8D, false, "NCT Old Lady",                                             N_CLOCK_TOWN_OLD_LADY,                          BLAST_MASK,                   {Category::cNorthClockTown, Category::cVanillaMask,Category::cDayOne, Category::cNoOcarinaStart},                                                     SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_N_CLOCK_TOWN );
  locationTable[N_CLOCK_TOWN_GREAT_FAIRY_HUMAN]                     = ItemLocation::Base       (0x26, 0x86, false, "NCT Great Fairy (Human)",                                  N_CLOCK_TOWN_GREAT_FAIRY_HUMAN,                 GREAT_FAIRYS_MASK,            {Category::cNorthClockTown, Category::cFairyFountain, Category::cVanillaMask,Category::cDayOne, Category::cNoOcarinaStart},                           SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_N_CLOCK_TOWN );
- //locationTable[N_CLOCK_TOWN_DEKU_PLAYGROUND_ADAY]                  = ItemLocation::Base       (0x1E, 0x00, true,  "NCT Deku Playground Any Day Reward",                       N_CLOCK_TOWN_DEKU_PLAYGROUND_ADAY,              PURPLE_RUPEE,                 {Category::cNClockTown, Category::cMinigame},                                                                                                       SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_N_CLOCK_TOWN );
+ locationTable[N_CLOCK_TOWN_DEKU_PLAYGROUND_DAY_1]                 = ItemLocation::MiniGame   (0x1E, 0x01, false, "NCT Deku Playground Day 1 Reward",                         N_CLOCK_TOWN_DEKU_PLAYGROUND_DAY_1,             FISHING_PASS,                 {Category::cNorthClockTown, Category::cMinigame, Category::cDayOne, Category::cNoOcarinaStart},                                                       SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_N_CLOCK_TOWN );
+ locationTable[N_CLOCK_TOWN_DEKU_PLAYGROUND_DAY_2]                 = ItemLocation::MiniGame   (0x1E, 0x02, false, "NCT Deku Playground Day 2 Reward",                         N_CLOCK_TOWN_DEKU_PLAYGROUND_DAY_2,             FISHING_PASS,                 {Category::cNorthClockTown, Category::cMinigame, Category::cDayTwo, Category::cNoOcarinaStart},                                                       SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_N_CLOCK_TOWN );
  locationTable[N_CLOCK_TOWN_POSTBOX]                               = ItemLocation::Base       (0x6E, 0xBA, false, "NCT Postbox",                                              N_CLOCK_TOWN_POSTBOX,                           PIECE_OF_HEART,               {Category::cNorthClockTown, Category::cVanillaHeartPiece,Category::cDayOne, Category::cNoOcarinaStart, Category::cAlternateCheck},                    SpoilerCollectionCheck::ItemGetInf(0),      SpoilerCollectionCheckGroup::GROUP_N_CLOCK_TOWN );
  
  //Path to Snowhead
@@ -913,7 +914,8 @@ std::vector<LocationKey> overworldLocations = {
   TINGLE_N_CLOCK_TOWN_CT,
   TINGLE_N_CLOCK_TOWN_WF,
   N_CLOCK_TOWN_POSTBOX,
-  //N_CLOCK_TOWN_DEKU_PLAYGROUND_ADAY,
+  N_CLOCK_TOWN_DEKU_PLAYGROUND_DAY_1,
+  N_CLOCK_TOWN_DEKU_PLAYGROUND_DAY_2,
 //Road to Snowhead
   ROAD_TO_SNOWHEAD_PILLAR,
   ROAD_TO_SNOWHEAD_GROTTO_CHEST,
