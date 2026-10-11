@@ -270,6 +270,8 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(N_CLOCK_TOWN_DEKU_PLAYGROUND_3DAYS, {[] {return DekuMask;}}),
+		LocationAccess(N_CLOCK_TOWN_DEKU_PLAYGROUND_DAY_1, {[] {return DekuMask;}}),
+		LocationAccess(N_CLOCK_TOWN_DEKU_PLAYGROUND_DAY_2, {[] {return DekuMask;}}),
 	},
 	{
 		//Exits

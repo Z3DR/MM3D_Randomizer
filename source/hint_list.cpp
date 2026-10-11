@@ -1677,12 +1677,18 @@ void HintTable_Init() {
         },  //clear
             Text{"the #postbox# contains", "la #boîte aux lettres# contient", "el buzón contiene", "der #Briefkasten# enthält"}
     );
-    //hintTable[N_CLOCK_TOWN_DEKU_PLAYGROUND_ADAY] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"a #game for scrubs' daily reward# is", "un #jeu pour pestes# offre quotidiennement", "un juego para matorrales contiene", "ein #Spiel für Laubkerle# entlohnt"}
-    //    },  //clear
-    //        Text{"the #Deku Playground's daily reward# is", "la #récompense quotidienne de l'aire de jeu des pestes mojo# est", "la recompensa diaria del campo de juegos Deku es", "die tägliche #Belohnung auf dem Deku-Spielplatz# ist"}
-    //);
+    hintTable[N_CLOCK_TOWN_DEKU_PLAYGROUND_DAY_1] = HintText::Sometimes({
+            //obscure
+            Text{"a #game for scrubs on the first day# rewards", "un #jeu pour pestes# offre quotidiennement", "un juego para matorrales contiene", "ein #Spiel für Laubkerle# entlohnt"}
+        },  //clear
+            Text{"the #Deku Playground's first-day reward# is", "la #récompense quotidienne de l'aire de jeu des pestes mojo# est", "la recompensa diaria del campo de juegos Deku es", "die tägliche #Belohnung auf dem Deku-Spielplatz# ist"}
+    );
+    hintTable[N_CLOCK_TOWN_DEKU_PLAYGROUND_DAY_2] = HintText::Sometimes({
+            //obscure
+            Text{"a #game for scrubs on the second day# rewards", "un #jeu pour pestes# offre quotidiennement", "un juego para matorrales contiene", "ein #Spiel für Laubkerle# entlohnt"}
+        },  //clear
+            Text{"the #Deku Playground's second-day reward# is", "la #récompense quotidienne de l'aire de jeu des pestes mojo# est", "la recompensa diaria del campo de juegos Deku es", "die tägliche #Belohnung auf dem Deku-Spielplatz# ist"}
+    );
 //Road to Snowhead
     hintTable[ROAD_TO_SNOWHEAD_PILLAR] = HintText::Sometimes({
             //obscure
