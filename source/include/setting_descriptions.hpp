@@ -210,6 +210,7 @@ extern string_view shuffleMainInventoryDesc;
 extern string_view shuffleTransformationDesc;
 extern string_view shuffleFierceDeityDesc;
 extern string_view shuffleMoonItemsDesc;
+extern string_view extraMinigamesDesc;
 extern string_view shuffleBombersNotebookDesc;
 extern string_view ocarinaDiveDesc;
 extern string_view fastZoraSwimDesc;

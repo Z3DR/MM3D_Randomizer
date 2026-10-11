@@ -38,7 +38,8 @@ enum class ItemLocationType {
     OtherHint,
     Misc,
     Cow,
-    Shop
+    Shop,
+    MiniGame
 };
 
 class SpoilerCollectionCheck {
@@ -141,6 +142,7 @@ public:
         else if (type == ItemLocationType::StrayFairy) {key.type = ItemOverride_Type::OVR_STRAY_FAIRY;}
         else if (type == ItemLocationType::Cow) {key.type = ItemOverride_Type::OVR_COW;}
         else if (type == ItemLocationType::Shop) {key.type = ItemOverride_Type::OVR_SHOP;}
+        else if (type == ItemLocationType::MiniGame) {key.type = ItemOverride_Type::OVR_MINI_GAME;}
         //else if (type == ItemLocationType::HintStone) {key.type = ItemOverride_Type::OVR_HINT;}
         //else if (type == ItemLocationType::OtherHint) {key.type = ItemOverride_Type::OVR_OTHER_HINT;}
         //key.type = type; //TODO make sure these match up
@@ -182,6 +184,7 @@ public:
         else if (type == ItemLocationType::StrayFairy) {ovrtype = ItemOverride_Type::OVR_STRAY_FAIRY;}
         else if (type == ItemLocationType::Cow) {ovrtype = ItemOverride_Type::OVR_COW;}
         else if (type == ItemLocationType::Shop) {ovrtype = ItemOverride_Type::OVR_SHOP;}
+        else if (type == ItemLocationType::MiniGame) {ovrtype = ItemOverride_Type::OVR_MINI_GAME;}
 
         return ovrtype;
     }
@@ -411,6 +414,11 @@ public:
 
     static auto Shop(u8 scene, u8 flag, bool repeatable, std::string&& name, const HintKey hintKey, const ItemKey vanillaItem, std::vector<Category>&& categories, SpoilerCollectionCheckGroup collectionCheckGroup = SpoilerCollectionCheckGroup::GROUP_NO_GROUP) {
         return ItemLocation{ ItemLocationType::Shop, scene, flag, repeatable, std::move(name), hintKey, vanillaItem, std::move(categories), 0 , SpoilerCollectionCheck(SpoilerCollectionCheckType::SPOILER_CHK_SHOP,scene, flag), collectionCheckGroup};
+    }
+
+    // Minigame rewards that the patch keys by something other than the get-item, e.g. Honey and Darling's day.
+    static auto MiniGame(u8 scene, u8 flag, bool repeatable, std::string&& name, const HintKey hintKey, const ItemKey vanillaItem, std::vector<Category>&& categories, SpoilerCollectionCheck collectionCheck = SpoilerCollectionCheck(), SpoilerCollectionCheckGroup collectionCheckGroup = SpoilerCollectionCheckGroup::GROUP_NO_GROUP) {
+        return ItemLocation{ ItemLocationType::MiniGame, scene, flag, repeatable, std::move(name), hintKey, vanillaItem, std::move(categories), 0 , collectionCheck, collectionCheckGroup};
     }
 
     void ResetVariables() {

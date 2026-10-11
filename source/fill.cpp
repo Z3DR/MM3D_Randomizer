@@ -828,7 +828,7 @@ static void EnsureOcarinaAndSongOfTimeObtainable() {
 
                 // Check if the requirements for the Ocarina and Song of Time are met.
                 bool needsOcarina = (StartingOcarina.Value<u8>() == 0 && !ocarinaObtainable);
-                bool needsSoT     = (ShuffleSongOfTime && !songOfTimeObtainable);
+                bool needsSoT     = (StartingSongOfTime.Value<u8>() == 0 && !songOfTimeObtainable);
 
                 CitraPrint("Checking if Ocarina and Song of Time are reachable with current placements...");
                 CitraPrint(needsOcarina ? "Ocarina is not reachable." : "Ocarina is reachable.");
@@ -1062,7 +1062,7 @@ int Fill() {
         std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
         //If Shuffled in Song Locations restrict location pool to only song locations
         //If Song of Time is shuffled do that first with a restricted location pool to prevent softlocks
-        if (ShuffleSongOfTime) {
+        if (StartingSongOfTime.Value<u8>() == 0) {
             std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
             //Pull Song of Time from songs pool instead of main pool so we actually get it placed first
             std::vector<ItemKey> SoTItem = FilterAndEraseFromPool(songs, [](const ItemKey i) { return ItemTable(i).GetHintKey() == SONG_OF_TIME; });
@@ -1084,7 +1084,7 @@ int Fill() {
         // If they are not reachable with currently placed items (Rewards, Keys, etc.),
         // we place additional advancement items from the pool to open paths until they are reachable.
         // but only if the logic setting is not set to "None" (No Logic).
-        if (((StartingOcarina.Value<u8>() == 0) || ShuffleSongOfTime) && Settings::Logic.IsNot(LogicSetting::LOGIC_NONE)) {
+        if (((StartingOcarina.Value<u8>() == 0) || StartingSongOfTime.Value<u8>() == 0) && Settings::Logic.IsNot(LogicSetting::LOGIC_NONE)) {
             EnsureOcarinaAndSongOfTimeObtainable();
         }
         if (placementFailure) {

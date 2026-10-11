@@ -123,6 +123,9 @@ string_view shuffleTransformationDesc = "Shuffles Deku, Goron, and Zora Masks"; 
 string_view shuffleFierceDeityDesc    = "Shuffles Fierce Deity Mask";                      //
 string_view shuffleMoonItemsDesc      = "Shuffles Items from the Moon into the pool\n"     //
                                         "Includes 4 Pieces of Heart, and 2 junk items";    //
+string_view extraMinigamesDesc        = "Adds Extra Minigame checks to the pool\n"         //
+                                        "Includes Honey and Darling Days 1 and 2,\n"       // /*and Deku Playground*/
+                                        "and all forms in Treasure Chest Shop.";           //
 /*------------------------------                                                           //
 |      MAPS AND COMPASSES      |                                                           //
 ------------------------------*/                                                           //
@@ -285,8 +288,11 @@ string_view songsAllLocations         = "Songs can appear in any location.";    
 string_view songsVanilla              = "Songs will not be randomized";                    // 
 string_view shuffleSoaringVanilla     = "Sets Song of Soaring to its Vanilla Location";    //
 string_view shuffleSoaringRandom      = "Randomizes Song of Soaring";                      //
-string_view songTimeVanilla           = "Sets Song of Time to its Vanilla Location";       //
-string_view songTimeRandom            = "Randomizes Song of Time";                         //
+string_view songTimeVanilla           = "Start With Song of Time. \n"                      //
+                                        "The Song of Time Location not be randomized.";    //
+string_view songTimeRandom            = "Shuffles the Song of Time into the item pool.\n"  //
+                                        "This will require finding the song before being\n"//
+                                        "able to restart the cycle";                       //
 /*------------------------------                                                           //
 |     GOSSIP STONE HINTS       |                                                           //
 ------------------------------*/                                                           //

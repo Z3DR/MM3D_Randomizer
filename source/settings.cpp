@@ -143,7 +143,7 @@ namespace Settings {
   Option StartingElegyOfEmptiness  = Option::U8("Elegy of Emptiness",       { "Off",             "On" },                                                         { "" });
   Option StartingSongOfHealing     = Option::U8("Song of Healing",          { "Off",             "On" },                                                         { "" }, OptionCategory::Setting);
   Option StartingSongOfSoaring     = Option::U8("Song of Soaring",          { "Off",             "On" },                                                         { "" });
-  Option StartingSongOfTime        = Option::U8("Song of Time",             { "Off",             "On" },                                                         { "" }, OptionCategory::Setting, 1);
+  Option StartingSongOfTime        = Option::U8("Start With Song of Time",  { "Off",             "On" },                                                         { songTimeRandom, songTimeVanilla }, OptionCategory::Setting, 1);
 //Option StartingGoronIntro        = Option::U8("Goron Lullaby Intro",      { "Off",             "Lullaby Intro" },                                              { "" });
   Option StartingUpgradesToggle    = Option::U8("Equipment & Upgrades",     { "All Off",          "All On",           "Choose" },                                { "" });
   Option StartingKokiriSword       = Option::U8("Starting Sword",           { "Kokiri Sword",     "Razor Sword", "Gilded Sword", "None" },                       { startingSwordKokiriDesc, startingSwordRazorDesc, startingSwordGildedDesc, startingSwordNoneDesc }, OptionCategory::Setting, (u8)StartingSwordSetting::STARTINGSWORD_KOKIRI);//1U = StartingSwordSetting::STARTINGSWORD_KOKIRI
@@ -257,7 +257,7 @@ namespace Settings {
   };
 
   std::vector<Option*> startingInventorySongs = {
-    &StartingSongOfTime,
+    //&StartingSongOfTime,
     &StartingOathToOrder,
     &StartingEponasSong,
     &StartingSongOfStorms,
@@ -391,6 +391,7 @@ namespace Settings {
   Option ShuffleBombersNotebook = Option::Bool("Shuffle Notebook",      {"Off", "On"},                                       {shuffleBombersNotebookDesc});
   Option ShuffleMoonItems       = Option::Bool("Shuffle Moon Items",    {"Off", "On"},                                       {shuffleMoonItemsDesc});
   Option ShuffleFierceDeity     = Option::Bool("Shuffle Fierce Deity",  {"Off", "On"},                                       {shuffleFierceDeityDesc});
+  Option ExtraMinigames         = Option::Bool("Extra Minigames",       {"Off", "On"},                                       {extraMinigamesDesc});
 
   //New Menus - Splitting options for smaller menus
   std::vector<Option*> shuffleMajorItems = {
@@ -403,7 +404,7 @@ namespace Settings {
     &ShufflePiecesOfHeart,
     &ShuffleSongs,
     &ShuffleSoaring,
-    &ShuffleSongOfTime,
+    &StartingSongOfTime,
     &Tokensanity,
     &Shopsanity,
     &ShopsanityPrices,
@@ -418,6 +419,7 @@ namespace Settings {
     &ShuffleCows,
     &ShuffleMagicBeans,
     &Scrubsanity,
+    &ExtraMinigames,
     &ShuffleMoonItems,
     &ShuffleFierceDeity,
   };
@@ -1379,7 +1381,7 @@ namespace Settings {
       if (!ShuffleSoaring) {
         IncludeAndHide({SOUTHERN_SWAMP_MUSIC_STATUE});
       }
-      if (!ShuffleSongOfTime) {
+      if (StartingSongOfTime.Value<u8>() == 0) {
         IncludeAndHide({CLOCK_TOWER_SONG_OF_TIME});
       }
      //Force Include Dungeon Rewards

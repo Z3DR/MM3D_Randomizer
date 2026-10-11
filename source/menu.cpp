@@ -976,7 +976,7 @@ void DrawOptionList() {
 
         // 3. Pill Switch with updated toggle positioning
         if (value == "On" || value == "Off" || value == "Include" || value == "Exclude") {
-            bool isOn = (value == "On" || value == "Include");
+            bool isOn = (value == "On" || value == "Exclude");
             DrawToggle(rowX + rowW - 38.0f, y + 1.0f, isOn);
         } else {
             if (isSel && !locked) {

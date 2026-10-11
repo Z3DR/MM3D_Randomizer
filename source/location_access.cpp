@@ -398,6 +398,8 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(E_CLOCK_TOWN_HONEY_DARLING_3DAYS, {[] {return Bow && AnyBombBag;}}),//Deku does not replace bow
+		LocationAccess(E_CLOCK_TOWN_HONEY_DARLING_DAY_1, {[] {return AnyBombBag;}}),
+		LocationAccess(E_CLOCK_TOWN_HONEY_DARLING_DAY_2, {[] {return AnyBombBag;}}),
 	},
 	{
 		//Exits
