@@ -286,6 +286,10 @@ void SpoilerLog_WriteIngameData() {
         if (Location(key)->IsCategory(Category::cAlternateCheck) && !(ItemTable(Location(key)->GetPlacedItemKey()).IsPlaythrough())) {
           continue;
         }
+        // Hide WCT Powder Keg Goron, it's not randomized for consistency 
+        if (key == W_CLOCK_TOWN_BOMB_SHOP_GORON) {
+          continue;
+        }
             
             
 
