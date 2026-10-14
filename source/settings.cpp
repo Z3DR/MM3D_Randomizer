@@ -76,8 +76,8 @@ namespace Settings {
   };
 
   //Game Settings
-  Option GenerateSpoilerLog   = Option::Bool("Generate Spoiler Log",   { "Off", "On" },                                                         { genSpoilerLogDesc },                                                                        OptionCategory::Setting, 1); // On
-  Option IngameSpoilers       = Option::Bool("Ingame Spoilers",        { "Hide", "Show" },                                                      { ingameSpoilersHideDesc, ingameSpoilersShowDesc });
+  Option SpoilerLog           = Option::U8  ("Spoiler Log",            { "Generate + Hidden", "Generate + Shown", "No Log + Hidden", "No Log + Shown" },
+                                                                                                                                                { spoilerLogGenerateHideDesc, spoilerLogGenerateShowDesc, spoilerLogNoLogHideDesc, spoilerLogNoLogShowDesc });
   Option RegionSelect         = Option::Bool("Game Region",            { "NA", "EU" },                                                          { NARegionDesc, EURegionDesc });
   Option PlayOption           = Option::U8  ("Console/Emulator",       { "Console", "Emulator" },                                               { "How will you Play?" });
   Option LanguageSelect       = Option::U8("  Language",               {"", "", "English", "Francais", "Espanol", "Deutsch", "Italiano", ""},   {LanguageDesc});
@@ -85,8 +85,7 @@ namespace Settings {
   std::vector<Option *> gameOptions = {
     &PlayOption,
     &Version,
-    &GenerateSpoilerLog,
-    &IngameSpoilers,
+    &SpoilerLog,
     &RegionSelect,
     &LanguageSelect,
   };
@@ -843,7 +842,7 @@ namespace Settings {
     ctx.chestAnimations      = (ChestAnimations) ? 1 : 0;
     ctx.chestSize            = (ChestSize) ? 1 : 0;
     //ctx.changeOverworldItems = (ChangeOverworldItems) ? 1 : 0;
-    ctx.ingameSpoilers = (IngameSpoilers) ? 1 : 0;
+    ctx.ingameSpoilers = ShowIngameSpoilers() ? 1 : 0;
     //ctx.menuOpeningButton = MenuOpeningButton.Value<u8>();
     
     ctx.blastMaskCooldown = BlastMaskCooldown.Value<u8>();
@@ -889,7 +888,7 @@ namespace Settings {
     ctx.compassesShowWotH = (CompassShowWoTH) ? 1 : 0;
     ctx.skipBombersMinigame = (SkipBombersMinigame) ? 1 : 0;
     
-    ctx.generateSpoilerLog = (GenerateSpoilerLog) ? 1 : 0;
+    ctx.generateSpoilerLog = GenerateSpoilerLogFile() ? 1 : 0;
   
     
 
@@ -1975,6 +1974,16 @@ namespace Settings {
     }
   }
   
+  bool GenerateSpoilerLogFile() {
+    return SpoilerLog.Is((u8)SpoilerLogSetting::SPOILERLOG_GENERATE_HIDE) ||
+           SpoilerLog.Is((u8)SpoilerLogSetting::SPOILERLOG_GENERATE_SHOW);
+  }
+
+  bool ShowIngameSpoilers() {
+    return SpoilerLog.Is((u8)SpoilerLogSetting::SPOILERLOG_GENERATE_SHOW) ||
+           SpoilerLog.Is((u8)SpoilerLogSetting::SPOILERLOG_NO_LOG_SHOW);
+  }
+
   //If this is an option menu, return th options
   //Else, recursively call each sub menu of this sub menu
   const std::vector<Menu*> GetMenusRecursive(Menu* menu) {

@@ -59,7 +59,10 @@ namespace Playthrough {
 
       GenerateHash();
 
-      if (Settings::GenerateSpoilerLog) {
+      // The in-game spoiler pages need this even when no log file is written. It has to run before
+      // SpoilerLog_Write, which clears the playthrough once the file is out.
+      SpoilerLog_WriteIngameData();
+      if (Settings::GenerateSpoilerLogFile()) {
         //write logs
         printf("\x1b[12;10HWriting Spoiler Log...");
         if (SpoilerLog_Write()) {
