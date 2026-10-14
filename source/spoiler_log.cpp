@@ -169,7 +169,8 @@ static auto GetPlacementLogPath() {
   return GetGeneralPath() + "-placementlog.xml";
 }
 
-static void WriteIngameSpoilerLog() {
+
+void SpoilerLog_WriteIngameData() {
     u16 spoilerTotalItems       = 0;
     u16 spoilerItemIndex        = 0;
     u32 spoilerStringOffset     = 0;
@@ -359,7 +360,6 @@ static void WriteIngameSpoilerLog() {
     }
     spoilerData.ItemLocationsCount = spoilerTotalItems;
 
-    if (Settings::IngameSpoilers) {
         // Write playthrough data to in-game spoiler log
         if (!spoilerOutOfSpace) {
             // Locations hidden from the item list above (vanilla tokens and stray fairies, alternate
@@ -397,7 +397,6 @@ static void WriteIngameSpoilerLog() {
         if (spoilerOutOfSpace) {
             printf("%sError!%s ", YELLOW, WHITE);
         }
-    }
 }
 
     // Writes the location to the specified node.
@@ -736,8 +735,6 @@ static void WriteAllLocations(tinyxml2::XMLDocument& spoilerLog, const bool coll
 }
 
 bool SpoilerLog_Write() {
-  WriteIngameSpoilerLog();
-
   auto spoilerLog = tinyxml2::XMLDocument(false);
   spoilerLog.InsertEndChild(spoilerLog.NewDeclaration());
   spoilerLog.InsertEndChild(spoilerLog.NewDeclaration("xml-stylesheet href=\"spoiler-log.css\""));

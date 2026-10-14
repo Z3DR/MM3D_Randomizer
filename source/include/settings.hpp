@@ -298,7 +298,15 @@ namespace Settings {
   //Logic Sttings
   extern Option Logic;
   extern Option LocationsReachable;
-  extern Option GenerateSpoilerLog;
+  extern Option SpoilerLog;
+  enum class SpoilerLogSetting : u8 {
+    SPOILERLOG_GENERATE_HIDE,
+    SPOILERLOG_GENERATE_SHOW,
+    SPOILERLOG_NO_LOG_HIDE,
+    SPOILERLOG_NO_LOG_SHOW,
+  };
+  bool GenerateSpoilerLogFile();
+  bool ShowIngameSpoilers();
   extern std::vector<Option*> logicOptions;
   extern Option LogicTrick;
  
@@ -466,7 +474,6 @@ namespace Settings {
   extern Option ChestAnimations;
   extern Option ChestSize;
   extern Option ChangeOverworldItems;
-  extern Option IngameSpoilers;
   extern Option RegionSelect;
   extern Option LanguageSelect;
   extern Option MenuOpeningButton;

@@ -14,6 +14,7 @@ void InitLogDirectories(FS_Archive sdmcArchive);
 void GenerateHash();
 const RandomizerHash& GetRandomizerHash();
 
+void SpoilerLog_WriteIngameData();
 bool SpoilerLog_Write();
 const rnd::SpoilerData& GetSpoilerData();
 

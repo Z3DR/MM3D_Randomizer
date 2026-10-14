@@ -328,13 +328,22 @@ string_view changeOverworldItemsDesc  = "**OPTION CURRENTLY WIP**\n"            
                                         "to match the contents of the randomized item.\n"  //
                                         "Items retain original appearance when set to off";//
 /*------------------------------                                                           //
-|        INGAME SPOILERS       |                                                           //
+|          SPOILER LOG         |                                                           //
 ------------------------------*/                                                           //
-string_view ingameSpoilersShowDesc    = "Every spoiler is shown.";                         //
-string_view ingameSpoilersHideDesc    = "Hides the spheres page and only shows a\n"        //
-                                        "location's item after it has been found.";        //
-                                                                                           //
-string_view genSpoilerLogDesc         = "Choose to Generate a Spoiler Log";                //
+string_view spoilerLogGenerateHideDesc = "Writes the spoiler log to the SD card. In game,\n"//
+                                        "the spheres page is hidden and a location's\n"    //
+                                        "item only shows once it has been found.\n"        //
+                                        "Switch with Spoilers in the in-game Options.";    //
+string_view spoilerLogGenerateShowDesc = "Writes the spoiler log to the SD card. In game,\n"//
+                                        "every item and the spheres page are shown.\n"     //
+                                        "Switch with Spoilers in the in-game Options.";    //
+string_view spoilerLogNoLogHideDesc   = "No spoiler log file is written. In game, the\n"   //
+                                        "spheres page is hidden and a location's item\n"   //
+                                        "only shows once it has been found.\n"             //
+                                        "Switch with Spoilers in the in-game Options.";    //
+string_view spoilerLogNoLogShowDesc   = "No spoiler log file is written. In game, every\n" //
+                                        "item and the spheres page are shown.\n"           //
+                                        "Switch with Spoilers in the in-game Options.";    //
 string_view compassShowWotHDesc       = "Getting a Dungeon's Compass will show if the\n"   //
                                         "Dungeon is WotH";                                 //
 /*------------------------------                                                           //

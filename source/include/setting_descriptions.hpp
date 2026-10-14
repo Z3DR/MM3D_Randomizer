@@ -78,9 +78,10 @@ extern string_view veryStrongHintsDesc;
 
 extern string_view changeOverworldItemsDesc;
 
-extern string_view ingameSpoilersShowDesc;
-extern string_view ingameSpoilersHideDesc;
-extern string_view genSpoilerLogDesc;
+extern string_view spoilerLogGenerateHideDesc;
+extern string_view spoilerLogGenerateShowDesc;
+extern string_view spoilerLogNoLogHideDesc;
+extern string_view spoilerLogNoLogShowDesc;
 
 extern string_view menuButtonDesc;
 
