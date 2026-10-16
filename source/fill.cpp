@@ -24,7 +24,7 @@ using namespace Logic;
 using namespace Settings;
 
 static bool placementFailure = false;
-static bool NoRepeatOnTokens = false;
+static bool MoreItemsThanLocations = false;
 static int retries = 0;
 
 extern bool ocarinaObtainable;
@@ -54,25 +54,6 @@ static void RemoveStartingItemsFromPool() {
     }
 }
 
-
-//This function propigates time of day access through entrances
-/*
-static bool UpdateToDAccess(Entrance* entrance) {
-
-    bool ageTimePropigated = false;
-
-    Area* parent = entrance->GetParentRegion();
-    //PlacementLog_Msg("\nparent = ");
-    //PlacementLog_Msg(parent->regionName+"\n");
-    Area* connection = entrance->GetConnectedRegion();
-    //PlacementLog_Msg("\nconnection = ");
-    //PlacementLog_Msg(connection->regionName+"\n");
-    if (!connection && parent->HereCheck() && entrance->ConditionsMet()){
-        ageTimePropigated = true;
-    }
-
-    return ageTimePropigated;
-}*/
 std::vector<LocationKey> GetEmptyLocations(std::vector<LocationKey> allowedLocations) {
     return FilterFromPool(allowedLocations,
                           [](const LocationKey loc) { return Location(loc)->GetPlacedItemKey() == NONE; });
@@ -87,11 +68,6 @@ std::vector<LocationKey> GetAllEmptyLocations() {
 //specifies the pool of locations that we're trying to search for an accessible location in
 std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& allowedLocations, SearchMode mode) {
     std::vector<LocationKey> accessibleLocations;
-    //PlacementLog_Msg("Allowed Locations passed to AcceessibleLocations Function:\n");
-    //for (LocationKey loc : allowedLocations)
-    //{
-    //    PlacementLog_Msg(Location(loc)->GetName() + "\n");
-    //}
     //Reset all access to begin a new search
     playthroughBeatable  = false;
     ocarinaObtainable    = false;
@@ -104,18 +80,15 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
     std::vector<AreaKey> areaPool = { ROOT };
     
     //Variables for playthrough
-    //bool bombchusFound = false;
     std::vector<std::string> buyIgnores;
     //Variables for search
     std::vector<ItemLocation*> newItemLocations;
     bool updatedEvents = false;
-    //bool ageTimePropigated = false;
     bool firstIteration = true;
 
     //If no new items are found and no events are updated, then the next iteration won't provide any new location
-    while (newItemLocations.size() > 0  || firstIteration || updatedEvents) { // || ageTimePropigated 
+    while (newItemLocations.size() > 0  || firstIteration || updatedEvents) {
         firstIteration = false;
-        //ageTimePropigated = false;
         updatedEvents = false;
 
         for (ItemLocation* location : newItemLocations) {
@@ -136,11 +109,6 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
             //for each exit in this area
             
             for (auto& exit : area->exits) {
-
-                //Update Time of Day Access for the exit
-                //if (UpdateToDAccess(&exit)){
-                //    ageTimePropigated=true;
-               // }
 
                 //if the exit is accessable and hasn't been added yet, add it to pool
                 Area* exitArea = exit.GetConnectedRegion();
@@ -183,20 +151,11 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
                     if (mode == SearchMode::GeneratePlaythrough) {
                         //Item is an advancement item, figure out if it should be added to this sphere
                         if (!playthroughBeatable && location->GetPlacedItem().IsAdvancement()) {
-                            //ItemType type = location->GetPlacedItem().GetItemType();//type needed to check for gold skulltula
                             std::string itemName(location->GetPlacedItemName().GetNAEnglish());
-                            //bool bombchus = itemName.find("Bombchu") != std::string::npos; //Is a bombchu location
 
                             //Decide whether to exclude this location
                             //This preprocessing is done to reduce the amount of searches performed in PareDownPlaythrough
-                            //Want to exclude:
-                            //2) Bombchus after the first (including buy bombchus)
-                            bool exclude = false;
-                            //Only print first bombchu location found
-                            /*if (bombchus && !bombchusFound) {
-                                bombchusFound = true;
-                                exclude = false;
-                            }*/
+                            bool exclude = true;
 
                             //Add all other advancement items
                             //to-do, for now excldue is always true as we dont need to exclude shops/tokens/bombchus/ammodrops 
@@ -370,14 +329,7 @@ static void FastFill(std::vector<ItemKey> items, std::vector<LocationKey> locati
     while (!locations.empty() && (!endOnItemsEmpty || !items.empty())) {
         LocationKey loc = RandomElement(locations, true);
         ItemKey item = RandomElement(items, true);
-        /*if ( (Location(loc)->IsRepeatable() == false) && (ItemTable(item).IsReusable() == true) ){
-                    //unsuccessfulPlacement = true;
-                    CitraPrint("Attemting to place repeatable item in nonrepeatable spot in FastFill");
-                    PlacementLog_Msg("\n Attempted to place " + ItemTable(item).GetName().GetNAEnglish() + " at " + Location(loc)->GetName());
-                    items.push_back(item);
-                    locations.push_back(loc);
-                }*/
-        if (NoRepeatOnTokens) {
+        if (MoreItemsThanLocations) {
             //put back the last item we picked up
             items.push_back(item);
             //then put the unused items back into the main pool and stop
@@ -406,9 +358,9 @@ static void FastFill(std::vector<ItemKey> items, std::vector<LocationKey> locati
 static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<LocationKey>& allowedLocations, bool setLocationsAsHintable = false) {
 
     if (items.size() > allowedLocations.size()) {
-        //If NoRepeatOnTokens is on 
+        //If MoreItemsThanLocations is on 
         //Don't display this message
-        if (NoRepeatOnTokens) {
+        if (MoreItemsThanLocations) {
             //do nothing here to not display the message
         }
         else {
@@ -468,7 +420,6 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             LogicReset();
             for (ItemKey unplacedItem : itemsToPlace) {
                 ItemTable(unplacedItem).ApplyEffect();
-                //PlacementLog_Msg(" " + ItemTable(unplacedItem).GetName().GetNAEnglish() + ", ");
             }
             for (ItemKey unplacedItem : itemsToNotPlace) {
                 ItemTable(unplacedItem).ApplyEffect();
@@ -477,32 +428,29 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             //get all accessible locations that are allowed
             std::vector<LocationKey> accessibleLocations = GetAccessibleLocations(allowedLocations);
             //Drop the ones this item can't go in. Redrawing until a valid one comes up never ends when there is none.
-            //A reusable item needs a repeatable location, and the Magic Bean Pack is what enables buying beans at
-            //shops so it cannot go into a shop itself
+            //The Magic Bean Pack is what enables buying beans at shops so it cannot go into a shop itself
             erase_if(accessibleLocations, [item](const LocationKey loc) {
-                return (ItemTable(item).IsReusable() && !Location(loc)->IsRepeatable()) ||
-                       (item == MAGIC_BEAN_PACK && Location(loc)->IsCategory(Category::cShop));
+                return (item == MAGIC_BEAN_PACK && Location(loc)->IsCategory(Category::cShop));
             });
             
             //retry if there are no more locations to place items
             if (accessibleLocations.empty()) {
 
-                //If NoRepeatOnTokens is on then we don't want to retry, 
+                //If MoreItemsThanLocations is on then we don't want to retry, 
                 //because the item pool is much larger than the location pool by design
-                if (NoRepeatOnTokens) {
+                if (MoreItemsThanLocations) {
                     //put back the last item we picked up
                     itemsToPlace.push_back(item);
                     //then put the unused items back into the main pool and stop
                     AddElementsToPool(ItemPool, itemsToPlace);
                     break;
                 }
-
+                
+                #ifdef ENABLE_DEBUG
                 PlacementLog_Msg("\nCANNOT PLACE ");
                 PlacementLog_Msg(ItemTable(item).GetName().GetNAEnglish());
                 PlacementLog_Msg(". TRYING AGAIN...\n");
-                //DebugPrint("%s: accessable locations according to code %u\n", __func__, accessibleLocations);
                 
-                #ifdef ENABLE_DEBUG
                 PlacementLog_Write();
                 #endif
 
@@ -595,15 +543,6 @@ static void RandomizeOwnDungeon(const Dungeon::DungeonInfo* dungeon) {
         std::vector<ItemKey> songs = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemType() == ITEMTYPE_SONG;});
         AssumedFill(songs, songLocations, true);
     }
-        /*
-         PlacementLog_Msg("\nAllowed Locations are: \n"); 
-            CitraPrint("Allowed Locations are:");
-            for (LocationKey loc : dungeonLocations)
-                {                PlacementLog_Msg(Location(loc)->GetName());
-                PlacementLog_Msg("\n");
-                CitraPrint(Location(loc)->GetName());
-                }
-        */
     //Add specific items that need be randomized within this dungeon
     if (Keysanity.Is((u8)KeysanitySetting::KEYSANITY_OWN_DUNGEON) && dungeon->GetSmallKey() != NONE) {
         std::vector<ItemKey> dungeonSmallKeys = FilterAndEraseFromPool(ItemPool, [dungeon](const ItemKey i) { return i == dungeon->GetSmallKey();});
@@ -636,9 +575,9 @@ static void RandomizeOwnDungeon(const Dungeon::DungeonInfo* dungeon) {
             
     }
     //randomize boss key and small keys together for even distribution
-    NoRepeatOnTokens = true;
+    MoreItemsThanLocations = true;
     AssumedFill(dungeonItems, dungeonLocations, true);
-    NoRepeatOnTokens = false;
+    MoreItemsThanLocations = false;
 
     //randomize map and compass separately since they're not progressive
     if (MapsAndCompasses.Is((u8)MapsAndCompassesSetting::MAPSANDCOMPASSES_OWN_DUNGEON) && dungeon->GetMap() != NONE && dungeon->GetCompass() != NONE) {
@@ -729,24 +668,20 @@ static void RandomizeDungeonItems() {
 	    TWINMOLDS_REMAINS,
 	    //MAJORAS_MASK,
     };    
-    //for (ItemKey item : dungeonRewards) {
-    //        CitraPrint("Rewards:\n");
-    //        CitraPrint(ItemTable(item).GetName().GetNAEnglish() + "\n");
-    //        }
-    //CitraPrint("About to start attempting Reward Shuffle Any Dungeon");
+
     if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_ANY_DUNGEON)) {
         AddElementsToPool(anyDungeonItems, dungeonRewards);
     }
-    //CitraPrint("About to start attempting Reward Shuffle Overworld");
+    
     if (ShuffleRewards.Is((u8)RewardShuffleSetting::REWARDSHUFFLE_OVERWORLD)) {
         AddElementsToPool(overworldItems, dungeonRewards);
     }
 
     //Randomize Any Dungeon and Overworld pools
-    NoRepeatOnTokens = true;
+    MoreItemsThanLocations = true;
     AssumedFill(anyDungeonItems, anyDungeonLocations, true);
     AssumedFill(overworldItems, overworldLocations, true);
-    NoRepeatOnTokens = false;
+    MoreItemsThanLocations = false;
 
     //Randomize maps and compasses after since they're not advancement items
     for (auto dungeon : dungeonList) {
@@ -760,26 +695,9 @@ static void RandomizeDungeonItems() {
         }
     }
 }
-/*
-static void RandomizeLinksPocket() {
-    if (LinksPocketItem.Is(rnd::LinksPocketSetting::LINKSPOCKETITEM_ADVANCEMENT)) {
-        //Get all the advancement items                                                                                                     don't include tokens
-        std::vector<ItemKey> advancementItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsAdvancement() && ItemTable(i).GetItemCategory() != ItemCategory::SkulltulaTokens;});
-        //select a random one
-        ItemKey startingItem = RandomElement(advancementItems, true);
-        //add the others back
-        AddElementsToPool(ItemPool, advancementItems);
-
-        PlaceItemInLocation(LINKS_POCKET, startingItem);
-    }
-    else if (LinksPocketItem.Is(rnd::LinksPocketSetting::LINKSPOCKETITEM_NOTHING)) {
-        PlaceItemInLocation(LINKS_POCKET, GREEN_RUPEE);
-    }
-}*/
 
 int VanillaFill() {
     //Perform minimum needed initialization
-    // CitraPrint("Starting VanillaFill\n");
     ResetNonShopItems();
     AreaTable_Init(); //Reset the world graph to intialize the proper locations
     ItemReset(); //Reset shops incase of shopsanity random
@@ -807,7 +725,6 @@ int VanillaFill() {
     printf("\x1b[10;10HCalculating Way of the Hero..."); 
     CalculateWotH();
     printf("Done");
-    // CitraPrint("Creating Item Overrides");
     CreateItemOverrides();
     // CreateEntranceOverrides();
     // CreateAlwaysIncludedMessages();
@@ -900,10 +817,10 @@ static void EnsureOcarinaAndSongOfTimeObtainable() {
                 }
                 const size_t poolSizeWithoutHelper = ItemPool.size();
 
-                NoRepeatOnTokens = true;
+                MoreItemsThanLocations = true;
                 AssumedFill({itemToHelp}, ocarinaLocations, true);
-                NoRepeatOnTokens = false;
-                // With NoRepeatOnTokens, AssumedFill puts an item it couldn't place back into the pool without
+                MoreItemsThanLocations = false;
+                // With MoreItemsThanLocations, AssumedFill puts an item it couldn't place back into the pool without
                 // flagging a failure. Nothing changed then, so looping again would pick the same helper forever.
                 if (ItemPool.size() > poolSizeWithoutHelper) {
                   placementFailure = true;
@@ -1066,19 +983,19 @@ int Fill() {
             std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
             //Pull Song of Time from songs pool instead of main pool so we actually get it placed first
             std::vector<ItemKey> SoTItem = FilterAndEraseFromPool(songs, [](const ItemKey i) { return ItemTable(i).GetHintKey() == SONG_OF_TIME; });
-            NoRepeatOnTokens = true;
+            MoreItemsThanLocations = true;
             AssumedFill(SoTItem, ocarinaLocations, true);
-            NoRepeatOnTokens = false;
+            MoreItemsThanLocations = false;
         }
         //If Ocarina is shuffled place that next
         if (StartingOcarina.Value<u8>() == 0) {
             //Get acceptable Ocarina Locations
             std::vector<LocationKey> ocarinaLocations = FilterFromPool(allLocations, []( const LocationKey loc) {return Location(loc)->IsCategory(Category::cNoOcarinaStart);});
             std::vector<ItemKey> ocarinaItem = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).GetItemId()==(u32)GetItemID::GI_OCARINA_OF_TIME; });
-            //reuse NoRepeatOnTokens variable because making a new one is stupid
-            NoRepeatOnTokens = true;
+            //reuse MoreItemsThanLocations variable because making a new one is stupid
+            MoreItemsThanLocations = true;
             AssumedFill(ocarinaItem, ocarinaLocations, true);
-            NoRepeatOnTokens = false;
+            MoreItemsThanLocations = false;
         }
         // Ensure Ocarina and Song of Time are obtainable with the current placement.
         // If they are not reachable with currently placed items (Rewards, Keys, etc.),
@@ -1100,15 +1017,15 @@ int Fill() {
         //If Songs are at song locations get all song locations and place them there
         if (ShuffleSongs.Value<u8>() == u8(1)){
             std::vector<LocationKey> songLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsCategory(Category::cSong);});
-            NoRepeatOnTokens = true;
+            MoreItemsThanLocations = true;
             AssumedFill(songs, songLocations,true);
-            NoRepeatOnTokens = false;
+            MoreItemsThanLocations = false;
         }
         //else just place them anywhere
         else {
-            NoRepeatOnTokens = true;
+            MoreItemsThanLocations = true;
             AssumedFill(songs, allLocations,true);
-            NoRepeatOnTokens = false;
+            MoreItemsThanLocations = false;
         }
 
         if (ShuffleGFRewards.Is((u8)GreatFairyRewardShuffleSetting::GFREWARDSHUFFLE_ALL_GREAT_FARIES)){
@@ -1132,40 +1049,11 @@ int Fill() {
                     ShopLocations.push_back(ShopLocationLists[i][j]);
                 }
             }
-
-
-        //     std::vector<int> indices;
-
-        //     // Overwrite appropriate number of shop items
-        //     for (size_t i=0; i < ShopLocationLists.size(); i++) {
-        //         for (size_t i=0; i < ShopLocationLists[i].size(); i++) {
-        //             indices.resize(static_cast<int>(ShopLocationLists[i].size())); // Set the number of indices for the current shop
-        //             int num_to_replace = ShopLocationLists[i].size(); //Get current number of shop items to replace
-        //             for (int j = 0; j < num_to_replace; j++) {
-        //                 int itemIndex = indices[j];
-        //                 int shopsanityPrice = GetShopPrice();
-        //                 NonShopItems[GetShopIndex(ind)].Price = shopsanityPrice; //Set the price for the item to be passed
-        //                 Location(ShopLocationLists[i][itemIndex-1])->SetShopsanityPrice(shopsanityPrice); //Set the price for the location to be passed
-        //             }
-        //         }
-        //     }
-        // }
-        // std::vector<LocationKey> ShopLocations = {};
-        //     for (size_t i = 0; i < ShopLocationLists.size(); i++) {
-        //         for (size_t i = 0; i < ShopLocationLists.size(); i++) {
-        //             for (size_t j = 0; j < ShopLocationLists[i].size(); j++) {
-        //                 LocationKey loc = ShopLocationLists[i][j];
-        //                 if (!(Location(loc)->HasShopsanityPrice())) {
-        //                     ShopLocations.push_back(loc);
-        //                 }
-        //             }
-        //         }
-        //     }
             // Place the random items at shop locations 
             std::vector<ItemKey> currentPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return true;});
-            NoRepeatOnTokens = true;
+            MoreItemsThanLocations = true;
             AssumedFill(currentPool, ShopLocations);
-            NoRepeatOnTokens = false;
+            MoreItemsThanLocations = false;
         }
                 
         //Place Main Inventory First
@@ -1173,23 +1061,6 @@ int Fill() {
         std::vector<ItemKey> mainadvancementItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsAdvancement() && ItemTable(i).GetItemType() != ITEMTYPE_QUEST;});//(ItemTable(i).GetItemType() == ITEMTYPE_ITEM || ItemTable(i).GetItemType() == ITEMTYPE_MASK || ItemTable(i).GetItemType() == ITEMTYPE_TRADE || ItemTable(i).GetItemType() == ITEMTYPE_GFAIRY)
         //Then Place those to expand the amount of checks available
         AssumedFill(mainadvancementItems, allLocations,true);
-        
-        //Then place the rest of the repeatable items in locations marked as repeatable
-        std::vector<LocationKey> repeatableItemLocations = FilterFromPool(allLocations, [](const LocationKey loc) {return Location(loc)->IsRepeatable();});
-        std::vector<ItemKey> remainingRepeatItemPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).IsReusable();});
-        AssumedFill(remainingRepeatItemPool, repeatableItemLocations, true);
-
-        //Then Place Deku Merchant Items
-       /* if(ShuffleMerchants) {
-            std::vector<ItemKey> dekuTrades = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_TRADE;});
-            AssumedFill(dekuTrades, allLocations);
-        }   */
-       
-        //Then place Link's Pocket Item if it has to be an advancement item
-        //Links Pocket is useless as there is no unobtainable check due to a certain time travel sword pedistal 
-        //Any check that occurs before MM3D world initialization like Ocarina/KokiriSword/Shield/SongofTime
-        //Can just be handled by starting inventory 
-        //RandomizeLinksPocket();  
         
         //Then place the rest of the advancement items
         std::vector<ItemKey> remainingAdvancementItems = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) { return ItemTable(i).IsAdvancement();});
@@ -1199,14 +1070,10 @@ int Fill() {
         std::vector<ItemKey> tokens = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return ItemTable(i).GetItemType() == ITEMTYPE_TOKEN; });
         AssumedFill(tokens, allLocations, true);
 
-        // CitraPrint("Starting AssumedFill...");
-        // CitraPrint("AssumedFill was sucessful");
-        // CitraPrint("Starting Fast Fill...");
         //Fast fill for the rest of the pool
         std::vector<ItemKey> remainingPool = FilterAndEraseFromPool(ItemPool, [](const ItemKey i) {return true;});
         FastFill(remainingPool, GetAllEmptyLocations(), false);
-        // CitraPrint("Fast Fill of Remaining locations was sucessful");
-        //CitraPrint("Generating Playthrough...");
+
         GeneratePlaythrough(); //TODO::FIX PLAYTHROUGH
 
         //Successful placement, produced beatable result
@@ -1218,7 +1085,6 @@ int Fill() {
             printf("\x1b[10;10HCalculating Way of the Hero..."); 
             CalculateWotH();
             printf("Done");
-            // CitraPrint("Creating Item Overrides");
             CreateItemOverrides();
            // CreateEntranceOverrides();
            // CreateAlwaysIncludedMessages();
@@ -1227,9 +1093,6 @@ int Fill() {
                 CreateAllHints();
                 printf("Done");
              }
-            /*if (ShuffleMerchants.Is(SHUFFLEMERCHANTS_HINTS)) {
-                CreateMerchantsHints();
-            }*/
             return 1;
         }
         //Unsuccessful placement
@@ -1237,7 +1100,6 @@ int Fill() {
             LogicReset();
             GetAccessibleLocations(allLocations, SearchMode::AllLocationsReachable);
             printf("\x1b[9;10HFailed. Retrying... %d", retries + 2);
-            // CitraPrint("Failed. Retrying...");
             Areas::ResetAllLocations();
             LogicReset();
         }

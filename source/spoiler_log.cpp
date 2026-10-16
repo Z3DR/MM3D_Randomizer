@@ -338,21 +338,15 @@ void SpoilerLog_WriteIngameData() {
                     sprintf(&spoilerData.StringData[spoilerStringOffset], itemNameFormat, locItem.c_str()) + 1;
             }
         }
-
-            spoilerData.ItemLocations[spoilerItemIndex].LocationStrOffset = stringOffsetMap[locName];
-            spoilerData.ItemLocations[spoilerItemIndex].ItemStrOffset = stringOffsetMap[locItem];
-            spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = loc->GetCollectionCheck().type;
-            spoilerData.ItemLocations[spoilerItemIndex].OverrideType = loc->GetOverrideType();
-            spoilerData.ItemLocations[spoilerItemIndex].LocationScene = loc->GetScene();
-            spoilerData.ItemLocations[spoilerItemIndex].LocationFlag = loc->GetFlag();
-            
-            //Set Repeatable locations CollectType(Used for changing color in spoiler log)
-            if (Location(key)->IsRepeatable())
-            {
-              spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_REPEATABLE;
-            }
+        spoilerData.ItemLocations[spoilerItemIndex].LocationStrOffset = stringOffsetMap[locName];
+        spoilerData.ItemLocations[spoilerItemIndex].ItemStrOffset = stringOffsetMap[locItem];
+        spoilerData.ItemLocations[spoilerItemIndex].CollectionCheckType = loc->GetCollectionCheck().type;
+        spoilerData.ItemLocations[spoilerItemIndex].OverrideType = loc->GetOverrideType();
+        spoilerData.ItemLocations[spoilerItemIndex].LocationScene = loc->GetScene();
+        spoilerData.ItemLocations[spoilerItemIndex].LocationFlag = loc->GetFlag();
+        spoilerData.ItemLocations[spoilerItemIndex].CollectType = COLLECTTYPE_NORMAL;
               
-            auto checkGroup                                   = loc->GetCollectionCheckGroup();
+        auto checkGroup                                   = loc->GetCollectionCheckGroup();
         spoilerData.ItemLocations[spoilerItemIndex].Group = checkGroup;
 
         // Group setup
