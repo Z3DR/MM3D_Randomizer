@@ -1061,6 +1061,20 @@ void GenerateItemPool() {
 		PlaceItemInLocation(E_CLOCK_TOWN_TREASURE_CHEST_GAME_ZORA, RED_RUPEE);
 		PlaceItemInLocation(E_CLOCK_TOWN_TREASURE_CHEST_GAME_DEKU, DEKU_NUTS_10);
 		PlaceItemInLocation(E_CLOCK_TOWN_TREASURE_CHEST_GAME_HUMAN, PURPLE_RUPEE);
+		// W Clock Town Lottery
+		PlaceItemInLocation(W_CLOCK_TOWN_LOTTERY_DAY_1, PURPLE_RUPEE);
+		PlaceItemInLocation(W_CLOCK_TOWN_LOTTERY_DAY_2, PURPLE_RUPEE);
+		PlaceItemInLocation(W_CLOCK_TOWN_LOTTERY_DAY_3, PURPLE_RUPEE);
+	}
+	if (!ExtraChecks) {
+		// If Extra Checks is off, place the items in their vanilla locations
+		// Zora Cape Zora Jars Minigame
+		PlaceItemInLocation(ZORA_CAPE_ZORA_JARS_MINIGAME, SILVER_RUPEE);
+		// Zora Hall Stage Lights
+		PlaceItemInLocation(ZORA_HALL_STAGE_LIGHTS, BLUE_RUPEE);
+		// Good and Bad Pictures of Lulu
+		PlaceItemInLocation(ZORA_HALL_GOOD_PHOTO_LULU, RED_RUPEE);
+		PlaceItemInLocation(ZORA_HALL_BAD_PHOTO_LULU, BLUE_RUPEE);
 	}
 
 	//DUNGEON STUFF 

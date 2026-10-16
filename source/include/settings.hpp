@@ -462,6 +462,7 @@ namespace Settings {
   extern Option ShufflePiecesOfHeart;
   extern Option ShuffleMoonItems;
   extern Option ExtraMinigames;
+  extern Option ExtraChecks;
 
   //Other Settings
   extern Option IceTrapValue;

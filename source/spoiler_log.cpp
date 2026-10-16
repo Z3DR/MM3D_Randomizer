@@ -282,12 +282,22 @@ void SpoilerLog_WriteIngameData() {
         if (key == STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST) {
           continue;
         }
-        //Hide duplicate checks (Clear Swamp / Spring Snowhead / ETC.)
-        if (Location(key)->IsCategory(Category::cAlternateCheck) && !(ItemTable(Location(key)->GetPlacedItemKey()).IsPlaythrough())) {
-          continue;
-        }
         // Hide WCT Powder Keg Goron, it's not randomized for consistency 
         if (key == W_CLOCK_TOWN_BOMB_SHOP_GORON) {
+          continue;
+        }
+        // Hide Extra Minigames if they are not enabled
+        if (!Settings::ExtraMinigames && Location(key)->IsCategory(Category::cExtraMinigames)) {
+          continue;
+        }
+        // Hide Extra Checks if they are not enabled
+        if (!Settings::ExtraChecks && Location(key)->IsCategory(Category::cExtraChecks)) {
+          continue;
+        }
+        //Hide duplicate checks (Clear Swamp / Spring Snowhead / ETC.)
+        // This needs to stay at the bottom of this list to ensure alternate checks are hidden last
+        // Otherwise they will not be hidden for some reason 
+        if (Location(key)->IsCategory(Category::cAlternateCheck) && !(ItemTable(Location(key)->GetPlacedItemKey()).IsPlaythrough())) {
           continue;
         }
             

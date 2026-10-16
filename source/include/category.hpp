@@ -85,6 +85,8 @@ enum class Category {
     cFDM,
     cMainInventory,
     cNoOcarinaStart,
+    cExtraMinigames,
+    cExtraChecks,
 };
 
 enum class OptionCategory {

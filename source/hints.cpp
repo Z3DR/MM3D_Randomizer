@@ -794,6 +794,23 @@ void CreateOtherHints() {
     /*German ?*/"#, aber bitte behalte dieses Geheimnis für dich!",
     // /*Italian?*/"# se mantieni il segreto su questo posto...",
   }, {QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+  
+  // Zora Cape Jar Minigame
+  CustomMessages::CreateMessageFromTextObject(0x614B, 0xFFFF, 0x3FFFFFFF, 0xFF0000, Text {
+    /*English*/"Well, here's #your prize#.^Except...&Jar replacement costs #10 Rupees#,&so I'll have to deduct that.",
+    /*French*/"Eh bien, voici #ta récompense#.^Sauf que...&Remplacer les jarres coûte #10 rubis#,&alors je dois les déduire.",
+    /*Spanish*/"Bueno, aquí está #tu premio#.^Excepto...&Reemplazar las jaras cuesta #10 rupias#,&así que tendré que deducir eso.",
+    /*German ?*/"Nun, hier ist #dein Preis#.^Außer...&Das Ersetzen der Krüge kostet #10 Rubine#,&also muss ich das abziehen.",
+    // /*Italian?*/"Bene, ecco #il tuo premio#.^Tranne che...&Sostituire le giare costa #10 rupie#,&quindi dovrò detrarre questo.",
+  },{QM_RED, QM_RED}, {}, {}, 0x0, false, false, MESSAGE_END_EVENTNEXT);
+
+  CustomMessages::CreateMessageFromTextObject(0x614C, 0xFFFF, 0x3FFFFFFF, 0xFF0021, Text {
+  /*English*/"Here you go!",
+  /*French*/"Et voilà !",
+  /*Spanish*/"¡Aquí tienes!",
+  /*German ?*/"Hier, bitte!",
+  // /*Italian?*/"Ecco a te!",
+  }, {}, {}, {}, 0x0, false, false, MESSAGE_END_EVENT);
 
   //Beaver Hints
   Text beaverBottleHint = ItemTable(Location(ZORA_CAPE_BEAVER_RACE_1)->GetPlacedItemKey()).GetHint().GetText();
