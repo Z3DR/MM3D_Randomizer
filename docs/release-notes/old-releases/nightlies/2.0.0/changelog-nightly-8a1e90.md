@@ -23,4 +23,4 @@
 - Bottled contents are now marked as small chests for items such as potions.
 
 [Previous Nightly](./changelog-nightly-b3a4c9.md)  
-[Next Nightly](../../../changelog-latest-nightly.md)
+[Next Nightly](./changelog-nightly-9e9333.md)
