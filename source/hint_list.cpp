@@ -2290,12 +2290,24 @@ void HintTable_Init() {
         },  //clear
             Text{"the Curiosity Shop's #stolen Bomb Shop goods# are", "la #marchandise volée atterrie au bazar# est", "", "die #gestohlene Ware aus dem Bombenladen# im Kuriositätenladen ist"}
     );
-    //hintTable[W_CLOCK_TOWN_LOTTERY] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"a #town lucky numbers# game", "un #numéro gagnant# octroie", "un juego de números de suerte en la ciudad recompensa con", "ein #Glücksnummernspiel# entlohnt"}
-    //    },  //clear
-    //        Text{"the #lottery's prize# is", "le #prix de la loterie# est", "el premio de la lotería es", "der #Gewinn bei der Lotterie# ist"}
-    //);
+    hintTable[W_CLOCK_TOWN_LOTTERY_DAY_1] = HintText::Sometimes({
+            //obscure
+            Text{"a #town lucky numbers# game", "un #numéro gagnant# octroie", "un juego de números de suerte en la ciudad recompensa con", "ein #Glücksnummernspiel# entlohnt"}
+        },  //clear
+            Text{"the #lottery's prize# is", "le #prix de la loterie# est", "el premio de la lotería es", "der #Gewinn bei der Lotterie# ist"}
+    );
+    hintTable[W_CLOCK_TOWN_LOTTERY_DAY_2] = HintText::Sometimes({
+            //obscure
+            Text{"a #town lucky numbers# game", "un #numéro gagnant# octroie", "un juego de números de suerte en la ciudad recompensa con", "ein #Glücksnummernspiel# entlohnt"}
+        },  //clear
+            Text{"the #lottery's prize# is", "le #prix de la loterie# est", "el premio de la lotería es", "der #Gewinn bei der Lotterie# ist"}
+    );
+    hintTable[W_CLOCK_TOWN_LOTTERY_DAY_3] = HintText::Sometimes({
+            //obscure
+            Text{"a #town lucky numbers# game", "un #numéro gagnant# octroie", "un juego de números de suerte en la ciudad recompensa con", "ein #Glücksnummernspiel# entlohnt"}
+        },  //clear
+            Text{"the #lottery's prize# is", "le #prix de la loterie# est", "el premio de la lotería es", "der #Gewinn bei der Lotterie# ist"}
+    );
     hintTable[TRADING_POST_ITEM_1] = HintText::Sometimes({
             //obscure
             Text{"a #town merchant# sells", "un #pêcheur retraité# vend", "un mercader en la ciudad vende", "ein #Stadthändler# verkauft"}
@@ -2436,6 +2448,12 @@ void HintTable_Init() {
         },  //clear
             Text{"the #submerged chest in Zora Cape# contains", "le #coffre submergé du cap des Zoras# contient", "el cofre hundido en el Cabo Zora contiene", "die #Unterwassertruhe am Kap Zora# enthält"}
     );
+    hintTable[ZORA_CAPE_ZORA_JARS_MINIGAME] = HintText::Sometimes({
+            //obscure
+            Text{"a #jar minigame# contains", "un #mini-jeu de jarres# contient", "un minijuego de jarros contiene", "ein #Krug-Minispiel# enthält"}
+        },  //clear
+            Text{"the #Zora Cape jar minigame# contains", "le #mini-jeu de jarres du cap des Zoras# contient", "el minijuego de jarros en el Cabo Zora contiene", "das #Krug-Minispiel am Kap Zora# enthält"}
+    );
 //Zora Hall
     hintTable[ZORA_HALL_SCRUB_TRADE] = HintText::Sometimes({
             //obscure
@@ -2461,24 +2479,24 @@ void HintTable_Init() {
         },  //clear
             Text{"the #Zora Hall Business Scrub# sells", "la #peste mojo du théâtre des Zoras# vend", "el Mercader Deku en el Salón Zora vende", "der #Deku-Händler in der Halle der Zoras# verkauft"}
     );
-    //hintTable[ZORA_HALL_STAGE_LIGHTS] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"a #tech crew# gives", "aider l'#équipe technique# octroie", "un fan", "ein #Ton-Techniker#"}
-    //    },  //clear
-    //        Text{"#lighting the Zora Hall torches# lead to", "#allumer les torches du théâtre des Zoras# octroie", "encender las antorchas en el Salón Zora guía da", "das #Entzünden der Fackeln in der Halle der Zoras# führt zu"}
-    //);
-    //hintTable[ZORA_HALL_BAD_PHOTO_LULU] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"a #fan# gives", "un #fan insatisfait# offre", "un fan", "ein #Fan#"}
-    //    },  //clear
-    //        Text{"the #Lulu fan's reward for a mediocre picture# is", "le #mégafan de Lulu échange une photo médiocre# contre", "la recompensa del fan de Lulú por una mala luminografía es", "die #Belohnung des Lulu-Fans für ein mittelmäßiges Bild# ist"}
-    //);
-    //hintTable[ZORA_HALL_GOOD_PHOTO_LULU] = HintText::Sometimes({
-    //        //obscure
-    //        Text{"a #fan# gives", "un #fan satisfait# offre", "un fan", "ein #Fan#"}
-    //    },  //clear
-    //        Text{"the #Lulu fan's reward for a good picture# is", "le #mégafan de Lulu échange une bonne photo# contre", "la recompensa del fan de Lulú por una buena luminografía es", "die #Belohnung des Lulu-Fans für einen gelungenen Schnappschuss# ist"}
-    //);
+    hintTable[ZORA_HALL_STAGE_LIGHTS] = HintText::Sometimes({
+            //obscure
+            Text{"a #tech crew# gives", "aider l'#équipe technique# octroie", "un fan", "ein #Ton-Techniker#"}
+        },  //clear
+            Text{"#lighting the Zora Hall torches# lead to", "#allumer les torches du théâtre des Zoras# octroie", "encender las antorchas en el Salón Zora guía da", "das #Entzünden der Fackeln in der Halle der Zoras# führt zu"}
+    );
+    hintTable[ZORA_HALL_BAD_PHOTO_LULU] = HintText::Sometimes({
+            //obscure
+            Text{"a #fan# gives", "un #fan insatisfait# offre", "un fan", "ein #Fan#"}
+        },  //clear
+            Text{"the #Lulu fan's reward for a mediocre picture# is", "le #mégafan de Lulu échange une photo médiocre# contre", "la recompensa del fan de Lulú por una mala luminografía es", "die #Belohnung des Lulu-Fans für ein mittelmäßiges Bild# ist"}
+    );
+    hintTable[ZORA_HALL_GOOD_PHOTO_LULU] = HintText::Sometimes({
+            //obscure
+            Text{"a #fan# gives", "un #fan satisfait# offre", "un fan", "ein #Fan#"}
+        },  //clear
+            Text{"the #Lulu fan's reward for a good picture# is", "le #mégafan de Lulu échange une bonne photo# contre", "la recompensa del fan de Lulú por una buena luminografía es", "die #Belohnung des Lulu-Fans für einen gelungenen Schnappschuss# ist"}
+    );
     hintTable[ZORA_SHOP_ITEM_1] = HintText::Sometimes({
             //obscure
             Text{"a #zora merchant# sells", "une #boutique iodée# vend", "un mercader zora vende", "ein #Zora-Händler# verkauft"}

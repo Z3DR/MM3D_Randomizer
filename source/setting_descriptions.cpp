@@ -125,8 +125,11 @@ string_view shuffleMoonItemsDesc      = "Shuffles Items from the Moon into the p
                                         "Includes 4 Pieces of Heart, and 2 junk items";    //
 string_view extraMinigamesDesc        = "Adds Extra Minigame checks to the pool\n"         //
                                         "Includes Honey and Darling , Deku Playground\n"   //
-                                        "Days 1 and 2, and all forms in Treasure Chest\n"  //
-                                        "Shop.";                                           //
+                                        "Days 1 and 2, all forms in Treasure Chest Shop,\n"//
+                                        "Lottery Days 1, 2, and 3. ";                      //
+string_view extraChecksDesc           = "Adds Extra Item Locations to the item pool\n"     //
+                                        "Includes Zora Cape Jars Minigame, Zora Hall Stage Lights, \n"//
+                                        "Good and Bad Pictures of Lulu.";                  //
 /*------------------------------                                                           //
 |      MAPS AND COMPASSES      |                                                           //
 ------------------------------*/                                                           //

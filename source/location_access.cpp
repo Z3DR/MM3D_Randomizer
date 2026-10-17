@@ -495,7 +495,9 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		//LocationAccess(W_CLOCK_TOWN_LOTTERY, {[] {return;}}),
+		LocationAccess(W_CLOCK_TOWN_LOTTERY_DAY_1, {[] {return true;}}),
+		LocationAccess(W_CLOCK_TOWN_LOTTERY_DAY_2, {[] {return true;}}),
+		LocationAccess(W_CLOCK_TOWN_LOTTERY_DAY_3, {[] {return true;}}),
 
 	},
 	{
@@ -929,7 +931,7 @@ void AreaTable_Init() {
 	{
 		//Locations
 		LocationAccess(SOUTHERN_SWAMP_KOTAKE, {[] {return SpokeToKoume;}}),
-		LocationAccess(SOUTHERN_SWAMP_KOTAKE_MUSHROOM_SALE, {[] {return Mushroom;}}),
+		LocationAccess(SOUTHERN_SWAMP_KOTAKE_MUSHROOM_SALE, {[] {return Mushroom && AnyBottle;}}),
 		LocationAccess(POTION_SHOP_ITEM_1, {[]{return AnyBottle;}}),
 		LocationAccess(POTION_SHOP_ITEM_2, {[]{return AnyBottle;}}),
 		LocationAccess(POTION_SHOP_ITEM_3, {[]{return AnyBottle && Mushroom;}}),
@@ -1596,6 +1598,7 @@ void AreaTable_Init() {
 		LocationAccess(ZORA_CAPE_LEDGE_NO_TREE, {[] {return Hookshot;}}),
 		LocationAccess(ZORA_CAPE_LEDGE_WITH_TREE, {[] {return Hookshot;}}),
 		LocationAccess(ZORA_CAPE_UNDERWATER_CHEST, {[] {return ZoraMask;}}),
+		LocationAccess(ZORA_CAPE_ZORA_JARS_MINIGAME, {[] {return ZoraMask;}}),
 		//Gossip Stones
 		LocationAccess(ZC_GOSSIP, {[] {return true;}}),
 	},
@@ -1658,9 +1661,9 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		//LocationAccess(ZORA_HALL_STAGE_LIGHTS, {[] {return;}}),
-		//ZORA_HALL_BAD_PHOTO_LULU
-		//ZORA_HALL_GOOD_PHOTO_LULU
+		LocationAccess(ZORA_HALL_STAGE_LIGHTS, {[] {return CanUse(FIRE_ARROWS);}}),
+		LocationAccess(ZORA_HALL_BAD_PHOTO_LULU, {[] {return Pictobox;}}),
+		LocationAccess(ZORA_HALL_GOOD_PHOTO_LULU, {[] {return Pictobox;}}),
 
 	},
 	{
