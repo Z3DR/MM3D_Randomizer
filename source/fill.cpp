@@ -155,7 +155,7 @@ std::vector<LocationKey> GetAccessibleLocations(const std::vector<LocationKey>& 
 
                             //Decide whether to exclude this location
                             //This preprocessing is done to reduce the amount of searches performed in PareDownPlaythrough
-                            bool exclude = true;
+                            bool exclude = false;
 
                             //Add all other advancement items
                             //to-do, for now excldue is always true as we dont need to exclude shops/tokens/bombchus/ammodrops 
