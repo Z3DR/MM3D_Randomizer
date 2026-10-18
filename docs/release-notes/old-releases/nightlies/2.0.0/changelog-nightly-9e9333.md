@@ -7,4 +7,4 @@
 - **Chateau Romani Refill no longer gives full bottle.** Chateau Romani Refill no longer gives a full bottle, it will now give rupees or a refill properly
 
 [Previous Nightly](./changelog-nightly-8a1e90.md)  
-[Next Nightly](../../../changelog-latest-nightly.md)
+[Next Nightly](./changelog-nightly-840e84.md)
