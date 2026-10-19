@@ -3885,6 +3885,12 @@ void HintTable_Init() {
         },  //clear
             Text{"the Stone Tower Temple", "le temple de la forteresse de pierre", "el Templo de la Torre de Piedra", "den Felsenturm-Tempel"}
     );
+    hintTable[GIANTS_OATH_AREA] = HintText::DungeonName({
+            //obscure
+            Text{"an oath", "un serment", "un juramento", "ein Schwur"}
+        },  //clear
+            Text{"the Oath to Order", "l'Ode de l'appel", "la oda al orden", "den Gesang des Himmels"}
+    );
     hintTable[PIRATE_FORTRESS] = HintText::DungeonName({
             //obscure
             Text{"the home of pirates", "le foyer des pirates", "el hogar de las piratas", "die Heimat der Piraten"}
