@@ -485,6 +485,28 @@ namespace Logic {
 	}
 
 	void UpdateHelpers() {
+		//Item Helpers
+		AnyBSword = KokiriSword || RazorSword || GildedSword || (ProgressiveSword >= 1);
+		AnySword = GreatFairySword || AnyBSword;
+		AnyShield = HerosShield || MirrorShield;
+		AnyWallet = Townwallet200 || OceanWallet500 || (ProgressiveWallet >= 1);
+		AnyBottle = WitchBottle || AlienBottle || BeaverRaceBottle || ArcheryBottle || GoronRaceBottle || ChateauBottle || UsableMysteryMilkBottle || HasBottle;
+		MagicMeter = (ProgressiveMagic >= 1) || MagicPower || ExtendedMagicPower;
+		Scarecrow = Hookshot && CanPlay(ScarecrowSong);
+		AnyPaper = (LandTitle || SwampTitle || OceanTitle || MountainTitle || LetterKafei || LetterMama);
+		CanBuyBeans = MagicBeanPack;
+		AnyMagicBean = (MagicBean && CanBuyBeans) || LimitlessBeans;
+		
+		//Bombs & Bombchus
+		AnyBombBag = (ProgressiveBombBag >= 1) || BombBag20 || TownBombBag || MountainBombBag;
+		Explosives = BlastMask || AnyBombBag;
+		HasExplosives = AnyBombBag || (BlastMask && AnyShield);//Shield required to use Blast Mask without killing the player
+		HasBombchus = (BuyBombchus5 || BuyBombchus10 || BuyBombchus20) && AnyBombBag;
+		FoundBombchus = Bombchus;
+		
+		//Bow & Arrows
+		Bow = (ProgressiveBow >= 1) || HerosBow;
+
 		//Drop Access
 		DekuStickDrop = StickPot || DekuBabaSticks;
 		DekuNutDrop = NutPot || NutCrate || DekuBabaNuts;
@@ -492,14 +514,11 @@ namespace Logic {
 		FishAccess = LoneFish || FishGroup;
 		WaterAccess = (SpringWater && AnyBottle) || CanPlay(SongOfStorms);
 		HotSpringWaterAccess = HotSpringWater && AnyBottle;
-		BeansAndWater = AnyMagicBean && (SpringWater || SongOfStorms);
-		AnyMagicBean = (MagicBean || MagicBeanPack || LimitlessBeans);
+		BeansAndWater = AnyMagicBean && (SpringWater || CanPlay(SongOfStorms));
 		//refills
 		Bombs = AnyBombBag;
 		Nuts = DekuNutDrop;
 		Sticks = DekuStickDrop || DekuStick;
-		Bugs = AnyBottle && BugsAccess;
-		Fish = AnyBottle && FishAccess;
 		
 		//Other Helpers
 		CanBlastOrSmash = HasExplosives || GoronMask;
@@ -512,37 +531,15 @@ namespace Logic {
 		DekuStickFighting = Sticks;
 		HasFireSource = CanUse(FIRE_ARROWS);
 		HasFireSourceWithTorch = Sticks;
-		AnySword = GreatFairySword || AnyBSword;
-		AnyBSword = KokiriSword || RazorSword || GildedSword || (ProgressiveSword >= 1);
 		NightInnAccess = DekuMask || RoomKey;
 		
 		Fighting = GoronMask || ZoraMask || AnySword /*|| DekuStickFighting || HasExplosives*/;//Trick for bombs, arrows and sticks?
-		AnyShield = HerosShield|| MirrorShield;
 		CanUseProjectile = Hookshot || HerosBow || (ProgressiveBow >= 1) || (DekuMask && MagicMeter) || ZoraMask;
-		HasExplosives = AnyBombBag || (BlastMask && AnyShield);//Shield required to use Blast Mask without killing the player
-		
-		//Item Helpers
-		AnyMagicBean = (MagicBean && CanBuyBeans) || LimitlessBeans;
-		AnyWallet = Townwallet200 || OceanWallet500 || (ProgressiveWallet >= 1);
-		AnyBottle = WitchBottle || AlienBottle || BeaverRaceBottle || ArcheryBottle || GoronRaceBottle || ChateauBottle || UsableMysteryMilkBottle || HasBottle;
-		MagicMeter = (ProgressiveMagic >= 1) || MagicPower || ExtendedMagicPower;
-		Scarecrow = Hookshot && CanPlay(ScarecrowSong);
-		AnyPaper = (LandTitle || SwampTitle || OceanTitle || MountainTitle || LetterKafei || LetterMama);
-		CanBuyBeans = MagicBeanPack;
-		
-		//Bombs & Bombchus
-		AnyBombBag = (ProgressiveBombBag >= 1) || BombBag20 || TownBombBag || MountainBombBag;
-		Explosives = BlastMask || AnyBombBag;
-		HasBombchus = (BuyBombchus5 || BuyBombchus10 || BuyBombchus20) && AnyBombBag;
-		FoundBombchus = Bombchus;
-		
-		//Bow & Arrows
-		Bow = (ProgressiveBow >= 1) || HerosBow;
 		
 		//Bottle Items
-		AnyHealingPotion = AnyRedPotion || AnyBluePotion;
 		AnyRedPotion = AnyBottle;
 		AnyBluePotion = AnyBottle;
+		AnyHealingPotion = AnyRedPotion || AnyBluePotion;
 		TwoBottles = { (WitchBottle && AlienBottle) || (WitchBottle && BeaverRaceBottle) || (WitchBottle && ArcheryBottle) ||
 					(WitchBottle && GoronRaceBottle) || (WitchBottle && ChateauBottle) || (AlienBottle && GoronRaceBottle) ||
 					(AlienBottle && BeaverRaceBottle) || (AlienBottle && ArcheryBottle) || (AlienBottle && ChateauBottle) ||
