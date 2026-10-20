@@ -2881,7 +2881,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Locations
-		LocationAccess(STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST, {[] {return false;}}),//Only reachable in inverted
+		LocationAccess(STONE_TOWER_TEMPLE_UPRIGHT_DEATH_ARMOS_ROOM_CHEST, {[] {return GoronMask && Pictobox && Bow;}}),
 	},
 	{
 		//Exits
