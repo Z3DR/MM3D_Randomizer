@@ -49,6 +49,9 @@ void CreatePresetDirectories(FS_Archive sdmcArchive) {
     consoleClear();
     printf("\x1b[10;10HCreating Preset Directories");
     printf("\x1b[11;10HProgress: %d/%d", progress, dirs.size());
+    gfxFlushBuffers();
+    gfxSwapBuffers();
+    gspWaitForVBlank();
   };
 
   printInfo(0);

@@ -268,6 +268,9 @@ namespace CustomMusic {
       consoleClear();
       printf("\x1b[10;10HCreating Custom Music Directories");
       printf("\x1b[11;10HProgress: %zu/%zu", progress, dirs.size());
+      gfxFlushBuffers();
+      gfxSwapBuffers();
+      gspWaitForVBlank();
     };
 
     printInfo(0);
