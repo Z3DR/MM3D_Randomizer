@@ -267,7 +267,7 @@ namespace CustomMusic {
         return;
       }
       UI::ShowStatus("Creating Custom Music Directories",
-                     std::to_string(progress) + "/" + std::to_string(dirs.size()) + "  (first launch only)");
+                     std::to_string(progress) + "/" + std::to_string(dirs.size()) );
     };
 
     printInfo(0);
