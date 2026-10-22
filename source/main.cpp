@@ -20,6 +20,7 @@ int main() {
     UI::Init();
     // Register graphics to quit at exit.
     atexit(UI::Exit);
+    UI::ShowStatus("Loading...", "");
     HintTable_Init();
     ItemTable_Init();
     LocationTable_Init();

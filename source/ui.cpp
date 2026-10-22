@@ -232,6 +232,18 @@ void SceneBottom() { C2D_SceneBegin(botTarget); }
 
 void SetRedrawCallback(DrawFn fn) { redrawFn = fn; }
 
+void ShowStatus(const std::string& title, const std::string& detail) {
+    if (inFrame) return;
+    FrameBegin();
+    SceneTop();
+    RectGradV(0, 0, TopW, TopH, ColBgTop, ColBgTopBot);
+    Panel(30, 85, 340, 70);
+    TextCentered(title, 200, 98, 0.55f, ColText);
+    TextCentered(detail, 200, 128, 0.45f, ColTextDim);
+    SceneBottom();
+    FrameEnd();
+}
+
 float TextWidth(const std::string& s, float scale) {
     C2D_Text t;
     if (!ParseText(&t, s)) return 0.0f;

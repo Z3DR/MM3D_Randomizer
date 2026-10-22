@@ -11,6 +11,7 @@
 #include "music_streams.hpp"
 #include "random.hpp"
 #include "settings.hpp"
+#include "ui.hpp"
 #include "utils.hpp"
 
 namespace fs = std::filesystem;
@@ -265,9 +266,8 @@ namespace CustomMusic {
       if (!firstRun) {
         return;
       }
-      consoleClear();
-      printf("\x1b[10;10HCreating Custom Music Directories");
-      printf("\x1b[11;10HProgress: %zu/%zu", progress, dirs.size());
+      UI::ShowStatus("Creating Custom Music Directories",
+                     std::to_string(progress) + "/" + std::to_string(dirs.size()) );
     };
 
     printInfo(0);

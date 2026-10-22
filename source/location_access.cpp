@@ -1014,19 +1014,31 @@ void AreaTable_Init() {
 		//SOUTHERN_SWAMP_TOP might not be needed but theres two entrances/exits from deku palace that lead to southern swamp
 		//BUT only the top route can reach woodfall
 		Entrance(SOUTHERN_SWAMP_TOP, {[]{return DekuMask;}}),
-		Entrance(DEKU_PALACE_INTERIOR, {[]{return DekuMask;}}),
+		Entrance(DEKU_PALACE_INTERIOR_THRONE_ROOM, {[]{return DekuMask;}}),
+		Entrance(DEKU_PALACE_INTERIOR_SIDE_ROOM, {[]{return DekuMask && BeansAndWater;}}),
 		Entrance(DEKU_PALACE_BEAN_GROTTO, {[]{return DekuMask || WoodfallClear;}}),
 		Entrance(DEKU_SHRINE, {[]{return WoodfallClear;}}),
 	});
 
-	areaTable[DEKU_PALACE_INTERIOR] = Area("Deku Palace Throne Room", "Deku Palace Throne Room", NONE, {
+	areaTable[DEKU_PALACE_INTERIOR_THRONE_ROOM] = Area("Deku Palace Throne Room", "Deku Palace Throne Room", NONE, {
 		//Events
 		EventAccess(&DekuPrincessReturned, {[]{return DekuMask && DekuPrincess;}}),
 		EventAccess(&WinnerPicture, {[]{return DekuMask && Pictobox;}}),
 	},
 	{
 		//Locations
-		LocationAccess(DEKU_PALACE_IMPRISONED_MONKEY, {[] {return DekuMask && Ocarina && BeansAndWater;}}),
+	},
+	{
+		//Exits
+		Entrance(DEKU_PALACE, {[]{return true;}}),
+	});
+
+	areaTable[DEKU_PALACE_INTERIOR_SIDE_ROOM] = Area("Deku Palace Side Room", "Deku Palace Side Room", NONE, {
+		//Events
+	},
+	{
+		//Locations
+		LocationAccess(DEKU_PALACE_IMPRISONED_MONKEY, {[] {return DekuMask && Ocarina;}}),
 	},
 	{
 		//Exits
@@ -4273,7 +4285,7 @@ void AreaTable_Init() {
 }
 
 namespace Areas {
-	static std::array < const AreaKey, 271> allAreas = {
+	static std::array < const AreaKey, 272> allAreas = {
 		ROOT,
 		ROOT_EXITS,
 		N_CLOCK_TOWN,
@@ -4323,7 +4335,8 @@ namespace Areas {
 		SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO,
 		SOUTHERN_SWAMP_TOP,
 		DEKU_PALACE,
-		DEKU_PALACE_INTERIOR,
+		DEKU_PALACE_INTERIOR_THRONE_ROOM,
+		DEKU_PALACE_INTERIOR_SIDE_ROOM,
 		DEKU_PALACE_BEAN_GROTTO,
 		DEKU_SHRINE,
 		WOODFALL,

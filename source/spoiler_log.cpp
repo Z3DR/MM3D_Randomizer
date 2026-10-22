@@ -12,6 +12,7 @@
 #include "tinyxml2.h"
 #include "utils.hpp"
 #include "shops.hpp"
+#include "ui.hpp"
 
 #include <3ds.h>
 #include <cstdio>
@@ -109,9 +110,7 @@ void InitLogDirectories(FS_Archive sdmcArchive) {
   const char* stylesheetDest = "/MM3DR/Spoiler_Logs/spoiler-log.css";
 
   const auto printInfo = [&](int progress) {
-    consoleClear();
-    printf("\x1b[10;10HCreating Log Directories");
-    printf("\x1b[11;10HProgress: %d/%d", progress, dirs.size());
+    UI::ShowStatus("Creating Log Directories", std::to_string(progress) + "/" + std::to_string(dirs.size()));
   };
 
   printInfo(0);

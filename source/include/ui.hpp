@@ -46,6 +46,8 @@ void SceneBottom();
 typedef void (*DrawFn)();
 void SetRedrawCallback(DrawFn fn);
 
+void ShowStatus(const std::string& title, const std::string& detail);
+
 float TextWidth(const std::string& s, float scale);
 void  Text(const std::string& s, float x, float y, float scale, u32 color);
 void  TextCentered(const std::string& s, float cx, float y, float scale, u32 color);

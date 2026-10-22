@@ -3708,7 +3708,8 @@ void HintTable_Init() {
     hintTable[SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur", "Sümpfe des Vergessens"}});
     hintTable[SOUTHERN_SWAMP_TOP] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur", "Sümpfe des Vergessens"}});
     hintTable[DEKU_PALACE] = HintText::Region({Text{"the Deku Palace", "le palais mojo", "Palacio Deku", "Deku-Palast"}});
-    hintTable[DEKU_PALACE_INTERIOR] = HintText::Region({Text{"the Deku Palace", "le palais mojo", "Palacio Deku", "Deku-Palast"}});
+    hintTable[DEKU_PALACE_INTERIOR_THRONE_ROOM] = HintText::Region({Text{"the Deku Palace", "le palais mojo", "Palacio Deku", "Deku-Palast"}});
+    hintTable[DEKU_PALACE_INTERIOR_SIDE_ROOM] = HintText::Region({Text{"the Deku Palace", "le palais mojo", "Palacio Deku", "Deku-Palast"}});
     hintTable[DEKU_PALACE_BEAN_GROTTO] = HintText::Region({Text{"the Deku Palace", "le palais mojo", "Palacio Deku", "Deku-Palast"}});
     hintTable[DEKU_SHRINE] = HintText::Region({Text{"the Deku Palace", "le palais mojo", "Palacio Deku", "Deku-Palast"}});
     hintTable[WOODFALL] = HintText::Region({Text{"Woodfall", "Boisé-les-Cascades", "Bosque Catarata", "Dämmerwald", "", "Bois-Cascade", ""}});

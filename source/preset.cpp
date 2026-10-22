@@ -12,6 +12,7 @@
 
 #include "category.hpp"
 #include "settings.hpp"
+#include "ui.hpp"
 #include "tinyxml2.h"
 #include "utils.hpp"
 
@@ -46,9 +47,7 @@ void CreatePresetDirectories(FS_Archive sdmcArchive) {
   };
 
   const auto printInfo = [&](int progress) {
-    consoleClear();
-    printf("\x1b[10;10HCreating Preset Directories");
-    printf("\x1b[11;10HProgress: %d/%d", progress, dirs.size());
+    UI::ShowStatus("Creating Preset Directories", std::to_string(progress) + "/" + std::to_string(dirs.size()));
   };
 
   printInfo(0);
