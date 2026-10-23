@@ -128,6 +128,7 @@ void MoveCursor(u32 kDown) {
   if (currentMenu->mode == OPTION_SUB_MENU) {
     //Nothing to move to, and the loop below would never find an option
     if (!HasSelectableOption(currentMenu)) {
+      SetToast("No settings currently available in this category", UI::ColBad);
       return;
     }
     //Loop through settings until an unlocked one is reached
