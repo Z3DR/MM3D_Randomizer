@@ -364,6 +364,8 @@ namespace Settings {
     &excludeDungeonIkanaCastle,
     &excludeDungeonSecretShrine,
     &excludeDungeonTheMoon,
+    &excludeSwampSkulltulaHouse,
+    &excludeOceanSkulltulaHouse,
   };
 
   //Overworld Shuffle Settings

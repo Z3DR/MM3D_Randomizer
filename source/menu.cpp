@@ -60,6 +60,19 @@ void ClearDescription() {
   toastMsg.clear();
 }
 
+static bool IsSelectable(const Option* option) {
+  return !option->IsLocked() && !option->IsHidden();
+}
+
+static bool HasSelectableOption(const Menu* menu) {
+  for (const Option* option : *menu->settingsList) {
+    if (IsSelectable(option)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 void MenuInit() {
   Settings::InitSettings();
 
@@ -113,6 +126,10 @@ void MenuInit() {
 void MoveCursor(u32 kDown) {
   //Option sub menus need special checking for locked options
   if (currentMenu->mode == OPTION_SUB_MENU) {
+    //Nothing to move to, and the loop below would never find an option
+    if (!HasSelectableOption(currentMenu)) {
+      return;
+    }
     //Loop through settings until an unlocked one is reached
     do {
       if ((kDown & KEY_DUP) != 0) {
@@ -240,9 +257,16 @@ void MenuUpdate(u32 kDown) {
 
 void ModeChangeInit() {
   if (currentMenu->mode == OPTION_SUB_MENU) {
-    //loop through until we reach an unlocked setting
-    while(currentMenu->settingsList->at(currentMenu->menuIdx)->IsLocked() || currentMenu->settingsList->at(currentMenu->menuIdx)->IsHidden()) {
-      currentMenu->menuIdx++;
+    const size_t count = currentMenu->settingsList->size();
+    if (currentMenu->menuIdx >= count) {
+      currentMenu->menuIdx = 0;
+    }
+    for (size_t i = 0; i < count; i++) {
+      const u16 idx = (currentMenu->menuIdx + i) % count;
+      if (IsSelectable(currentMenu->settingsList->at(idx))) {
+        currentMenu->menuIdx = idx;
+        break;
+      }
     }
     currentSetting = currentMenu->settingsList->at(currentMenu->menuIdx);
 
