@@ -1610,7 +1610,7 @@ void AreaTable_Init() {
 		LocationAccess(ZORA_CAPE_LEDGE_NO_TREE, {[] {return Hookshot;}}),
 		LocationAccess(ZORA_CAPE_LEDGE_WITH_TREE, {[] {return Hookshot;}}),
 		LocationAccess(ZORA_CAPE_UNDERWATER_CHEST, {[] {return ZoraMask;}}),
-		LocationAccess(ZORA_CAPE_ZORA_JARS_MINIGAME, {[] {return ZoraMask;}}),
+		LocationAccess(ZORA_CAPE_ZORA_JARS_MINIGAME, {[] {return ZoraMask || (GoronMask && PowderKeg);}}),
 		//Gossip Stones
 		LocationAccess(ZC_GOSSIP, {[] {return true;}}),
 	},

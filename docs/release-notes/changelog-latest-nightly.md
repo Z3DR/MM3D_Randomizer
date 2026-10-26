@@ -1,9 +1,9 @@
 # Latest Nightly Changes
 
 ## Bug Fixes
-Fix: Split Deku Palace Interior into Throne Room and Side Room since while they are the same room they are not connected and have separate entrances. resolves a reachability problem with entrances.
-Fix: On initial boot or if the custom directories are being (re)created a progress message is now displayed rather than just a black screen.
-Fix: Revert change that made Playthrough Spheres not funciton properly
-Fix: Resolved many logic issues that caused locations to be accessible when they should not have been or vice versa - Thanks Gonzalo
+Fix: Resolved bug where the randomzier app crashes when trying to display a menu with no content
+Fix: Goron and Powder Keg are now able to complete the Zora Jars Minigame
+Fix: Corrects scene for Lulu pictures checks 
+Fix: Milk and Chateau refills are now small chests instead of decorated
 
-[Previous Nightly](./old-releases/nightlies/2.0.0/changelog-nightly-bf2210.md)  
+[Previous Nightly](./old-releases/nightlies/2.0.0/changelog-nightly-9ecdca.md)  
