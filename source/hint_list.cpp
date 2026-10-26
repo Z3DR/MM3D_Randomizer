@@ -3700,7 +3700,8 @@ void HintTable_Init() {
     hintTable[ROAD_TO_SOUTHERN_SWAMP] = HintText::Region({Text{"the Road to Southern Swamp", "la route des marais du Sud", "Camino al Pantano del Sur", "Sumpfweg"}});
     hintTable[ROAD_TO_SOUTHERN_SWAMP_ARCHERY] = HintText::Region({Text{"the Road to Southern Swamp", "la route des marais du Sud", "Camino al Pantano del Sur", "Sumpfweg"}});
     hintTable[ROAD_TO_SWAMP_GROTTO] = HintText::Region({Text{"the Road to Southern Swamp", "la route des marais du Sud", "Camino al Pantano del Sur", "Sumpfweg"}});
-    hintTable[SOUTHERN_SWAMP] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur", "Sümpfe des Vergessens"}});
+    hintTable[SOUTHERN_SWAMP_TERMINA_SIDE] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur", "Sümpfe des Vergessens"}});
+    hintTable[SOUTHERN_SWAMP_PALACE_SIDE] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur", "Sümpfe des Vergessens"}});
     hintTable[SWAMP_TOURIST_CENTER] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur", "Sümpfe des Vergessens"}});
     hintTable[SOUTHERN_SWAMP_HAGS_POTION_SHOP] = HintText::Region({Text{"the Southern Swamp", "les marais du Sud", "Pantano del Sur", "Sümpfe des Vergessens"}});
     hintTable[MYSTERY_WOODS] = HintText::Region({Text{"the Woods of Mystery", "le boisé mystérieux", "Bosque Misterioso", "Wälder der Mysterien", "", "les bois-mystère", ""}});

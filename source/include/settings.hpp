@@ -312,8 +312,43 @@ namespace Settings {
  
   //Trick Settings
   extern Option ToggleAllTricks;
+  extern Option ToggleAllNoviceTricks;
+  extern Option ToggleAllIntermediateTricks;
+  extern Option ToggleAllExpertTricks;
+
+  extern std::vector<Option*> NoviceTrickOptions;
+  extern std::vector<Option*> IntermediateTrickOptions;
+  extern std::vector<Option*> ExpertTrickOptions;
   extern Option LogicGrottosWithoutAgony;
   extern std::vector<Option*> trickOptions;
+  extern Menu noviceTricks;
+  extern Menu intermediateTricks;
+  extern Menu expertTricks;
+  extern std::vector<Menu *> trickMenus;
+
+  // Novice Tricks
+  extern Option CrossPoisonWater;
+  extern Option ZoraJarsAsGoron;
+
+  // Intermediate Tricks
+  extern Option UnloadPoisonOctorok;
+
+  // Expert Tricks
+  extern Option GoronMissile;
+
+  // Glitch Settings
+  extern Option ToggleAllGlitches;
+  extern Option ToggleAllNoviceGlitches;
+  extern Option ToggleAllIntermediateGlitches;
+  extern Option ToggleAllExpertGlitches;
+
+  extern std::vector<Option*> NoviceGlitchOptions;
+  extern std::vector<Option*> IntermediateGlitchOptions;
+  extern std::vector<Option*> ExpertGlitchOptions;
+  extern Menu noviceGlitches;
+  extern Menu intermediateGlitches;
+  extern Menu expertGlitches;
+  extern std::vector<Menu*> GlitchMenu;
 
   //Starting Inventory
   extern Option StartingConsumables;

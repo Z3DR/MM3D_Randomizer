@@ -14,6 +14,10 @@ extern string_view ToggleLogicNoviceDesc;
 extern string_view ToggleLogicIntermediateDesc;
 extern string_view ToggleLogicExpertDesc;
 extern string_view LogicGrottosWithoutAgonyDesc;
+extern string_view ToggleGlitchesNoneDesc;
+extern string_view ToggleGlitchesNoviceDesc;
+extern string_view ToggleGlitchesIntermediateDesc;
+extern string_view ToggleGlitchesExpertDesc;
 
 extern string_view startWithConsumablesDesc;
 extern string_view startWithMaxRupeesDesc;
@@ -262,3 +266,13 @@ extern string_view ingameFastSongsDesc;
 extern string_view ingameShuffleSFXDesc;
 extern string_view ingameShuffleFootstepsDesc;
 extern string_view ingameShuffleLinkVoiceDesc;
+
+// Novice Tricks
+extern string_view crossPoisonWaterDesc;
+extern string_view zoraJarsAsGoronDesc;
+
+// Intermediate Tricks
+extern string_view unloadPoisonOctorokDesc;
+
+// Expert Tricks
+extern string_view goronMissileDesc;

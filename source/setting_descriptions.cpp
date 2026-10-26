@@ -36,6 +36,10 @@ string_view ToggleLogicNoneDesc       = "These are not implemented yet come back
 string_view ToggleLogicNoviceDesc     = "These are not implemented yet come back soon!.";  //
 string_view ToggleLogicIntermediateDesc="These are not implemented yet come back soon!.";  //
 string_view ToggleLogicExpertDesc     = "These are not implemented yet come back soon!.";  //
+string_view ToggleGlitchesNoneDesc       = "These are not implemented yet come back soon!.";  //
+string_view ToggleGlitchesNoviceDesc     = "These are not implemented yet come back soon!.";  //
+string_view ToggleGlitchesIntermediateDesc="These are not implemented yet come back soon!.";  //
+string_view ToggleGlitchesExpertDesc     = "These are not implemented yet come back soon!.";  //
 /*------------------------------                                                           //
 |     START WITH CONSUMABLES   |                                                           //
 ------------------------------*/                                                           //
@@ -735,3 +739,20 @@ string_view ingameShuffleFootstepsDesc = "Shuffle Link's footsteps, jumps, landi
 string_view ingameShuffleLinkVoiceDesc = "Shuffle Link's voice among his own lines when\n" //
                                         "Shuffle Sound Effects is on. Each form keeps its\n"//
                                         "own voice. Can be changed in the in-game menu.";  //
+/*------------------------------                                                           //
+|        NOVICE TRICKS         |                                                           //
+------------------------------*/                                                           //
+string_view crossPoisonWaterDesc       = "Using a projectile kill the Octorok in Southern Swamp,\n"//
+                                         "then cross the poison water while taking damage.\n"//
+                                         "Minimum of 5 hearts is expected.";               //
+string_view zoraJarsAsGoronDesc        = "Zora Jars minigame can be completed as Goron using a powder keg.";
+/*------------------------------                                                           //
+|     INTERMEDIATE TRICKS      |                                                           //
+------------------------------*/                                                           //
+string_view unloadPoisonOctorokDesc    = "Manipulate the large Octorok in Southern Swamp to unload it \n"
+                                         "then cross the poison water by the Tourist Center.\n"  //
+                                         "Minimum of 5 hearts is expected.";               //
+/*------------------------------                                                           //
+|        EXPERT GLITCHES       |                                                           //
+------------------------------*/                                                           //
+string_view goronMissileDesc           = "Perform the Goron Missile trick to reach areas faster or skip certain sections.";
