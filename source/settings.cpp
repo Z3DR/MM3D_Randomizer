@@ -97,16 +97,77 @@ namespace Settings {
   
   //Detailed Logic Tricks                               ---------------------
   Option ToggleAllTricks                  = Option::U8("All Tricks", {"None", "Novice", "Intermediate", "Expert"},  {ToggleLogicNoneDesc, ToggleLogicNoviceDesc, ToggleLogicIntermediateDesc, ToggleLogicExpertDesc},                                           OptionCategory::Toggle, 0);
+  Option ToggleAllNoviceTricks                  = Option::Bool("All Novice Tricks", { "Off", "On" },       { "Toggle all novice tricks" },       OptionCategory::Toggle, 0);
+  Option ToggleAllIntermediateTricks            = Option::Bool("All Intermediate Tricks", { "Off", "On" }, { "Toggle all intermediate tricks" }, OptionCategory::Toggle, 0);
+  Option ToggleAllExpertTricks                  = Option::Bool("All Expert Tricks", { "Off", "On" },       { "Toggle all expert tricks" },       OptionCategory::Toggle, 0);
   //Option LogicGrottosWithoutAgony         = LogicTrick(" Grotto Access\n   w/o Shard of Agony",       LogicGrottosWithoutAgonyDesc);
-  std::vector<Option *> trickOptions = {
-    &ToggleAllTricks
 
-    //&LogicGrottosWithoutAgony,
-   };
-    /*To-Do Glitches*/
+  // Novice Tricks
+  Option CrossPoisonWater           = Option::Bool("Cross Poison Water", { "Off", "On" }, { crossPoisonWaterDesc }, OptionCategory::Toggle, 0);
+  Option ZoraJarsAsGoron           = Option::Bool("Zora Jars As Goron", { "Off", "On" }, { zoraJarsAsGoronDesc }, OptionCategory::Toggle, 0);
+
+  // Intermediate Tricks
+  Option UnloadPoisonOctorok        = Option::Bool("Unload Poison Octorok", { "Off", "On" }, { unloadPoisonOctorokDesc }, OptionCategory::Toggle, 0);
+
+  // Expert Tricks
+  // TBD
+
+  std::vector<Option *> NoviceTrickOptions = {
+     &CrossPoisonWater,
+     &ZoraJarsAsGoron,
+  };
+
+  std::vector<Option *> IntermediateTrickOptions = {
+      &UnloadPoisonOctorok,
+  };
+
+  std::vector<Option *> ExpertTrickOptions = {
+    //TBD
+  };
+
+  Menu noviceTricks       = Menu::SubMenu("Novice Tricks",              &NoviceTrickOptions);
+  Menu intermediateTricks = Menu::SubMenu("Intermediate Tricks",        &IntermediateTrickOptions);
+  Menu expertTricks       = Menu::SubMenu("Expert Tricks",            &ExpertTrickOptions);
+
+  std::vector<Menu *> trickMenus = {
+      &noviceTricks,
+      &intermediateTricks,
+      // &expertTricks
+  };
+
+  Option ToggleAllGlitches                  = Option::U8("All Glitches", {"None", "Novice", "Intermediate", "Expert"},  {ToggleGlitchesNoneDesc, ToggleGlitchesNoviceDesc, ToggleGlitchesIntermediateDesc, ToggleGlitchesExpertDesc},                                           OptionCategory::Toggle, 0);
+  Option ToggleAllNoviceGlitches           = Option::Bool("All Novice Glitches", { "Off", "On" }, { "Toggle all novice glitches" }, OptionCategory::Toggle, 0);
+  Option ToggleAllIntermediateGlitches     = Option::Bool("All Intermediate Glitches", { "Off", "On" }, { "Toggle all intermediate glitches" }, OptionCategory::Toggle, 0);
+  Option ToggleAllExpertGlitches           = Option::Bool("All Expert Glitches", { "Off", "On" }, { "Toggle all expert glitches" }, OptionCategory::Toggle, 0);
+
+  // Novice Glitches
   Option FakeGlitch = Option::U8("Fake Glitch", { "Fake" }, { "This Is Here to not break things" });
-  std::vector<Option *> glitchOptions = {
-      &FakeGlitch,
+  
+  // Intermediate Glitches
+  // TBD
+  
+  // Expert Glitches
+  Option GoronMissile               = Option::Bool("Goron Missile", { "Off", "On" }, { goronMissileDesc }, OptionCategory::Toggle, 0);
+  
+  std::vector<Option *> NoviceGlitchOptions = {
+      // &FakeGlitch,
+  };
+  std::vector<Option *> IntermediateGlitchOptions = {
+      // &FakeGlitch,
+  };
+
+  std::vector<Option *> ExpertGlitchOptions = {
+      &GoronMissile,
+  };
+
+  Menu noviceGlitches = Menu::SubMenu("Novice Glitches", &NoviceGlitchOptions);
+  Menu intermediateGlitches = Menu::SubMenu("Intermediate Glitches", &IntermediateGlitchOptions);
+  Menu expertGlitches = Menu::SubMenu("Expert Glitches", &ExpertGlitchOptions);
+
+  std::vector<Menu *> GlitchMenu = {
+      // &noviceGlitches,
+      // &intermediateGlitches,
+      &expertGlitches,
   };
 
   //Starting Inventory Toggles
@@ -709,19 +770,19 @@ namespace Settings {
   };
 
   //Main Settings Options Submenu
-  Menu logicSettings    = Menu::SubMenu("Logic Options",     &logicOptions);
-  Menu tricks = Menu::SubMenu("Logical Tricks", &trickOptions, false);
-  Menu startingInventory = Menu::SubMenu("Starting Inventory", &startingInventoryMenu, false);
-  Menu excludeLocations = Menu::SubMenu("Exclude Locations", &excludeLocationsMenu, false);
-  Menu glitchSettings   = Menu::SubMenu("Glitch Options",    &glitchOptions, false);
-  Menu otherSettings = Menu::SubMenu("Other Settings", &otherSettingsOptions, false);
-  Menu gameSettings = Menu::SubMenu("Game Settings", &gameOptions);
+  Menu logicSettings      = Menu::SubMenu("Logic Options",     &logicOptions);
+  Menu tricks             = Menu::SubMenu("Logical Tricks", &trickMenus, false);
+  Menu startingInventory  = Menu::SubMenu("Starting Inventory", &startingInventoryMenu, false);
+  Menu excludeLocations   = Menu::SubMenu("Exclude Locations", &excludeLocationsMenu, false);
+  Menu glitchSettings     = Menu::SubMenu("Glitch Options",    &GlitchMenu, false);
+  Menu otherSettings      = Menu::SubMenu("Other Settings", &otherSettingsOptions, false);
+  Menu gameSettings       = Menu::SubMenu("Game Settings", &gameOptions);
   
   std::vector<Menu *> detailLogicSettings = {
       //&logicSettings,
-      //&tricks,
       &excludeLocations,
-      //&glitchSettings,
+      &tricks,
+      // &glitchSettings,
   };
   Menu startingInventoryOptionals = Menu::SubMenu("Inventory Options", &startingInventoryOptions, false);
   Menu startingInventoryInventoryMenu = Menu::SubMenu("Main Inventory", &startingInventoryInventory, false);
@@ -1231,12 +1292,6 @@ namespace Settings {
     for (auto op : logicOptions) {
       op->SetToDefault();
     }
-    for (auto op : trickOptions) {
-     op->SetToDefault();
-    }
-    for (auto op : glitchOptions) {
-      op->SetToDefault();
-    }
     for (auto op : shuffleMajorItems) {
         op->SetToDefault();
     }
@@ -1265,6 +1320,27 @@ namespace Settings {
     for (auto op : customButtons) {
       op->SetToDefault();
     }
+
+    for (auto op : NoviceTrickOptions) {
+      op->SetToDefault();
+    }
+    for (auto op : IntermediateTrickOptions) {
+      op->SetToDefault();
+    }
+    for (auto op : ExpertTrickOptions) {
+      op->SetToDefault();
+    }
+
+    for (auto op : NoviceGlitchOptions) {
+      op->SetToDefault();
+    }
+    for (auto op : IntermediateGlitchOptions) {
+      op->SetToDefault();
+    }
+    for (auto op : ExpertGlitchOptions) {
+      op->SetToDefault();
+    }
+
 
     SetDefaultCosmetics();
 
@@ -1752,7 +1828,6 @@ namespace Settings {
     //I chose not to include it because it allows for the choice to randomize only those two songs outside of the other songs grouped
     //into Songsanity since they are already coded in item_pool.cpp to be added to the pool separately based on these settings anyways
     //so locking them out just removes that choice which is less fun than allowing it.
-   
 
     ResolveExcludedLocationConflicts();
   }

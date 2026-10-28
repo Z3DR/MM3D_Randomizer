@@ -343,6 +343,13 @@ namespace Logic {
 	extern bool RemainsForMajora;
 	extern u8 CurrentRemains;
 
+	// Novice Tricks / Glitches
+	extern bool CrossPoisonWaterNovice;
+	extern bool ZoraJarsAsGoronNovice;
+	
+	// Intermediate Tricks / Glitches
+	extern bool UnloadOctorokIntermediate;
+
 	void UpdateHelpers();
 	bool CanPlay(bool song);
 	//bool IsMagicArrow(ItemKey item);

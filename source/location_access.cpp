@@ -838,7 +838,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(TERMINA_FIELD, {[]{return true;}}),
-		Entrance(SOUTHERN_SWAMP, {[]{return true;}}),
+		Entrance(SOUTHERN_SWAMP_TERMINA_SIDE, {[]{return true;}}),
 		Entrance(ROAD_TO_SOUTHERN_SWAMP_ARCHERY, {[]{return true;}}),
 		Entrance(ROAD_TO_SWAMP_GROTTO, {[]{return true;}}),
 		//Entrance(ROAD_TO_SWAMP_FISHING_HOLE, {[]{return true;}}), //eventually add?
@@ -876,7 +876,7 @@ void AreaTable_Init() {
 	});
 
 	
-	areaTable[SOUTHERN_SWAMP] = Area("Southern Swamp", "Southern Swamp", SOUTHERN_SWAMP, {
+	areaTable[SOUTHERN_SWAMP_TERMINA_SIDE] = Area("Southern Swamp", "Southern Swamp", SOUTHERN_SWAMP_TERMINA_SIDE, {
 		//Events
 		EventAccess(&Mushroom, {[]{return MaskOfScents && AnyBottle;}}),//Base logic expects mushrooms from SS or Woods
 		EventAccess(&SpringWater, {[]{return AnyBottle;}}),
@@ -905,10 +905,22 @@ void AreaTable_Init() {
 		Entrance(SWAMP_TOURIST_CENTER, {[]{return true;}}),
 		Entrance(SOUTHERN_SWAMP_HAGS_POTION_SHOP, {[]{return true;}}),
 		
-		Entrance(DEKU_PALACE, {[]{return KoumeSaved || WoodfallClear || (DekuMask && (Bow || ZoraMask || Hookshot));}}),
-		Entrance(SOUTHERN_SWAMP_TOP, {[]{return false;}}),//Only accessable From top route falling down
-		Entrance(SSH_ENTRANCE, {[]{return (DekuMask && (KoumeSaved || Bow || ZoraMask || Hookshot)) || WoodfallClear;}}),
-		Entrance(SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO, {[]{return (DekuMask && (KoumeSaved || Bow || ZoraMask || Hookshot)) || WoodfallClear;}}),
+		Entrance(SOUTHERN_SWAMP_PALACE_SIDE, {[]{return KoumeSaved || WoodfallClear || CrossPoisonWaterNovice || UnloadOctorokIntermediate;}}),
+	});
+
+	areaTable[SOUTHERN_SWAMP_PALACE_SIDE] = Area("Southern Swamp", "Southern Swamp", SOUTHERN_SWAMP_TERMINA_SIDE, {
+		//Events
+	},
+	{
+		//Locations
+	},
+	{
+		//Exits
+		Entrance(SOUTHERN_SWAMP_TERMINA_SIDE, {[]{return KoumeSaved || WoodfallClear || CrossPoisonWaterNovice;}}),
+		Entrance(SOUTHERN_SWAMP_TOP, {[]{return false;}}),
+		Entrance(DEKU_PALACE, {[]{return true;}}),
+		Entrance(SSH_ENTRANCE, {[]{return HasFireSource || HasFireSourceWithTorch;}}),
+		Entrance(SOUTHERN_SWAMP_NEAR_SPIDER_HOUSE_GROTTO, {[]{return true;}}),
 	});
 
 	areaTable[SWAMP_TOURIST_CENTER] = Area("Swamp Tourist Center", "Swamp Tourist Center", NONE, {
@@ -922,7 +934,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(SOUTHERN_SWAMP, {[]{return true;}}),
+		Entrance(SOUTHERN_SWAMP_TERMINA_SIDE, {[]{return true;}}),
 	});
 
 	areaTable[SOUTHERN_SWAMP_HAGS_POTION_SHOP] = Area("Swamp Potion Shop", "Swamp Potion Shop", NONE, {
@@ -939,7 +951,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(SOUTHERN_SWAMP, {[]{return true;}}),
+		Entrance(SOUTHERN_SWAMP_TERMINA_SIDE, {[]{return true;}}),
 	});
 
 	areaTable[MYSTERY_WOODS] = Area("Mystery Woods", "Mystery Woods", MYSTERY_WOODS, {
@@ -954,7 +966,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(SOUTHERN_SWAMP, {[]{return true;}}),
+		Entrance(SOUTHERN_SWAMP_TERMINA_SIDE, {[]{return true;}}),
 		Entrance(SOUTHERN_SWAMP_MYSTERY_WOODS_GROTTO, {[]{return true;}}),
 	});
 
@@ -984,10 +996,10 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(SOUTHERN_SWAMP, {[]{return true;}}),
+		Entrance(SOUTHERN_SWAMP_PALACE_SIDE, {[]{return true;}}),
 	});
 
-	areaTable[SOUTHERN_SWAMP_TOP] = Area("Southern Swamp Top Route", "Southern Swamp Top Route", SOUTHERN_SWAMP, {
+	areaTable[SOUTHERN_SWAMP_TOP] = Area("Southern Swamp Top Route", "Southern Swamp Top Route", SOUTHERN_SWAMP_TERMINA_SIDE, {
 		//Events
 	},
 	{
@@ -995,7 +1007,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(SOUTHERN_SWAMP, {[]{return true;}}),//just fall off
+		Entrance(SOUTHERN_SWAMP_PALACE_SIDE, {[]{return true;}}),//just fall off
 		Entrance(WOODFALL, {[]{return DekuMask;}}),
 	});
 
@@ -1010,7 +1022,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(SOUTHERN_SWAMP, {[]{return true;}}),
+		Entrance(SOUTHERN_SWAMP_PALACE_SIDE, {[]{return true;}}),
 		//SOUTHERN_SWAMP_TOP might not be needed but theres two entrances/exits from deku palace that lead to southern swamp
 		//BUT only the top route can reach woodfall
 		Entrance(SOUTHERN_SWAMP_TOP, {[]{return DekuMask;}}),
@@ -1610,7 +1622,7 @@ void AreaTable_Init() {
 		LocationAccess(ZORA_CAPE_LEDGE_NO_TREE, {[] {return Hookshot;}}),
 		LocationAccess(ZORA_CAPE_LEDGE_WITH_TREE, {[] {return Hookshot;}}),
 		LocationAccess(ZORA_CAPE_UNDERWATER_CHEST, {[] {return ZoraMask;}}),
-		LocationAccess(ZORA_CAPE_ZORA_JARS_MINIGAME, {[] {return ZoraMask || (GoronMask && PowderKeg);}}),
+		LocationAccess(ZORA_CAPE_ZORA_JARS_MINIGAME, {[] {return ZoraMask || ZoraJarsAsGoronNovice;}}),
 		//Gossip Stones
 		LocationAccess(ZC_GOSSIP, {[] {return true;}}),
 	},
@@ -1946,7 +1958,7 @@ void AreaTable_Init() {
 		Entrance(SAKONS_HIDEOUT, {[]{return EnterSakonHideout;}}),
 		Entrance(SECRET_SHRINE_ENTRANCE, {[]{return true;}}),//slow swim but don't NEED zora mask
 		Entrance(IKANA_CANYON_SECRET_SHRINE_GROTTO, {[]{return true;}}),
-		Entrance(SOUTHERN_SWAMP, {[]{return true;}}),//end of river
+		Entrance(SOUTHERN_SWAMP_PALACE_SIDE, {[]{return true;}}),//end of river
 		Entrance(IKANA_CANYON_UPPER, {[]{return CanUse(ICE_ARROWS) && Hookshot;}}),
 	});
 
@@ -4012,7 +4024,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(SOUTHERN_SWAMP, {[]{return true;}}),
+		Entrance(SOUTHERN_SWAMP_PALACE_SIDE, {[]{return true;}}),
 		Entrance(SSH_MAIN_ROOM_LOWER, {[]{return true;}}),
 	});
 
@@ -4285,7 +4297,7 @@ void AreaTable_Init() {
 }
 
 namespace Areas {
-	static std::array < const AreaKey, 272> allAreas = {
+	static std::array < const AreaKey, 273> allAreas = {
 		ROOT,
 		ROOT_EXITS,
 		N_CLOCK_TOWN,
@@ -4327,7 +4339,8 @@ namespace Areas {
 		ROAD_TO_SOUTHERN_SWAMP,
 		ROAD_TO_SOUTHERN_SWAMP_ARCHERY,
 		ROAD_TO_SWAMP_GROTTO,
-		SOUTHERN_SWAMP,
+		SOUTHERN_SWAMP_TERMINA_SIDE,
+		SOUTHERN_SWAMP_PALACE_SIDE,
 		SWAMP_TOURIST_CENTER,
 		SOUTHERN_SWAMP_HAGS_POTION_SHOP,
 		MYSTERY_WOODS,

@@ -330,6 +330,13 @@ namespace Logic {
 	bool CanBuyBeans = false;
 
 	bool CanGoToMoon = false;
+
+	// Novice Tricks / Glitches
+	bool CrossPoisonWaterNovice = false;
+	bool ZoraJarsAsGoronNovice = false;
+
+	// Intermediate Tricks / Glitches
+	bool UnloadOctorokIntermediate = false;
 	
 	u8 ZoraEgg = 0;
 
@@ -567,6 +574,21 @@ namespace Logic {
 		RemainsForMoon = ((4 - MoonRemainsRequired.Value<u8>()) <= CurrentRemains);
 		RemainsForMajora = ((4 - MajoraRemainsRequired.Value<u8>()) <= CurrentRemains);
 
+		
+		// Novice trick for crossing poison water
+		if (CrossPoisonWater) {
+			CrossPoisonWaterNovice = (Hookshot || (ProgressiveBow >= 1) || ZoraMask) && TotalHeartContainers(5);
+		}
+
+		// Novice trick for completing Zora Jars minigame as Goron
+		if (ZoraJarsAsGoron) {
+			ZoraJarsAsGoronNovice = GoronMask && PowderKeg;
+		}
+
+		// Intermediate trick for unloading octoroks
+		if (UnloadPoisonOctorok) {
+			UnloadOctorokIntermediate = TotalHeartContainers(5);
+		}
 	}
 
 	bool EventsUpdated() {
@@ -909,6 +931,13 @@ namespace Logic {
 	CurrentRemains = 0;
 	RemainsForMoon = 0;
 	RemainsForMajora = 0;
+
+	// Novice Tricks / Glitches
+	CrossPoisonWaterNovice = false;
+	ZoraJarsAsGoronNovice = false;
+
+	// Intermediate Tricks / Glitches
+	UnloadOctorokIntermediate = false;
 	
 	}
 }
