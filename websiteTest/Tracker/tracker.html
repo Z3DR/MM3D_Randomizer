@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Majora's Mask 3D Map and Item Tracker</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="trackerstyle.css" type="text/css">
+		<link rel="stylesheet" href="../Scripts/styles.css" type="text/css">
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	</head>
+	  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="brand" style="text-decoration: none; color: inherit;">
+        <span class="logo-icon"><i class="fa-solid fa-gamepad"></i></span>
+        <span class="brand-title">MM3D <span class="highlight">Randomizer</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="../Pages/spoilers.html" class="nav-item"><i class="fa-solid fa-magnifying-glass"></i> Spoiler Reader</a>
+        <a href="../Pages/resources.html" class="nav-item"><i class="fa-solid fa-book"></i> Resources</a>
+        <a href="../Pages/faq.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+        <a href="../Pages/features.html" class="nav-item"><i class="fa-solid fa-star"></i> Features</a>
+        <a href="../Pages/release-notes.html" class="nav-item"><i class="fa-solid fa-bullhorn"></i> Release Notes</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-btn">
+            <i class="fa-solid fa-book-open"></i> Setup Guides <i class="fa-solid fa-chevron-down" style="font-size: 0.75em; margin-left: 0.2rem;"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="../Pages/emulator.html" class="nav-item"><i class="fa-solid fa-desktop"></i> Emulator</a>
+            <a href="../Pages/console.html" class="nav-item"><i class="fa-solid fa-gamepad"></i> Console</a>
+          </div>
+        </div>
+        <a href="tracker.html" class="nav-item active"><i class="fa-solid fa-compass-drafting"></i> Tracker</a>
+        <a href="https://discord.gg/75sr3xz6He" class="nav-item"><i class="fa-brands fa-discord"></i> Discord</a>
+      </nav>
+      <!-- Right Controls Wrapper (Toggle + Version Badge) -->
+      <div class="nav-right-group">
+        <button class="nav-menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show-mobile-menu')">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="version-badge">v1.0.0</div>
+      </div>
+    </div> 
+  </header>
+
+	<body>
+		<script src="scripts/checks.js?v=10" defer></script>
+		<script src="scripts/items.js?v=10" defer></script>
+		<script src="scripts/main.js?v=10" defer></script>
+
+		<main id="layoutdiv">
+			<div id="itemtable" class="itemtable">
+				<fieldset><legend>Items</legend><div id="itemdiv" role="group" aria-label="Items"></div></fieldset>
+				<fieldset><legend>Masks</legend><div id="maskdiv" role="group" aria-label="Masks"></div></fieldset>
+				<fieldset><legend>Dungeons</legend><div id="dungeondiv" role="group" aria-label="Dungeons"></div></fieldset>
+				<fieldset><legend>Quest</legend><div id="questdiv" role="group" aria-label="Quest"></div></fieldset>
+			</div>
+			<div id="mapdiv" class="mapdiv">
+				<div id="mapimage" class="mapimage" role="group" aria-label="Map of Termina"></div>
+				<div class="mapbar">
+					<ul class="legend" aria-label="Index">
+						<li><span class="box red"></span> Unavailable</li>
+						<li><span class="box green"></span> Available</li>
+						<li><span class="box blurple"></span> Not Randomized</li>
+						<li><span class="box gray"></span> Completed</li>
+					</ul>
+					<div id="submapstats" class="stats" role="status" aria-live="polite" aria-label="Stats">
+						<span>Checked: <span id="statschecked">0</span></span>
+						<span>Available: <span id="statsavailable">0</span></span>
+						<span>Remaining: <span id="statsremaining">0</span></span>
+					</div>
+				</div>
+				<div class="panels">
+					<section id="submapdiv" class="panel" aria-labelledby="submaparea">
+						<h2 class="paneltitle"><span id="submaparea">Termina</span></h2>
+						<ul id="submaplist" class="submaplist" aria-label="Checks in selected area"></ul>
+					</section>
+				</div>
+			</div>
+		</main>
+		<!-- Settings Panel-->
+		 
+		<button id="settingsbutton" type="button" aria-expanded="false" aria-controls="settings">Options</button>
+		<fieldset id="settings" class="settings" hidden>
+			<legend>Options</legend>
+			<fieldset>
+				<legend>Item Tracker</legend>
+				<button type="button" data-action="resetlayout">Reset Layout</button>
+				<button type="button" data-action="resettracker">Reset Tracker</button>
+				<button type="button" data-action="resetlogic">Reset Logic</button>
+				<button type="button" data-action="popout">Pop Out Items</button>
+				<br>
+				Size<input type="range" id="itemzoom" data-zoom="itemtable" aria-label="Item tracker size" value="100" max="200" min="10">
+				<output id="itemtablesize">100%</output><br>
+			</fieldset>
+			<fieldset>
+				<legend>Map Tracker</legend>
+				<label><input type="checkbox" role="switch" id="showmap" name="showmap" checked> Enabled</label><br>
+				Size<input type="range" id="mapzoom" data-zoom="mapdiv" aria-label="Map size" value="100" max="200" min="10">
+				<output id="mapdivsize">100%</output><br>
+				Position:
+				<label><input type="radio" id="mappositionside" name="mapposition" value="Side"> Side</label>
+				<label><input type="radio" id="mappositionbelow" name="mapposition" value="Below"> Below</label><br>
+				<fieldset>
+					<legend>Major Item Settings</legend>
+					<label><input type="checkbox" role="switch" id="maininvlogictoggle" data-logic="maininvlogic" name="maininvlogic"> Shuffle Main Inventory</label>
+					<label><input type="checkbox" role="switch" id="maskslogictoggle" data-logic="maskslogic" name="maskslogic"> Shuffle Masks</label>
+					<label><input type="checkbox" role="switch" id="transformmasklogictoggle" data-logic="transformmasklogic" name="transformmasklogic"> Shuffle Transformation Masks</label>
+					<label><input type="checkbox" role="switch" id="ocarinalogictoggle" data-logic="ocarinalogic" name="ocarinalogic"> Start With Ocarina</label>
+					<label><input type="checkbox" role="switch" id="piecelogictoggle" data-logic="piecelogic" name="piecelogic"> Shuffle Heart Pieces</label>
+					<label><input type="checkbox" role="switch" id="songslogictoggle" data-logic="songslogic" name="songslogic"> Songsanity</label>
+					<label><input type="checkbox" role="switch" id="soaringlogictoggle" data-logic="soaringlogic" name="soaringlogic"> Shuffle Soaring</label>
+					<label><input type="checkbox" role="switch" id="songtimelogictoggle" data-logic="songtimelogic" name="songtimelogic"> Start With Song of Time</label>
+					<label><input type="checkbox" role="switch" id="skullslogictoggle" data-logic="skullslogic" name="skullslogic"> Tokensanity</label>
+					<label><input type="checkbox" role="switch" id="shopsanitylogictoggle" data-logic="shopsanitylogic" name="shopsanitylogic"> Shopsanity</label>
+					<label><input type="checkbox" role="switch" id="greatfairylogictoggle" data-logic="greatfairylogic" name="greatfairylogic"> Shuffle Great Fairy Items</label>
+				</fieldset>
+				<fieldset>
+					<legend>Side Quest Item Settings</legend>
+					<label><input type="checkbox" role="switch" id="scrubtradelogictoggle" data-logic="scrubtradelogic" name="scrubtradelogic"> Shuffle Deku Trades</label>
+					<label><input type="checkbox" role="switch" id="anjulogictoggle" data-logic="anjulogic" name="anjulogic"> Shuffle Anju and Kafei Items</label>
+					<label><input type="checkbox" role="switch" id="tinglelogictoggle" data-logic="tinglelogic" name="tinglelogic"> Shuffle Tingle Maps</label>
+					<label><input type="checkbox" role="switch" id="notebooklogictoggle" data-logic="notebooklogic" name="notebooklogic"> Shuffle Bomber's Notebook</label>
+					<label><input type="checkbox" role="switch" id="cowlogictoggle" data-logic="cowlogic" name="cowlogic"> Cowsanity</label>
+					<label><input type="checkbox" role="switch" id="beanslogictoggle" data-logic="beanslogic" name="beanslogic"> Shuffle Magic Beans</label>
+					<label><input type="checkbox" role="switch" id="scrubpurchaselogictoggle" data-logic="scrubpurchaselogic" name="scrubpurchaselogic"> Shuffle Scrub Purchases</label>
+					<label><input type="checkbox" role="switch" id="extraminigameslogictoggle" data-logic="extraminigameslogic" name="extraminigameslogic"> Extra Minigames</label>
+					<label><input type="checkbox" role="switch" id="extracheckslogictoggle" data-logic="extracheckslogic" name="extracheckslogic"> Extra Checks</label>
+					<label><input type="checkbox" role="switch" id="moonitemlogictoggle" data-logic="moonitemlogic" name="moonitemlogic"> Shuffle Moon Items</label>
+					<label><input type="checkbox" role="switch" id="deitylogictoggle" data-logic="deitylogic" name="deitylogic"> Shuffle Fierce Deity Mask</label>
+				</fieldset>
+				<fieldset>
+					<legend>Dungeon Settings</legend>
+					<label><input type="checkbox" role="switch" id="mapslogictoggle" data-logic="mapslogic" name="mapslogic"> Maps and Compasses</label>
+					<label><input type="checkbox" role="switch" id="smallkeylogictoggle" data-logic="smallkeylogic" name="smallkeylogic"> Keysanity(Small)</label>
+					<label><input type="checkbox" role="switch" id="bigkeylogictoggle" data-logic="bigkeylogic" name="bigkeylogic"> Keysanity(Boss)</label>
+					<label><input type="checkbox" role="switch" id="straylogictoggle" data-logic="straylogic" name="straylogic"> Shuffle Stray Fairies</label>
+					<label><input type="checkbox" role="switch" id="townstraylogictoggle" data-logic="townstraylogic" name="townstraylogic"> Shuffle Clock Town Stray</label>
+					<label><input type="checkbox" role="switch" id="remainslogictoggle" data-logic="remainslogic" name="remainslogic"> Boss Remains</label>
+					<label><input type="checkbox" role="switch" id="containerlogictoggle" data-logic="containerlogic" name="containerlogic"> Shuffle Heart Container Rewards</label>
+					<label><select id="moonrequirementslogictoggle" data-logic="moonrequirementslogic" name="moonrequirementslogic">
+						<option value="4">Vanilla (4)</option>
+						<option value="3">3</option>
+						<option value="2">2</option>
+						<option value="1">1</option>
+					</select> Moon Requirements</label>
+					<label><select id="majorarequirementslogictoggle" data-logic="majorarequirementslogic" name="majorarequirementslogic">
+						<option value="4">Vanilla (4)</option>
+						<option value="3">3</option>
+						<option value="2">2</option>
+						<option value="1">1</option>
+					</select> Majora Requirements</label>
+					<!--
+					<label><input type="checkbox" role="switch" id="eggslogictoggle" data-logic="eggslogic" name="eggslogic"> Zora Egg Shuffle</label>
+					-->
+				</fieldset>
+				<fieldset>
+					<legend>Custom Logic</legend>
+					<label><input type="checkbox" role="switch" id="skipbomberstoggle" data-logic="skipbombers" aria-label="Skip Bombers Minigame (sets Bombers code to 12345)" name="skipbombers"> <span class="tooltip">Skip Bombers Minigame
+						<span class="tooltiptext">Sets Bombers Code to 12345</span></span></label>
+				</fieldset>
+			</fieldset>
+		</fieldset>
+
+		<footer>
+			Majora's Mask 3D Randomizer Item and Map Tracker v0.10
+		</footer>
+	</body>
+</html>

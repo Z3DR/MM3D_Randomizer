@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Majora's Mask 3D Randomizer - Spoiler Log Inspector</title>
+  <link rel="stylesheet" href="../Scripts/styles.css">
+  <script src="../Scripts/spoilers.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="brand" style="text-decoration: none; color: inherit;">
+        <span class="logo-icon"><i class="fa-solid fa-gamepad"></i></span>
+        <span class="brand-title">MM3D <span class="highlight">Randomizer</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="spoilers.html" class="nav-item active"><i class="fa-solid fa-magnifying-glass"></i> Spoiler Reader</a>
+        <a href="resources.html" class="nav-item"><i class="fa-solid fa-book"></i> Resources</a>
+        <a href="faq.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+        <a href="features.html" class="nav-item"><i class="fa-solid fa-star"></i> Features</a>
+        <a href="release-notes.html" class="nav-item"><i class="fa-solid fa-bullhorn"></i> Release Notes</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-btn">
+            <i class="fa-solid fa-book-open"></i> Setup Guides <i class="fa-solid fa-chevron-down" style="font-size: 0.75em; margin-left: 0.2rem;"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="emulator.html" class="nav-item"><i class="fa-solid fa-desktop"></i> Emulator</a>
+            <a href="console.html" class="nav-item"><i class="fa-solid fa-gamepad"></i> Console</a>
+          </div>
+        </div>
+        <a href="../Tracker/tracker.html" class="nav-item"><i class="fa-solid fa-compass-drafting"></i> Tracker</a>
+        <a href="https://discord.gg/75sr3xz6He" class="nav-item"><i class="fa-brands fa-discord"></i> Discord</a>
+      </nav>
+      <!-- Right Controls Wrapper (Toggle + Version Badge) -->
+      <div class="nav-right-group">
+        <button class="nav-menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show-mobile-menu')">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="version-badge">v1.0.0</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-layout" style="grid-template-columns: 1fr;">
+    
+    <!-- Upload Dropzone Section -->
+    <section class="card">
+      <div class="card-header">
+        <h2><i class="fa-solid fa-file-code"></i> Load Majora's Mask 3D Spoiler Log</h2>
+      </div>
+      <div class="card-body">
+        <div id="dropZone" class="dropzone">
+          <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+          <p class="drop-text">Drag and drop your <strong>.xml</strong> spoiler log file here</p>
+          <p class="subtext">or click to browse your local computer</p>
+          <input type="file" id="xmlFileInput" accept=".xml,text/xml,application/xml" style="display: none;">
+          <div style="margin-top: 1rem;">
+            <button id="demoBtn" class="btn btn-secondary"><i class="fa-solid fa-flask"></i> Load Demo Spoiler Log</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inspector View (Hidden until XMl loaded) -->
+    <div id="inspectorView" class="hidden">
+      
+      <!-- Seed Metadata Banner -->
+      <section class="card">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <h2><i class="fa-solid fa-seedling"></i> Seed Overview</h2>
+          <span id="seedHash" class="version-badge">Hash: Loading...</span>
+        </div>
+        <div class="card-body grid-3-col">
+          <div><strong>Seed String:</strong> <span id="metaSeed" class="text-purple">-</span></div>
+          <div><strong>Logic Mode:</strong> <span id="metaLogic" class="text-secondary">-</span></div>
+          <div><strong>Version:</strong> <span id="metaVersion" class="text-secondary">-</span></div>
+        </div>
+      </section>
+
+      <!-- Search and Filter Bar -->
+      <section class="card">
+        <div class="card-body search-bar-container">
+          <div class="search-input-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search item, location, or region (e.g. 'Hookshot', 'Clock Town', 'Fierce Deity')...">
+          </div>
+          <div class="filter-actions">
+            <label class="checkbox-label">
+              <input type="checkbox" id="wothOnlyToggle"> WOTH Items Only
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Inspector Navigation Tabs -->
+      <div class="tabs-navigation">
+        <button class="tab active" data-tab="locationsTab"><i class="fa-solid fa-map-pin"></i> Item Locations</button>
+        <button class="tab" data-tab="inventoryTab"><i class="fa-solid fa-briefcase"></i>Starting Inventory</button>
+        <button class="tab" data-tab="wothTab"><i class="fa-solid fa-crown"></i> Way of the Hero</button>
+        <button class="tab" data-tab="hintsTab"><i class="fa-solid fa-comment-dots"></i> Gossip Hints</button>
+        <button class="tab" data-tab="playthroughTab"><i class="fa-solid fa-shoe-prints"></i> Playthrough Steps</button>
+        <button class="tab" data-tab="rawXmlTab"><i class="fa-solid fa-code"></i> Raw XML</button>
+      </div>
+
+      <!-- Inspector Tab Contents -->
+      <div class="card tab-body">
+        
+        <!-- Tab 1: Item Locations Table -->
+        <div id="locationsTab" class="tab-content active">
+          <div id="locationsContainer"></div>
+        </div>
+
+        <!-- Tab 2: Starting Inventory -->
+        <div id="inventoryTab" class="tab-content">
+            <div id="inventoryContainer"></div>
+        </div>
+
+        <!-- Tab 3: Way of the Hero -->
+        <div id="wothTab" class="tab-content">
+          <h3>Way of the Hero (WOTH) Required Checks</h3>
+          <p class="subtext">These checks are strictly required by logic to beat the seed.</p>
+          <div id="wothContainer" class="woth-grid"></div>
+        </div>
+
+        <!-- Tab 4: Gossip Stone Hints -->
+        <div id="hintsTab" class="tab-content">
+          <h3>Gossip Stone Hints</h3>
+          <div id="hintsContainer" class="hints-grid"></div>
+        </div>
+
+        <!-- Tab 5: Playthrough Logic Sphere Steps -->
+        <div id="playthroughTab" class="tab-content">
+          <h3>Logic Sphere Playthrough</h3>
+          <p class="subtext">The shortest chronological sequence of sphere checks to finish the game.</p>
+          <div id="playthroughContainer"></div>
+        </div>
+
+        <!-- Tab 6: Raw XML View -->
+        <div id="rawXmlTab" class="tab-content">
+          <pre class="xml-code-block"><code id="rawXmlContent"></code></pre>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+  
+<!-- Footer -->
+  <footer class="footer">
+    <p>Majora's Mask 3D Randomizer</p>
+    <p class="copyright">This is an unofficial website configured for Majora's Mask 3D Randomizer.</p>
+  </footer>
+
+</body>
+</html>

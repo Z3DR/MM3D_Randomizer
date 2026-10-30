@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Release Notes - MM3D Randomizer</title>
+  <link rel="stylesheet" href="../Scripts/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="brand" style="text-decoration: none; color: inherit;">
+        <span class="logo-icon"><i class="fa-solid fa-gamepad"></i></span>
+        <span class="brand-title">MM3D <span class="highlight">Randomizer</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="spoilers.html" class="nav-item"><i class="fa-solid fa-magnifying-glass"></i> Spoiler Reader</a>
+        <a href="resources.html" class="nav-item"><i class="fa-solid fa-book"></i> Resources</a>
+        <a href="faq.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+        <a href="features.html" class="nav-item"><i class="fa-solid fa-star"></i> Features</a>
+        <a href="release-notes.html" class="nav-item active"><i class="fa-solid fa-bullhorn"></i> Release Notes</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-btn">
+            <i class="fa-solid fa-book-open"></i> Setup Guides <i class="fa-solid fa-chevron-down" style="font-size: 0.75em; margin-left: 0.2rem;"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="emulator.html" class="nav-item"><i class="fa-solid fa-desktop"></i> Emulator</a>
+            <a href="console.html" class="nav-item"><i class="fa-solid fa-gamepad"></i> Console</a>
+          </div>
+        </div>
+        <a href="../Tracker/tracker.html" class="nav-item"><i class="fa-solid fa-compass-drafting"></i> Tracker</a>
+        <a href="https://discord.gg/75sr3xz6He" class="nav-item"><i class="fa-brands fa-discord"></i> Discord</a>
+      </nav>
+      <!-- Right Controls Wrapper (Toggle + Version Badge) -->
+      <div class="nav-right-group">
+        <button class="nav-menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show-mobile-menu')">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="version-badge">v1.0.0</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content Container -->
+  <main class="page-container" style="display: flex; flex-direction: column; align-items: center;">
+    
+    <!-- Main Release Notes Card -->
+    <div id="markdownContainer" class="markdown-body" style="width: 100%; max-width: 800px;">
+      <p class="subtext">Loading Release Notes...</p>
+    </div>
+
+    <!-- Quick Access Latest Links (Placed above Old Releases) -->
+    <div class="card" style="width: 100%; max-width: 800px; margin-top: 1.5rem;">
+      <div class="card-body" style="display: flex; gap: 1rem;">
+        <button id="btn-latest-release" onclick="loadReleaseMarkdown('../Docs/release-notes/changelog-latest-release.md', 'Latest Stable Release', this)" class="quick-release-btn">
+          <i class="fa-solid fa-star"></i> Latest Stable Release
+        </button>
+        <button id="btn-latest-nightly" onclick="loadReleaseMarkdown('../Docs/release-notes/changelog-latest-nightly.md', 'Latest Nightly', this)" class="quick-release-btn">
+          <i class="fa-solid fa-moon"></i> Latest Nightly
+        </button>
+      </div>
+    </div>
+
+    <!-- Old Releases Accordion Section (Stacked Below) -->
+    <div class="card" style="width: 100%; max-width: 800px; margin-top: 1.5rem;">
+      <div class="card-body">
+        <details class="old-releases-dropdown">
+          <summary class="old-releases-summary">
+            <span><i class="fa-solid fa-box-archive"></i> Old Releases</span>
+          </summary>
+          
+          <div class="old-releases-content">
+            <!-- Nightlies Dropdown with 1.5.0 and 2.0.0 Sub-Menus -->
+            <details class="sub-dropdown">
+              <summary><span><i class="fa-solid fa-moon"></i> Nightlies</span></summary>
+              <div class="sub-dropdown-content" style="padding-left: 1.5rem;">
+                
+                <!-- 1.5.0 Nightlies Sub-Menu -->
+                <details class="sub-dropdown">
+                  <summary><span><i class="fa-solid fa-code-branch"></i> 1.5.0 Nightlies</span></summary>
+                  <div class="sub-dropdown-content" id="nightlies-150-list">
+                    <p class="subtext">Loading 1.5.0 nightlies...</p>
+                  </div>
+                </details>
+
+                <!-- 2.0.0 Nightlies Sub-Menu -->
+                <details class="sub-dropdown">
+                  <summary><span><i class="fa-solid fa-code-branch"></i> 2.0.0 Nightlies</span></summary>
+                  <div class="sub-dropdown-content" id="nightlies-200-list">
+                    <p class="subtext">Loading 2.0.0 nightlies...</p>
+                  </div>
+                </details>
+
+              </div>
+            </details>
+
+            <!-- Versions Sub-Dropdown -->
+            <details class="sub-dropdown">
+              <summary><span><i class="fa-solid fa-tag"></i> Versions</span></summary>
+              <div class="sub-dropdown-content" id="versions-list">
+                <p class="subtext">Loading version archives...</p>
+              </div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Release Content Viewer Card -->
+    <section class="card" style="width: 100%; max-width: 800px; margin-top: 1.5rem;">
+      <div class="card-header">
+        <h2><i class="fa-solid fa-file-lines"></i> <span id="viewer-title">Release Details</span></h2>
+      </div>
+      <div id="selected-release-content" class="card-body markdown-body">
+        <p class="subtext">Select an old version or nightly build above to view its changelog.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Inline Script to Fetch & Render Docs/release-notes/release-notes.md -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('markdownContainer');
+    
+    if (window.location.protocol === 'file:') {
+      container.innerHTML = `
+        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 1.5rem; border-radius: 8px;">
+          <h3 style="color: #ef4444; margin-top: 0;"><i class="fa-solid fa-triangle-exclamation"></i> CORS Security Restriction</h3>
+          <p>Browsers block local <code>fetch()</code> requests when opening files directly via <code>file:///</code> URLs.</p>
+          <p>To view this page locally, please run a local web server (e.g., using <strong>VS Code Live Server</strong> or <code>python -m http.server</code>).</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Configure Marked.js renderer
+    const renderer = new marked.Renderer();
+    renderer.link = function({ href, title, text }) {
+        const titleAttr = title ? ` title="${title}"` : '';
+        return `<a href="${href}"${titleAttr} target="_blank" rel="noopener noreferrer">${text}</a>`;
+    };
+    marked.use({ renderer });
+
+    // Fetch latest-meta.json to determine which changelog to display by default
+    fetch('../Docs/release-notes/latest-meta.json')
+      .then(res => res.json())
+      .then(meta => {
+        // Determine which button corresponds to the default meta type
+        const defaultBtnId = meta.newerType === 'nightly' ? 'btn-latest-nightly' : 'btn-latest-release';
+        const defaultBtn = document.getElementById(defaultBtnId);
+        loadReleaseMarkdown(meta.path, meta.title, defaultBtn);
+      })
+      .catch(err => {
+        // Fallback default if meta file isn't found
+        const defaultBtn = document.getElementById('btn-latest-release');
+        loadReleaseMarkdown('../Docs/release-notes/changelog-latest-release.md', 'Latest Stable Release', defaultBtn);
+      });
+
+    // Fetch main release-notes.md
+    fetch('../Docs/release-notes/release-notes.md')
+      .then(res => res.text())
+      .then(markdownText => { container.innerHTML = marked.parse(markdownText); })
+      .catch(err => { container.innerHTML = '<p class="subtext">Failed to load main release notes.</p>'; });
+
+    // Helper function to populate lists from manifests
+    function populateManifest(manifestPath, containerId, folderPath) {
+      fetch(manifestPath)
+        .then(res => res.json())
+        .then(items => {
+          const listContainer = document.getElementById(containerId);
+          listContainer.innerHTML = items.map(item => `
+            <a href="javascript:void(0)" class="resource-link" onclick="loadReleaseMarkdown('${folderPath}/${item.file}', '${item.version}', this)">
+              <i class="fa-solid fa-file-lines"></i> ${item.version}
+            </a>
+          `).join('');
+        })
+        .catch(err => {
+          document.getElementById(containerId).innerHTML = '<p class="subtext">No archives found.</p>';
+        });
+    }
+
+    // Populate all manifests
+    populateManifest('../Docs/release-notes/old-releases/versions/manifest.json', 'versions-list', '../Docs/release-notes/old-releases/versions');
+    populateManifest('../Docs/release-notes/old-releases/nightlies/1.5.0/manifest.json', 'nightlies-150-list', '../Docs/release-notes/old-releases/nightlies/1.5.0');
+    populateManifest('../Docs/release-notes/old-releases/nightlies/2.0.0/manifest.json', 'nightlies-200-list', '../Docs/release-notes/old-releases/nightlies/2.0.0');
+  });
+
+  // Global function to fetch and render clicked markdown file without auto-scrolling
+  function loadReleaseMarkdown(filePath, versionTitle, element = null) {
+    const viewerContainer = document.getElementById('selected-release-content');
+    const viewerTitle = document.getElementById('viewer-title');
+    
+    viewerTitle.textContent = `Release ${versionTitle}`;
+    viewerContainer.innerHTML = '<p class="subtext">Loading release details...</p>';
+
+    // Remove active highlight from all quick buttons and resource links
+    document.querySelectorAll('.quick-release-btn, .resource-link').forEach(el => el.classList.remove('active-release'));
+
+    // Highlight the newly clicked element if passed
+    if (element) {
+      element.classList.add('active-release');
+    }
+
+    fetch(filePath)
+      .then(res => {
+        if (!res.ok) throw new Error('Markdown file not found.');
+        return res.text();
+      })
+      .then(markdownText => {
+        viewerContainer.innerHTML = marked.parse(markdownText);
+        // scrollIntoView removed so the page stays at its current scroll position
+      })
+      .catch(err => {
+        viewerContainer.innerHTML = `<p class="subtext">Could not load changelog for ${versionTitle}. Make sure the file exists at <code>${filePath}</code>.</p>`;
+      });
+  }
+  
+</script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Majora's Mask 3D Randomizer</p>
+    <p class="copyright">This is an unofficial website configured for Majora's Mask 3D Randomizer.</p>
+  </footer>
+
+</body>
+</html>
