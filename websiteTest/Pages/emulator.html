@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MM3D Randomizer - Web Hub</title>
+  <link rel="stylesheet" href="../Scripts/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="brand" style="text-decoration: none; color: inherit;">
+        <span class="logo-icon"><i class="fa-solid fa-gamepad"></i></span>
+        <span class="brand-title">MM3D <span class="highlight">Randomizer</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="spoilers.html" class="nav-item"><i class="fa-solid fa-magnifying-glass"></i> Spoiler Reader</a>
+        <a href="resources.html" class="nav-item"><i class="fa-solid fa-book"></i> Resources</a>
+        <a href="faq.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+        <a href="features.html" class="nav-item"><i class="fa-solid fa-star"></i> Features</a>
+        <a href="release-notes.html" class="nav-item"><i class="fa-solid fa-bullhorn"></i> Release Notes</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-btn active">
+            <i class="fa-solid fa-book-open"></i> Setup Guides <i class="fa-solid fa-chevron-down" style="font-size: 0.75em; margin-left: 0.2rem;"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="emulator.html" class="nav-item active"><i class="fa-solid fa-desktop"></i> Emulator</a>
+            <a href="console.html" class="nav-item"><i class="fa-solid fa-gamepad"></i> Console</a>
+          </div>
+        </div>
+        <a href="../Tracker/tracker.html" class="nav-item"><i class="fa-solid fa-compass-drafting"></i> Tracker</a>
+        <a href="https://discord.gg/75sr3xz6He" class="nav-item"><i class="fa-brands fa-discord"></i> Discord</a>
+      </nav>
+      <!-- Right Controls Wrapper (Toggle + Version Badge) -->
+      <div class="nav-right-group">
+        <button class="nav-menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show-mobile-menu')">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="version-badge">v1.0.0</div>
+      </div>
+    </div> 
+  </header>
+
+
+  <main class="page-container">
+    <div id="markdownContainer" class="markdown-body">
+      <p class="subtext">Loading Emulator Setup Guide...</p>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('markdownContainer');
+      
+      function parseMkDocsCallouts(markdownText) {
+        const inlineCalloutRegex = /(?:\?\?\?|\?\?\?\+|!!!)\s*([\w-]*)\s*(?:"([^"]+)"|'([^']+)')?\s*/g;
+        return markdownText.replace(inlineCalloutRegex, (match, type, title1, title2) => {
+          const title = title1 || title2 || (type ? type.toUpperCase() : "Details");
+          const isOpen = match.startsWith('???+');
+          return `\n\n<details class="mkdocs-callout ${type.toLowerCase()}" ${isOpen ? 'open' : ''}>\n<summary>${title}</summary>\n\n`;
+        }) + "\n</details>";
+      }
+
+      const renderer = new marked.Renderer();
+      renderer.link = function({ href, title, text }) {
+        const titleAttr = title ? ` title="${title}"` : '';
+        return `<a href="${href}"${titleAttr} target="_blank" rel="noopener noreferrer">${text}</a>`;
+      };
+      renderer.image = function({ href, title, text }) {
+        let imageSrc = href.startsWith('./') ? '../Docs/' + href.slice(2) : (!href.startsWith('http') && !href.startsWith('../Docs/') ? '../Docs/' + href : href);
+        const titleAttr = title ? ` title="${title}"` : '';
+        const altAttr = text ? ` alt="${text}"` : '';
+        return `<img src="${imageSrc}"${altAttr}${titleAttr} class="md-image" />`;
+      };
+
+      marked.use({ renderer });
+
+      fetch('../docs/setup-guide-emulator.md')
+        .then(res => res.ok ? res : fetch('../docs/setup-guide-emulator.md'))
+        .then(res => res.text())
+        .then(text => container.innerHTML = marked.parse(parseMkDocsCallouts(text)))
+        .catch(err => container.innerHTML = `<p class="subtext">Error loading <code>../docs/setup-guide-emulator.md</code>.</p>`);
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Majora's Mask 3D Randomizer</p>
+    <p class="copyright">This is an unofficial website configured for Majora's Mask 3D Randomizer.</p>
+  </footer>
+  
+</body>
+</html>

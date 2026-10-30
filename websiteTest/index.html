@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MM3D Randomizer - Web Hub</title>
+  <link rel="stylesheet" href="Scripts/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="brand">
+        <span class="logo-icon"><i class="fa-solid fa-gamepad"></i></span>
+        <span class="brand-title">MM3D <span class="highlight">Randomizer</span></span>
+      </a>
+      
+      <nav class="nav-links">
+        <a href="Pages/spoilers.html" class="nav-item"><i class="fa-solid fa-magnifying-glass"></i> Spoiler Reader</a>
+        <a href="Pages/resources.html" class="nav-item"><i class="fa-solid fa-book"></i> Resources</a>
+        <a href="Pages/faq.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+        <a href="Pages/features.html" class="nav-item"><i class="fa-solid fa-star"></i> Features</a>
+        <a href="Pages/release-notes.html" class="nav-item"><i class="fa-solid fa-bullhorn"></i> Release Notes</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-btn">
+            <i class="fa-solid fa-book-open"></i> Setup Guides <i class="fa-solid fa-chevron-down" style="font-size: 0.75em; margin-left: 0.2rem;"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="Pages/emulator.html" class="nav-item"><i class="fa-solid fa-desktop"></i> Emulator</a>
+            <a href="Pages/console.html" class="nav-item"><i class="fa-solid fa-gamepad"></i> Console</a>
+          </div>
+        </div>
+        <a href="Tracker/tracker.html" class="nav-item"><i class="fa-solid fa-compass-drafting"></i> Tracker</a>
+        <a href="https://discord.gg/75sr3xz6He" class="nav-item"><i class="fa-brands fa-discord"></i> Discord</a>
+      </nav>
+      <!-- Right Controls Wrapper (Toggle + Version Badge) -->
+      <div class="nav-right-group">
+        <button class="nav-menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show-mobile-menu')">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="version-badge">v1.0.0</div>
+      </div>
+    </div> 
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">SOLVE THE LOGIC</h1>
+      <p class="hero-description">
+        This platform takes <em>The Legend of Zelda: Majora's Mask 3D</em> and randomizes item locations for a completely unique play experience every run. Logic guarantees every seed is 100% beatable without glitch exploits.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Index Page Layout -->
+  <main class="main-layout">
+    
+    <!-- Left Column: Primary Information & News -->
+    <div class="left-column">
+      
+      <!-- Video / Guide Preview Card -->
+      <section class="card media-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-video"></i> Setup & Tutorial Guide</h2>
+        </div>
+        <div class="card-body">
+          <div class="video-container">
+            <div class="video-placeholder">
+              <i class="fa-solid fa-circle-play play-icon"></i>
+              <p>Click to Watch Setup Guide</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Latest News Section -->
+      <section class="card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-newspaper"></i> Latest News & Updates</h2>
+        </div>
+        <div id="newsContainer" class="card-body news-list">
+          <p class="subtext">Loading news...</p>
+        </div>
+      </section>
+
+      <!-- Script to load news.json dynamically -->
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          fetch('Docs/news.json')
+            .then(res => res.json())
+            .then(newsItems => {
+              const container = document.getElementById('newsContainer');
+              container.innerHTML = newsItems.map(item => `
+                <article class="news-item">
+                  <span class="news-date">${item.date}</span>
+                  <h3>${item.title}</h3>
+                  <p>${item.content}</p>
+                </article>
+              `).join('');
+            })
+            .catch(err => {
+              console.error('Failed to load news:', err);
+              document.getElementById('newsContainer').innerHTML = '<p class="subtext">Unable to load latest news updates.</p>';
+            });
+        });
+      </script>
+
+    </div>
+
+    <!-- Right Column: Options Summary & Helpful Resources -->
+    <div class="right-column">
+
+      <!-- Features Box -->
+      <section class="card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-list-check"></i> Customizable Options</h2>
+        </div>
+        <div class="card-body">
+          <p class="subtext">A few of the hundreds of customizable options include:</p>
+          <ul class="feature-grid">
+            <li><i class="fa-solid fa-check text-gold"></i> Inventory & Transformation Masks</li>
+            <li><i class="fa-solid fa-check text-gold"></i> Dungeon Items & Stray Fairies & Boss Remains</li>
+            <li><i class="fa-solid fa-check text-gold"></i> Shops & Scrubs</li>
+            <li><i class="fa-solid fa-check text-gold"></i> Trade Quest Items</li>
+            <li><i class="fa-solid fa-check text-gold"></i> Custom Music & Sound Effects</li>
+            <li><i class="fa-solid fa-check text-gold"></i> Cosmetic Color Customization</li>
+            <li><i class="fa-solid fa-check text-gold"></i> Gossip Stone Hints</li>
+            <li><i class="fa-solid fa-check text-gold"></i> <a href="Pages/features.html">And More...</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Requirements & Resources Box -->
+      <section class="card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-folder-open"></i> Resources & Setup</h2>
+        </div>
+        <div class="card-body link-list">
+          
+          <!-- Side-by-Side Setup Guides -->
+          <div class="resource-grid-pair">
+            <a href="Pages/emulator.html" class="resource-link">
+              <i class="fa-solid fa-desktop"></i>
+              <div>
+                <strong>Emulator Setup</strong>
+                <p>Config & patching</p>
+              </div>
+            </a>
+            <a href="Pages/console.html" class="resource-link">
+              <i class="fa-solid fa-gamepad"></i>
+              <div>
+                <strong>Console Setup</strong>
+                <p>Luma3DS & hardware</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Bottom Two Unchanged Resources -->
+          <a href="Pages/resources.html#trackers" class="resource-link">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <div>
+              <strong>Item & Map Trackers</strong>
+              <p>Keep track of accessible items and check locations as you play.</p>
+            </div>
+          </a>
+          <a href="#" class="resource-link">
+            <i class="fa-solid fa-compass"></i>
+            <div>
+              <strong>Glitchless Logic Guide</strong>
+              <p>COMING SOON! Learn the progression rules and non-glitched tricks used in logic.</p>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Majora's Mask 3D Randomizer</p>
+    <p class="copyright">Made with Love from the Z3DR Team.</p>
+  </footer>
+
+</body>
+</html>

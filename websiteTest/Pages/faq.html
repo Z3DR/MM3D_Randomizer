@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - MM3D Randomizer</title>
+  <link rel="stylesheet" href="../Scripts/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="brand" style="text-decoration: none; color: inherit;">
+        <span class="logo-icon"><i class="fa-solid fa-gamepad"></i></span>
+        <span class="brand-title">MM3D <span class="highlight">Randomizer</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="spoilers.html" class="nav-item"><i class="fa-solid fa-magnifying-glass"></i> Spoiler Reader</a>
+        <a href="resources.html" class="nav-item"><i class="fa-solid fa-book"></i> Resources</a>
+        <a href="faq.html" class="nav-item active"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+        <a href="features.html" class="nav-item"><i class="fa-solid fa-star"></i> Features</a>
+        <a href="release-notes.html" class="nav-item"><i class="fa-solid fa-bullhorn"></i> Release Notes</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-btn">
+            <i class="fa-solid fa-book-open"></i> Setup Guides <i class="fa-solid fa-chevron-down" style="font-size: 0.75em; margin-left: 0.2rem;"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="emulator.html" class="nav-item"><i class="fa-solid fa-desktop"></i> Emulator</a>
+            <a href="console.html" class="nav-item"><i class="fa-solid fa-gamepad"></i> Console</a>
+          </div>
+        </div>
+        <a href="../Tracker/tracker.html" class="nav-item"><i class="fa-solid fa-compass-drafting"></i> Tracker</a>
+        <a href="https://discord.gg/75sr3xz6He" class="nav-item"><i class="fa-brands fa-discord"></i> Discord</a>
+      </nav>
+      <!-- Right Controls Wrapper (Toggle + Version Badge) -->
+      <div class="nav-right-group">
+        <button class="nav-menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show-mobile-menu')">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="version-badge">v1.0.0</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content Container -->
+  <main class="page-container">
+    <div id="markdownContainer" class="markdown-body">
+      <p class="subtext">Loading FAQ...</p>
+    </div>
+  </main>
+
+    <!-- Inline Script to Fetch & Render Docs/faq.md -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('markdownContainer');
+    
+    // Check if running directly via file protocol
+    if (window.location.protocol === 'file:') {
+      container.innerHTML = `
+        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 1.5rem; border-radius: 8px;">
+          <h3 style="color: #ef4444; margin-top: 0;"><i class="fa-solid fa-triangle-exclamation"></i> CORS Security Restriction</h3>
+          <p>Browsers block local <code>fetch()</code> requests when opening files directly via <code>file:///</code> URLs.</p>
+          <p>To view this page locally, please run a local web server (e.g., using <strong>VS Code Live Server</strong> or <code>python -m http.server</code> in your terminal).</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Configure Marked.js renderer
+    const renderer = new marked.Renderer();
+    
+    // Open links in new tabs safely
+    renderer.link = function({ href, title, text }) {
+        const titleAttr = title ? ` title="${title}"` : '';
+        return `<a href="${href}"${titleAttr} target="_blank" rel="noopener noreferrer">${text}</a>`;
+    };
+    
+    // Fix relative image paths to resolve inside the Docs/ directory
+    renderer.image = function({ href, title, text }) {
+        let imageSrc = href;
+        
+        // If path starts with ./ or img/, prepend Docs/
+        if (imageSrc.startsWith('./')) {
+            imageSrc = '../Docs/' + imageSrc.slice(2);
+        } else if (!imageSrc.startsWith('http') && !imageSrc.startsWith('../Docs/')) {
+            imageSrc = '../Docs/' + imageSrc;
+        }
+        
+        const titleAttr = title ? ` title="${title}"` : '';
+        const altAttr = text ? ` alt="${text}"` : '';
+        
+        return `<img src="${imageSrc}"${altAttr}${titleAttr} class="md-image" />`;
+    };
+    
+    marked.use({ renderer });
+    // Pre-processor for MkDocs collapsible callout syntax (??? or !!!)
+    function parseMkDocsCallouts(markdownText) {
+  // Matches ??? [type] "Title" inline or on a new line
+  const inlineCalloutRegex = /(?:\?\?\?|\?\?\?\+|!!!)\s*([\w-]*)\s*(?:"([^"]+)"|'([^']+)')?\s*/g;
+
+  return markdownText.replace(inlineCalloutRegex, (match, type, title1, title2) => {
+    const title = title1 || title2 || (type ? type.toUpperCase() : "Details");
+    const isOpen = match.startsWith('???+');
+    
+    // Inserts HTML details tag; Marked.js will render the text inside as Markdown
+    return `\n\n<details class="mkdocs-callout ${type.toLowerCase()}" ${isOpen ? 'open' : ''}>\n<summary>${title}</summary>\n\n`;
+  }) + "\n</details>"; // Closes the details container
+}
+
+    // Fetch and render Docs/faq.md
+    fetch('../Docs/faq.md')
+      .then(response => {
+        if (!response.ok) {
+          return fetch('../Docs/faq.md');
+        }
+        return response;
+      })
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}: Could not locate file`);
+        return response.text();
+      })
+      .then(markdownText => {
+        // 1. Process MkDocs callout syntax first
+        const processedText = parseMkDocsCallouts(markdownText);
+        container.innerHTML = marked.parse(processedText);
+      })
+      .catch(error => {
+        console.error('Error loading markdown:', error);
+        container.innerHTML = `
+          <p class="subtext">
+            Failed to load resources markdown file. Ensure <code>../Docs/faq.md</code> exists and your web server has read permissions.
+            <br><small style="opacity: 0.7;">Details: ${error.message}</small>
+          </p>
+        `;
+      });
+  });
+</script>
+
+<!-- Footer -->
+  <footer class="footer">
+    <p>Majora's Mask 3D Randomizer</p>
+    <p class="copyright">This is an unofficial website configured for Majora's Mask 3D Randomizer.</p>
+  </footer>
+  
+</body>
+</html>

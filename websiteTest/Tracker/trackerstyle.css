@@ -1,0 +1,220 @@
+/* Majora's Mask 3D tracker: twilight theme */
+:root {
+    color-scheme: dark;
+    --bg: #12142a;
+    --surface: #1b1f3b;
+    --surface-2: #252a4d;
+    --line: rgba(190, 196, 255, 0.16);
+    --text: #e9e7f5;
+    --muted: #9ca1c4;
+    --accent: #e2c26a;
+    --radius: 14px;
+
+    --st-unavailable: #e5484d;
+    --st-available: #2fb36d;
+    --st-possible: #d2be1e;
+    --st-hidden: #8a5cf5;
+    --st-opened: #7f849f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg) radial-gradient(1200px 600px at 50% -10%, #232a5c 0%, transparent 70%) no-repeat;
+    color: var(--text);
+    font: 15px/1.5 system-ui, "Segoe UI Variable", "Segoe UI", Roboto, sans-serif;
+}
+
+main { flex: 1; }
+footer { padding: 18px; text-align: center; color: var(--muted); font-size: 13px; }
+
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---- Layout ---- */
+#layoutdiv { padding: 16px; }
+@media (min-width: 1250px) { .flexcontainer { display: flex; align-items: flex-start; justify-content: center; gap: 20px; } }
+
+fieldset {
+    margin: 0; padding: 8px 12px 12px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+}
+legend { padding: 0 8px; color: var(--muted); font-size: 13px; font-weight: 600; }
+
+.itemtable { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 16px; }
+.flexcontainer .itemtable { margin-bottom: 0; flex: none; max-width: 860px; }
+.flexcontainer .mapdiv { margin: 0; flex: none; }
+.trackerrow { display: flex; justify-content: center; gap: 2px; margin: 2px 0; }
+
+/* ---- Item cells (the one expressive element) ---- */
+.cell {
+    flex: none; width: 64px; height: 64px; padding: 0; border: 0; border-radius: 12px; cursor: pointer;
+    background: rgba(255, 255, 255, 0.04) center / 64px 64px no-repeat;
+    transition: transform 0.12s ease, filter 0.12s ease;
+}
+.cell { position: relative; }
+.cell:hover { transform: scale(1.07); }
+.count {
+    position: absolute; right: 2px; bottom: 2px; min-width: 22px; padding: 2px 5px; pointer-events: none;
+    border-radius: 7px; text-align: center;
+    background: rgba(10, 12, 30, 0.9);
+    color: #fff; font: 700 15px/1.1 system-ui, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
+}
+.count.max { color: var(--accent); }
+
+/* Bomber's Notebook digit: a flat, rounded key drawn in CSS */
+.cell.note { background-image: none; }
+.notenum {
+    position: absolute; inset: 7px; display: grid; place-items: center; border-radius: 12px; pointer-events: none;
+    background: linear-gradient(180deg, #3a4180, #262b57);
+    border: 0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+    color: #fff; font: 800 30px/1 system-ui, "Segoe UI", sans-serif; font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision;
+}
+.notenum.max { color: var(--accent); }
+.cell.true { filter: drop-shadow(0 0 7px rgba(226, 194, 106, 0.4)); }
+.cell.false { filter: grayscale(0.6) brightness(0.35); }
+.cell.false:hover { filter: grayscale(0.3) brightness(0.65); }
+
+/* ---- Map ---- */
+.mapdiv { width: min(100%, 825px); margin: 0 auto; }
+.mapimage {
+    position: relative; aspect-ratio: 825 / 466;
+    background: url("images/map.png") center / 100% 100% no-repeat;
+    border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.mapspan {
+    position: absolute; padding: 0; border: 2px solid #000; border-radius: 3px; font: inherit; color: #000; cursor: pointer;
+    background-image: none;               /* flat state color; the old poi.png frame caused the dark edges */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+.mapspan:hover, .mapspan:focus-visible, .mapspan.selected {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent);
+    z-index: 3;
+}
+.check { width: 16px; height: 16px; margin: -8px 0 0 -8px; }
+.area { width: 24px; height: 24px; margin: -12px 0 0 -12px; text-align: center; }
+.checkCount { line-height: 24px; font-weight: 700; font-size: 13px; }
+
+/* State colors (every map point is the same square; completed points are dimmed) */
+.unavailable { background-color: var(--st-unavailable); }
+.available   { background-color: var(--st-available); }
+.possible    { background-color: var(--st-possible); }
+.hidden      { background-color: var(--st-hidden); }
+.opened      { background-color: var(--st-opened); }
+.check.opened { opacity: 0.6; }
+
+.mapspan .tooltip, .mapspan .tooltipgrey {
+    visibility: hidden; position: absolute; z-index: 5; left: 50%; width: 140px; margin-left: -70px;
+    padding: 5px 8px; border: 1px solid var(--line); border-radius: 8px; text-align: center;
+    font-size: 13px; line-height: 1.3; color: var(--text); background: var(--surface-2); pointer-events: none;
+}
+.mapspan .tooltip { bottom: 170%; }
+.mapspan .tooltipgrey { bottom: 120%; }
+.mapspan:hover .tooltip, .mapspan:hover .tooltipgrey,
+.mapspan:focus-visible .tooltip, .mapspan:focus-visible .tooltipgrey { visibility: visible; }
+
+/* ---- Index + stats bar ---- */
+.mapbar {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px;
+    margin-top: 12px; padding: 10px 16px; user-select: none;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+}
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; color: var(--muted); font-size: 14px; }
+.legend .box { display: inline-block; width: 14px; height: 14px; margin: 0 6px 0 0; vertical-align: -2px; border: 2px solid #000; border-radius: 3px; }
+.box.red { background: var(--st-unavailable); }
+.box.green { background: var(--st-available); }
+.box.blurple { background: var(--st-hidden); }
+.box.gray { background: var(--st-opened); opacity: 0.6; }
+.stats { display: flex; flex-wrap: wrap; gap: 4px 20px; font-variant-numeric: tabular-nums; }
+.stats span span { font-weight: 700; color: var(--accent); }
+
+/* ---- Area checklist ---- */
+.panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 12px; }
+.panel { padding: 10px 16px 12px; min-height: 270px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); user-select: none; }
+.paneltitle { margin: 0 0 8px; padding-bottom: 8px; border-bottom: 1px solid var(--line); font-size: 18px; font-weight: 600; text-align: center; }
+.submaplist { margin: 0; padding: 0; list-style: none; max-height: 220px; overflow-y: auto; }
+.submaplist li { border-radius: 8px; }
+.submaplist li:hover { background: var(--surface-2); }
+.submaplist button { width: 100%; padding: 4px 8px; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+
+.DCunavailable { color: #ff7b7f; }
+.DChidden { color: #b99cff; }
+.DCavailable { color: #5fd68a; }
+.DCpossible { color: #e6d24a; }
+.DCopened { color: var(--muted); text-decoration: line-through; }
+
+/* ---- Options ---- */
+#settingsbutton, .settings button {
+    padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px;
+    background: var(--surface-2); color: var(--text); font: inherit; cursor: pointer;
+}
+#settingsbutton:hover, .settings button:hover { border-color: var(--accent); }
+#settingsbutton { position: fixed; right: 16px; bottom: 16px; z-index: 20; color: var(--accent); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4); }
+
+.settings {
+    position: fixed; right: 16px; bottom: 64px; z-index: 19; width: min(680px, calc(100vw - 32px)); max-height: calc(100vh - 90px); overflow-y: auto;
+    background: rgba(27, 31, 59, 0.96); backdrop-filter: blur(10px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+.settings fieldset { margin: 8px 0; background: transparent; }
+.settings label { display: inline-flex; align-items: center; gap: 6px; margin: 3px 14px 3px 0; cursor: pointer; }
+.settings input { margin: 0; accent-color: var(--accent); }
+.settings fieldset fieldset { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px 14px; }
+.settings fieldset fieldset label { margin: 0; }
+
+/* Pill switches */
+.settings input[type=checkbox] {
+    appearance: none; -webkit-appearance: none; flex: none; position: relative; cursor: pointer;
+    width: 40px; height: 22px; border-radius: 999px;
+    background: var(--bg); border: 1px solid var(--line);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+.settings input[type=checkbox]::after {
+    content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--muted); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: transform 0.18s ease, background-color 0.18s ease;
+}
+.settings input[type=checkbox]:hover { border-color: var(--muted); }
+.settings input[type=checkbox]:checked { background: rgba(226, 194, 106, 0.28); border-color: var(--accent); }
+.settings input[type=checkbox]:checked::after { transform: translateX(18px); background: var(--accent); }
+.settings input[type=range] { width: 160px; vertical-align: middle; }
+
+.tooltip { position: relative; display: inline-block; border-bottom: 1px dotted var(--muted); }
+.tooltip .tooltiptext {
+    visibility: hidden; position: absolute; z-index: 1; width: 140px; padding: 5px 8px;
+    border: 1px solid var(--line); border-radius: 8px; background: var(--surface-2); color: var(--text); font-size: 13px;
+}
+.tooltip:hover .tooltiptext, .tooltip:focus-within .tooltiptext { visibility: visible; }
+
+/* ---- Pop-out window: bare grids + stats, no fieldset borders or labels ---- */
+body.popout { min-height: 0; padding: 6px; background: var(--bg); }
+.popoutitems { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 4px 12px; }
+.popout .mapbar { margin-top: 6px; border: 0; background: transparent; justify-content: center; }
+.popout .legend { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
+/* Pill dropdowns (Moon / Majora requirements) */
+.settings select {
+    appearance: none; -webkit-appearance: none; flex: none;
+    min-width: 100px; padding: 4px 32px 4px 14px;
+    border: 1px solid var(--line); border-radius: 999px;
+    background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23e2c26a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 12px center / 12px 8px no-repeat;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    color: var(--text); font: inherit; cursor: pointer;
+    transition: border-color 0.18s ease;
+}
+.settings select:hover { border-color: var(--accent); }
+.settings select:focus-visible { border-color: var(--accent); }
+.settings select option { background: var(--surface-2); color: var(--text); }
