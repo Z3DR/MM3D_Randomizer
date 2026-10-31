@@ -79,11 +79,11 @@
 
       marked.use({ renderer });
 
-      fetch('../docs/setup-guide-emulator.md')
-        .then(res => res.ok ? res : fetch('../docs/setup-guide-emulator.md'))
+      fetch('../Docs/setup-guide-emulator.md')
+        .then(res => res.ok ? res : fetch('../Docs/setup-guide-emulator.md'))
         .then(res => res.text())
         .then(text => container.innerHTML = marked.parse(parseMkDocsCallouts(text)))
-        .catch(err => container.innerHTML = `<p class="subtext">Error loading <code>../docs/setup-guide-emulator.md</code>.</p>`);
+        .catch(err => container.innerHTML = `<p class="subtext">Error loading <code>../Docs/setup-guide-emulator.md</code>.</p>`);
     });
   </script>
 
