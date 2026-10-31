@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | MM3D Randomizer</title>
+  <link rel="stylesheet" href="Scripts/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <span class="logo-icon"><img src="Images/icon.png" alt="Logo" style="width: 32px; height: 32px; object-fit: contain; vertical-align: middle;"></span>
+        <span class="brand-title">MM3D <span class="highlight">Randomizer</span></span>
+      </a>
+      
+      <nav class="nav-links">
+        <a href="Pages/spoilers.html" class="nav-item"><i class="fa-solid fa-magnifying-glass"></i> Spoiler Reader</a>
+        <a href="Pages/resources.html" class="nav-item"><i class="fa-solid fa-book"></i> Resources</a>
+        <a href="Pages/faq.html" class="nav-item"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+        <a href="Pages/features.html" class="nav-item"><i class="fa-solid fa-star"></i> Features</a>
+        <a href="Pages/release-notes.html" class="nav-item"><i class="fa-solid fa-bullhorn"></i> Release Notes</a>
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-btn">
+            <i class="fa-solid fa-book-open"></i> Setup Guides <i class="fa-solid fa-chevron-down" style="font-size: 0.75em; margin-left: 0.2rem;"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="Pages/emulator.html" class="nav-item"><i class="fa-solid fa-desktop"></i> Emulator</a>
+            <a href="Pages/console.html" class="nav-item"><i class="fa-solid fa-gamepad"></i> Console</a>
+          </div>
+        </div>
+        <a href="Tracker/tracker.html" class="nav-item"><i class="fa-solid fa-compass-drafting"></i> Tracker</a>
+        <a href="https://discord.gg/75sr3xz6He" class="nav-item" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a>
+      </nav>
+      <!-- Right Controls Wrapper (Toggle + Version Badge) -->
+      <div class="nav-right-group">
+        <button class="nav-menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show-mobile-menu')">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="version-badge">v1.0.0</div>
+      </div>
+    </div> 
+  </header>
+
+  <!-- Main Container -->
+  <main class="page-container">
+    <div class="card" style="width: 100%; max-width: 650px; text-align: center; margin-top: 3rem;">
+      <div class="card-header">
+        <h2><i class="fa-solid fa-triangle-exclamation"></i> 404 - Lost in Time</h2>
+      </div>
+      <div class="card-body" style="padding: 2.5rem 1.5rem;">
+        <div style="margin-bottom: 1.5rem;">
+          <img src="Images/404.png" alt="404 Not Found" style="max-width: 50%; height: auto;">
+        </div>
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--text-primary);">You've Met With a Terrible Fate, Haven't You?</h3>
+        <p class="subtext" style="font-size: 1rem; margin-bottom: 1.75rem;">
+          The page you are looking for does not exist or has been randomized elsewhere.
+        </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Majora's Mask 3D Randomizer</p>
+    <p class="copyright">Made with Love from the Z3DR Team.</p>
+  </footer>
+
+</body>
+</html>
