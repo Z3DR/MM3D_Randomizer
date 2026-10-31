@@ -1,19 +1,20 @@
 /* Color Palette & Base Theme (Primary Base: #c829d8) */
+/* Color Palette & Base Theme (Darker Royal Purple Theme) */
 :root {
-  --bg-dark: #121013;
-  --bg-card: #1c1820;
-  --bg-card-header: #25202a;
-  --border-color: #382e3f;
+  --bg-dark: #0a080d;
+  --bg-card: #15101a;
+  --bg-card-header: #1f1728;
+  --border-color: #3b284a;
   
-  /* Accent Colors based on #c829d8 */
-  --accent-purple: #c829d8;
-  --accent-purple-hover: #dd3eeed8;
-  --accent-purple-light: #e872f4;
-  --accent-purple-dim: #2e1533;
+  /* Rich Darker Royal Purple Accent Colors */
+  --accent-purple: #9c27b0;
+  --accent-purple-hover: #ab47bc;
+  --accent-purple-light: #ba68c8;
+  --accent-purple-dim: #251333;
   
-  --text-primary: #f5f0f6;
-  --text-secondary: #ad9eb3;
-  --text-muted: #73637a;
+  --text-primary: #f8f5fa;
+  --text-secondary: #c2b4c8;
+  --text-muted: #8c7a95;
 }
 
 * {
