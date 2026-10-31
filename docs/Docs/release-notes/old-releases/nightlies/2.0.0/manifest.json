@@ -4,5 +4,16 @@
   { "version": "2.0.0-nightly.53fa64", "file": "changelog-nightly-53fa64.md" },
   { "version": "2.0.0-nightly.ba24ff", "file": "changelog-nightly-ba24ff.md" },
   { "version": "2.0.0-nightly.d95de6", "file": "changelog-nightly-d95de6.md" },
-  { "version": "2.0.0-nightly.f098e2", "file": "changelog-nightly-f098e2.md" }
+  { "version": "2.0.0-nightly.f098e2", "file": "changelog-nightly-f098e2.md" }, 
+  { "version": "2.0.0-nightly.ba24ff", "file": "changelog-nightly-ba24ff.md" },
+  { "version": "2.0.0-nightly.08cefa", "file": "changelog-nightly-08cefa.md" },
+  { "version": "2.0.0-nightly.b00e39", "file": "changelog-nightly-b00e39.md" },
+  { "version": "2.0.0-nightly.c6d2a9", "file": "changelog-nightly-c6d2a9.md" },
+  { "version": "2.0.0-nightly.38b6cb", "file": "changelog-nightly-38b6cb.md" },
+  { "version": "2.0.0-nightly.b3a4c9", "file": "changelog-nightly-b3a4c9.md" },
+  { "version": "2.0.0-nightly.8a1e90", "file": "changelog-nightly-8a1e90.md" },
+  { "version": "2.0.0-nightly.9e9333", "file": "changelog-nightly-9e9333.md" },
+  { "version": "2.0.0-nightly.840e84", "file": "changelog-nightly-840e84.md" },
+  { "version": "2.0.0-nightly.bf2210", "file": "changelog-nightly-bf2210.md" },
+  { "version": "2.0.0-nightly.9ecdca", "file": "changelog-nightly-9ecdca.md" }
 ]
