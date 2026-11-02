@@ -277,7 +277,7 @@ var baseQuests = {
     NoteNumFive: 0,
 
     Ocarina: false,
-    SongOfTime: true,
+    SongOfTime: false,
     SongOfHealing: false,
     SongOfSoaring: false,
     EponasSong: false,
@@ -288,7 +288,7 @@ var baseQuests = {
     NewWaveBossaNova: false,
     ElegyOfEmptiness: false,
     OathToOrder: false,
-    ScarecrowSong: true,
+    ScarecrowSong: false,
     blank: false,
 };
 
