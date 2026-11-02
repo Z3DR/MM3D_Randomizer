@@ -850,6 +850,7 @@ body {
   gap: 0.75rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* Tab Base Styling (Matches Action Buttons) */
