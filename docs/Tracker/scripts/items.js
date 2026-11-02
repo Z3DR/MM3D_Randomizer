@@ -284,7 +284,7 @@ var baseQuests = {
     SongOfStorms: false,
     
     SonataOfAwakening: false,
-    GoronLullaby: false,
+    GoronLullaby: 0,   // 0 none, 1 Intro, 2 Full
     NewWaveBossaNova: false,
     ElegyOfEmptiness: false,
     OathToOrder: false,
@@ -319,6 +319,7 @@ var dungeonMin = {
 var questMin = {
     HeartPieces: 0,
     HeartContainer: 0,
+    GoronLullaby: 0,
     NoteNumOne: 0,
     NoteNumTwo: 0,
     NoteNumThree: 0,
@@ -354,6 +355,7 @@ var dungeonMax = {
 var questMax = {
     HeartPieces: 52,
     HeartContainer: 4,
+    GoronLullaby: 2,
     NoteNumOne: 5,
     NoteNumTwo: 5,
     NoteNumThree: 5,

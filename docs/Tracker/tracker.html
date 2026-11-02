@@ -48,9 +48,10 @@
   </header>
 
 	<body>
-		<script src="scripts/checks.js?v=10" defer></script>
-		<script src="scripts/items.js?v=10" defer></script>
-		<script src="scripts/main.js?v=10" defer></script>
+		<script src="scripts/checks.js?v=11" defer></script>
+		<script src="scripts/items.js?v=11" defer></script>
+		<script src="scripts/spoiler.js?v=11" defer></script>
+		<script src="scripts/main.js?v=11" defer></script>
 
 		<main id="layoutdiv">
 			<div id="itemtable" class="itemtable">
@@ -96,6 +97,12 @@
 				<br>
 				Size<input type="range" id="itemzoom" data-zoom="itemtable" aria-label="Item tracker size" value="100" max="200" min="10">
 				<output id="itemtablesize">100%</output><br>
+			</fieldset>
+			<fieldset>
+				<legend>Spoiler Log</legend>
+				<button type="button" data-action="importspoiler">Import Spoiler Log…</button>
+				<input type="file" id="spoilerfile" accept=".xml,text/xml,application/xml" hidden>
+				<p id="importstatus" class="importstatus" role="status" aria-live="polite">Load a randomizer spoiler log (.xml) to set your options and starting items.</p>
 			</fieldset>
 			<fieldset>
 				<legend>Map Tracker</legend>
@@ -167,7 +174,7 @@
 		</fieldset>
 
 		<footer>
-			Majora's Mask 3D Randomizer Item and Map Tracker v0.10
+			Majora's Mask 3D Randomizer Item and Map Tracker v0.11
 		</footer>
 	</body>
 </html>

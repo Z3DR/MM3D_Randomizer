@@ -218,3 +218,4 @@ body.popout { min-height: 0; padding: 6px; background: var(--bg); }
 .settings select:hover { border-color: var(--accent); }
 .settings select:focus-visible { border-color: var(--accent); }
 .settings select option { background: var(--surface-2); color: var(--text); }
+.importstatus { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
