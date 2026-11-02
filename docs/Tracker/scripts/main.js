@@ -40,7 +40,7 @@ const PRISTINE = Object.fromEntries(Object.entries(GRIDS).map(([k, g]) => [k, { 
 // Counters are drawn as a clean base picture plus overlaid text.
 // Base picture for each counter (images/<file>.png); everything else keeps images/<Name><value>.png
 const BASE_IMAGE = {
-    Bow: "Bow0", Bomb: "Bomb0", EmptyBottle: "Bottle", ZoraEgg: "ZoraEgg", HeartContainer: "HeartContainer0", HeartPieces: "HeartPieces0",
+    Bow: "Bow0", Bomb: "Bomb0", EmptyBottle: "Bottle", ZoraEgg: "ZoraEgg", HeartContainer: "HeartContainer0", HeartPieces: "HeartPieces0", GoronLullaby: "GoronLullaby",
     SwampSkulltulas: "SwampSkulltulas0", OceanSkulltulas: "OceanSkulltulas0",
     SwampStrayFairy: "SwampStrayFairy0", SnowStrayFairy: "SnowStrayFairy0",
     OceanStrayFairy: "OceanStrayFairy0", StoneStrayFairy: "StoneStrayFairy0",
@@ -48,7 +48,7 @@ const BASE_IMAGE = {
     OceanSmallKey: "OceanSmallKey0", StoneSmallKey: "StoneSmallKey0",
 };
 // Upgrade tiers show their capacity instead of the tier number ("" = nothing at tier 0)
-const TIER_TEXT = { Bow: ["", "30", "40", "50"], Bomb: ["", "20", "30", "40"] };
+const TIER_TEXT = { Bow: ["", "30", "40", "50"], Bomb: ["", "20", "30", "40"], GoronLullaby: ["", "Intro", "Full"] };
 // Bomber's Notebook digits have no picture at all: the cell is drawn as a numbered button
 const NOTE_NAME = /^NoteNum/;
 
@@ -147,6 +147,8 @@ function loadState() {
             if (typeof saved[key]?.[k] === typeof state[k]) state[k] = saved[key][k];
         }
     }
+    // Goron Lullaby used to be on/off; it is now 0 none / 1 Intro / 2 Full
+    if (typeof saved.obtainedQuests?.GoronLullaby === "boolean") quests.GoronLullaby = saved.obtainedQuests.GoronLullaby ? 2 : 0;
     const c = readStore("checks");
     if (Array.isArray(c.checks)) c.checks.forEach((v, i) => { if (checks[i]) checks[i].isOpened = !!v; });
     if (Array.isArray(c.areaChecks)) {
@@ -418,6 +420,52 @@ function applySettings(s) {
     $("layoutdiv").classList.toggle("flexcontainer", !s.mPos);
 }
 
+/* ---------- spoiler log import ---------- */
+
+function syncLogicControls() {
+    document.querySelectorAll("[data-logic]").forEach((box) => {
+        if (box.tagName === "SELECT") box.value = String(logic[box.dataset.logic]);
+        else box.checked = !!logic[box.dataset.logic];
+    });
+}
+
+function hasProgress() {
+    return checks.some((c) => c.isOpened)
+        || areas.some((a) => Object.values(a.checklist).some((c) => c.isOpened))
+        || Object.entries(GRIDS).some(([kind, g]) => Object.keys(PRISTINE[kind]).some((k) => g.state[k] !== PRISTINE[kind][k]));
+}
+
+// A spoiler log means a new seed: start a fresh run, then apply the log's settings and starting items.
+async function importSpoiler(file) {
+    const status = $("importstatus");
+    try {
+        const result = SpoilerLog.parse(await file.text(), {
+            items: { state: items, max: itemsMax }, masks: { state: masks, max: {} },
+            dungeons: { state: dungeons, max: dungeonMax }, quests: { state: quests, max: questMax },
+        });
+        if (hasProgress() && !confirm("Importing a spoiler log starts a fresh run: your tracked items and checked locations will be cleared. Continue?")) {
+            status.textContent = "Import cancelled. Nothing was changed.";
+            return;
+        }
+        checks.forEach((c) => delete c.isOpened);
+        areas.forEach((a) => Object.values(a.checklist).forEach((c) => delete c.isOpened));
+        for (const [kind, grid] of Object.entries(GRIDS)) Object.assign(grid.state, PRISTINE[kind]);
+        const gridOf = { items: "item", masks: "mask", dungeons: "dungeon", quests: "quest" };
+        for (const [group, values] of Object.entries(result.patch)) Object.assign(GRIDS[gridOf[group]].state, values);
+        Object.assign(logic, result.logic);
+
+        syncLogicControls();
+        refreshAll();
+        ["items", "checks", "logic"].forEach(save);
+
+        let message = `Loaded seed ${result.seed || "(unknown)"}: ${result.settingCount} settings and ${result.startCount} starting items applied.`;
+        if (result.unmatched.length) message += ` Not tracked: ${result.unmatched.join("; ")}.`;
+        status.textContent = message;
+    } catch (err) {
+        status.textContent = `Couldn't read that file: ${err.message}`;
+    }
+}
+
 function refreshAll() {
     cells.forEach(renderCell);
     updateMap();
@@ -445,6 +493,7 @@ function wire() {
 
     const actions = {
         popout: popOut,
+        importspoiler() { $("spoilerfile").click(); },
         resetlayout() {
             applySettings({ map: 1, iZoom: 100, mZoom: 100, mPos: 0 });
             save("settings");
@@ -469,6 +518,12 @@ function wire() {
     };
     document.querySelectorAll("[data-action]").forEach((b) =>
         b.addEventListener("click", () => actions[b.dataset.action]()));
+
+    $("spoilerfile").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) importSpoiler(file);
+        e.target.value = "";    // allow choosing the same file again
+    });
 
     const button = $("settingsbutton");
     const panel = $("settings");

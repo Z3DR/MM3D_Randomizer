@@ -55,7 +55,7 @@ function WoodfallClear() {
 }
 
 function SnowheadClear() {
-    return (items.Bow >= 1 && masks.GoronMask && dungeons.SnowSmallKey >= 3 && items.FireArrow && items.Magic >= 1 && HasExplosives() && canPlay(quests.GoronLullaby) && dungeons.SnowBigKey && Fighting() && items.LensOfTruth);
+    return (items.Bow >= 1 && masks.GoronMask && dungeons.SnowSmallKey >= 3 && items.FireArrow && items.Magic >= 1 && HasExplosives() && canPlay(quests.GoronLullaby >= 2) && dungeons.SnowBigKey && Fighting() && items.LensOfTruth);
 }
 
 function BayClear() {
@@ -71,7 +71,7 @@ function EnterWoodfallTemple() {
 }
 
 function EnterSnowheadTemple() {
-    return (canPlay(quests.GoronLullaby) && masks.GoronMask && CanUse(items.LensOfTruth));
+    return (canPlay(quests.GoronLullaby >= 2) && masks.GoronMask && CanUse(items.LensOfTruth));
 }
 
 function EnterGreatBayTemple() {
@@ -570,7 +570,7 @@ var areas = [
                 isLogic: function() { return logic.scrubtradelogic;},
             },
             'Colored Gossip Stones': { 
-                isAvailable: function() { return (items.Bomb >=1 || masks.GoronMask) && ((quests.SonataOfAwakening && masks.DekuMask) || (quests.GoronLullaby && masks.GoronMask) || (quests.NewWaveBossaNova && masks.ZoraMask))  ;}, 
+                isAvailable: function() { return (items.Bomb >=1 || masks.GoronMask) && ((quests.SonataOfAwakening && masks.DekuMask) || (quests.GoronLullaby >= 2 && masks.GoronMask) || (quests.NewWaveBossaNova && masks.ZoraMask))  ;}, 
                 isLogic: function() { return logic.piecelogic;},
             },
             'Grotto Cow 1': { 
@@ -868,7 +868,7 @@ var areas = [
                 isLogic: function() { return true;},
             },
             'Goron Lullaby': { 
-                isAvailable: function() { return items.Bow >=1 && HasExplosives() && masks.GoronMask && ((HasBottle() && CanUse(items.LensOfTruth)) || CanUse(items.FireArrow));}, 
+                isAvailable: function() { return canPlay(quests.GoronLullaby >= 1) && items.Bow >=1 && HasExplosives() && masks.GoronMask && ((HasBottle() && CanUse(items.LensOfTruth)) || CanUse(items.FireArrow));}, 
                 isLogic: function() { return logic.songslogic;},
             },
             'Goron Shop Item 1': { 
