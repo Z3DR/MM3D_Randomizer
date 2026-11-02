@@ -1,26 +1,10 @@
 "use strict";
 /* Reads a Majora's Mask 3D Randomizer spoiler log (XML) and works out:
-   - which tracker logic switches to turn on (from <settings>)
+   - which tracker logic switches to turn on (from <settings>, using LOGIC_OPTIONS in items.js)
    - which items the player starts with (from <starting-inventory> plus the starting sword/shield/ocarina settings)
    Pure functions, no DOM access, so it can be tested outside the browser. */
 
 const SpoilerLog = (() => {
-    // tracker logic flag <- spoiler log setting name
-    const SWITCHES = {
-        maininvlogic: "Shuffle Main Inventory", maskslogic: "Shuffle Masks", transformmasklogic: "Shuffle Transformation",
-        ocarinalogic: "Start With Ocarina", piecelogic: "Shuffle Piece of Heart", songslogic: "Shuffle Songs",
-        soaringlogic: "Shuffle Song of Soaring", songtimelogic: "Start With Song of Time", skullslogic: "Tokensanity",
-        shopsanitylogic: "Shopsanity", greatfairylogic: "Shuffle Fairy Rewards", scrubtradelogic: "Shuffle Scrub Trades",
-        anjulogic: "Shuffle Anju and Kafei", tinglelogic: "Shuffle Tingle Maps", notebooklogic: "Shuffle Notebook",
-        cowlogic: "Shuffle Cows", beanslogic: "Shuffle Magic Beans", scrubpurchaselogic: "Shuffle Scrub Purchases",
-        extraminigameslogic: "Extra Minigames", extracheckslogic: "Extra Checks", moonitemlogic: "Shuffle Moon Items",
-        deitylogic: "Shuffle Fierce Deity", mapslogic: "Maps/Compasses", smallkeylogic: "Small Keys", bigkeylogic: "Boss Keys",
-        straylogic: "Stray Fairies", townstraylogic: "Clock Town Stray Fairy", remainslogic: "Dungeon Rewards",
-        containerlogic: "Heart Containers",
-    };
-    // <select> flags: "Vanilla" (or anything that is not 1-4) means all four
-    const SELECTS = { moonrequirementslogic: "Moon Requirements", majorarequirementslogic: "Majora Requirements" };
-
     const DUNGEONS = { woodfall: "Swamp", snowhead: "Snow", greatbay: "Ocean", stonetower: "Stone" };
     const WALLET = { adult: 2, giant: 3 };   // tracker tiers: 1 child, 2 adult, 3 giant (see the Wallet checks in checks.js)
     const BOMB_BAG = { 20: 1, 30: 2, 40: 3 };
@@ -47,17 +31,18 @@ const SpoilerLog = (() => {
         const settingsXml = (text.match(/<settings>([\s\S]*?)<\/settings>/) || [])[1] ?? "";
         for (const [k, v] of readEntries(settingsXml, "setting")) if (!settings.has(k)) settings.set(k, v);   // first one wins
 
+        // Logic switches and dropdowns come from LOGIC_OPTIONS (items.js): "Vanilla" or anything not 1-4 means all four
         const logic = {};
-        for (const [flag, name] of Object.entries(SWITCHES)) if (settings.has(name)) logic[flag] = isOn(settings.get(name));
-        for (const [flag, name] of Object.entries(SELECTS)) {
-            const n = parseInt(settings.get(name), 10);
-            if (settings.has(name)) logic[flag] = n >= 1 && n <= 4 ? n : 4;
+        for (const [flag, o] of Object.entries(LOGIC_OPTIONS)) {
+            if (!o.setting || !settings.has(o.setting)) continue;
+            const n = parseInt(settings.get(o.setting), 10);
+            logic[flag] = o.select ? (n >= 1 && n <= 4 ? n : 4) : isOn(settings.get(o.setting));
         }
 
         const patch = { items: {}, masks: {}, dungeons: {}, quests: {} };
         const lookup = new Map();
         for (const [group, { state }] of Object.entries(targets))
-            for (const key of Object.keys(state)) if (key !== "blank") lookup.set(norm(key), { group, key });
+            for (const key of Object.keys(state)) lookup.set(norm(key), { group, key });
 
         const set = (group, key, value) => {
             patch[group][key] = typeof value === "boolean" ? value : Math.min(value, targets[group].max[key] ?? value);

@@ -8,47 +8,19 @@ const popped = [];              // nodes moved into it, so they can be put back
 // Elements that were moved to the pop-out are looked up there too
 const $ = (id) => document.getElementById(id) ?? popup?.document.getElementById(id) ?? null;
 
-// logic flag -> key used in saved data (old names kept so existing saves still load)
-const LOGIC_KEYS = {
-    // Major items
-    maininvlogic: "maininv", maskslogic: "mask", transformmasklogic: "tmask", ocarinalogic: "ocashuffle", 
-    piecelogic: "piece", songslogic: "songs", soaringlogic: "soaring", songtimelogic: "songtime", 
-    skullslogic: "skulls", shopsanitylogic: "shopsanity", greatfairylogic: "gfairy",
-    // Side items
-    scrubtradelogic: "scrubtrade", anjulogic: "anju", tinglelogic: "tingle", notebooklogic: "notebook", 
-    cowlogic: "cow", beanslogic: "beans", scrubpurchaselogic: "scrubpurchase", extraminigameslogic: "extraminigames",
-    extracheckslogic: "extrachecks", moonitemlogic: "moonitem", deitylogic: "deity",
-    // Dungeon items
-    mapslogic: "mapscompass", smallkeylogic: "skey", bigkeylogic: "bkey", straylogic: "stray", townstraylogic: "townstray", 
-    remainslogic: "bosses", containerlogic: "containers", moonrequirementslogic: "moonrequirements", majorarequirementslogic: "majorarequirements",
-    // Miscellaneous
-    eggslogic: "eggs", skipbombers: "skipnotebook"
-};
-// Flags driven by a <select> hold a number (bosses required, 1-4) instead of true/false
-const SELECT_DEFAULTS = { moonrequirementslogic: 4, majorarequirementslogic: 4 };
-const logic = Object.fromEntries(Object.keys(LOGIC_KEYS).map((k) => [k, k in SELECT_DEFAULTS ? SELECT_DEFAULTS[k] : false]));
+// Logic flags: defaults come from LOGIC_OPTIONS (items.js). Dropdown flags hold 1-4 (bosses required), the rest on/off.
+const logicDefault = (flag) => (LOGIC_OPTIONS[flag].select ? 4 : false);
+const logic = Object.fromEntries(Object.keys(LOGIC_OPTIONS).map((flag) => [flag, logicDefault(flag)]));
 
 const GRIDS = {
-    item:    { el: "itemdiv",    layout: defaultItemGrid,    state: items,    min: itemsMin,   max: itemsMax },
-    mask:    { el: "maskdiv",    layout: defaultMaskGrid,    state: masks,    min: {},         max: {} },
-    dungeon: { el: "dungeondiv", layout: defaultDungeonGrid, state: dungeons, min: dungeonMin, max: dungeonMax },
-    quest:   { el: "questdiv",   layout: defaultQuestGrid,   state: quests,   min: questMin,   max: questMax },
+    item:    { el: "itemdiv",    ...GRIDS_DATA.items },
+    mask:    { el: "maskdiv",    ...GRIDS_DATA.masks },
+    dungeon: { el: "dungeondiv", ...GRIDS_DATA.dungeons },
+    quest:   { el: "questdiv",   ...GRIDS_DATA.quests },
 };
 // Snapshot before any saved data is applied (items.js aliases base* and live objects)
 const PRISTINE = Object.fromEntries(Object.entries(GRIDS).map(([k, g]) => [k, { ...g.state }]));
 
-// Counters are drawn as a clean base picture plus overlaid text.
-// Base picture for each counter (images/<file>.png); everything else keeps images/<Name><value>.png
-const BASE_IMAGE = {
-    Bow: "Bow0", Bomb: "Bomb0", EmptyBottle: "Bottle", ZoraEgg: "ZoraEgg", HeartContainer: "HeartContainer0", HeartPieces: "HeartPieces0", GoronLullaby: "GoronLullaby",
-    SwampSkulltulas: "SwampSkulltulas0", OceanSkulltulas: "OceanSkulltulas0",
-    SwampStrayFairy: "SwampStrayFairy0", SnowStrayFairy: "SnowStrayFairy0",
-    OceanStrayFairy: "OceanStrayFairy0", StoneStrayFairy: "StoneStrayFairy0",
-    SwampSmallKey: "SwampSmallKey0", SnowSmallKey: "SnowSmallKey0",
-    OceanSmallKey: "OceanSmallKey0", StoneSmallKey: "StoneSmallKey0",
-};
-// Upgrade tiers show their capacity instead of the tier number ("" = nothing at tier 0)
-const TIER_TEXT = { Bow: ["", "30", "40", "50"], Bomb: ["", "20", "30", "40"], GoronLullaby: ["", "Intro", "Full"] };
 // Bomber's Notebook digits have no picture at all: the cell is drawn as a numbered button
 const NOTE_NAME = /^NoteNum/;
 
@@ -136,7 +108,7 @@ const savers = {
     }),
     items: () => ({ obtainedItems: items, obtainedMasks: masks, obtainedDungeons: dungeons, obtainedQuests: quests }),
     checks: () => ({ checks: serializeChecks(), areaChecks: serializeAreaChecks() }),
-    logic: () => Object.fromEntries(Object.entries(LOGIC_KEYS).map(([flag, key]) => [key, logic[flag]])),
+    logic: () => Object.fromEntries(Object.entries(LOGIC_OPTIONS).map(([flag, o]) => [o.saved, logic[flag]])),
 };
 const save = (name) => writeStore(name, savers[name]());
 
@@ -155,13 +127,9 @@ function loadState() {
         areas.forEach((a, i) => Object.values(a.checklist).forEach((chk, j) => { chk.isOpened = !!c.areaChecks[i]?.[j]; }));
     }
     const l = readStore("logic");
-    for (const [flag, key] of Object.entries(LOGIC_KEYS)) {
-        if (flag in SELECT_DEFAULTS) {
-            const n = Number(l[key]);
-            logic[flag] = Number.isInteger(n) && n >= 1 && n <= 4 ? n : SELECT_DEFAULTS[flag];
-        } else {
-            logic[flag] = !!l[key];
-        }
+    for (const [flag, o] of Object.entries(LOGIC_OPTIONS)) {
+        const n = Number(l[o.saved]);
+        logic[flag] = o.select ? (Number.isInteger(n) && n >= 1 && n <= 4 ? n : logicDefault(flag)) : !!l[o.saved];
     }
 }
 
@@ -206,14 +174,13 @@ function renderCell(cell) {
 }
 
 function step(cell, direction) {
-    const { state, min, max } = GRIDS[cell.kind];
+    const { state, max } = GRIDS[cell.kind];
     const value = state[cell.name];
     if (typeof value === "boolean") {
         state[cell.name] = !value;
     } else {
-        const lo = min[cell.name] ?? 0;
         const next = value + direction;
-        state[cell.name] = next > max[cell.name] ? lo : next < lo ? max[cell.name] : next;
+        state[cell.name] = next > max[cell.name] ? 0 : next < 0 ? max[cell.name] : next;
     }
     renderCell(cell);
     updateMap();
@@ -369,11 +336,11 @@ function popOut() {
         alert("The pop-up was blocked. Allow pop-ups for this site and try again.");
         return;
     }
-    const css = document.querySelector("link[rel=stylesheet]").href;
+    const styles = [...document.querySelectorAll("link[rel=stylesheet]")].map((l) => `<link rel="stylesheet" href="${l.href}">`).join("");
     win.document.open();
     win.document.write(`<!doctype html><html lang="en"><head><meta charset="utf-8">
         <title>MM3D Items</title><base href="${document.baseURI}">
-        <link rel="stylesheet" href="${css}"></head><body class="popout"></body></html>`);
+        ${styles}</head><body class="popout"></body></html>`);
     win.document.close();
     popup = win;
 
@@ -507,7 +474,7 @@ function wire() {
             save("checks");
         },
         resetlogic() {
-            for (const flag in logic) logic[flag] = flag in SELECT_DEFAULTS ? SELECT_DEFAULTS[flag] : false;
+            for (const flag in logic) logic[flag] = logicDefault(flag);
             document.querySelectorAll("[data-logic]").forEach((box) => {
                 if (box.tagName === "SELECT") box.value = String(logic[box.dataset.logic]);
                 else box.checked = false;

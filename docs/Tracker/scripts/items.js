@@ -1,369 +1,113 @@
-var defaultItemGrid = [
-    [
-        "Sword",
-        "Shield",
-        "Bow",
-        "FireArrow",
-        "IceArrow",
-        "LightArrow",
-    ],
-    [
-        "Magic",
-        "Bomb",
-        "Bombchu",
-        "DekuStick",
-        "DekuNut",
-        "MagicBean",
-    ],
-    [
-        "Wallet",
-        "PowderKeg",
-        "PictographBox",
-        "LensOfTruth",
-        "Hookshot",
-        "GreatFairySword",
-    ],
-    [
-        "RedPotion",
-        "GoldDust",
-        "Milk",
-        "ChateauRomani",
-        "MysteryMilk",
-        "EmptyBottle",
-    ],
-];
+/* Tracker data: the item grids, how counters are drawn, and every logic option.
+   Single source of truth: main.js (UI + saving) and spoiler.js (log import) both read from here.
+   checks.js reads the live state objects below (items, masks, dungeons, quests) and `logic`. */
 
-var defaultMaskGrid = [
-    [
-        "PostmanHat",
-        "AllNightMask",
-        "BlastMask",
-        "StoneMask",
-        "GreatFairyMask",
-        "DekuMask",
+// One table per grid. "Name" is an on/off item; "Name:N" is a counter running 0..N.
+var GRID_SPECS = {
+    items: [
+        ["Sword:3", "Shield:2", "Bow:3", "FireArrow", "IceArrow", "LightArrow"],
+        ["Magic:2", "Bomb:3", "Bombchu", "DekuStick", "DekuNut", "MagicBean"],
+        ["Wallet:3", "PowderKeg", "PictographBox", "LensOfTruth", "Hookshot", "GreatFairySword"],
+        ["RedPotion", "GoldDust", "Milk", "ChateauRomani", "MysteryMilk", "EmptyBottle:2"],
     ],
-    [
-        "KeatonMask",
-        "BremenMask",
-        "BunnyHood",
-        "DonGeroMask",
-        "MaskOfScents",
-        "GoronMask",
+    masks: [
+        ["PostmanHat", "AllNightMask", "BlastMask", "StoneMask", "GreatFairyMask", "DekuMask"],
+        ["KeatonMask", "BremenMask", "BunnyHood", "DonGeroMask", "MaskOfScents", "GoronMask"],
+        ["RomaniMask", "TroupeLeaderMask", "KafeiMask", "CouplesMask", "MaskOfTruth", "ZoraMask"],
+        ["KamaroMask", "GibdoMask", "GaroMask", "CaptainsHat", "GiantsMask", "FierceDeityMask"],
     ],
-    [
-        "RomaniMask",
-        "TroupeLeaderMask",
-        "KafeiMask",
-        "CouplesMask",
-        "MaskOfTruth",
-        "ZoraMask"
+    dungeons: [
+        ["SwampSkulltulas:30", "OceanSkulltulas:30", "TownStrayFairy", "Seahorse", "ZoraEgg:7"],
+        ["SwampMap", "SwampCompass", "SwampSmallKey:1", "SwampBigKey", "SwampStrayFairy:15", "OdolwaRemains"],
+        ["SnowMap", "SnowCompass", "SnowSmallKey:3", "SnowBigKey", "SnowStrayFairy:15", "GohtRemains"],
+        ["OceanMap", "OceanCompass", "OceanSmallKey:1", "OceanBigKey", "OceanStrayFairy:15", "GyorgRemains"],
+        ["StoneMap", "StoneCompass", "StoneSmallKey:4", "StoneBigKey", "StoneStrayFairy:15", "TwinmoldRemains"],
     ],
-    [
-        "KamaroMask",
-        "GibdoMask",
-        "GaroMask",
-        "CaptainsHat",
-        "GiantsMask",
-        "FierceDeityMask",
+    quests: [
+        ["MoonsTear", "LandDeed", "SwampDeed", "MountainDeed", "OceanDeed"],
+        ["RoomKey", "LetterToKafei", "PendantOfMemories", "LetterToMama", "HeartPieces:52", "HeartContainer:4"],
+        ["BombersNotebook", "NoteNumOne:5", "NoteNumTwo:5", "NoteNumThree:5", "NoteNumFour:5", "NoteNumFive:5"],
+        ["Ocarina", "SongOfTime", "SongOfHealing", "SongOfSoaring", "EponasSong", "SongOfStorms"],
+        ["SonataOfAwakening", "GoronLullaby:2", "NewWaveBossaNova", "ElegyOfEmptiness", "OathToOrder", "ScarecrowSong"],
     ],
-
-];
-
-var defaultDungeonGrid = [
-    [
-        "SwampSkulltulas",
-        "OceanSkulltulas",
-        "TownStrayFairy",
-        "Seahorse",
-        "ZoraEgg",
-    ],
-    [
-        "SwampMap",
-        "SwampCompass",
-        "SwampSmallKey",
-        "SwampBigKey",
-        "SwampStrayFairy",
-        "OdolwaRemains",
-    ],
-    [
-        "SnowMap",
-        "SnowCompass",
-        "SnowSmallKey",
-        "SnowBigKey",
-        "SnowStrayFairy",
-        "GohtRemains",
-    ],
-    [
-        "OceanMap",
-        "OceanCompass",
-        "OceanSmallKey",
-        "OceanBigKey",
-        "OceanStrayFairy",
-        "GyorgRemains",
-    ],
-    [
-        "StoneMap",
-        "StoneCompass",
-        "StoneSmallKey",
-        "StoneBigKey",
-        "StoneStrayFairy",
-        "TwinmoldRemains",
-    ],
-];
-
-var defaultQuestGrid = [
-    [
-        "MoonsTear",
-        "LandDeed",
-        "SwampDeed",
-        "MountainDeed",
-        "OceanDeed",
-    ],
-    [
-        "RoomKey",   
-        "LetterToKafei",
-        "PendantOfMemories",
-        "LetterToMama",
-        "HeartPieces",
-        "HeartContainer",
-    ],
-    [
-        "BombersNotebook",
-        "NoteNumOne",
-        "NoteNumTwo",
-        "NoteNumThree",
-        "NoteNumFour",
-        "NoteNumFive",
-    ],
-    [
-        "Ocarina",
-        "SongOfTime",
-        "SongOfHealing",
-        "SongOfSoaring",
-        "EponasSong",
-        "SongOfStorms",
-    ],
-    [
-        "SonataOfAwakening",
-        "GoronLullaby",
-        "NewWaveBossaNova",
-        "ElegyOfEmptiness",
-        "OathToOrder",
-        "ScarecrowSong",
-    ]
-];
-
-var baseItems = {
-    Bow: 0,
-    FireArrow: false,
-    IceArrow: false,
-    LightArrow: false,
-
-    Bomb: 0,
-    Bombchu: false,
-    DekuStick: false,
-    DekuNut: false,
-    MagicBean: false,
-
-    PowderKeg: false,
-    PictographBox: false,
-    LensOfTruth: false,
-    Hookshot: false,
-    GreatFairySword: false,
-
-    RedPotion: false,
-    GoldDust: false,
-    Milk: false,
-    ChateauRomani: false,
-    MysteryMilk: false,
-    EmptyBottle: 0,
-
-    Sword: 0,
-    Shield: 0,
-    Magic: 0,
-    Wallet: 0,
-
-    blank: false,
 };
+// GoronLullaby: 0 none, 1 Intro, 2 Full
 
-var baseMasks = {
-    PostmanHat: false,
-    AllNightMask: false,
-    BlastMask: false,
-    StoneMask: false,
-    GreatFairyMask: false,
-    DekuMask: false,
+function buildGrid(rows) {
+    const layout = [], state = {}, max = {};
+    for (const row of rows) {
+        layout.push(row.map((entry) => {
+            const [name, limit] = entry.split(":");
+            state[name] = limit ? 0 : false;
+            if (limit) max[name] = Number(limit);
+            return name;
+        }));
+    }
+    return { layout, state, max };
+}
 
-    KeatonMask: false,
-    BremenMask: false,
-    BunnyHood: false,
-    DonGeroMask: false,
-    MaskOfScents: false,
-    GoronMask: false,
+var GRIDS_DATA = Object.fromEntries(Object.entries(GRID_SPECS).map(([k, rows]) => [k, buildGrid(rows)]));
 
-    RomaniMask: false,
-    TroupeLeaderMask: false,
-    KafeiMask: false,
-    CouplesMask: false,
-    MaskOfTruth: false,
-    ZoraMask: false,
+// Live tracker state (checks.js reads these) and counter limits
+var items = GRIDS_DATA.items.state,         itemsMax = GRIDS_DATA.items.max;
+var masks = GRIDS_DATA.masks.state;
+var dungeons = GRIDS_DATA.dungeons.state,   dungeonMax = GRIDS_DATA.dungeons.max;
+var quests = GRIDS_DATA.quests.state,       questMax = GRIDS_DATA.quests.max;
 
-    KamaroMask: false,
-    GibdoMask: false,
-    GaroMask: false,
-    CaptainsHat: false,
-    GiantsMask: false,
-    FierceDeityMask: false,
-    blank: false,
+/* How counters are drawn: a clean base picture (images/<file>.png) plus overlaid text.
+   Items not listed here use images/<Name>.png (on/off) or images/<Name><value>.png (tiers). */
+var BASE_IMAGE = {
+    Bow: "Bow0", Bomb: "Bomb0", EmptyBottle: "Bottle", ZoraEgg: "ZoraEgg", HeartContainer: "HeartContainer0",
+    HeartPieces: "HeartPieces0", GoronLullaby: "GoronLullaby",
+    SwampSkulltulas: "SwampSkulltulas0", OceanSkulltulas: "OceanSkulltulas0",
+    SwampStrayFairy: "SwampStrayFairy0", SnowStrayFairy: "SnowStrayFairy0",
+    OceanStrayFairy: "OceanStrayFairy0", StoneStrayFairy: "StoneStrayFairy0",
+    SwampSmallKey: "SwampSmallKey0", SnowSmallKey: "SnowSmallKey0",
+    OceanSmallKey: "OceanSmallKey0", StoneSmallKey: "StoneSmallKey0",
 };
+// Upgrade tiers show their capacity instead of the tier number ("" = nothing at tier 0)
+var TIER_TEXT = { Bow: ["", "30", "40", "50"], Bomb: ["", "20", "30", "40"], GoronLullaby: ["", "Intro", "Full"] };
 
-var baseDungeons = {
-    SwampSkulltulas: 0,
-    OceanSkulltulas: 0,
-    TownStrayFairy: false,
-    Seahorse: false,
-    ZoraEgg: 0,
-    
-    SwampMap: false,
-    SwampCompass: false,
-    SwampSmallKey: 0,
-    SwampBigKey: false,
-    SwampStrayFairy: 0,
-    OdolwaRemains: false,
-
-    SnowMap: false,
-    SnowCompass: false,
-    SnowSmallKey: 0,
-    SnowBigKey: false,
-    SnowStrayFairy: 0,
-    GohtRemains: false,
-
-    OceanMap: false,
-    OceanCompass: false,
-    OceanSmallKey: 0,
-    OceanBigKey: false,
-    OceanStrayFairy: 0,
-    GyorgRemains: false,
-
-    StoneMap: false,
-    StoneCompass: false,
-    StoneSmallKey: 0,
-    StoneBigKey: false,
-    StoneStrayFairy: 0,
-    TwinmoldRemains: false,
-
-    blank: false,
+/* Logic options. Key = flag read by checks.js (`logic.<flag>`).
+   saved   = key in saved data (old names kept so existing saves still load)
+   setting = name of the matching setting in the randomizer's spoiler log (none = not in the log)
+   select  = drives a dropdown holding 1-4 (bosses required, default 4) instead of an on/off switch */
+var LOGIC_OPTIONS = {
+    // Major items
+    maininvlogic: { saved: "maininv", setting: "Shuffle Main Inventory" },
+    maskslogic: { saved: "mask", setting: "Shuffle Masks" },
+    transformmasklogic: { saved: "tmask", setting: "Shuffle Transformation" },
+    ocarinalogic: { saved: "ocashuffle", setting: "Start With Ocarina" },
+    piecelogic: { saved: "piece", setting: "Shuffle Piece of Heart" },
+    songslogic: { saved: "songs", setting: "Shuffle Songs" },
+    soaringlogic: { saved: "soaring", setting: "Shuffle Song of Soaring" },
+    songtimelogic: { saved: "songtime", setting: "Start With Song of Time" },
+    skullslogic: { saved: "skulls", setting: "Tokensanity" },
+    shopsanitylogic: { saved: "shopsanity", setting: "Shopsanity" },
+    greatfairylogic: { saved: "gfairy", setting: "Shuffle Fairy Rewards" },
+    // Side quest items
+    scrubtradelogic: { saved: "scrubtrade", setting: "Shuffle Scrub Trades" },
+    anjulogic: { saved: "anju", setting: "Shuffle Anju and Kafei" },
+    tinglelogic: { saved: "tingle", setting: "Shuffle Tingle Maps" },
+    notebooklogic: { saved: "notebook", setting: "Shuffle Notebook" },
+    cowlogic: { saved: "cow", setting: "Shuffle Cows" },
+    beanslogic: { saved: "beans", setting: "Shuffle Magic Beans" },
+    scrubpurchaselogic: { saved: "scrubpurchase", setting: "Shuffle Scrub Purchases" },
+    extraminigameslogic: { saved: "extraminigames", setting: "Extra Minigames" },
+    extracheckslogic: { saved: "extrachecks", setting: "Extra Checks" },
+    moonitemlogic: { saved: "moonitem", setting: "Shuffle Moon Items" },
+    deitylogic: { saved: "deity", setting: "Shuffle Fierce Deity" },
+    // Dungeon items
+    mapslogic: { saved: "mapscompass", setting: "Maps/Compasses" },
+    smallkeylogic: { saved: "skey", setting: "Small Keys" },
+    bigkeylogic: { saved: "bkey", setting: "Boss Keys" },
+    straylogic: { saved: "stray", setting: "Stray Fairies" },
+    townstraylogic: { saved: "townstray", setting: "Clock Town Stray Fairy" },
+    remainslogic: { saved: "bosses", setting: "Dungeon Rewards" },
+    containerlogic: { saved: "containers", setting: "Heart Containers" },
+    moonrequirementslogic: { saved: "moonrequirements", setting: "Moon Requirements", select: true },
+    majorarequirementslogic: { saved: "majorarequirements", setting: "Majora Requirements", select: true },
+    // Not in the spoiler log
+    eggslogic: { saved: "eggs" },
+    skipbombers: { saved: "skipnotebook" },
 };
-
-var baseQuests = {
-    MoonsTear: false,
-    LandDeed: false,
-    SwampDeed: false,
-    MountainDeed: false,
-    OceanDeed: false,
-
-    RoomKey: false,
-    LetterToKafei: false,
-    PendantOfMemories: false,
-    LetterToMama: false,
-    HeartPieces: 0,
-    HeartContainer: 0,
-
-    BombersNotebook: false,
-    NoteNumOne: 0,
-    NoteNumTwo: 0,
-    NoteNumThree: 0,
-    NoteNumFour: 0,
-    NoteNumFive: 0,
-
-    Ocarina: false,
-    SongOfTime: false,
-    SongOfHealing: false,
-    SongOfSoaring: false,
-    EponasSong: false,
-    SongOfStorms: false,
-    
-    SonataOfAwakening: false,
-    GoronLullaby: 0,   // 0 none, 1 Intro, 2 Full
-    NewWaveBossaNova: false,
-    ElegyOfEmptiness: false,
-    OathToOrder: false,
-    ScarecrowSong: false,
-    blank: false,
-};
-
-var itemsMin = {
-    Bow: 0,
-    Bomb: 0,
-    EmptyBottle: 0,
-    Wallet: 0,
-    Sword: 0,
-    Magic: 0,
-    Shield: 0,
-};
-
-var dungeonMin = {
-    ZoraEgg: 0,
-    SwampSkulltulas: 0,
-    OceanSkulltulas: 0,
-    SwampStrayFairy: 0,
-    SnowStrayFairy: 0,
-    OceanStrayFairy: 0,
-    StoneStrayFairy: 0,
-    SwampSmallKey: 0,
-    SnowSmallKey: 0,
-    OceanSmallKey: 0,
-    StoneSmallKey: 0,
-};
-
-var questMin = {
-    HeartPieces: 0,
-    HeartContainer: 0,
-    GoronLullaby: 0,
-    NoteNumOne: 0,
-    NoteNumTwo: 0,
-    NoteNumThree: 0,
-    NoteNumFour: 0,
-    NoteNumFive: 0,
-};
-
-var itemsMax = {
-    Bow: 3,
-    Bomb: 3,
-    EmptyBottle: 2,
-    Wallet: 3,
-    Sword: 3,
-    Magic: 2,
-    Shield: 2,
-};
-
-var dungeonMax = {
-    ZoraEgg: 7,
-    SwampSkulltulas: 30,
-    OceanSkulltulas: 30,
-    SwampStrayFairy: 15,
-    SnowStrayFairy: 15,
-    OceanStrayFairy: 15,
-    StoneStrayFairy: 15,
-    SwampSmallKey: 1,
-    SnowSmallKey: 3,
-    OceanSmallKey: 1,
-    StoneSmallKey: 4,
-};
-
-
-var questMax = {
-    HeartPieces: 52,
-    HeartContainer: 4,
-    GoronLullaby: 2,
-    NoteNumOne: 5,
-    NoteNumTwo: 5,
-    NoteNumThree: 5,
-    NoteNumFour: 5,
-    NoteNumFive: 5,
-};
-
-var items = Object.assign(baseItems);
-var masks = Object.assign(baseMasks);
-var dungeons = Object.assign(baseDungeons);
-var quests = Object.assign(baseQuests);
