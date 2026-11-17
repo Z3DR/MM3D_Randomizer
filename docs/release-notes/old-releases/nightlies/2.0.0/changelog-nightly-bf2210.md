@@ -1,4 +1,4 @@
-# Latest Nightly Changes
+# Nightly BF2210
 
 ## Bug Fixes
 - Adjust item give for ext bits to ensure that Song of Healing items are given on the first time.
