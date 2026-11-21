@@ -3547,7 +3547,19 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(BENEATH_THE_WELL_PRE_MIRROR_SHIELD_ROOM, {[]{return true;}}),
-		Entrance(IKANA_CASTLE_EXTERIOR_LOWER, {[]{return MirrorShield || CanUse(LIGHT_ARROWS);}}),
+		Entrance(BENEATH_THE_WELL_MIRROR_SHIELD_ROOM_EXIT, {[]{return MirrorShield || CanUse(LIGHT_ARROWS);}}),
+	});
+
+	areaTable[BENEATH_THE_WELL_MIRROR_SHIELD_ROOM_EXIT] = Area("Beneath The Well Mirror Shield Room Exit", "Beneath The Well Mirror Shield Room Exit", BENEATH_THE_WELL, {
+		//Events
+	},
+	{
+		//Locations
+	},
+	{
+		//Exits
+		Entrance(BENEATH_THE_WELL_MIRROR_SHIELD_ROOM, {[]{return CanUse(LIGHT_ARROWS);}}),
+		Entrance(IKANA_CASTLE_EXTERIOR_LOWER, {[]{return true;}}),
 	});
 
 	areaTable[IKANA_CASTLE_EXTERIOR_LOWER] = Area("Ikana Castle Lower Exterior", "Ikana Castle Lower Exterior", IKANA_CASTLE, {
@@ -3559,7 +3571,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(IKANA_CASTLE_SHORTCUT, {[]{return CanUse(LIGHT_ARROWS);}}),
-		Entrance(BENEATH_THE_WELL_MIRROR_SHIELD_ROOM, {[]{return true;}}),
+		Entrance(BENEATH_THE_WELL_MIRROR_SHIELD_ROOM_EXIT, {[]{return true;}}),
 		Entrance(IKANA_CASTLE_ENTRANCE, {[]{return true;}}),
 	});
 
@@ -3970,7 +3982,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(THE_MOON_LINK_TRIAL_GOSSIP_ROOM_2, {[]{return Fighting;}}),
-		Entrance(THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM, {[]{return Fighting && HasBombchus && Bow;}}),//Trick for Song of Storms?
+		Entrance(THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM, {[]{return Fighting && (ProgressiveBombBag >= 1) && Bow;}}),//Trick for Song of Storms?
 	});
 
 	areaTable[THE_MOON_LINK_TRIAL_PIECE_OF_HEART_ROOM] = Area("The Moon Link Trial Piece of Heart Room", "The Moon Link Trial Piece of Heart Room", THE_MOON, {
@@ -3985,7 +3997,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(THE_MOON_LINK_TRIAL_IRON_KNUCKLE_ROOM, {[]{return true;}}),
-		Entrance(THE_MOON_LINK_TRIAL_KID_ROOM, {[]{return HasBombchus && CanUse(FIRE_ARROWS);}}),//Trick for Song of Storms?
+		Entrance(THE_MOON_LINK_TRIAL_KID_ROOM, {[]{return (ProgressiveBombBag >= 1) && CanUse(FIRE_ARROWS);}}),//Trick for Song of Storms?
 	});
 
 	areaTable[THE_MOON_LINK_TRIAL_KID_ROOM] = Area("The Moon Link Trial Kid Room", "The Moon Link Trial Kid Room", THE_MOON, {

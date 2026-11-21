@@ -508,7 +508,7 @@ namespace Logic {
 		AnyBombBag = (ProgressiveBombBag >= 1) || BombBag20 || TownBombBag || MountainBombBag;
 		Explosives = BlastMask || AnyBombBag;
 		HasExplosives = AnyBombBag || (BlastMask && AnyShield);//Shield required to use Blast Mask without killing the player
-		HasBombchus = (BuyBombchus5 || BuyBombchus10 || BuyBombchus20) && AnyBombBag;
+		HasBombchus = ProgressiveBombBag >= 1;
 		FoundBombchus = Bombchus;
 		
 		//Bow & Arrows
