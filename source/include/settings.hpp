@@ -515,6 +515,7 @@ namespace Settings {
   extern Option MenuOpeningButton;
   extern Option RsDurability;
   extern Option SkipBombersMinigame;
+  extern Option IceTrapTypes;
   extern std::vector<Option*>otherSettingsOptions;
 
   //Comfort
@@ -620,6 +621,13 @@ namespace Settings {
   //Custom Buttons
   extern Menu customInputs;
   extern std::vector<Option*> customButtons;
+  extern Option CustomMapButton;
+  extern Option CustomItemsButton;
+  extern Option CustomMasksButton;
+  extern Option CustomNotebookButton;
+  extern Option IngameSpoilersButton;
+
+  //Ingame Options
   extern Option IngameLTargeting;
   extern Option IngameFirstPersonCamera;
   extern Option IngameFreeCamera;
@@ -632,12 +640,7 @@ namespace Settings {
   extern Option IngameShuffleSFX;
   extern Option IngameShuffleFootsteps;
   extern Option IngameShuffleLinkVoice;
-
-  extern Option CustomMapButton;
-  extern Option CustomItemsButton;
-  extern Option CustomMasksButton;
-  extern Option CustomNotebookButton;
-  extern Option IngameSpoilersButton;
+  extern Option IngameCameraSpeed;
 
   extern std::vector<Menu *> mainMenu;
 
