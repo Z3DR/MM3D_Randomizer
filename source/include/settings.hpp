@@ -289,6 +289,7 @@ namespace Settings {
   const std::vector<Menu*> GetAllOptionMenus();
   u32 CustomButtonConvert(u8 customButton);
   bool CheckCustomButtons();
+  float ParseCameraSpeed();
 
 
   extern std::string seed;

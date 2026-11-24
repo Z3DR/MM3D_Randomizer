@@ -397,11 +397,12 @@ string_view iceTrapsOff               = "All Ice Traps are removed.\n"          
                                         "This is the same as Vanilla as the base game\n"   // 
                                         "Does not have any Ice Traps.";                    //
 string_view iceTrapsExtra             = "Chance to add Ice Traps when junk items are\n"
-                                        "added to the itempool.";                          //
+                                        "added to the item pool.";                          //
 string_view iceTrapsMayhem            = "All added junk items will be Ice Traps.";         //
 string_view iceTrapsOnslaught         = "All junk items will be replaced by Ice Traps, even"
                                         "those in the base pool.";                         //
-string_view iceTrapTypesDesc          = "Adds extra Ice Trap types to the item pool.";     //
+string_view iceTrapTypesDesc          = "Adds extra Ice Trap types."                       //
+                                        "Trap type is randomized each time it's triggered.";//
 /*------------------------------                                                           //
 |    REMOVE DOUBLE DEFENSE     |                                                           //
 ------------------------------*/                                                           //
