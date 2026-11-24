@@ -104,6 +104,7 @@ extern string_view iceTrapsNormal;
 extern string_view iceTrapsExtra;
 extern string_view iceTrapsMayhem;
 extern string_view iceTrapsOnslaught;
+extern string_view iceTrapTypesDesc;
 
 extern string_view removeDDDesc;
 
@@ -266,6 +267,7 @@ extern string_view ingameFastSongsDesc;
 extern string_view ingameShuffleSFXDesc;
 extern string_view ingameShuffleFootstepsDesc;
 extern string_view ingameShuffleLinkVoiceDesc;
+extern string_view ingameCameraSpeedDesc;
 
 // Novice Tricks
 extern string_view crossPoisonWaterDesc;

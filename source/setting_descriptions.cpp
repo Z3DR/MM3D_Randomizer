@@ -397,10 +397,12 @@ string_view iceTrapsOff               = "All Ice Traps are removed.\n"          
                                         "This is the same as Vanilla as the base game\n"   // 
                                         "Does not have any Ice Traps.";                    //
 string_view iceTrapsExtra             = "Chance to add Ice Traps when junk items are\n"
-                                        "added to the itempool.";                          //
+                                        "added to the item pool.";                          //
 string_view iceTrapsMayhem            = "All added junk items will be Ice Traps.";         //
 string_view iceTrapsOnslaught         = "All junk items will be replaced by Ice Traps, even"
                                         "those in the base pool.";                         //
+string_view iceTrapTypesDesc          = "Adds extra Ice Trap types."                       //
+                                        "Trap type is randomized each time it's triggered.";//
 /*------------------------------                                                           //
 |    REMOVE DOUBLE DEFENSE     |                                                           //
 ------------------------------*/                                                           //
@@ -739,6 +741,8 @@ string_view ingameShuffleFootstepsDesc = "Shuffle Link's footsteps, jumps, landi
 string_view ingameShuffleLinkVoiceDesc = "Shuffle Link's voice among his own lines when\n" //
                                         "Shuffle Sound Effects is on. Each form keeps its\n"//
                                         "own voice. Can be changed in the in-game menu.";  //
+string_view ingameCameraSpeedDesc     = "Sets the camera speed on a new file.\n"            //
+                                        "0.25 = Slowest, 1.0 = Default, 5.0 = Fastest.";   //
 /*------------------------------                                                           //
 |        NOVICE TRICKS         |                                                           //
 ------------------------------*/                                                           //

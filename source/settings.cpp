@@ -32,6 +32,7 @@ namespace Settings {
   std::vector<std::string> healthOptions = { "3 hearts",  "4 hearts",  "5 hearts",  "6 hearts",  "7 hearts",  "8 hearts",  "9 hearts", "10 hearts", "11 hearts", "12 hearts", "13 hearts", "14 hearts", "15 hearts", "16 hearts", "17 hearts", "18 hearts", "19 hearts", "20 hearts" };//,  "1 heart",   "2 hearts"}; // TODO: logic for lower health
   std::vector<std::string> buttonOptions = { "Default", "Start", "Select", "Start + Select", "L + Start", "L + Select", "R + Start", "R + Select", "L + ZL", "L + ZR", "R + ZL", "R + ZR", "ZL + ZR", "ZL + Start", "ZL + Select", "ZR + Start", "ZR + Select"};//L+R not included as its too easy to accidentally do in normal gameplay, can be added later
   std::vector<std::string> spoilerOptions= { "Default", "Start", "Select", "Start + Select", "L + Start", "L + Select", "R + Start", "R + Select"};//ZL + ZR buttons do not work for the spoiler log
+  std::vector<std::string> cameraSpeedOptions = { "0.25", "0.5", "0.75", "1.0", "1.25", "1.5", "1.75", "2.0", "2.25", "2.5", "2.75", "3.0", "3.25", "3.5", "3.75", "4.0", "4.25", "4.5", "4.75", "5.0" };
 
   //Function to avoid accidentally naming the options wrong, as logic.cpp requires these exact names
   std::vector<std::string> GlitchDifficultyOptions(u8 enabledDifficulties) {
@@ -534,9 +535,11 @@ namespace Settings {
   Option IceTrapValue         = Option::U8("Ice Traps",                { "None", "Extra", "Mayhem", "Onslaught" },          { iceTrapsOff, iceTrapsExtra, iceTrapsMayhem, iceTrapsOnslaught },             OptionCategory::Setting, (u8)IceTrapSetting::ICETRAPS_OFF);
   Option CompassShowWoTH      = Option::Bool("Compasses Show WotH",    {"Off", "On"},                                       { compassShowWotHDesc});
   Option SkipBombersMinigame  = Option::Bool("Skip Bombers' Minigame", {"Off", "On"},                                       { skipBombersMinigameDesc});
+  Option IceTrapTypes         = Option::Bool("Extra Ice Trap Types",   { "Off", "On" },                                     { iceTrapTypesDesc });
 
   std::vector<Option*>otherSettingsOptions = {
       &IceTrapValue,
+      &IceTrapTypes,
       &SkipBombersMinigame,
       //&RandomTrapDmg,
       &GossipStoneHints,
@@ -581,6 +584,7 @@ namespace Settings {
   Option IngameShuffleSFX        = Option::U8("Shuffle Sound Effects",   {"None", "Categorical", "Chaos", "Link Only"},                          {ingameShuffleSFXDesc});
   Option IngameShuffleFootsteps  = Option::Bool("Shuffle Footsteps",  {"Off", "On"},                                                             {ingameShuffleFootstepsDesc});
   Option IngameShuffleLinkVoice  = Option::Bool("Shuffle Link's Voice", {"Off", "On"},                                                           {ingameShuffleLinkVoiceDesc});
+  Option IngameCameraSpeed       = Option::U8("Camera Speed",            {cameraSpeedOptions},                                                   {ingameCameraSpeedDesc}, OptionCategory::Setting, 3);
 
   std::vector<Option*> ingameOptions = {
     &IngameLTargeting,
@@ -596,6 +600,7 @@ namespace Settings {
     &IngameShuffleSFX,
     &IngameShuffleFootsteps,
     &IngameShuffleLinkVoice,
+    &IngameCameraSpeed,
   };
 
   std::vector<Option*> comfortOptions = {
@@ -1013,6 +1018,7 @@ namespace Settings {
     ctx.damageMultiplier     = DamageMultiplier.Value<u8>();
     ctx.chestAnimations      = (ChestAnimations) ? 1 : 0;
     ctx.chestSize            = (ChestSize) ? 1 : 0;
+    ctx.enableMoreIceTraps = (IceTrapTypes) ? 1 : 0;
 
     // Ingame Options Menu
     ctx.ingameLTargeting = IngameLTargeting.Value<u8>();
@@ -1028,6 +1034,7 @@ namespace Settings {
     ctx.shuffleSFX = IngameShuffleSFX.Value<u8>();
     ctx.shuffleSFXFootsteps = (IngameShuffleFootsteps) ? 1 : 0;
     ctx.shuffleSFXLinkVoice = (IngameShuffleLinkVoice) ? 1 : 0;
+    ctx.ingameCameraSpeedMult = ParseCameraSpeed();
 
     // Comfort Settings Menu    
     ctx.blastMaskCooldown = BlastMaskCooldown.Value<u8>();
@@ -1207,6 +1214,10 @@ namespace Settings {
     }     
 
     return customButtonValue;
+  }
+
+  float ParseCameraSpeed() {
+    return std::stof(cameraSpeedOptions[IngameCameraSpeed.Value<u8>()]);
   }
 
   //Set default cosmetics where the default is not the first option
