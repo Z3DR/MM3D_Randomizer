@@ -4,9 +4,9 @@
 Feat: Extra Ice Trap setting added implementing the following:
 
 Three additional ice traps:  
-- Shock trap: Shocks you in place and takes 1-3 hearts of damage.
-- Fire trap: Throws you and sets you on fire
-- Reverse control trap: Reverse your controls
+- Shock trap: Shocks you in place and takes 1-3 hearts of damage.  
+- Fire trap: Throws you and sets you on fire  
+- Reverse control trap: Reverse your controls  
 
 These are randomly selected at run time, so even on cycle reset you could get a different ice trap.
 
