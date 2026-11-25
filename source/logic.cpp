@@ -328,6 +328,7 @@ namespace Logic {
 	bool CanTradeMountainDeed = false;
 	bool CanTradeOceanDeed = false;
 	bool CanBuyBeans = false;
+	bool PFCageRoomSwitch = false;
 
 	bool CanGoToMoon = false;
 
@@ -911,6 +912,7 @@ namespace Logic {
 	CanTradeMountainDeed = false;
 	CanTradeOceanDeed = false;
 	CanBuyBeans = false;
+	PFCageRoomSwitch = false;
 	
 	ZoraEgg = 0;
 	CanGoToMoon = false;

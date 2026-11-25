@@ -339,7 +339,6 @@ static void FastFill(std::vector<ItemKey> items, std::vector<LocationKey> locati
         else {
             Location(loc)->SetAsHintable();
             PlaceItemInLocation(loc, item);
-            MultiLocationCheck(loc);
             if (items.empty() && !endOnItemsEmpty) {
                 items.push_back(GetJunkItem());
             }
@@ -432,6 +431,15 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
             erase_if(accessibleLocations, [item](const LocationKey loc) {
                 return (item == MAGIC_BEAN_PACK && Location(loc)->IsCategory(Category::cShop));
             });
+            // Specific items need to be placed in locations that allow them to be used in time and or reobtained in new cycles.
+            // Gold Dust
+            erase_if(accessibleLocations, [item](const LocationKey loc) {
+                return (item == GOLD_DUST && !Location(loc)->IsCategory(Category::cDayOne) && !Location(loc)->IsCategory(Category::cMinigame));
+            });
+            // Mystery Milk
+            erase_if(accessibleLocations, [item](const LocationKey loc) {
+                return (item == BOTTLE_WITH_MYSTERY_MILK && !Location(loc)->IsCategory(Category::cDayOne) && !Location(loc)->IsCategory(Category::cMinigame));
+            });
             
             //retry if there are no more locations to place items
             if (accessibleLocations.empty()) {
@@ -480,7 +488,6 @@ static void AssumedFill(const std::vector<ItemKey>& items, const std::vector<Loc
                 if (setLocationsAsHintable) {
                     Location(selectedLocation)->SetAsHintable();
                 }
-                MultiLocationCheck(selectedLocation);
         
                 //If ALR is off, then we check beatability after placing the item.
                 //If the game is beatable, then we can stop placing items with logic.
@@ -1077,7 +1084,11 @@ int Fill() {
         GeneratePlaythrough(); //TODO::FIX PLAYTHROUGH
 
         //Successful placement, produced beatable result
-        if (!placementFailure && playthroughBeatable ) {
+        if (!placementFailure && playthroughBeatable ) { 
+            // Fill multi location checks at the end to not mess with placement counts.
+            for (const auto& location : allLocations) {
+                MultiLocationCheck(location);
+            }
             printf("Done");
             printf("\x1b[9;10HCalculating Playthrough...                        "); 
             PareDownPlaythrough();
