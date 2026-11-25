@@ -3249,6 +3249,7 @@ void AreaTable_Init() {
 
 	areaTable[PIRATE_FORTRESS_CAGE_ROOM] = Area("Pirates Fortress Cage Room", "Pirates Fortress Cage Room", PIRATE_FORTRESS, {
 		//Events
+		EventAccess(&PFCageRoomSwitch, {[]{return CanUseProjectile;}}),
 	},
 	{
 		//Locations
@@ -3259,7 +3260,7 @@ void AreaTable_Init() {
 	{
 		//Exits
 		Entrance(PIRATE_FORTRESS_MAZE_ROOM, {[]{return ZoraMask;}}),
-		Entrance(PIRATE_FORTRESS_EXTERIOR_TOP, {[]{return CanUseProjectile;}}),
+		Entrance(PIRATE_FORTRESS_EXTERIOR_TOP, {[]{return PFCageRoomSwitch;}}),
 	});
 
 	areaTable[PIRATE_FORTRESS_EXTERIOR_TOP] = Area("Pirates Fortress Exterior Top", "Pirates Fortress Exterior Top", PIRATE_FORTRESS, {
@@ -3270,7 +3271,7 @@ void AreaTable_Init() {
 	},
 	{
 		//Exits
-		Entrance(PIRATE_FORTRESS_CAGE_ROOM, {[]{return true;}}),
+		Entrance(PIRATE_FORTRESS_CAGE_ROOM, {[]{return PFCageRoomSwitch;}}),
 		Entrance(PIRATE_FORTRESS_EXTERIOR, {[]{return true;}}),
 		Entrance(PIRATE_FORTRESS_INTERIOR, {[]{return true;}}),
 	});

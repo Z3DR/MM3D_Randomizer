@@ -15,6 +15,9 @@ from 0.25x - 5.0x speed. This is also changeable in game
 
 ## Bug Fixes
 Fix: Adjusted the exit from Beneath the Well Mirror Shield Room to resolve issue where Mirror Shield could be expected to enter the the room to open the chest from the Ikana Castle side but that is not possible since entering from that side requires Light Arrows.  
-Fix: logic helper HasBombchu was not being set properly.
+Fix: logic helper HasBombchu was not being set properly.  
+Fix: Adjusted entrance requirements for PF Cage Room <-> PF Exterior to prevent logic thinking you can enter the room from behind without hitting the switch  
+Fix: Adjust Multi Location Fill logic to not impact item placement anymore  
+Fix: Add checks to ensure Gold Dust and Mystery Milk end up in locations that are obtainable at a time before they are needed  
 
 [Previous Nightly](./old-releases/nightlies/2.0.0/changelog-nightly-7334d8.md)  

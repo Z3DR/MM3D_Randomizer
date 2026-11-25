@@ -337,6 +337,7 @@ namespace Logic {
 	extern bool CanTradeMountainDeed;
 	extern bool CanTradeOceanDeed;
 	extern bool CanBuyBeans;
+	extern bool PFCageRoomSwitch;
 	
 	extern bool CanGoToMoon;
 	extern bool RemainsForMoon;
